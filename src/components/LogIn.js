@@ -1,4 +1,5 @@
 import React from 'react';
+import logo from '../data/images/FunwaveLogo-black2.png';
 
 function Login() {
   return (
@@ -11,7 +12,7 @@ function Login() {
             <button className="">註冊</button>
           </div>
           <div className="col-5">
-            <img src="../data/images/FunwaveLogo-black 2.png" alt="funwave" />
+            <img src={logo} alt="funwave" />
             <div>
               <p>LOGIN</p>
               <input type="text" name="email" id="" placeholder="Email" />
