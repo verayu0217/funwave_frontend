@@ -3,14 +3,14 @@ import React from 'react';
 function Login() {
   return (
     <>
-      <div class="container">
-        <div class="row">
-          <div class="col-7 ">
+      <div className="container">
+        <div className="row">
+          <div className="col-7 ">
             <p>welcme to</p>
             <p>FUNWAVE</p>
-            <button class="">註冊</button>
+            <button className="">註冊</button>
           </div>
-          <div class="col-5">
+          <div className="col-5">
             <img src="../data/images/FunwaveLogo-black 2.png" alt="funwave" />
             <div>
               <p>LOGIN</p>
