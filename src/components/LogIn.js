@@ -1,15 +1,18 @@
 import React from 'react';
 import logo from '../data/images/FunwaveLogo-black2.png';
+import '../styles/global.scss';
 
 function Login() {
   return (
     <>
-      <div className="container">
+      <div className="container-fluid">
         <div className="row">
-          <div className="col-7 ">
-            <p>welcme to</p>
-            <p>FUNWAVE</p>
-            <button className="">註冊</button>
+          <div className="col-7 p-0">
+            <div className="leftSignUp vh-100">
+              <p className="px-5 py-3">welcme to</p>
+              <p>FUNWAVE</p>
+              <button className="">註冊</button>
+            </div>
           </div>
           <div className="col-5">
             <img src={logo} alt="funwave" />
