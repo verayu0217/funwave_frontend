@@ -1,3 +1,5 @@
+@import '../index.scss';
+
 .leftSignUp{
     background:url(../data/images/login.png) ;
     background-size: cover;
@@ -8,4 +10,10 @@
 }
 span{
     color: blue;
+.btn{
+    border-radius: 50px;
+}
+.signupBtn{
+    width: 160px;
+    // color: $orange;
 }

@@ -1,7 +1,7 @@
-export const debug = true
+export const debug = true;
 // 測試開發/營運網址
-export const devUrl = 'http://localhost:3000'
-export const prodUrl = 'http://www.abc.com'
+export const devUrl = 'http://localhost:3000';
+export const prodUrl = 'http://www.abc.com';
 
 export const pathnameList = [
   '/about',
@@ -16,7 +16,7 @@ export const pathnameList = [
   '/productcategory/mobile',
   '/productcategory/notebook',
   '/student',
-]
+];
 
 export const pathnameTextList = [
   '/關於我們',
@@ -31,4 +31,4 @@ export const pathnameTextList = [
   '/產品分類/手機',
   '/產品分類/筆記型電腦',
   '/學生資料',
-]
+];
