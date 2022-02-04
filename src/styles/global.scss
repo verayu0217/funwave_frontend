@@ -1,11 +1,4 @@
-$deepblue:       #17A8A2;
-$blue:       #81D7D3;
-$pink:     #FA7FAA;
-$lightgray:       #F5F5F5;
-$white:          #FFFFFF;
-$black:          #333333;
-$gray:          #98A0A5;
-$info:          #FF7F6A;
+@import '../index.scss';
 
 .leftSignUp{
     background:url(../data/images/login.png) ;
@@ -14,4 +7,11 @@ $info:          #FF7F6A;
 }
 .demo{
     background:rgba(255,255,255,0.1);
+}
+.btn{
+    border-radius: 50px;
+}
+.signupBtn{
+    width: 160px;
+    // color: $orange;
 }

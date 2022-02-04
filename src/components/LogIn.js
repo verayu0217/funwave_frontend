@@ -1,5 +1,6 @@
 import React from 'react';
 import logo from '../data/images/FunwaveLogo-black2.png';
+
 import '../styles/global.scss';
 
 function Login() {
@@ -7,14 +8,21 @@ function Login() {
     <>
       <div className="container-fluid">
         <div className="row">
-          <div className="col-7 p-0 leftSignUp vh-100 ">
-            <div className="demo vh-100">
-              <h3 className="px-5 py-3 text-white">welcme to</h3>
-              <p className="">FUNWAVE</p>
-              <button className="btn">註冊</button>
+          <div className="col-md-7 col-sm-12 p-0 leftSignUp vh-100">
+            <div className="demo vh-100 d-flex align-items-center">
+              <div className="ms-5">
+                <h3 className="text-white fw-bold fs-5">Welcome to</h3>
+                <p className="text-white fw-bold fs-1 mb-0">FUNWAVE</p>
+                <p className="text-white fw-light fs-5 mb-5">
+                  Have Fun Wave in Simple Life.
+                </p>
+                <button className="btn btn-info text-white p-3 signupBtn fs-4">
+                  註冊
+                </button>
+              </div>
             </div>
           </div>
-          <div className="col-5">
+          <div className="col-md-5 col-sm-12">
             <img src={logo} alt="funwave" />
             <div>
               <p>LOGIN</p>
