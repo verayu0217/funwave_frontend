@@ -8,13 +8,15 @@
 
 // 頁面用元件
 import Login from './components/LogIn';
+import SignUp from './components/SignUp';
 
 // 組合用元件
 
 function App() {
   return (
     <>
-      <Login />
+      {/* <Login /> */}
+      <SignUp />
     </>
   );
 }
