@@ -1,5 +1,8 @@
 .leftSignUp{
     background:url(../data/images/login.png) ;
-    object-fit: cover;
-    max-width: 100%;
+    background-size: cover;
+    z-index: 0;
+}
+.demo{
+    background:rgba(255,255,255,0.1);
 }

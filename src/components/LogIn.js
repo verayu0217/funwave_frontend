@@ -7,11 +7,11 @@ function Login() {
     <>
       <div className="container-fluid">
         <div className="row">
-          <div className="col-7 p-0">
-            <div className="leftSignUp vh-100">
-              <p className="px-5 py-3">welcme to</p>
-              <p>FUNWAVE</p>
-              <button className="">註冊</button>
+          <div className="col-7 p-0 leftSignUp vh-100 ">
+            <div className="demo vh-100">
+              <h3 className="px-5 py-3 text-white">welcme to</h3>
+              <p className="">FUNWAVE</p>
+              <button className="btn">註冊</button>
             </div>
           </div>
           <div className="col-5">
