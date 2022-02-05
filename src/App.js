@@ -5,7 +5,7 @@
 //   Switch,
 // } from 'react-router-dom';
 // import React, { useState } from 'react';
-
+import './App.scss';
 // 頁面用元件
 import Login from './components/LogIn';
 import SignUp from './components/SignUp';
@@ -15,8 +15,8 @@ import SignUp from './components/SignUp';
 function App() {
   return (
     <>
-      {/* <Login /> */}
-      <SignUp />
+      <Login />
+      {/* <SignUp /> */}
     </>
   );
 }

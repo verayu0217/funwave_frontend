@@ -1,7 +1,7 @@
 @import '../index.scss';
 
 .leftSignUp{
-    background:url(../data/images/login.png) ;
+    background:url(../data/images/login.png);
     background-size: cover;
     z-index: 0;
 }
@@ -10,10 +10,26 @@
 }
 span{
     color: blue;
+}
 .btn{
     border-radius: 50px;
 }
 .signupBtn{
-    width: 160px;
-    // color: $orange;
+    width: 160px; 
+}
+.logo{
+    width: 200px;
+}
+.loginTitle{
+    color: $info;
+}
+input{
+    border-radius: 50px;
+    width: 280px;
+    border: 1px solid $gray;
+}
+.loginBtn{
+    width: 280px;
+    padding: 12px;
+    font-weight: bold;
 }
