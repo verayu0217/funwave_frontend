@@ -22,49 +22,45 @@ function Login() {
               </div>
             </div>
           </div>
-          <div className="col-md-5 col-sm-12 vh-100">
-            <div className="d-flex justify-content-end">
-              <img src={logo} alt="funwave" className="logo m-3" />
-            </div>
-            <div className="d-flex justify-content-center">
-              <ul className="list-unstyled">
-                <li>
-                  <div className="fs-2 loginTitle">LOGIN</div>
-                </li>
-                <li>
-                  <input
-                    className="mt-3 p-3"
-                    type="text"
-                    name="email"
-                    id=""
-                    placeholder="Email"
-                  />
-                </li>
-                <li>
-                  <input
-                    className="mt-3 p-3"
-                    type="text"
-                    name="password"
-                    id=""
-                    placeholder="Password"
-                  />
-                </li>
-                <li className="mt-3 d-flex justify-content-center">
-                  <button className="btn btn-info text-white fs-4 loginBtn">
-                    登入
-                  </button>
-                </li>
-                <li className="mt-2 me-3 d-flex justify-content-end">
-                  <input
-                    className="form-check-input me-1"
-                    type="checkbox"
-                    name="remember"
-                    id=""
-                  />
-                  <label className="form-check-label">記住我</label>
-                </li>
-              </ul>
-            </div>
+          <div className="col-md-5 col-sm-12 vh-100 d-flex align-items-center justify-content-center">
+            <img src={logo} alt="funwave" className="logo m-3" />
+            <ul className="list-unstyled">
+              <li>
+                <div className="fs-2 loginTitle">LOGIN</div>
+              </li>
+              <li>
+                <input
+                  className="mt-3 p-3"
+                  type="text"
+                  name="email"
+                  id=""
+                  placeholder="Email"
+                />
+              </li>
+              <li>
+                <input
+                  className="mt-3 p-3"
+                  type="text"
+                  name="password"
+                  id=""
+                  placeholder="Password"
+                />
+              </li>
+              <li className="mt-3 d-flex justify-content-center">
+                <button className="btn btn-info text-white fs-4 loginBtn">
+                  登入
+                </button>
+              </li>
+              <li className="mt-2 me-3 d-flex justify-content-end">
+                <input
+                  className="form-check-input me-1"
+                  type="checkbox"
+                  name="remember"
+                  id=""
+                />
+                <label className="form-check-label">記住我</label>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
