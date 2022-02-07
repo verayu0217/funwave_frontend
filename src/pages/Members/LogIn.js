@@ -1,9 +1,9 @@
 import React from 'react';
-import logo from '../data/images/FunwaveLogo-black2.png';
+import logo from '../../data/images/FunwaveLogo-black2.png';
 
-import '../styles/global.scss';
+import '../../styles/component.scss';
 
-function Login() {
+function Login(props) {
   return (
     <>
       <div className="container-fluid">
@@ -45,6 +45,9 @@ function Login() {
                   id=""
                   placeholder="Password"
                 />
+                <div className="forgot-password d-flex justify-content-end me-3">
+                  <a>忘記密碼? </a>
+                </div>
               </li>
               <li className="mt-3 d-flex justify-content-center">
                 <button className="btn btn-info text-white fs-4 loginBtn">
