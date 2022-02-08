@@ -19,42 +19,42 @@ function SignUp(showModal, setshowModal) {
           onClick={closeModal}
           ref={modalRef}
         >
-          <div className="background col-md-6 col-sm-4">
+          <div className="background col-md-6 col-sm-12">
             <form className="d-flex justify-content-center align-items-center my-3">
               <div style={{ width: '60%' }}>
-                <div className="d-flex justify-content-center">
-                  <p className="title fs-2 fw-bold">Welcome to Join Us !</p>
+                <div className="mt-5 text-black fs-2 fw-bold text-center">
+                  Welcome to Join Us !
+                </div>
+                <div className="text-center fw-bold mt-3 signupTitle">
+                  註冊會員
                 </div>
                 <div className="d-flex justify-content-center">
                   <ul className="list-unstyled">
-                    <li className="mb-3">
-                      <label className="me-3">信箱</label>
+                    <li className="mt-3">
+                      <label className="fw-bold">電子信箱</label>
                       <input
-                        className="form-control mt-3 p-3 signupInput"
+                        className="form-control signupInput"
                         type="text"
                         name="email"
                         id=""
-                        placeholder="Email"
                       />
                     </li>
-                    <li className="mb-3">
-                      <label className="me-3">姓名</label>
+                    <li className="mt-3">
+                      <label className="fw-bold">姓名</label>
                       <input
-                        className="form-control mt-3 p-3 signupInput"
+                        className="form-control signupInput"
                         type="text"
                         name="name"
                         id=""
-                        placeholder="name"
                       />
                     </li>
-                    <li className="mb-3">
-                      <label className="me-3">密碼</label>
+                    <li className="mt-3">
+                      <label className="fw-bold">密碼</label>
                       <input
-                        className="form-control mt-3 p-3 signupInput"
+                        className="form-control signupInput"
                         type="text"
                         name="password"
                         id=""
-                        placeholder="password"
                       />
                     </li>
                     <li className="d-flex justify-content-center m-4">
@@ -72,10 +72,10 @@ function SignUp(showModal, setshowModal) {
                   </ul>
                 </div>
 
-                <div className="d-flex justify-content-center">
+                <div className="d-flex justify-content-center mt-3 mb-5">
                   <button
-                    className="btn btn-info text-white p-2"
-                    style={{ width: '80px' }}
+                    className="btn btn-primary text-white"
+                    style={{ width: '280px' }}
                   >
                     註冊
                   </button>

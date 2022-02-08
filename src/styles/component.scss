@@ -12,29 +12,31 @@
 }
 // 共用的btn圓角
 .btn{
-    border-radius: 50px;
+    border-radius: 8px;
 }
 .signupBtn{
-    width: 160px; 
-}
-// logo 位置
-.logo{
-    width: 200px;
-    position: absolute;
-    top: 0%;
-    right:0%;
+    width: 280px;
 }
 .loginTitle{
-    color: $info;
+    color: #E4715E;
+    font-weight: bold;
 }
-input{
-    border-radius: 50px;
-    width: 280px;
+// 登入
+.loginInput{
+    border-radius: 8px;
+    width: 150px;
     border: 1px solid $gray;
+}
+.form-control{
+    border-radius: 8px;
+    border: 1px solid $gray;
+}
+.forgetPassword{
+    text-decoration: none;
+    color: $black;
 }
 .loginBtn{
     width: 280px;
-    padding: 12px;
     font-weight: bold;
 }
 
@@ -49,23 +51,19 @@ input{
     z-index: 1;
 }
 .background{
-    width:50%;
+    margin: auto;
     background: rgba(255,255,255,1);
-    position: fixed;
-    top:5%;
-    left:25%; 
-    border-radius: 50px;
+    border-radius: 8px;
     z-index: 2;
 }
-.title{
-    color:$secondary;
-    text-align: center;
-    
+.signupTitle{
+    color: #E4715E;
+    font-size: 24px;
 }
-.form-control{
-    border-radius: 50px;
-    border: 1px solid $gray;
+.signupInput{
+    width: 280px;
 }
+// 快速註冊手機版 375px
 @media screen and (max-width: 400px) {
     .background{
         width: 80%;

@@ -1,8 +1,7 @@
 // 預設變數覆蓋需要在導入Bootstrap之前
-$primary:#17A8A2;
-$secondary:#81D7D3;
-$success:#FA7FAA;
-$info:#FF7F6A;
+$primary:#FF7F6A;
+$secondary:#17A8A2;
+$info: #81D7D3;
 
 
 // Import Bootstrap and its default variables
@@ -12,22 +11,19 @@ $info:#FF7F6A;
 // 其它要導入覆蓋掉原本的預設bootstrap樣式要放在這下面
 
 /*------------------------------ 文字、輔助顏色 ------------------------------*/
+$orange: #FF7F6A;
 $deepblue:#17A8A2;
 $blue:#81D7D3;
-$pink:#FA7FAA;
-$orange: #FF7F6A;
 $lightgray:#F5F5F5;
 $white:#FFFFFF;
 $black:#333333;
 $gray:#98A0A5;
+
 .deepblue{
   color: $deepblue;
 }
 .blue{
   color: $blue;
-}
-.pink{
-  color: $pink;
 }
 .lightgray{
   color: $lightgray;

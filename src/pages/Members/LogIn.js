@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import SignUp from './SignUp';
-import logo from '../../data/images/FunwaveLogo-black2.png';
 
 import '../../styles/component.scss';
 
@@ -16,64 +15,70 @@ function Login(props) {
       <div className="container-fluid">
         <div className="row">
           <div className="col-md-7 col-sm-12 p-0 leftSignUp">
-            <div className="demo vh-100 d-flex align-items-center">
-              <div className="ms-5">
-                <h3 className="text-white fw-bold fs-5">Welcome to</h3>
-                <p className="text-white fw-bold fs-1 mb-0">FUNWAVE</p>
-                <p className="text-white fw-light fs-5 mb-5">
-                  Have Fun Wave in Simple Life.
-                </p>
-                <button
-                  className="btn btn-info text-white p-3 fs-4 signupBtn"
-                  onClick={openSignUp}
-                >
-                  註冊
-                </button>
+            <div className="demo vh-100 d-flex justify-content-center align-items-center">
+              <div>
+                <h3 className="text-white fw-bold text-center mb-3">
+                  加入FUNWAVE會員
+                </h3>
+                <div className="d-flex justify-content-center">
+                  <button
+                    className="btn btn-primary text-white fw-bold signupBtn"
+                    onClick={openSignUp}
+                  >
+                    快速註冊
+                  </button>
+                </div>
+                <div className="text-white fw-bold text-center mt-5">
+                  這裡有一群熱情的浪友們，加入FUNWAVE會員，
+                  <br />
+                  跟我們一起FUN，一起浪！
+                </div>
               </div>
             </div>
           </div>
           <div className="col-md-5 col-sm-12 vh-100 d-flex align-items-center justify-content-center">
-            <img src={logo} alt="funwave" className="logo m-3" />
             <ul className="list-unstyled">
-              <li>
-                <div className="fs-2 loginTitle">LOGIN</div>
+              <li className="d-flex justify-content-center">
+                <div className="fs-2 loginTitle">登入會員</div>
               </li>
-              <li>
+              <li className="mt-3">
+                <label className="fw-bold">電子信箱</label>
                 <input
-                  className="mt-3 p-3"
+                  className="form-control mt-1"
                   type="text"
                   name="email"
                   id=""
-                  placeholder="Email"
                 />
               </li>
-              <li>
+              <li className="mt-3">
+                <label className="fw-bold">密碼</label>
                 <input
-                  className="mt-3 p-3"
+                  className="form-control mt-1"
                   type="text"
                   name="password"
                   id=""
-                  placeholder="Password"
                 />
-                <div className="forgot-password d-flex justify-content-end me-3">
-                  <Link to="/">忘記密碼? </Link>
+                <div className="d-flex justify-content-between mt-1">
+                  <Link to="/" className="forgetPassword mt-2">
+                    忘記密碼?
+                  </Link>
+                  <div>
+                    <input
+                      className="mt-2 me-1 form-check-input"
+                      type="checkbox"
+                      name="remember"
+                      id=""
+                    />
+                    <label className="mt-1 form-check-label">記住我</label>
+                  </div>
                 </div>
               </li>
-              <li className="mt-3 d-flex justify-content-center">
-                <button className="btn btn-info text-white fs-4 loginBtn">
+              <li className="mt-4 d-flex justify-content-center">
+                <button className="btn btn-primary text-white loginBtn">
                   登入
                 </button>
               </li>
-              <li className="mt-2 me-3 d-flex justify-content-end">
-                <input
-                  className="form-check-input me-1"
-                  type="checkbox"
-                  name="remember"
-                  id=""
-                />
-                <label className="form-check-label">記住我</label>
-                <SignUp showModal={showModal} setshowModal={setshowModal} />
-              </li>
+              <SignUp showModal={showModal} setshowModal={setshowModal} />
             </ul>
           </div>
         </div>
