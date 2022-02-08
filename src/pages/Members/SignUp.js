@@ -1,7 +1,6 @@
-import React, { useRef, useEffect, useCallback } from 'react';
-
+import React, { useRef, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-
+import 'animate.css';
 import '../../styles/component.scss';
 
 function SignUp(showModal, setshowModal) {
@@ -11,11 +10,16 @@ function SignUp(showModal, setshowModal) {
       setshowModal(false);
     }
   };
+  const [member, setMember] = useState({
+    email: '',
+    name: '',
+    password: '',
+  });
   return (
     <>
       {showModal ? (
         <div
-          className=" wrap container-fluid"
+          className=" wrap container-fluid animate__fadeIn"
           onClick={closeModal}
           ref={modalRef}
         >
@@ -27,7 +31,7 @@ function SignUp(showModal, setshowModal) {
                 </div>
                 <div className="d-flex justify-content-center">
                   <ul className="list-unstyled">
-                    <li className="mb-3">
+                    <li className="mb-3 signupInput">
                       <label className="me-3">信箱</label>
                       <input
                         className="form-control mt-3 p-3"
@@ -35,9 +39,10 @@ function SignUp(showModal, setshowModal) {
                         name="email"
                         id=""
                         placeholder="Email"
+                        value={member.email}
                       />
                     </li>
-                    <li className="mb-3">
+                    <li className="mb-3 signupInput">
                       <label className="me-3">姓名</label>
                       <input
                         className="form-control mt-3 p-3"
@@ -45,9 +50,10 @@ function SignUp(showModal, setshowModal) {
                         name="name"
                         id=""
                         placeholder="name"
+                        value={member.name}
                       />
                     </li>
-                    <li className="mb-3">
+                    <li className="mb-3 signupInput">
                       <label className="me-3">密碼</label>
                       <input
                         className="form-control mt-3 p-3"
@@ -55,9 +61,10 @@ function SignUp(showModal, setshowModal) {
                         name="password"
                         id=""
                         placeholder="password"
+                        value={member.password}
                       />
                     </li>
-                    <li className="d-flex justify-content-center m-4">
+                    <li className="d-flex justify-content-center m-4 signupInput">
                       <input
                         className="form-check-input me-1"
                         type="checkbox"
@@ -65,7 +72,8 @@ function SignUp(showModal, setshowModal) {
                         id=""
                       />
                       <label className="form-check-label">
-                        我同意<a>服務條款</a>與<a>隱私政策</a>
+                        我同意<Link to="/">服務條款</Link>與
+                        <Link to="/">隱私政策</Link>
                       </label>
                     </li>
                   </ul>

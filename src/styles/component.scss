@@ -67,13 +67,21 @@ input{
     width: 280px;
     border: 1px solid $gray;
 }
-@media screen and (max-width: 375px) {
+@media screen and (max-width: 400px) {
     .background{
-        // position: fixed;
-        // top:5%;
-        // left:; 
+        width: 80%;
+        background: white;
+        position: fixed;
+        top: 5%;
+        left: 10%;
+        border-radius: 50px;
+        z-index: 2;
     }
-    .title{
-        // font-size: 0.5rem;
-    }
+
+     .signupInput{
+         width: 200px;
+     }   
+    // .title{
+    //     // font-size: 0.5rem;
+    // }
 }

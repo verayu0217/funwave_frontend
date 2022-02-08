@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import SignUp from './SignUp';
+import Modal from './Modal';
+import { Link } from 'react-router-dom';
 import logo from '../../data/images/FunwaveLogo-black2.png';
-
 import '../../styles/component.scss';
 
 function Login(props) {
@@ -55,7 +55,7 @@ function Login(props) {
                   placeholder="Password"
                 />
                 <div className="forgot-password d-flex justify-content-end me-3">
-                  <a>忘記密碼? </a>
+                  <Link to="/">忘記密碼? </Link>
                 </div>
               </li>
               <li className="mt-3 d-flex justify-content-center">
@@ -71,7 +71,7 @@ function Login(props) {
                   id=""
                 />
                 <label className="form-check-label">記住我</label>
-                <SignUp showModal={showModal} setshowModal={setshowModal} />
+                <Modal showModal={showModal} setshowModal={setshowModal} />
               </li>
             </ul>
           </div>
