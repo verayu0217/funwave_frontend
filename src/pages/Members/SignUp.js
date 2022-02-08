@@ -1,4 +1,7 @@
 import React, { useRef, useEffect, useCallback } from 'react';
+
+import { Link } from 'react-router-dom';
+
 import '../../styles/component.scss';
 
 function SignUp(showModal, setshowModal) {
