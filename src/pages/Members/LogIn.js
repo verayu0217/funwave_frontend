@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import SignUp from './SignUp';
 import logo from '../../data/images/FunwaveLogo-black2.png';
 
@@ -55,7 +56,7 @@ function Login(props) {
                   placeholder="Password"
                 />
                 <div className="forgot-password d-flex justify-content-end me-3">
-                  <a>忘記密碼? </a>
+                  <Link to="/">忘記密碼? </Link>
                 </div>
               </li>
               <li className="mt-3 d-flex justify-content-center">
