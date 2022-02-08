@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 import 'animate.css';
 import '../../styles/component.scss';
 
-function SignUp(showModal, setshowModal) {
-  const [member, setMember] = useState({
-    email: '',
-    name: '',
-    password: '',
-  });
+function SignUp() {
+  // const [member, setMember] = useState({
+  //   email: '',
+  //   name: '',
+  //   password: '',
+  // });
   return (
     <>
       <div className="background col-md-6 col-sm-4">
@@ -27,7 +27,7 @@ function SignUp(showModal, setshowModal) {
                     name="email"
                     id=""
                     placeholder="Email"
-                    value={member.email}
+                    // value={member.email}
                   />
                 </li>
                 <li className="mb-3 signupInput">
@@ -38,7 +38,7 @@ function SignUp(showModal, setshowModal) {
                     name="name"
                     id=""
                     placeholder="name"
-                    value={member.name}
+                    // value={member.name}
                   />
                 </li>
                 <li className="mb-3 signupInput">
@@ -49,7 +49,7 @@ function SignUp(showModal, setshowModal) {
                     name="password"
                     id=""
                     placeholder="password"
-                    value={member.password}
+                    // value={member.password}
                   />
                 </li>
                 <li className="d-flex justify-content-center m-4 signupInput">
