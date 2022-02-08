@@ -1,22 +1,23 @@
 @import './global.scss';
 
+// 註冊底圖(login)
 .leftSignUp{
     background:url(../data/images/login.png);
     background-size: cover;
     z-index: 0;
 }
+// 註冊區域(login)
 .demo{
     background:rgba(255,255,255,0.1);
 }
-span{
-    color: blue;
-}
+// 共用的btn圓角
 .btn{
     border-radius: 50px;
 }
 .signupBtn{
     width: 160px; 
 }
+// logo 位置
 .logo{
     width: 200px;
     position: absolute;
@@ -44,13 +45,25 @@ input{
     position: fixed;
     top:5%;
     left:25%; 
-    border-radius: 10%;
+    border-radius: 50px;
 }
 .title{
     color:$secondary;
     text-align: center;
     
 }
-span{
-    color: blue;
+.form-control{
+    border-radius: 50px;
+    width: 280px;
+    border: 1px solid $gray;
+}
+@media screen and (max-width: 375px) {
+    .background{
+        // position: fixed;
+        // top:5%;
+        // left:; 
+    }
+    .title{
+        // font-size: 0.5rem;
+    }
 }
