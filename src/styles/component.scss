@@ -39,6 +39,15 @@ input{
 }
 
 //註冊
+.wrap{
+    background: rgba($color: #000000, $alpha: 0.6);
+    position: fixed;
+    top:0%;
+    left:0%; 
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
 .background{
     width:50%;
     background: rgba(255,255,255,1);
@@ -46,6 +55,7 @@ input{
     top:5%;
     left:25%; 
     border-radius: 50px;
+    z-index: 2;
 }
 .title{
     color:$secondary;
