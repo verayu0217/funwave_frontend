@@ -9,7 +9,6 @@ import './App.scss';
 //資訊
 //會員
 import LogIn from './pages/Members/LogIn';
-// import SignUp from './pages/Members/SignUp';
 //課程
 //商品
 //購物車

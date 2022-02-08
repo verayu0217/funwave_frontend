@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
+<<<<<<< HEAD
 import Modal from './Modal';
 import { Link } from 'react-router-dom';
+=======
+import { Link } from 'react-router-dom';
+import SignUp from './SignUp';
+>>>>>>> b96d12469560e05b92f7ced49fddb344e12a307f
 import logo from '../../data/images/FunwaveLogo-black2.png';
 import '../../styles/component.scss';
 

@@ -23,7 +23,7 @@ function SignUp(showModal, setshowModal) {
           onClick={closeModal}
           ref={modalRef}
         >
-          <div className="background col-md-6 col-sm-12">
+          <div className="background col-md-6 col-sm-4">
             <form className="d-flex justify-content-center align-items-center my-3">
               <div style={{ width: '60%' }}>
                 <div className="d-flex justify-content-center">
@@ -34,7 +34,7 @@ function SignUp(showModal, setshowModal) {
                     <li className="mb-3 signupInput">
                       <label className="me-3">信箱</label>
                       <input
-                        className="form-control mt-3 p-3"
+                        className="form-control mt-3 p-3 signupInput"
                         type="text"
                         name="email"
                         id=""
@@ -45,7 +45,7 @@ function SignUp(showModal, setshowModal) {
                     <li className="mb-3 signupInput">
                       <label className="me-3">姓名</label>
                       <input
-                        className="form-control mt-3 p-3"
+                        className="form-control mt-3 p-3 signupInput"
                         type="text"
                         name="name"
                         id=""
@@ -56,7 +56,7 @@ function SignUp(showModal, setshowModal) {
                     <li className="mb-3 signupInput">
                       <label className="me-3">密碼</label>
                       <input
-                        className="form-control mt-3 p-3"
+                        className="form-control mt-3 p-3 signupInput"
                         type="text"
                         name="password"
                         id=""
@@ -71,7 +71,7 @@ function SignUp(showModal, setshowModal) {
                         name="agree"
                         id=""
                       />
-                      <label className="form-check-label">
+                      <label className="form-check-label agree">
                         我同意<Link to="/">服務條款</Link>與
                         <Link to="/">隱私政策</Link>
                       </label>
