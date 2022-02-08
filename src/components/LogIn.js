@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
+import SignUp from './SignUp';
 import logo from '../data/images/FunwaveLogo-black2.png';
 
 import '../styles/global.scss';
 
-function Login() {
+function Login(props) {
+  const [showModal, setshowModal] = useState(false);
+  const openSignUp = () => {
+    setshowModal((prev) => !prev);
+  };
+
   return (
     <>
       <div className="container-fluid">
@@ -16,7 +22,10 @@ function Login() {
                 <p className="text-white fw-light fs-5 mb-5">
                   Have Fun Wave in Simple Life.
                 </p>
-                <button className="btn btn-info text-white p-3 signupBtn fs-4">
+                <button
+                  className="btn btn-info text-white p-3 signupBtn fs-4"
+                  onClick={openSignUp}
+                >
                   註冊
                 </button>
               </div>
@@ -31,6 +40,7 @@ function Login() {
               <button>登入</button>
               <input type="checkbox" name="remember" id="" />
               記住我
+              <SignUp showModal={showModal} setshowModal={setshowModal} />
             </div>
           </div>
         </div>
@@ -38,4 +48,5 @@ function Login() {
     </>
   );
 }
+
 export default Login;

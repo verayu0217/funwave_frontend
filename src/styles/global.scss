@@ -1,5 +1,5 @@
 @import '../index.scss';
-
+//登入首頁
 .leftSignUp{
     background:url(../data/images/login.png) ;
     background-size: cover;
@@ -8,12 +8,28 @@
 .demo{
     background:rgba(255,255,255,0.1);
 }
-span{
-    color: blue;
 .btn{
     border-radius: 50px;
 }
 .signupBtn{
     width: 160px;
     // color: $orange;
+}
+
+//註冊
+.background{
+    width:50%;
+    background: rgba(255,255,255,1);
+    position: fixed;
+    top:5%;
+    left:25%; 
+    border-radius: 10%;
+}
+.title{
+    color:$secondary;
+    text-align: center;
+    
+}
+span{
+    color: blue;
 }
