@@ -1,5 +1,7 @@
 import React from 'react';
-import '../styles/global.scss';
+import { Link } from 'react-router-dom';
+
+import '../../styles/component.scss';
 
 function SignUp(showModal, setshowModal) {
   return (
@@ -36,7 +38,12 @@ function SignUp(showModal, setshowModal) {
                 />
               </div>
               <div className="m-5">
-                <input type="checkbox" name="remember" id="" />
+                <label
+                  className="form-check-label"
+                  type="checkbox"
+                  name="remember"
+                  id=""
+                />
                 我同意<span>服務條款</span>與<span>隱私政策</span>
               </div>
 
