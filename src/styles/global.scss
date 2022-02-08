@@ -1,35 +1,35 @@
-@import '../index.scss';
-//登入首頁
-.leftSignUp{
-    background:url(../data/images/login.png) ;
-    background-size: cover;
-    z-index: 0;
+// 預設變數覆蓋需要在導入Bootstrap之前
+$primary:#17A8A2;
+$secondary:#81D7D3;
+$success:#FA7FAA;
+$info:#FF7F6A;
+
+
+// Import Bootstrap and its default variables
+@import '~bootstrap/scss/bootstrap.scss';
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+// 其它要導入覆蓋掉原本的預設bootstrap樣式要放在這下面
+
+/*------------------------------ 文字、輔助顏色 ------------------------------*/
+$lightgray:#F5F5F5;
+$white:#FFFFFF;
+$black:#333333;
+$gray:#98A0A5;
+
+.lightgray{
+  color: $lightgray;
 }
-.demo{
-    background:rgba(255,255,255,0.1);
+.white{
+  color: $white;
 }
-.btn{
-    border-radius: 50px;
+.black {
+  color: $black;
 }
-.signupBtn{
-    width: 160px;
-    // color: $orange;
+.gray {
+  color: $gray;
+}
+.orange {
+  color: $orange;
 }
 
-//註冊
-.background{
-    width:50%;
-    background: rgba(255,255,255,1);
-    position: fixed;
-    top:5%;
-    left:25%; 
-    border-radius: 10%;
-}
-.title{
-    color:$secondary;
-    text-align: center;
-    
-}
-span{
-    color: blue;
-}
