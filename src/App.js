@@ -2,6 +2,7 @@
 import { Routes, Route } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import './App.scss';
+import './styles/global.scss';
 
 // 頁面用元件(路由組件)
 // import Home from './pages/Home';

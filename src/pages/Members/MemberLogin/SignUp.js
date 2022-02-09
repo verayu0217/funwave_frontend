@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { API_URL } from '../../utils/config';
 import 'animate.css';
 import './memberLogin.scss';
 
@@ -9,11 +11,19 @@ function SignUp() {
     name: '',
     password: '',
   });
+  function handleChange(e) {
+    setMember({ ...member, [e.target.name]: e.target.value });
+  }
+  async function signUpSubmit(e) {
+    e.preventDefault();
+    let response = await axios.post(`${API_URL}/auth/register`, member);
+    console.log(response.data);
+  }
   return (
     <>
       <form className="d-flex justify-content-center align-items-center">
         <div style={{ width: '60%' }}>
-          <div className="text-black fs-3 fw-bold text-center">
+          <div className="text-black fs-2 fw-bold text-center">
             Welcome to Join Us !
           </div>
           <div className="text-center fw-bold mt-3 signupTitle">註冊會員</div>
@@ -25,8 +35,9 @@ function SignUp() {
                   className="form-control signupInput"
                   type="text"
                   name="email"
-                  id=""
+                  id="email"
                   value={member.email}
+                  onChange={handleChange}
                 />
               </li>
               <li className="mt-3">
@@ -35,8 +46,9 @@ function SignUp() {
                   className="form-control signupInput"
                   type="text"
                   name="name"
-                  id=""
+                  id="name"
                   value={member.name}
+                  onChange={handleChange}
                 />
               </li>
               <li className="mt-3">
@@ -47,6 +59,7 @@ function SignUp() {
                   name="password"
                   id=""
                   value={member.password}
+                  onChange={handleChange}
                 />
               </li>
               <li className="d-flex justify-content-center m-4">
@@ -54,7 +67,7 @@ function SignUp() {
                   className="form-check-input me-1"
                   type="checkbox"
                   name="agree"
-                  id=""
+                  id="agree"
                 />
                 <label className="form-check-label agree">
                   我同意<Link to="/">服務條款</Link>與
@@ -68,6 +81,7 @@ function SignUp() {
             <button
               className="btn btn-primary text-white"
               style={{ width: '280px' }}
+              onClick={signUpSubmit}
             >
               註冊
             </button>
