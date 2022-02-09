@@ -3,17 +3,28 @@ import React, { useState, useEffect } from 'react';
 import './Products.scss';
 
 function Products(props) {
+  const title = 'FUN SHOP<br />FUN 商店';
   return (
     <>
+      {/* title、banner */}
       <div className="container-fluid banner">
-        <h4 className="d-flex justify-content-center align-items-center">
-          FUN SHOP
-        </h4>
+        <div className="d-flex justify-content-center align-items-end title">
+          <h4>FUN SHOP</h4>
+        </div>
+        <div className="d-flex justify-content-center align-items-start title">
+          <h1>FUN 商店</h1>
+        </div>
       </div>
 
-      <div className="container"></div>
+      <div className="container">
+        <h1>Breadcrumb</h1>
+        <div className="productsLeft"></div>
+      </div>
     </>
   );
 }
 
 export default Products;
+
+// 手風琴、下拉選單 分類
+// Checks and radio 篩選
