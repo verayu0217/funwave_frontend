@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import Modal from './Modal';
 import { Link } from 'react-router-dom';
-import logo from '../../data/images/FunwaveLogo-black2.png';
 import '../../styles/component.scss';
 
 function Login(props) {

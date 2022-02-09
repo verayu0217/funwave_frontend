@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 import 'animate.css';
 import '../../styles/component.scss';
 
@@ -9,6 +10,10 @@ function SignUp() {
     name: '',
     password: '',
   });
+  function handleChange(e) {
+    setMember({ ...member, [e.target.name]: e.target.value });
+  }
+  function signUpSubmit() {}
   return (
     <>
       <form className="d-flex justify-content-center align-items-center">
@@ -27,9 +32,7 @@ function SignUp() {
                   name="email"
                   id="email"
                   value={member.email}
-                  onChange={(e) => {
-                    setMember({ ...member, email: e.target.value });
-                  }}
+                  onChange={handleChange}
                 />
               </li>
               <li className="mt-3">
@@ -38,8 +41,9 @@ function SignUp() {
                   className="form-control signupInput"
                   type="text"
                   name="name"
-                  id=""
+                  id="name"
                   value={member.name}
+                  onChange={handleChange}
                 />
               </li>
               <li className="mt-3">
@@ -50,6 +54,7 @@ function SignUp() {
                   name="password"
                   id=""
                   value={member.password}
+                  onChange={handleChange}
                 />
               </li>
               <li className="d-flex justify-content-center m-4">
@@ -57,7 +62,7 @@ function SignUp() {
                   className="form-check-input me-1"
                   type="checkbox"
                   name="agree"
-                  id=""
+                  id="agree"
                 />
                 <label className="form-check-label agree">
                   我同意<Link to="/">服務條款</Link>與
@@ -71,6 +76,7 @@ function SignUp() {
             <button
               className="btn btn-primary text-white"
               style={{ width: '280px' }}
+              onClick={signUpSubmit}
             >
               註冊
             </button>
