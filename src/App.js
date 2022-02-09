@@ -2,14 +2,15 @@
 import { Routes, Route } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import './App.scss';
+import './styles/global.scss';
 
 // 頁面用元件(路由組件)
 // import Home from './pages/Home';
 
 //資訊
 //會員
-// import LogIn from './pages/Members/LogIn';
-// import SignUp from './pages/Members/SignUp';
+import LogIn from './pages/Members/LogIn';
+
 //課程
 //商城
 import ProductDetails from './pages/Products/ProductDetails';
@@ -36,7 +37,7 @@ function App() {
   return (
     <Routes>
       <>
-        {/* <Route path="/login" element={<LogIn />} /> */}
+        <Route path="/login" element={<LogIn />} />
         <Route path="/ProductDetails" element={<ProductDetails />} />
         <Route path="/Products" element={<Products />} />
       </>
