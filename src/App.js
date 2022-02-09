@@ -9,12 +9,13 @@ import './App.scss';
 
 //資訊
 //會員
-import LogIn from './pages/Members/LogIn';
+import LogIn from './pages/Members/MemberLogin/LogIn';
 //課程
 //商品
 //購物車
 //客製化浪板
 //浪點
+import SurfSpot from './pages/SurfSpot/SurfSpot';
 
 // 組合用元件(一般組件)
 // import Breadcrumb from './components/Breadcrumb';
@@ -31,6 +32,7 @@ function App() {
     <Routes>
       <>
         <Route path="/login" element={<LogIn />} />
+        <Route path="/surfspot" element={<SurfSpot />} />
       </>
     </Routes>
   );
