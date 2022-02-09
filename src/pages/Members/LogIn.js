@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
+import Modal from './Modal';
 import { Link } from 'react-router-dom';
-import SignUp from './SignUp';
-
+import logo from '../../data/images/FunwaveLogo-black2.png';
 import '../../styles/component.scss';
 
 function Login(props) {
@@ -78,7 +78,16 @@ function Login(props) {
                   登入
                 </button>
               </li>
-              <SignUp showModal={showModal} setshowModal={setshowModal} />
+              <li className="mt-2 me-3 d-flex justify-content-end">
+                <input
+                  className="form-check-input me-1"
+                  type="checkbox"
+                  name="remember"
+                  id=""
+                />
+                <label className="form-check-label">記住我</label>
+                <Modal showModal={showModal} setshowModal={setshowModal} />
+              </li>
             </ul>
           </div>
         </div>

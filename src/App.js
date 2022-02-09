@@ -1,6 +1,7 @@
 // 使用套件
 import { Routes, Route } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
+import 'animate.css';
 import './App.scss';
 
 // 頁面用元件(路由組件)
