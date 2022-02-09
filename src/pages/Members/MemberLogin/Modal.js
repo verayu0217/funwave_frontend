@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import SignUp from './SignUp';
 import 'animate.css';
-import '../../styles/component.scss';
+import './memberLogin.scss';
 import { ImCross } from 'react-icons/im';
 
 function Modal(props) {

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Modal from './Modal';
 import { Link } from 'react-router-dom';
-import '../../styles/component.scss';
+import './memberLogin.scss';
 
 function Login(props) {
   const [showModal, setshowModal] = useState(false);

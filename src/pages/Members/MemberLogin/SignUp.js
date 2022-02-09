@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { API_URL } from '../../utils/config';
 import 'animate.css';
-import '../../styles/component.scss';
+import './memberLogin.scss';
 
 function SignUp() {
   const [member, setMember] = useState({
