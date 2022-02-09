@@ -1,7 +1,6 @@
 // 使用套件
 import { Routes, Route } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
-import 'animate.css';
 import './App.scss';
 
 // 頁面用元件(路由組件)
@@ -9,10 +8,17 @@ import './App.scss';
 
 //資訊
 //會員
-import LogIn from './pages/Members/LogIn';
+// import LogIn from './pages/Members/LogIn';
+// import SignUp from './pages/Members/SignUp';
 //課程
-//商品
+//商城
+import ProductDetails from './pages/Products/ProductDetails';
+import Products from './pages/Products/Products';
 //購物車
+// import CartPreOrder from './pages/Products/Cart/CartPreOrder';
+// import CartManage from './pages/Products/Cart/CartManage';
+// import CartConfimOrder from './pages/Products/Cart/CartConfimOrder';
+// import CartComplete from './pages/Products/Cart/CartComplete';
 //客製化浪板
 //浪點
 
@@ -30,7 +36,9 @@ function App() {
   return (
     <Routes>
       <>
-        <Route path="/login" element={<LogIn />} />
+        {/* <Route path="/login" element={<LogIn />} /> */}
+        <Route path="/ProductDetails" element={<ProductDetails />} />
+        <Route path="/Products" element={<Products />} />
       </>
     </Routes>
   );
