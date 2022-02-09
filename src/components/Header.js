@@ -4,38 +4,72 @@ import { Navbar, Nav, NavDropdown, Container } from 'react-bootstrap';
 // 要使用能有active css效果的NavLink元件
 import { Link, NavLink } from 'react-router-dom';
 
-function Header(props) {
+import '../styles/component.scss';
+import logo from '../data/images/FunwaveLogo-black2.png';
+
+function MyNavbar(props) {
+  const { auth } = props;
   return (
     <>
-      <Navbar bg="light" expand="lg" className="myNavbarNew" fixed="top">
-        <Container>
-          <Navbar.Brand className="navLogoWrap">
-            <Link to="/">
-              <img src={`../data/images/logo.png`} alt="" />
-            </Link>
+      <Navbar expand="lg" className="shadow-sm">
+        <Container className="headerWrap">
+          <Navbar.Brand href="/home">
+            <img src={logo} className="imgLogo" />
           </Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto mx-auto">
-              <NavDropdown title="衝浪商品" id="basic-nav-dropdown">
-                <NavDropdown.Item>
-                  <Link to="/products/?cate=1&page=1">衝浪板</Link>
-                </NavDropdown.Item>
-                <NavDropdown.Item>
-                  <Link to="/products/?cate=2&page=1">止滑墊</Link>
-                </NavDropdown.Item>
-                <NavDropdown.Item>
-                  <Link to="/products/?cate=3&page=1">衝浪衣</Link>
-                </NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item>
-                  <Link to="/products/?cate=0&page=1">全部商品</Link>
-                </NavDropdown.Item>
-              </NavDropdown>
-              <NavLink>
-                <Link to="/customize">客製化衝浪板</Link>
-              </NavLink>
+          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+          <Navbar.Collapse id="responsive-navbar-nav">
+            <Nav className="mr-auto nav-menu">
+              {/* 利用as屬性來作選單link的整合 */}
+              {/* 參考：https://react-bootstrap.github.io/components/navs/#nav-link-props */}
+              <Nav.Link as={NavLink} to="/Products">
+                衝浪商品
+              </Nav.Link>
+              <Nav.Link as={NavLink} to="/Customized">
+                客製化浪板
+              </Nav.Link>
+              <Nav.Link as={NavLink} to="/Course">
+                衝浪課程
+              </Nav.Link>
+              <Nav.Link as={NavLink} to="/Information">
+                文章
+              </Nav.Link>
+              <Nav.Link as={NavLink} to="/surfspot">
+                浪點
+              </Nav.Link>
             </Nav>
+            {/* <Nav>
+            <Nav.Link href="#deets">More deets</Nav.Link>
+            <Nav.Link eventKey={2} href="#memes">
+              Dank memes
+            </Nav.Link>
+          </Nav> */}
+            <form class="d-flex btnGroup">
+              <input
+                class="form-control me-2 searchIpt"
+                type="search"
+                placeholder="Search"
+                aria-label="Search"
+                style={{ display: 'none' }}
+              />
+              <button class="btn iconGroup" type="submit">
+                <i class="fas fa-search"></i>
+              </button>
+              {/* <button class="btn" type="submit">
+              <i class="fas fa-shopping-cart"></i>
+            </button> */}
+              <Nav.Link className="iconGroup" as={NavLink} to="/">
+                <i class="fas fa-shopping-cart"></i>
+              </Nav.Link>
+              {/* <button class="btn" type="submit">
+              <i class="fas fa-user"></i>
+            </button> */}
+              <Nav.Link className="iconGroup" as={NavLink} to="/Member">
+                <i class="fas fa-user"></i>
+              </Nav.Link>
+              <Nav.Link className="btnLogin mx-2" as={NavLink} to="/login">
+                登入/註冊
+              </Nav.Link>
+            </form>
           </Navbar.Collapse>
         </Container>
       </Navbar>
@@ -43,4 +77,4 @@ function Header(props) {
   );
 }
 
-export default Header;
+export default MyNavbar;

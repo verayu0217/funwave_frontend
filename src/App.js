@@ -26,7 +26,7 @@ import SurfSpot from './pages/SurfSpot/SurfSpot';
 // 組合用元件(一般組件)
 // import Breadcrumb from './components/Breadcrumb';
 // import ScrollToTop from './components/ScrollToTop';
-// import Header from './components/Header';
+import Header from './components/Header';
 // import Footer from './components/Footer';
 // import MainContent from './components/MainContent';
 // import SideBar from './components/SideBar';
@@ -35,14 +35,15 @@ import SurfSpot from './pages/SurfSpot/SurfSpot';
 
 function App() {
   return (
-    <Routes>
-      <>
+    <>
+      <Header />
+      <Routes>
         <Route path="/login" element={<LogIn />} />
         <Route path="/surfspot" element={<SurfSpot />} />
         <Route path="/ProductDetails" element={<ProductDetails />} />
         <Route path="/Products" element={<Products />} />
-      </>
-    </Routes>
+      </Routes>
+    </>
   );
 }
 

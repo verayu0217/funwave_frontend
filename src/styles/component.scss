@@ -1,1 +1,61 @@
 @import './global.scss';
+
+.navbar {
+  padding: 0rem 5rem;
+  height: 70px;
+  .headerWrap {
+    max-width: 1440px;
+    .imgLogo {
+      color: #333333;
+      width: 196px;
+      height: 30px;
+    }
+    .nav-menu {
+      margin: 0 auto;
+      .nav-link {
+        display: block;
+        color: #333333;
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: bold;
+        padding: 21px 24px;
+        white-space: nowrap;
+      }
+      .nav-link.active {
+        border-bottom: 4px solid orange;
+      }
+    }
+    .btnGroup {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .iconGroup {
+        padding-right: 24px;
+        .fas {
+          font-size: 30px;
+          height: 30px;
+        }
+      }
+      .iconGroup {
+        color: #333333;
+        padding-right: 24px;
+        .fas {
+          font-size: 30px;
+          height: 30px;
+        }
+      }
+      .btnLogin {
+        background-color: orange;
+        border: none;
+        border-radius: 8px;
+        color: #ffffff;
+        padding: 0px;
+        width: 94px;
+        height: 31px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+  }
+}
