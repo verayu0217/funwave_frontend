@@ -5,18 +5,13 @@ import './Products.scss';
 function Products(props) {
   return (
     <>
-      <h1>header</h1>
-      <div className="container-fluid banner"></div>
-      <div className="banner"></div>
-
-      <div className="container">
-        {/* <img
-          src={ProductBanner}
-          className="img-fluid"
-          alt="ProductBanner"
-          title="ProductBanner"
-        ></img> */}
+      <div className="container-fluid banner">
+        <h4 className="d-flex justify-content-center align-items-center">
+          FUN SHOP
+        </h4>
       </div>
+
+      <div className="container"></div>
     </>
   );
 }
