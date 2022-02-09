@@ -5,6 +5,9 @@
   // list-style: none;
   // box-sizing: border-box;
 }
+div {
+  padding: 0;
+}
 
 // title、banner
 // banner圖應該要固定比例，待改！
@@ -12,17 +15,21 @@
   height: 350px; // 待跟客製化商品、課程統一！
   background: url('../../data/images/ProductBanner.jpg') center center no-repeat;
   background-size: cover;
-  opacity: 0.9; // 待跟客製化商品、課程統一！ 可否讓文字不受opacity影響
 }
-.title {
+.titleTop {
   height: 225px; // 待跟客製化商品、課程統一！
+  background: rgba(255, 255, 255, 0.2); // 只調整背景alpha，不影響文字
+}
+.titleBottom {
+  height: 125px; // 待跟客製化商品、課程統一！
+  background: rgba(255, 255, 255, 0.2); // 只調整背景alpha，不影響文字
 }
 
 // 左側篩選區
 aside {
   // width: auto;
   width: 30%;
-  // background-color: $deepblue;
+  background-color: $deepblue;
   border-top: 1px solid $gray;
 }
 
@@ -31,4 +38,22 @@ article {
   width: 70%;
   // background-color: $orange;
   border-top: 1px solid $gray;
+}
+header {
+  margin-top: 30px;
+  // background-color: $orange;
+}
+article > header > div > img {
+  margin-right: 24px;
+}
+// .borderRounded {
+//   border-radius: 20%;
+// }
+.search {
+  max-width: 180px;
+  background: limegreen;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  z-index: 2;
 }

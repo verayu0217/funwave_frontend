@@ -63,6 +63,11 @@ h6 {
   color: $orange;
 }
 
+// 共用的btn圓角
+.btn {
+  border-radius: 8px;
+}
+
 // container-fluid
 .container-fluid {
   padding: 0;
