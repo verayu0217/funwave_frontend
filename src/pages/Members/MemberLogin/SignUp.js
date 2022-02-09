@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { API_URL } from '../../utils/config';
+import { API_URL } from '../../../utils/config';
+import { ERR_MSG } from '../../../utils/error';
 import 'animate.css';
 import './memberLogin.scss';
 
@@ -10,6 +11,7 @@ function SignUp() {
     email: '',
     name: '',
     password: '',
+    agree: false,
   });
   function handleChange(e) {
     setMember({ ...member, [e.target.name]: e.target.value });
@@ -68,6 +70,8 @@ function SignUp() {
                   type="checkbox"
                   name="agree"
                   id="agree"
+                  value={member.agree}
+                  // onChange={}
                 />
                 <label className="form-check-label agree">
                   我同意<Link to="/">服務條款</Link>與
