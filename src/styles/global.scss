@@ -11,6 +11,7 @@ $info: #81D7D3;
 // 其它要導入覆蓋掉原本的預設bootstrap樣式要放在這下面
 
 /*------------------------------ 文字、輔助顏色 ------------------------------*/
+// 自定義變數 $xxxx 需當頁使用，請引用: global.scss
 $orange: #FF7F6A;
 $deepblue:#17A8A2;
 $blue:#81D7D3;
@@ -19,6 +20,8 @@ $white:#FFFFFF;
 $black:#333333;
 $gray:#98A0A5;
 
+
+// 全站 jsx 可直接使用 className
 .deepblue{
   color: $deepblue;
 }
@@ -39,4 +42,10 @@ $gray:#98A0A5;
 }
 .orange {
   color: $orange;
+}
+
+
+// container-fluid
+.container-fluid{
+  padding: 0;
 }
