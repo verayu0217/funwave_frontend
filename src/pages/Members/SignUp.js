@@ -13,7 +13,7 @@ function SignUp() {
     <>
       <form className="d-flex justify-content-center align-items-center">
         <div style={{ width: '60%' }}>
-          <div className="text-black fs-2 fw-bold text-center">
+          <div className="text-black fs-3 fw-bold text-center">
             Welcome to Join Us !
           </div>
           <div className="text-center fw-bold mt-3 signupTitle">註冊會員</div>
