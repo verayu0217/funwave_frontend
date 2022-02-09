@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import SignUp from './SignUp';
+import 'animate.css';
 import '../../styles/component.scss';
 import { ImCross } from 'react-icons/im';
 
@@ -15,7 +16,7 @@ function Modal(props) {
     <>
       {showModal ? (
         <div
-          className=" wrap container-fluid animate__fadeIn animate__slow	20s animate__delay-2s	2s"
+          className=" wrap container-fluid animate__animated animate__fadeIn animate__faster"
           onClick={closeModal}
           ref={modalRef}
         >
