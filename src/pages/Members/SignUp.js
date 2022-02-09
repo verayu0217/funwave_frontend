@@ -25,8 +25,11 @@ function SignUp() {
                   className="form-control signupInput"
                   type="text"
                   name="email"
-                  id=""
+                  id="email"
                   value={member.email}
+                  onChange={(e) => {
+                    setMember({ ...member, email: e.target.value });
+                  }}
                 />
               </li>
               <li className="mt-3">
