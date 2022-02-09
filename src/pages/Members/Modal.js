@@ -21,7 +21,7 @@ function Modal(props) {
         >
           <div className="background col-md-6 col-sm-12">
             <div
-              className="d-flex justify-content-end mt-5"
+              className="d-flex justify-content-end mt-4 pe-5 pt-4"
               onClick={() => {
                 setshowModal((prev) => !prev);
               }}

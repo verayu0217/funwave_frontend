@@ -11,9 +11,9 @@ function SignUp() {
   });
   return (
     <>
-      <form className="d-flex justify-content-center align-items-center my-3">
+      <form className="d-flex justify-content-center align-items-center">
         <div style={{ width: '60%' }}>
-          <div className="mt-5 text-black fs-2 fw-bold text-center">
+          <div className="text-black fs-2 fw-bold text-center">
             Welcome to Join Us !
           </div>
           <div className="text-center fw-bold mt-3 signupTitle">註冊會員</div>
@@ -67,7 +67,7 @@ function SignUp() {
             </ul>
           </div>
 
-          <div className="d-flex justify-content-center mt-3 mb-5">
+          <div className="d-flex justify-content-center mt-3 mb-4">
             <button
               className="btn btn-primary text-white"
               style={{ width: '280px' }}
