@@ -11,14 +11,15 @@ function Products(props) {
         <div className="d-flex justify-content-center align-items-end title">
           <h4>FUN SHOP</h4>
         </div>
-        <div className="d-flex justify-content-center align-items-start title">
+        <div className="d-flex justify-content-center align-items-start">
           <h1>FUN 商店</h1>
         </div>
       </div>
 
       <div className="container">
         <h1>Breadcrumb</h1>
-        <div className="productsLeft"></div>
+        <aside className="float-start">篩選</aside>
+        <article className="float-end">商品頁</article>
       </div>
     </>
   );

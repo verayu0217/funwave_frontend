@@ -7,16 +7,28 @@
 }
 
 // title、banner
+// banner圖應該要固定比例，待改！
 .banner {
-  height: 450px; // 待跟客製化商品、課程統一！
+  height: 350px; // 待跟客製化商品、課程統一！
   background: url('../../data/images/ProductBanner.jpg') center center no-repeat;
   background-size: cover;
+  opacity: 0.9; // 待跟客製化商品、課程統一！ 可否讓文字不受opacity影響
 }
 .title {
   height: 225px; // 待跟客製化商品、課程統一！
 }
+
 // 左側篩選區
-.productsLeft {
+aside {
+  // width: auto;
+  width: 30%;
+  // background-color: $deepblue;
+  border-top: 1px solid $gray;
 }
 
 // 右側商品區
+article {
+  width: 70%;
+  // background-color: $orange;
+  border-top: 1px solid $gray;
+}
