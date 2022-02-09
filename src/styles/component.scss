@@ -64,9 +64,7 @@
     width: 280px;
 }
 .cross{
-    position: absolute;
-    top: 10%;
-    left: 70%;
+    // margin-top: 50px;
     z-index: 3;
     cursor: pointer;
 }
@@ -91,8 +89,5 @@
      .signupInput{
          width: 200px;
      }   
-    // .title{
-    //      font-size: 0.5rem;
-    // }
-   
+     
 }

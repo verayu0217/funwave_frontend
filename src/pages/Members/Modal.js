@@ -19,18 +19,20 @@ function Modal(props) {
           onClick={closeModal}
           ref={modalRef}
         >
-          <div
-            onClick={() => {
-              setshowModal((prev) => !prev);
-            }}
-          >
-            <ImCross className="cross" />
-          </div>
+          <div className="background col-md-6 col-sm-12">
+            <div
+              className="d-flex justify-content-end mt-5"
+              onClick={() => {
+                setshowModal((prev) => !prev);
+              }}
+            >
+              <ImCross className="cross " />
+            </div>
 
-          <SignUp />
+            <SignUp />
+          </div>
         </div>
       ) : null}
-      ;
     </>
   );
 }

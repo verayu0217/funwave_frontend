@@ -78,16 +78,7 @@ function Login(props) {
                   登入
                 </button>
               </li>
-              <li className="mt-2 me-3 d-flex justify-content-end">
-                <input
-                  className="form-check-input me-1"
-                  type="checkbox"
-                  name="remember"
-                  id=""
-                />
-                <label className="form-check-label">記住我</label>
-                <Modal showModal={showModal} setshowModal={setshowModal} />
-              </li>
+              <Modal showModal={showModal} setshowModal={setshowModal} />
             </ul>
           </div>
         </div>
