@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import 'animate.css';
 import '../../styles/component.scss';
 
-function SignUp(showModal, setshowModal) {
+function SignUp() {
   const [member, setMember] = useState({
     email: '',
     name: '',

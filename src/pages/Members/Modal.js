@@ -1,10 +1,11 @@
 import React, { useRef } from 'react';
 import SignUp from './SignUp';
 import '../../styles/component.scss';
+import { ImCross } from 'react-icons/im';
 
 function Modal(props) {
   const { showModal, setshowModal } = props;
-  const modalRef = useRef('');
+  const modalRef = useRef();
   const closeModal = (e) => {
     if (modalRef.current === e.target) {
       setshowModal(false);
@@ -18,6 +19,14 @@ function Modal(props) {
           onClick={closeModal}
           ref={modalRef}
         >
+          <div
+            onClick={() => {
+              setshowModal((prev) => !prev);
+            }}
+          >
+            <ImCross className="cross" />
+          </div>
+
           <SignUp />
         </div>
       ) : null}
