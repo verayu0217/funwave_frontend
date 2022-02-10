@@ -1,11 +1,18 @@
-// import React from 'react';
+import React from 'react';
+import heroSection from '../../data/images/customizedSection.png';
+import './Custom.scss';
+function Customized() {
+  return (
+    <>
+      <div className="container-fluid">
+        <img
+          src={heroSection}
+          alt="客製化
+        "
+        />
+      </div>
+    </>
+  );
+}
 
-// function Customized() {
-//   return <>
-//     <div>
-//       <img src={heroSection}/>
-//     </div>
-//   </>;
-// }
-
-// export default Customized;
+export default Customized;

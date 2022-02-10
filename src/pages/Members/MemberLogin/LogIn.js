@@ -12,7 +12,7 @@ function Login(props) {
   return (
     <>
       <div className="container-fluid">
-        <div className="row">
+        <div className="row gx-0">
           <div className="col-md-7 col-sm-12 p-0 leftSignUp">
             <div className="demo vh-100 d-flex justify-content-center align-items-center">
               <div>

@@ -20,6 +20,7 @@ import Products from './pages/Products/Products';
 // import CartConfimOrder from './pages/Products/Cart/CartConfimOrder';
 // import CartComplete from './pages/Products/Cart/CartComplete';
 //客製化浪板
+import Customized from './pages/Customized/Customized';
 //浪點
 import SurfSpot from './pages/SurfSpot/SurfSpot';
 
@@ -42,6 +43,7 @@ function App() {
         <Route path="/surfspot" element={<SurfSpot />} />
         <Route path="/ProductDetails" element={<ProductDetails />} />
         <Route path="/Products" element={<Products />} />
+        <Route path="/Customized" element={<Customized />} />
       </Routes>
     </>
   );
