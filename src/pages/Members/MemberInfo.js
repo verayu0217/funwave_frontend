@@ -10,7 +10,7 @@ function MemberInfo() {
           <div className="col-5 d-flex align-content-between justify-content-center flex-wrap">
             <div className="mb-5 d-flex flex-column text-center">
               <h2 className="mb-5 titleMember">
-                <span className="me-1">
+                <span className="me-2">
                   <img src={titleImgMember} className="titleImgMember" />
                 </span>
                 會員資料

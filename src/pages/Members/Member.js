@@ -1,7 +1,10 @@
 import React from 'react';
 import { Tab, Row, Col, Nav } from 'react-bootstrap';
-import MemberInfo from './MemberInfo';
+
 import './Member.scss';
+
+import MemberInfo from './MemberInfo';
+import MemberOrder from './MemberOrder';
 
 function Member() {
   return (
@@ -79,10 +82,12 @@ function Member() {
             <Col className="tabContentMember" lg={9}>
               <Tab.Content>
                 <Tab.Pane eventKey="first">
-                  {/* 加上自己的組件 */}
                   <MemberInfo />
                 </Tab.Pane>
-                <Tab.Pane eventKey="second">{/* 加上自己的組件 */}</Tab.Pane>
+                <Tab.Pane eventKey="second"></Tab.Pane>
+                <Tab.Pane eventKey="third">
+                  <MemberOrder />
+                </Tab.Pane>
               </Tab.Content>
             </Col>
           </Row>
