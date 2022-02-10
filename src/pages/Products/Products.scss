@@ -34,16 +34,23 @@
   border-top: 1px solid $gray;
 }
 // 待跟客製化商品、課程統一 banner下的間距(mt-4)！
-
-// 抓不到如何移除間隔！！
-// .accordion-body {
-//   padding: 0;
-//   margin: 0;
-// }
+.accordion-body {
+  padding: 0;
+  margin: 0;
+}
+.ulProducts {
+  padding-left: 15px;
+  margin: 0;
+  border-left: 2.5px solid rgba($color: $gray, $alpha: 0.5);
+}
 .ulProducts > .liProducts {
-  height: 30px;
+  height: 35px;
   display: flex;
   align-items: center;
+}
+.linkProducts {
+  text-decoration: none;
+  color: $black;
 }
 .filterProducts {
   border-bottom: 1px solid $gray;

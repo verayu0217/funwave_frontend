@@ -1,18 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { Accordion, Figure } from 'react-bootstrap';
+
 // react-icons
 import { RiMoneyDollarCircleFill, RiRulerFill } from 'react-icons/ri';
-import { FaThumbsUp } from 'react-icons/fa';
+import { FaThumbsUp, FaHeart } from 'react-icons/fa';
 import { IoColorPalette } from 'react-icons/io5';
 import { MdOutlineSurfing } from 'react-icons/md';
+import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
+// import { BsStarHalf } from 'react-icons/bs'; 半星星
+import { FiHeart } from 'react-icons/fi';
 
 // FontAwesome 不會用！！！
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import greenwave from '../../data/images/greenwave64x24.png'; // 待釐清圖放src還是放在public
+import longboard1 from './longboard1.jpg'; // 待釐清圖放src還是放在public
 import './Products.scss';
-
-import { Accordion } from 'react-bootstrap';
 
 function Products() {
   return (
@@ -33,22 +37,23 @@ function Products() {
           {/* 大分類 */}
           <Accordion className="mt-4" defaultActiveKey="0" flush alwaysOpen>
             <Accordion.Item eventKey="0">
-              <Accordion.Header>衝浪板</Accordion.Header>
+              <Accordion.Header className="accordionTitle">
+                <h3>衝浪板</h3>
+              </Accordion.Header>
               <Accordion.Body>
-                {/* 1. 短板 2. 快樂板 3. 長板 */}
                 <ul className="ulProducts">
                   <li className="liProducts">
-                    <Link to="/" title="長板">
+                    <Link to="/" title="長板" className="linkProducts">
                       長板
                     </Link>
                   </li>
                   <li className="liProducts">
-                    <Link to="/" title="快樂板">
+                    <Link to="/" title="快樂板" className="linkProducts">
                       快樂板
                     </Link>
                   </li>
                   <li className="liProducts">
-                    <Link to="/" title="短板">
+                    <Link to="/" title="短板" className="linkProducts">
                       短板
                     </Link>
                   </li>
@@ -56,22 +61,23 @@ function Products() {
               </Accordion.Body>
             </Accordion.Item>
             <Accordion.Item eventKey="1">
-              <Accordion.Header>衝浪板配件</Accordion.Header>
+              <Accordion.Header>
+                <h3>衝浪板配件</h3>
+              </Accordion.Header>
               <Accordion.Body>
-                {/* 1. 衝浪舵 2. 腳繩 3. 腳踏墊 */}
                 <ul className="ulProducts">
                   <li className="liProducts">
-                    <Link to="/" title="衝浪舵">
+                    <Link to="/" title="衝浪舵" className="linkProducts">
                       衝浪舵
                     </Link>
                   </li>
                   <li className="liProducts">
-                    <Link to="/" title="腳繩s">
+                    <Link to="/" title="腳繩" className="linkProducts">
                       腳繩
                     </Link>
                   </li>
                   <li className="liProducts">
-                    <Link to="/" title="腳踏墊">
+                    <Link to="/" title="腳踏墊" className="linkProducts">
                       腳踏墊
                     </Link>
                   </li>
@@ -79,17 +85,18 @@ function Products() {
               </Accordion.Body>
             </Accordion.Item>
             <Accordion.Item eventKey="2">
-              <Accordion.Header>衝浪相關衣物</Accordion.Header>
+              <Accordion.Header>
+                <h3>衝浪相關衣物</h3>
+              </Accordion.Header>
               <Accordion.Body>
-                {/* 1. 衝浪斗篷毛巾衣 2. 防寒衣 */}
                 <ul className="ulProducts">
                   <li className="liProducts">
-                    <Link to="/" title="防寒衣物">
+                    <Link to="/" title="防寒衣物" className="linkProducts">
                       衝浪斗篷毛巾衣
                     </Link>
                   </li>
                   <li className="liProducts">
-                    <Link to="/" title="防寒衣">
+                    <Link to="/" title="防寒衣" className="linkProducts">
                       防寒衣
                     </Link>
                   </li>
@@ -101,7 +108,7 @@ function Products() {
           {/* 篩選 */}
           {/* 價格篩選 */}
           <div className="mt-5">
-            <h3 className="d-flex align-items-center filterProducts pb-2">
+            <h3 className="d-flex align-items-center filterProducts pb-2 ps-3">
               <RiMoneyDollarCircleFill
                 size={24}
                 color="#17a8a2"
@@ -109,7 +116,7 @@ function Products() {
               />
               價格
             </h3>
-            <div className="form-check">
+            <div className="form-check ms-3">
               <input
                 className="form-check-input"
                 type="radio"
@@ -117,11 +124,11 @@ function Products() {
                 name="price1"
                 value="price1"
               />
-              <label className="form-check-label ms-3" for="price1">
+              <label className="form-check-label ms-3" htmlFor="price1">
                 NT $100 - $200
               </label>
             </div>
-            <div className="form-check">
+            <div className="form-check ms-3">
               <input
                 className="form-check-input"
                 type="radio"
@@ -129,11 +136,11 @@ function Products() {
                 name="price2"
                 value="price2"
               />
-              <label className="form-check-label ms-3" for="price2">
+              <label className="form-check-label ms-3" htmlFor="price2">
                 NT $200 - $300
               </label>
             </div>
-            <div className="form-check">
+            <div className="form-check ms-3">
               <input
                 className="form-check-input"
                 type="radio"
@@ -141,18 +148,18 @@ function Products() {
                 name="price3"
                 value="price3"
               />
-              <label className="form-check-label ms-3" for="price3">
+              <label className="form-check-label ms-3" htmlFor="price3">
                 NT $300 - $400
               </label>
             </div>
           </div>
           {/* 品牌篩選 */}
           <div className="mt-5">
-            <h3 className="d-flex align-items-center filterProducts pb-2">
+            <h3 className="d-flex align-items-center filterProducts pb-2 ps-3">
               <FaThumbsUp size={20} color="#17a8a2" className="me-3" />
               品牌
             </h3>
-            <div className="form-check">
+            <div className="form-check ms-3">
               <input
                 className="form-check-input"
                 type="radio"
@@ -160,11 +167,11 @@ function Products() {
                 name="brand1"
                 value="brand1"
               />
-              <label className="form-check-label ms-3" for="brand1">
+              <label className="form-check-label ms-3" htmlFor="brand1">
                 A
               </label>
             </div>
-            <div className="form-check">
+            <div className="form-check ms-3">
               <input
                 className="form-check-input"
                 type="radio"
@@ -172,11 +179,11 @@ function Products() {
                 name="brand2"
                 value="brand2"
               />
-              <label className="form-check-label ms-3" for="brand2">
+              <label className="form-check-label ms-3" htmlFor="brand2">
                 B
               </label>
             </div>
-            <div className="form-check">
+            <div className="form-check ms-3">
               <input
                 className="form-check-input"
                 type="radio"
@@ -184,18 +191,18 @@ function Products() {
                 name="brand3"
                 value="brand3"
               />
-              <label className="form-check-label ms-3" for="brand3">
+              <label className="form-check-label ms-3" htmlFor="brand3">
                 C
               </label>
             </div>
           </div>
           {/* 尺寸篩選 */}
           <div className="mt-5">
-            <h3 className="d-flex align-items-center filterProducts pb-2">
+            <h3 className="d-flex align-items-center filterProducts pb-2 ps-3">
               <RiRulerFill size={22} color="#17a8a2" className="me-3" />
               尺寸
             </h3>
-            <div className="form-check">
+            <div className="form-check ms-3">
               <input
                 className="form-check-input"
                 type="radio"
@@ -203,11 +210,11 @@ function Products() {
                 name="size1"
                 value="size1"
               />
-              <label className="form-check-label ms-3" for="size1">
+              <label className="form-check-label ms-3" htmlFor="size1">
                 4' 10''
               </label>
             </div>
-            <div className="form-check">
+            <div className="form-check ms-3">
               <input
                 className="form-check-input"
                 type="radio"
@@ -215,11 +222,11 @@ function Products() {
                 name="size2"
                 value="size2"
               />
-              <label className="form-check-label ms-3" for="size2">
+              <label className="form-check-label ms-3" htmlFor="size2">
                 5' 10''
               </label>
             </div>
-            <div className="form-check">
+            <div className="form-check ms-3">
               <input
                 className="form-check-input"
                 type="radio"
@@ -227,18 +234,18 @@ function Products() {
                 name="size3"
                 value="size3"
               />
-              <label className="form-check-label ms-3" for="size3">
+              <label className="form-check-label ms-3" htmlFor="size3">
                 6' 10''
               </label>
             </div>
           </div>
           {/* 顏色篩選 */}
           <div className="mt-5">
-            <h3 className="d-flex align-items-center filterProducts pb-2">
+            <h3 className="d-flex align-items-center filterProducts pb-2 ps-3">
               <IoColorPalette size={22} color="#17a8a2" className="me-3" />
               顏色
             </h3>
-            <div className="form-check">
+            <div className="form-check ms-3">
               <input
                 className="form-check-input"
                 type="radio"
@@ -246,11 +253,11 @@ function Products() {
                 name="color1"
                 value="color1"
               />
-              <label className="form-check-label ms-3" for="color1">
+              <label className="form-check-label ms-3" htmlFor="color1">
                 紅色
               </label>
             </div>
-            <div className="form-check">
+            <div className="form-check ms-3">
               <input
                 className="form-check-input"
                 type="radio"
@@ -258,11 +265,11 @@ function Products() {
                 name="color2"
                 value="color2"
               />
-              <label className="form-check-label ms-3" for="color2">
+              <label className="form-check-label ms-3" htmlFor="color2">
                 橙色
               </label>
             </div>
-            <div className="form-check">
+            <div className="form-check ms-3">
               <input
                 className="form-check-input"
                 type="radio"
@@ -270,11 +277,11 @@ function Products() {
                 name="color3"
                 value="color3"
               />
-              <label className="form-check-label ms-3" for="color3">
+              <label className="form-check-label ms-3" htmlFor="color3">
                 黃色
               </label>
             </div>
-            <div className="form-check">
+            <div className="form-check ms-3">
               <input
                 className="form-check-input"
                 type="radio"
@@ -282,11 +289,11 @@ function Products() {
                 name="color4"
                 value="color4"
               />
-              <label className="form-check-label ms-3" for="color4">
+              <label className="form-check-label ms-3" htmlFor="color4">
                 綠色
               </label>
             </div>
-            <div className="form-check">
+            <div className="form-check ms-3">
               <input
                 className="form-check-input"
                 type="radio"
@@ -294,11 +301,11 @@ function Products() {
                 name="color5"
                 value="color5"
               />
-              <label className="form-check-label ms-3" for="color5">
+              <label className="form-check-label ms-3" htmlFor="color5">
                 藍色
               </label>
             </div>
-            <div className="form-check">
+            <div className="form-check ms-3">
               <input
                 className="form-check-input"
                 type="radio"
@@ -306,18 +313,18 @@ function Products() {
                 name="color6"
                 value="color6"
               />
-              <label className="form-check-label ms-3" for="color6">
+              <label className="form-check-label ms-3" htmlFor="color6">
                 紫色
               </label>
             </div>
           </div>
           {/* 適用衝浪舵篩選 */}
           <div className="mt-5">
-            <h3 className="d-flex align-items-center filterProducts pb-2">
+            <h3 className="d-flex align-items-center filterProducts pb-2 ps-3">
               <MdOutlineSurfing size={24} color="#17a8a2" className="me-3" />
               適用的衝浪舵類型
             </h3>
-            <div className="form-check">
+            <div className="form-check ms-3">
               <input
                 className="form-check-input"
                 type="radio"
@@ -325,11 +332,11 @@ function Products() {
                 name="fin1"
                 value="fin1"
               />
-              <label className="form-check-label ms-3" for="fin1">
+              <label className="form-check-label ms-3" htmlFor="fin1">
                 Single
               </label>
             </div>
-            <div className="form-check">
+            <div className="form-check ms-3">
               <input
                 className="form-check-input"
                 type="radio"
@@ -337,11 +344,11 @@ function Products() {
                 name="fin2"
                 value="fin2"
               />
-              <label className="form-check-label ms-3" for="fin2">
+              <label className="form-check-label ms-3" htmlFor="fin2">
                 FCS II
               </label>
             </div>
-            <div className="form-check">
+            <div className="form-check ms-3">
               <input
                 className="form-check-input"
                 type="radio"
@@ -349,11 +356,11 @@ function Products() {
                 name="fin3"
                 value="fin3"
               />
-              <label className="form-check-label ms-3" for="fin3">
+              <label className="form-check-label ms-3" htmlFor="fin3">
                 FCS II Longboard
               </label>
             </div>
-            <div className="form-check">
+            <div className="form-check ms-3">
               <input
                 className="form-check-input"
                 type="radio"
@@ -361,7 +368,7 @@ function Products() {
                 name="fin4"
                 value="fin4"
               />
-              <label className="form-check-label ms-3" for="fin4">
+              <label className="form-check-label ms-3" htmlFor="fin4">
                 Longboard
               </label>
             </div>
@@ -387,9 +394,36 @@ function Products() {
               name="search"
               // onChange={(e) => setKeyword(e.target.value)}
             />
-
             {/* form-control會有會有自己的border-radius，好像蓋不掉，待研究！ */}
+            <div></div>
           </header>
+          <Figure className="mt-4">
+            <Figure.Image
+              width={300}
+              height={350}
+              alt="longboard1"
+              src={longboard1}
+            />
+            <FiHeart size={18} color="#ff7f6a" className="float-end" />
+            <Figure.Caption className="d-flex justify-content-center">
+              <p className="fs-6 mb-0">Catch Surf Odysea 9'0"</p>
+            </Figure.Caption>
+            <Figure.Caption className="d-flex justify-content-center">
+              <p className="fs-6">Log x Evan Rossell 衝浪板</p>
+            </Figure.Caption>
+            <div className="d-flex justify-content-center">
+              <AiFillStar size={20} color="#ff7f6a" />
+              <AiFillStar size={20} color="#ff7f6a" />
+              <AiFillStar size={20} color="#ff7f6a" />
+              <AiFillStar size={20} color="#ff7f6a" />
+              <AiOutlineStar size={20} color="#ff7f6a" />
+            </div>
+          </Figure>
+
+          {/* 星星圖備用 (全、半、空) */}
+          {/* <AiFillStar size={22} color="#ff7f6a" className="" />
+          <AiOutlineStar size={22} color="#ff7f6a" className="" />
+          <BsStarHalf size={18} color="#ff7f6a" className="me-3" /> */}
         </article>
       </div>
     </>
