@@ -12,7 +12,7 @@ function Login(props) {
   return (
     <>
       <div className="container-fluid">
-        <div className="row">
+        <div className="row gx-0">
           <div className="col-md-7 col-sm-12 p-0 leftSignUp">
             <div className="demo vh-100 d-flex justify-content-center align-items-center">
               <div>
@@ -25,7 +25,7 @@ function Login(props) {
                     onClick={openSignUp}
                   >
                     快速註冊
-                  </button>
+                  </button> 
                 </div>
                 <div className="text-white fw-bold text-center mt-5">
                   這裡有一群熱情的浪友們，加入FUNWAVE會員，

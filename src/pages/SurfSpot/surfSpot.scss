@@ -1,0 +1,17 @@
+@import '../../styles/global.scss';
+
+
+
+// 半圓形
+.circleLeft{
+    width:250px;
+    height:500px;
+    border-radius: 0 500px 500px 0;
+    border: 1px solid $secondary;
+}
+.circleRight{
+    width:250px;
+    height:500px;
+    border-radius: 500px 0 0 500px;
+    border: 1px solid $secondary;
+}
