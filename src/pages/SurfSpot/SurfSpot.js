@@ -7,8 +7,10 @@ function SurfSpot() {
     <>
       <div className="container-fluid">
         <img src="" alt="底圖" />
-        <div>麵包屑</div>
-        <hr />
+        <div className="container">
+          <div className="wrapBread">麵包屑</div>
+        </div>
+
         <div className="d-flex justify-content-center">
           <div className="text-center">
             <img src="" alt="波浪icon" />
@@ -19,7 +21,10 @@ function SurfSpot() {
         </div>
         <div className="d-none d-md-block mt-5">
           <div className="d-flex justify-content-between">
-            <div className="circleLeft"></div>
+            <div className="circleLeft">
+              <div className="leftSpot1"></div>
+            </div>
+            <img src="" alt="台灣地圖" />
             <div className="circleRight"></div>
           </div>
         </div>
