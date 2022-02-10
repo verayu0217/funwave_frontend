@@ -7,25 +7,165 @@
 .taiwanMap{
     overflow: hidden;
 }
-// 半圓形
+// 左邊半圓形
 .circleLeft{
     width:500px;
     height:500px;
     border-radius: 50%;
     border: 1px solid $secondary;
-    transform: translateX(-300px);
+    position: relative;
+    transform: translateX(-250px);
+}
+.circleLeft:hover{
+    border: 2px solid $info;
 }
 .leftSpot1{
     width: 20px;
     height: 20px;
     border-radius: 50%;
     background-color: $info;
-    transform: translate(300px, 50px);
+    position: absolute;
+    transform: translate(402px, 50px);
 }
+.leftSpot1:hover{
+    background-color: $primary;
+    cursor: pointer;
+}
+.basicSpot{
+    color: $black;
+    position: absolute;
+    transform: translate(426px, 50px);
+    cursor: pointer;
+}
+.leftSpot2{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: $info;
+    position: absolute;
+    transform: translate(488px, 240px);
+}
+.leftSpot2:hover{
+    background-color: $primary;
+    cursor: pointer;
+}
+.mediumSpot{
+    position: absolute;
+    transform: translate(513px, 240px);
+    cursor: pointer;
+}
+.leftSpot3{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: $info;
+    position: absolute;
+    transform: translate(403px, 426px);
+}
+.leftSpot3:hover{
+    background-color: $primary;
+    cursor: pointer;
+}
+.highSpot{
+    position: absolute;
+    transform: translate(429px, 426px);
+    cursor: pointer;
+}
+
+// 右邊半圓形
 .circleRight{
     width:500px;
     height:500px;
     border-radius: 50%;
     border: 1px solid $secondary;
-    transform: translateX(300px);
+    position: relative;
+    transform: translateX(250px);
+}
+.circleRight:hover{
+    border: 2px solid $info;
+}
+.rightSpot1{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: $info;
+    position: absolute;
+    transform: translate(125px, 17px);
+}
+.rightSpot1:hover{
+    background-color: $primary;
+    cursor: pointer;
+}
+.eastSpot{
+    position: absolute;
+    transform: translate(90px, 14px);
+    cursor: pointer;
+}
+.rightSpot2{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: $info;
+    position: absolute;
+    transform: translate(27px, 107px);
+}
+.rightSpot2:hover{
+    background-color: $primary;
+    cursor: pointer;
+}
+.eastnorthSpot{
+    position: absolute;
+    transform: translate(-25px, 105px);
+    cursor: pointer;
+}
+.rightSpot3{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: $info;
+    position: absolute;
+    transform: translate(-10px, 250px);
+}
+.rightSpot3:hover{
+    background-color: $primary;
+    cursor: pointer;
+}
+.northSpot{
+    position: absolute;
+    transform: translate(-45px, 250px);
+    cursor: pointer;
+}
+.rightSpot4{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: $info;
+    position: absolute;
+    transform: translate(35px, 380px);
+}
+.rightSpot4:hover{
+    background-color: $primary;
+    cursor: pointer;
+}
+.middleSpot{
+    position: absolute;
+    transform: translate(0px, 382px);
+    cursor: pointer;
+}
+.rightSpot5{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: $info;
+    position: absolute;
+    transform: translate(133px, 464px);
+}
+.rightSpot5:hover{
+    background-color: $primary;
+    cursor: pointer;
+}
+.southSpot{
+    position: absolute;
+    transform: translate(98px, 470px);
+    cursor: pointer;
 }
