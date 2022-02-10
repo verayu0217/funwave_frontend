@@ -1,5 +1,8 @@
 @import '../../../styles/global.scss';
 
+.wrapLogin{
+    height: calc(100vh - 72px);
+}
 // 註冊底圖(login)
 .leftSignUp{
     background:url(../../../data/images/login.png);
@@ -40,7 +43,7 @@
     font-weight: bold;
 }
 //註冊
-.wrap{
+.wrapSignup{
     background: rgba($color: #000000, $alpha: 0.6);
     position: fixed;
     top:0%;
@@ -80,7 +83,7 @@
     .signupInput{
         width: 230px;
     }
-    .agree{
+    .agreeSignup{
         font-size: 8px;
     }
      .signupInput{

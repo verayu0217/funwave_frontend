@@ -73,7 +73,7 @@ function SignUp() {
                   value={member.agree}
                   // onChange={}
                 />
-                <label className="form-check-label agree">
+                <label className="form-check-label agreeSignup">
                   我同意<Link to="/">服務條款</Link>與
                   <Link to="/">隱私政策</Link>
                 </label>

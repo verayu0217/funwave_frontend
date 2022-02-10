@@ -16,7 +16,7 @@ function Modal(props) {
     <>
       {showModal ? (
         <div
-          className=" wrap container-fluid animate__animated animate__fadeIn animate__faster"
+          className="wrapSignup container-fluid animate__animated animate__fadeIn animate__faster"
           onClick={closeModal}
           ref={modalRef}
         >
