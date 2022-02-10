@@ -25,7 +25,7 @@ function Login(props) {
                     onClick={openSignUp}
                   >
                     快速註冊
-                  </button> 
+                  </button>
                 </div>
                 <div className="text-white fw-bold text-center mt-5">
                   這裡有一群熱情的浪友們，加入FUNWAVE會員，
