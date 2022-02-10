@@ -5,16 +5,16 @@ import './surfSpot.scss';
 function SurfSpot() {
   return (
     <>
-      <div className="container-fluid">
+      <div className="container-fluid taiwanMap">
         <img src="" alt="底圖" />
         <div className="container">
           <div className="wrapBread">麵包屑</div>
         </div>
 
         <div className="d-flex justify-content-center">
-          <div className="text-center">
+          <div className="text-center mt-3">
             <img src="" alt="波浪icon" />
-            <div className="text-secondary fw-bold">
+            <div className="text-secondary fw-bold mt-3 h1">
               FUN 浪點 · 即時浪點資訊
             </div>
           </div>
