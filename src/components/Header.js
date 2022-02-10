@@ -59,6 +59,7 @@ function MyNavbar(props) {
             </button> */}
               <Nav.Link className="iconGroup" as={NavLink} to="/">
                 <i class="fas fa-shopping-cart"></i>
+                <span>&ensp;(0)</span>
               </Nav.Link>
               {/* <button class="btn" type="submit">
               <i class="fas fa-user"></i>
