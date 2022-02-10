@@ -405,19 +405,22 @@ function Products() {
               src={longboard1}
             />
             <FiHeart size={18} color="#ff7f6a" className="float-end" />
-            <Figure.Caption className="d-flex justify-content-center">
-              <p className="fs-6 mb-0">Catch Surf Odysea 9'0"</p>
-            </Figure.Caption>
-            <Figure.Caption className="d-flex justify-content-center">
-              <p className="fs-6">Log x Evan Rossell 衝浪板</p>
-            </Figure.Caption>
-            <div className="d-flex justify-content-center">
+            <div className="d-flex justify-content-center mt-2">
               <AiFillStar size={20} color="#ff7f6a" />
               <AiFillStar size={20} color="#ff7f6a" />
               <AiFillStar size={20} color="#ff7f6a" />
               <AiFillStar size={20} color="#ff7f6a" />
               <AiOutlineStar size={20} color="#ff7f6a" />
             </div>
+            <Figure.Caption className="d-flex justify-content-center">
+              <p className="fs-6 mb-0 mt-2">Catch Surf Odysea 9'0"</p>
+            </Figure.Caption>
+            <Figure.Caption className="d-flex justify-content-center">
+              <p className="fs-6 mb-2">Log x Evan Rossell 衝浪板</p>
+            </Figure.Caption>
+            <Figure.Caption className="d-flex justify-content-center">
+              <p className="fs-6 text-dark">NT 1,200</p>
+            </Figure.Caption>
           </Figure>
 
           {/* 星星圖備用 (全、半、空) */}
