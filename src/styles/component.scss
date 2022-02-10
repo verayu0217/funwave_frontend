@@ -22,7 +22,7 @@
         white-space: nowrap;
       }
       .nav-link.active {
-        border-bottom: 4px solid orange;
+        border-bottom: 4px solid $primary;
       }
     }
     .btnGroup {
@@ -45,7 +45,7 @@
         }
       }
       .btnLogin {
-        background-color: orange;
+        background-color: $primary;
         border: none;
         border-radius: 8px;
         color: #ffffff;

@@ -9,7 +9,7 @@ import './styles/global.scss';
 
 //資訊
 //會員
-import LogIn from './pages/Members/MemberLogin/LogIn';
+// import LogIn from './pages/Members/MemberLogin/LogIn';
 //課程
 //商城
 import ProductDetails from './pages/Products/ProductDetails';
@@ -38,7 +38,7 @@ function App() {
     <>
       <Header />
       <Routes>
-        <Route path="/login" element={<LogIn />} />
+        {/* <Route path="/login" element={<LogIn />} /> */}
         <Route path="/surfspot" element={<SurfSpot />} />
         <Route path="/ProductDetails" element={<ProductDetails />} />
         <Route path="/Products" element={<Products />} />
