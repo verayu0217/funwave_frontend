@@ -1,12 +1,59 @@
+// 待找到方法放在public，就可刪除此行
+@import '../../styles/global.scss';
+
 * {
-  list-style: none;
-  box-sizing: border-box;
+  // list-style: none;
+  // box-sizing: border-box;
 }
+div {
+  padding: 0;
+}
+
+// title、banner
+// banner圖應該要固定比例，待改！
 .banner {
-  height: 300px;
-  background: url('./ProductBanner.jpg') center center no-repeat;
+  height: 350px; // 待跟客製化商品、課程統一！
+  background: url('../../data/images/ProductBanner.jpg') center center no-repeat;
   background-size: cover;
 }
-// .container-fluid {
-//   padding: 0;
+.titleTop {
+  height: 225px; // 待跟客製化商品、課程統一！
+  background: rgba(255, 255, 255, 0.2); // 只調整背景alpha，不影響文字
+}
+.titleBottom {
+  height: 125px; // 待跟客製化商品、課程統一！
+  background: rgba(255, 255, 255, 0.2); // 只調整背景alpha，不影響文字
+}
+
+// 左側篩選區
+aside {
+  // width: auto;
+  width: 30%;
+  background-color: $deepblue;
+  border-top: 1px solid $gray;
+}
+
+// 右側商品區
+article {
+  width: 70%;
+  // background-color: $orange;
+  border-top: 1px solid $gray;
+}
+header {
+  margin-top: 30px;
+  // background-color: $orange;
+}
+article > header > div > img {
+  margin-right: 24px;
+}
+// .borderRounded {
+//   border-radius: 20%;
 // }
+.search {
+  max-width: 180px;
+  background: limegreen;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  z-index: 2;
+}

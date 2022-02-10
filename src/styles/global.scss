@@ -1,8 +1,7 @@
 // 預設變數覆蓋需要在導入Bootstrap之前
-$primary:#FF7F6A;
-$secondary:#17A8A2;
-$info: #81D7D3;
-
+$primary: #ff7f6a;
+$secondary: #17a8a2;
+$info: #81d7d3;
 
 // Import Bootstrap and its default variables
 @import '~bootstrap/scss/bootstrap.scss';
@@ -12,26 +11,46 @@ $info: #81D7D3;
 
 /*------------------------------ 文字、輔助顏色 ------------------------------*/
 // 自定義變數 $xxxx 需當頁使用，請引用: global.scss
-$orange: #FF7F6A;
-$deepblue:#17A8A2;
-$blue:#81D7D3;
-$lightgray:#F5F5F5;
-$white:#FFFFFF;
-$black:#333333;
-$gray:#98A0A5;
-
+$orange: #ff7f6a;
+$deepblue: #17a8a2;
+$blue: #81d7d3;
+$lightgray: #f5f5f5;
+$white: #ffffff;
+$black: #333333;
+$gray: #98a0a5; // 和figma上色號不同！待確認
 
 // 全站 jsx 可直接使用 className
-.deepblue{
+h1 {
+  font-size: 2.25rem;
+}
+h2 {
+  font-size: 1.5rem;
+}
+h3 {
+  font-size: 1.25rem;
+}
+h4 {
+  font-size: 5rem;
+}
+h5 {
+  font-size: 1rem;
+}
+h6 {
+  font-size: 0.75rem;
+}
+.p {
+  font-size: 0.875rem;
+}
+.deepblue {
   color: $deepblue;
 }
-.blue{
+.blue {
   color: $blue;
 }
-.lightgray{
+.lightgray {
   color: $lightgray;
 }
-.white{
+.white {
   color: $white;
 }
 .black {
@@ -44,8 +63,12 @@ $gray:#98A0A5;
   color: $orange;
 }
 
+// 共用的btn圓角
+.btn {
+  border-radius: 8px;
+}
 
 // container-fluid
-.container-fluid{
+.container-fluid {
   padding: 0;
 }
