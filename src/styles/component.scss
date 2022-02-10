@@ -1,8 +1,8 @@
 @import './global.scss';
 
 .navbar {
-  padding: 0rem 5rem;
-  height: 70px;
+  padding: 0rem 1.5rem;
+
   .headerWrap {
     max-width: 1440px;
     .imgLogo {
@@ -12,17 +12,24 @@
     }
     .nav-menu {
       margin: 0 auto;
+      height: 70px;
       .nav-link {
         display: block;
         color: #333333;
         text-decoration: none;
         font-size: 16px;
         font-weight: bold;
-        padding: 21px 24px;
+        padding: 0rem 1.5rem;
         white-space: nowrap;
+        line-height: 70px;
       }
       .nav-link.active {
         border-bottom: 4px solid $primary;
+      }
+    }
+    @media screen and (max-width: 992px) {
+      .nav-menu {
+        height: auto;
       }
     }
     .btnGroup {
@@ -30,15 +37,9 @@
       align-items: center;
       justify-content: center;
       .iconGroup {
-        padding-right: 24px;
-        .fas {
-          font-size: 30px;
-          height: 30px;
-        }
-      }
-      .iconGroup {
         color: #333333;
-        padding-right: 24px;
+        padding: 0rem 1.5rem 0rem 0rem;
+        white-space: nowrap;
         .fas {
           font-size: 30px;
           height: 30px;
@@ -47,7 +48,7 @@
       .btnLogin {
         background-color: $primary;
         border: none;
-        border-radius: 8px;
+        border-radius: 0.5rem;
         color: #ffffff;
         padding: 0px;
         width: 94px;
@@ -55,6 +56,19 @@
         display: flex;
         align-items: center;
         justify-content: center;
+      }
+    }
+    @media screen and (max-width: 992px) {
+      .btnGroup {
+        padding: 1.5rem 0rem 1rem 0rem;
+        justify-content: end;
+        .iconGroup {
+          padding: 0rem 1.5rem 0rem 0rem;
+          .fas {
+            font-size: 30px;
+            height: 30px;
+          }
+        }
       }
     }
   }
