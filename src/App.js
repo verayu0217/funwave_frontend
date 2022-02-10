@@ -10,6 +10,7 @@ import './styles/global.scss';
 //資訊
 //會員
 import LogIn from './pages/Members/MemberLogin/LogIn';
+import Member from './pages/Members/Member';
 //課程
 //商城
 import ProductDetails from './pages/Products/ProductDetails';
@@ -44,6 +45,7 @@ function App() {
         <Route path="/ProductDetails" element={<ProductDetails />} />
         <Route path="/Products" element={<Products />} />
         <Route path="/Customized" element={<Customized />} />
+        <Route path="/member" element={<Member />} />
       </Routes>
     </>
   );

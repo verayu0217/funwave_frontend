@@ -1,0 +1,110 @@
+@import '../../styles/global.scss';
+
+.fs-24Member {
+  font-size: 1.5rem !important;
+  font-weight: bold !important;
+}
+.fs-16Member {
+  font-size: 1rem !important;
+  font-weight: bold !important;
+}
+.pl-12Member {
+  padding-left: 12px;
+}
+.linkWidthMember {
+  width: 160px;
+}
+.memberWrap {
+  display: flex;
+  justify-content: center;
+  .tabWrapMember {
+    max-width: 1440px;
+    .tabBarMember {
+      box-shadow: 9px 0 15px -1px rgb(81, 81, 81, 0.1);
+      display: flex;
+      justify-content: center;
+      .nav-pills .nav-link {
+        font-size: 1rem;
+        // padding: 1.5rem 5rem;
+        color: $black;
+        cursor: pointer;
+      }
+      .nav-pills .nav-link.active {
+        color: $primary;
+        background-color: $white;
+        border-bottom: 4px solid $blue;
+      }
+    }
+  }
+  .tabContentMember {
+    display: flex;
+    justify-content: center;
+    .titleMember {
+      font-size: 36px;
+      color: $secondary;
+      font-weight: bold;
+      .titelImgMember {
+        width: 24px;
+        height: auto;
+      }
+    }
+    .changeImgMember {
+      border: none;
+      background-color: $white;
+      color: $gray;
+    }
+    .captionMember {
+      .fa-bullhorn {
+        -moz-transform: rotate(338deg);
+        -webkit-transform: rotate(338deg);
+        -o-transform: rotate(338deg);
+        -ms-transform: rotate(338deg);
+        transform: rotate(338deg);
+      }
+    }
+    .masterMember {
+      color: $primary;
+    }
+    .hotMember {
+      color: $secondary;
+    }
+    .startMember {
+      color: $gray;
+    }
+    .cancelMember {
+      background-color: $primary;
+      border-color: $primary;
+      color: $white;
+    }
+    .saveMember {
+      background-color: $secondary;
+      border-color: $secondary;
+      color: $white;
+    }
+    .avatarMember {
+      width: 212px;
+      height: 212px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin: 1rem auto;
+      background-color: $info;
+    }
+    .avatarMember img {
+      width: 100%;
+    }
+  }
+  .btnMember {
+    border-color: #333333;
+  }
+  .passwordMember {
+    position: relative;
+  }
+  .passwordImgMember {
+    position: absolute;
+    cursor: pointer;
+    width: 26px;
+    height: auto;
+    top: 25px;
+    right: 3px;
+  }
+}
