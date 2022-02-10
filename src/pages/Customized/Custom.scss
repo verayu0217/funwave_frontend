@@ -1,8 +1,8 @@
 // 待找到方法放在public，就可刪除此行
 @import '../../styles/global.scss';
 
-.banner {
+.bannerCu {
   height: 350px; // 待跟客製化商品、課程統一！
-  // background: url('../../data/images/ProductBanner.jpg') center center no-repeat;
+  background: url('../../data/images/customizedSection.png') ;
   background-size: cover;
 }
