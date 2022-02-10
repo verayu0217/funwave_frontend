@@ -6,9 +6,6 @@
 //   list-style: none;
 //   box-sizing: border-box;
 // }
-div {
-  padding: 0;
-}
 
 // title、banner
 // banner圖應該要固定比例，待改！！
@@ -25,17 +22,19 @@ div {
   height: 125px; // 待跟客製化商品、課程統一！
   background: rgba(255, 255, 255, 0.2); // 只調整背景alpha，不影響文字
 }
+// 圖片待更換為曼榕的svg
+.imgProducts {
+  // max-height: 30px;
+  max-width: 35px;
+}
 
 // 左側篩選區
 .asideProducts {
-  // width: auto;
-  width: 30%;
   // background-color: $deepblue;
   border-top: 1px solid $gray;
 }
-.accordion {
-  margin-top: 30px; // 待跟客製化商品、課程統一！
-}
+// 待跟客製化商品、課程統一 banner下的間距(mt-4)！
+
 // 抓不到如何移除間隔！！
 // .accordion-body {
 //   padding: 0;
@@ -46,30 +45,16 @@ div {
   display: flex;
   align-items: center;
 }
-.filterPrice {
-  margin-top: 30px;
+.filterProducts {
+  border-bottom: 1px solid $gray;
 }
 
 // 右側商品區
 .articleProducts {
-  width: 70%;
   // background-color: $orange;
   border-top: 1px solid $gray;
 }
-.headerProducts {
-  margin-top: 30px; // 待跟客製化商品、課程統一！
-  // background-color: $orange;
-}
-article > header > div > .imgProducts {
-  margin-right: 24px;
-}
-// .borderRounded {
-//   border-radius: 20%;
+// .borderRadius {
+//   border-radius: 50%;
 // }
-.searchProducts {
-  max-width: 180px;
-  position: absolute;
-  right: 0px;
-  top: 0px;
-  z-index: 2;
-}
+// 待跟客製化商品、課程統一 search框框長度、弧度(w-25)！
