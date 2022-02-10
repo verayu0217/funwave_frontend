@@ -20,6 +20,10 @@ $black: #333333;
 $gray: #98a0a5; // 和figma上色號不同！待確認
 
 // 全站 jsx 可直接使用 className
+* {
+  list-style: none;
+  box-sizing: border-box;
+}
 h1 {
   font-size: 2.25rem;
 }
@@ -63,10 +67,10 @@ h6 {
   color: $orange;
 }
 
-// 共用的btn圓角
-.btn {
-  border-radius: 8px;
-}
+// 共用的框框圓角
+// .btn {
+//   border-radius: 8px;
+// }
 
 // container-fluid
 .container-fluid {
