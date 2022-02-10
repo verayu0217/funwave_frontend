@@ -18,8 +18,14 @@ function SignUp() {
   }
   async function signUpSubmit(e) {
     e.preventDefault();
-    let response = await axios.post(`${API_URL}/auth/register`, member);
-    console.log(response.data);
+
+    try {
+      let response = await axios.post(`${API_URL}/auth/register`, member);
+      console.log(response.data);
+    } catch (e) {
+      console.error('error', e.response.data);
+      // console.error(ERR_MSG[e.response.data.code]);
+    }
   }
   return (
     <>

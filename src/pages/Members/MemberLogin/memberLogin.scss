@@ -90,3 +90,8 @@
          width: 200px;
      }
 }
+@media screen and (max-width: 992px) {
+    .vh-100{
+        max-height: calc(100vh - 42px);
+    }
+  }
