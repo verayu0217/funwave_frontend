@@ -1,7 +1,4 @@
 .env
 node_modules
 .vscode
-App.js
-Home/*.js
-Home/*.scss
-Home
+
