@@ -397,14 +397,18 @@ function Products() {
             {/* form-control會有會有自己的border-radius，好像蓋不掉，待研究！ */}
             <div></div>
           </header>
-          <Figure className="mt-4">
+          <Figure className="mt-5 position-relative">
             <Figure.Image
               width={300}
               height={350}
               alt="longboard1"
               src={longboard1}
             />
-            <FiHeart size={18} color="#ff7f6a" className="float-end" />
+            <FiHeart
+              size={18}
+              color="#ff7f6a"
+              className="float-end position-absolute top-0 end-0"
+            />
             <div className="d-flex justify-content-center mt-2">
               <AiFillStar size={20} color="#ff7f6a" />
               <AiFillStar size={20} color="#ff7f6a" />
@@ -419,7 +423,7 @@ function Products() {
               <p className="fs-6 mb-2">Log x Evan Rossell 衝浪板</p>
             </Figure.Caption>
             <Figure.Caption className="d-flex justify-content-center">
-              <p className="fs-6 text-dark">NT 1,200</p>
+              <p className="fs-6 text-dark fw-bold">NT 1,200</p>
             </Figure.Caption>
           </Figure>
 
