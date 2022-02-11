@@ -5,7 +5,7 @@ import './App.scss';
 import './styles/global.scss';
 
 // 頁面用元件(路由組件)
-// import Home from './pages/Home';
+import Home from './pages/Home';
 
 //資訊
 //會員
@@ -41,6 +41,7 @@ function App() {
     <>
       <Header />
       <Routes>
+        <Route path="/home" element={<Home />} />
         <Route path="/login" element={<LogIn />} />
         <Route path="/surfspot" element={<SurfSpot />} />
         <Route path="/ProductDetails" element={<ProductDetails />} />
