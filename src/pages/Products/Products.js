@@ -14,7 +14,12 @@ import { FiHeart } from 'react-icons/fi';
 // FontAwesome 不會用！！！
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import greenwave from '../../data/images/greenwave64x24.png'; // 待釐清圖放src還是放在public
+// import ProductItem from '../../components/Products/ProductItem.js';
+// import ProductList from '../../components/Products/ProductList.js';
+// import SearchBar from '../../components/Products/SearchBar.js';
+// import SortBar from '../../components/Products/SortBar.js';
+// import FilterBar from '../../components/Products/FilterBar.js';
+import greenTitle from '../../data/images/greenTitle.svg';
 import longboard1 from './longboard1.jpg'; // 待釐清圖放src還是放在public
 import './Products.scss';
 
@@ -379,12 +384,13 @@ function Products() {
           <header className="position-relative mt-4">
             <div className="d-flex justify-content-center align-items-center">
               <img
-                src={greenwave}
-                alt="greenwave"
-                title="greenwave"
-                className="me-3 imgProducts"
+                src={greenTitle}
+                className="me-3"
+                alt="greenTitle"
+                height="24px"
+                weight="64px"
               />
-              <h1>短板</h1>
+              <h1 className="m-0">短板</h1>
             </div>
             {/* 搜尋   待搜尋icon */}
             <input
