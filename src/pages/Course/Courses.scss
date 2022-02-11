@@ -1,0 +1,22 @@
+@import '../../styles/global.scss';
+.courseBanner {
+  height: 350px;
+  background-size: cover;
+  background: url('../../data/images/courseBanner.png') center center no-repeat;
+  background-size: cover;
+}
+
+.course-box {
+  transform: translateY(-100px);
+  background-color: #fff;
+  border-radius: 8px;
+}
+
+.courseBtn {
+  width: 150px;
+  font-weight: bold;
+}
+
+.spot-img {
+  border-radius: 8px;
+}

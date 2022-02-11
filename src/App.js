@@ -12,6 +12,7 @@ import './styles/global.scss';
 import LogIn from './pages/Members/MemberLogin/LogIn';
 import Member from './pages/Members/Member';
 //課程
+import Courses from './pages/Course/Courses';
 //商城
 import ProductDetails from './pages/Products/ProductDetails';
 import Products from './pages/Products/Products';
@@ -46,6 +47,7 @@ function App() {
         <Route path="/Products" element={<Products />} />
         <Route path="/Customized" element={<Customized />} />
         <Route path="/member" element={<Member />} />
+        <Route path="/Course" element={<Courses />} />
       </Routes>
     </>
   );
