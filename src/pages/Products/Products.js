@@ -388,7 +388,8 @@ function Products() {
             </div>
             {/* 搜尋   待搜尋icon */}
             <input
-              value="Search"
+              placeholder="Search"
+              value=""
               className="form-control mt-1 rounded-pill position-absolute top-0 end-0 w-25 text-muted"
               type="text"
               name="search"
