@@ -1,8 +1,6 @@
 import React from 'react';
 // import { Link } from 'react-router-dom';
 import Taiwanmap from './TaiwanMap';
-import vector from '../../data/images/surfSpot/Vector.png';
-// import taiwanmap from '../../data/images/surfSpot/taiwanMap3.png';
 import './surfSpot.scss';
 
 function SurfSpot() {
@@ -15,7 +13,7 @@ function SurfSpot() {
 
         <div className="d-flex justify-content-center">
           <div className="text-center mt-3">
-            <img src={vector} alt="波浪icon" />
+            <img src="" alt="波浪icon" />
             <div className="text-secondary fw-bold mt-3 h1">
               FUN 浪點 · 即時浪點資訊
             </div>
