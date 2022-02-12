@@ -14,6 +14,8 @@ import LogIn from './pages/Members/MemberLogin/LogIn';
 import Member from './pages/Members/Member';
 //課程
 import Courses from './pages/Course/Courses';
+import CourseContent from './pages/Course/CourseContent';
+
 //商城
 import ProductDetails from './pages/Products/ProductDetails';
 import Products from './pages/Products/Products';
@@ -50,6 +52,7 @@ function App() {
         <Route path="/Customized" element={<Customized />} />
         <Route path="/member" element={<Member />} />
         <Route path="/Course" element={<Courses />} />
+        <Route path="/Course/CourseContent" element={<CourseContent />} />
       </Routes>
     </>
   );
