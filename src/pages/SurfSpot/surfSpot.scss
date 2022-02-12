@@ -6,6 +6,12 @@
 }
 .taiwanMap{
     overflow: hidden;
+    background: url("../../data/images/surfSpot/surfSpot-screen.png") center center no-repeat;
+    object-fit: cover;
+}
+.taiwanMapImg{
+    padding-top: 50px;
+    padding-bottom: 100px;
 }
 // 左邊半圓形
 .circleLeft{
@@ -169,3 +175,5 @@
     transform: translate(98px, 470px);
     cursor: pointer;
 }
+
+// 手機版 375px
