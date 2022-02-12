@@ -1,6 +1,5 @@
 @import '../../styles/global.scss';
 
-
 .wrapSpot{
   position: relative;
 }
@@ -15,7 +14,7 @@ svg {
   }
   path:hover {
     stroke: transparent;
-    fill: $info;
+    fill: $funwave-lightblue;
   }
   .fas{
     color:$gray;

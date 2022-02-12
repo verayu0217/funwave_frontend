@@ -10,13 +10,13 @@
     fill: transparent;
 }
 .smCircle{
-    fill: $info;
+    fill: $funwave-lightblue;
     transition: .3s;
 }
 .smCircle:hover{
     cursor: pointer;
     fill: $primary;
-    r: 13px
+    r: 14px;
 }
 // 左半球文字
 .leftCirclePos{
@@ -33,7 +33,7 @@
 // 中階浪點
 .mdText{
     position: absolute;
-    transform: translate(-205px, 185px);
+    transform: translate(-205px, 182px);
 }
 .mdText:hover{
     cursor: pointer;
@@ -41,7 +41,7 @@
 // 高階浪點
 .hgText{
     position: absolute;
-    transform: translate(-265px, 330px);
+    transform: translate(-265px, 327px);
 }
 .hgText:hover{
     cursor: pointer;

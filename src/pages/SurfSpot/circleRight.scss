@@ -10,13 +10,13 @@
     fill: transparent;
 }
 .smCircle{
-    fill: $info;
+    fill: $funwave-lightblue;
     transition: .3s;
 }
 .smCircle:hover{
     cursor: pointer;
     fill: $primary;
-    r: 13px
+    r: 14px;
 }
 // 右半球文字
 .leftCirclePos{
@@ -25,7 +25,7 @@
 // 東部
 .EText{
     position: absolute;
-    transform: translate(-173px, 93px);
+    transform: translate(-174px, 91px);
 }
 .EText:hover{
     cursor: pointer;
@@ -33,7 +33,7 @@
 // 東北部
 .ENText{
     position: absolute;
-    transform: translate(-264px, 161px);
+    transform: translate(-264px, 157px);
 }
 .ENText:hover{
     cursor: pointer;
@@ -41,7 +41,7 @@
 // 北部
 .NText{
     position: absolute;
-    transform: translate(-278px, 271px);
+    transform: translate(-278px, 268px);
 }
 .NText:hover{
     cursor: pointer;
@@ -49,7 +49,7 @@
 // 西部
 .WText{
     position: absolute;
-    transform: translate(-248px, 382px);
+    transform: translate(-247px, 382px);
 }
 .WText:hover{
     cursor: pointer;

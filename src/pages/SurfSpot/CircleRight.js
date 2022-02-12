@@ -19,11 +19,11 @@ function CircleRight() {
         <circle className="cls-1 smCircle" cx="53.68" cy="369.91" r="12.5" />
         <circle className="cls-1 smCircle" cx="141.09" cy="448.79" r="12.5" />
       </svg>
-      <text className="cls-2 h5 fw-bold EText text-nowrap">東部</text>
-      <text className="cls-2 h5 fw-bold ENText text-nowrap">東北部</text>
-      <text className="cls-2 h5 fw-bold NText text-nowrap">北部</text>
-      <text className="cls-2 h5 fw-bold WText text-nowrap">西部</text>
-      <text className="cls-2 h5 fw-bold SText text-nowrap">南部</text>
+      <text className="cls-2 fw-bold EText text-nowrap">東部</text>
+      <text className="cls-2 fw-bold ENText text-nowrap">東北部</text>
+      <text className="cls-2 fw-bold NText text-nowrap">北部</text>
+      <text className="cls-2 fw-bold WText text-nowrap">西部</text>
+      <text className="cls-2 fw-bold SText text-nowrap">南部</text>
     </div>
   );
 }

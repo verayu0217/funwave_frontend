@@ -1,0 +1,52 @@
+@import '../../styles/global.scss';
+
+// banner暫時用區塊
+.bg {
+  background-color: $lightgray;
+  height: 1100px;
+  margin: 50px;
+  padding: 50px;
+}
+
+// 課程內容標題
+.contentTitle {
+  min-height: 220px;
+}
+
+// 6大特色內容圖片
+.cover-fit {
+  width: 45%;
+  height: 45%;
+  // object-fit: cover;
+}
+
+// 分級衝浪課程項目
+.item {
+  max-width: 792px;
+  margin: auto;
+  margin-bottom: 30px;
+}
+
+// 分級課程報名按鈕
+.courseBtn {
+  width: 40%;
+  // font-weight: bold;
+}
+
+// 表單課程報名按鈕
+.formBtn {
+  width: 100%;
+  // font-weight: bold;
+}
+
+// 分級課程
+.grade-wrap {
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+// 分級課程標題
+.grade-title {
+  background-color: $lightgray;
+  padding: 10px;
+}
