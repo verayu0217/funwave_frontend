@@ -1,24 +1,23 @@
 @import '../../styles/global.scss';
 
-
 svg {
-    height: 100vh;
-  }
-  path {
-    stroke: white;
-    fill: $secondary;
-    transition: 0.5s;
-    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
-  }
-  path:hover {
-    stroke: transparent;
-    fill: $info;
-    transform: translate(10px, -10px);
-  }
+  // height: 100vh;
+}
+path {
+  stroke: white;
+  fill: $secondary;
+  transition: 0.5s;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+path:hover {
+  stroke: transparent;
+  fill: $info;
+  transform: translate(10px, -10px);
+}
 
-  .site{
-      position: relative;
-  }
-  .location{
-      position: absolute;
-  }
+.site {
+  position: relative;
+}
+.location {
+  position: absolute;
+}

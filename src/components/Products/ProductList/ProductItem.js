@@ -4,8 +4,9 @@ import longboard1 from './longboard1.jpg'; // 待釐清圖放src還是放在publ
 
 // react-icons
 import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
-// import { BsStarHalf } from 'react-icons/bs'; 半星星
-import { FiHeart } from 'react-icons/fi';
+// import { BsStarHalf } from 'react-icons/bs'; // 半星星
+import { BiHeart } from 'react-icons/bi';
+// import { FaHeart } from 'react-icons/fa'; // 全愛心
 
 function ProductItem(props) {
   const { id, name, picture, price, tags } = props.product;
@@ -30,8 +31,8 @@ function ProductItem(props) {
           alt="longboard1"
           src={longboard1}
         />
-        <FiHeart
-          size={18}
+        <BiHeart
+          size={21}
           color="#ff7f6a"
           className="float-end position-absolute top-0 end-0"
         />

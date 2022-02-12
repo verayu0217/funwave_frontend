@@ -2,17 +2,18 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Accordion } from 'react-bootstrap';
 
+// 導引資料、頁面
 import './Products.scss';
 import { data } from '../../data/products.js';
-import ProductList from '../../components/Products/ProductList.js';
+import ProductList from '../../components/Products/ProductList/ProductList.js';
 import SearchBar from '../../components/Products/SearchBar.js';
-// import SortBar from '../../components/Products/SortBar.js';
-// import FilterBar from '../../components/Products/FilterBar.js';
+import SortBar from '../../components/Products/SortBar.js';
+import FilterBar from '../../components/Products/FilterBar/FilterBar.js';
 import greenTitle from '../../data/images/greenTitle.svg';
 
 // react-icons
 import { RiMoneyDollarCircleFill, RiRulerFill } from 'react-icons/ri';
-import { FaThumbsUp, FaHeart } from 'react-icons/fa';
+import { FaThumbsUp } from 'react-icons/fa';
 import { IoColorPalette } from 'react-icons/io5';
 import { MdOutlineSurfing } from 'react-icons/md';
 
@@ -20,11 +21,17 @@ function Products() {
   const [products, setProducts] = useState([]);
   const [displayProducts, setDisplayProducts] = useState([]);
 
-  // 載入指示的spinner動畫用的
-  const [isLoading, setIsLoading] = useState(false);
-
   // 下面四個狀態是對應到四種不同的表單元素
   const [searchWord, setSearchWord] = useState('');
+  const [sortBy, setSortBy] = useState('');
+  const [priceRange, setPriceRange] = useState('all');
+  const priceRangeTypes = [
+    'NT 5,000以下',
+    'NT 5,000 - 10,000',
+    'NT 10,000 - 15,000',
+    'NT 15,000以上',
+  ];
+  const [isLoading, setIsLoading] = useState(false);
 
   // 載入中spinner
   //x秒後自動關掉spinner(設定isLoading為false)
@@ -47,6 +54,7 @@ function Products() {
     setDisplayProducts(data);
   }, []);
 
+  // 載入指示 spinner動畫
   const spinner = (
     <>
       <div className="d-flex justify-content-center">
@@ -67,10 +75,59 @@ function Products() {
         return product.name.includes(searchWord);
       });
     }
-
     return newProducts;
   };
 
+  const handleSort = (products, sortBy) => {
+    let newProducts = [...products];
+
+    // 以價格排序-由少至多
+    if (sortBy === '1') {
+      newProducts = [...newProducts].sort((a, b) => a.price - b.price);
+    }
+    // 以價格排序-由多至少
+    if (sortBy === '2') {
+      newProducts = [...newProducts].sort((a, b) => b.price - a.price);
+    }
+    // 預設用id 小至大
+    if (sortBy === '' && newProducts.length > 0) {
+      newProducts = [...newProducts].sort((a, b) => a.id - b.id);
+    }
+    return newProducts;
+  };
+
+  const handlePriceRange = (products, priceRange) => {
+    let newProducts = [...products];
+
+    // 處理價格區間選項
+    switch (priceRange) {
+      case 'NT 5,000以下':
+        newProducts = products.filter((p) => {
+          return p.price <= 5000;
+        });
+        break;
+      case 'NT 5,000 - 10,000':
+        newProducts = products.filter((p) => {
+          return p.price >= 5000 && p.price <= 10000;
+        });
+        break;
+      case 'NT 10,000 - 15,000':
+        newProducts = products.filter((p) => {
+          return p.price >= 10000 && p.price <= 15000;
+        });
+        break;
+      case 'NT 15,000以上':
+        newProducts = products.filter((p) => {
+          return p.price >= 15000;
+        });
+        break;
+      // 指所有的產品都出現
+      default:
+        break;
+    }
+
+    return newProducts;
+  };
   // 當四個過濾表單元素有更動時
   // 模擬componentDidMount、componentDidUpdate
   // ps. 一開始也會載入
@@ -86,8 +143,14 @@ function Products() {
     // 處理搜尋
     newProducts = handleSearch(products, searchWord);
 
+    // 處理排序
+    newProducts = handleSort(newProducts, sortBy);
+
+    // 處理價格區間選項
+    newProducts = handlePriceRange(newProducts, priceRange);
+
     setDisplayProducts(newProducts);
-  }, [searchWord, products]);
+  }, [searchWord, products, sortBy, priceRange]);
 
   return (
     <>
@@ -177,53 +240,11 @@ function Products() {
             </Accordion>
 
             {/* 篩選 */}
-            {/* 價格篩選 */}
-            <div className="mt-5">
-              <h3 className="d-flex align-items-center filterProducts pb-2 ps-3">
-                <RiMoneyDollarCircleFill
-                  size={24}
-                  color="#17a8a2"
-                  className="me-3"
-                />
-                價格
-              </h3>
-              <div className="form-check ms-3">
-                <input
-                  className="form-check-input"
-                  type="radio"
-                  id="price1"
-                  name="price1"
-                  value="price1"
-                />
-                <label className="form-check-label ms-3" htmlFor="price1">
-                  NT $100 - $200
-                </label>
-              </div>
-              <div className="form-check ms-3">
-                <input
-                  className="form-check-input"
-                  type="radio"
-                  id="price2"
-                  name="price2"
-                  value="price2"
-                />
-                <label className="form-check-label ms-3" htmlFor="price2">
-                  NT $200 - $300
-                </label>
-              </div>
-              <div className="form-check ms-3">
-                <input
-                  className="form-check-input"
-                  type="radio"
-                  id="price3"
-                  name="price3"
-                  value="price3"
-                />
-                <label className="form-check-label ms-3" htmlFor="price3">
-                  NT $300 - $400
-                </label>
-              </div>
-            </div>
+            <FilterBar
+              priceRangeTypes={priceRangeTypes}
+              priceRange={priceRange}
+              setPriceRange={setPriceRange}
+            />
             {/* 品牌篩選 */}
             <div className="mt-5">
               <h3 className="d-flex align-items-center filterProducts pb-2 ps-3">
@@ -462,6 +483,9 @@ function Products() {
                 searchWord={searchWord}
                 setSearchWord={setSearchWord}
               />
+              <div className="d-flex justify-content-end mt-2 mb-2">
+                <SortBar sortBy={sortBy} setSortBy={setSortBy} />
+              </div>
             </header>
             {isLoading ? spinner : <ProductList products={displayProducts} />}
 
