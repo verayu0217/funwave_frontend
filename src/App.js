@@ -5,9 +5,11 @@ import './App.scss';
 import './styles/global.scss';
 
 // 頁面用元件(路由組件)
-
 //首頁
-import Home from './pages/Home';
+import Home from './pages/Home/';
+//scss示範頁
+import HomeTry from './pages/HomeTry/';
+
 //資訊
 //會員
 import LogIn from './pages/Members/MemberLogin/LogIn';
@@ -45,6 +47,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/home" element={<Home />} />
+        <Route path="/homeTry" element={<HomeTry />} />
         <Route path="/login" element={<LogIn />} />
         <Route path="/surfspot" element={<SurfSpot />} />
         <Route path="/ProductDetails" element={<ProductDetails />} />
