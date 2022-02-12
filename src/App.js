@@ -5,13 +5,15 @@ import './App.scss';
 import './styles/global.scss';
 
 // 頁面用元件(路由組件)
-// import Home from './pages/Home';
 
+//首頁
+import Home from './pages/Home';
 //資訊
 //會員
 import LogIn from './pages/Members/MemberLogin/LogIn';
 import Member from './pages/Members/Member';
 //課程
+import Courses from './pages/Course/Courses';
 //商城
 import ProductDetails from './pages/Products/ProductDetails';
 import Products from './pages/Products/Products';
@@ -40,12 +42,14 @@ function App() {
     <>
       <Header />
       <Routes>
+        <Route path="/home" element={<Home />} />
         <Route path="/login" element={<LogIn />} />
         <Route path="/surfspot" element={<SurfSpot />} />
         <Route path="/ProductDetails" element={<ProductDetails />} />
         <Route path="/Products" element={<Products />} />
         <Route path="/Customized" element={<Customized />} />
         <Route path="/member" element={<Member />} />
+        <Route path="/Course" element={<Courses />} />
       </Routes>
     </>
   );

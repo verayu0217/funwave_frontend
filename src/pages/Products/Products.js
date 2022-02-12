@@ -14,7 +14,12 @@ import { FiHeart } from 'react-icons/fi';
 // FontAwesome 不會用！！！
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import greenwave from '../../data/images/greenwave64x24.png'; // 待釐清圖放src還是放在public
+// import ProductItem from '../../components/Products/ProductItem.js';
+// import ProductList from '../../components/Products/ProductList.js';
+// import SearchBar from '../../components/Products/SearchBar.js';
+// import SortBar from '../../components/Products/SortBar.js';
+// import FilterBar from '../../components/Products/FilterBar.js';
+import greenTitle from '../../data/images/greenTitle.svg';
 import longboard1 from './longboard1.jpg'; // 待釐清圖放src還是放在public
 import './Products.scss';
 
@@ -379,16 +384,18 @@ function Products() {
           <header className="position-relative mt-4">
             <div className="d-flex justify-content-center align-items-center">
               <img
-                src={greenwave}
-                alt="greenwave"
-                title="greenwave"
-                className="me-3 imgProducts"
+                src={greenTitle}
+                className="me-3"
+                alt="greenTitle"
+                height="24px"
+                weight="64px"
               />
-              <h1>短板</h1>
+              <h1 className="m-0">短板</h1>
             </div>
             {/* 搜尋   待搜尋icon */}
             <input
-              value="Search"
+              placeholder="Search"
+              value=""
               className="form-control mt-1 rounded-pill position-absolute top-0 end-0 w-25 text-muted"
               type="text"
               name="search"
@@ -397,14 +404,18 @@ function Products() {
             {/* form-control會有會有自己的border-radius，好像蓋不掉，待研究！ */}
             <div></div>
           </header>
-          <Figure className="mt-4">
+          <Figure className="mt-5 position-relative">
             <Figure.Image
               width={300}
               height={350}
               alt="longboard1"
               src={longboard1}
             />
-            <FiHeart size={18} color="#ff7f6a" className="float-end" />
+            <FiHeart
+              size={18}
+              color="#ff7f6a"
+              className="float-end position-absolute top-0 end-0"
+            />
             <div className="d-flex justify-content-center mt-2">
               <AiFillStar size={20} color="#ff7f6a" />
               <AiFillStar size={20} color="#ff7f6a" />
@@ -419,7 +430,7 @@ function Products() {
               <p className="fs-6 mb-2">Log x Evan Rossell 衝浪板</p>
             </Figure.Caption>
             <Figure.Caption className="d-flex justify-content-center">
-              <p className="fs-6 text-dark">NT 1,200</p>
+              <p className="fs-6 text-dark fw-bold">NT 1,200</p>
             </Figure.Caption>
           </Figure>
 
