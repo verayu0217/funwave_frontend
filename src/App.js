@@ -5,8 +5,9 @@ import './App.scss';
 import './styles/global.scss';
 
 // 頁面用元件(路由組件)
-import Home from './pages/Home';
 
+//首頁
+import Home from './pages/Home';
 //資訊
 //會員
 import LogIn from './pages/Members/MemberLogin/LogIn';

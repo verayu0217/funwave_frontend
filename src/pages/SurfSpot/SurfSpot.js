@@ -1,12 +1,12 @@
 import React from 'react';
 // import { Link } from 'react-router-dom';
+import Taiwanmap from './TaiwanMap';
 import './surfSpot.scss';
 
 function SurfSpot() {
   return (
     <>
       <div className="container-fluid taiwanMap">
-        <img src="" alt="底圖" />
         <div className="container">
           <div className="wrapBread">麵包屑</div>
         </div>
@@ -19,6 +19,7 @@ function SurfSpot() {
             </div>
           </div>
         </div>
+
         <div className="d-none d-md-block mt-5 mb-5">
           <div className="d-flex justify-content-between">
             <div className="circleLeft">
@@ -30,7 +31,7 @@ function SurfSpot() {
               <span className="highSpot h5 fw-bold">高階浪點</span>
             </div>
             <div>
-              <img src="" alt="台灣地圖" />
+              <Taiwanmap />
             </div>
             <div className="circleRight">
               <div className="rightSpot1"></div>
