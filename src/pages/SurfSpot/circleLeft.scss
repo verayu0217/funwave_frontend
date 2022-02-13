@@ -1,0 +1,48 @@
+@import '../../styles/global.scss';
+
+// 左半球
+.leftCircle{
+    transform: translate(-200px, -50px);
+}
+.bgCircle{
+    stroke: $secondary;
+    stroke-width: 2px;
+    fill: transparent;
+}
+.smCircle{
+    fill: $funwave-lightblue;
+    transition: .3s;
+}
+.smCircle:hover{
+    cursor: pointer;
+    fill: $primary;
+    r: 14px;
+}
+// 左半球文字
+.leftCirclePos{
+    position: relative;
+}
+// 初階浪點
+.bsText{
+    position: absolute;
+    transform: translate(-265px, 40px);
+}
+.bsText:hover{
+    cursor: pointer;
+}
+// 中階浪點
+.mdText{
+    position: absolute;
+    transform: translate(-205px, 182px);
+}
+.mdText:hover{
+    cursor: pointer;
+}
+// 高階浪點
+.hgText{
+    position: absolute;
+    transform: translate(-265px, 327px);
+}
+.hgText:hover{
+    cursor: pointer;
+}

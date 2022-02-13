@@ -13,20 +13,20 @@ function Courses() {
         <div className="row courseBanner-box">
           <div className="col-md-12 p-0 ">
             <div className="courseBanner d-flex justify-content-center align-items-center">
-              <div>
-                <div className="text-center white h4">
-                  Let's Learn How to Surf.
-                </div>
-                <div className="text-center white h1">衝浪課程＆教練團</div>
+              <div className="text-center  m-auto align-items-center">
+                <p class="h4">Let's Learn How to Surf.</p>
+                <p class="h1">衝浪課程＆教練團</p>
               </div>
             </div>
           </div>
         </div>
       </div>
 
+      {/* banner區標題 */}
+
       {/* 課程簡介區  */}
       <div className="container my-5">
-        <div className="row d-flex col mx-auto course-box shadow-lg">
+        <div className="row d-flex  justify-content-center course-box shadow-lg">
           <div className="text-secondary fw-bold mt-3 h1 text-center mb-3">
             <img
               src={greenTitle}
@@ -37,42 +37,42 @@ function Courses() {
             />
             專業安全的分級衝浪課程
           </div>
-          <div className="row d-flex mt-5">
-            <div className="item col-md-6 col-lg-3">
+          <div className="row d-flex">
+            <div className="item col-md-6 col-lg-3 p-3">
               <p className="text-center h2 ">體驗課程</p>
               <p className="text-center gray p-3">
                 以休閒衝浪為主題 深入淺出的教學模式 讓你輕鬆學習到衝浪的樂趣
                 體驗大海上享受速度的快感
               </p>
             </div>
-            <div className="item col-md-6 col-lg-3">
+            <div className="item col-md-6 col-lg-3 p-3">
               <p className="text-center h2 ">初階課程</p>
               <p className="text-center gray p-3">
                 有基本的控制能力 可以在白花上直行 能獨自展開衝浪活動
                 對衝浪恐懼感降低
               </p>
             </div>
-            <div className="item col-md-6 col-lg-3">
+            <div className="item col-md-6 col-lg-3 p-3">
               <p className="text-center h2">中階課程</p>
               <p className="text-center gray p-3">
                 掌握初級衝浪者技巧 練習加速減速 控制速度
                 轉向並能靠自己判斷追浪下浪 更流暢的動作連貫性
               </p>
             </div>
-            <div className="item col-md-6 col-lg-3">
+            <div className="item col-md-6 col-lg-3 p-3">
               <p className="text-center h2">高階課程</p>
               <p className="text-center gray p-3">
                 熟悉所有衝浪技巧 能駕馭各種浪況條件浪頭判別與浪板駕乘
                 能自由發揮高技術性動作
               </p>
             </div>
-            <div className="text-center p-3">
-              <button className="btn btn-primary text-white courseBtn ">
-                詳細課程內容
-                {/* <i class="fas fa-long-arrow-righ"></i> */}
-                <i class="fas fa-arrow-right ms-2"></i>
-              </button>
-            </div>
+          </div>
+          <div className="text-center p-3">
+            <button className="btn btn-primary text-white courseBtn">
+              詳細課程內容
+              {/* <i class="fas fa-long-arrow-righ"></i> */}
+              <i class="fas fa-arrow-right"></i>
+            </button>
           </div>
         </div>
       </div>

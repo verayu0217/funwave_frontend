@@ -1,12 +1,142 @@
 import React from 'react';
 import './taiwanMap.scss';
-import { ImCross } from 'react-icons/im';
 
 function TaiwanMap() {
   return (
     <div className="wrapSpot">
       <span>
-        <i className="fas fa-map-marker-alt"></i>
+        {/* 北部 */}
+        {/* 沙崙 */}
+        <i className="fas fa-map-marker N01"></i>
+      </span>
+      <span>
+        {/* 金山 */}
+        <i className="fas fa-map-marker N02"></i>
+      </span>
+      <span>
+        {/* 白沙灣 */}
+        <i className="fas fa-map-marker N03"></i>
+      </span>
+      <span>
+        {/* 萬里 */}
+        <i className="fas fa-map-marker N04"></i>
+      </span>
+      <span>
+        {/* 福隆 */}
+        <i className="fas fa-map-marker N05"></i>
+      </span>
+      <span>
+        {/* 東北部 */}
+        {/* 雙獅 */}
+        <i className="fas fa-map-marker EN01"></i>
+      </span>
+      <span>
+        {/* 外澳 */}
+        <i className="fas fa-map-marker EN02"></i>
+      </span>
+      <span>
+        {/* 烏石港 */}
+        <i className="fas fa-map-marker EN03"></i>
+      </span>
+      <span>
+        {/* 竹安 */}
+        <i className="fas fa-map-marker EN04"></i>
+      </span>
+      <span>
+        {/* 清水 */}
+        <i className="fas fa-map-marker EN05"></i>
+      </span>
+      <span>
+        {/* 蘇澳-無尾港 */}
+        <i className="fas fa-map-marker EN06"></i>
+      </span>
+      <span>
+        {/* 東部 */}
+        {/* 花蓮北濱 */}
+        <i className="fas fa-map-marker E01"></i>
+      </span>
+      <span>
+        {/* 雙橋 */}
+        <i className="fas fa-map-marker E02"></i>
+      </span>
+      <span>
+        {/* 鹽寮漁港 */}
+        <i className="fas fa-map-marker E03"></i>
+      </span>
+      <span>
+        {/* 磯崎 */}
+        <i className="fas fa-map-marker E04"></i>
+      </span>
+      <span>
+        {/* 八仙洞 */}
+        <i className="fas fa-map-marker E05"></i>
+      </span>
+      <span>
+        {/* 成功 */}
+        <i className="fas fa-map-marker E06"></i>
+      </span>
+      <span>
+        {/* 東河 */}
+        <i className="fas fa-map-marker E07"></i>
+      </span>
+      <span>
+        {/* 金樽 */}
+        <i className="fas fa-map-marker E08"></i>
+      </span>
+      <span>
+        {/* 都蘭 */}
+        <i className="fas fa-map-marker E09"></i>
+      </span>
+      <span>
+        {/* 台東 */}
+        <i className="fas fa-map-marker E10"></i>
+      </span>
+      <span>
+        {/* 南部 */}
+        {/* 九棚 */}
+        <i className="fas fa-map-marker S01"></i>
+      </span>
+      <span>
+        {/* 佳樂水 */}
+        <i className="fas fa-map-marker S02"></i>
+      </span>
+      <span>
+        {/* 南灣 */}
+        <i className="fas fa-map-marker S03"></i>
+      </span>
+      <span>
+        {/* 射寮 */}
+        <i className="fas fa-map-marker S04"></i>
+      </span>
+      <span>
+        {/* 西部 */}
+        {/* 竹南 */}
+        <i className="fas fa-map-marker W01"></i>
+      </span>
+      <span>
+        {/* 北埔外堤 */}
+        <i className="fas fa-map-marker W02"></i>
+      </span>
+      <span>
+        {/* 松柏港 */}
+        <i className="fas fa-map-marker W03"></i>
+      </span>
+      <span>
+        {/* 大安 */}
+        <i className="fas fa-map-marker W04"></i>
+      </span>
+      <span>
+        {/* 澎湖 */}
+        {/* 山水 */}
+        <i className="fas fa-map-marker W05"></i>
+      </span>
+      <span>
+        {/* 漁光島(馬場) */}
+        <i className="fas fa-map-marker W06"></i>
+      </span>
+      <span>
+        {/* 旗津) */}
+        <i className="fas fa-map-marker W07"></i>
       </span>
 
       <svg
@@ -56,7 +186,7 @@ function TaiwanMap() {
         <path
           id="0c879d5f-d1b8-44ab-8054-414fa434ecd5"
           data-name="path2474"
-          className="96fdfe13-4732-40bb-9e9c-cdc6e310fcb9 site"
+          className="96fdfe13-4732-40bb-9e9c-cdc6e310fcb9"
           d="M61.53,412.7l-.43.79L61,414l.55.61-1,1,.24.73.73.37.55.49.24.55-.61.31-.49,1.46.3.79-.79.24h-.92l-.73.49.24.67,1,.18,1.22,1.59v.91l-.37.73-.67.49-.49.61-.67.49-.67.18-1.22-1.1-.85.3-.61.49-.43.67-1,.92-.43.61.61.37h.92l.43-.55h2.74l.49-.43.61-.3,1.77.3.79.37h.92l.79-.37-.3-.79-.49-.61-.24-.67-.06-.85,1-1-.79-2,2.5-2.26-.24-.61-.67-.49-.12-.79.43-1.46-.37-.79-.43-.55-.18-.73.24-.67.67-.43h1.83l1.59-.43.67-.43.12-.92-.49-.43-.73.67-.73.18-.85-.43L65,410.14l.18-.79-.24-.67-.73.06-.55.49L62.14,412l-.61.67h0Z"
         />
 

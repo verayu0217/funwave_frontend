@@ -1,23 +1,320 @@
 @import '../../styles/global.scss';
 
-svg {
-  // height: 100vh;
-}
-path {
-  stroke: white;
-  fill: $secondary;
-  transition: 0.5s;
-  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
-}
-path:hover {
-  stroke: transparent;
-  fill: $info;
-  transform: translate(10px, -10px);
-}
-
-.site {
+.wrapSpot{
   position: relative;
 }
-.location {
-  position: absolute;
-}
+svg {
+    width: 400px;
+    height: 500px;
+  }
+  path {
+    stroke: white;
+    fill: $secondary;
+    transition: 0.5s;
+  }
+  path:hover {
+    stroke: transparent;
+    fill: $funwave-lightblue;
+  }
+  .fas{
+    color:$gray;
+    transition: .2s;
+  }
+  .fas:hover{
+    cursor: pointer;
+    color: $primary;
+    font-size: 2.25rem;
+  }
+  // 北部浪點
+  // 沙崙
+  .N01{
+      position: absolute;
+      transform: translate(288px, 24px);
+  }
+  .N01:hover{
+    transform: translate(280px, 4px);
+    z-index: 1;
+  }
+  // 金山
+  .N02{
+    position: absolute;
+    transform: translate(313px, 19px);
+  }
+  .N02:hover{
+    transform: translate(305px, -9px);
+    z-index: 1;
+  }
+  // 白沙灣
+  .N03{
+    position: absolute;
+    transform: translate(298px, 13px);
+  }
+  .N03:hover{
+    transform: translate(290px, -3px);
+    z-index: 1;
+  }
+  // 萬里
+  .N04{
+    position: absolute;
+    transform: translate(318px, 26px);
+  }
+  .N04:hover{
+    transform: translate(310px, 6px);
+    z-index: 1;
+  }
+  // 福隆
+  .N05{
+    position: absolute;
+    transform: translate(351px, 48px);
+  }
+  .N05:hover{
+    transform: translate(343px, 28px);
+    z-index: 1;
+  }
+  // 東北部
+  // 雙獅
+  .EN01{
+    position: absolute;
+    transform: translate(334px, 75px);
+  }
+  .EN01:hover{
+    transform: translate(326px, 55px);
+    z-index: 1;
+  }
+  // 外澳
+  .EN02{
+    position: absolute;
+    transform: translate(332px, 79px);
+  }
+  .EN02:hover{
+    transform: translate(324px, 59px);
+    z-index: 1;
+  }
+  // 烏石港
+  .EN03{
+    position: absolute;
+    transform: translate(332px, 83px);
+  }
+  .EN03:hover{
+    transform: translate(324px, 63px);
+    z-index: 1;
+  }
+  // 竹安
+  .EN04{
+    position: absolute;
+    transform: translate(335px, 86px);
+  }
+  .EN04:hover{
+    transform: translate(327px, 66px);
+    z-index: 1;
+  }
+  // 清水
+   .EN05{
+    position: absolute;
+    transform: translate(337px, 94px);
+  }
+  .EN05:hover{
+    transform: translate(329px, 74px);
+    z-index: 1;
+  }
+   // 蘇澳-無尾港
+   .EN06{
+    position: absolute;
+    transform: translate(340px, 101px);
+  }
+  .EN06:hover{
+    transform: translate(332px, 82px);
+    z-index: 1;
+  }
+  // 東部
+  // 花蓮北濱
+  .E01{
+    position: absolute;
+    transform: translate(313px, 185px);
+  }
+  .E01:hover{
+    transform: translate(305px, 165px);
+    z-index: 1;
+  }
+  // 雙橋
+  .E02{
+    position: absolute;
+    transform: translate(309px, 198px);
+  }
+  .E02:hover{
+    transform: translate(301px, 178px);
+    z-index: 1;
+  }
+  // 鹽寮漁港
+  .E03{
+    position: absolute;
+    transform: translate(307px, 202px);
+  }
+  .E03:hover{
+    transform: translate(299px, 182px);
+    z-index: 1;
+  }
+  // 磯崎
+   .E04{
+    position: absolute;
+    transform: translate(304px, 218px);
+  }
+  .E04:hover{
+    transform: translate(296px, 198px);
+    z-index: 1;
+  }
+  // 八仙洞
+  .E05{
+    position: absolute;
+    transform: translate(293px, 268px);
+  }
+  .E05:hover{
+    transform: translate(285px, 248px);
+    z-index: 1;
+  }
+   // 成功
+   .E06{
+    position: absolute;
+    transform: translate(286px, 299px);
+  }
+  .E06:hover{
+    transform: translate(276px, 279px);
+    z-index: 1;
+  }
+   // 東河
+   .E07{
+    position: absolute;
+    transform: translate(274px, 318px);
+  }
+  .E07:hover{
+    transform: translate(266px, 298px);
+    z-index: 1;
+  }
+   // 金樽
+   .E08{
+    position: absolute;
+    transform: translate(269px, 325px);
+  }
+  .E08:hover{
+    transform: translate(261px, 305px);
+    z-index: 1;
+  }
+   // 都蘭
+   .E09{
+    position: absolute;
+    transform: translate(263px, 332px);
+  }
+  .E09:hover{
+    transform: translate(255px, 312px);
+    z-index: 1;
+  }
+   // 台東
+   .E10{
+    position: absolute;
+    transform: translate(254px, 348px);
+  }
+  .E10:hover{
+    transform: translate(246px, 328px);
+    z-index: 1;
+  }
+  // 南部
+   // 九棚
+   .S01{
+    position: absolute;
+    transform: translate(223px, 434px);
+  }
+  .S01:hover{
+    transform: translate(215px, 414px);
+    z-index: 1;
+  }
+  // 佳樂水
+  .S02{
+    position: absolute;
+    transform: translate(216px, 450px);
+  }
+  .S02:hover{
+    transform: translate(208px, 420px);
+    z-index: 1;
+  }
+  // 南灣
+  .S03{
+    position: absolute;
+    transform: translate(206px, 452px);
+  }
+  .S03:hover{
+    transform: translate(198px, 432px);
+    z-index: 1;
+  }
+  // 射寮
+  .S04{
+    position: absolute;
+    transform: translate(199px, 440px);
+  }
+  .S04:hover{
+    transform: translate(191px, 420px);
+    z-index: 1;
+  }
+  // 西部
+  // 竹南
+   .W01{
+    position: absolute;
+    transform: translate(219px, 91px);
+  }
+  .W01:hover{
+    transform: translate(211px, 71px);
+    z-index: 1;
+  }
+  // 北埔外堤
+  .W02{
+    position: absolute;
+    transform: translate(208px, 98px);
+  }
+  .W02:hover{
+    transform: translate(200px, 78px);
+    z-index: 1;
+  }
+  // 松柏港
+  .W03{
+    position: absolute;
+    transform: translate(189px, 127px);
+  }
+  .W03:hover{
+    transform: translate(181px, 107px);
+    z-index: 1;
+  }
+  // 大安
+  .W04{
+    position: absolute;
+    transform: translate(186px, 132px);
+  }
+  .W04:hover{
+    transform: translate(178px, 112px);
+    z-index: 1;
+  }
+  // 山水
+  .W05{
+    position: absolute;
+    transform: translate(65px, 245px);
+  }
+  .W05:hover{
+    transform: translate(57px, 225px);
+    z-index: 1;
+  }
+  // 漁光島(馬場)
+  .W06{
+    position: absolute;
+    transform: translate(136px, 320px);
+  }
+  .W06:hover{
+    transform: translate(128px, 300px);
+    z-index: 1;
+  }
+  // 旗津
+  .W07{
+    position: absolute;
+    transform: translate(151px, 372px);
+  }
+  .W07:hover{
+    transform: translate(143px, 352px);
+    z-index: 1;
+  }

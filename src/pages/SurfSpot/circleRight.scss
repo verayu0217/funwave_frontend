@@ -1,0 +1,64 @@
+@import '../../styles/global.scss';
+
+// 右半球
+.rightCircle{
+    transform: translate(150px, 30px);
+}
+.bgCircle{
+    stroke: $secondary;
+    stroke-width: 2px;
+    fill: transparent;
+}
+.smCircle{
+    fill: $funwave-lightblue;
+    transition: .3s;
+}
+.smCircle:hover{
+    cursor: pointer;
+    fill: $primary;
+    r: 14px;
+}
+// 右半球文字
+.leftCirclePos{
+    position: relative;
+}
+// 東部
+.EText{
+    position: absolute;
+    transform: translate(-174px, 91px);
+}
+.EText:hover{
+    cursor: pointer;
+}
+// 東北部
+.ENText{
+    position: absolute;
+    transform: translate(-264px, 157px);
+}
+.ENText:hover{
+    cursor: pointer;
+}
+// 北部
+.NText{
+    position: absolute;
+    transform: translate(-278px, 268px);
+}
+.NText:hover{
+    cursor: pointer;
+}
+// 西部
+.WText{
+    position: absolute;
+    transform: translate(-247px, 382px);
+}
+.WText:hover{
+    cursor: pointer;
+}
+// 南部
+.SText{
+    position: absolute;
+    transform: translate(-175px, 450px);
+}
+.SText:hover{
+    cursor: pointer;
+}
