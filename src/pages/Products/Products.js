@@ -12,7 +12,7 @@ import FilterBar from '../../components/Products/FilterBar/FilterBar.js';
 import greenTitle from '../../data/images/greenTitle.svg';
 
 // react-icons
-import { RiMoneyDollarCircleFill, RiRulerFill } from 'react-icons/ri';
+import { RiRulerFill } from 'react-icons/ri';
 import { FaThumbsUp } from 'react-icons/fa';
 import { IoColorPalette } from 'react-icons/io5';
 import { MdOutlineSurfing } from 'react-icons/md';
@@ -39,7 +39,7 @@ function Products() {
     if (isLoading) {
       setTimeout(() => {
         setIsLoading(false);
-      }, 1000);
+      }, 0);
     }
   }, [isLoading]);
 
