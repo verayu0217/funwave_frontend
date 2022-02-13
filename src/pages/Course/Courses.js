@@ -26,7 +26,7 @@ function Courses() {
 
       {/* 課程簡介區  */}
       <div className="container my-5">
-        <div className="row d-flex  justify-content-center course-box shadow-lg">
+        <div className="row  course-box shadow-lg">
           <div className="text-secondary fw-bold mt-3 h1 text-center mb-3">
             <img
               src={greenTitle}
@@ -67,11 +67,10 @@ function Courses() {
               </p>
             </div>
           </div>
-          <div className="text-center p-3">
-            <button className="btn btn-primary text-white courseBtn">
+          <div class=" text-center">
+            <button className="btn btn-primary text-white mb-5 courseIntroBtn">
               詳細課程內容
-              {/* <i class="fas fa-long-arrow-righ"></i> */}
-              <i class="fas fa-arrow-right"></i>
+              <i class="fas fa-arrow-right text-white"></i>
             </button>
           </div>
         </div>
