@@ -14,8 +14,8 @@ function Courses() {
           <div className="col-md-12 p-0 ">
             <div className="courseBanner d-flex justify-content-center align-items-center">
               <div className="text-center  m-auto align-items-center">
-                <p class="h4">Let's Learn How to Surf.</p>
-                <p class="h1">衝浪課程＆教練團</p>
+                <p className="h4">Let's Learn How to Surf.</p>
+                <p className="h1">衝浪課程＆教練團</p>
               </div>
             </div>
           </div>
@@ -67,11 +67,14 @@ function Courses() {
               </p>
             </div>
           </div>
-          <div class=" text-center">
-            <button className="btn btn-primary text-white mb-5 courseIntroBtn">
+          <div className=" text-center">
+            <Link
+              to="/Course/CourseContent"
+              class="btn btn-primary text-white mb-5 courseIntroBtn"
+            >
               詳細課程內容
-              <i class="fas fa-arrow-right text-white"></i>
-            </button>
+              <i className="fas fa-arrow-right text-white"></i>
+            </Link>
           </div>
         </div>
       </div>

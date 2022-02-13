@@ -1,0 +1,54 @@
+@import '../../styles/global.scss';
+
+// 課程須知區塊
+.infoBg {
+  border-radius: 8px;
+  background-color: $funwave-lightgray;
+}
+
+// 確認下一頁
+.confirmBtn {
+  width: 180px;
+}
+
+// 回到上一頁
+.backBtn {
+  width: 180px;
+}
+
+// 付款選項按鈕
+.pay-link {
+  border: 0.5px solid;
+  border-color: $gray;
+  color: $black;
+  display: block;
+  text-align: center;
+  width: 150px;
+  padding: 3px;
+  text-decoration: none;
+}
+.pay-link:active,
+.pay-link:hover {
+  background-color: $deepblue;
+  color: $white;
+}
+.payItem:first-child .pay-link {
+  border-top-left-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+}
+.payItem:last-child .pay-link {
+  border-top-right-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+}
+
+@media screen and (max-width: 768px) {
+  .courseDetail {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .mobile {
+    display: none;
+  }
+}
