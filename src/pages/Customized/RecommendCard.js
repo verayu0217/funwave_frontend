@@ -5,7 +5,7 @@ import './Custom.scss';
 function RecommendCard() {
   return (
     <>
-      <div className="shadow-lg bg-white p-2 mb-5">
+      <div className="shadow rounded bg-white p-2 mb-5 mt-5">
         <div className="m-3">
           <p className="gray">
             超推薦他們的衝浪板!超推薦他們的衝浪板!超推薦他們的衝浪板!超推薦他們的衝浪板!超推薦他們的衝浪板!超推薦他們的衝浪板!超推薦他們的衝浪板!超推薦他們的衝浪板!
