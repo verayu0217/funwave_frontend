@@ -1,6 +1,9 @@
 import React from 'react';
+import { Container, Row, Col } from 'react-bootstrap';
 import './Custom.scss';
 import RecommendCard from './RecommendCard';
+import Ad from './Ad';
+import Step from './Step';
 function Customized() {
   return (
     <>
@@ -12,7 +15,7 @@ function Customized() {
           <h1>客製化衝浪板</h1>
         </div>
       </div>
-      <div className="container">
+      <Container>
         <h3>麵包屑</h3>
         <div className="d-flex justify-content-center">
           <div className="sectionCu">
@@ -26,15 +29,27 @@ function Customized() {
             </p>
           </div>
         </div>
-        <div>
-          <h3 className="text-center">他們都推薦FUNWAVE的訂製衝浪板</h3>
-          <div className="d-flex justify-content-between m-2">
-            <RecommendCard />
-            <RecommendCard />
-            <RecommendCard />
-          </div>
-        </div>
-      </div>
+      </Container>
+      <Container fluid className="recommendBg py-5">
+        <Container>
+          <h3 className="text-center fw-bold mb-5">
+            他們都推薦FUNWAVE的訂製衝浪板
+          </h3>
+          <Row>
+            <Col>
+              <RecommendCard />
+            </Col>
+            <Col>
+              <RecommendCard />
+            </Col>
+            <Col>
+              <RecommendCard />
+            </Col>
+          </Row>
+          <Ad />
+          <Step />
+        </Container>
+      </Container>
     </>
   );
 }

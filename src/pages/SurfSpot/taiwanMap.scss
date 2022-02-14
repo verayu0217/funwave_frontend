@@ -3,16 +3,16 @@
 .wrapSpot{
   position: relative;
 }
-svg {
+.svg {
     width: 400px;
     height: 500px;
   }
-  path {
+  .path {
     stroke: white;
     fill: $secondary;
     transition: 0.5s;
   }
-  path:hover {
+  .path:hover {
     stroke: transparent;
     fill: $funwave-lightblue;
   }
