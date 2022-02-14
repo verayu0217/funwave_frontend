@@ -7,6 +7,8 @@ import 'animate.css';
 import './memberLogin.scss';
 
 function SignUp() {
+  const [close, setClose] = useState('fas fa-eye-slash');
+  const [type, setType] = useState('password');
   const [member, setMember] = useState({
     email: '',
     name: '',
@@ -41,11 +43,12 @@ function SignUp() {
                 <label className="fw-bold">電子信箱</label>
                 <input
                   className="form-control signupInput"
-                  type="text"
+                  type="email"
                   name="email"
                   id="email"
                   value={member.email}
                   onChange={handleChange}
+                  required
                 />
               </li>
               <li className="mt-3">
@@ -57,18 +60,33 @@ function SignUp() {
                   id="name"
                   value={member.name}
                   onChange={handleChange}
+                  required
                 />
               </li>
               <li className="mt-3">
                 <label className="fw-bold">密碼</label>
                 <input
                   className="form-control signupInput"
-                  type="text"
+                  type={type}
                   name="password"
                   id=""
                   value={member.password}
                   onChange={handleChange}
                 />
+                <div className="fasEye">
+                  <i
+                    className={`fasEye mt-2 mt-md-3 ml-2 ${close}`}
+                    onClick={() => {
+                      if (type === 'password') {
+                        setType('text');
+                        setClose('fas fa-eye');
+                      } else {
+                        setType('password');
+                        setClose('fas fa-eye-slash');
+                      }
+                    }}
+                  ></i>
+                </div>
               </li>
               <li className="d-flex justify-content-center m-4">
                 <input

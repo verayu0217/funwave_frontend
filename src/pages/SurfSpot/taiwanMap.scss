@@ -9,7 +9,7 @@
   }
   .path {
     stroke: white;
-    fill: $secondary;
+    fill: $funwave-deepblue;
     transition: 0.5s;
   }
   .path:hover {
@@ -17,12 +17,12 @@
     fill: $funwave-lightblue;
   }
   .fas{
-    color:$gray;
+    color:$funwave-deepgray;
     transition: .2s;
   }
   .fas:hover{
     cursor: pointer;
-    color: $primary;
+    color: $funwave-orange;
     font-size: 2.25rem;
   }
   // 北部浪點

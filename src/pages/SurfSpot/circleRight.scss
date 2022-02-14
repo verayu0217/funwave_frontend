@@ -5,7 +5,7 @@
     transform: translate(150px, 30px);
 }
 .bgCircle{
-    stroke: $secondary;
+    stroke: $funwave-deepblue;
     stroke-width: 2px;
     fill: transparent;
 }
@@ -15,12 +15,13 @@
 }
 .smCircle:hover{
     cursor: pointer;
-    fill: $primary;
+    fill: $funwave-orange;
     r: 14px;
 }
 // 右半球文字
-.leftCirclePos{
-    position: relative;
+.rightCirclePos{
+    position: absolute;
+    right: 0;
 }
 // 東部
 .EText{
@@ -62,3 +63,10 @@
 .SText:hover{
     cursor: pointer;
 }
+
+// RWD (800px)
+@media screen and (max-width: 800px) {
+    .rightCirclePos{
+        display: none;
+    }
+  }
