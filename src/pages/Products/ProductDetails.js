@@ -278,37 +278,50 @@ function ProductDetails() {
                   <Figure.Image
                     width={420}
                     height={400}
-                    alt="171x180"
+                    alt="longboard1"
                     src={longboard1}
                   />
                 </Figure>
               </div>
               <div className="col-3 right p-0">
-                <h2>JJF by Pyzel AstroFish</h2>
-                <h2>衝浪板</h2>
+                <h1>JJF by Pyzel</h1>
+                <h2>AstroFish 衝浪板</h2>
                 <div className="row">
-                  <div className="col-6 p-0">
+                  <div className="col-5 py-0">
                     <AiFillStar size={20} color="#ff7f6a" />
                     <AiFillStar size={20} color="#ff7f6a" />
                     <AiFillStar size={20} color="#ff7f6a" />
                     <AiFillStar size={20} color="#ff7f6a" />
                     <AiOutlineStar size={20} color="#ff7f6a" />
                   </div>
-                  <div className="col-6 p-0">
-                    <p>1則評論</p>
+                  <div className="col-7 ps-0 pt-2">
+                    <p className="fs-6">1則評論</p>
                   </div>
                 </div>
-                <p>SKU# 196322</p>
-                <div className="row">
-                  <div className="col-5">
+                <p className="fs-6">SKU# 196322</p>
+                <div className="row mt-5 mb-3">
+                  <div className="col-4 pe-0">
                     <div>選擇顏色：</div>
                   </div>
-                  <div className="col-7 p-0">
-                    <div className="d-flex justify-content-evenly">
-                      <div className="colorRadio rounded-circle "></div>
-                      <div className="colorRadio rounded-circle "></div>
-                      <div className="colorRadio rounded-circle "></div>
-                      <div className="colorRadio rounded-circle "></div>
+                  <div className="col-8 p-0">
+                    <div className="d-flex">
+                      <div className="colorRadio rounded-circle me-3"></div>
+                      <div className="colorRadio rounded-circle me-3"></div>
+                      <div className="colorRadio rounded-circle me-3"></div>
+                      <div className="colorRadio rounded-circle me-3"></div>
+                    </div>
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col-4 pe-0 mt-1">
+                    <div>選擇尺寸：</div>
+                  </div>
+                  <div className="col-8 p-0">
+                    <div className="d-flex">
+                      <div className="sizeRadio text-center me-2">4</div>
+                      <div className="sizeRadio text-center me-2">5</div>
+                      <div className="sizeRadio text-center me-2">6</div>
+                      <div className="sizeRadio text-center me-2">7</div>
                     </div>
                   </div>
                 </div>
