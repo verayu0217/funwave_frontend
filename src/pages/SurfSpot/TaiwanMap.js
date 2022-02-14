@@ -7,7 +7,11 @@ function TaiwanMap() {
       <span>
         {/* 北部 */}
         {/* 沙崙 */}
-        <i className="fas fa-map-marker N01"></i>
+        <i
+          className="fas fa-map-marker N01"
+          data-toggle="edit an item"
+          title="沙崙"
+        ></i>
       </span>
       <span>
         {/* 金山 */}

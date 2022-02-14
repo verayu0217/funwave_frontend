@@ -24,7 +24,8 @@ function SurfSpot() {
             </div>
             <div className="mt-4 me-5 pe-5">
               <Link to="" className="allTitle">
-                <i className="fasAll fas fa-map-marker pe-2"></i>全部浪點
+                <i className="fasAll fas fa-map-marker pe-2"></i>
+                全部浪點
               </Link>
             </div>
           </div>
@@ -38,7 +39,7 @@ function SurfSpot() {
           </div>
         </div>
       </div>
-      <SurfSpotDetails />
+      {/* <SurfSpotDetails /> */}
     </>
   );
 }
