@@ -44,13 +44,13 @@ function ProductItem(props) {
           <AiOutlineStar size={20} color="#ff7f6a" />
         </div>
         <Figure.Caption className="d-flex justify-content-center">
-          <p className="fs-6 mb-0 mt-2">{name}</p>
+          <p className="mb-0 mt-2">{name}</p>
         </Figure.Caption>
         <Figure.Caption className="d-flex justify-content-center">
-          <p className="fs-6 mb-2">{smallCat}</p>
+          <p className="mb-2">{smallCat}</p>
         </Figure.Caption>
         <Figure.Caption className="d-flex justify-content-center">
-          <p className="fs-6 text-dark fw-bold">NT {price}</p>
+          <p className="text-dark fw-bold">NT {price}</p>
         </Figure.Caption>
       </Figure>
     </>

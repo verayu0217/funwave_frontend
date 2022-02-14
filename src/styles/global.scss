@@ -6,21 +6,21 @@
 // /////覆蓋SASS預設變數-開始
 // Color system
 // scss-docs-start color-variables
-$funwave-pink: #fa7faa !default;
-$funwave-orange: #ff7f6a !default;
-$funwave-deepblue: #17a8a2 !default;
-$funwave-lightblue: #81d7d3 !default;
-$funwave-deepgray: #a0a7ac !default;
-$funwave-lightgray: #f5f5f5 !default;
-$funwave-black: #333333 !default;
-$funwave-white: #ffffff !default;
+$funwave-pink: #fa7faa;
+$funwave-orange: #ff7f6a;
+$funwave-deepblue: #17a8a2;
+$funwave-lightblue: #81d7d3;
+$funwave-deepgray: #a0a7ac;
+$funwave-lightgray: #f5f5f5;
+$funwave-black: #333333;
+$funwave-white: #ffffff;
 
 // scss-docs-start theme-color-variables
-$primary: $funwave-orange !default;
-$secondary: $funwave-deepblue !default;
-$warning: $funwave-pink !default;
-$light: $funwave-lightblue !default;
-$dark: $funwave-deepgray !default;
+$primary: $funwave-orange;
+$secondary: $funwave-deepblue;
+$warning: $funwave-pink;
+$light: $funwave-lightblue;
+$dark: $funwave-deepgray;
 
 // scss-docs-start theme-colors-map
 $theme-colors: (
@@ -29,10 +29,10 @@ $theme-colors: (
   'warning': $funwave-pink,
   'light': $funwave-lightblue,
   'dark': $funwave-deepgray,
-) !default;
+);
 
 // scss-docs-start spacer-variables-maps  // 原始
-$spacer: 1rem !default;
+$spacer: 1rem;
 $spacers: (
   0: 0,
   1: $spacer * 0.25,
@@ -41,181 +41,178 @@ $spacers: (
   4: $spacer * 1.5,
   // 修改
   5: $spacer * 3,
-) !default;
+);
 
 // Links
-$link-color: $funwave-deepblue !default;
+$link-color: $funwave-deepblue;
 
 // Components
-$component-active-color: $funwave-white !default;
-$component-active-bg: $funwave-lightblue !default;
+$component-active-color: $funwave-white;
+$component-active-bg: $funwave-lightblue;
 
 // Typography
-$font-size-root: 1rem !default;
-$font-size-base: 1rem !default; // Assumes the browser default, typically `16px`
+$font-size-root: 1rem;
+$font-size-base: 1rem; // Assumes the browser default, typically `16px`
 
-$font-size-sm: $font-size-base * 0.875 !default;
-$font-size-lg: $font-size-base * 1.25 !default;
+$font-size-sm: $font-size-base * 0.875;
+$font-size-lg: $font-size-base * 1.25;
 
-$font-weight-lighter: lighter !default;
-$font-weight-light: 300 !default;
-$font-weight-normal: 400 !default;
-$font-weight-bold: 700 !default;
-$font-weight-bolder: bolder !default;
+$font-weight-lighter: lighter;
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-bold: 700;
+$font-weight-bolder: bolder;
 
-$font-weight-base: $font-weight-bold !default; // 修改
+$font-weight-base: $font-weight-normal; // 修改
 
-$line-height-base: 1.5 !default;
-$line-height-sm: 1.25 !default;
-$line-height-lg: 2 !default;
+$line-height-base: 1.5;
+$line-height-sm: 1.25;
+$line-height-lg: 2;
 
-$h1-font-size: $font-size-base * 2.25 !default; // 修改
-$h2-font-size: $font-size-base * 1.5 !default; // 修改
-$h3-font-size: $font-size-base * 1.25 !default; // 修改
-$h4-font-size: $font-size-base * 5 !default; // 修改
-$h5-font-size: $font-size-base * 1 !default; // 修改
-$h6-font-size: $font-size-base * 0.75 !default; // 修改
+$h1-font-size: $font-size-base * 2.25; // 修改
+$h2-font-size: $font-size-base * 1.5; // 修改
+$h3-font-size: $font-size-base * 1.25; // 修改
+$h4-font-size: $font-size-base * 5; // 修改
+$h5-font-size: $font-size-base * 1; // 修改
+$h6-font-size: $font-size-base * 0.75; // 修改
 
 // Buttons + Forms 按鈕+表單 共用變數  // 原始
-$input-btn-padding-y: 0.375rem !default;
-$input-btn-padding-x: 0.75rem !default;
-$input-btn-font-family: null !default;
-$input-btn-font-size: $font-size-base !default;
-$input-btn-line-height: $line-height-base !default;
+$input-btn-padding-y: 0.375rem;
+$input-btn-padding-x: 0.75rem;
+$input-btn-font-family: null;
+$input-btn-font-size: $font-size-base;
+$input-btn-line-height: $line-height-base;
 
-$input-btn-focus-width: 0.25rem !default;
-$input-btn-focus-color-opacity: 0.25 !default;
+$input-btn-focus-width: 0.25rem;
+$input-btn-focus-color-opacity: 0.25;
 $input-btn-focus-color: rgba(
   $component-active-bg,
   $input-btn-focus-color-opacity
-) !default;
-$input-btn-focus-blur: 0 !default;
+);
+$input-btn-focus-blur: 0;
 $input-btn-focus-box-shadow: 0 0 $input-btn-focus-blur $input-btn-focus-width
-  $input-btn-focus-color !default;
+  $input-btn-focus-color;
 
-$input-btn-padding-y-sm: 0.25rem !default;
-$input-btn-padding-x-sm: 0.5rem !default;
-$input-btn-font-size-sm: $font-size-sm !default;
+$input-btn-padding-y-sm: 0.25rem;
+$input-btn-padding-x-sm: 0.5rem;
+$input-btn-font-size-sm: $font-size-sm;
 
-$input-btn-padding-y-lg: 0.5rem !default;
-$input-btn-padding-x-lg: 1rem !default;
-$input-btn-font-size-lg: $font-size-lg !default;
+$input-btn-padding-y-lg: 0.5rem;
+$input-btn-padding-x-lg: 1rem;
+$input-btn-font-size-lg: $font-size-lg;
 
 // Buttons按鈕  // 原始
-$btn-padding-y: $input-btn-padding-y !default;
-$btn-padding-x: $input-btn-padding-x !default;
-$btn-font-family: $input-btn-font-family !default;
-$btn-font-size: 1rem !default; // 修改
-$btn-line-height: $input-btn-line-height !default;
-$btn-white-space: null !default; // Set to `nowrap` to prevent text wrapping
+$btn-padding-y: $input-btn-padding-y;
+$btn-padding-x: $input-btn-padding-x;
+$btn-font-family: $input-btn-font-family;
+$btn-font-size: 1rem; // 修改
+$btn-line-height: $input-btn-line-height;
+$btn-white-space: null; // Set to `nowrap` to prevent text wrapping
 
-$btn-padding-y-sm: $input-btn-padding-y-sm !default;
-$btn-padding-x-sm: $input-btn-padding-x-sm !default;
-$btn-font-size-sm: $input-btn-font-size-sm !default;
+$btn-padding-y-sm: $input-btn-padding-y-sm;
+$btn-padding-x-sm: $input-btn-padding-x-sm;
+$btn-font-size-sm: $input-btn-font-size-sm;
 
-$btn-padding-y-lg: $input-btn-padding-y-lg !default;
-$btn-padding-x-lg: $input-btn-padding-x-lg !default;
-$btn-font-size-lg: $input-btn-font-size-lg !default;
+$btn-padding-y-lg: $input-btn-padding-y-lg;
+$btn-padding-x-lg: $input-btn-padding-x-lg;
+$btn-font-size-lg: $input-btn-font-size-lg;
 
-$btn-font-weight: bold !default; // 修改
-$btn-focus-width: $input-btn-focus-width !default;
-$btn-focus-box-shadow: $input-btn-focus-box-shadow !default;
-$btn-disabled-opacity: 0.65 !default;
+$btn-font-weight: bold; // 修改
+$btn-focus-width: $input-btn-focus-width;
+$btn-focus-box-shadow: $input-btn-focus-box-shadow;
+$btn-disabled-opacity: 0.65;
 
-$btn-link-color: $link-color !default;
+$btn-link-color: $link-color;
 
-$btn-border-radius: 8px !default; // 修改
+$btn-border-radius: 8px; // 修改
 
 $btn-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
-  border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out !default;
+  border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 
-$btn-hover-bg-shade-amount: 15% !default;
-$btn-hover-bg-tint-amount: 15% !default;
-$btn-hover-border-shade-amount: 20% !default;
-$btn-hover-border-tint-amount: 10% !default;
-$btn-active-bg-shade-amount: 20% !default;
-$btn-active-bg-tint-amount: 20% !default;
-$btn-active-border-shade-amount: 25% !default;
-$btn-active-border-tint-amount: 10% !default;
+$btn-hover-bg-shade-amount: 15%;
+$btn-hover-bg-tint-amount: 15%;
+$btn-hover-border-shade-amount: 20%;
+$btn-hover-border-tint-amount: 10%;
+$btn-active-bg-shade-amount: 20%;
+$btn-active-bg-tint-amount: 20%;
+$btn-active-border-shade-amount: 25%;
+$btn-active-border-tint-amount: 10%;
 
 // Forms表單  // 原始
-$form-text-margin-top: 0.25rem !default;
-// $form-text-font-size: $small-font-size !default;
-$form-text-font-style: null !default;
-$form-text-font-weight: null !default;
-// $form-text-color: $text-muted !default;
+$form-text-margin-top: 0.25rem;
+// $form-text-font-size: $small-font-size ;
+$form-text-font-style: null;
+$form-text-font-weight: null;
+// $form-text-color: $text-muted ;
 // scss-docs-end form-text-variables
 
 // scss-docs-start form-label-variables
-$form-label-margin-bottom: 0.5rem !default;
-$form-label-font-size: null !default;
-$form-label-font-style: null !default;
-$form-label-font-weight: null !default;
-$form-label-color: null !default;
+$form-label-margin-bottom: 0.5rem;
+$form-label-font-size: null;
+$form-label-font-style: null;
+$form-label-font-weight: null;
+$form-label-color: null;
 // scss-docs-end form-label-variables
 
 // scss-docs-start form-input-variables
-$input-padding-y: $input-btn-padding-y !default;
-$input-padding-x: $input-btn-padding-x !default;
-$input-font-family: $input-btn-font-family !default;
-$input-font-size: $input-btn-font-size !default;
-$input-font-weight: $font-weight-normal !default; // 修改
-$input-line-height: $input-btn-line-height !default;
+$input-padding-y: $input-btn-padding-y;
+$input-padding-x: $input-btn-padding-x;
+$input-font-family: $input-btn-font-family;
+$input-font-size: $input-btn-font-size;
+$input-font-weight: $font-weight-normal; // 修改
+$input-line-height: $input-btn-line-height;
 
-$input-padding-y-sm: $input-btn-padding-y-sm !default;
-$input-padding-x-sm: $input-btn-padding-x-sm !default;
-$input-font-size-sm: $input-btn-font-size-sm !default;
+$input-padding-y-sm: $input-btn-padding-y-sm;
+$input-padding-x-sm: $input-btn-padding-x-sm;
+$input-font-size-sm: $input-btn-font-size-sm;
 
-$input-padding-y-lg: $input-btn-padding-y-lg !default;
-$input-padding-x-lg: $input-btn-padding-x-lg !default;
-$input-font-size-lg: $input-btn-font-size-lg !default;
+$input-padding-y-lg: $input-btn-padding-y-lg;
+$input-padding-x-lg: $input-btn-padding-x-lg;
+$input-font-size-lg: $input-btn-font-size-lg;
 
-$input-placeholder-color: $funwave-deepgray !default; // 修改
+$input-placeholder-color: $funwave-deepgray; // 修改
 
-$form-select-disabled-color: $funwave-deepgray !default; // 修改
+$form-select-disabled-color: $funwave-deepgray; // 修改
 
 // Dropdowns下拉選單
-$dropdown-border-radius: 8px !default; // 修改
+$dropdown-border-radius: 8px; // 修改
 
 // Pagination頁碼
-$pagination-color: $funwave-black !default; // 修改
+$pagination-color: $funwave-black; // 修改
 
-$pagination-border-radius: 8px !default; // 修改
+$pagination-border-radius: 8px; // 修改
 
-$pagination-focus-color: $funwave-deepblue !default; // 修改
-$pagination-focus-bg: $funwave-lightgray !default; // 修改
+$pagination-focus-color: $funwave-deepblue; // 修改
+$pagination-focus-bg: $funwave-lightgray; // 修改
 
-$pagination-hover-color: $funwave-deepblue !default; // 修改
-$pagination-hover-bg: $funwave-lightgray !default; // 修改
+$pagination-hover-color: $funwave-deepblue; // 修改
+$pagination-hover-bg: $funwave-lightgray; // 修改
 
-$pagination-active-color: $funwave-white !default; // 修改
-$pagination-active-bg: $funwave-deepblue !default; // 修改
-$pagination-active-border-color: $funwave-deepblue !default; // 修改
+$pagination-active-color: $funwave-white; // 修改
+$pagination-active-bg: $funwave-deepblue; // 修改
+$pagination-active-border-color: $funwave-deepblue; // 修改
 
-$pagination-border-radius-sm: 8px !default; // 修改
-$pagination-border-radius-lg: 8px !default; // 修改
+$pagination-border-radius-sm: 8px; // 修改
+$pagination-border-radius-lg: 8px; // 修改
 
 // Accordion下拉手風琴選單
-$accordion-border-radius: 8px !default; // 修改
+$accordion-border-radius: 8px; // 修改
 
-$accordion-button-active-color: shade-color(
-  $funwave-deepblue,
-  10%
-) !default; // 修改
+$accordion-button-active-color: shade-color($funwave-deepblue, 10%); // 修改
 
-$accordion-icon-active-color: $funwave-deepblue !default; // 修改
+$accordion-icon-active-color: $funwave-deepblue; // 修改
 
 // Badges標籤
-$badge-font-weight: $font-weight-bold !default; // 修改
+$badge-font-weight: $font-weight-bold; // 修改
 
-$badge-color: $funwave-black !default; // 修改
+$badge-color: $funwave-black; // 修改
 
 // Breadcrumbs麵包屑
-$breadcrumb-font-size: 1rem !default; // 修改
+$breadcrumb-font-size: 1rem; // 修改
 
-$breadcrumb-divider-color: $funwave-deepgray !default; // 修改
-$breadcrumb-active-color: $funwave-deepgray !default; // 修改
-$breadcrumb-divider: quote('>') !default; // 修改
+$breadcrumb-divider-color: $funwave-deepgray; // 修改
+$breadcrumb-active-color: $funwave-deepgray; // 修改
+$breadcrumb-divider: quote('>'); // 修改
 // /////覆蓋SASS預設變數-結束
 
 // Import Bootstrap and its default variables
@@ -353,7 +350,7 @@ h4,
 p {
   margin-top: 0;
   margin-bottom: 1rem;
-  font-size: 0.875rem; // 修改
+  font-size: 1rem; // 修改
 }
 
 // 按鈕

@@ -27,7 +27,7 @@ function Courses() {
       {/* 課程簡介區  */}
       <div className="container my-5">
         <div className="row  course-box shadow-lg">
-          <div className="text-secondary fw-bold mt-3 h1 text-center mb-3">
+          <div className="text-secondary mt-5 h1 text-center mb-5">
             <img
               src={greenTitle}
               className="greenTitle me-3"
