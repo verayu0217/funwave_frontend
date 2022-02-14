@@ -16,14 +16,18 @@
     stroke: transparent;
     fill: $funwave-lightblue;
   }
-  .fas{
+  .myFas{
     color:$funwave-deepgray;
     transition: .2s;
   }
-  .fas:hover{
+  .myFas:hover{
     cursor: pointer;
     color: $funwave-orange;
     font-size: 2.25rem;
+  }
+  .tooltip{
+    background: $funwave-white;
+    border-radius: 8px;
   }
   // 北部浪點
   // 沙崙

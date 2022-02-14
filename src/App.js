@@ -52,7 +52,6 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/homeTry" element={<HomeTry />} />
         <Route path="/login" element={<LogIn />} />
-        <Route path="/surfspot" element={<SurfSpot />} />
         <Route path="/ProductDetails" element={<ProductDetails />} />
         <Route path="/Products" element={<Products />} />
         <Route path="/Customized" element={<Customized />} />
@@ -60,6 +59,7 @@ function App() {
         <Route path="/Course" element={<Courses />} />
         <Route path="/Course/CourseContent" element={<CourseContent />} />
         <Route path="/Course/CourseCart" element={<CourseCart />} />
+        <Route path="/surfspot" element={<SurfSpot />} />
       </Routes>
     </>
   );
