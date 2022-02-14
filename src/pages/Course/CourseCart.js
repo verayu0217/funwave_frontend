@@ -27,6 +27,7 @@ function CourseCart() {
 
             {/* 明細區塊  */}
             <div>
+              {/* 明細電腦版樣式*/}
               <div class="courseDetail">
                 <p class="h3">衝浪課程</p>
                 <table class="table table-borderless border-bottom border-1 border-dark">
@@ -39,6 +40,7 @@ function CourseCart() {
                       <th scope="col">人數</th>
                       <th scope="col">小計</th>
                       <th scope="col">預約日期</th>
+                      <th scope="col">操作</th>
                     </tr>
                   </thead>
                   <tbody class="text-center">
@@ -50,34 +52,84 @@ function CourseCart() {
                       <td>- 1 +</td>
                       <td>NT 2,000</td>
                       <td>2022-1-24</td>
+                      <td>
+                        <i class="fas fa-trash-alt"></i>
+                      </td>
                     </tr>
                   </tbody>
                 </table>
-              </div>
-              {/* 明細 */}
 
-              {/* 手機版樣式 */}
-              <div class="mobile">
-                <div class=" row col-7 border m-auto text-center">
-                  <p class="h3 text-center">衝浪課程</p>
-                  <p>初階衝浪</p>
-                  <p>上午</p>
-                  <p>白沙灣</p>
-                  <p>2000</p>
-                  <p>- 1 +</p>
-                  <p>NT 2,000</p>
-                  <p>2022-1-24</p>
+                {/* 付款方式 */}
+                <div class="row d-flex border-bottom border-1 border-dark">
+                  <div class="col-sm-12 col-md-2 ">
+                    <p class=" h3 me-3 align-self-center">付款方式</p>
+                  </div>
+
+                  <div class="col-sm-12 col-md-10 ">
+                    <nav aria-label="..." class=" align-self-center">
+                      <ul class="pagination pagination-sm">
+                        <li class="payItem active" aria-current="page">
+                          <a class="pay-link" href="#/">
+                            信用卡
+                          </a>
+                        </li>
+                        <li class="payItem">
+                          <a class="pay-link" href="#/">
+                            匯款
+                          </a>
+                        </li>
+                        <li class="payItem">
+                          <a class="pay-link" href="#/">
+                            現金
+                          </a>
+                        </li>
+                      </ul>
+                    </nav>
+                  </div>
+                </div>
+
+                {/* <總計  */}
+                <div class="d-flex justify-content-end">
+                  <p class="h3">總計 NT 2,000</p>
+                </div>
+
+                {/* 上一頁/下一頁按鈕  */}
+                <div class="d-flex justify-content-end ">
+                  <div>
+                    <button class="btn btn-secondary text-white backBtn me-3 mt-3">
+                      <i className="fas fa-arrow-left text-white"></i>
+                      回上一頁
+                    </button>
+                    <button class="btn btn-primary text-white confirmBtn mt-3">
+                      確認資訊
+                      <i className="fas fa-arrow-right text-white"></i>
+                    </button>
+                  </div>
                 </div>
               </div>
 
-              {/* 付款方式 */}
-              <div class="row d-flex border-bottom border-1 border-dark">
-                <div class="col-sm-12 col-md-2 ">
-                  <p class=" h3 me-3 align-self-center">付款方式</p>
+              {/* 明細手機版樣式 */}
+              <div class="mobile col-9 m-auto">
+                <p class="h3">衝浪課程</p>
+                <div class="row border  text-center">
+                  <p>課程名稱:初階衝浪</p>
+                  <p>預約日期:2022-1-24</p>
+                  <p>上課地點:白沙灣</p>
+                  <p>上課時段:上午</p>
+                  <p>人數:- 1 +</p>
+                  <p>單價:NT2,000</p>
                 </div>
 
-                <div class="col-sm-12 col-md-10 ">
-                  <nav aria-label="..." class=" align-self-center">
+                {/* <總計  */}
+                <div class="d-flex justify-content-end border-bottom">
+                  <p class="h3">總計 NT 2,000</p>
+                </div>
+
+                {/* 付款方式 */}
+                <div class="row  d-flex justify-content-center border-1 border-dark ">
+                  <p class=" h3">付款方式</p>
+
+                  <nav aria-label="...">
                     <ul class="pagination pagination-sm">
                       <li class="payItem active" aria-current="page">
                         <a class="pay-link" href="#/">
@@ -97,24 +149,18 @@ function CourseCart() {
                     </ul>
                   </nav>
                 </div>
-              </div>
-            </div>
 
-            {/* <總計  */}
-            <div class="d-flex justify-content-end">
-              <p class="h3">總計 NT 2,000</p>
-            </div>
-            {/* 上一頁/下一頁按鈕  */}
-            <div class="d-flex justify-content-end ">
-              <div>
-                <button class="btn btn-secondary text-white backBtn me-3 mt-3">
-                  <i className="fas fa-arrow-left text-white"></i>
-                  回上一頁
-                </button>
-                <button class="btn btn-primary text-white confirmBtn mt-3">
-                  確認資訊
-                  <i className="fas fa-arrow-right text-white"></i>
-                </button>
+                {/* 上一頁/下一頁按鈕  */}
+                <div class="row mt-5">
+                  <button class="btn btn-secondary text-white backBtn me-2">
+                    <i className="fas fa-arrow-left text-white"></i>
+                    回上一頁
+                  </button>
+                  <button class="btn btn-primary text-white confirmBtn mt-2 ">
+                    確認資訊
+                    <i className="fas fa-arrow-right text-white"></i>
+                  </button>
+                </div>
               </div>
             </div>
 
