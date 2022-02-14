@@ -4,7 +4,7 @@
 .bg {
   background-color: $lightgray;
   height: 1100px;
-  margin: 50px;
+  // margin: 50px;
   padding: 50px;
 }
 
@@ -22,21 +22,17 @@
 
 // 分級衝浪課程項目
 .item {
-  max-width: 792px;
-  margin: auto;
   margin-bottom: 30px;
 }
 
 // 分級課程報名按鈕
 .courseBtn {
-  width: 40%;
-  // font-weight: bold;
+  width: 70%;
+  color: #fff;
 }
-
 // 表單課程報名按鈕
 .formBtn {
   width: 100%;
-  // font-weight: bold;
 }
 
 // 分級課程
@@ -49,4 +45,10 @@
 .grade-title {
   background-color: $lightgray;
   padding: 10px;
+  border-radius: 8px;
+}
+
+// 表單區塊
+.form-wrap {
+  border-radius: 8px;
 }

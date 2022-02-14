@@ -5,7 +5,8 @@ const data = [
     stock: 5,
     name: '長板1',
     price: 25000,
-    tags: '長板',
+    size: '5',
+    smallCat: '長板',
   },
   {
     id: '2',
@@ -13,7 +14,8 @@ const data = [
     stock: 5,
     name: '長板2',
     price: 15000,
-    tags: '長板',
+    size: '6',
+    smallCat: '長板',
   },
   {
     id: '3',
@@ -21,7 +23,8 @@ const data = [
     stock: 10,
     name: '長板3',
     price: 12500,
-    tags: '長板',
+    size: '6',
+    smallCat: '長板',
   },
   {
     id: '4',
@@ -29,7 +32,8 @@ const data = [
     stock: 10,
     name: '快樂板1',
     price: 22000,
-    tags: '快樂板',
+    size: '4',
+    smallCat: '快樂板',
   },
   {
     id: '5',
@@ -37,7 +41,8 @@ const data = [
     stock: 6,
     name: '快樂板2',
     price: 17000,
-    tags: '快樂板',
+    size: '4',
+    smallCat: '快樂板',
   },
   {
     id: '6',
@@ -45,7 +50,8 @@ const data = [
     stock: 6,
     name: '快樂板3',
     price: 15500,
-    tags: '快樂板',
+    size: '5',
+    smallCat: '快樂板',
   },
   {
     id: '7',
@@ -53,7 +59,8 @@ const data = [
     stock: 1,
     name: '短板1',
     price: 8800,
-    tags: '短板',
+    size: '4',
+    smallCat: '短板',
   },
 ];
 

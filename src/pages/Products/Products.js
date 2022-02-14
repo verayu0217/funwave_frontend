@@ -12,7 +12,7 @@ import FilterBar from '../../components/Products/FilterBar/FilterBar.js';
 import greenTitle from '../../data/images/greenTitle.svg';
 
 // react-icons
-import { RiMoneyDollarCircleFill, RiRulerFill } from 'react-icons/ri';
+import { RiRulerFill } from 'react-icons/ri';
 import { FaThumbsUp } from 'react-icons/fa';
 import { IoColorPalette } from 'react-icons/io5';
 import { MdOutlineSurfing } from 'react-icons/md';
@@ -31,6 +31,9 @@ function Products() {
     'NT 10,000 - 15,000',
     'NT 15,000以上',
   ];
+  const [size, setSize] = useState([]);
+  const sizeTypes = ['4', '5', '6'];
+
   const [isLoading, setIsLoading] = useState(false);
 
   // 載入中spinner
@@ -39,7 +42,7 @@ function Products() {
     if (isLoading) {
       setTimeout(() => {
         setIsLoading(false);
-      }, 1000);
+      }, 0);
     }
   }, [isLoading]);
 
@@ -71,7 +74,6 @@ function Products() {
 
     if (searchWord.length) {
       newProducts = products.filter((product) => {
-        // includes -> String API
         return product.name.includes(searchWord);
       });
     }
@@ -128,6 +130,32 @@ function Products() {
 
     return newProducts;
   };
+
+  const handlesize = (products, size) => {
+    let newProducts = [...products];
+
+    // 處理勾選標記(多選是or)
+    if (size.length > 0) {
+      newProducts = [...newProducts].filter((product) => {
+        let isFound = false;
+
+        // 原本資料裡的size字串轉為陣列，一個商品可以有多種size
+        const productsize = product.size.split(',');
+
+        // 用目前使用者勾選的標籤用迴圈找，有找到就回傳true
+        for (let i = 0; i < size.length; i++) {
+          if (productsize.includes(size[i])) {
+            isFound = true; // 找到設為true
+            break; // 找到一個就可以，中斷迴圈
+          }
+        }
+        return isFound;
+      });
+    }
+
+    return newProducts;
+  };
+
   // 當四個過濾表單元素有更動時
   // 模擬componentDidMount、componentDidUpdate
   // ps. 一開始也會載入
@@ -146,11 +174,14 @@ function Products() {
     // 處理排序
     newProducts = handleSort(newProducts, sortBy);
 
+    // 處理勾選標記
+    newProducts = handlesize(newProducts, size);
+
     // 處理價格區間選項
     newProducts = handlePriceRange(newProducts, priceRange);
 
     setDisplayProducts(newProducts);
-  }, [searchWord, products, sortBy, priceRange]);
+  }, [searchWord, products, sortBy, size, priceRange]);
 
   return (
     <>
@@ -244,6 +275,9 @@ function Products() {
               priceRangeTypes={priceRangeTypes}
               priceRange={priceRange}
               setPriceRange={setPriceRange}
+              sizeTypes={sizeTypes}
+              size={size}
+              setSize={setSize}
             />
             {/* 品牌篩選 */}
             <div className="mt-5">

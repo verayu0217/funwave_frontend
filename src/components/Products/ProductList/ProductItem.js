@@ -9,7 +9,7 @@ import { BiHeart } from 'react-icons/bi';
 // import { FaHeart } from 'react-icons/fa'; // 全愛心
 
 function ProductItem(props) {
-  const { id, name, picture, price, tags } = props.product;
+  const { id, name, picture, price, smallCat } = props.product;
   return (
     <>
       {/* <tr>
@@ -47,7 +47,7 @@ function ProductItem(props) {
           <p className="fs-6 mb-0 mt-2">{name}</p>
         </Figure.Caption>
         <Figure.Caption className="d-flex justify-content-center">
-          <p className="fs-6 mb-2">{tags}</p>
+          <p className="fs-6 mb-2">{smallCat}</p>
         </Figure.Caption>
         <Figure.Caption className="d-flex justify-content-center">
           <p className="fs-6 text-dark fw-bold">NT {price}</p>
