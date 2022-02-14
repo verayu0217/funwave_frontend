@@ -1,5 +1,9 @@
 import React from 'react';
+import { Container, Row, Col } from 'react-bootstrap';
 import './Custom.scss';
+import RecommendCard from './RecommendCard';
+import Ad from './Ad';
+import Step from './Step';
 function Customized() {
   return (
     <>
@@ -11,12 +15,12 @@ function Customized() {
           <h1>客製化衝浪板</h1>
         </div>
       </div>
-      <div className="container">
+      <Container>
         <h3>麵包屑</h3>
-        <div>
-          <div>
-            <p>與浪板一對一對話</p>
-            <p>
+        <div className="d-flex justify-content-center">
+          <div className="sectionCu">
+            <h3 className="text-center">與浪板一對一對話</h3>
+            <p className="text-center gray">
               與衝浪板塑造名人Lai Eddy Red Huang
               Fang合作，打造完美適合您的訂製衝浪板。
               <br />
@@ -25,7 +29,27 @@ function Customized() {
             </p>
           </div>
         </div>
-      </div>
+      </Container>
+      <Container fluid className="recommendBg py-5">
+        <Container>
+          <h3 className="text-center fw-bold mb-5">
+            他們都推薦FUNWAVE的訂製衝浪板
+          </h3>
+          <Row>
+            <Col>
+              <RecommendCard />
+            </Col>
+            <Col>
+              <RecommendCard />
+            </Col>
+            <Col>
+              <RecommendCard />
+            </Col>
+          </Row>
+          <Ad />
+          <Step />
+        </Container>
+      </Container>
     </>
   );
 }

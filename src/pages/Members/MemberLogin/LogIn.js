@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import Modal from './Modal';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { API_URL } from '../../../utils/config';
+import { ERR_MSG } from '../../../utils/error';
 import './memberLogin.scss';
 
 function Login(props) {
@@ -10,7 +13,25 @@ function Login(props) {
   const openSignUp = () => {
     setshowModal((prev) => !prev);
   };
+  const [member, setMember] = useState({
+    email: '',
+    password: '',
+  });
 
+  function handleChange(e) {
+    setMember({ ...member, [e.target.name]: e.target.value });
+  }
+
+  async function logInSubmit(e) {
+    e.preventDefault();
+
+    try {
+      let response = await axios.post(`${API_URL}/auth/login`, member);
+      console.log(response.data);
+    } catch (e) {
+      console.error({ ERR_MSG });
+    }
+  }
   return (
     <>
       <div className="container-fluid wrapLogin">
@@ -48,7 +69,9 @@ function Login(props) {
                   className="form-control mt-1"
                   type="email"
                   name="email"
-                  id=""
+                  id="email"
+                  value={member.email}
+                  onClick={handleChange}
                 />
               </li>
               <li className="mt-3">
@@ -57,7 +80,9 @@ function Login(props) {
                   className="form-control mt-1"
                   type={type}
                   name="password"
-                  id=""
+                  id="password"
+                  value={member.password}
+                  onClick={handleChange}
                 />
                 <i
                   className={`mt-2 mt-md-3 ml-2 ${close}`}
@@ -88,7 +113,10 @@ function Login(props) {
                 </div>
               </li>
               <li className="mt-4 d-flex justify-content-center">
-                <button className="btn btn-primary text-white loginBtn">
+                <button
+                  className="btn btn-primary text-white loginBtn"
+                  onClick={logInSubmit}
+                >
                   登入
                 </button>
               </li>
