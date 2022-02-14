@@ -14,8 +14,8 @@ function Courses() {
           <div className="col-md-12 p-0 ">
             <div className="courseBanner d-flex justify-content-center align-items-center">
               <div className="text-center  m-auto align-items-center">
-                <p class="h4">Let's Learn How to Surf.</p>
-                <p class="h1">衝浪課程＆教練團</p>
+                <p className="h4">Let's Learn How to Surf.</p>
+                <p className="h1">衝浪課程＆教練團</p>
               </div>
             </div>
           </div>
@@ -26,7 +26,7 @@ function Courses() {
 
       {/* 課程簡介區  */}
       <div className="container my-5">
-        <div className="row d-flex  justify-content-center course-box shadow-lg">
+        <div className="row  course-box shadow-lg">
           <div className="text-secondary fw-bold mt-3 h1 text-center mb-3">
             <img
               src={greenTitle}
@@ -67,12 +67,14 @@ function Courses() {
               </p>
             </div>
           </div>
-          <div className="text-center p-3">
-            <button className="btn btn-primary text-white courseBtn">
+          <div className=" text-center">
+            <Link
+              to="/Course/CourseContent"
+              class="btn btn-primary text-white mb-5 courseIntroBtn"
+            >
               詳細課程內容
-              {/* <i class="fas fa-long-arrow-righ"></i> */}
-              <i class="fas fa-arrow-right"></i>
-            </button>
+              <i className="fas fa-arrow-right text-white"></i>
+            </Link>
           </div>
         </div>
       </div>
