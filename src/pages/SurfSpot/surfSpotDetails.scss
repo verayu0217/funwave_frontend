@@ -1,0 +1,16 @@
+@import '../../styles/global.scss';
+
+// 遮罩
+.taiwanMapBgBlack{
+    background: rgba($color: #000000, $alpha: 0.6);
+    position: fixed;
+    top:0%;
+    left:0%; 
+    width: 100%;
+    height: 100%;
+}
+.spotDetailWrap{
+    height: 500px;
+    margin: auto;
+    background: $funwave-white;
+}

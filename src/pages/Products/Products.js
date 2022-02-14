@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Accordion } from 'react-bootstrap';
+import { Routes, Route } from 'react-router-dom';
 
 // 導引資料、頁面
 import './Products.scss';
 import { data } from '../../data/products.js';
+import ProductDetails from './ProductDetails';
 import ProductList from '../../components/Products/ProductList/ProductList.js';
 import SearchBar from '../../components/Products/SearchBar.js';
 import SortBar from '../../components/Products/SortBar.js';
@@ -12,7 +14,6 @@ import FilterBar from '../../components/Products/FilterBar/FilterBar.js';
 import greenTitle from '../../data/images/greenTitle.svg';
 
 // react-icons
-import { RiRulerFill } from 'react-icons/ri';
 import { FaThumbsUp } from 'react-icons/fa';
 import { IoColorPalette } from 'react-icons/io5';
 import { MdOutlineSurfing } from 'react-icons/md';
@@ -194,7 +195,10 @@ function Products() {
           <h1>FUN 商店</h1>
         </div>
       </div>
-
+      <Link to="/ProductDetails">購物商城</Link>
+      <Routes>
+        <Route path="/ProductDetails" element={<ProductDetails />} />
+      </Routes>
       <div className="container">
         <h3>Breadcrumb</h3>
         <div className="row">
@@ -319,49 +323,6 @@ function Products() {
                 />
                 <label className="form-check-label ms-3" htmlFor="brand3">
                   C
-                </label>
-              </div>
-            </div>
-            {/* 尺寸篩選 */}
-            <div className="mt-5">
-              <h3 className="d-flex align-items-center filterProducts pb-2 ps-3">
-                <RiRulerFill size={22} color="#17a8a2" className="me-3" />
-                尺寸
-              </h3>
-              <div className="form-check ms-3">
-                <input
-                  className="form-check-input"
-                  type="radio"
-                  id="size1"
-                  name="size1"
-                  value="size1"
-                />
-                <label className="form-check-label ms-3" htmlFor="size1">
-                  4' 10''
-                </label>
-              </div>
-              <div className="form-check ms-3">
-                <input
-                  className="form-check-input"
-                  type="radio"
-                  id="size2"
-                  name="size2"
-                  value="size2"
-                />
-                <label className="form-check-label ms-3" htmlFor="size2">
-                  5' 10''
-                </label>
-              </div>
-              <div className="form-check ms-3">
-                <input
-                  className="form-check-input"
-                  type="radio"
-                  id="size3"
-                  name="size3"
-                  value="size3"
-                />
-                <label className="form-check-label ms-3" htmlFor="size3">
-                  6' 10''
                 </label>
               </div>
             </div>

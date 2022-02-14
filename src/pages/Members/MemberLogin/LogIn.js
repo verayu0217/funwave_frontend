@@ -1,14 +1,37 @@
 import React, { useState } from 'react';
 import Modal from './Modal';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { API_URL } from '../../../utils/config';
+import { ERR_MSG } from '../../../utils/error';
 import './memberLogin.scss';
 
 function Login(props) {
+  const [close, setClose] = useState('far fa-eye-slash');
+  const [type, setType] = useState('password');
   const [showModal, setshowModal] = useState(false);
   const openSignUp = () => {
     setshowModal((prev) => !prev);
   };
+  const [member, setMember] = useState({
+    email: '',
+    password: '',
+  });
 
+  function handleChange(e) {
+    setMember({ ...member, [e.target.name]: e.target.value });
+  }
+
+  async function logInSubmit(e) {
+    e.preventDefault();
+
+    try {
+      let response = await axios.post(`${API_URL}/auth/login`, member);
+      console.log(response.data);
+    } catch (e) {
+      console.error({ ERR_MSG });
+    }
+  }
   return (
     <>
       <div className="container-fluid wrapLogin">
@@ -44,19 +67,36 @@ function Login(props) {
                 <label className="fw-bold">電子信箱</label>
                 <input
                   className="form-control mt-1"
-                  type="text"
+                  type="email"
                   name="email"
-                  id=""
+                  id="email"
+                  value={member.email}
+                  onClick={handleChange}
                 />
               </li>
               <li className="mt-3">
                 <label className="fw-bold">密碼</label>
                 <input
                   className="form-control mt-1"
-                  type="text"
+                  type={type}
                   name="password"
-                  id=""
+                  id="password"
+                  value={member.password}
+                  onClick={handleChange}
                 />
+                <i
+                  className={`mt-2 mt-md-3 ml-2 ${close}`}
+                  onClick={() => {
+                    if (type === 'password') {
+                      setType('text');
+                      setClose('far fa-eye');
+                    } else {
+                      setType('password');
+                      setClose('far fa-eye-slash');
+                    }
+                  }}
+                ></i>
+
                 <div className="d-flex justify-content-between mt-1">
                   <Link to="/" className="forgetPassword mt-2">
                     忘記密碼?
@@ -73,7 +113,10 @@ function Login(props) {
                 </div>
               </li>
               <li className="mt-4 d-flex justify-content-center">
-                <button className="btn btn-primary text-white loginBtn">
+                <button
+                  className="btn btn-primary text-white loginBtn"
+                  onClick={logInSubmit}
+                >
                   登入
                 </button>
               </li>
