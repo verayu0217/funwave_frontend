@@ -3,14 +3,19 @@
 
 // 中間商品細節區
 .left {
-  background-color: aqua;
+  // background-color: aqua;
 }
 // 右邊加入購物車區
 .right {
-  background-color: rgb(218, 218, 115);
+  // background-color: rgb(218, 218, 115);
 }
 .colorRadio {
   width: 20px;
   height: 20px;
   background-color: blue;
+}
+.sizeRadio {
+  width: 30px;
+  height: 30px;
+  border: 2px solid $funwave-deepgray;
 }
