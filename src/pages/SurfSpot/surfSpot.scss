@@ -2,18 +2,29 @@
 
 
 .wrapBread{
-    border-bottom: 1px solid $gray;
+    border-bottom: 1px solid $funwave-deepgray;
 }
 .taiwanMapBg{
+    position: relative;
     overflow: hidden;
     background: url("../../data/images/surfSpot/surfSpot-screen.png") center center no-repeat;
-    object-fit: cover;
+    max-width: 1440px;
+    margin: 0 auto;
+    background-size: cover;
 }
 .greenTitle{
     width: 64px;
     height: 24px;
 }
-
+.allTitle{
+    text-decoration: none;
+}
+.allTitle:hover{
+    color: $funwave-orange;
+}
+.fasAll:hover{
+    font-size: 1rem;
+}
 
 @media screen and (max-width: 992px) {
     .taiwanSvg{

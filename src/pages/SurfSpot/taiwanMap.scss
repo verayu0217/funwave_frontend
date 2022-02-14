@@ -3,26 +3,26 @@
 .wrapSpot{
   position: relative;
 }
-svg {
+.svg {
     width: 400px;
     height: 500px;
   }
-  path {
+  .path {
     stroke: white;
-    fill: $secondary;
+    fill: $funwave-deepblue;
     transition: 0.5s;
   }
-  path:hover {
+  .path:hover {
     stroke: transparent;
     fill: $funwave-lightblue;
   }
   .fas{
-    color:$gray;
+    color:$funwave-deepgray;
     transition: .2s;
   }
   .fas:hover{
     cursor: pointer;
-    color: $primary;
+    color: $funwave-orange;
     font-size: 2.25rem;
   }
   // 北部浪點

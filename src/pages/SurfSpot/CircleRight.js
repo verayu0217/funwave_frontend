@@ -9,7 +9,7 @@ function CircleRight() {
         data-name="圖層 1"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="-10 0 487.75 475.25"
-        className="rightCircle"
+        className="rightCircle svg"
       >
         <defs></defs>
         <circle className="cls-1 bgCircle" cx="250.13" cy="237.63" r="237.5" />

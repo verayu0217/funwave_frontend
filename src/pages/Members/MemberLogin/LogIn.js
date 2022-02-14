@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import './memberLogin.scss';
 
 function Login(props) {
+  const [close, setClose] = useState('far fa-eye-slash');
+  const [type, setType] = useState('password');
   const [showModal, setshowModal] = useState(false);
   const openSignUp = () => {
     setshowModal((prev) => !prev);
@@ -44,7 +46,7 @@ function Login(props) {
                 <label className="fw-bold">電子信箱</label>
                 <input
                   className="form-control mt-1"
-                  type="text"
+                  type="email"
                   name="email"
                   id=""
                 />
@@ -53,10 +55,23 @@ function Login(props) {
                 <label className="fw-bold">密碼</label>
                 <input
                   className="form-control mt-1"
-                  type="text"
+                  type={type}
                   name="password"
                   id=""
                 />
+                <i
+                  className={`mt-2 mt-md-3 ml-2 ${close}`}
+                  onClick={() => {
+                    if (type === 'password') {
+                      setType('text');
+                      setClose('far fa-eye');
+                    } else {
+                      setType('password');
+                      setClose('far fa-eye-slash');
+                    }
+                  }}
+                ></i>
+
                 <div className="d-flex justify-content-between mt-1">
                   <Link to="/" className="forgetPassword mt-2">
                     忘記密碼?
