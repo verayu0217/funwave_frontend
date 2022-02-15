@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { API_URL } from '../../../utils/config';
 import { ERR_MSG } from '../../../utils/error';
-import { BsFillEyeFill, BsFillEyeSlashFill } from 'react-icons/bs';
 import 'animate.css';
 import './memberLogin.scss';
 
@@ -34,9 +33,9 @@ function SignUp() {
     <>
       <form className="d-flex justify-content-center align-items-center">
         <div style={{ width: '60%' }}>
-          <div className="text-black fs-2 fw-bold text-center">
+          <h4 className="h1 text-black fw-bold text-center">
             Welcome to Join Us !
-          </div>
+          </h4>
           <div className="text-center fw-bold mt-3 signupTitle">註冊會員</div>
           <div className="d-flex justify-content-center">
             <ul className="list-unstyled">
@@ -75,18 +74,6 @@ function SignUp() {
                   onChange={handleChange}
                 />
                 <div className="fasEye">
-                  {/* <BsFillEyeSlashFill
-                    className={`mt-md-3 ml-2 ${close}`}
-                    onClick={() => {
-                      if (type === 'password') {
-                        setType('text');
-                        setClose(<BsFillEyeFill />);
-                      } else {
-                        setType('password');
-                        setClose(<BsFillEyeSlashFill />);
-                      }
-                    }}
-                  /> */}
                   <i
                     className={`signupEye mt-md-3 ml-2 ${close}`}
                     onClick={() => {

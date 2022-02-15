@@ -10,8 +10,21 @@
     height: 100%;
 }
 .spotDetailWrap{
-    height: 500px;
+    background: url('../../data/images/surfSpot/surfSpotDetailBG.jpg') center center no-repeat;
     margin: auto;
-    background: $funwave-white;
     border-radius: 8px;
+    background-size: cover;
+}
+.spotDetailWrapBlack{
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 8px;
+}
+.spotInfo{
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 8px;
+    box-shadow: 1px 1px 15px 1px rgba(0, 0, 0, 0.1);
+}
+.locationIcon{
+    width: 20px;
+    height: 20px;
 }
