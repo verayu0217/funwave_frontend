@@ -409,7 +409,7 @@ function Products() {
             <div className="mt-5">
               <h3 className="d-flex align-items-center filterProducts pb-2 ps-3">
                 <MdOutlineSurfing size={24} color="#17a8a2" className="me-3" />
-                適用的衝浪舵類型
+                適用衝浪舵類型
               </h3>
               <div className="form-check ms-3">
                 <input

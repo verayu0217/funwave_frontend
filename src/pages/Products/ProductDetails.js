@@ -5,6 +5,7 @@ import { Accordion, Figure } from 'react-bootstrap';
 // 導引資料、頁面
 import './ProductDetails.scss';
 import longboard1 from './longboard1.jpg'; // 待釐清圖放src還是放在public
+import greenTitle from '../../data/images/greenTitle.svg';
 
 // react-icons
 import { FaThumbsUp } from 'react-icons/fa';
@@ -324,7 +325,7 @@ function ProductDetails() {
                   </Figure>
                 </div>
                 {/* 推薦商品 */}
-                <div className="m-5 me-4 ps-4">
+                <div className="m-5 me-1 ps-4">
                   <h3 className="border-bottom border-dark pb-2 mb-4">
                     推薦相似產品
                   </h3>
@@ -338,7 +339,7 @@ function ProductDetails() {
                         src={longboard1}
                       />
                       <Figure.Caption className="d-flex justify-content-center">
-                        <p className="recommendProducts mb-0">衝浪板</p>
+                        <p className="mb-0">衝浪板</p>
                       </Figure.Caption>
                       <Figure.Caption className="d-flex justify-content-center">
                         <p className="fw-bold">NT 2,000</p>
@@ -390,7 +391,7 @@ function ProductDetails() {
                   </div>
                 </div>
                 {/* 品牌介紹 */}
-                <div className="m-5 me-4 ps-4">
+                <div className="m-5 me-1 ps-4">
                   <h3 className="border-bottom border-dark pb-2 mb-4">
                     品牌介紹
                   </h3>
@@ -411,7 +412,7 @@ function ProductDetails() {
                   </div>
                 </div>
                 {/* 產品介紹 */}
-                <div className="m-5 me-4 ps-4">
+                <div className="m-5 me-1 ps-4">
                   <h3 className="border-bottom border-dark pb-2 mb-4">
                     產品介紹
                   </h3>
@@ -431,7 +432,7 @@ function ProductDetails() {
                   </div>
                 </div>
                 {/* 產品規格 */}
-                <div className="m-5 me-4 ps-4">
+                <div className="m-5 me-1 ps-4">
                   <h3 className="border-bottom border-dark pb-2 mb-4">
                     產品規格
                   </h3>
@@ -439,14 +440,153 @@ function ProductDetails() {
                     <div className="col-3">
                       <p className="text-center fw-bold">材質</p>
                       <p className="text-center fw-bold">類型</p>
-                      <p className="text-center fw-bold">重量</p>
-                      <p className="text-center fw-bold">板舵設定</p>
+                      <p className="text-center fw-bold">適用板舵類型</p>
                     </div>
                     <div className="col-9">
                       <p>玻纖</p>
                       <p>長板</p>
-                      <p>玻纖</p>
                       <p>Single / Double</p>
+                    </div>
+                  </div>
+                </div>
+                {/* 短板尺寸對照表 */}
+                <div className="m-5 me-1 ps-4">
+                  <h3 className="border-bottom border-dark pb-2 mb-4">
+                    尺寸對照表 - 短板
+                  </h3>
+                  <div className="row">
+                    <div className="col-3">
+                      <p className="text-center fw-bold">尺寸 (ft)</p>
+                      <p className="text-center fw-bold">寬度 (in)</p>
+                      <p className="text-center fw-bold">厚度 (in)</p>
+                      <p className="text-center fw-bold">重量 (L)</p>
+                    </div>
+                    <div className="col-9">
+                      <div className="row">
+                        <div className="col-4">
+                          <p className="fw-bold">4'6"</p>
+                          <p>19</p>
+                          <p>2.375</p>
+                          <p>23</p>
+                        </div>
+                        <div className="col-4">
+                          <p className="fw-bold">5'6"</p>
+                          <p>20.75</p>
+                          <p>2.875</p>
+                          <p>36.8</p>
+                        </div>
+                        <div className="col-4">
+                          <p className="fw-bold">6'6"</p>
+                          <p>22</p>
+                          <p>7.25</p>
+                          <p>52.3</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {/* 快樂板尺寸對照表 */}
+                <div className="m-5 me-1 ps-4">
+                  <h3 className="border-bottom border-dark pb-2 mb-4">
+                    尺寸對照表 - 快樂板
+                  </h3>
+                  <div className="row">
+                    <div className="col-3">
+                      <p className="text-center fw-bold">尺寸 (ft)</p>
+                      <p className="text-center fw-bold">寬度 (in)</p>
+                      <p className="text-center fw-bold">厚度 (in)</p>
+                      <p className="text-center fw-bold">重量 (L)</p>
+                    </div>
+                    <div className="col-9">
+                      <div className="row">
+                        <div className="col-4">
+                          <p className="fw-bold">7'2"</p>
+                          <p>21.75</p>
+                          <p>2.85</p>
+                          <p>50.6</p>
+                        </div>
+                        <div className="col-4">
+                          <p className="fw-bold">7'6"</p>
+                          <p>22</p>
+                          <p>2.95</p>
+                          <p>55.6</p>
+                        </div>
+                        <div className="col-4">
+                          <p className="fw-bold">7'10"</p>
+                          <p>22</p>
+                          <p>3</p>
+                          <p>59</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {/* 長板尺寸對照表 */}
+                <div className="m-5 me-1 ps-4">
+                  <h3 className="border-bottom border-dark pb-2 mb-4">
+                    尺寸對照表 - 長板
+                  </h3>
+                  <div className="row">
+                    <div className="col-3">
+                      <p className="text-center fw-bold">尺寸 (ft)</p>
+                      <p className="text-center fw-bold">寬度 (in)</p>
+                      <p className="text-center fw-bold">厚度 (in)</p>
+                      <p className="text-center fw-bold">重量 (L)</p>
+                    </div>
+                    <div className="col-9">
+                      <p className="fw-bold">9'0"</p>
+                      <p>24</p>
+                      <p>3.5</p>
+                      <p>98</p>
+                    </div>
+                  </div>
+                </div>
+                {/* 商品評價  */}
+                <div className="m-5 me-1 ps-4">
+                  <div className="text-secondary my-4 h2 text-center ">
+                    <img
+                      src={greenTitle}
+                      className="me-3"
+                      alt="greenTitle"
+                      height="12px"
+                      weight="32px"
+                    />
+                    評價
+                  </div>
+                  {/* 第一個留言 */}
+                  <div className="border mt-3 p-4">
+                    <div className="d-flex align-items-center">
+                      <img
+                        className="rounded-circle"
+                        src="https://fakeimg.pl/50x50/"
+                        alt=""
+                        height="50px"
+                        weight="50px"
+                      />
+                      <div className="m-3 ">Tony</div>
+                      <div className="d-flex justify-content-center ">
+                        <AiFillStar size={20} color="#ff7f6a" />
+                        <AiFillStar size={20} color="#ff7f6a" />
+                        <AiFillStar size={20} color="#ff7f6a" />
+                        <AiFillStar size={20} color="#ff7f6a" />
+                        <AiOutlineStar size={20} color="#ff7f6a" />
+                      </div>
+
+                      <div className="align-self-center ms-auto">
+                        2022年2月9日
+                      </div>
+                    </div>
+                    <div className="my-3">
+                      <p>
+                        出貨速度還好。外袋整潔，內箱產品完整，期待有更優惠的活動供回購。
+                        這款似可選剛好的尺寸，最好找店家試穿。
+                      </p>
+                      <img
+                        src={longboard1}
+                        width="100"
+                        className="mt-3"
+                        alt=""
+                      />
                     </div>
                   </div>
                 </div>
