@@ -31,8 +31,9 @@ import Products from './pages/Products/Products';
 // import CartComplete from './pages/Products/Cart/CartComplete';
 //客製化浪板
 import Customized from './pages/Customized/Customized';
+import CustomizedBoard from './pages/Customized/CustomizedBoard';
 //浪點
-// import SurfSpot from './pages/SurfSpot/SurfSpot';
+import SurfSpot from './pages/SurfSpot/SurfSpot';
 
 // 組合用元件(一般組件)
 // import Breadcrumb from './components/Breadcrumb';
@@ -52,10 +53,11 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/homeTry" element={<HomeTry />} />
         <Route path="/login" element={<LogIn />} />
-        {/* <Route path="/surfspot" element={<SurfSpot />} /> */}
+        <Route path="/surfspot" element={<SurfSpot />} />
         <Route path="/ProductDetails" element={<ProductDetails />} />
         <Route path="/Products" element={<Products />} />
         <Route path="/Customized" element={<Customized />} />
+        <Route path="/Customized/board" element={<CustomizedBoard />} />
         <Route path="/member" element={<Member />} />
         {/* <Route path="/Course" element={<Courses />} /> */}
         <Route path="/Course/CourseContent" element={<CourseContent />} />
