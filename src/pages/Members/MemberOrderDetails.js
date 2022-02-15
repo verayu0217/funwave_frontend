@@ -8,6 +8,7 @@ import {
   Button,
   Table,
   Accordion,
+  Form,
 } from 'react-bootstrap';
 
 import './Member.scss';
@@ -298,27 +299,31 @@ function MemberOrderDetails() {
                               <p className="fw-bold">訂單狀態通知</p>
                               <br />
                             </div>
-                            <div className="col-12 mt-5">
-                              <p className="fw-bold">賣家和顧客訂單通訊</p>
-                              <div class="form-floating">
-                                <textarea
-                                  class="form-control"
-                                  placeholder="Leave a comment here"
-                                  id="floatingTextarea2"
-                                ></textarea>
-                                <label for="floatingTextarea2">
-                                  有甚麼話想留言？
-                                </label>
-                              </div>
+
+                            <Form>
+                              <Form.Group
+                                className="col-12 mt-5"
+                                controlId="exampleForm.ControlTextarea1"
+                              >
+                                <Form.Control
+                                  as="textarea"
+                                  row={5}
+                                  className="col-12  textareaMember"
+                                  placeholder="輸入訊息"
+                                />
+                              </Form.Group>
                               <div className="d-flex justify-content-between mt-3">
-                                <button className="btn deepblueBtnMember">
+                                <Button className="mx-2 btn btnMember deepblueBtnMember fs-16Member">
                                   &ensp;加入圖片
-                                </button>
-                                <button className="btn pinkBtnMember">
+                                </Button>
+                                <Button
+                                  type="submit"
+                                  className="btn btnMember pinkBtnMember fs-16Member"
+                                >
                                   發送
-                                </button>
+                                </Button>
                               </div>
-                            </div>
+                            </Form>
                           </div>
                         </Accordion.Body>
                       </Accordion.Item>
