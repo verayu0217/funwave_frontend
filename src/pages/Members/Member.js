@@ -18,7 +18,7 @@ function Member() {
       <div className="memberWrap">
         <Tab.Container id="left-tabs-example" defaultActiveKey="first">
           <Row className="container tabWrapMember">
-            <Col className="tabBarMember" lg={3}>
+            <Col className="tabBarMember sticky-top" lg={3}>
               <Nav variant="pills" className="flex-column">
                 <Nav.Item>
                   <Nav.Link className="fs-24Member linkWidthMember my-5">
