@@ -13,7 +13,7 @@ import longboardHole from '../../data/images/customize/longboardHole.png';
 function Step1() {
   return (
     <div className="vh-100">
-      <div className="text-secondary h1 text-center mb-3">
+      <div className="text-secondary h1 text-center mb-3 position-relative">
         <img
           src={greenTitle}
           className="greenTitle me-3"
@@ -22,6 +22,9 @@ function Step1() {
           weight="64px"
         />
         STEP1 選擇衝浪板外型
+        <button className="btn btn-secondary position-absolute my-2 end-0">
+          下一步
+        </button>
       </div>
       <hr />
       <div className="d-flex justify-content-evenly chooseBoardCu">

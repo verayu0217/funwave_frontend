@@ -14,7 +14,6 @@ function SignUp() {
     email: '',
     name: '',
     password: '',
-    agree: false,
   });
   function handleChange(e) {
     setMember({ ...member, [e.target.name]: e.target.value });
