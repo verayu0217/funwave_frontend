@@ -1,6 +1,13 @@
 // 待找到方法放在public，就可刪除此行
 @import '../../styles/global.scss';
 
+// 共用
+.sticky {
+  position: sticky;
+  top: 0;
+  /* 貼在最上面 */
+}
+
 // title、banner
 // banner圖應該要固定比例，待改！！
 .bannerProducts {

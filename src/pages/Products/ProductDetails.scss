@@ -1,10 +1,16 @@
 // 待找到方法放在public，就可刪除此行
 @import '../../styles/global.scss';
 
+// 共用
+.sticky {
+  position: sticky;
+  top: 0;
+  /* 貼在最上面 */
+}
+
 // 中間商品細節區
 
 // 右邊加入購物車區
-
 .colorRadio {
   width: 20px;
   height: 20px;
@@ -14,4 +20,11 @@
   width: 30px;
   height: 30px;
   border: 2px solid $funwave-deepgray;
+}
+.btmPlusMinus {
+  width: 40px;
+  height: 40px;
+}
+.btnAddCart {
+  width: 100%;
 }
