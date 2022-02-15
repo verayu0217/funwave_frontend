@@ -1,8 +1,24 @@
+import React, { useState } from 'react';
+import { Form, Row, Col, Button } from 'react-bootstrap';
 import './Member.scss';
 import titleImgMember from '../../data/images/greenwave64x24.png';
-import passwordMember from '../../data/images/eyes-close.png';
 
 function MemberInfo() {
+  const [close, setClose] = useState('fas fa-eye-slash');
+  const [type, setType] = useState('password');
+  const [validated, setValidated] = useState(false);
+
+  // 空值驗證
+  const handleSubmit = (event) => {
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+
+    setValidated(true);
+  };
+
   return (
     <>
       <div className="container mt-5">
@@ -16,11 +32,11 @@ function MemberInfo() {
                 會員資料
               </h2>
               <div className="avatarMember d-flex justify-content-center">
-                <img src="" alt="" />
+                <img id="image" />
               </div>
               <h3 className="fs-24Member">歐陽范姜</h3>
               <h5 className="fs-16Member hotMember">衝浪熱愛者</h5>
-              <button className="changeImgMember">
+              <button className="changeImgMember" type="file" id="theFile">
                 <i class="fas fa-pen"></i>&ensp;更換大頭貼
               </button>
             </div>
@@ -39,63 +55,77 @@ function MemberInfo() {
             </div>
           </div>
           <div className="col-4">
-            <form className="">
+            <Form
+              noValidate
+              validated={validated}
+              onSubmit={handleSubmit}
+              className=""
+            >
               <h3 className="fs-24Member">基本資料</h3>
-              <div className="col-12">
-                <label htmlFor="name" className="col-12 mt-3 mb-1 fs-16Member">
+              <Form.Group className="col-12">
+                <Form.Label className="col-12 mt-3 mb-1 fs-16Member">
                   姓名
-                </label>
-                <input
+                </Form.Label>
+                <Form.Control
                   className="col-12 btn btnMember"
                   type="text"
                   id="name"
-                  name="name"
+                  placeholder=""
+                  required
                 />
-              </div>
-              <div className="col-12">
-                <label htmlFor="name" className="col-12 mt-3 mb-1 fs-16Member">
+              </Form.Group>
+              <Form.Group className="col-12">
+                <Form.Label className="col-12 mt-3 mb-1 fs-16Member">
                   信箱(帳號)
-                </label>
-                <input
+                </Form.Label>
+                <Form.Control
                   className="col-12 btn btnMember"
-                  type="text"
-                  id="email"
-                  name="email"
+                  type="email"
+                  placeholder=""
+                  required
                 />
-              </div>
-
-              <div className="col-12 passwordMember">
-                <label
-                  htmlFor="password"
-                  className="col-12 mt-3 mb-1 fs-16Member"
-                >
+              </Form.Group>
+              <Form.Group
+                className="col-12 passwordMember"
+                controlId="formPlaintextPassword"
+              >
+                <Form.Label className="col-12 mt-3 fs-16Member">
                   密碼
-                </label>
-                <input
-                  className="col-12 btn btnMember"
-                  type="password"
+                </Form.Label>
+                <Form.Control
+                  className="col-12 btn btnMember pwControlMember"
                   id="password"
-                  name="password"
+                  type={type}
+                  placeholder=""
+                  required
                 />
-                <label className="passwordImgMember">
-                  <img
-                    className="passwordImgMember"
-                    src={passwordMember}
-                    id="eyes"
-                  />
-                </label>
-              </div>
-              <div className="col-12">
-                <label htmlFor="phone" className="col-12 mt-3 mb-1 fs-16Member">
+                <Form.Label className="passwordImgMember">
+                  <i
+                    className={`loginEye passwordImgMember ${close}`}
+                    onClick={() => {
+                      if (type === 'password') {
+                        setType('text');
+                        setClose('fas fa-eye');
+                      } else {
+                        setType('password');
+                        setClose('fas fa-eye-slash');
+                      }
+                    }}
+                  ></i>
+                </Form.Label>
+              </Form.Group>
+              <Form.Group className="col-12">
+                <Form.Label className="col-12 mt-3 mb-1 fs-16Member">
                   手機
-                </label>
-                <input
+                </Form.Label>
+                <Form.Control
                   className="col-12 btn btnMember"
                   type="number"
                   id="phone"
-                  name="phone"
+                  placeholder=""
+                  required
                 />
-              </div>
+              </Form.Group>
               <div className="col-12">
                 <label htmlFor="phone" className="col-12 mt-3 mb-1 fs-16Member">
                   生日
@@ -103,65 +133,111 @@ function MemberInfo() {
                 <select className="col-12 btn btnMember"></select>
               </div>
               <h3 className="fs-24Member mt-5">送貨地址</h3>
-              <div className="col-12">
-                <label htmlFor="" className="col-12 mt-3 mb-1 fs-16Member">
+              <Form.Group className="col-12">
+                <Form.Label className="col-12 mt-3 mb-1 fs-16Member">
                   收件人姓名
-                </label>
-                <input className="col-12 btn btnMember"></input>
-              </div>
-              <div className="col-12">
-                <label htmlFor="" className="col-12 mt-3 mb-1 fs-16Member">
+                </Form.Label>
+                <Form.Control
+                  className="col-12 btn btnMember"
+                  type="text"
+                  id="name"
+                  placeholder=""
+                  required
+                />
+              </Form.Group>
+              <Form.Group className="col-12">
+                <Form.Label className="col-12 mt-3 mb-1 fs-16Member">
                   收件人電話號碼
-                </label>
-                <input className="col-12 btn btnMember"></input>
-              </div>
-              <div className="col-12">
-                <label htmlFor="" className="col-12 mt-3 mb-1 fs-16Member">
+                </Form.Label>
+                <Form.Control
+                  className="col-12 btn btnMember"
+                  type="number"
+                  id="phone"
+                  placeholder=""
+                  required
+                />
+              </Form.Group>
+              <Form.Group className="col-12">
+                <Form.Label className="col-12 mt-3 mb-1 fs-16Member">
                   送貨國家
-                </label>
-                <select className="col-12 btn btnMember"></select>
-              </div>
-              <div className="d-flex justify-content-between col-12">
-                <div className="col-6">
-                  <label htmlFor="" className="col-12 mt-3 mb-1 fs-16Member">
+                </Form.Label>
+                <Form.Select
+                  className="col-12 btn btnMember"
+                  aria-label="Default select example"
+                  required
+                >
+                  <option value="1">台灣</option>
+                  <option value="2">日本</option>
+                  <option value="3">美國</option>
+                </Form.Select>
+              </Form.Group>
+              <Form.Group className="d-flex justify-content-between col-12">
+                <Form.Group className="col-6">
+                  <Form.Label className="col-11 formWidthMember mt-3 mb-1 fs-16Member">
                     城市
-                  </label>
-                  <select className="col-11 btn btnMember"></select>
-                </div>
-                <div className="col-6 d-flex justify-content-end flex-column">
-                  <label
-                    htmlFor=""
-                    className="col-12 mt-3 mb-1 fs-16Member pl-12Member"
+                  </Form.Label>
+                  <Form.Select
+                    className="col-11 formWidthMember btn btnMember"
+                    aria-label="Default select example"
+                    required
                   >
+                    <option value="1">台北市</option>
+                    <option value="2">桃園市</option>
+                    <option value="3">高雄市</option>
+                  </Form.Select>
+                </Form.Group>
+                <Form.Group className="col-6 d-flex justify-content-end flex-column">
+                  <Form.Label className="col-11 formWidthMember mt-3 mb-1 fs-16Member ms-auto">
                     區域
-                  </label>
-                  <select className="col-11 btn btnMember ms-auto"></select>
-                </div>
-              </div>
-              <div className="col-12">
-                <label htmlFor="" className="col-12 mt-3 mb-1 fs-16Member">
+                  </Form.Label>
+                  <Form.Select
+                    className="col-11 formWidthMember btn btnMember ms-auto"
+                    aria-label="Default select example"
+                    required
+                  >
+                    <option value="1">信義區</option>
+                    <option value="2">中壢區</option>
+                    <option value="3">左營區</option>
+                  </Form.Select>
+                </Form.Group>
+              </Form.Group>
+              <Form.Group className="col-12">
+                <Form.Label className="col-12 mt-3 mb-1 fs-16Member">
                   地址
-                </label>
-                <input className="col-12 btn btnMember"></input>
-              </div>
-              <div className="col-12 mb-3">
-                <label htmlFor="" className="col-12 mt-3 mb-1 fs-16Member">
+                </Form.Label>
+                <Form.Control
+                  className="col-12 btn btnMember"
+                  type="text"
+                  id="phone"
+                  placeholder=""
+                  required
+                />
+              </Form.Group>
+              <Form.Group
+                className="col-12 mb-3"
+                controlId="exampleForm.ControlTextarea1"
+              >
+                <Form.Label className="col-12 mt-3 mb-1 fs-16Member">
                   備註
-                </label>
-                <input className="col-12 btn btnMember"></input>
-              </div>
+                </Form.Label>
+                <Form.Control
+                  as="textarea"
+                  row={1}
+                  className="col-12 btn btnMember"
+                />
+              </Form.Group>
               <div className="d-flex justify-content-end">
-                <button className="mx-2 btn btnMember cancelMember fs-16Member">
+                <Button className="mx-2 btn btnMember cancelMember fs-16Member">
                   取消
-                </button>
-                <button
+                </Button>
+                <Button
                   type="submit"
                   className="btn btnMember saveMember fs-16Member"
                 >
                   儲存變更
-                </button>
+                </Button>
               </div>
-            </form>
+            </Form>
           </div>
         </div>
       </div>

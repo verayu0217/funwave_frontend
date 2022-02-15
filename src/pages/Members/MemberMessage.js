@@ -1,3 +1,4 @@
+import { Form, Row, Col, Button } from 'react-bootstrap';
 import './Member.scss';
 import titleImgMember from '../../data/images/greenwave64x24.png';
 
@@ -16,22 +17,30 @@ function MemberMessage() {
             <div class="card-header p-3 fs-26Member">TO FUNWAVE</div>
             <div class="card-body">
               <p class="card-text p-4 fs-20Member">目前尚未收到新訊息！</p>
-              <div className="col-12">
-                <div class="form-floating">
-                  <textarea
-                    class="form-control textareaMember"
-                    placeholder="Leave a comment here"
-                    id="floatingTextarea2"
-                  ></textarea>
-                  <label for="floatingTextarea2">輸入訊息</label>
-                </div>
+              <Form>
+                <Form.Group
+                  className="col-12 mb-3"
+                  controlId="exampleForm.ControlTextarea1"
+                >
+                  <Form.Control
+                    as="textarea"
+                    row={5}
+                    className="col-12 textareaMember"
+                    placeholder="輸入訊息"
+                  />
+                </Form.Group>
                 <div className="d-flex justify-content-between mt-3">
-                  <button className="btn deepblueBtnMember">
-                    &ensp;加入圖片
-                  </button>
-                  <button className="btn deepblueBtnMember">傳送</button>
+                  <Button className="mx-2 btn btnMember deepblueBtnMember fs-16Member">
+                    加入圖片
+                  </Button>
+                  <Button
+                    type="submit"
+                    className="btn btnMember deepblueBtnMember fs-16Member"
+                  >
+                    傳送
+                  </Button>
                 </div>
-              </div>
+              </Form>
             </div>
           </div>
         </div>

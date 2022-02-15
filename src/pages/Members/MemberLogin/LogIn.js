@@ -71,7 +71,7 @@ function Login(props) {
                   name="email"
                   id="email"
                   value={member.email}
-                  onClick={handleChange}
+                  onChange={handleChange}
                 />
               </li>
               <li className="mt-3">
@@ -82,7 +82,7 @@ function Login(props) {
                   name="password"
                   id="password"
                   value={member.password}
-                  onClick={handleChange}
+                  onChange={handleChange}
                 />
                 <i
                   className={`loginEye mt-2 mt-md-3 ml-2 ${close}`}

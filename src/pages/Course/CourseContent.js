@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Accordion } from 'react-bootstrap';
 
+// 引用課程評價
+import CourseEvaluate from './components/CourseEvaluate';
+
+// 手風琴
+import { Accordion } from 'react-bootstrap';
+//星星icon
+import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
 // 大標題綠色波浪
 import greenTitle from '../../data/images/greenTitle.svg';
-
 // 6大特色圖片
 import landcoach from '../../data/images/course/icon-landcoach.png';
 import surfwithu from '../../data/images/course/icon-surfwithu.png';
@@ -18,23 +23,19 @@ import './CourseContent.scss';
 function CourseContent() {
   return (
     <>
-      <div className="container-fulid">
-        {/* 衝浪課程內容 */}
-        <div className="row  bg justify-content-center ">
-          {/* banner區標題 */}
-          <div className="row">
-            <div className="contentTitle  d-flex">
-              <div className="text-center m-auto  align-items-center">
-                <p className="h4">Surf Course Detail.</p>
-
-                <p className="h1">衝浪課程內容</p>
-              </div>
+      {/* 主頁大圖加標題 */}
+      <div className="container-fulid  ">
+        <div className="row justify-content-center contentBanner ">
+          <div className="contentTitle my-5">
+            <div className="text-center  d-flex flex-column ">
+              <p className="h4">Surf Course Detail.</p>
+              <p className="h1">衝浪課程內容</p>
             </div>
           </div>
 
           {/* 6大特色大標題*/}
           <div className="row">
-            <div className="text-secondary fw-bold my-3 h1 text-center ">
+            <div className="text-secondary my-3 h1 text-center ">
               <img
                 src={greenTitle}
                 className="greenTitle me-3"
@@ -47,7 +48,7 @@ function CourseContent() {
 
             {/* 6特色內容及小圖 */}
             <div
-              className="col-sm-9 col-md-8 col-lg-7 
+              className="col-sm-8 col-md-7 col-lg-6 
              p-3 row m-auto bg-white"
             >
               <div className="col-12 col-md-6 col-lg-4">
@@ -120,9 +121,9 @@ function CourseContent() {
 
           {/* 分級衝浪課程 */}
           <div className="row">
-            <div className="col-sm-12 col-md-9 col-lg-10 m-auto">
+            <div className="col-sm-12 col-md-9 col-lg-10 m-auto my-5">
               <div className="grade-wrap shadow-lg py-3 mt-5">
-                <div className="text-secondary fw-bold my-5 h1 text-center">
+                <div className="text-secondary  my-5 h1 text-center">
                   <img
                     src={greenTitle}
                     className="greenTitle me-3"
@@ -259,7 +260,7 @@ function CourseContent() {
           <div className="row">
             <div className="col-sm-12 col-md-9 col-lg-10 m-auto">
               <div className="qawrap">
-                <div className="text-secondary fw-bold my-5 h1 text-center">
+                <div className="text-secondary  my-5 h1 text-center">
                   <img
                     src={greenTitle}
                     className="greenTitle me-3"
@@ -349,179 +350,7 @@ function CourseContent() {
           </div>
 
           {/* 課程體驗評價  */}
-          <div className="row ">
-            <div className="col-sm-12 col-md-7 col-lg-9 m-auto">
-              <div className="text-secondary fw-bold my-5 h1 text-center ">
-                <img
-                  src={greenTitle}
-                  className="greenTitle me-3"
-                  alt="greenTitle"
-                  height="24px"
-                  weight="64px"
-                />
-                課程體驗評價
-              </div>
-
-              {/* 第一個留言 */}
-              <div className="row border m-auto mt-3">
-                {/* 第一排抬頭 */}
-                <div className="d-flex flex-wrap">
-                  <div className="mt-2 align-self-center">
-                    {/* 大頭照  */}
-                    <img
-                      className="rounded-circle"
-                      src="https://fakeimg.pl/50x50/"
-                      alt=""
-                      height="50px"
-                      weight="50px"
-                    />
-                  </div>
-
-                  {/* 名稱 */}
-                  <div className="m-3 align-self-center">頭號奈粉</div>
-
-                  {/* 星星 */}
-                  <div className="align-self-center">
-                    <div className="d-flex">
-                      <i className="fas fa-star"></i>
-                      <i className="fas fa-star"></i>
-                      <i className="fas fa-star"></i>
-                      <i className="fas fa-star"></i>
-                      <i className="fas fa-star"></i>
-                    </div>
-                  </div>
-
-                  <div className=" align-self-center ms-auto">
-                    <div className="date-4 ">2022年2月9日</div>
-                  </div>
-                </div>
-                {/* 第二排 */}
-                <div className="m-3">
-                  {/* 文字 */}
-                  <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. At
-                    sint dolore tenetur magnam officia ut, aspernatur neque
-                    dolorem
-                  </p>
-                  <div>看更多</div>
-                  {/* 圖片區  */}
-                  <div className="mt-3">
-                    <img
-                      src="https://fakeimg.pl/80x80/"
-                      className="rounded-3"
-                      alt=""
-                    />
-                  </div>
-                </div>
-              </div>
-
-              {/* 第二個留言 */}
-              <div className="row border m-auto mt-3">
-                {/* 第一排抬頭 */}
-                <div className="d-flex flex-wrap">
-                  <div className="mt-2 align-self-center">
-                    {/* 大頭照  */}
-                    <img
-                      className="rounded-circle"
-                      src="https://fakeimg.pl/50x50/"
-                      alt=""
-                      height="50px"
-                      weight="50px"
-                    />
-                  </div>
-
-                  {/* 名稱 */}
-                  <div className="m-3 align-self-center">頭號奈粉</div>
-
-                  {/* 星星 */}
-                  <div className="align-self-center">
-                    <div className="d-flex">
-                      <i className="fas fa-star"></i>
-                      <i className="fas fa-star"></i>
-                      <i className="fas fa-star"></i>
-                      <i className="fas fa-star"></i>
-                      <i className="fas fa-star"></i>
-                    </div>
-                  </div>
-
-                  <div className=" align-self-center ms-auto">
-                    <div className="date-4 ">2022年2月9日</div>
-                  </div>
-                </div>
-                {/* 第二排 */}
-                <div className="m-3">
-                  {/* 文字 */}
-                  <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. At
-                    sint dolore tenetur magnam officia ut, aspernatur neque
-                    dolorem
-                  </p>
-                  <div>看更多</div>
-                  {/* 圖片區  */}
-                  <div className="mt-3">
-                    <img
-                      src="https://fakeimg.pl/80x80/"
-                      className="rounded-3"
-                      alt=""
-                    />
-                  </div>
-                </div>
-              </div>
-
-              {/* 第三個留言 */}
-              <div className="row border m-auto mt-3">
-                {/* 第一排抬頭 */}
-                <div className="d-flex flex-wrap">
-                  <div className="mt-2 align-self-center">
-                    {/* 大頭照  */}
-                    <img
-                      className="rounded-circle"
-                      src="https://fakeimg.pl/50x50/"
-                      alt=""
-                      height="50px"
-                      weight="50px"
-                    />
-                  </div>
-
-                  {/* 名稱 */}
-                  <div className="m-3 align-self-center">頭號奈粉</div>
-
-                  {/* 星星 */}
-                  <div className="align-self-center">
-                    <div className="d-flex">
-                      <i className="fas fa-star"></i>
-                      <i className="fas fa-star"></i>
-                      <i className="fas fa-star"></i>
-                      <i className="fas fa-star"></i>
-                      <i className="fas fa-star"></i>
-                    </div>
-                  </div>
-
-                  <div className=" align-self-center ms-auto">
-                    <div className="date-4 ">2022年2月9日</div>
-                  </div>
-                </div>
-                {/* 第二排 */}
-                <div className="m-3">
-                  {/* 文字 */}
-                  <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. At
-                    sint dolore tenetur magnam officia ut, aspernatur neque
-                    dolorem
-                  </p>
-                  <div>看更多</div>
-                  {/* 圖片區  */}
-                  <div className="mt-3">
-                    <img
-                      src="https://fakeimg.pl/80x80/"
-                      className="rounded-3"
-                      alt=""
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <CourseEvaluate />
 
           {/* 課程報名 */}
           <div className="row">
@@ -534,7 +363,7 @@ function CourseContent() {
               {/* 報名表單 */}
               <div className="form-wrap  p-3 shadow-lg">
                 <div className="col-12  col-md-8 col-lg-7 m-auto">
-                  <div className="text-secondary fw-bold my-5 h1 text-center">
+                  <div className="text-secondary  my-5 h1 text-center">
                     <img
                       src={greenTitle}
                       className="greenTitle me-3"

@@ -25,8 +25,7 @@ import MemberShoppingGold from './pages/Members/MemberShoppingGold';
 //課程
 
 import CourseContent from './pages/Course/CourseContent';
-
-// import Courses from './pages/Course/Courses';
+import Courses from './pages/Course/Courses';
 import CourseCart from './pages/Course/CourseCart';
 
 //商城
@@ -40,7 +39,7 @@ import Products from './pages/Products/Products';
 //客製化浪板
 import Customized from './pages/Customized/Customized';
 //浪點
-import SurfSpot from './pages/SurfSpot/SurfSpot';
+// import SurfSpot from './pages/SurfSpot/SurfSpot';
 
 // 組合用元件(一般組件)
 // import Breadcrumb from './components/Breadcrumb';
@@ -60,7 +59,7 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/homeTry" element={<HomeTry />} />
         <Route path="/login" element={<LogIn />} />
-        <Route path="/surfspot" element={<SurfSpot />} />
+        {/* <Route path="/surfspot" element={<SurfSpot />} /> */}
         <Route path="/ProductDetails" element={<ProductDetails />} />
         <Route path="/Products" element={<Products />} />
         <Route path="/Customized" element={<Customized />} />
@@ -79,7 +78,7 @@ function App() {
         <Route path="/Member/MemberInfo" element={<MemberInfo />} />
         <Route path="/Member/MemberOrder" element={<MemberOrder />} />
         <Route path="/Member" element={<Member />} />
-        {/* <Route path="/Course" element={<Courses />} /> */}
+        <Route path="/Course" element={<Courses />} />
         <Route path="/Course/CourseContent" element={<CourseContent />} />
         <Route path="/Course/CourseCart" element={<CourseCart />} />
       </Routes>
