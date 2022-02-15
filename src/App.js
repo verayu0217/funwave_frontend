@@ -52,9 +52,10 @@ import Header from './components/Header';
 // import axios from 'axios';
 
 function App() {
+  const [auth, setAuth] = useState(false);
   return (
     <>
-      <Header />
+      <Header auth={auth} setAuth={setAuth} />
       <Routes>
         <Route path="/home" element={<Home />} />
         <Route path="/homeTry" element={<HomeTry />} />

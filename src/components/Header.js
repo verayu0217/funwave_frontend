@@ -8,7 +8,7 @@ import '../styles/component.scss';
 import logo from '../data/images/FunwaveLogo-black2.png';
 
 function MyNavbar(props) {
-  const { auth } = props;
+  const { auth, setAuth } = props;
   return (
     <>
       <Navbar expand="lg" className="shadow-sm">
@@ -67,11 +67,15 @@ function MyNavbar(props) {
               <Nav.Link className="iconGroup" as={NavLink} to="/Member">
                 <i class="fas fa-user"></i>
               </Nav.Link>
-              <Nav.Link className="btnLogin mx-2" as={NavLink} to="/login">
-                登入/註冊
-              </Nav.Link>
-              <Nav.Link className="btnLogin mx-2" as={NavLink} to="/login">
-                登出
+              <Nav.Link
+                className="btnLogin mx-2"
+                as={NavLink}
+                to="/login"
+                onClick={() => {
+                  setAuth(!auth);
+                }}
+              >
+                {auth ? '登出' : '登入/註冊'}
               </Nav.Link>
             </form>
           </Navbar.Collapse>
