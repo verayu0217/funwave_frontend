@@ -45,15 +45,20 @@ function Step2() {
           </div>
         </Col>
       </Row>
-      <div className="text-secondary h1 text-center mb-3">
-        <img
-          src={greenTitle}
-          className="greenTitle me-3"
-          alt="greenTitle"
-          height="24px"
-          weight="64px"
-        />
-        STEP2 選擇衝浪板顏色及圖案
+      <div className="text-secondary h1 text-center mb-3 d-flex justify-content-between">
+        <button className="btn btn-secondary my-2">返回</button>
+        <div className="">
+          <img
+            src={greenTitle}
+            className="greenTitle me-3"
+            alt="greenTitle"
+            height="24px"
+            weight="64px"
+          />
+          STEP2 選擇衝浪板顏色及圖案
+        </div>
+
+        <button className="btn btn-secondary my-2">下一步</button>
       </div>
       <hr />
       {/* 以下假資料 */}
