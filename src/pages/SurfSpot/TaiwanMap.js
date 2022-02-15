@@ -1,10 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './taiwanMap.scss';
+import SurfSpotDetails from './SurfSpotDetails';
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css'; // optional
 import 'tippy.js/themes/light.css';
 
 function TaiwanMap() {
+  const [showSurfSpotDetails, setshowSurfSpotDetails] = useState(false);
+  const openSurfSpotDetails = () => {
+    setshowSurfSpotDetails((prev) => !prev);
+  };
   return (
     <div className="wrapSpot">
       <Tippy
@@ -15,7 +20,10 @@ function TaiwanMap() {
       >
         {/* 北部 */}
         {/* 沙崙 */}
-        <i id="" className="myFas fas fa-map-marker N01"></i>
+        <i
+          onClick={openSurfSpotDetails}
+          className="myFas fas fa-map-marker N01"
+        ></i>
       </Tippy>
       <Tippy
         offset={[-10, 20]}
@@ -24,7 +32,10 @@ function TaiwanMap() {
         content="金山"
       >
         {/* 金山 */}
-        <i className="myFas fas fa-map-marker N02"></i>
+        <i
+          onClick={openSurfSpotDetails}
+          className="myFas fas fa-map-marker N02"
+        ></i>
       </Tippy>
       <Tippy
         offset={[-10, 20]}
@@ -33,7 +44,10 @@ function TaiwanMap() {
         content="白沙灣"
       >
         {/* 白沙灣 */}
-        <i className="myFas fas fa-map-marker N03"></i>
+        <i
+          onClick={openSurfSpotDetails}
+          className="myFas fas fa-map-marker N03"
+        ></i>
       </Tippy>
       <Tippy
         offset={[-10, 20]}
@@ -42,7 +56,10 @@ function TaiwanMap() {
         content="萬里"
       >
         {/* 萬里 */}
-        <i className="myFas fas fa-map-marker N04"></i>
+        <i
+          onClick={openSurfSpotDetails}
+          className="myFas fas fa-map-marker N04"
+        ></i>
       </Tippy>
       <Tippy
         offset={[-10, 20]}
@@ -51,7 +68,10 @@ function TaiwanMap() {
         content="福隆"
       >
         {/* 福隆 */}
-        <i className="myFas fas fa-map-marker N05"></i>
+        <i
+          onClick={openSurfSpotDetails}
+          className="myFas fas fa-map-marker N05"
+        ></i>
       </Tippy>
       <Tippy
         offset={[-10, 20]}
@@ -61,7 +81,10 @@ function TaiwanMap() {
       >
         {/* 東北部 */}
         {/* 雙獅 */}
-        <i className="myFas fas fa-map-marker EN01"></i>
+        <i
+          onClick={openSurfSpotDetails}
+          className="myFas fas fa-map-marker EN01"
+        ></i>
       </Tippy>
       <Tippy
         offset={[-10, 20]}
@@ -70,7 +93,10 @@ function TaiwanMap() {
         content="外澳"
       >
         {/* 外澳 */}
-        <i className="myFas fas fa-map-marker EN02"></i>
+        <i
+          onClick={openSurfSpotDetails}
+          className="myFas fas fa-map-marker EN02"
+        ></i>
       </Tippy>
       <Tippy
         offset={[-10, 20]}
@@ -79,7 +105,10 @@ function TaiwanMap() {
         content="烏石港"
       >
         {/* 烏石港 */}
-        <i className="myFas fas fa-map-marker EN03"></i>
+        <i
+          onClick={openSurfSpotDetails}
+          className="myFas fas fa-map-marker EN03"
+        ></i>
       </Tippy>
       <Tippy
         offset={[-10, 20]}
@@ -88,7 +117,10 @@ function TaiwanMap() {
         content="竹安"
       >
         {/* 竹安 */}
-        <i className="myFas fas fa-map-marker EN04"></i>
+        <i
+          onClick={openSurfSpotDetails}
+          className="myFas fas fa-map-marker EN04"
+        ></i>
       </Tippy>
       <Tippy
         offset={[-10, 20]}
@@ -97,7 +129,10 @@ function TaiwanMap() {
         content="清水"
       >
         {/* 清水 */}
-        <i className="myFas fas fa-map-marker EN05"></i>
+        <i
+          onClick={openSurfSpotDetails}
+          className="myFas fas fa-map-marker EN05"
+        ></i>
       </Tippy>
       <Tippy
         offset={[-10, 20]}
@@ -106,7 +141,10 @@ function TaiwanMap() {
         content="蘇澳-無尾港"
       >
         {/* 蘇澳-無尾港 */}
-        <i className="myFas fas fa-map-marker EN06"></i>
+        <i
+          onClick={openSurfSpotDetails}
+          className="myFas fas fa-map-marker EN06"
+        ></i>
       </Tippy>
       <Tippy
         offset={[-10, 20]}
@@ -116,7 +154,10 @@ function TaiwanMap() {
       >
         {/* 東部 */}
         {/* 花蓮北濱 */}
-        <i className="myFas fas fa-map-marker E01"></i>
+        <i
+          onClick={openSurfSpotDetails}
+          className="myFas fas fa-map-marker E01"
+        ></i>
       </Tippy>
       <Tippy
         offset={[-10, 20]}
@@ -125,7 +166,10 @@ function TaiwanMap() {
         content="雙橋"
       >
         {/* 雙橋 */}
-        <i className="myFas fas fa-map-marker E02"></i>
+        <i
+          onClick={openSurfSpotDetails}
+          className="myFas fas fa-map-marker E02"
+        ></i>
       </Tippy>
       <Tippy
         offset={[-10, 20]}
@@ -134,7 +178,10 @@ function TaiwanMap() {
         content="鹽寮漁港"
       >
         {/* 鹽寮漁港 */}
-        <i className="myFas fas fa-map-marker E03"></i>
+        <i
+          onClick={openSurfSpotDetails}
+          className="myFas fas fa-map-marker E03"
+        ></i>
       </Tippy>
       <Tippy
         offset={[-10, 20]}
@@ -143,7 +190,10 @@ function TaiwanMap() {
         content="磯崎"
       >
         {/* 磯崎 */}
-        <i className="myFas fas fa-map-marker E04"></i>
+        <i
+          onClick={openSurfSpotDetails}
+          className="myFas fas fa-map-marker E04"
+        ></i>
       </Tippy>
       <Tippy
         offset={[-10, 20]}
@@ -152,7 +202,10 @@ function TaiwanMap() {
         content="八仙洞"
       >
         {/* 八仙洞 */}
-        <i className="myFas fas fa-map-marker E05"></i>
+        <i
+          onClick={openSurfSpotDetails}
+          className="myFas fas fa-map-marker E05"
+        ></i>
       </Tippy>
       <Tippy
         offset={[-10, 20]}
@@ -161,7 +214,10 @@ function TaiwanMap() {
         content="成功"
       >
         {/* 成功 */}
-        <i className="myFas fas fa-map-marker E06"></i>
+        <i
+          onClick={openSurfSpotDetails}
+          className="myFas fas fa-map-marker E06"
+        ></i>
       </Tippy>
       <Tippy
         offset={[-10, 20]}
@@ -170,7 +226,10 @@ function TaiwanMap() {
         content="東河"
       >
         {/* 東河 */}
-        <i className="myFas fas fa-map-marker E07"></i>
+        <i
+          onClick={openSurfSpotDetails}
+          className="myFas fas fa-map-marker E07"
+        ></i>
       </Tippy>
       <Tippy
         offset={[-10, 20]}
@@ -179,7 +238,10 @@ function TaiwanMap() {
         content="金樽"
       >
         {/* 金樽 */}
-        <i className="myFas fas fa-map-marker E08"></i>
+        <i
+          onClick={openSurfSpotDetails}
+          className="myFas fas fa-map-marker E08"
+        ></i>
       </Tippy>
       <Tippy
         offset={[-10, 20]}
@@ -188,7 +250,10 @@ function TaiwanMap() {
         content="都蘭"
       >
         {/* 都蘭 */}
-        <i className="myFas fas fa-map-marker E09"></i>
+        <i
+          onClick={openSurfSpotDetails}
+          className="myFas fas fa-map-marker E09"
+        ></i>
       </Tippy>
       <Tippy
         offset={[-10, 20]}
@@ -197,7 +262,10 @@ function TaiwanMap() {
         content="台東"
       >
         {/* 台東 */}
-        <i className="myFas fas fa-map-marker E10"></i>
+        <i
+          onClick={openSurfSpotDetails}
+          className="myFas fas fa-map-marker E10"
+        ></i>
       </Tippy>
       <Tippy
         offset={[-10, 20]}
@@ -207,7 +275,10 @@ function TaiwanMap() {
       >
         {/* 南部 */}
         {/* 九棚 */}
-        <i className="myFas fas fa-map-marker S01"></i>
+        <i
+          onClick={openSurfSpotDetails}
+          className="myFas fas fa-map-marker S01"
+        ></i>
       </Tippy>
       <Tippy
         offset={[-10, 20]}
@@ -216,7 +287,10 @@ function TaiwanMap() {
         content="佳樂水"
       >
         {/* 佳樂水 */}
-        <i className="myFas fas fa-map-marker S02"></i>
+        <i
+          onClick={openSurfSpotDetails}
+          className="myFas fas fa-map-marker S02"
+        ></i>
       </Tippy>
       <Tippy
         offset={[-10, 20]}
@@ -225,7 +299,10 @@ function TaiwanMap() {
         content="南灣"
       >
         {/* 南灣 */}
-        <i className="myFas fas fa-map-marker S03"></i>
+        <i
+          onClick={openSurfSpotDetails}
+          className="myFas fas fa-map-marker S03"
+        ></i>
       </Tippy>
       <Tippy
         offset={[-10, 20]}
@@ -234,7 +311,10 @@ function TaiwanMap() {
         content="射寮"
       >
         {/* 射寮 */}
-        <i className="myFas fas fa-map-marker S04"></i>
+        <i
+          onClick={openSurfSpotDetails}
+          className="myFas fas fa-map-marker S04"
+        ></i>
       </Tippy>
       <Tippy
         offset={[-10, 20]}
@@ -244,7 +324,10 @@ function TaiwanMap() {
       >
         {/* 西部 */}
         {/* 竹南 */}
-        <i className="myFas fas fa-map-marker W01"></i>
+        <i
+          onClick={openSurfSpotDetails}
+          className="myFas fas fa-map-marker W01"
+        ></i>
       </Tippy>
       <Tippy
         offset={[-10, 20]}
@@ -253,7 +336,10 @@ function TaiwanMap() {
         content="北埔外堤"
       >
         {/* 北埔外堤 */}
-        <i className="myFas fas fa-map-marker W02"></i>
+        <i
+          onClick={openSurfSpotDetails}
+          className="myFas fas fa-map-marker W02"
+        ></i>
       </Tippy>
       <Tippy
         offset={[-10, 20]}
@@ -262,7 +348,10 @@ function TaiwanMap() {
         content="松柏港"
       >
         {/* 松柏港 */}
-        <i className="myFas fas fa-map-marker W03"></i>
+        <i
+          onClick={openSurfSpotDetails}
+          className="myFas fas fa-map-marker W03"
+        ></i>
       </Tippy>
       <Tippy
         offset={[-10, 20]}
@@ -271,7 +360,10 @@ function TaiwanMap() {
         content="大安"
       >
         {/* 大安 */}
-        <i className="myFas fas fa-map-marker W04"></i>
+        <i
+          onClick={openSurfSpotDetails}
+          className="myFas fas fa-map-marker W04"
+        ></i>
       </Tippy>
       <Tippy
         offset={[-10, 20]}
@@ -281,7 +373,10 @@ function TaiwanMap() {
       >
         {/* 澎湖 */}
         {/* 山水 */}
-        <i className="myFas fas fa-map-marker W05"></i>
+        <i
+          onClick={openSurfSpotDetails}
+          className="myFas fas fa-map-marker W05"
+        ></i>
       </Tippy>
       <Tippy
         offset={[-10, 20]}
@@ -290,7 +385,10 @@ function TaiwanMap() {
         content="漁光島(馬場)"
       >
         {/* 漁光島(馬場) */}
-        <i className="myFas fas fa-map-marker W06"></i>
+        <i
+          onClick={openSurfSpotDetails}
+          className="myFas fas fa-map-marker W06"
+        ></i>
       </Tippy>
       <Tippy
         offset={[-10, 20]}
@@ -299,7 +397,10 @@ function TaiwanMap() {
         content="旗津"
       >
         {/* 旗津) */}
-        <i className="myFas fas fa-map-marker W07"></i>
+        <i
+          onClick={openSurfSpotDetails}
+          className="myFas fas fa-map-marker W07"
+        ></i>
       </Tippy>
 
       <svg
@@ -685,6 +786,10 @@ function TaiwanMap() {
           />
         </g>
       </svg>
+      <SurfSpotDetails
+        showSurfSpotDetails={showSurfSpotDetails}
+        setshowSurfSpotDetails={setshowSurfSpotDetails}
+      />
     </div>
   );
 }

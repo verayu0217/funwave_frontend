@@ -5,7 +5,6 @@ import CircleLeft from './CircleLeft';
 import Taiwanmap from './TaiwanMap';
 import CircleRight from './CircleRight';
 
-import SurfSpotDetails from './SurfSpotDetails';
 import './surfSpot.scss';
 
 function SurfSpot() {
@@ -30,16 +29,14 @@ function SurfSpot() {
             </div>
           </div>
         </div>
-
         <div className="mt-5 mb-5">
           <div className="d-flex justify-content-center">
             <CircleLeft />
-            <Taiwanmap />
             <CircleRight />
+            <Taiwanmap />
           </div>
         </div>
       </div>
-      <SurfSpotDetails />
     </>
   );
 }

@@ -122,9 +122,13 @@ function Login(props) {
                   登入
                 </button>
               </li>
-              <Modal showModal={showModal} setshowModal={setshowModal} />
             </ul>
+<<<<<<< HEAD
           </form>
+=======
+          </div>
+          <Modal showModal={showModal} setshowModal={setshowModal} />
+>>>>>>> 014e87ef1d4a6c1984332cc91ddcb7fee72075c5
         </div>
       </div>
     </>
