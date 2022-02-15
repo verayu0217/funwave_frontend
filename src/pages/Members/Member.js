@@ -5,6 +5,12 @@ import './Member.scss';
 
 import MemberInfo from './MemberInfo';
 import MemberOrder from './MemberOrder';
+import MemberOrderDetails from './MemberOrderDetails';
+import MemberPoint from './MemberPoint';
+import MemberShoppingGold from './MemberShoppingGold';
+import MemberCoupon from './MemberCoupon';
+import MemberMessage from './MemberMessage';
+import MemberCollect from './MemberCollect';
 
 function Member() {
   return (
@@ -84,9 +90,23 @@ function Member() {
                 <Tab.Pane eventKey="first">
                   <MemberInfo />
                 </Tab.Pane>
-                <Tab.Pane eventKey="second"></Tab.Pane>
+                <Tab.Pane eventKey="second">
+                  <MemberPoint />
+                </Tab.Pane>
                 <Tab.Pane eventKey="third">
                   <MemberOrder />
+                </Tab.Pane>
+                <Tab.Pane eventKey="fourth">
+                  <MemberShoppingGold />
+                </Tab.Pane>
+                <Tab.Pane eventKey="fifth">
+                  <MemberCoupon />
+                </Tab.Pane>
+                <Tab.Pane eventKey="sixth">
+                  <MemberCollect />
+                </Tab.Pane>
+                <Tab.Pane eventKey="seventh">
+                  <MemberMessage />
                 </Tab.Pane>
               </Tab.Content>
             </Col>
