@@ -10,7 +10,14 @@ import longboard1 from './longboard1.jpg'; // 待釐清圖放src還是放在publ
 import { FaThumbsUp } from 'react-icons/fa';
 import { IoColorPalette } from 'react-icons/io5';
 import { MdOutlineSurfing } from 'react-icons/md';
-import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
+import {
+  AiFillStar,
+  AiOutlineStar,
+  AiOutlineDown,
+  AiOutlineUp,
+  AiFillLeftCircle,
+  AiFillRightCircle,
+} from 'react-icons/ai';
 // import { BsStarHalf } from 'react-icons/bs'; // 半星星
 
 function ProductDetails() {
@@ -273,17 +280,179 @@ function ProductDetails() {
 
           <article className="col-10">
             <div className="row">
-              <div className="col-9 left d-flex justify-content-center">
-                <Figure>
-                  <Figure.Image
-                    width={420}
-                    height={400}
-                    alt="longboard1"
-                    src={longboard1}
-                  />
-                </Figure>
+              <div className="col-9">
+                {/* 大小商品圖 */}
+                <div className="d-flex justify-content-evenly">
+                  <div className="d-flex flex-column align-items-center justify-content-around">
+                    <AiOutlineUp size={22} color="#333333" className="" />
+                    <Figure>
+                      <Figure.Image
+                        width={75}
+                        // height={80}
+                        alt="longboard1"
+                        src={longboard1}
+                        className="border border-dark p-1 m-0"
+                      />
+                    </Figure>
+                    <Figure>
+                      <Figure.Image
+                        width={75}
+                        // height={80}
+                        alt="longboard1"
+                        src={longboard1}
+                        className="border border-dark p-1 m-0"
+                      />
+                    </Figure>
+                    <Figure>
+                      <Figure.Image
+                        width={75}
+                        // height={80}
+                        alt="longboard1"
+                        src={longboard1}
+                        className="border border-dark p-1 m-0"
+                      />
+                    </Figure>
+                    <AiOutlineDown size={22} color="#333333" className="" />
+                  </div>
+                  <Figure>
+                    <Figure.Image
+                      width={450}
+                      // height={400}
+                      alt="longboard1"
+                      src={longboard1}
+                    />
+                  </Figure>
+                </div>
+                {/* 推薦商品 */}
+                <div className="m-5 me-4 ps-4">
+                  <h3 className="border-bottom border-dark pb-2 mb-4">
+                    推薦相似產品
+                  </h3>
+                  <div className="d-flex justify-content-evenly align-items-center">
+                    <AiFillLeftCircle size={22} color="#17a8a2" className="" />
+                    <Figure>
+                      <Figure.Image
+                        width={115}
+                        // height={80}
+                        alt="longboard1"
+                        src={longboard1}
+                      />
+                      <Figure.Caption className="d-flex justify-content-center">
+                        <p className="recommendProducts mb-0">衝浪板</p>
+                      </Figure.Caption>
+                      <Figure.Caption className="d-flex justify-content-center">
+                        <p className="fw-bold">NT 2,000</p>
+                      </Figure.Caption>
+                    </Figure>
+                    <Figure>
+                      <Figure.Image
+                        width={115}
+                        // height={80}
+                        alt="longboard1"
+                        src={longboard1}
+                      />
+                      <Figure.Caption className="d-flex justify-content-center">
+                        <p className="recommendProducts mb-0">衝浪板</p>
+                      </Figure.Caption>
+                      <Figure.Caption className="d-flex justify-content-center">
+                        <p className="fw-bold">NT 2,000</p>
+                      </Figure.Caption>
+                    </Figure>
+                    <Figure>
+                      <Figure.Image
+                        width={115}
+                        // height={80}
+                        alt="longboard1"
+                        src={longboard1}
+                      />
+                      <Figure.Caption className="d-flex justify-content-center">
+                        <p className="recommendProducts mb-0">衝浪板</p>
+                      </Figure.Caption>
+                      <Figure.Caption className="d-flex justify-content-center">
+                        <p className="fw-bold">NT 2,000</p>
+                      </Figure.Caption>
+                    </Figure>
+                    <Figure>
+                      <Figure.Image
+                        width={115}
+                        // height={80}
+                        alt="longboard1"
+                        src={longboard1}
+                      />
+                      <Figure.Caption className="d-flex justify-content-center">
+                        <p className="recommendProducts mb-0">衝浪板</p>
+                      </Figure.Caption>
+                      <Figure.Caption className="d-flex justify-content-center">
+                        <p className="fw-bold">NT 2,000</p>
+                      </Figure.Caption>
+                    </Figure>
+                    <AiFillRightCircle size={22} color="#17a8a2" className="" />
+                  </div>
+                </div>
+                {/* 品牌介紹 */}
+                <div className="m-5 me-4 ps-4">
+                  <h3 className="border-bottom border-dark pb-2 mb-4">
+                    品牌介紹
+                  </h3>
+                  <div className="row">
+                    <div className="col-3">
+                      <p className="text-center fw-bold">JJF by Pyzel</p>
+                    </div>
+                    <div className="col-9">
+                      <p>
+                        The JJF by Pyzel Gremlin Surfboard is crafted with a
+                        super versatile shape and stacked to the brim with some
+                        of the most advanced surf technology money can buy. From
+                        its lightweight Eco EPS Construction to its hand sanded
+                        rails, this is a grab and go good time for beginners and
+                        veterans alike.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                {/* 產品介紹 */}
+                <div className="m-5 me-4 ps-4">
+                  <h3 className="border-bottom border-dark pb-2 mb-4">
+                    產品介紹
+                  </h3>
+                  <div className="row">
+                    <div className="col-3">
+                      <p className="text-center fw-bold">衝浪板</p>
+                    </div>
+                    <div className="col-9">
+                      <p>
+                        Apex
+                        將我們在傳統和高性能長板衝浪方面的所有知識整合到一個精美的包裝中。當我們設計這塊板時，我們打算製造有史以來用途最廣泛的經典長板。一個對於新手來說非常容易上手的滑板，同時也是一個
+                        Cj
+                        可以在未來很多年推動他使用的滑板。鼻部凹入以實現令人難以置信的鼻翼提升，臀部像經典的「參與」原木一樣用於樞軸和鞭打，但具有較低的性能風格導軌和尾部的現代邊緣以提高速度和控制力。以現代風格向過去致敬。此板為經典長板設計的「
+                        頂點 」！
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                {/* 產品規格 */}
+                <div className="m-5 me-4 ps-4">
+                  <h3 className="border-bottom border-dark pb-2 mb-4">
+                    產品規格
+                  </h3>
+                  <div className="row">
+                    <div className="col-3">
+                      <p className="text-center fw-bold">材質</p>
+                      <p className="text-center fw-bold">類型</p>
+                      <p className="text-center fw-bold">重量</p>
+                      <p className="text-center fw-bold">板舵設定</p>
+                    </div>
+                    <div className="col-9">
+                      <p>玻纖</p>
+                      <p>長板</p>
+                      <p>玻纖</p>
+                      <p>Single / Double</p>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div className="col-3 right p-0">
+
+              <div className="col-3 p-0">
                 <h1>JJF by Pyzel</h1>
                 <h2>AstroFish 衝浪板</h2>
                 <div className="row">
