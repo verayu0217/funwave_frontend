@@ -307,13 +307,13 @@ function MemberOrderDetails() {
                               >
                                 <Form.Control
                                   as="textarea"
-                                  row={5}
-                                  className="col-12  textareaMember"
+                                  row={3}
+                                  className="col-12"
                                   placeholder="輸入訊息"
                                 />
                               </Form.Group>
                               <div className="d-flex justify-content-between mt-3">
-                                <Button className="mx-2 btn btnMember deepblueBtnMember fs-16Member">
+                                <Button className="btn btnMember deepblueBtnMember fs-16Member">
                                   &ensp;加入圖片
                                 </Button>
                                 <Button

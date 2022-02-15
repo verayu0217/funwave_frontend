@@ -24,8 +24,8 @@ function MemberMessage() {
                 >
                   <Form.Control
                     as="textarea"
-                    row={3}
-                    className="col-12"
+                    row={5}
+                    className="col-12 textareaMember"
                     placeholder="輸入訊息"
                   />
                 </Form.Group>
