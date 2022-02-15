@@ -15,7 +15,7 @@ function TaiwanMap() {
       >
         {/* 北部 */}
         {/* 沙崙 */}
-        <i className="myFas fas fa-map-marker N01"></i>
+        <i id="" className="myFas fas fa-map-marker N01"></i>
       </Tippy>
       <Tippy
         offset={[-10, 20]}
