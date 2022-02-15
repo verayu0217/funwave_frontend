@@ -1,16 +1,17 @@
 @import '../../styles/global.scss';
 
-// banner暫時用區塊
-.bg {
-  background-color: $lightgray;
-  height: 1100px;
-  // margin: 50px;
-  padding: 50px;
+.contentBanner {
+  // height: 1200px;
+  // transform: translateY(-500px);
+  // padding: 50px;
+  margin: auto;
+  // background-size: cover;
+  background: url('../../data/images/course/lightgrayBG-03.png') no-repeat;
 }
 
 // 課程內容標題
 .contentTitle {
-  min-height: 220px;
+  height: 250px;
 }
 
 // 6大特色內容圖片
