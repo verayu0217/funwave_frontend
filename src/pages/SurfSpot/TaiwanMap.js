@@ -1,147 +1,306 @@
 import React from 'react';
 import './taiwanMap.scss';
+import Tippy from '@tippyjs/react';
+import 'tippy.js/dist/tippy.css'; // optional
+import 'tippy.js/themes/light.css';
 
 function TaiwanMap() {
   return (
     <div className="wrapSpot">
-      <span>
+      <Tippy
+        offset={[-10, 20]}
+        placement={'left'}
+        theme={'light'}
+        content="沙崙"
+      >
         {/* 北部 */}
         {/* 沙崙 */}
-        <i
-          className="fas fa-map-marker N01"
-          data-toggle="edit an item"
-          title="沙崙"
-        ></i>
-      </span>
-      <span>
+        <i className="myFas fas fa-map-marker N01"></i>
+      </Tippy>
+      <Tippy
+        offset={[-10, 20]}
+        placement={'right'}
+        theme={'light'}
+        content="金山"
+      >
         {/* 金山 */}
-        <i className="fas fa-map-marker N02"></i>
-      </span>
-      <span>
+        <i className="myFas fas fa-map-marker N02"></i>
+      </Tippy>
+      <Tippy
+        offset={[-10, 20]}
+        placement={'left'}
+        theme={'light'}
+        content="白沙灣"
+      >
         {/* 白沙灣 */}
-        <i className="fas fa-map-marker N03"></i>
-      </span>
-      <span>
+        <i className="myFas fas fa-map-marker N03"></i>
+      </Tippy>
+      <Tippy
+        offset={[-10, 20]}
+        placement={'right'}
+        theme={'light'}
+        content="萬里"
+      >
         {/* 萬里 */}
-        <i className="fas fa-map-marker N04"></i>
-      </span>
-      <span>
+        <i className="myFas fas fa-map-marker N04"></i>
+      </Tippy>
+      <Tippy
+        offset={[-10, 20]}
+        placement={'right'}
+        theme={'light'}
+        content="福隆"
+      >
         {/* 福隆 */}
-        <i className="fas fa-map-marker N05"></i>
-      </span>
-      <span>
+        <i className="myFas fas fa-map-marker N05"></i>
+      </Tippy>
+      <Tippy
+        offset={[-10, 20]}
+        placement={'right'}
+        theme={'light'}
+        content="雙獅"
+      >
         {/* 東北部 */}
         {/* 雙獅 */}
-        <i className="fas fa-map-marker EN01"></i>
-      </span>
-      <span>
+        <i className="myFas fas fa-map-marker EN01"></i>
+      </Tippy>
+      <Tippy
+        offset={[-10, 20]}
+        placement={'right'}
+        theme={'light'}
+        content="外澳"
+      >
         {/* 外澳 */}
-        <i className="fas fa-map-marker EN02"></i>
-      </span>
-      <span>
+        <i className="myFas fas fa-map-marker EN02"></i>
+      </Tippy>
+      <Tippy
+        offset={[-10, 20]}
+        placement={'right'}
+        theme={'light'}
+        content="烏石港"
+      >
         {/* 烏石港 */}
-        <i className="fas fa-map-marker EN03"></i>
-      </span>
-      <span>
+        <i className="myFas fas fa-map-marker EN03"></i>
+      </Tippy>
+      <Tippy
+        offset={[-10, 20]}
+        placement={'right'}
+        theme={'light'}
+        content="竹安"
+      >
         {/* 竹安 */}
-        <i className="fas fa-map-marker EN04"></i>
-      </span>
-      <span>
+        <i className="myFas fas fa-map-marker EN04"></i>
+      </Tippy>
+      <Tippy
+        offset={[-10, 20]}
+        placement={'right'}
+        theme={'light'}
+        content="清水"
+      >
         {/* 清水 */}
-        <i className="fas fa-map-marker EN05"></i>
-      </span>
-      <span>
+        <i className="myFas fas fa-map-marker EN05"></i>
+      </Tippy>
+      <Tippy
+        offset={[-10, 20]}
+        placement={'right'}
+        theme={'light'}
+        content="蘇澳-無尾港"
+      >
         {/* 蘇澳-無尾港 */}
-        <i className="fas fa-map-marker EN06"></i>
-      </span>
-      <span>
+        <i className="myFas fas fa-map-marker EN06"></i>
+      </Tippy>
+      <Tippy
+        offset={[-10, 20]}
+        placement={'right'}
+        theme={'light'}
+        content="花蓮北濱"
+      >
         {/* 東部 */}
         {/* 花蓮北濱 */}
-        <i className="fas fa-map-marker E01"></i>
-      </span>
-      <span>
+        <i className="myFas fas fa-map-marker E01"></i>
+      </Tippy>
+      <Tippy
+        offset={[-10, 20]}
+        placement={'right'}
+        theme={'light'}
+        content="雙橋"
+      >
         {/* 雙橋 */}
-        <i className="fas fa-map-marker E02"></i>
-      </span>
-      <span>
+        <i className="myFas fas fa-map-marker E02"></i>
+      </Tippy>
+      <Tippy
+        offset={[-10, 20]}
+        placement={'right'}
+        theme={'light'}
+        content="鹽寮漁港"
+      >
         {/* 鹽寮漁港 */}
-        <i className="fas fa-map-marker E03"></i>
-      </span>
-      <span>
+        <i className="myFas fas fa-map-marker E03"></i>
+      </Tippy>
+      <Tippy
+        offset={[-10, 20]}
+        placement={'right'}
+        theme={'light'}
+        content="磯崎"
+      >
         {/* 磯崎 */}
-        <i className="fas fa-map-marker E04"></i>
-      </span>
-      <span>
+        <i className="myFas fas fa-map-marker E04"></i>
+      </Tippy>
+      <Tippy
+        offset={[-10, 20]}
+        placement={'right'}
+        theme={'light'}
+        content="八仙洞"
+      >
         {/* 八仙洞 */}
-        <i className="fas fa-map-marker E05"></i>
-      </span>
-      <span>
+        <i className="myFas fas fa-map-marker E05"></i>
+      </Tippy>
+      <Tippy
+        offset={[-10, 20]}
+        placement={'right'}
+        theme={'light'}
+        content="成功"
+      >
         {/* 成功 */}
-        <i className="fas fa-map-marker E06"></i>
-      </span>
-      <span>
+        <i className="myFas fas fa-map-marker E06"></i>
+      </Tippy>
+      <Tippy
+        offset={[-10, 20]}
+        placement={'right'}
+        theme={'light'}
+        content="東河"
+      >
         {/* 東河 */}
-        <i className="fas fa-map-marker E07"></i>
-      </span>
-      <span>
+        <i className="myFas fas fa-map-marker E07"></i>
+      </Tippy>
+      <Tippy
+        offset={[-10, 20]}
+        placement={'right'}
+        theme={'light'}
+        content="金樽"
+      >
         {/* 金樽 */}
-        <i className="fas fa-map-marker E08"></i>
-      </span>
-      <span>
+        <i className="myFas fas fa-map-marker E08"></i>
+      </Tippy>
+      <Tippy
+        offset={[-10, 20]}
+        placement={'right'}
+        theme={'light'}
+        content="都蘭"
+      >
         {/* 都蘭 */}
-        <i className="fas fa-map-marker E09"></i>
-      </span>
-      <span>
+        <i className="myFas fas fa-map-marker E09"></i>
+      </Tippy>
+      <Tippy
+        offset={[-10, 20]}
+        placement={'right'}
+        theme={'light'}
+        content="台東"
+      >
         {/* 台東 */}
-        <i className="fas fa-map-marker E10"></i>
-      </span>
-      <span>
+        <i className="myFas fas fa-map-marker E10"></i>
+      </Tippy>
+      <Tippy
+        offset={[-10, 20]}
+        placement={'right'}
+        theme={'light'}
+        content="九棚"
+      >
         {/* 南部 */}
         {/* 九棚 */}
-        <i className="fas fa-map-marker S01"></i>
-      </span>
-      <span>
+        <i className="myFas fas fa-map-marker S01"></i>
+      </Tippy>
+      <Tippy
+        offset={[-10, 20]}
+        placement={'right'}
+        theme={'light'}
+        content="佳樂水"
+      >
         {/* 佳樂水 */}
-        <i className="fas fa-map-marker S02"></i>
-      </span>
-      <span>
+        <i className="myFas fas fa-map-marker S02"></i>
+      </Tippy>
+      <Tippy
+        offset={[-10, 20]}
+        placement={'left'}
+        theme={'light'}
+        content="南灣"
+      >
         {/* 南灣 */}
-        <i className="fas fa-map-marker S03"></i>
-      </span>
-      <span>
+        <i className="myFas fas fa-map-marker S03"></i>
+      </Tippy>
+      <Tippy
+        offset={[-10, 20]}
+        placement={'left'}
+        theme={'light'}
+        content="射寮"
+      >
         {/* 射寮 */}
-        <i className="fas fa-map-marker S04"></i>
-      </span>
-      <span>
+        <i className="myFas fas fa-map-marker S04"></i>
+      </Tippy>
+      <Tippy
+        offset={[-10, 20]}
+        placement={'left'}
+        theme={'light'}
+        content="竹南"
+      >
         {/* 西部 */}
         {/* 竹南 */}
-        <i className="fas fa-map-marker W01"></i>
-      </span>
-      <span>
+        <i className="myFas fas fa-map-marker W01"></i>
+      </Tippy>
+      <Tippy
+        offset={[-10, 20]}
+        placement={'left'}
+        theme={'light'}
+        content="北埔外堤"
+      >
         {/* 北埔外堤 */}
-        <i className="fas fa-map-marker W02"></i>
-      </span>
-      <span>
+        <i className="myFas fas fa-map-marker W02"></i>
+      </Tippy>
+      <Tippy
+        offset={[-10, 20]}
+        placement={'left'}
+        theme={'light'}
+        content="松柏港"
+      >
         {/* 松柏港 */}
-        <i className="fas fa-map-marker W03"></i>
-      </span>
-      <span>
+        <i className="myFas fas fa-map-marker W03"></i>
+      </Tippy>
+      <Tippy
+        offset={[-10, 20]}
+        placement={'left'}
+        theme={'light'}
+        content="大安"
+      >
         {/* 大安 */}
-        <i className="fas fa-map-marker W04"></i>
-      </span>
-      <span>
+        <i className="myFas fas fa-map-marker W04"></i>
+      </Tippy>
+      <Tippy
+        offset={[-10, 20]}
+        placement={'left'}
+        theme={'light'}
+        content="山水"
+      >
         {/* 澎湖 */}
         {/* 山水 */}
-        <i className="fas fa-map-marker W05"></i>
-      </span>
-      <span>
+        <i className="myFas fas fa-map-marker W05"></i>
+      </Tippy>
+      <Tippy
+        offset={[-10, 20]}
+        placement={'left'}
+        theme={'light'}
+        content="漁光島(馬場)"
+      >
         {/* 漁光島(馬場) */}
-        <i className="fas fa-map-marker W06"></i>
-      </span>
-      <span>
+        <i className="myFas fas fa-map-marker W06"></i>
+      </Tippy>
+      <Tippy
+        offset={[-10, 20]}
+        placement={'left'}
+        theme={'light'}
+        content="旗津"
+      >
         {/* 旗津) */}
-        <i className="fas fa-map-marker W07"></i>
-      </span>
+        <i className="myFas fas fa-map-marker W07"></i>
+      </Tippy>
 
       <svg
         id="cf503461-00bd-459a-aeb5-062ebc913211"

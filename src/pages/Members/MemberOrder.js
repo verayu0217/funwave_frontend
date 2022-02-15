@@ -36,7 +36,11 @@ function MemberOrder() {
                     <a role="button" href="" className="deepblue me-3">
                       <i className="fas fa-edit"></i>
                     </a>
-                    <a role="button" href="" className="">
+                    <a
+                      role="button"
+                      href=""
+                      className="deleteIconMember orange"
+                    >
                       <i className="fas fa-trash-alt"></i>
                     </a>
                   </td>
@@ -50,7 +54,11 @@ function MemberOrder() {
                     <a role="button" href="" className="deepblue me-3">
                       <i className="fas fa-edit"></i>
                     </a>
-                    <a role="button" href="" className="">
+                    <a
+                      role="button"
+                      href=""
+                      className="deleteIconMember orange"
+                    >
                       <i className="fas fa-trash-alt"></i>
                     </a>
                   </td>

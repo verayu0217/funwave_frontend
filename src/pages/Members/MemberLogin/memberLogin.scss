@@ -42,6 +42,10 @@
     width: 280px;
     font-weight: bold;
 }
+// 眼睛
+.loginEye{
+    cursor: pointer;
+}
 
 //註冊
 .wrapSignup{
@@ -73,12 +77,8 @@
     cursor: pointer;
 }
 // 眼睛
-.fasEye{
-    color: $funwave-black;
-}
-.fasEye:hover{
-    color: $funwave-black;
-    font-size: 1rem;
+.signupEye{
+    cursor: pointer;
 }
 // 快速註冊手機版 375px
 @media screen and (max-width: 400px) {
