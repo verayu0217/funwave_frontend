@@ -6,33 +6,31 @@ import greenTitle from '../../data/images/greenTitle.svg';
 
 import './Courses.scss';
 
-// 假資料
-const courseSpots = [
-  {
-    id: 1,
-    name: '金沙',
-    image: 'https://picsum.photos/id/237/275/150',
-  },
-  {
-    id: 2,
-    name: '福隆海水浴場',
-    image: 'https://picsum.photos/id/237/275/150',
-  },
-  {
-    id: 3,
-    name: '頭城',
-    image: 'https://picsum.photos/id/237/275/150',
-  },
-  {
-    id: 4,
-    name: '白沙灣',
-    image: 'https://picsum.photos/id/237/275/150',
-  },
-];
-
 function Courses() {
   //先用假資料 先不從後端取
-  // const [courseSpot, setCourseSpot] = useState({
+  const [courseSpots, setCourseSpot] = useState([
+    {
+      id: 1,
+      name: '金沙',
+      image: 'https://picsum.photos/id/237/275/150',
+    },
+    {
+      id: 2,
+      name: '福隆海水浴場',
+      image: 'https://picsum.photos/id/237/275/150',
+    },
+    {
+      id: 3,
+      name: '頭城',
+      image: 'https://picsum.photos/id/237/275/150',
+    },
+    {
+      id: 4,
+      name: '白沙灣',
+      image: 'https://picsum.photos/id/237/275/150',
+    },
+  ]);
+
   // useEffect(() => {
   //   let getCourseSpot = async () => {
   //     // http://localhost:3002/api/還沒取

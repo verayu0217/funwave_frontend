@@ -14,10 +14,17 @@ import HomeTry from './pages/HomeTry/';
 //會員
 import LogIn from './pages/Members/MemberLogin/LogIn';
 import Member from './pages/Members/Member';
+import MemberOrder from './pages/Members/MemberOrder';
+import MemberOrderDetails from './pages/Members/MemberOrderDetails';
+import MemberCollect from './pages/Members/MemberCollect';
+import MemberCoupon from './pages/Members/MemberCoupon';
+import MemberInfo from './pages/Members/MemberInfo';
+import MemberMessage from './pages/Members/MemberMessage';
+import MemberPoint from './pages/Members/MemberPoint';
+import MemberShoppingGold from './pages/Members/MemberShoppingGold';
 //課程
 
 import CourseContent from './pages/Course/CourseContent';
-
 import Courses from './pages/Course/Courses';
 import CourseCart from './pages/Course/CourseCart';
 
@@ -56,7 +63,21 @@ function App() {
         <Route path="/ProductDetails" element={<ProductDetails />} />
         <Route path="/Products" element={<Products />} />
         <Route path="/Customized" element={<Customized />} />
-        <Route path="/member" element={<Member />} />
+        <Route
+          path="/Member/MemberOrder/MemberOrderDetails"
+          element={<MemberOrderDetails />}
+        />
+        <Route
+          path="/Member/MemberShoppingGold"
+          element={<MemberShoppingGold />}
+        />
+        <Route path="/Member/MemberCollect" element={<MemberCollect />} />
+        <Route path="/Member/MemberMessage" element={<MemberMessage />} />
+        <Route path="/Member/MemberCoupon" element={<MemberCoupon />} />
+        <Route path="/Member/MemberPoint" element={<MemberPoint />} />
+        <Route path="/Member/MemberInfo" element={<MemberInfo />} />
+        <Route path="/Member/MemberOrder" element={<MemberOrder />} />
+        <Route path="/Member" element={<Member />} />
         <Route path="/Course" element={<Courses />} />
         <Route path="/Course/CourseContent" element={<CourseContent />} />
         <Route path="/Course/CourseCart" element={<CourseCart />} />

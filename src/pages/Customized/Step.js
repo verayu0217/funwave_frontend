@@ -3,7 +3,7 @@ import { Row, Col } from 'react-bootstrap';
 
 function Step() {
   return (
-    <div className="d-flex justify-content-center my-5 py-5">
+    <div className="d-flex justify-content-center my-5">
       <div>
         <h3 className="text-center fw-bold mb-5">不做不會怎樣，做了很不一樣</h3>
         <h1 className="text-center orange fw-bold mb-5">
@@ -13,7 +13,7 @@ function Step() {
           通過衝浪者填寫您的資料，讓FUNWAVE深入了解您，以利Lai Eddy Red Huang
           Fang設計一個真正適合您和您的衝浪風格的板子，並立即選擇您喜歡的板子顏色及圖文樣式吧
         </p>
-        <h3 className="text-center fw-bold my-5 py-5">
+        <h3 className="text-center fw-bold my-5 pt-5">
           簡單3步驟，訂製您的夢想衝浪板
         </h3>
         <Row>

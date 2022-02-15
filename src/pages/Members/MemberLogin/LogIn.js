@@ -7,7 +7,7 @@ import { ERR_MSG } from '../../../utils/error';
 import './memberLogin.scss';
 
 function Login(props) {
-  const [close, setClose] = useState('far fa-eye-slash');
+  const [close, setClose] = useState('fas fa-eye-slash');
   const [type, setType] = useState('password');
   const [showModal, setshowModal] = useState(false);
   const openSignUp = () => {
@@ -85,14 +85,14 @@ function Login(props) {
                   onClick={handleChange}
                 />
                 <i
-                  className={`mt-2 mt-md-3 ml-2 ${close}`}
+                  className={`loginEye mt-2 mt-md-3 ml-2 ${close}`}
                   onClick={() => {
                     if (type === 'password') {
                       setType('text');
-                      setClose('far fa-eye');
+                      setClose('fas fa-eye');
                     } else {
                       setType('password');
-                      setClose('far fa-eye-slash');
+                      setClose('fas fa-eye-slash');
                     }
                   }}
                 ></i>
