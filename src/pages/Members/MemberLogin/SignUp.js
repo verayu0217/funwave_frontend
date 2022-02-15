@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { API_URL } from '../../../utils/config';
 import { ERR_MSG } from '../../../utils/error';
+import { BsFillEyeFill, BsFillEyeSlashFill } from 'react-icons/bs';
 import 'animate.css';
 import './memberLogin.scss';
 
@@ -74,8 +75,20 @@ function SignUp() {
                   onChange={handleChange}
                 />
                 <div className="fasEye">
+                  {/* <BsFillEyeSlashFill
+                    className={`mt-md-3 ml-2 ${close}`}
+                    onClick={() => {
+                      if (type === 'password') {
+                        setType('text');
+                        setClose(<BsFillEyeFill />);
+                      } else {
+                        setType('password');
+                        setClose(<BsFillEyeSlashFill />);
+                      }
+                    }}
+                  /> */}
                   <i
-                    className={`fasEye mt-2 mt-md-3 ml-2 ${close}`}
+                    className={`signupEye mt-md-3 ml-2 ${close}`}
                     onClick={() => {
                       if (type === 'password') {
                         setType('text');

@@ -4,6 +4,9 @@ import './Custom.scss';
 import RecommendCard from './RecommendCard';
 import Ad from './Ad';
 import Step from './Step';
+import Step1 from './Step1';
+import Step2 from './Step2';
+import Step3 from './Step3';
 function Customized() {
   return (
     <>
@@ -32,7 +35,7 @@ function Customized() {
           </div>
         </div>
       </Container>
-      <Container fluid className="recommendBg py-5">
+      <Container fluid className="recommendBg pt-5">
         <Container>
           <h3 className="text-center fw-bold mb-5">
             他們都推薦FUNWAVE的訂製衝浪板
@@ -50,6 +53,9 @@ function Customized() {
           </Row>
           <Ad />
           <Step />
+          <Step1 />
+          <Step2 />
+          <Step3 />
         </Container>
       </Container>
     </>

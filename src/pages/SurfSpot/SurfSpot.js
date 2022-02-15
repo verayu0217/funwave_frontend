@@ -39,7 +39,7 @@ function SurfSpot() {
           </div>
         </div>
       </div>
-      {/* <SurfSpotDetails /> */}
+      <SurfSpotDetails />
     </>
   );
 }

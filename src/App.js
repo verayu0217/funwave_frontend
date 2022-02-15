@@ -14,6 +14,14 @@ import HomeTry from './pages/HomeTry/';
 //會員
 import LogIn from './pages/Members/MemberLogin/LogIn';
 import Member from './pages/Members/Member';
+import MemberOrder from './pages/Members/MemberOrder';
+import MemberOrderDetails from './pages/Members/MemberOrderDetails';
+import MemberCollect from './pages/Members/MemberCollect';
+import MemberCoupon from './pages/Members/MemberCoupon';
+import MemberInfo from './pages/Members/MemberInfo';
+import MemberMessage from './pages/Members/MemberMessage';
+import MemberPoint from './pages/Members/MemberPoint';
+import MemberShoppingGold from './pages/Members/MemberShoppingGold';
 //課程
 
 import CourseContent from './pages/Course/CourseContent';
@@ -32,7 +40,7 @@ import Products from './pages/Products/Products';
 //客製化浪板
 import Customized from './pages/Customized/Customized';
 //浪點
-// import SurfSpot from './pages/SurfSpot/SurfSpot';
+import SurfSpot from './pages/SurfSpot/SurfSpot';
 
 // 組合用元件(一般組件)
 // import Breadcrumb from './components/Breadcrumb';
@@ -52,11 +60,25 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/homeTry" element={<HomeTry />} />
         <Route path="/login" element={<LogIn />} />
-        {/* <Route path="/surfspot" element={<SurfSpot />} /> */}
+        <Route path="/surfspot" element={<SurfSpot />} />
         <Route path="/ProductDetails" element={<ProductDetails />} />
         <Route path="/Products" element={<Products />} />
         <Route path="/Customized" element={<Customized />} />
-        <Route path="/member" element={<Member />} />
+        <Route
+          path="/Member/MemberOrder/MemberOrderDetails"
+          element={<MemberOrderDetails />}
+        />
+        <Route
+          path="/Member/MemberShoppingGold"
+          element={<MemberShoppingGold />}
+        />
+        <Route path="/Member/MemberCollect" element={<MemberCollect />} />
+        <Route path="/Member/MemberMessage" element={<MemberMessage />} />
+        <Route path="/Member/MemberCoupon" element={<MemberCoupon />} />
+        <Route path="/Member/MemberPoint" element={<MemberPoint />} />
+        <Route path="/Member/MemberInfo" element={<MemberInfo />} />
+        <Route path="/Member/MemberOrder" element={<MemberOrder />} />
+        <Route path="/Member" element={<Member />} />
         {/* <Route path="/Course" element={<Courses />} /> */}
         <Route path="/Course/CourseContent" element={<CourseContent />} />
         <Route path="/Course/CourseCart" element={<CourseCart />} />
