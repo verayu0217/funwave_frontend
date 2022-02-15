@@ -26,7 +26,9 @@ function Login(props) {
     e.preventDefault();
 
     try {
-      let response = await axios.post(`${API_URL}/auth/login`, member);
+      let response = await axios.post(`${API_URL}/auth/login`, member, {
+        withCredentials: true,
+      });
       console.log(response.data);
     } catch (e) {
       console.error({ ERR_MSG });
@@ -58,7 +60,7 @@ function Login(props) {
               </div>
             </div>
           </div>
-          <div className="col-md-5 col-sm-12 vh-100 d-flex align-items-center justify-content-center">
+          <form className="col-md-5 col-sm-12 vh-100 d-flex align-items-center justify-content-center">
             <ul className="list-unstyled">
               <li className="d-flex justify-content-center">
                 <div className="fs-2 loginTitle">登入會員</div>
@@ -122,7 +124,7 @@ function Login(props) {
               </li>
               <Modal showModal={showModal} setshowModal={setshowModal} />
             </ul>
-          </div>
+          </form>
         </div>
       </div>
     </>

@@ -70,6 +70,9 @@ function MyNavbar(props) {
               <Nav.Link className="btnLogin mx-2" as={NavLink} to="/login">
                 登入/註冊
               </Nav.Link>
+              <Nav.Link className="btnLogin mx-2" as={NavLink} to="/login">
+                登出
+              </Nav.Link>
             </form>
           </Navbar.Collapse>
         </Container>
