@@ -18,7 +18,7 @@ import Member from './pages/Members/Member';
 
 import CourseContent from './pages/Course/CourseContent';
 
-// import Courses from './pages/Course/Courses';
+import Courses from './pages/Course/Courses';
 import CourseCart from './pages/Course/CourseCart';
 
 //商城
@@ -57,7 +57,7 @@ function App() {
         <Route path="/Products" element={<Products />} />
         <Route path="/Customized" element={<Customized />} />
         <Route path="/member" element={<Member />} />
-        {/* <Route path="/Course" element={<Courses />} /> */}
+        <Route path="/Course" element={<Courses />} />
         <Route path="/Course/CourseContent" element={<CourseContent />} />
         <Route path="/Course/CourseCart" element={<CourseCart />} />
       </Routes>

@@ -117,7 +117,7 @@ function Courses() {
 
       {/* 課程地點介紹區 */}
       <div className="container my-5">
-        <div className="text-secondary fw-bold  h1 text-center mb-5">
+        <div className="text-secondary  h1 text-center mb-5">
           <img
             src={greenTitle}
             className="greenTitle me-3"
@@ -134,7 +134,7 @@ function Courses() {
 
           {courseSpots.map((spot) => {
             return (
-              <div className="col-md-6 col-lg-3 ">
+              <div key={spot.id} className="col-md-6 col-lg-3 ">
                 <div className="spot-img shadow-sm">
                   <img src={spot.image} className="w-100 rounded" alt="..." />
                   <p className="card-text text-center p-2">{spot.name}</p>
@@ -147,18 +147,8 @@ function Courses() {
         {/* 東部/西部/南部  */}
         <div className="row">
           <p className="text-center h2 mt-5 mb-3">東部/西部/南部</p>
-          <div className="col-md-6 col-lg-3">
-            <div className="spot-img shadow-sm">
-              <img
-                src="https://fakeimg.pl/275x150/"
-                className="w-100 rounded"
-                alt="..."
-              />
-              <p className="card-text text-center p-2">白沙灣</p>
-            </div>
-          </div>
 
-          <div className="col-md-6 col-lg-3">
+          {/* <div className="col-md-6 col-lg-3">
             <div className="spot-img shadow-sm">
               <img
                 src="https://fakeimg.pl/275x150/"
@@ -167,35 +157,25 @@ function Courses() {
               />
               <p className="card-text text-center p-2">白沙灣</p>
             </div>
-          </div>
+          </div> */}
 
-          <div className="col-md-6 col-lg-3">
-            <div className="spot-img shadow-sm">
-              <img
-                src="https://fakeimg.pl/275x150/"
-                className="w-100 rounded"
-                alt="..."
-              />
-              <p className="card-text text-center p-2">白沙灣</p>
-            </div>
-          </div>
-          <div className="col-md-6 col-lg-3">
-            <div className="spot-img shadow-sm">
-              <img
-                src="https://fakeimg.pl/275x150/"
-                className="w-100 rounded"
-                alt="..."
-              />
-              <p className="card-text text-center p-2">白沙灣</p>
-            </div>
-          </div>
+          {courseSpots.map((spot) => {
+            return (
+              <div key={spot.id} className="col-md-6 col-lg-3 ">
+                <div className="spot-img shadow-sm">
+                  <img src={spot.image} className="w-100 rounded" alt="..." />
+                  <p className="card-text text-center p-2">{spot.name}</p>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
 
       {/* 教練介紹區 */}
       <div className="container my-5">
         <div className="row">
-          <div className="text-secondary fw-bold mt-3 h1 text-center mb-3">
+          <div className="text-secondary  mt-3 h1 text-center mb-3">
             <img
               src={greenTitle}
               className="greenTitle me-3"
