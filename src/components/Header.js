@@ -43,29 +43,29 @@ function MyNavbar(props) {
               Dank memes
             </Nav.Link>
           </Nav> */}
-            <form class="d-flex btnGroup">
+            <form className="d-flex btnGroup">
               <input
-                class="form-control me-2 searchIpt"
+                className="form-control me-2 searchIpt"
                 type="search"
                 placeholder="Search"
                 aria-label="Search"
                 style={{ display: 'none' }}
               />
-              <button class="btn iconGroup" type="submit">
-                <i class="fas fa-search"></i>
+              <button className="btn iconGroup" type="submit">
+                <i className="fas fa-search"></i>
               </button>
-              {/* <button class="btn" type="submit">
-              <i class="fas fa-shopping-cart"></i>
+              {/* <button className="btn" type="submit">
+              <i className="fas fa-shopping-cart"></i>
             </button> */}
               <Nav.Link className="iconGroup" as={NavLink} to="/">
-                <i class="fas fa-shopping-cart"></i>
+                <i className="fas fa-shopping-cart"></i>
                 <span>&ensp;(0)</span>
               </Nav.Link>
-              {/* <button class="btn" type="submit">
-              <i class="fas fa-user"></i>
+              {/* <button className="btn" type="submit">
+              <i className="fas fa-user"></i>
             </button> */}
               <Nav.Link className="iconGroup" as={NavLink} to="/Member">
-                <i class="fas fa-user"></i>
+                <i className="fas fa-user"></i>
               </Nav.Link>
               <Nav.Link
                 className="btnLogin mx-2"

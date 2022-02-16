@@ -12,32 +12,32 @@ function MemberPoint() {
             </span>
             會員點數
           </h2>
-          <div class="card cardMember mt-5 mb-3 p-4">
-            <div class="row g-0">
-              <div class="col-5 d-flex justify-content-center align-items-center">
+          <div className="card cardMember mt-5 mb-3 p-4">
+            <div className="row g-0">
+              <div className="col-5 d-flex justify-content-center align-items-center">
                 <div className="d-flex align-items-center">
                   <div className="d-flex justify-content-center align-items-center bellWrapMember">
-                    <i class="fas fa-bell fasMember bellIconMember"></i>
-                    <i class="fal fa-usd-circle"></i>
+                    <i className="fas fa-bell fasMember bellIconMember"></i>
+                    <i className="fal fa-usd-circle"></i>
                   </div>
                   <div className="d-flex justify-content-center align-items-center flex-column">
-                    <p class="card-text fs-20Member">現有總點數</p>
+                    <p className="card-text fs-20Member">現有總點數</p>
                     <h3 className="fs-45Member">
-                      57<span class="fs-20Member">點</span>
+                      57<span className="fs-20Member">點</span>
                     </h3>
-                    <p class="card-text m-0 fs-20Member">等值&nbsp;NT$57</p>
-                    <p class="card-text markMember m-0 orange">
+                    <p className="card-text m-0 fs-20Member">等值&nbsp;NT$57</p>
+                    <p className="card-text markMember m-0 orange">
                       到期日：2022/12/31
                     </p>
                   </div>
                 </div>
               </div>
-              <div class="col-1 lineWrapMember">
+              <div className="col-1 lineWrapMember">
                 <div className="lineMember"></div>
               </div>
-              <div class="col-6 d-flex align-items-center">
-                <div class="d-flex justify-content-start align-items-center flex-column">
-                  <p class="card-text fs-16Member">
+              <div className="col-6 d-flex align-items-center">
+                <div className="d-flex justify-content-start align-items-center flex-column">
+                  <p className="card-text fs-16Member">
                     消費&nbsp;NT$200&nbsp;可累計&nbsp;1&nbsp;點
                     <br />
                     1&nbsp;點可折抵&nbsp;NT$1。

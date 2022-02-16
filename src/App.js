@@ -1,8 +1,12 @@
 // 使用套件
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
+
 import './App.scss';
 import './styles/global.scss';
+import axios from 'axios';
+import { API_URL } from './utils/config';
+import { ERR_MSG } from './utils/error';
 
 // 頁面用元件(路由組件)
 //首頁
@@ -53,6 +57,27 @@ import Header from './components/Header';
 
 function App() {
   const [auth, setAuth] = useState(false);
+  async function checklogIn() {
+    try {
+      let response = await axios.get(`${API_URL}/auth/checklogin`, {
+        withCredentials: true,
+      });
+      if (response.data.message === 'login') {
+        setAuth(true);
+      }
+      console.log(response.data);
+    } catch (e) {
+      console.error({ ERR_MSG });
+    }
+  }
+  useEffect(() => {
+    checklogIn();
+  }, []);
+
+  // if (!auth) {
+  //   // 轉頁效果
+  //   return <Navigate to="/" />;
+  // }
   return (
     <>
       <Header auth={auth} setAuth={setAuth} />

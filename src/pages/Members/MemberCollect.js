@@ -48,7 +48,7 @@ function MemberCollect() {
                     <p>EXTRA SHOT BY RACHAEL TILLY</p>
                     <p className="gray">
                       CHECK STORE INVENTORY&ensp;
-                      <i class="fas fa-arrow-right"></i>
+                      <i className="fas fa-arrow-right"></i>
                     </p>
                   </div>
                 </td>
@@ -62,12 +62,12 @@ function MemberCollect() {
                   </button>
                   <br />
                   <button className="btn blueBtnMember text-nowrap">
-                    <i class="fas fa-cart-plus"></i>&ensp;立即購買
+                    <i className="fas fa-cart-plus"></i>&ensp;立即購買
                   </button>
                 </td>
                 <td className="text-end">
                   <a role="button" href="" className="deleteBtnMember">
-                    <i class="far fa-trash-alt"></i>
+                    <i className="far fa-trash-alt"></i>
                   </a>
                 </td>
               </tr>
@@ -80,7 +80,7 @@ function MemberCollect() {
                     <p>EXTRA SHOT BY RACHAEL TILLY</p>
                     <p className="gray">
                       CHECK STORE INVENTORY&ensp;
-                      <i class="fas fa-arrow-right"></i>
+                      <i className="fas fa-arrow-right"></i>
                     </p>
                   </div>
                 </td>
@@ -94,12 +94,12 @@ function MemberCollect() {
                   </button>
                   <br />
                   <button className="btn blueBtnMember text-nowrap">
-                    <i class="fas fa-cart-plus"></i>&ensp;立即購買
+                    <i className="fas fa-cart-plus"></i>&ensp;立即購買
                   </button>
                 </td>
                 <td className="text-end">
                   <a role="button" href="" className="deleteBtnMember">
-                    <i class="far fa-trash-alt"></i>
+                    <i className="far fa-trash-alt"></i>
                   </a>
                 </td>
               </tr>

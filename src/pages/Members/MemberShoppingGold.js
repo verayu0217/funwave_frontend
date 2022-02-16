@@ -12,8 +12,8 @@ function MemberShoppingGold() {
             </span>
             我的購物金
           </h2>
-          <div class="card cardMember mt-5 mb-3 p-4">
-            <div class="row g-0">
+          <div className="card cardMember mt-5 mb-3 p-4">
+            <div className="row g-0">
               <p className="me-3 m-0 fs-20Member">
                 現有購物金&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <span className="orange">200</span>&nbsp;&nbsp;元

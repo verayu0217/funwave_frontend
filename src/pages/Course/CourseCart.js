@@ -10,9 +10,9 @@ function CourseCart() {
   return (
     <>
       {/* 購物車進度條 */}
-      <div class="container-fluid">
-        <div class="row">
-          <div class=" col-sm-12 col-lg-10 m-auto">
+      <div className="container-fluid">
+        <div className="row">
+          <div className=" col-sm-12 col-lg-10 m-auto">
             {/* 標題 */}
             <div className="text-secondary fw-bold my-3 h1 text-center ">
               <img
@@ -28,10 +28,10 @@ function CourseCart() {
             {/* 明細區塊  */}
             <div>
               {/* 明細電腦版樣式*/}
-              <div class="courseDetail">
-                <p class="h3">衝浪課程</p>
-                <table class="table table-borderless border-bottom border-1 border-dark">
-                  <thead class="bg-light text-center">
+              <div className="courseDetail">
+                <p className="h3">衝浪課程</p>
+                <table className="table table-borderless border-bottom border-1 border-dark">
+                  <thead className="bg-light text-center">
                     <tr>
                       <th scope="col">名稱</th>
                       <th scope="col">時段</th>
@@ -43,7 +43,7 @@ function CourseCart() {
                       <th scope="col">操作</th>
                     </tr>
                   </thead>
-                  <tbody class="text-center">
+                  <tbody className="text-center">
                     <tr>
                       <td>初階衝浪</td>
                       <td>上午</td>
@@ -53,33 +53,33 @@ function CourseCart() {
                       <td>NT 2,000</td>
                       <td>2022-1-24</td>
                       <td>
-                        <i class="fas fa-trash-alt"></i>
+                        <i className="fas fa-trash-alt"></i>
                       </td>
                     </tr>
                   </tbody>
                 </table>
 
                 {/* 付款方式 */}
-                <div class="row d-flex border-bottom border-1 border-dark">
-                  <div class="col-sm-12 col-md-2 ">
-                    <p class=" h3 me-3 align-self-center">付款方式</p>
+                <div className="row d-flex border-bottom border-1 border-dark">
+                  <div className="col-sm-12 col-md-2 ">
+                    <p className=" h3 me-3 align-self-center">付款方式</p>
                   </div>
 
-                  <div class="col-sm-12 col-md-10 ">
-                    <nav aria-label="..." class=" align-self-center">
-                      <ul class="pagination pagination-sm">
-                        <li class="payItem active" aria-current="page">
-                          <a class="pay-link" href="#/">
+                  <div className="col-sm-12 col-md-10 ">
+                    <nav aria-label="..." className=" align-self-center">
+                      <ul className="pagination pagination-sm">
+                        <li className="payItem active" aria-current="page">
+                          <a className="pay-link" href="#/">
                             信用卡
                           </a>
                         </li>
-                        <li class="payItem">
-                          <a class="pay-link" href="#/">
+                        <li className="payItem">
+                          <a className="pay-link" href="#/">
                             匯款
                           </a>
                         </li>
-                        <li class="payItem">
-                          <a class="pay-link" href="#/">
+                        <li className="payItem">
+                          <a className="pay-link" href="#/">
                             現金
                           </a>
                         </li>
@@ -89,18 +89,18 @@ function CourseCart() {
                 </div>
 
                 {/* <總計  */}
-                <div class="d-flex justify-content-end">
-                  <p class="h3">總計 NT 2,000</p>
+                <div className="d-flex justify-content-end">
+                  <p className="h3">總計 NT 2,000</p>
                 </div>
 
                 {/* 上一頁/下一頁按鈕  */}
-                <div class="d-flex justify-content-end ">
+                <div className="d-flex justify-content-end ">
                   <div>
-                    <button class="btn btn-secondary text-white backBtn me-3 mt-3">
+                    <button className="btn btn-secondary text-white backBtn me-3 mt-3">
                       <i className="fas fa-arrow-left text-white"></i>
                       回上一頁
                     </button>
-                    <button class="btn btn-primary text-white confirmBtn mt-3">
+                    <button className="btn btn-primary text-white confirmBtn mt-3">
                       確認資訊
                       <i className="fas fa-arrow-right text-white"></i>
                     </button>
@@ -109,9 +109,9 @@ function CourseCart() {
               </div>
 
               {/* 明細手機版樣式 */}
-              <div class="mobile col-9 m-auto">
-                <p class="h3">衝浪課程</p>
-                <div class="row border  text-center">
+              <div className="mobile col-9 m-auto">
+                <p className="h3">衝浪課程</p>
+                <div className="row border  text-center">
                   <p>課程名稱:初階衝浪</p>
                   <p>預約日期:2022-1-24</p>
                   <p>上課地點:白沙灣</p>
@@ -121,28 +121,28 @@ function CourseCart() {
                 </div>
 
                 {/* <總計  */}
-                <div class="d-flex justify-content-end border-bottom">
-                  <p class="h3">總計 NT 2,000</p>
+                <div className="d-flex justify-content-end border-bottom">
+                  <p className="h3">總計 NT 2,000</p>
                 </div>
 
                 {/* 付款方式 */}
-                <div class="row  d-flex justify-content-center border-1 border-dark ">
-                  <p class=" h3">付款方式</p>
+                <div className="row  d-flex justify-content-center border-1 border-dark ">
+                  <p className=" h3">付款方式</p>
 
                   <nav aria-label="...">
-                    <ul class="pagination pagination-sm">
-                      <li class="payItem active" aria-current="page">
-                        <a class="pay-link" href="#/">
+                    <ul className="pagination pagination-sm">
+                      <li className="payItem active" aria-current="page">
+                        <a className="pay-link" href="#/">
                           信用卡
                         </a>
                       </li>
-                      <li class="payItem">
-                        <a class="pay-link" href="#/">
+                      <li className="payItem">
+                        <a className="pay-link" href="#/">
                           匯款
                         </a>
                       </li>
-                      <li class="payItem">
-                        <a class="pay-link" href="#/">
+                      <li className="payItem">
+                        <a className="pay-link" href="#/">
                           現金
                         </a>
                       </li>
@@ -151,12 +151,12 @@ function CourseCart() {
                 </div>
 
                 {/* 上一頁/下一頁按鈕  */}
-                <div class="row mt-5">
-                  <button class="btn btn-secondary text-white backBtn me-2">
+                <div className="row mt-5">
+                  <button className="btn btn-secondary text-white backBtn me-2">
                     <i className="fas fa-arrow-left text-white"></i>
                     回上一頁
                   </button>
-                  <button class="btn btn-primary text-white confirmBtn mt-2 ">
+                  <button className="btn btn-primary text-white confirmBtn mt-2 ">
                     確認資訊
                     <i className="fas fa-arrow-right text-white"></i>
                   </button>
@@ -165,12 +165,12 @@ function CourseCart() {
             </div>
 
             {/* 參加課程須知 */}
-            <div class="row  infoBg m-5">
-              <p class="border-bottom border-1 border-dark h3 p-3 ">
+            <div className="row  infoBg m-5">
+              <p className="border-bottom border-1 border-dark h3 p-3 ">
                 參加課程須知
               </p>
-              <div class="col-sm-12 col-lg-6 p-3 py-0">
-                <div class="list-item">
+              <div className="col-sm-12 col-lg-6 p-3 py-0">
+                <div className="list-item">
                   <p>1.您需要充足的體力，上課前一天需有充足睡眠</p>
                   <p>2.上課前/中請勿飲酒</p>
                   <p>
@@ -182,8 +182,8 @@ function CourseCart() {
                   </p>
                 </div>
               </div>
-              <div class="col-sm-12 col-lg-6 p-3 py-0">
-                <div class="list-item">
+              <div className="col-sm-12 col-lg-6 p-3 py-0">
+                <div className="list-item">
                   <p>
                     6.參與衝浪課程，可自備泳衣、泳褲、防磨衣等適合衝浪活動之衣物
                   </p>

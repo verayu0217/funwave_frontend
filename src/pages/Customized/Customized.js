@@ -4,9 +4,11 @@ import './Custom.scss';
 import RecommendCard from './RecommendCard';
 import Ad from './Ad';
 import Step from './Step';
+import BookPage from './BookPage';
 import Step1 from './Step1';
 import Step2 from './Step2';
 import Step3 from './Step3';
+
 function Customized() {
   return (
     <>
@@ -53,9 +55,10 @@ function Customized() {
           </Row>
           <Ad />
           <Step />
-          <Step1 />
+          <BookPage />
+          {/* <Step1 />
           <Step2 />
-          <Step3 />
+          <Step3 /> */}
         </Container>
       </Container>
     </>

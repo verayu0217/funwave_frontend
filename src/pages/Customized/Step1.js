@@ -2,17 +2,17 @@ import React, { usestate } from 'react';
 import { Figure } from 'react-bootstrap';
 import greenTitle from '../../data/images/greenTitle.svg';
 import fishboard from '../../data/images/customize/fishboardChoose.png';
-import fishboardHole from '../../data/images/customize/fishboardHole.png';
+// import fishboardHole from '../../data/images/customize/fishboardHole.png';
 import funboard from '../../data/images/customize/funboardChoose.png';
-import funboardHole from '../../data/images/customize/funboardHole.png';
+// import funboardHole from '../../data/images/customize/funboardHole.png';
 import gunboard from '../../data/images/customize/gunboardChoose.png';
-import gunboardHole from '../../data/images/customize/gunboardHole.png';
+// import gunboardHole from '../../data/images/customize/gunboardHole.png';
 import longboard from '../../data/images/customize/longboardChoose.png';
-import longboardHole from '../../data/images/customize/longboardHole.png';
+// import longboardHole from '../../data/images/customize/longboardHole.png';
 
 function Step1() {
   return (
-    <div className="vh-100">
+    <>
       <div className="text-secondary h1 text-center mb-3 position-relative">
         <img
           src={greenTitle}
@@ -53,7 +53,7 @@ function Step1() {
           </Figure.Caption>
         </Figure>
       </div>
-    </div>
+    </>
   );
 }
 

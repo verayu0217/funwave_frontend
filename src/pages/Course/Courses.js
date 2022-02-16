@@ -69,7 +69,7 @@ function Courses() {
           <div className=" text-center">
             <Link
               to="/Course/CourseContent"
-              class="btn btn-primary text-white mb-5 courseIntroBtn"
+              className="btn btn-primary text-white mb-5 courseIntroBtn"
             >
               詳細課程內容
               <i className="fas fa-arrow-right text-white"></i>
