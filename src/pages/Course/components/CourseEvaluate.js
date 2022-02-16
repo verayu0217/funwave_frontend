@@ -4,6 +4,7 @@ import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
 import greenTitle from '../../../data/images/greenTitle.svg';
 
 import '../CourseContent.scss';
+import '../CourseCart.scss';
 
 function CourseEvaluate() {
   //先用假資料 先不從後端取
@@ -38,7 +39,7 @@ function CourseEvaluate() {
     <>
       {/* 課程體驗評價  */}
       <div className="row ">
-        <div className="col-sm-12 col-md-7 col-lg-9 m-auto">
+        <div className="col-sm-12 col-md-8 col-lg-9 m-auto">
           <div className="text-secondary my-5 h1 text-center ">
             <img
               src={greenTitle}
@@ -100,6 +101,25 @@ function CourseEvaluate() {
               </>
             );
           })}
+
+          {/* <!-- 分頁 (Pagination) --> */}
+          <nav aria-label="...">
+            <ul class="pagination justify-content-center mt-3">
+              <li class="page-item active" aria-current="page">
+                <span class="page-link">1</span>
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="#/">
+                  2
+                </a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="#/">
+                  3
+                </a>
+              </li>
+            </ul>
+          </nav>
         </div>
       </div>
     </>
