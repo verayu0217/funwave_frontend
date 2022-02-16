@@ -11,12 +11,11 @@
 }
 .spotDetailWrap{
     background: url('../../data/images/surfSpot/surfSpotDetailBG.jpg') center center no-repeat;
-    margin: auto;
     border-radius: 8px;
     background-size: cover;
 }
 .spotDetailWrapBlack{
-    background: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.7);
     border-radius: 8px;
 }
 .spotDetailCross{
@@ -33,4 +32,7 @@
 .locationIcon{
     width: 20px;
     height: 20px;
+}
+.spotType{
+    // transform: translateY(50px);
 }
