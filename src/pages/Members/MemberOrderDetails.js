@@ -302,9 +302,12 @@ function MemberOrderDetails() {
 
                             <Form>
                               <Form.Group
-                                className="col-12 mt-5"
+                                className="col-12 mt-3"
                                 controlId="exampleForm.ControlTextarea1"
                               >
+                                <Form.Label className="fw-bold detailLabelMember">
+                                  賣家和顧客訂單通訊
+                                </Form.Label>
                                 <Form.Control
                                   as="textarea"
                                   row={3}
