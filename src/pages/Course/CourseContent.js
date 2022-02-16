@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { Form, Row, Col, Button } from 'react-bootstrap';
 
 // 引用課程評價
 import CourseEvaluate from './components/CourseEvaluate';
@@ -19,8 +20,39 @@ import memory from '../../data/images/course/icon-memory.png';
 import lifeguard from '../../data/images/course/icon-lifeguard.png';
 
 import './CourseContent.scss';
+import axios from 'axios';
 
 function CourseContent() {
+  // 選擇課程
+  const [course, setCourse] = useState('');
+  // 選擇地點
+  const [courseSpot, setCourseSpot] = useState('');
+  // 預約日期
+  const [courseDate, setCourseDate] = useState('');
+  // 課程時間
+  const [courseTime, setCourseTime] = useState('');
+  const timeOptions = ['上午', '下午'];
+
+  async function handleSubmit(e) {
+    let data = [
+      {
+        course: course,
+        courseSpot: courseSpot,
+        courseDate: courseDate,
+        courseTime: courseTime,
+      },
+    ];
+    console.log(data);
+    e.preventDefault();
+    try {
+      let response = await axios.post('http://localhost:3002/api/course', data);
+      console.log(response.data);
+    } catch (e) {
+      // console.error('error', e.response.data);
+      // console.error('測試註冊', [e.response.data.code]);
+    }
+  }
+
   return (
     <>
       {/* 主頁大圖加標題 */}
@@ -373,19 +405,23 @@ function CourseContent() {
                     />
                     課程報名
                   </div>
+
                   <form action="">
                     <div className="p-2 m-0">
-                      <p>選擇課程</p>
+                      <label htmlFor="course">選擇課程</label>
                       <select
-                        // defaultValue={'DEFAULT'}
-                        className="form-select"
+                        className="form-select course"
                         aria-label="Default select example"
+                        value={course}
+                        onChange={(e) => {
+                          setCourse(e.target.value);
+                        }}
                       >
-                        <option value="DEFAULT">選擇課程</option>
-                        <option value="1">體驗課程</option>
-                        <option value="2">初階課程</option>
-                        <option value="3">中階課程</option>
-                        <option value="3">高階課程</option>
+                        <option value="">選擇課程</option>
+                        <option value="體驗課程">體驗課程</option>
+                        <option value="初階課程">初階課程</option>
+                        <option value="中階課程">中階課程</option>
+                        <option value="高階課程">高階課程</option>
                       </select>
                     </div>
 
@@ -394,12 +430,16 @@ function CourseContent() {
                       <select
                         className="form-select"
                         aria-label="Default select example"
+                        value={courseSpot}
+                        onChange={(e) => {
+                          setCourseSpot(e.target.value);
+                        }}
                       >
-                        <option selected>選擇地點</option>
-                        <option value="1">白沙灣</option>
-                        <option value="2">烏石港</option>
-                        <option value="3">金樽</option>
-                        <option value="3">福隆</option>
+                        <option value="">選擇地點</option>
+                        <option value="白沙灣">白沙灣</option>
+                        <option value="烏石港">烏石港</option>
+                        <option value="金樽">金樽</option>
+                        <option value="福隆">福隆</option>
                       </select>
                     </div>
 
@@ -414,45 +454,44 @@ function CourseContent() {
                         className="form-control"
                         id="date"
                         placeholder="date"
+                        value={courseDate}
+                        onChange={(e) => {
+                          setCourseDate(e.target.value);
+                        }}
                       />
                     </div>
 
-                    <div className="">
-                      <p className="p-2 m-0">選擇時段</p>
-                      <div className="form-check form-check-inline">
-                        <input
-                          className="form-check-input"
-                          type="radio"
-                          name="inlineRadioOptions"
-                          id="inlineRadio1"
-                          value="option1"
-                        />
-                        <label
-                          className="form-check-label"
-                          htmlFor="inlineRadio1"
-                        >
-                          上午
-                        </label>
-                      </div>
-                      <div className="form-check form-check-inline">
-                        <input
-                          className="form-check-input"
-                          type="radio"
-                          name="inlineRadioOptions"
-                          id="inlineRadio2"
-                          value="option2"
-                        />
-                        <label
-                          className="form-check-label"
-                          htmlFor="inlineRadio2"
-                        >
-                          下午
-                        </label>
-                      </div>
+                    <div className="d-flex align-items-center ">
+                      <p className="p-2 m-0 ">選擇時段</p>
+                      {timeOptions.map((v, i) => {
+                        return (
+                          <div key={i}>
+                            <div className="form-check form-check-inline">
+                              <input
+                                className="form-check-input"
+                                type="radio"
+                                name="morning"
+                                id="morning"
+                                value={v}
+                                checked={v === courseTime}
+                                onChange={(e) => {
+                                  setCourseTime(e.target.value);
+                                }}
+                              />
+                              <label className="form-check-label" htmlFor={v}>
+                                {v}
+                              </label>
+                            </div>
+                          </div>
+                        );
+                      })}
                     </div>
 
                     <div>
-                      <button className="btn btn-primary text-white formBtn">
+                      <button
+                        className="btn btn-primary text-white formBtn "
+                        onClick={handleSubmit}
+                      >
                         立即報名
                         <i className="fas fa-arrow-right text-white"></i>
                       </button>
