@@ -1,13 +1,59 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import greenTitle from '../../data/images/greenTitle.svg';
 import CircleLeft from './CircleLeft';
 import Taiwanmap from './TaiwanMap';
 import CircleRight from './CircleRight';
+import { data } from '../../data/surfspot';
 
 import './surfSpot.scss';
 
 function SurfSpot() {
+  const [surfspots, setSurfspots] = useState([]);
+  const [displaySurfspots, setDisplaySurfspots] = useState([]);
+
+  const [tags, setTags] = useState([]);
+  const tagTypes = [
+    '初階',
+    '中階',
+    '高階',
+    '東部',
+    '東北部',
+    '北部',
+    '西部',
+    '南部',
+  ];
+  useEffect(() => {
+    setSurfspots(data);
+    setDisplaySurfspots(data);
+  }, []);
+
+  const handleTags = (surfspots, tags) => {
+    let newSurfspots = [...surfspots];
+
+    if (tags.length > 0) {
+      newSurfspots = [...newSurfspots].filter((surfspot) => {
+        let isFound = false;
+        const surfspotTags = surfspot.tags.split(',');
+
+        for (let i = 0; i < tags.length; i++) {
+          if (surfspotTags.includes(tags[i])) {
+            isFound = true;
+            break;
+          }
+        }
+        return isFound;
+      });
+    }
+    return newSurfspots;
+  };
+
+  useEffect(() => {
+    let newSurfspots = [];
+    newSurfspots = handleTags(newSurfspots, tags);
+    setDisplaySurfspots(newSurfspots);
+  }, [tags]);
+
   return (
     <>
       <div className="taiwanMapBg">
@@ -31,9 +77,9 @@ function SurfSpot() {
         </div>
         <div className="mt-5 mb-5">
           <div className="d-flex justify-content-center">
-            <CircleLeft />
-            <CircleRight />
-            <Taiwanmap />
+            <CircleLeft tagTypes={tagTypes} tags={tags} setTags={setTags} />
+            <CircleRight tagTypes={tagTypes} tags={tags} setTags={setTags} />
+            <Taiwanmap surfspots={displaySurfspots} />
           </div>
         </div>
       </div>
