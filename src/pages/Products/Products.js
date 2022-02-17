@@ -196,9 +196,8 @@ function Products() {
         </div>
       </div>
       <Link to="/product-details">購物商城</Link>
-      <Routes>
-        <Route path="/ProductDetails" element={<ProductDetails />} />
-      </Routes>
+      <br />
+      <Link to="/cart-pre-order">購物車</Link>
       <div className="container">
         <h3>Breadcrumb</h3>
         <div className="row">

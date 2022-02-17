@@ -36,7 +36,7 @@ import CourseCart from './pages/Course/CourseCart';
 import ProductDetails from './pages/Products/ProductDetails';
 import Products from './pages/Products/Products';
 //購物車
-// import CartPreOrder from './pages/Products/Cart/CartPreOrder';
+import CartPreOrder from './pages/Products/Cart/CartPreOrder';
 // import CartManage from './pages/Products/Cart/CartManage';
 // import CartConfimOrder from './pages/Products/Cart/CartConfimOrder';
 // import CartComplete from './pages/Products/Cart/CartComplete';
@@ -88,6 +88,7 @@ function App() {
         <Route path="/surfspot" element={<SurfSpot />} />
         <Route path="/product-details" element={<ProductDetails />} />
         <Route path="/products" element={<Products />} />
+        <Route path="/cart-pre-order" element={<CartPreOrder />} />
         <Route path="/customized" element={<Customized />} />
         <Route
           path="/member/member-order/member-order-details"
