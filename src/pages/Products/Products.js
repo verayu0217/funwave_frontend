@@ -7,10 +7,10 @@ import { Routes, Route } from 'react-router-dom';
 import './Products.scss';
 import { data } from '../../data/products.js';
 import ProductDetails from './ProductDetails';
-import ProductList from '../../components/Products/ProductList/ProductList.js';
-import SearchBar from '../../components/Products/SearchBar.js';
-import SortBar from '../../components/Products/SortBar.js';
-import FilterBar from '../../components/Products/FilterBar/FilterBar.js';
+import ProductList from './Components/ProductList/ProductList.js';
+import SearchBar from './Components/SearchBar.js';
+import SortBar from './Components/SortBar.js';
+import FilterBar from './Components/FilterBar/FilterBar.js';
 import greenTitle from '../../data/images/greenTitle.svg';
 
 // react-icons
