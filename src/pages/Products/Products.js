@@ -195,7 +195,7 @@ function Products() {
           <h1>FUN 商店</h1>
         </div>
       </div>
-      <Link to="/ProductDetails">購物商城</Link>
+      <Link to="/product-details">購物商城</Link>
       <Routes>
         <Route path="/ProductDetails" element={<ProductDetails />} />
       </Routes>
