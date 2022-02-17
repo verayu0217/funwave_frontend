@@ -83,30 +83,30 @@ function App() {
       <Header auth={auth} setAuth={setAuth} />
       <Routes>
         <Route path="/home" element={<Home />} />
-        <Route path="/homeTry" element={<HomeTry />} />
+        <Route path="/home-try" element={<HomeTry />} />
         <Route path="/login" element={<LogIn />} />
         <Route path="/surfspot" element={<SurfSpot />} />
-        <Route path="/ProductDetails" element={<ProductDetails />} />
-        <Route path="/Products" element={<Products />} />
-        <Route path="/Customized" element={<Customized />} />
+        <Route path="/product-details" element={<ProductDetails />} />
+        <Route path="/products" element={<Products />} />
+        <Route path="/customized" element={<Customized />} />
         <Route
-          path="/Member/MemberOrder/MemberOrderDetails"
+          path="/member/member-order/member-order-details"
           element={<MemberOrderDetails />}
         />
         <Route
-          path="/Member/MemberShoppingGold"
+          path="/member/member-shopping-gold"
           element={<MemberShoppingGold />}
         />
-        <Route path="/Member/MemberCollect" element={<MemberCollect />} />
-        <Route path="/Member/MemberMessage" element={<MemberMessage />} />
-        <Route path="/Member/MemberCoupon" element={<MemberCoupon />} />
-        <Route path="/Member/MemberPoint" element={<MemberPoint />} />
-        <Route path="/Member/MemberInfo" element={<MemberInfo />} />
-        <Route path="/Member/MemberOrder" element={<MemberOrder />} />
-        <Route path="/Member" element={<Member />} />
-        <Route path="/Course" element={<Courses />} />
-        <Route path="/Course/CourseContent" element={<CourseContent />} />
-        <Route path="/Course/CourseCart" element={<CourseCart />} />
+        <Route path="/member/member-collect" element={<MemberCollect />} />
+        <Route path="/member/member-message" element={<MemberMessage />} />
+        <Route path="/memberm/member-coupon" element={<MemberCoupon />} />
+        <Route path="/member/member-point" element={<MemberPoint />} />
+        <Route path="/member/member-info" element={<MemberInfo />} />
+        <Route path="/member/member-order" element={<MemberOrder />} />
+        <Route path="/member" element={<Member />} />
+        <Route path="/course" element={<Courses />} />
+        <Route path="/course/course-content" element={<CourseContent />} />
+        <Route path="/course/course-cart" element={<CourseCart />} />
       </Routes>
     </>
   );

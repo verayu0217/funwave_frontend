@@ -21,16 +21,16 @@ function MyNavbar(props) {
             <Nav className="mr-auto nav-menu">
               {/* 利用as屬性來作選單link的整合 */}
               {/* 參考：https://react-bootstrap.github.io/components/navs/#nav-link-props */}
-              <Nav.Link as={NavLink} to="/Products">
+              <Nav.Link as={NavLink} to="/products">
                 衝浪商品
               </Nav.Link>
-              <Nav.Link as={NavLink} to="/Customized">
+              <Nav.Link as={NavLink} to="/customized">
                 客製化浪板
               </Nav.Link>
-              <Nav.Link as={NavLink} to="/Course">
+              <Nav.Link as={NavLink} to="/course">
                 衝浪課程
               </Nav.Link>
-              <Nav.Link as={NavLink} to="/Information">
+              <Nav.Link as={NavLink} to="/information">
                 文章
               </Nav.Link>
               <Nav.Link as={NavLink} to="/surfspot">
