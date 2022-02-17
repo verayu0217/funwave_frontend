@@ -79,7 +79,9 @@ function SurfSpot() {
           <div className="d-flex justify-content-center">
             <CircleLeft tagTypes={tagTypes} tags={tags} setTags={setTags} />
             <CircleRight tagTypes={tagTypes} tags={tags} setTags={setTags} />
-            <Taiwanmap surfspots={displaySurfspots} />
+            {displaySurfspots.length > 0 && (
+              <Taiwanmap surfspots={displaySurfspots} />
+            )}
           </div>
         </div>
       </div>
