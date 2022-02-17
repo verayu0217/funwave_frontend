@@ -28,8 +28,8 @@ return (
 
     {/* 關於 */}
     <div className="container-fluid aboutSectionHome">
-        <div class="container aboutContainerHome">
-            <div class="row justify-content-center pb-3">  
+        <div className="container aboutContainerHome">
+            <div className="row justify-content-center pb-3">  
                 {/* 大標題 */}
                 <div className="d-flex justify-content-center align-items-center titleHome">
                     <img src={greenTitle} className="me-3" alt="greenTitle" height="24px" weight="64px"/>
@@ -87,7 +87,7 @@ return (
     {/* 商店 */}
     <div className="conatainer shopSectionHome">
         {/* 商店標頭 */}
-        <div class="row justify-content-center pb-3">   
+        <div className="row justify-content-center pb-3">   
                 <div className="d-flex justify-content-center align-items-center titleHome">
                     <img src={greenTitle} className="me-3" alt="greenTitle" height="24px" weight="64px"/>
                     <h1 className="m-0">FUN商店 · 精選衝浪商品 </h1>

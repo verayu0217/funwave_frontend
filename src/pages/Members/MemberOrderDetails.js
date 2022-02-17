@@ -95,7 +95,7 @@ function MemberOrderDetails() {
                   <div className="container mt-5 containerDetailsMember">
                     <div className="me-5">
                       <button className="btn saveMember fs-16Member">
-                        <i class="fas fa-arrow-left"></i>&nbsp;回上一頁
+                        <i className="fas fa-arrow-left"></i>&nbsp;回上一頁
                       </button>
                     </div>
                     <div className="row d-flex justify-content-center">
@@ -183,7 +183,7 @@ function MemberOrderDetails() {
                                   <td>NT$10,250</td>
                                 </tr>
                                 <tr>
-                                  <td colSpan={5} class="fw-bold">
+                                  <td colSpan={5} className="fw-bold">
                                     <p className="text-start">已享用之優惠</p>
                                     <br />
                                     <div className="d-flex">

@@ -72,12 +72,12 @@ function MemberInfo(props) {
               <h3 className="fs-24Member">歐陽范姜</h3>
               <h5 className="fs-16Member hotMember">衝浪熱愛者</h5>
               <button className="changeImgMember" type="file" id="theFile">
-                <i class="fas fa-pen"></i>&ensp;更換大頭貼
+                <i className="fas fa-pen"></i>&ensp;更換大頭貼
               </button>
             </div>
             <div className="mt-5">
               <h3 className="fs-16Member mb-4 captionMember">
-                <i class="fas fa-bullhorn"></i>&ensp;會員等級說明：
+                <i className="fas fa-bullhorn"></i>&ensp;會員等級說明：
               </h3>
               <h5 className="masterMember fs-16Member">衝浪高手者</h5>
               <p>消費$15,000/年 以上的衝浪高手，喜歡更新自己的衝浪配備。</p>

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import Modal from './Modal';
 import { Link } from 'react-router-dom';
+import { BsFacebook } from 'react-icons/bs';
+import { FcGoogle } from 'react-icons/fc';
 import axios from 'axios';
 import { API_URL } from '../../../utils/config';
 import { ERR_MSG } from '../../../utils/error';
@@ -60,7 +62,10 @@ function Login(props) {
               </div>
             </div>
           </div>
-          <form className="col-md-5 col-sm-12 vh-100 d-flex align-items-center justify-content-center">
+          <form
+            className="col-md-5 col-sm-12 vh-100 d-flex align-items-center justify-content-center"
+            onSubmit={logInSubmit}
+          >
             <ul className="list-unstyled">
               <li className="d-flex justify-content-center">
                 <div className="fs-2 loginTitle">登入會員</div>
@@ -74,6 +79,7 @@ function Login(props) {
                   id="email"
                   value={member.email}
                   onChange={handleChange}
+                  required
                 />
               </li>
               <li className="mt-3">
@@ -85,6 +91,8 @@ function Login(props) {
                   id="password"
                   value={member.password}
                   onChange={handleChange}
+                  min="3"
+                  required
                 />
                 <i
                   className={`loginEye mt-2 mt-md-3 ml-2 ${close}`}
@@ -117,10 +125,20 @@ function Login(props) {
               <li className="mt-4 d-flex justify-content-center">
                 <button
                   className="btn btn-primary text-white loginBtn"
-                  onClick={logInSubmit}
+                  type="submit"
                 >
                   登入
                 </button>
+              </li>
+              {/* 第三方登入，沒有功能 */}
+              <li className="mt-3">其他登入方式</li>
+              <li className="d-flex jjustify-content-evenly">
+                <a href="https://www.facebook.com/">
+                  <BsFacebook className="mx-2 fbCu" />
+                </a>
+                <a href="https://accounts.google.com/signin/v2/identifier?hl=zh-TW&passive=true&continue=https%3A%2F%2Fwww.google.com%2Fsearch%3Fq%3Dgoogle%25E7%2599%25BB%25E5%2585%25A5%26oq%3Dgoogle%25E7%2599%25BB%25E5%2585%25A5%26aqs%3Dchrome..69i57.7639j0j1%26sourceid%3Dchrome%26ie%3DUTF-8&ec=GAZAAQ&flowName=GlifWebSignIn&flowEntry=ServiceLogin">
+                  <FcGoogle className="mx-2 googleCu" />
+                </a>
               </li>
               <Modal showModal={showModal} setshowModal={setshowModal} />
             </ul>
