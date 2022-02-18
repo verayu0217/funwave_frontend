@@ -91,10 +91,24 @@ function CourseEvaluate() {
                   <div className="m-3">
                     {/* 文字 */}
                     <p>{evaluate.content}</p>
-                    <div>看更多</div>
+
                     {/* 圖片區  */}
-                    <div className="mt-3">
-                      <img src={evaluate.image} className="rounded-3" alt="" />
+                    <div className="mt-3 d-flex justify-space-around">
+                      <img
+                        src={evaluate.image}
+                        className="rounded-3 m-1"
+                        alt=""
+                      />
+                      <img
+                        src={evaluate.image}
+                        className="rounded-3 m-1"
+                        alt=""
+                      />
+                      <img
+                        src={evaluate.image}
+                        className="rounded-3 m-1"
+                        alt=""
+                      />
                     </div>
                   </div>
                 </div>

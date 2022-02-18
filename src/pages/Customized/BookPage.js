@@ -1,13 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import StepList from './StepList';
 import Step1 from './Step1';
+import Step2 from './Step2';
+import Step3 from './Step3';
 
 function BookPage() {
+  const [board, setBoard] = useState({
+    front: '',
+    back: '',
+  });
   return (
-    <div className="">
+    <>
       <StepList />
       <Step1 />
-    </div>
+      <Step2 />
+      <Step3 />
+    </>
   );
 }
 

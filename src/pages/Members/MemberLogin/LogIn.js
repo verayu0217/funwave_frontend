@@ -134,10 +134,10 @@ function Login(props) {
               <li className="mt-3">其他登入方式</li>
               <li className="d-flex jjustify-content-evenly">
                 <a href="https://www.facebook.com/">
-                  <BsFacebook className="mx-2 fbCu" />
+                  <BsFacebook className="mx-2 fbLogin" />
                 </a>
                 <a href="https://accounts.google.com/signin/v2/identifier?hl=zh-TW&passive=true&continue=https%3A%2F%2Fwww.google.com%2Fsearch%3Fq%3Dgoogle%25E7%2599%25BB%25E5%2585%25A5%26oq%3Dgoogle%25E7%2599%25BB%25E5%2585%25A5%26aqs%3Dchrome..69i57.7639j0j1%26sourceid%3Dchrome%26ie%3DUTF-8&ec=GAZAAQ&flowName=GlifWebSignIn&flowEntry=ServiceLogin">
-                  <FcGoogle className="mx-2 googleCu" />
+                  <FcGoogle className="mx-2 googleLogin" />
                 </a>
               </li>
               <Modal showModal={showModal} setshowModal={setshowModal} />

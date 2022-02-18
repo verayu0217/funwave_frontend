@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Form, Row, Col, Button } from 'react-bootstrap';
+import axios from 'axios';
 
 // 引用課程評價
 import CourseEvaluate from './components/CourseEvaluate';
@@ -8,7 +8,7 @@ import CourseEvaluate from './components/CourseEvaluate';
 // 手風琴
 import { Accordion } from 'react-bootstrap';
 //星星icon
-import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
+
 // 大標題綠色波浪
 import greenTitle from '../../data/images/greenTitle.svg';
 // 6大特色圖片
@@ -20,7 +20,6 @@ import memory from '../../data/images/course/icon-memory.png';
 import lifeguard from '../../data/images/course/icon-lifeguard.png';
 
 import './CourseContent.scss';
-import axios from 'axios';
 
 function CourseContent() {
   // 選擇課程
@@ -188,11 +187,14 @@ function CourseContent() {
                           包含：衝浪板使用、教練費、保險費、盆洗費用
                         </p>
 
-                        <button className="btn btn-primary courseBtn mb-3">
+                        <a
+                          href="#test"
+                          className="btn btn-primary courseBtn mb-3"
+                        >
                           立即報名
                           {/* <i className="fas fa-long-arrow-righ"></i> */}
                           <i className="fas fa-arrow-right text-white"></i>
-                        </button>
+                        </a>
                       </div>
                     </div>
                   </div>
@@ -220,11 +222,14 @@ function CourseContent() {
                           包含：衝浪板使用、教練費、保險費、盆洗費用
                         </p>
 
-                        <button className="btn btn-primary courseBtn mb-3">
+                        <a
+                          href="#test"
+                          className="btn btn-primary courseBtn mb-3"
+                        >
                           立即報名
                           {/* <i className="fas fa-long-arrow-righ"></i> */}
                           <i className="fas fa-arrow-right text-white"></i>
-                        </button>
+                        </a>
                       </div>
                     </div>
                   </div>
@@ -248,11 +253,14 @@ function CourseContent() {
                           包含：衝浪板使用、教練費、保險費、盆洗費用
                         </p>
 
-                        <button className="btn btn-primary courseBtn mb-3">
+                        <a
+                          href="#test"
+                          className="btn btn-primary courseBtn mb-3"
+                        >
                           立即報名
                           {/* <i className="fas fa-long-arrow-righ"></i> */}
                           <i className="fas fa-arrow-right text-white"></i>
-                        </button>
+                        </a>
                       </div>
                     </div>
                   </div>
@@ -275,11 +283,14 @@ function CourseContent() {
                           包含：衝浪板使用、教練費、保險費、盆洗費用
                         </p>
 
-                        <button className="btn btn-primary courseBtn mb-3">
+                        <a
+                          href="#test"
+                          className="btn btn-primary courseBtn mb-3"
+                        >
                           立即報名
                           {/* <i className="fas fa-long-arrow-righ"></i> */}
                           <i className="fas fa-arrow-right text-white"></i>
-                        </button>
+                        </a>
                       </div>
                     </div>
                   </div>
@@ -393,7 +404,7 @@ function CourseContent() {
               </div>
 
               {/* 報名表單 */}
-              <div className="form-wrap  p-3 shadow-lg">
+              <div className="form-wrap  p-3 shadow-lg" id="test">
                 <div className="col-12  col-md-8 col-lg-7 m-auto">
                   <div className="text-secondary  my-5 h1 text-center">
                     <img
@@ -406,10 +417,11 @@ function CourseContent() {
                     課程報名
                   </div>
 
-                  <form action="">
+                  <form action="/course/course-cart01" onSubmit={handleSubmit}>
                     <div className="p-2 m-0">
                       <label htmlFor="course">選擇課程</label>
                       <select
+                        required
                         className="form-select course"
                         aria-label="Default select example"
                         value={course}
@@ -434,6 +446,7 @@ function CourseContent() {
                         onChange={(e) => {
                           setCourseSpot(e.target.value);
                         }}
+                        required
                       >
                         <option value="">選擇地點</option>
                         <option value="白沙灣">白沙灣</option>
@@ -458,6 +471,7 @@ function CourseContent() {
                         onChange={(e) => {
                           setCourseDate(e.target.value);
                         }}
+                        required
                       />
                     </div>
 
@@ -477,6 +491,7 @@ function CourseContent() {
                                 onChange={(e) => {
                                   setCourseTime(e.target.value);
                                 }}
+                                required
                               />
                               <label className="form-check-label" htmlFor={v}>
                                 {v}
@@ -490,11 +505,15 @@ function CourseContent() {
                     <div>
                       <button
                         className="btn btn-primary text-white formBtn "
-                        onClick={handleSubmit}
+                        type="submit"
                       >
                         立即報名
                         <i className="fas fa-arrow-right text-white"></i>
                       </button>
+
+                      <a href="/course/course-cart01" className="text-center">
+                        送出表單同時跳轉到加入購物車
+                      </a>
                     </div>
                   </form>
                 </div>

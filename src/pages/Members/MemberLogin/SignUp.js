@@ -49,7 +49,7 @@ function SignUp() {
                   id="email"
                   value={member.email}
                   onChange={handleChange}
-                  // required
+                  required
                 />
               </li>
               <li className="mt-3">
@@ -61,7 +61,7 @@ function SignUp() {
                   id="name"
                   value={member.name}
                   onChange={handleChange}
-                  // required
+                  required
                 />
               </li>
               <li className="mt-3">
@@ -73,7 +73,7 @@ function SignUp() {
                   id=""
                   value={member.password}
                   onChange={handleChange}
-                  // required
+                  required
                 />
                 <div className="fasEye">
                   <i
@@ -97,7 +97,7 @@ function SignUp() {
                   name="agree"
                   id="agree"
                   value={member.agree}
-                  // required
+                  required
                 />
                 <label className="form-check-label agreeSignup">
                   我同意<Link to="/">服務條款</Link>與
@@ -111,7 +111,7 @@ function SignUp() {
             <button
               className="btn btn-primary text-white"
               style={{ width: '280px' }}
-              // type="submit"
+              type="submit"
               onClick={signUpSubmit}
             >
               註冊

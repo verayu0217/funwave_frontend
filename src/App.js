@@ -29,14 +29,16 @@ import MemberShoppingGold from './pages/Members/MemberShoppingGold';
 //課程
 
 import CourseContent from './pages/Course/CourseContent';
+import CourseCart01 from './pages/Course/CourseCart01';
+import CourseCart02 from './pages/Course/CourseCart02';
+import CourseCart03 from './pages/Course/CourseCart03';
 import Courses from './pages/Course/Courses';
-import CourseCart from './pages/Course/CourseCart';
 
 //商城
 import ProductDetails from './pages/Products/ProductDetails';
 import Products from './pages/Products/Products';
 //購物車
-// import CartPreOrder from './pages/Products/Cart/CartPreOrder';
+import CartPreOrder from './pages/Products/Cart/CartPreOrder';
 // import CartManage from './pages/Products/Cart/CartManage';
 // import CartConfimOrder from './pages/Products/Cart/CartConfimOrder';
 // import CartComplete from './pages/Products/Cart/CartComplete';
@@ -88,6 +90,7 @@ function App() {
         <Route path="/surfspot" element={<SurfSpot />} />
         <Route path="/product-details" element={<ProductDetails />} />
         <Route path="/products" element={<Products />} />
+        <Route path="/cart-pre-order" element={<CartPreOrder />} />
         <Route path="/customized" element={<Customized />} />
         <Route
           path="/member/member-order/member-order-details"
@@ -106,7 +109,9 @@ function App() {
         <Route path="/member" element={<Member />} />
         <Route path="/course" element={<Courses />} />
         <Route path="/course/course-content" element={<CourseContent />} />
-        <Route path="/course/course-cart" element={<CourseCart />} />
+        <Route path="/course/course-cart01" element={<CourseCart01 />} />
+        <Route path="/course/course-cart02" element={<CourseCart02 />} />
+        <Route path="/course/course-cart03" element={<CourseCart03 />} />
       </Routes>
     </>
   );

@@ -1,12 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Row, Col } from 'react-bootstrap';
 
-function StepList() {
+function StepList(props) {
+  const [btnActive, setBtnActive] = useState();
   return (
     <>
       <Row>
         <Col>
-          <div className="d-flex chooseBtn justify-content-around py-3 shadow">
+          <div
+            className="d-flex chooseBtn justify-content-around py-3 shadow {btnActive ? 'chooseBtnActive':null}"
+            onClick={() => {
+              setBtnActive(true);
+            }}
+          >
             <div className="my-auto fs-1">01</div>
             <div>
               選擇衝浪板外型
