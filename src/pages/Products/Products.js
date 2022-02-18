@@ -7,10 +7,10 @@ import { Routes, Route } from 'react-router-dom';
 import './Products.scss';
 import { data } from '../../data/products.js';
 import ProductDetails from './ProductDetails';
-import ProductList from '../../components/Products/ProductList/ProductList.js';
-import SearchBar from '../../components/Products/SearchBar.js';
-import SortBar from '../../components/Products/SortBar.js';
-import FilterBar from '../../components/Products/FilterBar/FilterBar.js';
+import ProductList from './Components/ProductList/ProductList.js';
+import SearchBar from './Components/SearchBar.js';
+import SortBar from './Components/SortBar.js';
+import FilterBar from './Components/FilterBar/FilterBar.js';
 import greenTitle from '../../data/images/greenTitle.svg';
 
 // react-icons
@@ -195,10 +195,9 @@ function Products() {
           <h1>FUN 商店</h1>
         </div>
       </div>
-      <Link to="/ProductDetails">購物商城</Link>
-      <Routes>
-        <Route path="/ProductDetails" element={<ProductDetails />} />
-      </Routes>
+      <Link to="/product-details">購物商城</Link>
+      <br />
+      <Link to="/cart-pre-order">購物車</Link>
       <div className="container">
         <h3>Breadcrumb</h3>
         <div className="row">

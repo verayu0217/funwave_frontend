@@ -1,9 +1,44 @@
-import React, { useState } from 'react';
+import { data } from '../../data/';
+import React, { useState, useEffect } from 'react';
 import { Form, Row, Col, Button } from 'react-bootstrap';
+import { useParams, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { API_URL } from '../../utils/config';
 import './Member.scss';
 import titleImgMember from '../../data/images/greenwave64x24.png';
 
-function MemberInfo() {
+function MemberInfo(props) {
+  const [students, setStudents] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // 先開起載入指示器
+    setIsLoading(true);
+
+    // 模擬和伺服器要資料
+    // 最後設定到狀態中
+    setStudents(data);
+
+    // 3秒後關閉指示器
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 3000);
+  }, []);
+
+  const spinner = (
+    <>
+      <div className="spinner-grow text-primary" role="status">
+        <span className="sr-only">Loading...</span>
+      </div>
+      <div className="spinner-grow text-secondary" role="status">
+        <span className="sr-only">Loading...</span>
+      </div>
+      <div className="spinner-grow text-success" role="status">
+        <span className="sr-only">Loading...</span>
+      </div>
+    </>
+  );
+
   const [close, setClose] = useState('fas fa-eye-slash');
   const [type, setType] = useState('password');
   const [validated, setValidated] = useState(false);
@@ -37,12 +72,12 @@ function MemberInfo() {
               <h3 className="fs-24Member">歐陽范姜</h3>
               <h5 className="fs-16Member hotMember">衝浪熱愛者</h5>
               <button className="changeImgMember" type="file" id="theFile">
-                <i class="fas fa-pen"></i>&ensp;更換大頭貼
+                <i className="fas fa-pen"></i>&ensp;更換大頭貼
               </button>
             </div>
             <div className="mt-5">
               <h3 className="fs-16Member mb-4 captionMember">
-                <i class="fas fa-bullhorn"></i>&ensp;會員等級說明：
+                <i className="fas fa-bullhorn"></i>&ensp;會員等級說明：
               </h3>
               <h5 className="masterMember fs-16Member">衝浪高手者</h5>
               <p>消費$15,000/年 以上的衝浪高手，喜歡更新自己的衝浪配備。</p>
@@ -241,6 +276,7 @@ function MemberInfo() {
           </div>
         </div>
       </div>
+      {/* {isLoading ? spinner : display} */}
     </>
   );
 }

@@ -13,10 +13,10 @@ function MemberMessage() {
             </span>
             留言
           </h2>
-          <div class="card text-center mt-5 p-0 rounded-0">
-            <div class="card-header p-3 fs-26Member">TO FUNWAVE</div>
-            <div class="card-body">
-              <p class="card-text p-4 fs-20Member">目前尚未收到新訊息！</p>
+          <div className="card text-center mt-5 p-0 rounded-0">
+            <div className="card-header p-3 fs-26Member">TO FUNWAVE</div>
+            <div className="card-body">
+              <p className="card-text p-4 fs-20Member">目前尚未收到新訊息！</p>
               <Form>
                 <Form.Group
                   className="col-12 mb-3"

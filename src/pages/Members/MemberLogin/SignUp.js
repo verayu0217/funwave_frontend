@@ -19,7 +19,6 @@ function SignUp() {
   }
   async function signUpSubmit(e) {
     e.preventDefault();
-
     try {
       let response = await axios.post(`${API_URL}/auth/register`, member);
       console.log(response.data);
@@ -30,7 +29,10 @@ function SignUp() {
   }
   return (
     <>
-      <form className="d-flex justify-content-center align-items-center">
+      <form
+        className="d-flex justify-content-center align-items-center"
+        // onSubmit={signUpSubmit}
+      >
         <div style={{ width: '60%' }}>
           <h4 className="h1 text-black fw-bold text-center">
             Welcome to Join Us !
@@ -47,7 +49,7 @@ function SignUp() {
                   id="email"
                   value={member.email}
                   onChange={handleChange}
-                  required
+                  // required
                 />
               </li>
               <li className="mt-3">
@@ -59,7 +61,7 @@ function SignUp() {
                   id="name"
                   value={member.name}
                   onChange={handleChange}
-                  required
+                  // required
                 />
               </li>
               <li className="mt-3">
@@ -71,6 +73,7 @@ function SignUp() {
                   id=""
                   value={member.password}
                   onChange={handleChange}
+                  // required
                 />
                 <div className="fasEye">
                   <i
@@ -94,7 +97,7 @@ function SignUp() {
                   name="agree"
                   id="agree"
                   value={member.agree}
-                  // onChange={}
+                  // required
                 />
                 <label className="form-check-label agreeSignup">
                   我同意<Link to="/">服務條款</Link>與
@@ -108,6 +111,7 @@ function SignUp() {
             <button
               className="btn btn-primary text-white"
               style={{ width: '280px' }}
+              // type="submit"
               onClick={signUpSubmit}
             >
               註冊

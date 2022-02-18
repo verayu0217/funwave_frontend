@@ -80,7 +80,7 @@ function SurfSpotDetails(props) {
                     <div className="spotInfo p-4 mx-4">
                       <Row className="mb-3">
                         <Col className="text-center text-dark fw-bold">
-                          風力
+                          風級
                         </Col>
                         <Col className="text-center text-dark fw-bold">
                           風向
@@ -90,9 +90,7 @@ function SurfSpotDetails(props) {
                         </Col>
                       </Row>
                       <Row className="mb-4 pb-3 border-bottom">
-                        <Col className="align-items-center text-center">
-                          7.3m/s
-                        </Col>
+                        <Col className="align-items-center text-center">5</Col>
                         <Col className="text-center">
                           <FaLocationArrow
                             size={20}

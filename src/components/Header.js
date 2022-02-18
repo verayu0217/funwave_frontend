@@ -21,16 +21,16 @@ function MyNavbar(props) {
             <Nav className="mr-auto nav-menu">
               {/* 利用as屬性來作選單link的整合 */}
               {/* 參考：https://react-bootstrap.github.io/components/navs/#nav-link-props */}
-              <Nav.Link as={NavLink} to="/Products">
+              <Nav.Link as={NavLink} to="/products">
                 衝浪商品
               </Nav.Link>
-              <Nav.Link as={NavLink} to="/Customized">
+              <Nav.Link as={NavLink} to="/customized">
                 客製化浪板
               </Nav.Link>
-              <Nav.Link as={NavLink} to="/Course">
+              <Nav.Link as={NavLink} to="/course">
                 衝浪課程
               </Nav.Link>
-              <Nav.Link as={NavLink} to="/Information">
+              <Nav.Link as={NavLink} to="/information">
                 文章
               </Nav.Link>
               <Nav.Link as={NavLink} to="/surfspot">
@@ -43,29 +43,29 @@ function MyNavbar(props) {
               Dank memes
             </Nav.Link>
           </Nav> */}
-            <form class="d-flex btnGroup">
+            <form className="d-flex btnGroup">
               <input
-                class="form-control me-2 searchIpt"
+                className="form-control me-2 searchIpt"
                 type="search"
                 placeholder="Search"
                 aria-label="Search"
                 style={{ display: 'none' }}
               />
-              <button class="btn iconGroup" type="submit">
-                <i class="fas fa-search"></i>
+              <button className="btn iconGroup" type="submit">
+                <i className="fas fa-search"></i>
               </button>
-              {/* <button class="btn" type="submit">
-              <i class="fas fa-shopping-cart"></i>
+              {/* <button className="btn" type="submit">
+              <i className="fas fa-shopping-cart"></i>
             </button> */}
               <Nav.Link className="iconGroup" as={NavLink} to="/">
-                <i class="fas fa-shopping-cart"></i>
+                <i className="fas fa-shopping-cart"></i>
                 <span>&ensp;(0)</span>
               </Nav.Link>
-              {/* <button class="btn" type="submit">
-              <i class="fas fa-user"></i>
+              {/* <button className="btn" type="submit">
+              <i className="fas fa-user"></i>
             </button> */}
               <Nav.Link className="iconGroup" as={NavLink} to="/Member">
-                <i class="fas fa-user"></i>
+                <i className="fas fa-user"></i>
               </Nav.Link>
               <Nav.Link
                 className="btnLogin mx-2"

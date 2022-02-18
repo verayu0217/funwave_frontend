@@ -12,14 +12,14 @@ function MemberCoupon() {
             </span>
             我的優惠券
           </h2>
-          <div class="card cardMember mt-5 mb-3 p-4">
-            <div class="d-flex">
+          <div className="card cardMember mt-5 mb-3 p-4">
+            <div className="d-flex">
               <div className="me-3">
                 <p className="m-0 fs-20Member orange">
                   可使用<span className="orange">(2)</span>
                 </p>
               </div>
-              <div class="lineWrapMember me-3 d-flex justify-content-center align-items-center">
+              <div className="lineWrapMember me-3 d-flex justify-content-center align-items-center">
                 <div className="lineMemberCoupon"></div>
               </div>
               <div className="">
