@@ -1,6 +1,7 @@
 import { data } from '../../data/member/memberOrder';
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { API_URL } from '../../utils/config';
 import './Member.scss';
@@ -16,7 +17,7 @@ const MemberOrder = () => {
   let navigate = useNavigate();
 
   // 把網址上的 :id 拿出來
-  const { id } = useParams();
+  const { member_id } = useParams();
   const { currentPage } = useParams();
   const [page, setPage] = useState(parseInt(currentPage, 10) || 1);
   console.log('currentPage', currentPage, page);
@@ -67,7 +68,7 @@ const MemberOrder = () => {
   useEffect(() => {
     let getMember = async () => {
       // http://localhost:3002/api/
-      let response = await axios.get(`${API_URL}/Member`);
+      let response = await axios.get(`${API_URL}/member`);
       setData(response.data);
     };
     getMember();
@@ -158,16 +159,15 @@ const MemberOrder = () => {
                         {order_list.status}
                       </td>
                       <td className="text-nowrap">
-                        <a role="button" href="" className="deepblue me-3">
-                          <i className="fas fa-edit"></i>
-                        </a>
-                        <a
-                          role="button"
-                          href=""
-                          className="deleteIconMember orange"
+                        <Link
+                          to={`/member/member-order/member-order-details/${order_list.member_id}`}
+                          className="deepblue me-3"
                         >
+                          <i className="fas fa-edit"></i>
+                        </Link>
+                        <Link to="/" className="deleteIconMember orange">
                           <i className="fas fa-trash-alt"></i>
-                        </a>
+                        </Link>
                       </td>
                     </tr>
                   );
