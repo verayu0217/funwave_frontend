@@ -8,13 +8,16 @@ function BookPage() {
   const [board, setBoard] = useState({
     front: '',
     back: '',
+    frontpattern: '',
+    backpattern: '',
+    size: '',
   });
   return (
     <>
       <StepList />
-      <Step1 />
+      {/* <Step1 /> */}
       <Step2 />
-      <Step3 />
+      {/* <Step3 /> */}
     </>
   );
 }

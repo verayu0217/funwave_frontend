@@ -44,6 +44,7 @@ import CartPreOrder from './pages/Products/Cart/CartPreOrder';
 // import CartComplete from './pages/Products/Cart/CartComplete';
 //客製化浪板
 import Customized from './pages/Customized/Customized';
+import CustomizedDetails from './pages/Customized/CustomizedDetails';
 //浪點
 import SurfSpot from './pages/SurfSpot/SurfSpot';
 
@@ -64,7 +65,7 @@ function App() {
       let response = await axios.get(`${API_URL}/auth/checklogin`, {
         withCredentials: true,
       });
-      if (response.data.message === 'login') {
+      if (response.data.msg === 'login') {
         setAuth(true);
       }
       console.log(response.data);
@@ -91,6 +92,7 @@ function App() {
         <Route path="/product-details" element={<ProductDetails />} />
         <Route path="/products" element={<Products />} />
         <Route path="/cart-pre-order" element={<CartPreOrder />} />
+        <Route path="/customized-details" element={<CustomizedDetails />} />
         <Route path="/customized" element={<Customized />} />
         <Route
           path="/member/member-order/member-order-details"
@@ -100,20 +102,6 @@ function App() {
           path="/member/member-shopping-gold"
           element={<MemberShoppingGold />}
         />
-<<<<<<< HEAD
-        <Route path="/Member/MemberCollect" element={<MemberCollect />} />
-        <Route path="/Member/MemberMessage" element={<MemberMessage />} />
-        <Route path="/Member/MemberCoupon" element={<MemberCoupon />} />
-        <Route path="/Member/MemberPoint" element={<MemberPoint />} />
-        <Route path="/Member/MemberInfo" element={<MemberInfo />} />
-        <Route path="/Member/MemberOrder" element={<MemberOrder />} />
-        <Route path="/Member" element={<Member />} />
-        <Route path="/Course" element={<Courses />} />
-        <Route path="/Course/CourseContent" element={<CourseContent />} />
-        <Route path="/Course/CourseCart01" element={<CourseCart01 />} />
-        <Route path="/Course/CourseCart02" element={<CourseCart02 />} />
-        <Route path="/Course/CourseCart03" element={<CourseCart03 />} />
-=======
         <Route path="/member/member-collect" element={<MemberCollect />} />
         <Route path="/member/member-message" element={<MemberMessage />} />
         <Route path="/memberm/member-coupon" element={<MemberCoupon />} />
@@ -123,8 +111,7 @@ function App() {
         <Route path="/member" element={<Member />} />
         <Route path="/course" element={<Courses />} />
         <Route path="/course/course-content" element={<CourseContent />} />
-        <Route path="/course/course-cart" element={<CourseCart />} />
->>>>>>> 65d1527e0a1429dd848c13feff315c3e880897bf
+        {/* <Route path="/course/course-cart" element={<CourseCart />} /> */}
       </Routes>
     </>
   );
