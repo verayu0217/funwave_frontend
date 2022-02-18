@@ -51,6 +51,7 @@
 .wrapSignup{
     background: rgba($color: #000000, $alpha: 0.6);
     position: fixed;
+    overflow: auto;
     top:0%;
     left:0%; 
     width: 100%;
@@ -81,10 +82,10 @@
     cursor: pointer;
 }
 //facebook
-.fbCu{
+.fbLogin{
     color: #3B5998;
 }
-.googleCu{
+.googleLogin{
     height: 1.15rem;
     width: 1.15rem;
 }

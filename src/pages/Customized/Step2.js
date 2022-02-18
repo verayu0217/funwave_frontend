@@ -1,53 +1,31 @@
-import React, { usestate } from 'react';
+import React, { useState, usestate } from 'react';
 import { Figure, Row, Col } from 'react-bootstrap';
 import greenTitle from '../../data/images/greenTitle.svg';
-import fishboard from '../../data/images/customize/fishboardChoose.png';
-import fishboardHole from '../../data/images/customize/fishboardHole.png';
-import funboard from '../../data/images/customize/funboardChoose.png';
-import funboardHole from '../../data/images/customize/funboardHole.png';
-import gunboard from '../../data/images/customize/gunboardChoose.png';
-import gunboardHole from '../../data/images/customize/gunboardHole.png';
-import longboard from '../../data/images/customize/longboardChoose.png';
+// import fishboardHole from '../../data/images/customize/fishboardHole.png';
+// import funboardHole from '../../data/images/customize/funboardHole.png';
+// import gunboardHole from '../../data/images/customize/gunboardHole.png';
 import longboardHole from '../../data/images/customize/longboardHole.png';
-
 function Step2() {
+  const [boardColor, setBoardColor] = useState({
+    backgroundColor: 'white',
+  });
+  const [boardColor2, setBoardColor2] = useState({
+    backgroundColor: 'white',
+  });
+
+  function changeColor(e) {
+    setBoardColor({ backgroundColor: e.target.value });
+  }
+  function changeColor2(e) {
+    setBoardColor2({ backgroundColor: e.target.value });
+  }
   return (
-    <div className="container">
-      <Row>
-        <Col>
-          <div className="d-flex chooseBtn justify-content-around py-3 shadow">
-            <div className="my-auto fs-1">01</div>
-            <div>
-              選擇衝浪板外型
-              <br />
-              Choose a surfboard shape
-            </div>
-          </div>
-        </Col>
-        <Col>
-          <div className="d-flex chooseBtn justify-content-around py-3 shadow">
-            <div className="my-auto fs-1">02</div>
-            <div>
-              選擇顏色及圖案
-              <br />
-              Choose color & pattern
-            </div>
-          </div>
-        </Col>
-        <Col>
-          <div className="d-flex chooseBtn justify-content-around py-3 shadow">
-            <div className="my-auto fs-1">03</div>
-            <div className="me-3">
-              加入購物車
-              <br />
-              Add to shopping cart
-            </div>
-          </div>
-        </Col>
-      </Row>
-      <div className="text-secondary h1 text-center mb-3 d-flex justify-content-between">
-        <button className="btn btn-secondary my-2">返回</button>
-        <div className="">
+    <div className="container pb-3">
+      <div className="text-secondary h1 text-center position-relative">
+        <button className="btn btn-secondary my-2 position-absolute start-0">
+          返回
+        </button>
+        <div className="text-center">
           <img
             src={greenTitle}
             className="greenTitle me-3"
@@ -57,25 +35,67 @@ function Step2() {
           />
           STEP2 選擇衝浪板顏色及圖案
         </div>
-
-        <button className="btn btn-secondary my-2">下一步</button>
       </div>
-      <hr />
+      <hr className="mb-3 mt-0" />
       {/* 以下假資料 */}
       <Row>
         <Col lg="7">
-          魚板
-          <hr />
-          <div className="boardCu"></div>
-          <div className="boardCu"></div>
+          <Row className="gx-0">
+            <Col lg="2">魚板</Col>
+            <Col lg="5" className="boarderCu">
+              <p className="m-0 text-center">正面</p>
+              <Figure style={boardColor}>
+                <Figure.Image
+                  alt="fishboardHole"
+                  src={longboardHole}
+                  className="m-0"
+                />
+              </Figure>
+            </Col>
+            <Col lg="5" className="boarderCu">
+              <p className="m-0 text-center">反面</p>
+              <Figure style={boardColor2}>
+                <Figure.Image
+                  alt="fishboardHole"
+                  src={longboardHole}
+                  className="m-0"
+                />
+              </Figure>
+            </Col>
+          </Row>
         </Col>
-        <Col lg="5">
+        {/* 右邊 */}
+        <Col lg="5" className="text-center">
           顏色及圖樣選擇
           <hr />
           <div>
             <p>請選擇顏色</p>
+            <Row>
+              <Col>
+                <p>正面</p>
+                <input
+                  type="color"
+                  className="p-0"
+                  // value="#ffffff"
+                  onChange={changeColor}
+                />
+              </Col>
+              <Col>
+                <p>反面</p>
+                <input type="color" className="p-0" onChange={changeColor2} />
+              </Col>
+            </Row>
+
             <hr />
             <p>請選擇圖樣</p>
+            <Row>
+              <Col>
+                <p>正面</p>
+              </Col>
+              <Col>
+                <p>反面</p>
+              </Col>
+            </Row>
             <Row>
               <Col>
                 <button className="btn btn-secondary btnCu">清除重填</button>

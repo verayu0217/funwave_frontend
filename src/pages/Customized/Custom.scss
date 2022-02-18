@@ -35,24 +35,36 @@
   background: white;
   font-weight:bold;
 }
-.chooseBtn:hover{
+.chooseBtnActive{
   background:$orange;
 }
 //step1
 .chooseBoardCu{
-  max-height:550px
-  // cursor: pointer;
+  max-height: 550px
+// cursor: pointer;
 }
 //step2
-.boardCu{
+.boarderCu{
   // 手機大小
   // width: 300px;
   // height: 600px;
-  display: inline-block;
-  width: 300px;
-  height: 550px;
+  
   border: 1px solid black;
 }
 .btnCu{
   width: 100%;
+}
+input[type="color"] {
+	-webkit-appearance: none;
+	border:none;
+	width: 32px;
+	height: 32px;
+  background-color: $lightgray;
+}
+input[type="color"]::-webkit-color-swatch-wrapper {
+	padding: 0;
+}
+input[type="color"]::-webkit-color-swatch {
+	border: none;
+  border-radius: 50%;
 }
