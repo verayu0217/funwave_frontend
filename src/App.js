@@ -25,8 +25,10 @@ import MemberShoppingGold from './pages/Members/MemberShoppingGold';
 //課程
 
 import CourseContent from './pages/Course/CourseContent';
+import CourseCart01 from './pages/Course/CourseCart01';
+import CourseCart02 from './pages/Course/CourseCart02';
+import CourseCart03 from './pages/Course/CourseCart03';
 import Courses from './pages/Course/Courses';
-import CourseCart from './pages/Course/CourseCart';
 
 //商城
 import ProductDetails from './pages/Products/ProductDetails';
@@ -81,7 +83,9 @@ function App() {
         <Route path="/Member" element={<Member />} />
         <Route path="/Course" element={<Courses />} />
         <Route path="/Course/CourseContent" element={<CourseContent />} />
-        <Route path="/Course/CourseCart" element={<CourseCart />} />
+        <Route path="/Course/CourseCart01" element={<CourseCart01 />} />
+        <Route path="/Course/CourseCart02" element={<CourseCart02 />} />
+        <Route path="/Course/CourseCart03" element={<CourseCart03 />} />
       </Routes>
     </>
   );

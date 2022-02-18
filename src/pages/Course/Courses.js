@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Route } from 'react-router-dom';
 import axios from 'axios';
 
 // 引用上課地點組件
@@ -67,13 +67,13 @@ function Courses() {
             </div>
           </div>
           <div className=" text-center">
-            <Link
-              to="/Course/CourseContent"
+            <a
+              href="/Course/CourseContent"
               class="btn btn-primary text-white mb-5 courseIntroBtn"
             >
               詳細課程內容
               <i className="fas fa-arrow-right text-white"></i>
-            </Link>
+            </a>
           </div>
         </div>
 
