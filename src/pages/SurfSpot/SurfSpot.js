@@ -4,55 +4,55 @@ import greenTitle from '../../data/images/greenTitle.svg';
 import CircleLeft from './CircleLeft';
 import Taiwanmap from './TaiwanMap';
 import CircleRight from './CircleRight';
-import { data } from '../../data/surfspot';
+// import { data } from '../../data/surfspot';
 
 import './surfSpot.scss';
 
 function SurfSpot() {
-  const [surfspots, setSurfspots] = useState([]);
-  const [displaySurfspots, setDisplaySurfspots] = useState([]);
+  // const [surfspots, setSurfspots] = useState([]);
+  // const [displaySurfspots, setDisplaySurfspots] = useState([]);
 
-  const [tags, setTags] = useState([]);
-  const tagTypes = [
-    '初階',
-    '中階',
-    '高階',
-    '東部',
-    '東北部',
-    '北部',
-    '西部',
-    '南部',
-  ];
-  useEffect(() => {
-    setSurfspots(data);
-    setDisplaySurfspots(data);
-  }, []);
+  // const [tags, setTags] = useState([]);
+  // const tagTypes = [
+  //   '初階',
+  //   '中階',
+  //   '高階',
+  //   '東部',
+  //   '東北部',
+  //   '北部',
+  //   '西部',
+  //   '南部',
+  // ];
+  // useEffect(() => {
+  //   setSurfspots(data);
+  //   setDisplaySurfspots(data);
+  // }, []);
 
-  const handleTags = (surfspots, tags) => {
-    let newSurfspots = [...surfspots];
+  // const handleTags = (surfspots, tags) => {
+  //   let newSurfspots = [...surfspots];
 
-    if (tags.length > 0) {
-      newSurfspots = [...newSurfspots].filter((surfspot) => {
-        let isFound = false;
-        const surfspotTags = surfspot.tags.split(',');
+  //   if (tags.length > 0) {
+  //     newSurfspots = [...newSurfspots].filter((surfspot) => {
+  //       let isFound = false;
+  //       const surfspotTags = surfspot.tags.split(',');
 
-        for (let i = 0; i < tags.length; i++) {
-          if (surfspotTags.includes(tags[i])) {
-            isFound = true;
-            break;
-          }
-        }
-        return isFound;
-      });
-    }
-    return newSurfspots;
-  };
+  //       for (let i = 0; i < tags.length; i++) {
+  //         if (surfspotTags.includes(tags[i])) {
+  //           isFound = true;
+  //           break;
+  //         }
+  //       }
+  //       return isFound;
+  //     });
+  //   }
+  //   return newSurfspots;
+  // };
 
-  useEffect(() => {
-    let newSurfspots = [];
-    newSurfspots = handleTags(newSurfspots, tags);
-    setDisplaySurfspots(newSurfspots);
-  }, [tags]);
+  // useEffect(() => {
+  //   let newSurfspots = [];
+  //   newSurfspots = handleTags(newSurfspots, tags);
+  //   setDisplaySurfspots(newSurfspots);
+  // }, [tags]);
 
   return (
     <>
@@ -77,11 +77,12 @@ function SurfSpot() {
         </div>
         <div className="mt-5 mb-5">
           <div className="d-flex justify-content-center">
-            <CircleLeft tagTypes={tagTypes} tags={tags} setTags={setTags} />
-            <CircleRight tagTypes={tagTypes} tags={tags} setTags={setTags} />
-            {displaySurfspots.length > 0 && (
-              <Taiwanmap surfspots={displaySurfspots} />
-            )}
+            {/* tagTypes={tagTypes} tags={tags} setTags={setTags} */}
+            <CircleLeft />
+            <CircleRight />
+            {/* {displaySurfspots.length > 0 && */}
+            <Taiwanmap />
+            {/*  surfspots={displaySurfspots}  */}
           </div>
         </div>
       </div>

@@ -1,17 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import SurfSpotDetails from './SurfSpotDetails';
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css'; // optional
 import 'tippy.js/themes/light.css';
 import './taiwanMap.scss';
 
-function TaiwanMap(props) {
+import { data } from '../../data/surfspot';
+
+function TaiwanMap() {
   const [showSurfSpotDetails, setshowSurfSpotDetails] = useState(false);
   const openSurfSpotDetails = () => {
     setshowSurfSpotDetails((prev) => !prev);
   };
-  const { id, name, tags, placement } = props.surfspot;
-  const { surfspots } = props;
+
+  const { id, name, tags, placement } = data;
+  // const { surfspots } = props;
+
+  const [surfspots, setSurfspots] = useState([]);
+
+  useEffect(() => {
+    setSurfspots(data);
+  }, []);
 
   return (
     <div className="wrapSpot">

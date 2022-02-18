@@ -116,7 +116,7 @@ const data = [
   {
     id: 'E09',
     name: '都蘭',
-    tags: '東部,中階',
+    tags: '東部,初階',
     placement: 'right',
   },
   {
