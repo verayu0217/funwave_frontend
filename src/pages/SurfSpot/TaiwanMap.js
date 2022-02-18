@@ -1,17 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import SurfSpotDetails from './SurfSpotDetails';
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css'; // optional
 import 'tippy.js/themes/light.css';
 import './taiwanMap.scss';
 
+import { data } from '../../data/surfspot';
+
 function TaiwanMap(props) {
   const [showSurfSpotDetails, setshowSurfSpotDetails] = useState(false);
   const openSurfSpotDetails = () => {
     setshowSurfSpotDetails((prev) => !prev);
   };
-  const { id, name, tags, placement } = props.surfspot;
-  const { surfspots } = props;
+
+  const [surfspots, setSurfspots] = useState([]);
+  const [tags, setTags] = useState([]);
+
+  useEffect(() => {
+    if (tags.length > 0) {
+    } else setSurfspots(data);
+  }, [props.tags]);
 
   return (
     <div className="wrapSpot">
@@ -19,16 +27,16 @@ function TaiwanMap(props) {
         return (
           <Tippy
             offset={[-10, 20]}
-            placement={placement}
+            placement={surfspot.placement}
             theme={'light'}
-            content={name}
+            content={surfspot.name}
           >
             <i
               key={i}
-              id={id}
-              tags={tags}
+              id={surfspot.id}
+              tags={surfspot.tags}
               onClick={openSurfSpotDetails}
-              className={`myFas fas fa-map-marker {id}`}
+              className={`myFas fas fa-map-marker ${surfspot.id}`}
               surfspot={surfspot}
             ></i>
           </Tippy>

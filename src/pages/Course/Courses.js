@@ -68,7 +68,7 @@ function Courses() {
           </div>
           <div className=" text-center">
             <Link
-              to="/Course/course-content"
+              to="/course/course-content"
               className="btn btn-primary text-white mb-5 courseIntroBtn"
             >
               詳細課程內容

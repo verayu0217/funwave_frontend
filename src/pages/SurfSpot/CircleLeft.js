@@ -1,7 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './circleLeft.scss';
 
 function CircleLeft() {
+  const [tags, setTags] = useState([]);
+  const tagTypes = ['初階', '中階', '高階'];
+
+  const handleFilter = (e) => {
+    const value = e.target.value;
+    if (!tags.includes(tagTypes)) return setTags([...tags, value]);
+    if (tags.includes(tagTypes)) {
+      const newTags = tags.filter((v) => v !== value);
+      setTags(newTags);
+    }
+  };
+
   return (
     <div className="leftCirclePos">
       <svg
@@ -17,9 +29,19 @@ function CircleLeft() {
         <circle className="cls-1 smCircle" cx="400.12" cy="200.02" r="12.5" />
         <circle className="cls-1 smCircle" cx="333.77" cy="348.91" r="12.5" />
       </svg>
-      <span className="cls-2 fw-bold bsText text-nowrap">初階浪點</span>
-      <span className="cls-2 fw-bold mdText text-nowrap">中階浪點</span>
-      <span className="cls-2 fw-bold hgText text-nowrap">高階浪點</span>
+      <span
+        value="初階"
+        onClick={handleFilter}
+        className="cls-2 fw-bold bsText text-nowrap"
+      >
+        初階浪點
+      </span>
+      <span value="中階" className="cls-2 fw-bold mdText text-nowrap">
+        中階浪點
+      </span>
+      <span value="高階" className="cls-2 fw-bold hgText text-nowrap">
+        高階浪點
+      </span>
     </div>
   );
 }

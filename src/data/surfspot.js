@@ -8,7 +8,7 @@ const data = [
   {
     id: 'N02',
     name: '金山-中角灣',
-    tags: '北部,初階',
+    tags: '北部,初階浪點',
     placement: 'right',
   },
   {
@@ -116,7 +116,7 @@ const data = [
   {
     id: 'E09',
     name: '都蘭',
-    tags: '東部,中階',
+    tags: '東部,初階',
     placement: 'right',
   },
   {

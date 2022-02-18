@@ -95,7 +95,7 @@ function App() {
         <Route path="/customized-details" element={<CustomizedDetails />} />
         <Route path="/customized" element={<Customized />} />
         <Route
-          path="/member/member-order/member-order-details"
+          path="/member/member-order/member-order-details/:member_id"
           element={<MemberOrderDetails />}
         />
         <Route
@@ -111,7 +111,9 @@ function App() {
         <Route path="/member" element={<Member />} />
         <Route path="/course" element={<Courses />} />
         <Route path="/course/course-content" element={<CourseContent />} />
-        {/* <Route path="/course/course-cart" element={<CourseCart />} /> */}
+        <Route path="/course/course-cart01" element={<CourseCart01 />} />
+        <Route path="/course/course-cart02" element={<CourseCart02 />} />
+        <Route path="/course/course-cart03" element={<CourseCart03 />} />
       </Routes>
     </>
   );

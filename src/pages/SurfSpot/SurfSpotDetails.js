@@ -1,4 +1,6 @@
-import React, { useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
+import axios from 'axios';
+import { API_URL } from '../../utils/config';
 import { Row, Col } from 'react-bootstrap';
 import 'animate.css';
 import dayjs from 'dayjs';
@@ -10,6 +12,7 @@ import { ImCross } from 'react-icons/im';
 import './surfSpotDetails.scss';
 
 function SurfSpotDetails(props) {
+  const [data, setData] = useState([]);
   const { showSurfSpotDetails, setshowSurfSpotDetails } = props;
   const surfSpotDetailsRef = useRef();
   const closeshowSurfSpotDetails = (e) => {
@@ -17,6 +20,16 @@ function SurfSpotDetails(props) {
       setshowSurfSpotDetails(false);
     }
   };
+
+  useEffect(() => {
+    let getSurfspot = async () => {
+      // http://localhost:3002/api/
+      let response = await axios.get(`${API_URL}/Surfspot`);
+      setData(response.data);
+    };
+    getSurfspot();
+  }, []);
+
   dayjs.locale('zh-tw');
   const now = dayjs(new Date()).format('YYYY/MM/DD 星期dd HH:mm');
   return (
