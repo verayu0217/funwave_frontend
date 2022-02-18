@@ -65,8 +65,8 @@ function ProductDetails() {
                   <Accordion.Body>
                     <ul className="ulProducts">
                       <li className="liProducts">
-                        <Link to="/" title="衝浪舵" className="linkProducts">
-                          衝浪舵
+                        <Link to="/" title="衝浪板舵" className="linkProducts">
+                          衝浪板舵
                         </Link>
                       </li>
                       <li className="liProducts">
@@ -234,7 +234,7 @@ function ProductDetails() {
                     color="#17a8a2"
                     className="me-3"
                   />
-                  適用的衝浪舵類型
+                  適用衝浪舵類型
                 </h3>
                 <div className="form-check ms-3">
                   <input
@@ -245,7 +245,7 @@ function ProductDetails() {
                     value="fin1"
                   />
                   <label className="form-check-label ms-3" htmlFor="fin1">
-                    Single
+                    Single Tab
                   </label>
                 </div>
                 <div className="form-check ms-3">

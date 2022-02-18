@@ -8,8 +8,10 @@ import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
 import { BiHeart } from 'react-icons/bi';
 // import { FaHeart } from 'react-icons/fa'; // 全愛心
 
+// 文字過長會跑版、後端圖片如何置換
+
 function ProductItem(props) {
-  const { id, name, picture, price, smallCat } = props.product;
+  const { id, name, image1, price, small_cat_id } = props.product;
   return (
     <>
       {/* <tr>
@@ -47,7 +49,7 @@ function ProductItem(props) {
           <p className="mb-0 mt-2">{name}</p>
         </Figure.Caption>
         <Figure.Caption className="d-flex justify-content-center">
-          <p className="mb-2">{smallCat}</p>
+          <p className="mb-2">{small_cat_id}</p>
         </Figure.Caption>
         <Figure.Caption className="d-flex justify-content-center">
           <p className="text-dark fw-bold">NT {price}</p>
@@ -58,5 +60,3 @@ function ProductItem(props) {
 }
 
 export default ProductItem;
-
-// 複習2022.2.11
