@@ -67,19 +67,13 @@ function Courses() {
             </div>
           </div>
           <div className=" text-center">
-<<<<<<< HEAD
-            <a
-              href="/Course/CourseContent"
-              class="btn btn-primary text-white mb-5 courseIntroBtn"
-=======
             <Link
-              to="/Course/course-content"
+              to="/course/course-content"
               className="btn btn-primary text-white mb-5 courseIntroBtn"
->>>>>>> 65d1527e0a1429dd848c13feff315c3e880897bf
             >
               詳細課程內容
               <i className="fas fa-arrow-right text-white"></i>
-            </a>
+            </Link>
           </div>
         </div>
 

@@ -417,7 +417,7 @@ function CourseContent() {
                     課程報名
                   </div>
 
-                  <form action="/Course/CourseCart" onSubmit={handleSubmit}>
+                  <form action="/course/course-cart01" onSubmit={handleSubmit}>
                     <div className="p-2 m-0">
                       <label htmlFor="course">選擇課程</label>
                       <select
@@ -511,7 +511,7 @@ function CourseContent() {
                         <i className="fas fa-arrow-right text-white"></i>
                       </button>
 
-                      <a href="/Course/CourseCart01" className="text-center">
+                      <a href="/course/course-cart01" className="text-center">
                         送出表單同時跳轉到加入購物車
                       </a>
                     </div>

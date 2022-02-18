@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, Route, Routes } from 'react-router-dom';
 import { Row, Col, Container } from 'react-bootstrap';
-import CourseCart02 from './CourseCart02';
 
 import { AiOutlinePlus, AiOutlineMinus } from 'react-icons/ai';
 
@@ -47,6 +46,34 @@ function CourseCart() {
             </div>
 
             {/* 購物車三步驟 */}
+            <header className="m-5 py-2 px-5">
+              <div className="d-flex justify-content-evenly">
+                <div className="d-flex align-items-center shadow py-2 cartStepsSigns borderRadius">
+                  <div className="fs-1 w-25 text-center">01</div>
+                  <div className="w-75">
+                    確認課程明細及選擇付款方式
+                    <br />
+                    Cart & Check out
+                  </div>
+                </div>
+                <div className="d-flex justify-content-evenly align-items-center shadow py-2 cartStepsSigns borderRadius">
+                  <div className="fs-1 w-25 text-center">02</div>
+                  <div className="w-75">
+                    填寫個人資料
+                    <br />
+                    Cart & Check out
+                  </div>
+                </div>
+                <div className="d-flex justify-content-evenly align-items-center shadow py-2 cartStepsSigns borderRadius">
+                  <div className="fs-1 w-25 text-center">03</div>
+                  <div className="w-75">
+                    報名完成！
+                    <br />
+                    Order completed
+                  </div>
+                </div>
+              </div>
+            </header>
 
             {/* 明細區塊  */}
             <div>
@@ -154,14 +181,14 @@ function CourseCart() {
                 <div className="d-flex justify-content-end ">
                   <div>
                     <Link
-                      to="/Course/CourseContent"
+                      to="/course/course-content"
                       class="btn btn-secondary text-white backBtn me-3 mt-3"
                     >
                       <i className="fas fa-arrow-left text-white"></i>
                       回上一頁
                     </Link>
                     <Link
-                      to="/Course/CourseCart02"
+                      to="/course/course-cart02"
                       class="btn btn-primary text-white confirmBtn mt-3"
                     >
                       確認資訊
@@ -216,14 +243,14 @@ function CourseCart() {
                 {/* 上一頁/下一頁按鈕  */}
                 <div class="row mt-5">
                   <Link
-                    to="/Course/CourseContent"
+                    to="/course/course-content"
                     class="btn btn-secondary text-white backBtn me-2"
                   >
                     <i className="fas fa-arrow-left text-white"></i>
                     回上一頁
                   </Link>
                   <Link
-                    to="/Course/CourseCart02"
+                    to="course/course-cart01"
                     class="btn btn-primary text-white confirmBtn mt-2 "
                   >
                     確認資訊

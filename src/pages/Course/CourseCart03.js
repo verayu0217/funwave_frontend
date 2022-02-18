@@ -27,6 +27,34 @@ function CourseCart03() {
           </div>
 
           {/* 購物車三步驟 */}
+          <header className="m-5 py-2 px-5">
+            <div className="d-flex justify-content-evenly">
+              <div className="d-flex align-items-center shadow py-2 cartStepsSigns borderRadius">
+                <div className="fs-1 w-25 text-center">01</div>
+                <div className="w-75">
+                  確認課程明細及選擇付款方式
+                  <br />
+                  Cart & Check out
+                </div>
+              </div>
+              <div className="d-flex justify-content-evenly align-items-center shadow py-2 cartStepsSigns borderRadius">
+                <div className="fs-1 w-25 text-center">02</div>
+                <div className="w-75">
+                  填寫個人資料
+                  <br />
+                  Cart & Check out
+                </div>
+              </div>
+              <div className="d-flex justify-content-evenly align-items-center shadow py-2 cartStepsSigns borderRadius">
+                <div className="fs-1 w-25 text-center">03</div>
+                <div className="w-75">
+                  報名完成！
+                  <br />
+                  Order completed
+                </div>
+              </div>
+            </div>
+          </header>
 
           <div class="col-8 box border bg m-auto p-3 py-5">
             <p class="text-center align-items-center fs-1">

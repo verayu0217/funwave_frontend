@@ -100,20 +100,6 @@ function App() {
           path="/member/member-shopping-gold"
           element={<MemberShoppingGold />}
         />
-<<<<<<< HEAD
-        <Route path="/Member/MemberCollect" element={<MemberCollect />} />
-        <Route path="/Member/MemberMessage" element={<MemberMessage />} />
-        <Route path="/Member/MemberCoupon" element={<MemberCoupon />} />
-        <Route path="/Member/MemberPoint" element={<MemberPoint />} />
-        <Route path="/Member/MemberInfo" element={<MemberInfo />} />
-        <Route path="/Member/MemberOrder" element={<MemberOrder />} />
-        <Route path="/Member" element={<Member />} />
-        <Route path="/Course" element={<Courses />} />
-        <Route path="/Course/CourseContent" element={<CourseContent />} />
-        <Route path="/Course/CourseCart01" element={<CourseCart01 />} />
-        <Route path="/Course/CourseCart02" element={<CourseCart02 />} />
-        <Route path="/Course/CourseCart03" element={<CourseCart03 />} />
-=======
         <Route path="/member/member-collect" element={<MemberCollect />} />
         <Route path="/member/member-message" element={<MemberMessage />} />
         <Route path="/memberm/member-coupon" element={<MemberCoupon />} />
@@ -123,8 +109,9 @@ function App() {
         <Route path="/member" element={<Member />} />
         <Route path="/course" element={<Courses />} />
         <Route path="/course/course-content" element={<CourseContent />} />
-        <Route path="/course/course-cart" element={<CourseCart />} />
->>>>>>> 65d1527e0a1429dd848c13feff315c3e880897bf
+        <Route path="/course/course-cart01" element={<CourseCart01 />} />
+        <Route path="/course/course-cart02" element={<CourseCart02 />} />
+        <Route path="/course/course-cart03" element={<CourseCart03 />} />
       </Routes>
     </>
   );
