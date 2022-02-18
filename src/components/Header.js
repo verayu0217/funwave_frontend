@@ -64,7 +64,7 @@ function MyNavbar(props) {
               {/* <button className="btn" type="submit">
               <i className="fas fa-user"></i>
             </button> */}
-              <Nav.Link className="iconGroup" as={NavLink} to="/Member">
+              <Nav.Link className="iconGroup" as={NavLink} to="/member">
                 <i className="fas fa-user"></i>
               </Nav.Link>
               <Nav.Link

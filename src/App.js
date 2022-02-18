@@ -93,7 +93,7 @@ function App() {
         <Route path="/cart-pre-order" element={<CartPreOrder />} />
         <Route path="/customized" element={<Customized />} />
         <Route
-          path="/member/member-order/member-order-details"
+          path="/member/member-order/member-order-details/:member_id"
           element={<MemberOrderDetails />}
         />
         <Route
