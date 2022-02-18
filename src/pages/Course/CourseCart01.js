@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Route, Routes } from 'react-router-dom';
+import { Row, Col, Container } from 'react-bootstrap';
+import CourseCart02 from './CourseCart02';
+
+import { AiOutlinePlus, AiOutlineMinus } from 'react-icons/ai';
 
 // 大標題綠色波浪
 import greenTitle from '../../data/images/greenTitle.svg';
@@ -7,14 +11,31 @@ import greenTitle from '../../data/images/greenTitle.svg';
 import './CourseCart.scss';
 
 function CourseCart() {
+  //先用假資料 先不從表單取
+  const [courseDetail, setCourseDetail] = useState([
+    {
+      // 名稱	時段	地點	單價	人數	小計	預約日期
+      course: '初階衝浪',
+      time: '上午',
+      spot: '白沙灣',
+      price: 1500,
+      date: '2022-1-24',
+    },
+  ]);
+
+  // 人數
+  const [count, setCount] = useState(1);
+
+  // 總計
+  const amount = courseDetail[0].price * count;
+
   return (
     <>
-      {/* 購物車進度條 */}
-      <div className="container-fluid">
-        <div className="row">
-          <div className=" col-sm-12 col-lg-10 m-auto">
+      <div class="container-fluid">
+        <div class="row">
+          <div class=" col-sm-10 col-lg-10 m-auto">
             {/* 標題 */}
-            <div className="text-secondary fw-bold my-3 h1 text-center ">
+            <div className="text-secondary fw-bold my-5 h1 text-center ">
               <img
                 src={greenTitle}
                 className="greenTitle me-3"
@@ -24,6 +45,8 @@ function CourseCart() {
               />
               衝浪課程購物車
             </div>
+
+            {/* 購物車三步驟 */}
 
             {/* 明細區塊  */}
             <div>
@@ -43,20 +66,54 @@ function CourseCart() {
                       <th scope="col">操作</th>
                     </tr>
                   </thead>
-                  <tbody className="text-center">
-                    <tr>
-                      <td>初階衝浪</td>
-                      <td>上午</td>
-                      <td>白沙灣</td>
-                      <td>2000</td>
-                      <td>- 1 +</td>
-                      <td>NT 2,000</td>
-                      <td>2022-1-24</td>
-                      <td>
-                        <i className="fas fa-trash-alt"></i>
-                      </td>
-                    </tr>
-                  </tbody>
+
+                  {courseDetail.map((v, i) => {
+                    return (
+                      <tbody class="text-center" key={i}>
+                        <tr>
+                          <td>{v.course}</td>
+                          <td>{v.time}</td>
+                          <td>{v.spot}</td>
+                          <td>{v.price}</td>
+                          <td>
+                            <button
+                              type="button"
+                              className="btn btn-secondary border rounded-circle p-0 countButton me-2"
+                              onClick={() => {
+                                if (count - 1 >= 1) setCount(count - 1);
+                              }}
+                            >
+                              <AiOutlineMinus
+                                size={20}
+                                color="#ffffff"
+                                className="text-center"
+                              />
+                            </button>
+
+                            {count}
+                            <button
+                              type="button"
+                              className="btn btn-secondary border rounded-circle p-0 countButton ms-2"
+                              onClick={() => {
+                                setCount(count + 1);
+                              }}
+                            >
+                              <AiOutlinePlus
+                                size={20}
+                                color="#ffffff"
+                                className="text-center"
+                              />
+                            </button>
+                          </td>
+                          <td>{amount}</td>
+                          <td>{v.date}</td>
+                          <td>
+                            <i class="fas fa-trash-alt"></i>
+                          </td>
+                        </tr>
+                      </tbody>
+                    );
+                  })}
                 </table>
 
                 {/* 付款方式 */}
@@ -89,21 +146,27 @@ function CourseCart() {
                 </div>
 
                 {/* <總計  */}
-                <div className="d-flex justify-content-end">
-                  <p className="h3">總計 NT 2,000</p>
+                <div class="d-flex justify-content-end">
+                  <p class="h3">總計 NT {amount}</p>
                 </div>
 
                 {/* 上一頁/下一頁按鈕  */}
                 <div className="d-flex justify-content-end ">
                   <div>
-                    <button className="btn btn-secondary text-white backBtn me-3 mt-3">
+                    <Link
+                      to="/Course/CourseContent"
+                      class="btn btn-secondary text-white backBtn me-3 mt-3"
+                    >
                       <i className="fas fa-arrow-left text-white"></i>
                       回上一頁
-                    </button>
-                    <button className="btn btn-primary text-white confirmBtn mt-3">
+                    </Link>
+                    <Link
+                      to="/Course/CourseCart02"
+                      class="btn btn-primary text-white confirmBtn mt-3"
+                    >
                       確認資訊
                       <i className="fas fa-arrow-right text-white"></i>
-                    </button>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -151,15 +214,21 @@ function CourseCart() {
                 </div>
 
                 {/* 上一頁/下一頁按鈕  */}
-                <div className="row mt-5">
-                  <button className="btn btn-secondary text-white backBtn me-2">
+                <div class="row mt-5">
+                  <Link
+                    to="/Course/CourseContent"
+                    class="btn btn-secondary text-white backBtn me-2"
+                  >
                     <i className="fas fa-arrow-left text-white"></i>
                     回上一頁
-                  </button>
-                  <button className="btn btn-primary text-white confirmBtn mt-2 ">
+                  </Link>
+                  <Link
+                    to="/Course/CourseCart02"
+                    class="btn btn-primary text-white confirmBtn mt-2 "
+                  >
                     確認資訊
                     <i className="fas fa-arrow-right text-white"></i>
-                  </button>
+                  </Link>
                 </div>
               </div>
             </div>

@@ -1,0 +1,16 @@
+// 待找到方法放在public，就可刪除此行
+@import '../../../styles/global.scss';
+
+// 共用
+.borderRadius {
+  border-radius: 8px;
+}
+
+// header 三步驟
+.cartStepsSigns {
+  background-color: $funwave-lightgray;
+  width: 29%;
+}
+.cartStepsSigns:hover {
+  background: $orange;
+}

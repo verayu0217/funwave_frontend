@@ -29,14 +29,16 @@ import MemberShoppingGold from './pages/Members/MemberShoppingGold';
 //課程
 
 import CourseContent from './pages/Course/CourseContent';
+import CourseCart01 from './pages/Course/CourseCart01';
+import CourseCart02 from './pages/Course/CourseCart02';
+import CourseCart03 from './pages/Course/CourseCart03';
 import Courses from './pages/Course/Courses';
-import CourseCart from './pages/Course/CourseCart';
 
 //商城
 import ProductDetails from './pages/Products/ProductDetails';
 import Products from './pages/Products/Products';
 //購物車
-// import CartPreOrder from './pages/Products/Cart/CartPreOrder';
+import CartPreOrder from './pages/Products/Cart/CartPreOrder';
 // import CartManage from './pages/Products/Cart/CartManage';
 // import CartConfimOrder from './pages/Products/Cart/CartConfimOrder';
 // import CartComplete from './pages/Products/Cart/CartComplete';
@@ -83,20 +85,22 @@ function App() {
       <Header auth={auth} setAuth={setAuth} />
       <Routes>
         <Route path="/home" element={<Home />} />
-        <Route path="/homeTry" element={<HomeTry />} />
+        <Route path="/home-try" element={<HomeTry />} />
         <Route path="/login" element={<LogIn />} />
         <Route path="/surfspot" element={<SurfSpot />} />
-        <Route path="/ProductDetails" element={<ProductDetails />} />
-        <Route path="/Products" element={<Products />} />
-        <Route path="/Customized" element={<Customized />} />
+        <Route path="/product-details" element={<ProductDetails />} />
+        <Route path="/products" element={<Products />} />
+        <Route path="/cart-pre-order" element={<CartPreOrder />} />
+        <Route path="/customized" element={<Customized />} />
         <Route
-          path="/Member/MemberOrder/MemberOrderDetails"
+          path="/member/member-order/member-order-details"
           element={<MemberOrderDetails />}
         />
         <Route
-          path="/Member/MemberShoppingGold"
+          path="/member/member-shopping-gold"
           element={<MemberShoppingGold />}
         />
+<<<<<<< HEAD
         <Route path="/Member/MemberCollect" element={<MemberCollect />} />
         <Route path="/Member/MemberMessage" element={<MemberMessage />} />
         <Route path="/Member/MemberCoupon" element={<MemberCoupon />} />
@@ -106,7 +110,21 @@ function App() {
         <Route path="/Member" element={<Member />} />
         <Route path="/Course" element={<Courses />} />
         <Route path="/Course/CourseContent" element={<CourseContent />} />
-        <Route path="/Course/CourseCart" element={<CourseCart />} />
+        <Route path="/Course/CourseCart01" element={<CourseCart01 />} />
+        <Route path="/Course/CourseCart02" element={<CourseCart02 />} />
+        <Route path="/Course/CourseCart03" element={<CourseCart03 />} />
+=======
+        <Route path="/member/member-collect" element={<MemberCollect />} />
+        <Route path="/member/member-message" element={<MemberMessage />} />
+        <Route path="/memberm/member-coupon" element={<MemberCoupon />} />
+        <Route path="/member/member-point" element={<MemberPoint />} />
+        <Route path="/member/member-info" element={<MemberInfo />} />
+        <Route path="/member/member-order" element={<MemberOrder />} />
+        <Route path="/member" element={<Member />} />
+        <Route path="/course" element={<Courses />} />
+        <Route path="/course/course-content" element={<CourseContent />} />
+        <Route path="/course/course-cart" element={<CourseCart />} />
+>>>>>>> 65d1527e0a1429dd848c13feff315c3e880897bf
       </Routes>
     </>
   );
