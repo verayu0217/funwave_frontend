@@ -39,7 +39,7 @@ import ProductDetails from './pages/Products/ProductDetails';
 import Products from './pages/Products/Products';
 //購物車
 import CartPreOrder from './pages/Products/Cart/CartPreOrder';
-// import CartManage from './pages/Products/Cart/CartManage';
+import CartManage from './pages/Products/Cart/CartManage';
 // import CartConfimOrder from './pages/Products/Cart/CartConfimOrder';
 // import CartComplete from './pages/Products/Cart/CartComplete';
 //客製化浪板

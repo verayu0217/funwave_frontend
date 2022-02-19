@@ -8,18 +8,53 @@ import './taiwanMap.scss';
 import { data } from '../../data/surfspot';
 
 function TaiwanMap(props) {
+  const { level } = props;
+
+  // 開啟浪點細節
   const [showSurfSpotDetails, setshowSurfSpotDetails] = useState(false);
   const openSurfSpotDetails = () => {
     setshowSurfSpotDetails((prev) => !prev);
   };
 
+  // 初始預設全部浪點
   const [surfspots, setSurfspots] = useState([]);
-  const [tags, setTags] = useState([]);
+  const [filterData, setFilterData] = useState([]);
 
+  // 篩選浪點
+  const handleTags = (data, level) => {
+    let newData = [];
+    if (level === '1') {
+      newData = data.filter((v) => {
+        return v.tags.includes('初階');
+      });
+    } else if (level === '2') {
+      newData = data.filter((v) => {
+        return v.tags.includes('中階');
+      });
+    } else if (level === '3') {
+      newData = data.filter((v) => {
+        return v.tags.includes('高階');
+      });
+    } else {
+      newData = [...data];
+    }
+    console.log('level', newData);
+    return newData;
+  };
+
+  // 篩選浪點
   useEffect(() => {
-    if (tags.length > 0) {
-    } else setSurfspots(data);
-  }, [props.tags]);
+    let filterData = [];
+    filterData = handleTags(data, level);
+
+    // filterData = handleTags(data, regional);
+    setFilterData(filterData);
+  }, [level]);
+
+  // 初始全部浪點
+  useEffect(() => {
+    setSurfspots(data);
+  }, []);
 
   return (
     <div className="wrapSpot">
