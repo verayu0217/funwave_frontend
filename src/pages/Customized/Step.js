@@ -12,7 +12,7 @@ function Step() {
           通過衝浪者填寫您的資料，讓FUNWAVE深入了解您，以利Lai Eddy Red Huang
           Fang設計一個真正適合您和您的衝浪風格的板子，並立即選擇您喜歡的板子顏色及圖文樣式吧
         </p>
-        <h3 className="text-center fw-bold mt-5 pt-5">
+        <h3 className="text-center fw-bold my-5 pt-5">
           簡單3步驟，訂製您的夢想衝浪板
         </h3>
       </div>

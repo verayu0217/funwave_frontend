@@ -7,7 +7,8 @@ import greenTitle from '../../data/images/greenTitle.svg';
 // import gunboardHole from '../../data/images/customize/gunboardHole.png';
 import longboardHole from '../../data/images/customize/longboardHole.png';
 import goodLuck from '../../data/images/customize/surfboardpicture/goodLuck.png';
-function Step2() {
+
+function Step2(props) {
   const [boardColor, setBoardColor] = useState({
     backgroundColor: 'white',
   });
@@ -21,6 +22,11 @@ function Step2() {
   function changeColor2(e) {
     setBoardColor2({ backgroundColor: e.target.value });
   }
+
+  // console.log(props);
+  //   function changeColor(e) {
+  //     props.setSurfingBoard({ backgroundColor: e.target.value });
+  //   }
   return (
     <div className="container pb-3">
       <div className="text-secondary h1 text-center position-relative">
@@ -44,7 +50,7 @@ function Step2() {
         <Col lg="7">
           <Row className="gx-0">
             <Col lg="2">魚板</Col>
-            <Col lg="5" className="boarderCu">
+            <Col lg="5" className="boarder">
               <p className="m-0 text-center">正面</p>
               <Figure style={boardColor} className="position-relative">
                 <Figure.Image
@@ -59,15 +65,15 @@ function Step2() {
                 />
               </Figure>
             </Col>
-            <Col lg="5" className="boarderCu">
+            <Col lg="5" className="boarder">
               <p className="m-0 text-center">反面</p>
-              <div style={boardColor2} className="cover-fit">
-                <img
+              <Figure style={boardColor2} className="position-relative">
+                <Figure.Image
                   alt="fishboardHole"
                   src={longboardHole}
-                  className="m-0 cover-fit"
+                  className="m-0"
                 />
-              </div>
+              </Figure>
             </Col>
           </Row>
         </Col>
@@ -100,7 +106,7 @@ function Step2() {
 
             <ControlledTabs />
 
-            <Row>
+            <Row className="mt-2">
               <Col>
                 <button className="btn btn-secondary btnCu">清除重填</button>
               </Col>

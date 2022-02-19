@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
 import Modal from './Modal';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { BsFacebook } from 'react-icons/bs';
 import { FcGoogle } from 'react-icons/fc';
 import axios from 'axios';
+import { useAuth } from '../../../context/auth';
 import { API_URL } from '../../../utils/config';
 import { ERR_MSG } from '../../../utils/error';
 import './memberLogin.scss';
 
-function Login(props) {
+function Login() {
+  const { auth, setAuth } = useAuth();
+  const [isLogin, setIsLogin] = useState(false);
   const [close, setClose] = useState('fas fa-eye-slash');
   const [type, setType] = useState('password');
   const [showModal, setshowModal] = useState(false);
@@ -25,16 +28,30 @@ function Login(props) {
   }
 
   async function logInSubmit(e) {
+    console.log('loginSubmit');
     e.preventDefault();
 
     try {
       let response = await axios.post(`${API_URL}/auth/login`, member, {
-        withCredentials: true,
+        withCredentials: true, //跨源存取cookie
       });
       console.log(response.data);
+
+      setAuth(response.data.data); // 把登入後 member 資料存回 context 讓其他地方可以用
+      setIsLogin(true);
+      console.log(isLogin);
     } catch (e) {
-      console.error({ ERR_MSG });
+      if (e.response) {
+        console.error('測試登入', ERR_MSG[e.response.data.code]);
+      } else {
+        console.error(e);
+      }
     }
+  }
+
+  if (isLogin) {
+    // 轉頁效果
+    return <Navigate to="/home" />;
   }
   return (
     <>
@@ -123,10 +140,7 @@ function Login(props) {
                 </div>
               </li>
               <li className="mt-4 d-flex justify-content-center">
-                <button
-                  className="btn btn-primary text-white loginBtn"
-                  type="submit"
-                >
+                <button className="btn btn-primary text-white loginBtn">
                   登入
                 </button>
               </li>
