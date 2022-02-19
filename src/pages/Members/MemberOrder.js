@@ -155,7 +155,11 @@ const MemberOrder = () => {
                       <td>{order_list.id}</td>
                       <td>{order_list.order_time}</td>
                       <td>{order_list.amount}</td>
-                      <td className="prepareColorMember">
+                      <td
+                        className={`prepareColorMember ${
+                          order_list.status === '訂單已完成' ? 'black' : ''
+                        }`}
+                      >
                         {order_list.status}
                       </td>
                       <td className="text-nowrap">

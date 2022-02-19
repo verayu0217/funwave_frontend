@@ -3,10 +3,16 @@ import { Link } from 'react-router-dom';
 import { Accordion } from 'react-bootstrap';
 import { Routes, Route } from 'react-router-dom';
 
+// axios前端、後端(爬蟲)都可用
+// 先安裝 npm i axios
+// 再引用 axios
+import axios from 'axios';
+
+import { API_URL } from '../../utils/config';
+
 // 導引資料、頁面
 import './Products.scss';
-import { data } from '../../data/products.js';
-import ProductDetails from './ProductDetails';
+// import { data } from '../../data/products.js'; // 前端假資料
 import ProductList from './Components/ProductList/ProductList.js';
 import SearchBar from './Components/SearchBar.js';
 import SortBar from './Components/SortBar.js';
@@ -47,16 +53,33 @@ function Products() {
     }
   }, [isLoading]);
 
+  // 前端透過axios從後端撈資料!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   // 初始化資料-模擬componentDidMount
   useEffect(() => {
     // 先開起載入指示器
     setIsLoading(true);
 
-    // 模擬和伺服器要資料
-    // 最後設定到狀態中
-    setProducts(data);
-    setDisplayProducts(data);
+    let getProducts = async () => {
+      // 欲取得後端 http://localhost:3002/api/products 資料
+      let response = await axios.get(`${API_URL}/products`);
+      // console.log(response);
+      setProducts(response.data);
+      setDisplayProducts(response.data);
+    };
+    getProducts();
   }, []);
+
+  // 前端假資料     可刪除，暫留供看看～～～
+  // 初始化資料-模擬componentDidMount
+  // useEffect(() => {
+  //   // 先開起載入指示器
+  //   setIsLoading(true);
+
+  //   // 模擬和伺服器要資料
+  //   // 最後設定到狀態中
+  //   setProducts(data);
+  //   setDisplayProducts(data);
+  // }, []);
 
   // 載入指示 spinner動畫
   const spinner = (
@@ -236,8 +259,8 @@ function Products() {
                   <Accordion.Body>
                     <ul className="ulProducts">
                       <li className="liProducts">
-                        <Link to="/" title="衝浪舵" className="linkProducts">
-                          衝浪舵
+                        <Link to="/" title="衝浪板舵" className="linkProducts">
+                          衝浪板舵
                         </Link>
                       </li>
                       <li className="liProducts">
@@ -424,7 +447,7 @@ function Products() {
                     value="fin1"
                   />
                   <label className="form-check-label ms-3" htmlFor="fin1">
-                    Single
+                    Single Tab
                   </label>
                 </div>
                 <div className="form-check ms-3">

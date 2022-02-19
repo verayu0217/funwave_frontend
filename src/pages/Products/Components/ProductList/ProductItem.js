@@ -1,6 +1,6 @@
 import React from 'react';
 import { Figure } from 'react-bootstrap';
-import longboard1 from './longboard1.jpg'; // 待釐清圖放src還是放在public
+import { IMAGE_URL } from '../../../../utils/config';
 
 // react-icons
 import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
@@ -8,8 +8,12 @@ import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
 import { BiHeart } from 'react-icons/bi';
 // import { FaHeart } from 'react-icons/fa'; // 全愛心
 
+// 文字過長會跑版、後端圖片如何置換
+
 function ProductItem(props) {
-  const { id, name, picture, price, smallCat } = props.product;
+  const { id, name, image1, price, small_cat_id } = props.product;
+  const smallCatTypes = ['長板', '快樂板', '短板'];
+
   return (
     <>
       {/* <tr>
@@ -28,8 +32,8 @@ function ProductItem(props) {
         <Figure.Image
           width={268}
           height={350}
-          alt="longboard1"
-          src={longboard1}
+          alt={`${image1}`}
+          src={`${IMAGE_URL}/products/${image1}`}
         />
         <BiHeart
           size={21}
@@ -47,10 +51,10 @@ function ProductItem(props) {
           <p className="mb-0 mt-2">{name}</p>
         </Figure.Caption>
         <Figure.Caption className="d-flex justify-content-center">
-          <p className="mb-2">{smallCat}</p>
+          <p className="mb-2">{smallCatTypes[small_cat_id - 1]}</p>
         </Figure.Caption>
         <Figure.Caption className="d-flex justify-content-center">
-          <p className="text-dark fw-bold">NT {price}</p>
+          <p className="fw-bold">NT {price}</p>
         </Figure.Caption>
       </Figure>
     </>
@@ -58,5 +62,3 @@ function ProductItem(props) {
 }
 
 export default ProductItem;
-
-// 複習2022.2.11

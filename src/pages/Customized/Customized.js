@@ -1,10 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Container, Row, Col } from 'react-bootstrap';
 import './Custom.scss';
 import RecommendCard from './RecommendCard';
 import Ad from './Ad';
 import Step from './Step';
-import BookPage from './BookPage';
+import StepList from './StepList';
 
 function Customized() {
   return (
@@ -52,7 +53,16 @@ function Customized() {
           </Row>
           <Ad />
           <Step />
-          <BookPage />
+          <StepList />
+          <div className=" text-center">
+            <Link
+              to="/customized/customized-details"
+              className="btn btn-primary text-white mb-5 courseIntroBtn"
+            >
+              立即訂製
+              <i className="fas fa-arrow-right text-white ms-2"></i>
+            </Link>
+          </div>
         </Container>
       </Container>
     </>

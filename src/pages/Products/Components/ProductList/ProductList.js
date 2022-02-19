@@ -25,5 +25,3 @@ function ProductList(props) {
 }
 
 export default ProductList;
-
-// 複習2022.2.11

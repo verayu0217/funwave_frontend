@@ -5,7 +5,42 @@ function StepList(props) {
   const [btnActive, setBtnActive] = useState();
   return (
     <>
-      <Row>
+      <header className="m-5 py-2 px-5">
+        <div className="d-flex justify-content-evenly">
+          <div className="d-flex align-items-center shadow py-2 cartStepsSigns borderRadius">
+            <div className="fs-1 w-25 text-center">01</div>
+            <div className="w-75">
+              選擇衝浪板外型
+              <br />
+              Choose a surfboard shape
+            </div>
+          </div>
+          <div className="d-flex justify-content-evenly align-items-center shadow py-2 cartStepsSigns borderRadius">
+            <div className="fs-1 w-25 text-center">02</div>
+            <div className="w-75">
+              選擇顏色及圖案
+              <br />
+              Choose color & pattern
+            </div>
+          </div>
+          <div className="d-flex justify-content-evenly align-items-center shadow py-2 cartStepsSigns borderRadius">
+            <div className="fs-1 w-25 text-center">03</div>
+            <div className="w-75">
+              加入購物車
+              <br />
+              Add to shopping cart
+            </div>
+          </div>
+        </div>
+      </header>
+    </>
+  );
+}
+
+export default StepList;
+
+/*
+<Row>
         <Col>
           <div
             className="d-flex chooseBtn justify-content-around py-3 shadow {btnActive ? 'chooseBtnActive':null}"
@@ -42,8 +77,4 @@ function StepList(props) {
           </div>
         </Col>
       </Row>
-    </>
-  );
-}
-
-export default StepList;
+*/

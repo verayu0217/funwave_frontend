@@ -1,10 +1,12 @@
 import React, { useState, usestate } from 'react';
 import { Figure, Row, Col } from 'react-bootstrap';
+import ControlledTabs from './ControlledTabs';
 import greenTitle from '../../data/images/greenTitle.svg';
 // import fishboardHole from '../../data/images/customize/fishboardHole.png';
 // import funboardHole from '../../data/images/customize/funboardHole.png';
 // import gunboardHole from '../../data/images/customize/gunboardHole.png';
 import longboardHole from '../../data/images/customize/longboardHole.png';
+import goodLuck from '../../data/images/customize/surfboardpicture/goodLuck.png';
 function Step2() {
   const [boardColor, setBoardColor] = useState({
     backgroundColor: 'white',
@@ -44,27 +46,34 @@ function Step2() {
             <Col lg="2">魚板</Col>
             <Col lg="5" className="boarderCu">
               <p className="m-0 text-center">正面</p>
-              <Figure style={boardColor}>
+              <Figure style={boardColor} className="position-relative">
                 <Figure.Image
                   alt="fishboardHole"
                   src={longboardHole}
                   className="m-0"
+                />
+                <Figure.Image
+                  alt="goodLuck"
+                  src={goodLuck}
+                  className="m-0 upperPictureCu position-absolute top-50 start-0"
                 />
               </Figure>
             </Col>
             <Col lg="5" className="boarderCu">
               <p className="m-0 text-center">反面</p>
-              <Figure style={boardColor2}>
-                <Figure.Image
+              <div style={boardColor2} className="cover-fit">
+                <img
                   alt="fishboardHole"
                   src={longboardHole}
-                  className="m-0"
+                  className="m-0 cover-fit"
                 />
-              </Figure>
+              </div>
             </Col>
           </Row>
         </Col>
+
         {/* 右邊 */}
+
         <Col lg="5" className="text-center">
           顏色及圖樣選擇
           <hr />
@@ -88,14 +97,9 @@ function Step2() {
 
             <hr />
             <p>請選擇圖樣</p>
-            <Row>
-              <Col>
-                <p>正面</p>
-              </Col>
-              <Col>
-                <p>反面</p>
-              </Col>
-            </Row>
+
+            <ControlledTabs />
+
             <Row>
               <Col>
                 <button className="btn btn-secondary btnCu">清除重填</button>

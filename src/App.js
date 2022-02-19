@@ -39,11 +39,12 @@ import ProductDetails from './pages/Products/ProductDetails';
 import Products from './pages/Products/Products';
 //購物車
 import CartPreOrder from './pages/Products/Cart/CartPreOrder';
-// import CartManage from './pages/Products/Cart/CartManage';
+import CartManage from './pages/Products/Cart/CartManage';
 // import CartConfimOrder from './pages/Products/Cart/CartConfimOrder';
 // import CartComplete from './pages/Products/Cart/CartComplete';
 //客製化浪板
 import Customized from './pages/Customized/Customized';
+import CustomizedDetails from './pages/Customized/CustomizedDetails';
 //浪點
 import SurfSpot from './pages/SurfSpot/SurfSpot';
 
@@ -64,7 +65,7 @@ function App() {
       let response = await axios.get(`${API_URL}/auth/checklogin`, {
         withCredentials: true,
       });
-      if (response.data.message === 'login') {
+      if (response.data.msg === 'login') {
         setAuth(true);
       }
       console.log(response.data);
@@ -91,6 +92,8 @@ function App() {
         <Route path="/product-details" element={<ProductDetails />} />
         <Route path="/products" element={<Products />} />
         <Route path="/cart-pre-order" element={<CartPreOrder />} />
+        <Route path="/cart-manage" element={<CartManage />} />
+        <Route path="/customized-details" element={<CustomizedDetails />} />
         <Route path="/customized" element={<Customized />} />
         <Route
           path="/member/member-order/member-order-details/:member_id"
