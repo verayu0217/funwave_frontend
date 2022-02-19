@@ -39,7 +39,7 @@ import ProductDetails from './pages/Products/ProductDetails';
 import Products from './pages/Products/Products';
 //購物車
 import CartPreOrder from './pages/Products/Cart/CartPreOrder';
-// import CartManage from './pages/Products/Cart/CartManage';
+import CartManage from './pages/Products/Cart/CartManage';
 // import CartConfimOrder from './pages/Products/Cart/CartConfimOrder';
 // import CartComplete from './pages/Products/Cart/CartComplete';
 //客製化浪板
@@ -92,6 +92,7 @@ function App() {
         <Route path="/product-details" element={<ProductDetails />} />
         <Route path="/products" element={<Products />} />
         <Route path="/cart-pre-order" element={<CartPreOrder />} />
+        <Route path="/cart-manage" element={<CartManage />} />
         <Route path="/customized-details" element={<CustomizedDetails />} />
         <Route path="/customized" element={<Customized />} />
         <Route

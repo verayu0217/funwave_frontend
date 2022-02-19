@@ -654,7 +654,7 @@ function ProductDetails() {
                       type="button"
                       className="btn btn-secondary border rounded-circle p-0 btmPlusMinus"
                     >
-                      <AiOutlinePlus
+                      <AiOutlineMinus
                         size={20}
                         color="#ffffff"
                         className="text-center"
@@ -670,7 +670,7 @@ function ProductDetails() {
                       type="button"
                       className="btn btn-secondary border rounded-circle p-0 btmPlusMinus"
                     >
-                      <AiOutlineMinus
+                      <AiOutlinePlus
                         size={20}
                         color="#ffffff"
                         className="text-center"
