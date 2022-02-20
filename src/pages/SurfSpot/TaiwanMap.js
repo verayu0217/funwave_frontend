@@ -8,7 +8,7 @@ import './taiwanMap.scss';
 import { data } from '../../data/surfspot';
 
 function TaiwanMap(props) {
-  const { level } = props;
+  const { level, regional } = props;
 
   // 開啟浪點細節
   const [showSurfSpotDetails, setshowSurfSpotDetails] = useState(false);
@@ -18,12 +18,12 @@ function TaiwanMap(props) {
 
   // 初始預設全部浪點
   const [surfspots, setSurfspots] = useState([]);
-  const [filterData, setFilterData] = useState([]);
 
-  // 篩選浪點
+  // 篩選級別浪點
   const handleTags = (data, level) => {
     let newData = [];
     if (level === '1') {
+      console.log('1');
       newData = data.filter((v) => {
         return v.tags.includes('初階');
       });
@@ -41,15 +41,46 @@ function TaiwanMap(props) {
     console.log('level', newData);
     return newData;
   };
+  // 篩選區域浪點
+  const handleRegional = (data, regional) => {
+    let newData = [];
+    if (regional === 'E') {
+      newData = data.filter((v) => {
+        return v.tags.includes('東部');
+      });
+    } else if (regional === 'EN') {
+      newData = data.filter((v) => {
+        return v.tags.includes('東北部');
+      });
+    } else if (regional === 'N') {
+      newData = data.filter((v) => {
+        return v.tags.includes('北部');
+      });
+    } else if (regional === 'W') {
+      newData = data.filter((v) => {
+        return v.tags.includes('西部');
+      });
+    } else if (regional === 'S') {
+      newData = data.filter((v) => {
+        return v.tags.includes('南部');
+      });
+    } else {
+      newData = [...data];
+    }
+    console.log('regional', newData);
+    return newData;
+  };
 
   // 篩選浪點
   useEffect(() => {
     let filterData = [];
     filterData = handleTags(data, level);
+    filterData = handleRegional(data, regional);
+    console.log('filterData', filterData);
+    setSurfspots(filterData);
+  }, [level, regional]);
 
-    // filterData = handleTags(data, regional);
-    setFilterData(filterData);
-  }, [level]);
+  // 排除篩選的全部浪點
 
   // 初始全部浪點
   useEffect(() => {
@@ -61,13 +92,13 @@ function TaiwanMap(props) {
       {surfspots.map((surfspot, i) => {
         return (
           <Tippy
+            key={i}
             offset={[-10, 20]}
             placement={surfspot.placement}
             theme={'light'}
             content={surfspot.name}
           >
             <i
-              key={i}
               id={surfspot.id}
               tags={surfspot.tags}
               onClick={openSurfSpotDetails}

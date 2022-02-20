@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import greenTitle from '../../data/images/greenTitle.svg';
 import CircleLeft from './CircleLeft';
 import Taiwanmap from './TaiwanMap';
@@ -8,8 +7,9 @@ import CircleRight from './CircleRight';
 import './surfSpot.scss';
 
 function SurfSpot() {
-  const [level, setLevel] = useState([]);
-
+  const [all, setAll] = useState('');
+  const [level, setLevel] = useState('');
+  const [regional, setRegional] = useState('');
   return (
     <>
       <div className="taiwanMapBg">
@@ -24,18 +24,30 @@ function SurfSpot() {
               FUN 浪點 · 即時浪點資訊
             </div>
             <div className="mt-4 me-5 pe-5">
-              <Link to="" className="allTitle">
+              <input
+                className="input"
+                type="radio"
+                name="tags"
+                id="all"
+                value="0"
+                checked={all === '0'}
+                onClick={(e) => {
+                  setAll(e.target.value);
+                }}
+              />
+
+              <label className="allTitle">
                 <i value="0" className="fasAll fas fa-map-marker pe-2"></i>
                 全部浪點
-              </Link>
+              </label>
             </div>
           </div>
         </div>
         <div className="mt-5 mb-5">
           <div className="d-flex justify-content-center">
             <CircleLeft level={level} setLevel={setLevel} />
-            <CircleRight />
-            <Taiwanmap level={level} />
+            <CircleRight regional={regional} setRegional={setRegional} />
+            <Taiwanmap level={level} regional={regional} all={all} />
           </div>
         </div>
       </div>
