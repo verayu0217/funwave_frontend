@@ -6,9 +6,10 @@ import funboard from '../../data/images/customize/funboardChoose.png';
 import gunboard from '../../data/images/customize/gunboardChoose.png';
 import longboard from '../../data/images/customize/longboardChoose.png';
 
-function Step1() {
+function Step1(props) {
+  const { step, setStep } = props;
   return (
-    <div className="container">
+    <div className="container mb-0">
       <div className="text-secondary h1 text-center position-relative">
         <img
           src={greenTitle}
@@ -18,7 +19,12 @@ function Step1() {
           weight="64px"
         />
         STEP1 選擇衝浪板外型
-        <button className="btn btn-secondary position-absolute my-2 end-0">
+        <button
+          className="btn btn-secondary position-absolute my-2 end-0"
+          onClick={() => {
+            setStep({ ...step, step1: '', step2: true });
+          }}
+        >
           下一步
         </button>
       </div>

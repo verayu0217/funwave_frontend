@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 
 function StepList(props) {
+  const { step, setStep } = props;
   return (
     <>
-      <header className="py-2 px-5">
+      <header className="py-5 px-5">
         <div className="d-flex justify-content-evenly">
           <div className="d-flex align-items-center shadow py-2 cartStepsSigns borderRadius whiteBg">
             <div className="fs-1 w-25 text-center">01</div>

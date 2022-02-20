@@ -9,12 +9,10 @@ import longboardHole from '../../data/images/customize/longboardHole.png';
 import goodLuck from '../../data/images/customize/surfboardpicture/goodLuck.png';
 
 function Step2(props) {
-  const [boardColor, setBoardColor] = useState({
-    backgroundColor: 'white',
-  });
-  const [boardColor2, setBoardColor2] = useState({
-    backgroundColor: 'white',
-  });
+  const { step, setStep } = props;
+  // const { surfingBoard, setSurfingBoard } = props;
+  const [boardColor, setBoardColor] = useState({});
+  const [boardColor2, setBoardColor2] = useState({});
 
   function changeColor(e) {
     setBoardColor({ backgroundColor: e.target.value });
@@ -23,10 +21,6 @@ function Step2(props) {
     setBoardColor2({ backgroundColor: e.target.value });
   }
 
-  // console.log(props);
-  //   function changeColor(e) {
-  //     props.setSurfingBoard({ backgroundColor: e.target.value });
-  //   }
   return (
     <div className="container pb-3">
       <div className="text-secondary h1 text-center position-relative">
@@ -67,7 +61,7 @@ function Step2(props) {
             </Col>
             <Col lg="5" className="boarder">
               <p className="m-0 text-center">反面</p>
-              <Figure style={boardColor2} className="position-relative">
+              <Figure className="position-relative">
                 <Figure.Image
                   alt="fishboardHole"
                   src={longboardHole}
@@ -97,7 +91,11 @@ function Step2(props) {
               </Col>
               <Col>
                 <p>反面</p>
-                <input type="color" className="p-0" onChange={changeColor2} />
+                <input
+                  type="color"
+                  className="p-0"
+                  // onChange={changeColor2}
+                />
               </Col>
             </Row>
 
@@ -111,7 +109,14 @@ function Step2(props) {
                 <button className="btn btn-secondary btnCu">清除重填</button>
               </Col>
               <Col>
-                <button className="btn btn-primary btnCu">確定</button>
+                <button
+                  className="btn btn-primary btnCu"
+                  onClick={() => {
+                    setStep({ ...step, step2: '', step3: true });
+                  }}
+                >
+                  確定
+                </button>
               </Col>
             </Row>
           </div>

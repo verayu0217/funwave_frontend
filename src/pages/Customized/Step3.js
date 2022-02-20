@@ -7,7 +7,8 @@ import greenTitle from '../../data/images/greenTitle.svg';
 import gunboardHole from '../../data/images/customize/gunboardHole.png';
 import longboardHole from '../../data/images/customize/longboardHole.png';
 
-function Step3() {
+function Step3(props) {
+  const { step, setStep } = props;
   const [count, setCount] = useState(1);
 
   return (
@@ -98,7 +99,14 @@ function Step3() {
           </Row>
           <Row>
             <Col>
-              <button className="btn btn-secondary btnCu">繼續客製浪板</button>
+              <button
+                className="btn btn-secondary btnCu"
+                onClick={() => {
+                  setStep({ ...step, step1: true, step3: '' });
+                }}
+              >
+                繼續客製浪板
+              </button>
             </Col>
             <Col>
               <button className="btn btn-primary btnCu">加入購物車</button>
