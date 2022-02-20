@@ -8,7 +8,7 @@ const data = [
   {
     id: 'N02',
     name: '金山-中角灣',
-    tags: '北部,初階浪點',
+    tags: '北部,初階',
     placement: 'right',
   },
   {

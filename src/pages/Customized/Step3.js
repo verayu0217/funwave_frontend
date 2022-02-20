@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Figure, Row, Col } from 'react-bootstrap';
+import { AiOutlinePlus, AiOutlineMinus } from 'react-icons/ai';
 import greenTitle from '../../data/images/greenTitle.svg';
 // import fishboardHole from '../../data/images/customize/fishboardHole.png';
 // import funboardHole from '../../data/images/customize/funboardHole.png';
-// import gunboardHole from '../../data/images/customize/gunboardHole.png';
+import gunboardHole from '../../data/images/customize/gunboardHole.png';
 import longboardHole from '../../data/images/customize/longboardHole.png';
 
 function Step3() {
+  const [count, setCount] = useState(1);
+
   return (
     <div className="container">
       <div className="text-secondary h1 text-center position-relative">
@@ -42,7 +45,7 @@ function Step3() {
               <Figure className="bottomPhotoCu">
                 <Figure.Image
                   alt="fishboardHole"
-                  src={longboardHole}
+                  src={gunboardHole}
                   className="m-0"
                 />
               </Figure>
@@ -55,7 +58,38 @@ function Step3() {
               價格:
             </Col>
             <Col xs lg="12">
-              數量:
+              <div className="d-flex justify-content-between">
+                數量:
+                <div>
+                  <button
+                    type="button"
+                    className="btn btn-secondary border rounded-circle p-0 countButton me-2"
+                    onClick={() => {
+                      if (count - 1 >= 1) setCount(count - 1);
+                    }}
+                  >
+                    <AiOutlineMinus
+                      size={20}
+                      color="#ffffff"
+                      className="text-center"
+                    />
+                  </button>
+                  {count}
+                  <button
+                    type="button"
+                    className="btn btn-secondary border rounded-circle p-0 countButton ms-2"
+                    onClick={() => {
+                      setCount(count + 1);
+                    }}
+                  >
+                    <AiOutlinePlus
+                      size={20}
+                      color="#ffffff"
+                      className="m-auto"
+                    />
+                  </button>
+                </div>
+              </div>
               <hr className="my-3" />
             </Col>
             <Col xs lg="12">

@@ -1,5 +1,21 @@
 @import '../../styles/global.scss';
 
+.input{
+    cursor: pointer;
+}
+.label{
+    cursor: pointer;
+}
+.level1Radio{
+    transform: translate(115px,-450px);
+}
+.level2Radio{
+    transform: translate(172px,-337px);
+}
+.level3Radio{
+    transform: translate(115px,-230px);
+}
+
 // 左半球
 .leftCircle{
     transform: translate(-200px, -50px);
@@ -9,44 +25,44 @@
     stroke-width: 2px;
     fill: transparent;
 }
-.smCircle{
-    fill: $funwave-lightblue;
-    transition: .3s;
-}
-.smCircle:hover{
-    cursor: pointer;
-    fill: $funwave-orange;
-    r: 14px;
-}
+// .smCircle{
+//     fill: $funwave-lightblue;
+//     transition: .3s;
+// }
+// .smCircle:hover{
+//     cursor: pointer;
+//     fill: $funwave-orange;
+//     r: 14px;
+// }
 // 左半球文字
 .leftCirclePos{
     position: absolute;
     left: 0;
 }
 // 初階浪點
-.bsText{
-    position: absolute;
-    transform: translate(-265px, 40px);
-}
-.bsText:hover{
-    cursor: pointer;
-}
+// .bsText{
+//     position: absolute;
+//     transform: translate(-265px, 40px);
+// }
+// .bsText:hover{
+//     cursor: pointer;
+// }
 // 中階浪點
-.mdText{
-    position: absolute;
-    transform: translate(-205px, 182px);
-}
-.mdText:hover{
-    cursor: pointer;
-}
+// .mdText{
+//     position: absolute;
+//     transform: translate(-205px, 182px);
+// }
+// .mdText:hover{
+//     cursor: pointer;
+// }
 // 高階浪點
-.hgText{
-    position: absolute;
-    transform: translate(-265px, 327px);
-}
-.hgText:hover{
-    cursor: pointer;
-}
+// .hgText{
+//     position: absolute;
+//     transform: translate(-265px, 327px);
+// }
+// .hgText:hover{
+//     cursor: pointer;
+// }
 
 // RWD (800px)
 @media screen and (max-width: 800px) {

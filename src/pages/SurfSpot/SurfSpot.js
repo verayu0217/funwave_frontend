@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import greenTitle from '../../data/images/greenTitle.svg';
 import CircleLeft from './CircleLeft';
@@ -8,6 +8,8 @@ import CircleRight from './CircleRight';
 import './surfSpot.scss';
 
 function SurfSpot() {
+  const [level, setLevel] = useState([]);
+
   return (
     <>
       <div className="taiwanMapBg">
@@ -23,7 +25,7 @@ function SurfSpot() {
             </div>
             <div className="mt-4 me-5 pe-5">
               <Link to="" className="allTitle">
-                <i className="fasAll fas fa-map-marker pe-2"></i>
+                <i value="0" className="fasAll fas fa-map-marker pe-2"></i>
                 全部浪點
               </Link>
             </div>
@@ -31,9 +33,9 @@ function SurfSpot() {
         </div>
         <div className="mt-5 mb-5">
           <div className="d-flex justify-content-center">
-            <CircleLeft />
+            <CircleLeft level={level} setLevel={setLevel} />
             <CircleRight />
-            <Taiwanmap />
+            <Taiwanmap level={level} />
           </div>
         </div>
       </div>

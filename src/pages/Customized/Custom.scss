@@ -14,7 +14,7 @@
   margin: 0% 25% 2% 25%;
 }
 
-//推薦組件
+//推薦組件背景
 .recommendBg{
   background: $lightgray;
 }
@@ -48,10 +48,9 @@
   // 手機大小
   // width: 300px;
   // height: 600px;
-  height: 450px;
   border: 1px solid black;
 }
-.btnCu{
+.btnCu,nav-tabs{
   width: 100%;
 }
 input[type="color"] {
@@ -81,4 +80,8 @@ input[type="color"]::-webkit-color-swatch {
 }
 .upperPictureCu{
   z-index: 50;
+}
+//細節
+.whiteBg{
+  background: white;
 }

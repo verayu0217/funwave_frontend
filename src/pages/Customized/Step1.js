@@ -8,7 +8,7 @@ import longboard from '../../data/images/customize/longboardChoose.png';
 
 function Step1() {
   return (
-    <>
+    <div className="container">
       <div className="text-secondary h1 text-center position-relative">
         <img
           src={greenTitle}
@@ -52,7 +52,7 @@ function Step1() {
           </Figure.Caption>
         </Figure>
       </div>
-    </>
+    </div>
   );
 }
 
