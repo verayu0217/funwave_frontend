@@ -1,5 +1,41 @@
 @import '../../styles/global.scss';
 
+.labelR{
+    cursor: pointer;
+    position: relative;
+}
+.labelR:after{
+    content: "";
+    height: 20px;
+    width: 20px;
+    border-radius: 50px;
+    background-color: $funwave-lightblue;
+    position: absolute;
+    transform: translate(8px, 2px);
+    cursor: pointer;
+}
+.labelR:hover{
+    color:$funwave-orange;
+}
+.labelR:after:hover{
+    cursor: pointer;
+}
+
+.regionalERadio{
+    transform: translate(236px, -410px);
+}
+.regionalENRadio{
+    transform: translate(133px, -360px);
+}
+.regionalNRadio{
+    transform: translate(120px, -270px);
+}
+.regionalWRadio{
+    transform: translate(163px, -180px);
+}
+.regionalSRadio{
+    transform: translate(240px, -148px);
+}
 // 右半球
 .rightCircle{
     transform: translate(150px, 30px);
@@ -9,60 +45,60 @@
     stroke-width: 2px;
     fill: transparent;
 }
-.smCircle{
-    fill: $funwave-lightblue;
-    transition: .3s;
-}
-.smCircle:hover{
-    cursor: pointer;
-    fill: $funwave-orange;
-    r: 14px;
-}
+// .smCircle{
+//     fill: $funwave-lightblue;
+//     transition: .3s;
+// }
+// .smCircle:hover{
+//     cursor: pointer;
+//     fill: $funwave-orange;
+//     r: 14px;
+// }
 // 右半球文字
 .rightCirclePos{
     position: absolute;
     right: 0;
 }
 // 東部
-.EText{
-    position: absolute;
-    transform: translate(-174px, 91px);
-}
-.EText:hover{
-    cursor: pointer;
-}
+// .EText{
+//     position: absolute;
+//     transform: translate(-174px, 91px);
+// }
+// .EText:hover{
+//     cursor: pointer;
+// }
 // 東北部
-.ENText{
-    position: absolute;
-    transform: translate(-264px, 157px);
-}
-.ENText:hover{
-    cursor: pointer;
-}
+// .ENText{
+//     position: absolute;
+//     transform: translate(-264px, 157px);
+// }
+// .ENText:hover{
+//     cursor: pointer;
+// }
 // 北部
-.NText{
-    position: absolute;
-    transform: translate(-278px, 268px);
-}
-.NText:hover{
-    cursor: pointer;
-}
+// .NText{
+//     position: absolute;
+//     transform: translate(-278px, 268px);
+// }
+// .NText:hover{
+//     cursor: pointer;
+// }
 // 西部
-.WText{
-    position: absolute;
-    transform: translate(-247px, 382px);
-}
-.WText:hover{
-    cursor: pointer;
-}
+// .WText{
+//     position: absolute;
+//     transform: translate(-247px, 382px);
+// }
+// .WText:hover{
+//     cursor: pointer;
+// }
 // 南部
-.SText{
-    position: absolute;
-    transform: translate(-175px, 450px);
-}
-.SText:hover{
-    cursor: pointer;
-}
+// .SText{
+//     position: absolute;
+//     transform: translate(-175px, 450px);
+// }
+// .SText:hover{
+//     cursor: pointer;
+// }
 
 // RWD (800px)
 @media screen and (max-width: 800px) {

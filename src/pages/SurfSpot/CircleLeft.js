@@ -1,19 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './circleLeft.scss';
 
 function CircleLeft(props) {
   const { level, setLevel } = props;
-  // const [tags, setTags] = useState([]);
-  // const tagTypes = ['初階', '中階', '高階'];
-
-  // const handleFilter = (e) => {
-  //   const value = e.target.value;
-  //   if (!tags.includes(tagTypes)) return setTags([...tags, value]);
-  //   if (tags.includes(tagTypes)) {
-  //     const newTags = tags.filter((v) => v !== value);
-  //     setTags(newTags);
-  //   }
-  // };
 
   return (
     <>
@@ -40,7 +29,7 @@ function CircleLeft(props) {
               setLevel(e.target.value);
             }}
           />
-          <label className="ms-2 fw-bold label" for="level1">
+          <label className="fw-bold label" for="level1">
             初階浪點
           </label>
         </div>
@@ -56,7 +45,7 @@ function CircleLeft(props) {
               setLevel(e.target.value);
             }}
           />
-          <label className="ms-2 fw-bold label" for="level2">
+          <label className="fw-bold label" for="level2">
             中階浪點
           </label>
         </div>
@@ -72,7 +61,7 @@ function CircleLeft(props) {
               setLevel(e.target.value);
             }}
           />
-          <label className="ms-2 fw-bold label" for="level3">
+          <label className="fw-bold label" for="level3">
             高階浪點
           </label>
         </div>

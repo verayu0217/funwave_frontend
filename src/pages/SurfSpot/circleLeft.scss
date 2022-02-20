@@ -1,19 +1,40 @@
 @import '../../styles/global.scss';
 
-.input{
+.input[type="radio"]{
+    display: none;
+}
+.input[type="radio"]:checked + label{
+    color: $funwave-orange;
     cursor: pointer;
 }
 .label{
     cursor: pointer;
+    position: relative;
+}
+.label:before{
+    content: "";
+    height: 20px;
+    width: 20px;
+    border-radius: 50px;
+    background-color: $funwave-lightblue;
+    position: absolute;
+    transform: translateX(-23px);
+    cursor: pointer;
+}
+.label:hover{
+    color:$funwave-orange;
+}
+.label:before:hover{
+    cursor: pointer;
 }
 .level1Radio{
-    transform: translate(115px,-450px);
+    transform: translate(135px,-450px);
 }
 .level2Radio{
-    transform: translate(172px,-337px);
+    transform: translate(192px,-337px);
 }
 .level3Radio{
-    transform: translate(115px,-230px);
+    transform: translate(135px,-230px);
 }
 
 // 左半球
