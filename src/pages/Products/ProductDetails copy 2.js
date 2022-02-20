@@ -101,7 +101,7 @@ function ProductDetails(props) {
     };
     getProduct();
 
-    setTimeout(() => setLoading(false), 0);
+    setTimeout(() => setLoading(false), 1000);
   }, []);
 
   const spinner = (
@@ -115,15 +115,278 @@ function ProductDetails(props) {
     <>
       {/* 中間商品細節區 */}
       {/* 大小商品圖 */}
+      <div className="d-flex justify-content-evenly">
+        <div className="d-flex flex-column align-items-center justify-content-around">
+          <AiOutlineUp size={22} color="#333333" className="" />
+          <Figure>
+            <Figure.Image
+              width={75}
+              // height={80}
+              alt={`${product[0].product_no}`}
+              src={`${IMAGE_URL}/products/${product[0].image1}`}
+              className="border border-dark p-1 m-0"
+            />
+          </Figure>
+          <Figure>
+            <Figure.Image
+              width={75}
+              // height={80}
+              alt={`${product[0].product_no}`}
+              src={`${IMAGE_URL}/products/${product[0].image2}`}
+              className="border border-dark p-1 m-0"
+            />
+          </Figure>
+          <Figure>
+            <Figure.Image
+              width={75}
+              // height={80}
+              alt={`${product[0].product_no}`}
+              src={`${IMAGE_URL}/products/${product[0].image3}`}
+              className="border border-dark p-1 m-0"
+            />
+          </Figure>
+          <AiOutlineDown size={22} color="#333333" className="" />
+        </div>
+        <Figure>
+          <Figure.Image
+            width={450}
+            // height={400}
+            alt={`${product[0].product_no}`}
+            src={`${IMAGE_URL}/products/${product[0].image1}`}
+          />
+        </Figure>
+      </div>
+      {/* 推薦商品 */}
+      <div className="m-5">
+        <h3 className="border-bottom border-dark pb-2 mb-4">推薦相似產品</h3>
+        <div className="d-flex justify-content-evenly align-items-center">
+          <AiFillLeftCircle size={22} color="#17a8a2" className="" />
+          <Figure>
+            <Figure.Image
+              width={115}
+              // height={80}
+              alt="longboard1"
+              src={longboard1}
+            />
+            <Figure.Caption className="d-flex justify-content-center">
+              <p className="mb-0">衝浪板</p>
+            </Figure.Caption>
+            <Figure.Caption className="d-flex justify-content-center">
+              <p className="fw-bold">NT 2,000</p>
+            </Figure.Caption>
+          </Figure>
+          <Figure>
+            <Figure.Image
+              width={115}
+              // height={80}
+              alt="longboard1"
+              src={longboard1}
+            />
+            <Figure.Caption className="d-flex justify-content-center">
+              <p className="recommendProducts mb-0">衝浪板</p>
+            </Figure.Caption>
+            <Figure.Caption className="d-flex justify-content-center">
+              <p className="fw-bold">NT 2,000</p>
+            </Figure.Caption>
+          </Figure>
+          <Figure>
+            <Figure.Image
+              width={115}
+              // height={80}
+              alt="longboard1"
+              src={longboard1}
+            />
+            <Figure.Caption className="d-flex justify-content-center">
+              <p className="recommendProducts mb-0">衝浪板</p>
+            </Figure.Caption>
+            <Figure.Caption className="d-flex justify-content-center">
+              <p className="fw-bold">NT 2,000</p>
+            </Figure.Caption>
+          </Figure>
+          <Figure>
+            <Figure.Image
+              width={115}
+              // height={80}
+              alt="longboard1"
+              src={longboard1}
+            />
+            <Figure.Caption className="d-flex justify-content-center">
+              <p className="recommendProducts mb-0">衝浪板</p>
+            </Figure.Caption>
+            <Figure.Caption className="d-flex justify-content-center">
+              <p className="fw-bold">NT 2,000</p>
+            </Figure.Caption>
+          </Figure>
+          <AiFillRightCircle size={22} color="#17a8a2" className="" />
+        </div>
+      </div>
+      {/* 品牌介紹 */}
+      <div className="m-5">
+        <h3 className="border-bottom border-dark pb-2 mb-4">品牌介紹</h3>
+        <div className="row">
+          <div className="col-3">
+            <p className="text-center fw-bold">
+              {brandTypes[product[0].brand_id - 1]}
+            </p>
+          </div>
+          <div className="col-9">
+            <p>
+              The JJF by Pyzel Gremlin Surfboard is crafted with a super
+              versatile shape and stacked to the brim with some of the most
+              advanced surf technology money can buy. From its lightweight Eco
+              EPS Construction to its hand sanded rails, this is a grab and go
+              good time for beginners and veterans alike.
+            </p>
+          </div>
+        </div>
+      </div>
+      {/* 產品介紹 */}
+      <div className="m-5">
+        <h3 className="border-bottom border-dark pb-2 mb-4">產品介紹</h3>
+        <div className="row">
+          <div className="col-3">
+            <p className="text-center fw-bold">{product[0].name} 系列衝浪板</p>
+          </div>
+          <div className="col-9">
+            <p>
+              Apex
+              將我們在傳統和高性能長板衝浪方面的所有知識整合到一個精美的包裝中。當我們設計這塊板時，我們打算製造有史以來用途最廣泛的經典長板。一個對於新手來說非常容易上手的滑板，同時也是一個
+              Cj
+              可以在未來很多年推動他使用的滑板。鼻部凹入以實現令人難以置信的鼻翼提升，臀部像經典的「參與」原木一樣用於樞軸和鞭打，但具有較低的性能風格導軌和尾部的現代邊緣以提高速度和控制力。以現代風格向過去致敬。此板為經典長板設計的「
+              頂點 」！
+            </p>
+          </div>
+        </div>
+      </div>
+      {/* 產品規格 */}
+      <div className="m-5">
+        <h3 className="border-bottom border-dark pb-2 mb-4">產品規格</h3>
+        <div className="row">
+          <div className="col-3">
+            <p className="text-center fw-bold">材質</p>
+            <p className="text-center fw-bold">類型</p>
+            <p className="text-center fw-bold">適用板舵類型</p>
+          </div>
+          <div className="col-9">
+            <p>{materialTypes[product[0].material_id - 1]}</p>
+            <p>{smallCatTypes[product[0].small_cat_id - 1]}</p>
+            <p>{finCompatibilityTypes[product[0].fin_compatibility_id - 1]}</p>
+          </div>
+        </div>
+      </div>
     </>
   );
-
-  const displaySizeDetailsSB = <>{/* 短板尺寸對照表 */}</>;
-
+  const displaySizeDetailsSB = (
+    <>
+      {/* 短板尺寸對照表 */}
+      <div className="m-5">
+        <h3 className="border-bottom border-dark pb-2 mb-4">
+          尺寸對照表 - 短板
+        </h3>
+        <div className="row">
+          <div className="col-3">
+            <p className="text-center fw-bold">尺寸 (ft)</p>
+            <p className="text-center fw-bold">寬度 (in)</p>
+            <p className="text-center fw-bold">厚度 (in)</p>
+            <p className="text-center fw-bold">重量 (L)</p>
+          </div>
+          <div className="col-9">
+            <div className="row">
+              <div className="col-4">
+                <p className="fw-bold">4'6"</p>
+                <p>19</p>
+                <p>2.375</p>
+                <p>23</p>
+              </div>
+              <div className="col-4">
+                <p className="fw-bold">5'6"</p>
+                <p>20.75</p>
+                <p>2.875</p>
+                <p>36.8</p>
+              </div>
+              <div className="col-4">
+                <p className="fw-bold">6'6"</p>
+                <p>22</p>
+                <p>7.25</p>
+                <p>52.3</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
   const displayCart = (
     <>
       {/* 右邊加入購物車區 */}
       <h1>{product[0].name}</h1>
+      <h2>{brandTypes[product[0].brand_id - 1]}</h2>
+      <h2>{smallCatTypes[product[0].small_cat_id - 1]}</h2>
+      <div className="row">
+        <div className="col-5 py-0">
+          <AiFillStar size={20} color="#ff7f6a" />
+          <AiFillStar size={20} color="#ff7f6a" />
+          <AiFillStar size={20} color="#ff7f6a" />
+          <AiFillStar size={20} color="#ff7f6a" />
+          <AiOutlineStar size={20} color="#ff7f6a" />
+        </div>
+        <div className="col-7 ps-0 pt-2">
+          <p className="fs-6">1則評論</p>
+        </div>
+      </div>
+      <p className="fs-6">#{product[0].product_no}</p>
+      <div className="row mt-5 mb-3">
+        <div className="col-4 pe-0">
+          <div>選擇顏色：</div>
+        </div>
+        <div className="col-8 p-0">
+          <div className="d-flex">
+            <div className="colorRadio rounded-circle me-3"></div>
+            <div className="colorRadio rounded-circle me-3"></div>
+            <div className="colorRadio rounded-circle me-3"></div>
+            <div className="colorRadio rounded-circle me-3"></div>
+          </div>
+        </div>
+      </div>
+      <div className="row">
+        <div className="col-4 pe-0 mt-1">
+          <div>選擇尺寸：</div>
+        </div>
+        <div className="col-8 p-0">
+          <div className="d-flex">
+            <div className="sizeRadio text-center me-2">4</div>
+            <div className="sizeRadio text-center me-2">5</div>
+            <div className="sizeRadio text-center me-2">6</div>
+            <div className="sizeRadio text-center me-2">7</div>
+          </div>
+        </div>
+      </div>
+      <div className="d-flex my-5 align-items-center">
+        <h2 className="fw-bolder">NT {product[0].price}</h2>
+        <AiFillTags size={16} color="#ff7f6a" className="ms-4" />
+        <p className="fs-6 text-primary m-0 ms-1">精選優惠！</p>
+      </div>
+      <div className="d-flex justify-content-center mb-4">
+        <button
+          type="button"
+          className="btn btn-secondary border rounded-circle p-0 btmPlusMinus"
+        >
+          <AiOutlineMinus size={20} color="#ffffff" className="text-center" />
+        </button>
+        <input
+          type="text"
+          value="1"
+          className="form-control mx-3 w-25"
+          name="quantity"
+        />
+        <button
+          type="button"
+          className="btn btn-secondary border rounded-circle p-0 btmPlusMinus"
+        >
+          <AiOutlinePlus size={20} color="#ffffff" className="text-center" />
+        </button>
+      </div>
+      <button className="btn btn-secondary btnAddCart">加入購物車</button>
     </>
   );
   return (
@@ -399,6 +662,10 @@ function ProductDetails(props) {
               <div className="col-9">
                 {/* 中間商品細節區 */}
                 {loading ? spinner : displayDetails}
+                {/* {(() => {
+                  if (product[0].small_cat_id === '1')
+                    return displaySizeDetailsSB;
+                })()} */}
               </div>
               <div className="col-3 p-0">
                 {/* 右邊加入購物車區 */}
