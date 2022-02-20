@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, Route, Routes } from 'react-router-dom';
-import { Row, Col, Container } from 'react-bootstrap';
+import { Link, Navigate, Route, Routes } from 'react-router-dom';
 
 import { AiOutlinePlus, AiOutlineMinus } from 'react-icons/ai';
 
@@ -9,24 +8,30 @@ import greenTitle from '../../data/images/greenTitle.svg';
 
 import './CourseCart.scss';
 
-function CourseCart() {
-  //先用假資料 先不從表單取
-  const [courseDetail, setCourseDetail] = useState([
-    {
-      // 名稱	時段	地點	單價	人數	小計	預約日期
-      course: '初階衝浪',
-      time: '上午',
-      spot: '白沙灣',
-      price: 1500,
-      date: '2022-1-24',
-    },
-  ]);
-
-  // 人數
+function CourseCart(props) {
   const [count, setCount] = useState(1);
 
+  // 人數
+  // 顯示出localStorage的資料
+  let data = [];
+  if (!localStorage.getItem('報名資料')) {
+    return;
+  } else {
+    data = [...JSON.parse(localStorage.getItem('報名資料'))];
+  }
+
+  console.log(data);
   // 總計
-  const amount = courseDetail[0].price * count;
+  const amount = data[0].coursePrice * count;
+  // 刪除購物車資料並導向上一頁未完成
+  // TODO:
+  let deleteCourse = () => {
+    localStorage.clear('報名資料');
+    window.alert('你的購物車沒有資料');
+    // if (deleteCourse) {
+    //   return <Navigate to="/course/course-content" />;
+    //  }
+  };
 
   return (
     <>
@@ -94,14 +99,14 @@ function CourseCart() {
                     </tr>
                   </thead>
 
-                  {courseDetail.map((v, i) => {
+                  {data.map((v, i) => {
                     return (
-                      <tbody class="text-center" key={i}>
+                      <tbody className="text-center" key={i}>
                         <tr>
                           <td>{v.course}</td>
-                          <td>{v.time}</td>
-                          <td>{v.spot}</td>
-                          <td>{v.price}</td>
+                          <td>{v.courseTime}</td>
+                          <td>{v.courseSpot}</td>
+                          <td>{v.coursePrice}</td>
                           <td>
                             <button
                               type="button"
@@ -133,9 +138,12 @@ function CourseCart() {
                             </button>
                           </td>
                           <td>{amount}</td>
-                          <td>{v.date}</td>
+                          <td>{v.courseDate}</td>
                           <td>
-                            <i class="fas fa-trash-alt"></i>
+                            <i
+                              className="fas fa-trash-alt"
+                              onClick={deleteCourse}
+                            ></i>
                           </td>
                         </tr>
                       </tbody>
@@ -173,8 +181,8 @@ function CourseCart() {
                 </div>
 
                 {/* <總計  */}
-                <div class="d-flex justify-content-end">
-                  <p class="h3">總計 NT {amount}</p>
+                <div className="d-flex justify-content-end">
+                  <p className="h3">總計 NT {amount}</p>
                 </div>
 
                 {/* 上一頁/下一頁按鈕  */}
@@ -182,7 +190,7 @@ function CourseCart() {
                   <div>
                     <Link
                       to="/course/course-content"
-                      class="btn btn-secondary text-white backBtn me-3 mt-3"
+                      className="btn btn-secondary text-white backBtn me-3 mt-3"
                     >
                       <i className="fas fa-arrow-left text-white"></i>
                       回上一頁
@@ -241,17 +249,17 @@ function CourseCart() {
                 </div>
 
                 {/* 上一頁/下一頁按鈕  */}
-                <div class="row mt-5">
+                <div className="row mt-5">
                   <Link
                     to="/course/course-content"
-                    class="btn btn-secondary text-white backBtn me-2"
+                    className="btn btn-secondary text-white backBtn me-2"
                   >
                     <i className="fas fa-arrow-left text-white"></i>
                     回上一頁
                   </Link>
                   <Link
-                    to="course/course-cart01"
-                    class="btn btn-primary text-white confirmBtn mt-2 "
+                    to="/course/course-cart02"
+                    className="btn btn-primary text-white confirmBtn mt-2 "
                   >
                     確認資訊
                     <i className="fas fa-arrow-right text-white"></i>
