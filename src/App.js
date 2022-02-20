@@ -93,7 +93,7 @@ function App() {
           />
           <Route path="/customized" element={<Customized />} />
           <Route
-            path="/member/member-order/member-order-details/:member_id"
+            path="/member/member-order/:orderId"
             element={<MemberOrderDetails />}
           />
           <Route
@@ -102,7 +102,7 @@ function App() {
           />
           <Route path="/member/member-collect" element={<MemberCollect />} />
           <Route path="/member/member-message" element={<MemberMessage />} />
-          <Route path="/memberm/member-coupon" element={<MemberCoupon />} />
+          <Route path="/member/member-coupon" element={<MemberCoupon />} />
           <Route path="/member/member-point" element={<MemberPoint />} />
           <Route path="/member/member-info" element={<MemberInfo />} />
           <Route path="/member/member-order" element={<MemberOrder />} />
