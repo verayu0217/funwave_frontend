@@ -11,8 +11,18 @@ import { BiHeart } from 'react-icons/bi';
 // 文字過長會跑版、後端圖片如何置換
 
 function ProductItem(props) {
-  const { id, name, image1, price, small_cat_id } = props.product;
-  const smallCatTypes = ['長板', '快樂板', '短板'];
+  const { product_id, name, image1, price, small_cat_id } = props.product;
+  const smallCatTypes = [
+    '長板',
+    '快樂板',
+    '短板',
+    '衝浪板舵',
+    '腳繩',
+    '腳踏墊',
+    '衝浪板袋',
+    '衝浪斗篷毛巾衣',
+    '防寒衣',
+  ];
 
   return (
     <>

@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
-import { Row, Col } from 'react-bootstrap';
 
 function StepList(props) {
-  const [btnActive, setBtnActive] = useState();
+  const { step, setStep } = props;
   return (
     <>
-      <header className="m-5 py-2 px-5">
+      <header className="py-5 px-5">
         <div className="d-flex justify-content-evenly">
-          <div className="d-flex align-items-center shadow py-2 cartStepsSigns borderRadius">
+          <div className="d-flex align-items-center shadow py-2 cartStepsSigns borderRadius whiteBg">
             <div className="fs-1 w-25 text-center">01</div>
             <div className="w-75">
               選擇衝浪板外型
@@ -15,7 +14,7 @@ function StepList(props) {
               Choose a surfboard shape
             </div>
           </div>
-          <div className="d-flex justify-content-evenly align-items-center shadow py-2 cartStepsSigns borderRadius">
+          <div className="d-flex justify-content-evenly align-items-center shadow py-2 cartStepsSigns borderRadius whiteBg">
             <div className="fs-1 w-25 text-center">02</div>
             <div className="w-75">
               選擇顏色及圖案
@@ -23,7 +22,7 @@ function StepList(props) {
               Choose color & pattern
             </div>
           </div>
-          <div className="d-flex justify-content-evenly align-items-center shadow py-2 cartStepsSigns borderRadius">
+          <div className="d-flex justify-content-evenly align-items-center shadow py-2 cartStepsSigns borderRadius whiteBg">
             <div className="fs-1 w-25 text-center">03</div>
             <div className="w-75">
               加入購物車

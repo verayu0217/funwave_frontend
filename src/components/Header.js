@@ -1,4 +1,7 @@
 import React from 'react';
+import axios from 'axios';
+import { useAuth } from '../context/auth';
+import { API_URL } from '../utils/config';
 import { Navbar, Nav, NavDropdown, Container } from 'react-bootstrap';
 
 // 要使用能有active css效果的NavLink元件
@@ -7,8 +10,15 @@ import { Link, NavLink } from 'react-router-dom';
 import '../styles/component.scss';
 import logo from '../data/images/FunwaveLogo-black2.png';
 
-function MyNavbar(props) {
-  const { auth, setAuth } = props;
+function MyNavbar() {
+  const { auth, setAuth } = useAuth();
+
+  const handleLogout = async () => {
+    await axios.get(`${API_URL}/auth/logout`, {
+      withCredentials: true,
+    });
+    setAuth(null);
+  };
   return (
     <>
       <Navbar expand="lg" className="shadow-sm">
@@ -67,16 +77,21 @@ function MyNavbar(props) {
               <Nav.Link className="iconGroup" as={NavLink} to="/member">
                 <i className="fas fa-user"></i>
               </Nav.Link>
-              <Nav.Link
-                className="btnLogin mx-2"
-                as={NavLink}
-                to="/login"
-                onClick={() => {
-                  setAuth(!auth);
-                }}
-              >
-                {auth ? '登出' : '登入/註冊'}
-              </Nav.Link>
+              {/* 登入/登出判斷 */}
+              {auth ? (
+                <Nav.Link
+                  className="btnLogin mx-2"
+                  as={NavLink}
+                  to="/login"
+                  onClick={handleLogout}
+                >
+                  登出
+                </Nav.Link>
+              ) : (
+                <Nav.Link className="btnLogin mx-2" as={NavLink} to="/login">
+                  登入/註冊
+                </Nav.Link>
+              )}
             </form>
           </Navbar.Collapse>
         </Container>

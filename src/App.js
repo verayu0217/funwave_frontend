@@ -1,7 +1,7 @@
 // 使用套件
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
-
+import { AuthContext } from './context/auth';
 import './App.scss';
 import './styles/global.scss';
 import axios from 'axios';
@@ -59,16 +59,14 @@ import Header from './components/Header';
 // import axios from 'axios';
 
 function App() {
-  const [auth, setAuth] = useState(false);
+  const [auth, setAuth] = useState(null);
+
   async function checklogIn() {
     try {
       let response = await axios.get(`${API_URL}/auth/checklogin`, {
         withCredentials: true,
       });
-      if (response.data.msg === 'login') {
-        setAuth(true);
-      }
-      console.log(response.data);
+      setAuth(response.data);
     } catch (e) {
       console.error({ ERR_MSG });
     }
@@ -77,45 +75,45 @@ function App() {
     checklogIn();
   }, []);
 
-  // if (!auth) {
-  //   // 轉頁效果
-  //   return <Navigate to="/" />;
-  // }
   return (
     <>
-      <Header auth={auth} setAuth={setAuth} />
-      <Routes>
-        <Route path="/home" element={<Home />} />
-        <Route path="/home-try" element={<HomeTry />} />
-        <Route path="/login" element={<LogIn />} />
-        <Route path="/surfspot" element={<SurfSpot />} />
-        <Route path="/product-details" element={<ProductDetails />} />
-        <Route path="/products" element={<Products />} />
-        <Route path="/cart-pre-order" element={<CartPreOrder />} />
-        <Route path="/cart-manage" element={<CartManage />} />
-        <Route path="/customized-details" element={<CustomizedDetails />} />
-        <Route path="/customized" element={<Customized />} />
-        <Route
-          path="/member/member-order/member-order-details/:member_id"
-          element={<MemberOrderDetails />}
-        />
-        <Route
-          path="/member/member-shopping-gold"
-          element={<MemberShoppingGold />}
-        />
-        <Route path="/member/member-collect" element={<MemberCollect />} />
-        <Route path="/member/member-message" element={<MemberMessage />} />
-        <Route path="/memberm/member-coupon" element={<MemberCoupon />} />
-        <Route path="/member/member-point" element={<MemberPoint />} />
-        <Route path="/member/member-info" element={<MemberInfo />} />
-        <Route path="/member/member-order" element={<MemberOrder />} />
-        <Route path="/member" element={<Member />} />
-        <Route path="/course" element={<Courses />} />
-        <Route path="/course/course-content" element={<CourseContent />} />
-        <Route path="/course/course-cart01" element={<CourseCart01 />} />
-        <Route path="/course/course-cart02" element={<CourseCart02 />} />
-        <Route path="/course/course-cart03" element={<CourseCart03 />} />
-      </Routes>
+      <AuthContext.Provider value={{ auth, setAuth }}>
+        <Header />
+        <Routes>
+          <Route path="/home" element={<Home />} />
+          <Route path="/home-try" element={<HomeTry />} />
+          <Route path="/login" element={<LogIn />} />
+          <Route path="/surfspot" element={<SurfSpot />} />
+          <Route path="/product-details" element={<ProductDetails />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/cart-pre-order" element={<CartPreOrder />} />
+          <Route
+            path="/customized/customized-details"
+            element={<CustomizedDetails />}
+          />
+          <Route path="/customized" element={<Customized />} />
+          <Route
+            path="/member/member-order/member-order-details/:member_id"
+            element={<MemberOrderDetails />}
+          />
+          <Route
+            path="/member/member-shopping-gold"
+            element={<MemberShoppingGold />}
+          />
+          <Route path="/member/member-collect" element={<MemberCollect />} />
+          <Route path="/member/member-message" element={<MemberMessage />} />
+          <Route path="/memberm/member-coupon" element={<MemberCoupon />} />
+          <Route path="/member/member-point" element={<MemberPoint />} />
+          <Route path="/member/member-info" element={<MemberInfo />} />
+          <Route path="/member/member-order" element={<MemberOrder />} />
+          <Route path="/member" element={<Member />} />
+          <Route path="/course" element={<Courses />} />
+          <Route path="/course/course-content" element={<CourseContent />} />
+          <Route path="/course/course-cart01" element={<CourseCart01 />} />
+          <Route path="/course/course-cart02" element={<CourseCart02 />} />
+          <Route path="/course/course-cart03" element={<CourseCart03 />} />
+        </Routes>
+      </AuthContext.Provider>
     </>
   );
 }
