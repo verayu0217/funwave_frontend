@@ -1,8 +1,7 @@
+import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Row, Col, Container } from 'react-bootstrap';
-
-import { AiOutlinePlus, AiOutlineMinus } from 'react-icons/ai';
+import API_URL from '../../utils/config';
 
 // 大標題綠色波浪
 import greenTitle from '../../data/images/greenTitle.svg';
@@ -10,6 +9,61 @@ import greenTitle from '../../data/images/greenTitle.svg';
 import './CourseCart.scss';
 
 function CourseCart02() {
+  // 姓名
+  const [name, setName] = useState('james');
+  // 身份證字號
+  const [pid, setId] = useState('j123456789');
+  // 性別
+  const [sex, setSex] = useState('男生');
+  const sexOptions = ['男生', '女生'];
+
+  // 出生日期
+  const [bdDay, setBdDay] = useState('');
+
+  // 電話
+  const [phone, setPhone] = useState('0912345678');
+
+  // 監護人
+  const [guardian, setGuardian] = useState('Mary');
+
+  // 送出資料存進資料庫
+  async function handleSubmit(e) {
+    e.preventDefault();
+    let info = [
+      {
+        name: name,
+        pid: pid,
+        sex: sex,
+        bdDay: bdDay,
+        phone: phone,
+        guardian: guardian,
+      },
+    ];
+    // console.log(info);
+
+    // 顯示出localStorage的資料
+    let data = [];
+    if (!localStorage.getItem('報名資料')) {
+      return;
+    } else {
+      data = [...JSON.parse(localStorage.getItem('報名資料'))];
+    }
+    // console.log(data);
+    // 合併課程報名與個人資料
+    let dataInfo = [...data, ...info];
+    console.log('here', dataInfo);
+
+    try {
+      let response = await axios.post(
+        'http://localhost:3002/api/course/courseOrder',
+        dataInfo
+      );
+      console.log(response.data);
+    } catch (e) {
+      console.error('error', e.response.data);
+      // console.error("測試註冊", ERR_MSG[e.response.data.code]);
+    }
+  }
   return (
     <>
       <div className="container">
@@ -55,102 +109,117 @@ function CourseCart02() {
               </div>
             </div>
           </header>
-          <div className="col-8 m-auto">
-            <div className="p-3 border">
-              <h1 className="text-center">請填寫個人資料</h1>
-              <form>
-                <div className="py-2">
-                  <p>姓名</p>
-                  <label for="name" className="visually-hidden">
-                    電話
-                  </label>
+          <div className="col-10 m-auto">
+            <div className="p-3 infoForm shadow-lg">
+              <h1 className="text-center text-secondary">請填寫課程報名資訊</h1>
+              <form className="col-8 m-auto" onSubmit={handleSubmit}>
+                <div className="py-2 mt-3">
+                  <label>姓名</label>
                   <input
                     type="text"
                     className="form-control"
                     id="name"
                     placeholder="姓名"
+                    name="name"
+                    value={name}
+                    onChange={(e) => {
+                      setName(e.target.value);
+                    }}
                   />
                 </div>
 
-                <div className="py-2">
-                  <p>身份證字號</p>
-                  <label for="id" className="visually-hidden"></label>
+                <div className="py-2 mt-3">
+                  <label>身分證字號</label>
                   <input
                     type="text"
                     className="form-control"
-                    id="id"
+                    id="pid"
                     placeholder="身分證字號"
+                    name="pid"
+                    value={pid}
+                    onChange={(e) => {
+                      setId(e.target.value);
+                    }}
                   />
                 </div>
 
-                <div className="py-2">
-                  <p>性別</p>
-                  <div className="form-check form-check-inline">
-                    <input
-                      className="form-check-input"
-                      type="radio"
-                      name="inlineRadioOptions"
-                      id="inlineRadio1"
-                      value="option1"
-                    />
-                    <label className="form-check-label" for="inlineRadio1">
-                      男生
-                    </label>
-                  </div>
-                  <div className="form-check form-check-inline">
-                    <input
-                      className="form-check-input"
-                      type="radio"
-                      name="inlineRadioOptions"
-                      id="inlineRadio1"
-                      value="option1"
-                    />
-                    <label className="form-check-label" for="inlineRadio1">
-                      女生
-                    </label>
-                  </div>
+                <div className="d-flex align-items-center py-2 mt-3">
+                  <label className="p-2 ">性別:</label>
+                  {sexOptions.map((v, i) => {
+                    return (
+                      <div key={i}>
+                        <div className="form-check form-check-inline ">
+                          <input
+                            className="form-check-input"
+                            type="radio"
+                            name="1"
+                            id="1"
+                            value={v}
+                            checked={v === sex}
+                            onChange={(e) => {
+                              setSex(e.target.value);
+                            }}
+                            required
+                          />
+                          <label className="form-check-label" htmlFor={v}>
+                            {v}
+                          </label>
+                        </div>
+                      </div>
+                    );
+                  })}
                 </div>
 
                 <div className="py-2">
-                  <p>出生年月日</p>
-                  <label for="birthday" className="visually-hidden"></label>
+                  <label>出生年月日</label>
                   <input
-                    type="birthday"
+                    type="date"
                     className="form-control"
-                    id="birthday"
+                    id="bdDay"
                     placeholder="出生年月日"
+                    name="bdDay"
+                    value={bdDay}
+                    onChange={(e) => {
+                      setBdDay(e.target.value);
+                    }}
                   />
                 </div>
 
                 <div className="py-2">
-                  <p>電話</p>
-                  <label for="phone" className="visually-hidden"></label>
+                  <label>電話</label>
                   <input
                     type="text"
                     className="form-control"
                     id="phone"
                     placeholder="電話"
+                    value={phone}
+                    onChange={(e) => {
+                      setPhone(e.target.value);
+                    }}
                   />
                 </div>
                 <div className="py-2">
-                  <p>監護人</p>
-                  <label for="guardian" className="visually-hidden"></label>
+                  <label>監護人</label>
                   <input
                     type="text"
                     className="form-control"
                     id="guardian"
                     placeholder="監護人姓名"
+                    value={guardian}
+                    onChange={(e) => {
+                      setGuardian(e.target.value);
+                    }}
                   />
                 </div>
 
                 <div className="">
-                  <Link
-                    to="/course/course-cart03"
+                  <button
                     type="submit"
-                    className="btn btn-info mb-3"
+                    className="btn btn-primary text-white mb-3 sendFormBtn"
                   >
                     送出資料
-                  </Link>
+                  </button>
+                  <Link to="/course/course-cart03">送出資料</Link>
                 </div>
               </form>
             </div>
