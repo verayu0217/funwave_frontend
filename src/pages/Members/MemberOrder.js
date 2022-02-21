@@ -10,14 +10,14 @@ const MemberOrder = () => {
   const [data, setData] = useState([]);
 
   // 為了處理網址
-  // let navigate = useNavigate();
+  let navigate = useNavigate();
 
   // 把網址上的 :id 拿出來
   // const { orderId } = useParams();
 
   useEffect(async () => {
     // http://localhost:3002/api/member
-    let response = await axios.get(`${API_URL}/member`);
+    let response = await axios.get(`${API_URL}/member/member-order`);
     setData(response.data);
   }, []);
   return (

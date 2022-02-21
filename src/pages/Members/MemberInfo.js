@@ -9,9 +9,9 @@ import titleImgMember from '../../data/images/greenwave64x24.png';
 
 function MemberInfo(props) {
   const [member, setMember] = useState([]);
+  const [Date, setDate] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [Date, setDate] = useState('');
-
+  const { memberId } = useParams();
   // useEffect(() => {
   //   // 先開起載入指示器
   //   setIsLoading(true);
@@ -39,16 +39,17 @@ function MemberInfo(props) {
   //     </div>
   //   </>
   // );
+
+  // 大頭貼更換
   const changeAvatar = (e) => {
     var avatar = document.getElementsByName('member_photo')[0];
     var previewAvatar = document.getElementById('preview-photo');
-    avatar.onchange = (e) => {
-      var file = avatar.files[0];
-      if (file) {
-        previewAvatar.src = URL.createObjectURL(file);
-        previewAvatar.classList.remove('d-none');
-      }
-    };
+
+    var file = avatar.files[0];
+    if (file) {
+      previewAvatar.src = URL.createObjectURL(file);
+      previewAvatar.classList.remove('d-none');
+    }
   };
 
   const [close, setClose] = useState('fas fa-eye-slash');
@@ -62,25 +63,29 @@ function MemberInfo(props) {
       event.preventDefault();
       event.stopPropagation();
     }
-
     setValidated(true);
   };
 
-  // useEffect(() => {
-  //   let getMember = async () => {
-  //     // http://localhost:3002/api/
-  //     let response = await axios.get(
-  //       `${API_URL}/member/${member.member_id}`,
-  //       data
-  //     );
-  //     console.log(response.data);
-  //   };
-  //   getMember();
-  // }, []);
+  useEffect(() => {
+    let getMemberOrderDetails = async () => {
+      let response = await axios.get(`${API_URL}/member/${memberId}`);
+      setMember(response.data);
+    };
+    getMemberOrderDetails();
+  }, []);
   return (
     <>
+      {/* {
+      data.map((item) => {
+        return ( */}
       <div className="container mt-5">
-        <div className="row d-flex justify-content-around">
+        {/* <div className="row d-flex justify-content-around"> */}
+        <Form
+          noValidate
+          validated={validated}
+          onSubmit={handleSubmit}
+          className="row d-flex justify-content-around"
+        >
           <div className="col-5 d-flex align-content-between justify-content-center flex-wrap">
             <div className="mb-5 d-flex flex-column text-center">
               <h2 className="mb-5 titleMember">
@@ -126,12 +131,7 @@ function MemberInfo(props) {
             </div>
           </div>
           <div className="col-4">
-            <Form
-              noValidate
-              validated={validated}
-              onSubmit={handleSubmit}
-              className=""
-            >
+            <div className="">
               <h3 className="fs-24Member">基本資料</h3>
               <Form.Group className="col-12">
                 <Form.Label className="col-12 mt-3 mb-1 fs-16Member">
@@ -143,6 +143,10 @@ function MemberInfo(props) {
                   id="name"
                   placeholder=""
                   required
+                  defaultValue={data.member_name}
+                  onChange={(e) => {
+                    setMember(e.target.value);
+                  }}
                 />
               </Form.Group>
               <Form.Group className="col-12">
@@ -154,6 +158,10 @@ function MemberInfo(props) {
                   type="email"
                   placeholder=""
                   required
+                  defaultValue={member.member_email}
+                  onChange={(e) => {
+                    setMember(e.target.value);
+                  }}
                 />
               </Form.Group>
               <Form.Group
@@ -169,6 +177,10 @@ function MemberInfo(props) {
                   type={type}
                   placeholder=""
                   required
+                  defaultValue={member.member_password}
+                  onChange={(e) => {
+                    setMember(e.target.value);
+                  }}
                 />
                 <Form.Label className="passwordImgMember">
                   <i
@@ -195,6 +207,10 @@ function MemberInfo(props) {
                   id="phone"
                   placeholder=""
                   required
+                  defaultValue={member.member_phone}
+                  onChange={(e) => {
+                    setMember(e.target.value);
+                  }}
                 />
               </Form.Group>
               <div className="col-12">
@@ -209,7 +225,7 @@ function MemberInfo(props) {
                   placeholder="date"
                   value={Date}
                   onChange={(e) => {
-                    setDate(e.target.value);
+                    setMember(e.target.value);
                   }}
                   required
                 />
@@ -225,6 +241,10 @@ function MemberInfo(props) {
                   id="name"
                   placeholder=""
                   required
+                  defaultValue={data.receiver}
+                  onChange={(e) => {
+                    setMember(e.target.value);
+                  }}
                 />
               </Form.Group>
               <Form.Group className="col-12">
@@ -237,6 +257,10 @@ function MemberInfo(props) {
                   id="phone"
                   placeholder=""
                   required
+                  defaultValue={data.receiver_phone}
+                  onChange={(e) => {
+                    setMember(e.target.value);
+                  }}
                 />
               </Form.Group>
               <Form.Group className="col-12">
@@ -293,6 +317,10 @@ function MemberInfo(props) {
                   id="phone"
                   placeholder=""
                   required
+                  defaultValue={data.address}
+                  onChange={(e) => {
+                    setMember(e.target.value);
+                  }}
                 />
               </Form.Group>
               <Form.Group
@@ -319,10 +347,14 @@ function MemberInfo(props) {
                   儲存變更
                 </Button>
               </div>
-            </Form>
+            </div>
           </div>
-        </div>
+        </Form>
+        {/* </div> */}
       </div>
+      {/* )
+      })
+    } */}
       {/* {isLoading ? spinner : display} */}
     </>
   );
