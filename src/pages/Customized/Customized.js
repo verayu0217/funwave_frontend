@@ -53,7 +53,7 @@ function Customized() {
           </Row>
           <Ad />
           <Step />
-          <StepList />
+          {/* <StepList /> */}
           <div className=" text-center">
             <Link
               to="/customized/customized-details"

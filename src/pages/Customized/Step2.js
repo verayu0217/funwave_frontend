@@ -24,8 +24,13 @@ function Step2(props) {
   return (
     <div className="container pb-3">
       <div className="text-secondary h1 text-center position-relative">
-        <button className="btn btn-secondary my-2 position-absolute start-0">
-          返回
+        <button
+          className="btn btn-secondary my-2 position-absolute start-0"
+          onClick={() => {
+            setStep({ ...step, step1: true, step2: '' });
+          }}
+        >
+          上一步
         </button>
         <div className="text-center">
           <img

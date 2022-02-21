@@ -10,7 +10,7 @@ function CustomizedDetails() {
     back: 'white',
     frontpattern: '',
     backpattern: '',
-    size: '',
+    size: 1,
   });
 
   const [step, setStep] = useState({
@@ -18,30 +18,28 @@ function CustomizedDetails() {
     step2: '',
     step3: '',
   });
-  // const [step1, setStep1] = useState(false);
-  // const [step2, setStep2] = useState(false);
-  // const [step3, setStep3] = useState(true);
-  // {(()=>{if (step1) {
-  //   return <step1 />;
-  // } else if (step2) {
-  //   return <step2 />;
-  // } else {
-  //   return <step3 />;
-  // })()}
 
   return (
     <>
       <div className="recommendBg">
-        <StepList />
-        {(() => {
-          if (step.step1 === true) {
-            return <Step1 step={step} setStep={setStep} />;
-          } else if (step.step2 === true) {
-            return <Step2 step={step} setStep={setStep} />;
-          } else {
-            return <Step3 step={step} setStep={setStep} />;
-          }
-        })()}
+        <StepList step={step} setStep={setStep} />
+        {step.step1 && (
+          <Step1
+            step={step}
+            setStep={setStep}
+            surfingBoard={surfingBoard}
+            setSurfingBoard={setSurfingBoard}
+          />
+        )}
+        {step.step2 && (
+          <Step2
+            step={step}
+            setStep={setStep}
+            surfingBoard={surfingBoard}
+            setSurfingBoard={setSurfingBoard}
+          />
+        )}
+        {step.step3 && <Step3 step={step} setStep={setStep} />}
       </div>
     </>
   );
