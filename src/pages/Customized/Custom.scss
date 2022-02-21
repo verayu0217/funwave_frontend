@@ -3,85 +3,86 @@
 
 .bannerCu {
   height: 350px; // 待跟客製化商品、課程統一！
-  background: url('../../data/images/customizedSection.png') ;
+  background: url('../../data/images/customizedSection.png');
   background-size: cover;
 }
-.titleTopCu{
-  background: rgba(255,255,255,0.3);
+.titleTopCu {
+  background: rgba(255, 255, 255, 0.3);
   height: 350px;
 }
-.sectionCu{
+.sectionCu {
   margin: 0% 25% 2% 25%;
 }
 
 //推薦組件背景
-.recommendBg{
+.recommendBg {
   background: $lightgray;
 }
 //名人
-.photoCu{
-  max-width:440px;
-  max-height:250px;
-  object-fit:cover;
-  border-radius:8px ;
+.photoCu {
+  max-width: 440px;
+  max-height: 250px;
+  object-fit: cover;
+  border-radius: 8px;
 }
 //訂製
-.contentCu{
+.contentCu {
   width: 30%;
 }
-.chooseBtn{
+.chooseBtn {
   border-radius: 8px;
   font-size: 20px;
   background: white;
-  font-weight:bold;
+  font-weight: bold;
 }
-.chooseBtnActive{
-  background:$orange;
+.chooseBtnActive {
+  background: $orange;
 }
 //step1
-.chooseBoardCu{
-  max-height: 550px
-// cursor: pointer;
+.chooseBoardCu {
+  max-height: 550px;
+  // cursor: pointer;
 }
 //step2
-.boarderCu{
+.boarderCu {
   // 手機大小
   // width: 300px;
   // height: 600px;
   border: 1px solid black;
 }
-.btnCu,nav-tabs{
+.btnCu,
+nav-tabs {
   width: 100%;
 }
-input[type="color"] {
-	-webkit-appearance: none;
-	border:none;
-	width: 32px;
-	height: 32px;
+input[type='color'] {
+  -webkit-appearance: none;
+  border: none;
+  width: 32px;
+  height: 32px;
   background-color: $lightgray;
 }
-input[type="color"]::-webkit-color-swatch-wrapper {
-	padding: 0;
+input[type='color']::-webkit-color-swatch-wrapper {
+  padding: 0;
 }
-input[type="color"]::-webkit-color-swatch {
-	border: none;
+input[type='color']::-webkit-color-swatch {
+  border: none;
   border-radius: 50%;
 }
-.cover-fit{
+.cover-fit {
   width: 100%;
   height: 100%;
 }
-.boxCu{
+.boxCu {
   height: 40px;
   width: 40px;
   border-radius: 8px;
   overflow: hidden;
   border: 1px solid black;
 }
-.upperPictureCu{
+.upperPictureCu {
   z-index: 50;
 }
 //細節
-.whiteBg{
+.whiteBg {
   background: white;
 }

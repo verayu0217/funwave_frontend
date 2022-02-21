@@ -1,5 +1,4 @@
 import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
-import { useState, useEffect } from 'react';
 
 const Item = ({ msg, date }) => {
   return (
