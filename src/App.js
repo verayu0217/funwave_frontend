@@ -38,7 +38,7 @@ import Courses from './pages/Course/Courses';
 import ProductDetails from './pages/Products/ProductDetails';
 import Products from './pages/Products/Products';
 //購物車
-import CartPreOrder from './pages/Products/Cart/CartPreOrder';
+import ProductCart01 from './pages/Products/Cart/ProductCart01';
 import CartManage from './pages/Products/Cart/CartManage';
 // import CartConfimOrder from './pages/Products/Cart/CartConfimOrder';
 // import CartComplete from './pages/Products/Cart/CartComplete';
@@ -47,6 +47,7 @@ import Customized from './pages/Customized/Customized';
 import CustomizedDetails from './pages/Customized/CustomizedDetails';
 //浪點
 import SurfSpot from './pages/SurfSpot/SurfSpot';
+// import SurfSpotDetails from './pages/SurfSpot/SurfSpotDetails';
 
 // 組合用元件(一般組件)
 // import Breadcrumb from './components/Breadcrumb';
@@ -84,16 +85,23 @@ function App() {
           <Route path="/home-try" element={<HomeTry />} />
           <Route path="/login" element={<LogIn />} />
           <Route path="/surfspot" element={<SurfSpot />} />
+          {/* <Route
+            path="/surfspot/surfspot-details/:surfspotId"
+            element={<SurfSpotDetails />}
+          /> */}
           <Route path="/product-details" element={<ProductDetails />} />
+          <Route path="/products/:product_group" element={<ProductDetails />}>
+            <Route path=":product_id" element={<ProductDetails />} />
+          </Route>
           <Route path="/products" element={<Products />} />
-          <Route path="/cart-pre-order" element={<CartPreOrder />} />
+          <Route path="/product-cart01" element={<ProductCart01 />} />
           <Route
             path="/customized/customized-details"
             element={<CustomizedDetails />}
           />
           <Route path="/customized" element={<Customized />} />
           <Route
-            path="/member/member-order/member-order-details/:member_id"
+            path="/member/member-order/:orderId"
             element={<MemberOrderDetails />}
           />
           <Route
@@ -102,7 +110,7 @@ function App() {
           />
           <Route path="/member/member-collect" element={<MemberCollect />} />
           <Route path="/member/member-message" element={<MemberMessage />} />
-          <Route path="/memberm/member-coupon" element={<MemberCoupon />} />
+          <Route path="/member/member-coupon" element={<MemberCoupon />} />
           <Route path="/member/member-point" element={<MemberPoint />} />
           <Route path="/member/member-info" element={<MemberInfo />} />
           <Route path="/member/member-order" element={<MemberOrder />} />

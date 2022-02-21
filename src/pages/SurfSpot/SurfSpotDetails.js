@@ -24,7 +24,7 @@ function SurfSpotDetails(props) {
   useEffect(() => {
     let getSurfspot = async () => {
       // http://localhost:3002/api/
-      let response = await axios.get(`${API_URL}/Surfspot`);
+      let response = await axios.get(`${API_URL}/surfspot`);
       setData(response.data);
     };
     getSurfspot();

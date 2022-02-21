@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { Accordion, Figure } from 'react-bootstrap';
 import axios from 'axios';
 
 // 導引資料、頁面
 import './ProductDetails.scss';
 import { API_URL, IMAGE_URL } from '../../utils/config';
-import longboard1 from './longboard1.jpg'; // 待釐清圖放src還是放在public
+// import { data } from '../../data/products.js'; // 前端假資料
+import longboard1 from './longboard1.jpg'; // 暫存推薦商品前端假圖片
 import greenTitle from '../../data/images/greenTitle.svg';
+import ProductAddCart from './Components/ProductDetails/ProductAddCart.js';
 
 // react-icons
 import { FaThumbsUp } from 'react-icons/fa';
@@ -27,29 +29,36 @@ import {
 // import { BsStarHalf } from 'react-icons/bs'; // 半星星
 
 function ProductDetails(props) {
-  const [product, setProduct] = useState({
-    product_id: '',
-    product_no: '',
-    product_group: '',
-    name: '',
-    product_detail: '',
-    big_cat_id: '',
-    small_cat_id: '',
-    image1: '',
-    image2: '',
-    image3: '',
-    image4: '',
-    image5: '',
-    brand_id: '',
-    color: '',
-    size: '',
-    material_id: '',
-    fin_compatibility_id: '',
-    price: '',
-    stock: 0,
-    create_time: '',
-    product_valid: '',
-  });
+  // 把前端網址上的參數stockId拿出來，要和App.js的網址參數相同
+  const { product_group } = useParams();
+
+  const [product, setProduct] = useState([
+    {
+      product_id: '',
+      product_no: '',
+      product_group: '',
+      name: '',
+      product_detail: '',
+      big_cat_id: '',
+      small_cat_id: '',
+      image1: '',
+      image2: '',
+      image3: '',
+      image4: '',
+      image5: '',
+      brand_id: '',
+      color: '',
+      size: '',
+      material_id: '',
+      fin_compatibility_id: '',
+      price: '',
+      stock: 0,
+      create_time: '',
+      product_valid: '',
+    },
+  ]);
+  const [count, setCount] = useState(1);
+  const [loading, setLoading] = useState(false);
 
   // 產品 "小分類、品牌、材質、衝浪板舵" 的id對照名稱
   const smallCatTypes = [
@@ -67,41 +76,19 @@ function ProductDetails(props) {
   const materialTypes = ['Polyethylene', 'EPOXY', 'EPS', '碳纖維'];
   const finCompatibilityTypes = ['FCS II Longboard', 'FCS II', 'Single Tab'];
 
-  const [loading, setLoading] = useState(false);
-
-  // 為了處理網址
-  let navigate = useNavigate();
-
   // 初始化資料-模擬componentDidMount
   useEffect(() => {
     setLoading(true);
 
     let getProduct = async () => {
-      // 欲取得後端 http://localhost:3002/api/products 資料
-      let response = await axios.get(`${API_URL}/products/LB-0001`);
-      console.log(response);
-      console.log(response.data);
+      // 取得後端 http://localhost:3002/api/products 資料
+      let response = await axios.get(`${API_URL}/products/${product_group}`);
+      console.log('response.data', response.data);
       setProduct(response.data);
-
-      // 設定網址參數
-      const searchParams = new URLSearchParams(
-        `?product_no=${response.data.product_no}`
-      );
-      // 從網址取得
-      const product_no = searchParams.get('product_group')
-        ? searchParams.get('product_group')
-        : '';
-      const foundProduct = response.find((v, i) => v.product_no === product_no);
-
-      // 找到符合id的商品，更新Products狀態
-      if (foundProduct) {
-        setProduct(foundProduct);
-      }
-      // navigate(`/product-details?product_no=${response.id}`);
     };
     getProduct();
 
-    setTimeout(() => setLoading(false), 1000);
+    setTimeout(() => setLoading(false), 0);
   }, []);
 
   const spinner = (
@@ -110,10 +97,118 @@ function ProductDetails(props) {
     </div>
   );
 
-  // console.log('product狀態', Object.keys(product));
+  console.log('product狀態', product);
+
+  // 長板尺寸對照表
+  const displaySizeDetailsLB = (
+    <>
+      <div className="m-5">
+        <h3 className="border-bottom border-dark pb-2 mb-4">
+          尺寸對照表 - 長板
+        </h3>
+        <div className="row">
+          <div className="col-3">
+            <p className="text-center fw-bold">尺寸 (ft)</p>
+            <p className="text-center fw-bold">寬度 (in)</p>
+            <p className="text-center fw-bold">厚度 (in)</p>
+            <p className="text-center fw-bold">重量 (L)</p>
+          </div>
+          <div className="col-9">
+            <p className="fw-bold">9'0"</p>
+            <p>24</p>
+            <p>3.5</p>
+            <p>98</p>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+
+  // 快樂板尺寸對照表
+  const displaySizeDetailsFB = (
+    <>
+      <div className="m-5">
+        <h3 className="border-bottom border-dark pb-2 mb-4">
+          尺寸對照表 - 快樂板
+        </h3>
+        <div className="row">
+          <div className="col-3">
+            <p className="text-center fw-bold">尺寸 (ft)</p>
+            <p className="text-center fw-bold">寬度 (in)</p>
+            <p className="text-center fw-bold">厚度 (in)</p>
+            <p className="text-center fw-bold">重量 (L)</p>
+          </div>
+          <div className="col-9">
+            <div className="row">
+              <div className="col-4">
+                <p className="fw-bold">7'2"</p>
+                <p>21.75</p>
+                <p>2.85</p>
+                <p>50.6</p>
+              </div>
+              <div className="col-4">
+                <p className="fw-bold">7'6"</p>
+                <p>22</p>
+                <p>2.95</p>
+                <p>55.6</p>
+              </div>
+              <div className="col-4">
+                <p className="fw-bold">7'10"</p>
+                <p>22</p>
+                <p>3</p>
+                <p>59</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+
+  // 短板尺寸對照表
+  const displaySizeDetailsSB = (
+    <>
+      <div className="m-5">
+        <h3 className="border-bottom border-dark pb-2 mb-4">
+          尺寸對照表 - 短板
+        </h3>
+        <div className="row">
+          <div className="col-3">
+            <p className="text-center fw-bold">尺寸 (ft)</p>
+            <p className="text-center fw-bold">寬度 (in)</p>
+            <p className="text-center fw-bold">厚度 (in)</p>
+            <p className="text-center fw-bold">重量 (L)</p>
+          </div>
+          <div className="col-9">
+            <div className="row">
+              <div className="col-4">
+                <p className="fw-bold">4'6"</p>
+                <p>19</p>
+                <p>2.375</p>
+                <p>23</p>
+              </div>
+              <div className="col-4">
+                <p className="fw-bold">5'6"</p>
+                <p>20.75</p>
+                <p>2.875</p>
+                <p>36.8</p>
+              </div>
+              <div className="col-4">
+                <p className="fw-bold">6'6"</p>
+                <p>22</p>
+                <p>7.25</p>
+                <p>52.3</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+
+  // 中間商品細節區
   const displayDetails = (
     <>
-      {/* 中間商品細節區 */}
       {/* 大小商品圖 */}
       <div className="d-flex justify-content-evenly">
         <div className="d-flex flex-column align-items-center justify-content-around">
@@ -121,7 +216,7 @@ function ProductDetails(props) {
           <Figure>
             <Figure.Image
               width={75}
-              // height={80}
+              height={75}
               alt={`${product[0].product_no}`}
               src={`${IMAGE_URL}/products/${product[0].image1}`}
               className="border border-dark p-1 m-0"
@@ -130,7 +225,7 @@ function ProductDetails(props) {
           <Figure>
             <Figure.Image
               width={75}
-              // height={80}
+              height={75}
               alt={`${product[0].product_no}`}
               src={`${IMAGE_URL}/products/${product[0].image2}`}
               className="border border-dark p-1 m-0"
@@ -139,7 +234,7 @@ function ProductDetails(props) {
           <Figure>
             <Figure.Image
               width={75}
-              // height={80}
+              height={75}
               alt={`${product[0].product_no}`}
               src={`${IMAGE_URL}/products/${product[0].image3}`}
               className="border border-dark p-1 m-0"
@@ -150,7 +245,7 @@ function ProductDetails(props) {
         <Figure>
           <Figure.Image
             width={450}
-            // height={400}
+            height={450}
             alt={`${product[0].product_no}`}
             src={`${IMAGE_URL}/products/${product[0].image1}`}
           />
@@ -245,7 +340,9 @@ function ProductDetails(props) {
         <h3 className="border-bottom border-dark pb-2 mb-4">產品介紹</h3>
         <div className="row">
           <div className="col-3">
-            <p className="text-center fw-bold">{product[0].name} 系列衝浪板</p>
+            <p className="text-center fw-bold">
+              {smallCatTypes[product[0].small_cat_id - 1]}
+            </p>
           </div>
           <div className="col-9">
             <p>
@@ -274,152 +371,19 @@ function ProductDetails(props) {
           </div>
         </div>
       </div>
-
-      {/* 短板尺寸對照表 */}
-      <div className="m-5">
-        <h3 className="border-bottom border-dark pb-2 mb-4">
-          尺寸對照表 - 短板
-        </h3>
-        <div className="row">
-          <div className="col-3">
-            <p className="text-center fw-bold">尺寸 (ft)</p>
-            <p className="text-center fw-bold">寬度 (in)</p>
-            <p className="text-center fw-bold">厚度 (in)</p>
-            <p className="text-center fw-bold">重量 (L)</p>
-          </div>
-          <div className="col-9">
-            <div className="row">
-              <div className="col-4">
-                <p className="fw-bold">4'6"</p>
-                <p>19</p>
-                <p>2.375</p>
-                <p>23</p>
-              </div>
-              <div className="col-4">
-                <p className="fw-bold">5'6"</p>
-                <p>20.75</p>
-                <p>2.875</p>
-                <p>36.8</p>
-              </div>
-              <div className="col-4">
-                <p className="fw-bold">6'6"</p>
-                <p>22</p>
-                <p>7.25</p>
-                <p>52.3</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      {/* 快樂板尺寸對照表 */}
-      <div className="m-5">
-        <h3 className="border-bottom border-dark pb-2 mb-4">
-          尺寸對照表 - 快樂板
-        </h3>
-        <div className="row">
-          <div className="col-3">
-            <p className="text-center fw-bold">尺寸 (ft)</p>
-            <p className="text-center fw-bold">寬度 (in)</p>
-            <p className="text-center fw-bold">厚度 (in)</p>
-            <p className="text-center fw-bold">重量 (L)</p>
-          </div>
-          <div className="col-9">
-            <div className="row">
-              <div className="col-4">
-                <p className="fw-bold">7'2"</p>
-                <p>21.75</p>
-                <p>2.85</p>
-                <p>50.6</p>
-              </div>
-              <div className="col-4">
-                <p className="fw-bold">7'6"</p>
-                <p>22</p>
-                <p>2.95</p>
-                <p>55.6</p>
-              </div>
-              <div className="col-4">
-                <p className="fw-bold">7'10"</p>
-                <p>22</p>
-                <p>3</p>
-                <p>59</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      {/* 長板尺寸對照表 */}
-      <div className="m-5">
-        <h3 className="border-bottom border-dark pb-2 mb-4">
-          尺寸對照表 - 長板
-        </h3>
-        <div className="row">
-          <div className="col-3">
-            <p className="text-center fw-bold">尺寸 (ft)</p>
-            <p className="text-center fw-bold">寬度 (in)</p>
-            <p className="text-center fw-bold">厚度 (in)</p>
-            <p className="text-center fw-bold">重量 (L)</p>
-          </div>
-          <div className="col-9">
-            <p className="fw-bold">9'0"</p>
-            <p>24</p>
-            <p>3.5</p>
-            <p>98</p>
-          </div>
-        </div>
-      </div>
-      {/* 商品評價  */}
-      <div className="m-5">
-        <div className="text-secondary my-4 h2 text-center ">
-          <img
-            src={greenTitle}
-            className="me-3"
-            alt="greenTitle"
-            height="12px"
-            weight="32px"
-          />
-          評價
-        </div>
-        <div className="border mt-3 p-4">
-          <div className="d-flex align-items-center">
-            <img
-              className="rounded-circle"
-              src="https://fakeimg.pl/50x50/"
-              alt=""
-              height="50px"
-              weight="50px"
-            />
-            <div className="m-3 ">Tony</div>
-            <div className="d-flex justify-content-center ">
-              <AiFillStar size={20} color="#ff7f6a" />
-              <AiFillStar size={20} color="#ff7f6a" />
-              <AiFillStar size={20} color="#ff7f6a" />
-              <AiFillStar size={20} color="#ff7f6a" />
-              <AiOutlineStar size={20} color="#ff7f6a" />
-            </div>
-
-            <div className="align-self-center ms-auto">2022年2月9日</div>
-          </div>
-          <div className="my-3">
-            <p>
-              出貨速度還好。外袋整潔，內箱產品完整，期待有更優惠的活動供回購。
-              這款似可選剛好的尺寸，最好找店家試穿。
-            </p>
-            <img src={longboard1} width="100" className="mt-3" alt="" />
-          </div>
-        </div>
-      </div>
     </>
   );
+
+  // 右邊加入購物車區
   const displayCart =
-    product.product_id === '' ? (
+    product.length === 0 ? (
       <p>商品不存在</p>
     ) : (
       <>
-        {/* 右邊加入購物車區 */}
-
         <h1>{product[0].name}</h1>
         <h2>{brandTypes[product[0].brand_id - 1]}</h2>
         <h2>{smallCatTypes[product[0].small_cat_id - 1]}</h2>
+        <h3>{console.log('被渲染內的 product[0]', product[0])}</h3>
         <div className="row">
           <div className="col-5 py-0">
             <AiFillStar size={20} color="#ff7f6a" />
@@ -432,7 +396,7 @@ function ProductDetails(props) {
             <p className="fs-6">1則評論</p>
           </div>
         </div>
-        <p className="fs-6">SKU# 196322</p>
+        <p className="fs-6">#{product[0].product_no}</p>
         <div className="row mt-5 mb-3">
           <div className="col-4 pe-0">
             <div>選擇顏色：</div>
@@ -460,7 +424,7 @@ function ProductDetails(props) {
           </div>
         </div>
         <div className="d-flex my-5 align-items-center">
-          <h2 className="fw-bolder">NT 12,300</h2>
+          <h2 className="fw-bolder">NT {product[0].price * count}</h2>
           <AiFillTags size={16} color="#ff7f6a" className="ms-4" />
           <p className="fs-6 text-primary m-0 ms-1">精選優惠！</p>
         </div>
@@ -468,6 +432,9 @@ function ProductDetails(props) {
           <button
             type="button"
             className="btn btn-secondary border rounded-circle p-0 btmPlusMinus"
+            onClick={() => {
+              if (count - 1 >= 1) setCount(count - 1);
+            }}
           >
             <AiOutlineMinus size={20} color="#ffffff" className="text-center" />
           </button>
@@ -480,11 +447,16 @@ function ProductDetails(props) {
           <button
             type="button"
             className="btn btn-secondary border rounded-circle p-0 btmPlusMinus"
+            onClick={() => {
+              setCount(count + 1);
+            }}
           >
             <AiOutlinePlus size={20} color="#ffffff" className="text-center" />
           </button>
         </div>
-        <button className="btn btn-secondary btnAddCart">加入購物車</button>
+        <Link to="/product-cart01">
+          <button className="btn btn-secondary btnAddCart">加入購物車</button>
+        </Link>
       </>
     );
   return (
@@ -539,11 +511,6 @@ function ProductDetails(props) {
                       <li className="liProducts">
                         <Link to="/" title="腳踏墊" className="linkProducts">
                           腳踏墊
-                        </Link>
-                      </li>
-                      <li className="liProducts">
-                        <Link to="/" title="衝浪板袋" className="linkProducts">
-                          衝浪板袋
                         </Link>
                       </li>
                     </ul>
@@ -757,13 +724,77 @@ function ProductDetails(props) {
           {/* 中間商品細節區、右邊加入購物車區 */}
           <article className="col-10">
             <div className="row">
+              {/* 中間商品細節區 */}
               <div className="col-9">
-                {/* 中間商品細節區 */}
-                {loading ? spinner : displayDetails}
+                {/* 大小商品圖 */}
+                {displayDetails}
+                {(() => {
+                  if (product[0].small_cat_id === 1) {
+                    return displaySizeDetailsLB;
+                  } else if (product[0].small_cat_id === 2) {
+                    return displaySizeDetailsFB;
+                  } else {
+                    return displaySizeDetailsSB;
+                  }
+                })()}
+                {/* 短板尺寸對照表 */}
+                {/* {displaySizeDetailsSB} */}
+                {/* 快樂板尺寸對照表 */}
+                {/* {displaySizeDetailsFB} */}
+                {/* 長板尺寸對照表 */}
+                {/* {displaySizeDetailsLB} */}
+                {/* 商品評價  */}
+                <div className="m-5">
+                  <div className="text-secondary my-4 h2 text-center ">
+                    <img
+                      src={greenTitle}
+                      className="me-3"
+                      alt="greenTitle"
+                      height="12px"
+                      weight="32px"
+                    />
+                    評價
+                  </div>
+                  <div className="border mt-3 p-4">
+                    <div className="d-flex align-items-center">
+                      <img
+                        className="rounded-circle"
+                        src="https://fakeimg.pl/50x50/"
+                        alt=""
+                        height="50px"
+                        weight="50px"
+                      />
+                      <div className="m-3 ">Tony</div>
+                      <div className="d-flex justify-content-center ">
+                        <AiFillStar size={20} color="#ff7f6a" />
+                        <AiFillStar size={20} color="#ff7f6a" />
+                        <AiFillStar size={20} color="#ff7f6a" />
+                        <AiFillStar size={20} color="#ff7f6a" />
+                        <AiOutlineStar size={20} color="#ff7f6a" />
+                      </div>
+
+                      <div className="align-self-center ms-auto">
+                        2022年2月9日
+                      </div>
+                    </div>
+                    <div className="my-3">
+                      <p>
+                        出貨速度還好。外袋整潔，內箱產品完整，期待有更優惠的活動供回購。
+                        這款似可選剛好的尺寸，最好找店家試穿。
+                      </p>
+                      <img
+                        src={longboard1}
+                        width="100"
+                        className="mt-3"
+                        alt=""
+                      />
+                    </div>
+                  </div>
+                </div>
               </div>
+              {/* 右邊加入購物車區 */}
               <div className="col-3 p-0">
-                {/* 右邊加入購物車區 */}
-                {loading ? spinner : displayCart}
+                <div className="sticky">{loading ? spinner : displayCart}</div>
               </div>
             </div>
           </article>

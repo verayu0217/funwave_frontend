@@ -62,7 +62,7 @@ function Products() {
     let getProducts = async () => {
       // 欲取得後端 http://localhost:3002/api/products 資料
       let response = await axios.get(`${API_URL}/products`);
-      // console.log(response);
+      console.log(response);
       setProducts(response.data);
       setDisplayProducts(response.data);
     };
@@ -218,9 +218,6 @@ function Products() {
           <h1>FUN 商店</h1>
         </div>
       </div>
-      <Link to="/product-details">購物商城</Link>
-      <br />
-      <Link to="/cart-pre-order">購物車</Link>
       <div className="container">
         <h3>Breadcrumb</h3>
         <div className="row">
