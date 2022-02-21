@@ -7,7 +7,7 @@ import CircleRight from './CircleRight';
 import './surfSpot.scss';
 
 function SurfSpot() {
-  const [all, setAll] = useState('');
+  // const [all, setAll] = useState('');
   const [level, setLevel] = useState('');
   const [regional, setRegional] = useState('');
   return (
@@ -30,9 +30,9 @@ function SurfSpot() {
                 name="tags"
                 id="all"
                 value="0"
-                checked={all === '0'}
-                onClick={(e) => {
-                  setAll(e.target.value);
+                onClick={() => {
+                  setLevel('0');
+                  setRegional('0');
                 }}
               />
 
@@ -47,7 +47,7 @@ function SurfSpot() {
           <div className="d-flex justify-content-center">
             <CircleLeft level={level} setLevel={setLevel} />
             <CircleRight regional={regional} setRegional={setRegional} />
-            <Taiwanmap level={level} regional={regional} all={all} />
+            <Taiwanmap level={level} regional={regional} />
           </div>
         </div>
       </div>

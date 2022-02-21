@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, Navigate, Route, Routes } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { AiOutlinePlus, AiOutlineMinus } from 'react-icons/ai';
 
@@ -9,6 +9,7 @@ import greenTitle from '../../data/images/greenTitle.svg';
 import './CourseCart.scss';
 
 function CourseCart(props) {
+  let navigate = useNavigate();
   const [count, setCount] = useState(1);
 
   // 人數
@@ -23,14 +24,14 @@ function CourseCart(props) {
   console.log(data);
   // 總計
   const amount = data[0].coursePrice * count;
-  // 刪除購物車資料並導向上一頁未完成
-  // TODO:
+
+  // 刪除購物車資料並導向上一頁
   let deleteCourse = () => {
     localStorage.clear('報名資料');
     window.alert('你的購物車沒有資料');
-    // if (deleteCourse) {
-    //   return <Navigate to="/course/course-content" />;
-    //  }
+
+    // 導回上一頁
+    navigate('/course/course-content', { replace: true });
   };
 
   return (

@@ -47,6 +47,7 @@ import Customized from './pages/Customized/Customized';
 import CustomizedDetails from './pages/Customized/CustomizedDetails';
 //浪點
 import SurfSpot from './pages/SurfSpot/SurfSpot';
+// import SurfSpotDetails from './pages/SurfSpot/SurfSpotDetails';
 
 // 組合用元件(一般組件)
 // import Breadcrumb from './components/Breadcrumb';
@@ -84,6 +85,10 @@ function App() {
           <Route path="/home-try" element={<HomeTry />} />
           <Route path="/login" element={<LogIn />} />
           <Route path="/surfspot" element={<SurfSpot />} />
+          {/* <Route
+            path="/surfspot/surfspot-details/:surfspotId"
+            element={<SurfSpotDetails />}
+          /> */}
           <Route path="/product-details" element={<ProductDetails />} />
           <Route path="/products/:product_group" element={<ProductDetails />}>
             <Route path=":product_id" element={<ProductDetails />} />

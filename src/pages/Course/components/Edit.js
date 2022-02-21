@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import moment from 'moment';
 
 // props拿出add
 const Edit = ({ add }) => {
@@ -7,8 +6,6 @@ const Edit = ({ add }) => {
   function msgChange(e) {
     setMsg(e.target.value);
   }
-  // let now = moment().format('YYYY-MM-DD'); // 自動用今天的日期
-  // const [date, setDate] = useState(now);
 
   // 綁定button的onClick方法
   function addMsg() {

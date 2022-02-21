@@ -25,11 +25,11 @@ function CircleLeft(props) {
             id="level1"
             value="1"
             checked={level === '1'}
-            onClick={(e) => {
+            onChange={(e) => {
               setLevel(e.target.value);
             }}
           />
-          <label className="fw-bold label" for="level1">
+          <label className="fw-bold label" htmlFor="level1">
             初階浪點
           </label>
         </div>
@@ -41,11 +41,11 @@ function CircleLeft(props) {
             id="level2"
             value="2"
             checked={level === '2'}
-            onClick={(e) => {
+            onChange={(e) => {
               setLevel(e.target.value);
             }}
           />
-          <label className="fw-bold label" for="level2">
+          <label className="fw-bold label" htmlFor="level2">
             中階浪點
           </label>
         </div>
@@ -57,11 +57,11 @@ function CircleLeft(props) {
             id="level3"
             value="3"
             checked={level === '3'}
-            onClick={(e) => {
+            onChange={(e) => {
               setLevel(e.target.value);
             }}
           />
-          <label className="fw-bold label" for="level3">
+          <label className="fw-bold label" htmlFor="level3">
             高階浪點
           </label>
         </div>

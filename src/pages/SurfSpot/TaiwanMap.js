@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+// import { Link } from 'react-router-dom';
 import SurfSpotDetails from './SurfSpotDetails';
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css'; // optional
@@ -22,19 +23,21 @@ function TaiwanMap(props) {
   // 篩選級別浪點
   const handleTags = (data, level) => {
     let newData = [];
-    if (level === '1') {
-      console.log('1');
-      newData = data.filter((v) => {
-        return v.tags.includes('初階');
-      });
-    } else if (level === '2') {
-      newData = data.filter((v) => {
-        return v.tags.includes('中階');
-      });
-    } else if (level === '3') {
-      newData = data.filter((v) => {
-        return v.tags.includes('高階');
-      });
+    if (!(level === '0')) {
+      console.log('0');
+      if (level === '1') {
+        newData = data.filter((v) => {
+          return v.tags.includes('初階');
+        });
+      } else if (level === '2') {
+        newData = data.filter((v) => {
+          return v.tags.includes('中階');
+        });
+      } else if (level === '3') {
+        newData = data.filter((v) => {
+          return v.tags.includes('高階');
+        });
+      }
     } else {
       newData = [...data];
     }
@@ -44,26 +47,29 @@ function TaiwanMap(props) {
   // 篩選區域浪點
   const handleRegional = (data, regional) => {
     let newData = [];
-    if (regional === 'E') {
-      newData = data.filter((v) => {
-        return v.tags.includes('東部');
-      });
-    } else if (regional === 'EN') {
-      newData = data.filter((v) => {
-        return v.tags.includes('東北部');
-      });
-    } else if (regional === 'N') {
-      newData = data.filter((v) => {
-        return v.tags.includes('北部');
-      });
-    } else if (regional === 'W') {
-      newData = data.filter((v) => {
-        return v.tags.includes('西部');
-      });
-    } else if (regional === 'S') {
-      newData = data.filter((v) => {
-        return v.tags.includes('南部');
-      });
+    if (!(regional === '0')) {
+      console.log('0');
+      if (regional === 'E') {
+        newData = data.filter((v) => {
+          return v.tags.includes('東部');
+        });
+      } else if (regional === 'EN') {
+        newData = data.filter((v) => {
+          return v.tags.includes('東北部');
+        });
+      } else if (regional === 'N') {
+        newData = data.filter((v) => {
+          return v.tags.includes('北部');
+        });
+      } else if (regional === 'W') {
+        newData = data.filter((v) => {
+          return v.tags.includes('西部');
+        });
+      } else if (regional === 'S') {
+        newData = data.filter((v) => {
+          return v.tags.includes('南部');
+        });
+      }
     } else {
       newData = [...data];
     }
@@ -74,13 +80,18 @@ function TaiwanMap(props) {
   // 篩選浪點
   useEffect(() => {
     let filterData = [];
+    // 處理級別(從最原始資料處理)
     filterData = handleTags(data, level);
-    filterData = handleRegional(data, regional);
+    // 處理地區
+    filterData = handleRegional(filterData, regional);
     console.log('filterData', filterData);
     setSurfspots(filterData);
   }, [level, regional]);
 
   // 排除篩選的全部浪點
+  // useEffect(() => {
+  //   setSurfspots(data);
+  // }, [all]);
 
   // 初始全部浪點
   useEffect(() => {
@@ -89,10 +100,10 @@ function TaiwanMap(props) {
 
   return (
     <div className="wrapSpot">
-      {surfspots.map((surfspot, i) => {
+      {surfspots.map((surfspot) => {
         return (
           <Tippy
-            key={i}
+            key={surfspot.id}
             offset={[-10, 20]}
             placement={surfspot.placement}
             theme={'light'}

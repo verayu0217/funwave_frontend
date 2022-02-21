@@ -27,6 +27,9 @@
 .label:before:hover{
     cursor: pointer;
 }
+.label:active{
+    color:$funwave-orange;
+}
 .level1Radio{
     transform: translate(135px,-450px);
 }

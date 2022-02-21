@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Link, Route } from 'react-router-dom';
-import axios from 'axios';
 
 // 引用上課地點組件
 import CourseSpot from './components/CourseSpot';
