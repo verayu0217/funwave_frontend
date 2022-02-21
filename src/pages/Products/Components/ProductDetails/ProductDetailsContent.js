@@ -16,7 +16,7 @@ import {
 function ProductDetailsContent(props) {
   const { product } = props;
 
-  // 產品 "小分類、品牌、材質、衝浪板舵" 的id對照名稱
+  // 小分類、品牌、材質、衝浪板舵的id對照名稱
   const smallCatTypes = [
     '衝浪長板',
     '衝浪快樂板',

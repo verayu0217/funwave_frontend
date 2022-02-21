@@ -35,7 +35,7 @@ function ProductDetails(props) {
       image4: '',
       image5: '',
       brand_id: '',
-      color: '',
+      color_id: '',
       size: '',
       material_id: '',
       fin_compatibility_id: '',
@@ -57,7 +57,7 @@ function ProductDetails(props) {
     let getProduct = async () => {
       // 取得後端 http://localhost:3002/api/products 資料
       let response = await axios.get(`${API_URL}/products/${product_group}`);
-      console.log('response.data', response.data);
+      console.log('Product資料', response.data);
       setProduct(response.data);
     };
     getProduct();
@@ -343,6 +343,7 @@ function ProductDetails(props) {
                 ) : (
                   <ProductDetailsContent product={product} />
                 )}
+                {/* <ProductDetailsContent product={product} /> */}
                 {/* 評價 */}
                 <div className="m-5">
                   <div className="text-secondary my-4 h2 text-center ">
@@ -396,6 +397,7 @@ function ProductDetails(props) {
               <div className="col-3 p-0">
                 <div className="sticky">
                   {loading ? spinner : <ProductAddCart product={product} />}
+                  {/* <ProductAddCart product={product} /> */}
                 </div>
               </div>
             </div>

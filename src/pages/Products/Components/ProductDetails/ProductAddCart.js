@@ -16,7 +16,7 @@ function ProductAddCart(props) {
   const { product } = props;
   const [count, setCount] = useState(1);
 
-  // 產品 "小分類、品牌、材質、衝浪板舵" 的id對照名稱
+  // 小分類、品牌的id對照名稱
   const smallCatTypes = [
     '衝浪長板',
     '衝浪快樂板',
@@ -30,12 +30,29 @@ function ProductAddCart(props) {
   ];
   const brandTypes = ['Catch Surf', 'Solid Surf Co', 'JJF by Pyzel'];
 
+  // cartData資料待存進localStorage
+  let cartData = [
+    {
+      product_no: product[0].product_no,
+      name: product[0].name,
+      price: product[0].price,
+      stock: product[0].stock,
+      size: product[0].size,
+      color_id: product[0].color_id,
+      small_cat_id: product[0].small_cat_id,
+      count: count,
+    },
+  ];
+
+  // 將選擇的資料存進localStorage
+  localStorage.setItem('商品列表的購物車資料', JSON.stringify(cartData));
+  console.log('商品列表的購物車資料-ProductDetail', cartData);
+
   return (
     <>
       <h1>{product[0].name}</h1>
       <h2>{brandTypes[product[0].brand_id - 1]}</h2>
       <h2>{smallCatTypes[product[0].small_cat_id - 1]}</h2>
-      <h3>{console.log('被渲染內的 product[0]', product[0])}</h3>
       <div className="row">
         <div className="col-5 py-0">
           <AiFillStar size={20} color="#ff7f6a" />
@@ -80,25 +97,26 @@ function ProductAddCart(props) {
         <AiFillTags size={16} color="#ff7f6a" className="ms-4" />
         <p className="fs-6 text-primary m-0 ms-1">精選優惠！</p>
       </div>
-      <div className="d-flex justify-content-center mb-4">
+      <div className="d-flex justify-content-center align-items-center mb-4">
         <button
           type="button"
-          className="btn btn-secondary border rounded-circle p-0 btmPlusMinus"
+          className="btn btn-secondary border rounded-circle p-0 d-flex justify-content-center align-items-center btnPlusMinus "
           onClick={() => {
             if (count - 1 >= 1) setCount(count - 1);
           }}
         >
           <AiOutlineMinus size={20} color="#ffffff" className="text-center" />
         </button>
-        <input
+        {/* <input
           type="text"
-          value="1"
+          value={count}
           className="form-control mx-3 w-25"
           name="quantity"
-        />
+        /> */}
+        <div className="fs-3 text-center mx-3">{count}</div>
         <button
           type="button"
-          className="btn btn-secondary border rounded-circle p-0 btmPlusMinus"
+          className="btn btn-secondary border rounded-circle p-0 d-flex justify-content-center align-items-center btnPlusMinus"
           onClick={() => {
             setCount(count + 1);
           }}
