@@ -218,9 +218,6 @@ function Products() {
           <h1>FUN 商店</h1>
         </div>
       </div>
-      <Link to="/product-details">購物商城</Link>
-      <br />
-      <Link to="/cart-pre-order">購物車</Link>
       <div className="container">
         <h3>Breadcrumb</h3>
         <div className="row">

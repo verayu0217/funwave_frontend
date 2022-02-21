@@ -38,7 +38,7 @@ import Courses from './pages/Course/Courses';
 import ProductDetails from './pages/Products/ProductDetails';
 import Products from './pages/Products/Products';
 //購物車
-import CartPreOrder from './pages/Products/Cart/CartPreOrder';
+import ProductCart01 from './pages/Products/Cart/ProductCart01';
 import CartManage from './pages/Products/Cart/CartManage';
 // import CartConfimOrder from './pages/Products/Cart/CartConfimOrder';
 // import CartComplete from './pages/Products/Cart/CartComplete';
@@ -89,7 +89,7 @@ function App() {
             <Route path=":product_id" element={<ProductDetails />} />
           </Route>
           <Route path="/products" element={<Products />} />
-          <Route path="/cart-pre-order" element={<CartPreOrder />} />
+          <Route path="/product-cart01" element={<ProductCart01 />} />
           <Route
             path="/customized/customized-details"
             element={<CustomizedDetails />}
