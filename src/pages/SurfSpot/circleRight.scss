@@ -20,6 +20,9 @@
 .labelR:after:hover{
     cursor: pointer;
 }
+.labelR:active{
+    color:$funwave-orange;
+}
 
 .regionalERadio{
     transform: translate(236px, -410px);
