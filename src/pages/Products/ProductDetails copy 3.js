@@ -1,11 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {
-  Link,
-  useLocation,
-  useNavigate,
-  useParams,
-  useMatch,
-} from 'react-router-dom';
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
 import { Accordion, Figure } from 'react-bootstrap';
 import axios from 'axios';
 
@@ -34,8 +28,8 @@ import {
 // import { BsStarHalf } from 'react-icons/bs'; // 半星星
 
 function ProductDetails(props) {
-  const match = useMatch('/products/:product_group');
-  console.log('match', match);
+  console.log('props', props);
+
   const [product, setProduct] = useState([
     {
       product_id: '',
@@ -79,41 +73,37 @@ function ProductDetails(props) {
   const brandTypes = ['Catch Surf', 'Solid Surf Co', 'JJF by Pyzel'];
   const materialTypes = ['Polyethylene', 'EPOXY', 'EPS', '碳纖維'];
   const finCompatibilityTypes = ['FCS II Longboard', 'FCS II', 'Single Tab'];
-  let params = '123';
-  // let params = useParams();
-  console.log('params', params);
+
+  // 為了處理網址
+  let navigate = useNavigate();
 
   // 初始化資料-模擬componentDidMount
   useEffect(() => {
     setLoading(true);
 
     let getProduct = async () => {
-      // 前端傳網址中的product_group給後端
-      let responseFe = await axios.get(
-        `${API_URL}/products/:product_group`,
-        params
-      );
-      console.log('responseFe', responseFe.data);
-
-      // 取得後端 http://localhost:3002/api/products 資料
+      // 欲取得後端 http://localhost:3002/api/products 資料
       let response = await axios.get(`${API_URL}/products/LB-0001`);
-      console.log('response.data', response.data);
+      console.log(response);
+      console.log(response.data);
       setProduct(response.data);
 
       // 設定網址參數
-      const searchParams = new URLSearchParams(`/${params}`);
+      const searchParams = new URLSearchParams(
+        `?product_no=${response.data.product_no}`
+      );
+      console.log('searchParams', searchParams);
       // 從網址取得
-      const product_group = searchParams.get('product_group')
+      const product_no = searchParams.get('product_group')
         ? searchParams.get('product_group')
         : '';
-      const foundProduct = response.find(
-        (v, i) => v.product_group === product_group
-      );
+      const foundProduct = response.find((v, i) => v.product_no === product_no);
 
       // 找到符合id的商品，更新Products狀態
       if (foundProduct) {
         setProduct(foundProduct);
       }
+      // navigate(`/product-details?product_no=${response.id}`);
     };
     getProduct();
 

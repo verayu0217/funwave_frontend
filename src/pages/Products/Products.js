@@ -62,7 +62,7 @@ function Products() {
     let getProducts = async () => {
       // 欲取得後端 http://localhost:3002/api/products 資料
       let response = await axios.get(`${API_URL}/products`);
-      // console.log(response);
+      console.log(response);
       setProducts(response.data);
       setDisplayProducts(response.data);
     };
