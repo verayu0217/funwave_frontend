@@ -85,10 +85,7 @@ function App() {
           <Route path="/login" element={<LogIn />} />
           <Route path="/surfspot" element={<SurfSpot />} />
           <Route path="/product-details" element={<ProductDetails />} />
-          <Route
-            path="/product-details/:product_group"
-            element={<ProductDetails />}
-          >
+          <Route path="/products/:product_group" element={<ProductDetails />}>
             <Route path=":product_id" element={<ProductDetails />} />
           </Route>
           <Route path="/products" element={<Products />} />
