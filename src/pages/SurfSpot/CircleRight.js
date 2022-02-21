@@ -23,11 +23,11 @@ function CircleRight(props) {
           id="regionalE"
           value="E"
           checked={regional === 'E'}
-          onClick={(e) => {
+          onChange={(e) => {
             setRegional(e.target.value);
           }}
         />
-        <label className="fw-bold labelR" for="regionalE">
+        <label className="fw-bold labelR" htmlFor="regionalE">
           東部
         </label>
       </div>
@@ -39,11 +39,11 @@ function CircleRight(props) {
           id="regionalEN"
           value="EN"
           checked={regional === 'EN'}
-          onClick={(e) => {
+          onChange={(e) => {
             setRegional(e.target.value);
           }}
         />
-        <label className="fw-bold labelR" for="regionalEN">
+        <label className="fw-bold labelR" htmlFor="regionalEN">
           東北部
         </label>
       </div>
@@ -55,11 +55,11 @@ function CircleRight(props) {
           id="regionalN"
           value="N"
           checked={regional === 'N'}
-          onClick={(e) => {
+          onChange={(e) => {
             setRegional(e.target.value);
           }}
         />
-        <label className="fw-bold labelR" for="regionalN">
+        <label className="fw-bold labelR" htmlFor="regionalN">
           北部
         </label>
       </div>
@@ -71,11 +71,11 @@ function CircleRight(props) {
           id="regionalW"
           value="W"
           checked={regional === 'W'}
-          onClick={(e) => {
+          onChange={(e) => {
             setRegional(e.target.value);
           }}
         />
-        <label className="fw-bold labelR" for="regionalW">
+        <label className="fw-bold labelR" htmlFor="regionalW">
           西部
         </label>
       </div>
@@ -87,11 +87,11 @@ function CircleRight(props) {
           id="regionalS"
           value="S"
           checked={regional === 'S'}
-          onClick={(e) => {
+          onChange={(e) => {
             setRegional(e.target.value);
           }}
         />
-        <label className="fw-bold labelR" for="regionalS">
+        <label className="fw-bold labelR" htmlFor="regionalS">
           南部
         </label>
       </div>

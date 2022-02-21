@@ -100,10 +100,10 @@ function TaiwanMap(props) {
 
   return (
     <div className="wrapSpot">
-      {surfspots.map((surfspot, i) => {
+      {surfspots.map((surfspot) => {
         return (
           <Tippy
-            key={i}
+            key={surfspot.id}
             offset={[-10, 20]}
             placement={surfspot.placement}
             theme={'light'}
