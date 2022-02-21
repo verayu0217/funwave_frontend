@@ -8,36 +8,48 @@ import './Member.scss';
 import titleImgMember from '../../data/images/greenwave64x24.png';
 
 function MemberInfo(props) {
-  const [students, setStudents] = useState([]);
+  const [member, setMember] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [Date, setDate] = useState('');
 
-  useEffect(() => {
-    // 先開起載入指示器
-    setIsLoading(true);
+  // useEffect(() => {
+  //   // 先開起載入指示器
+  //   setIsLoading(true);
 
-    // 模擬和伺服器要資料
-    // 最後設定到狀態中
-    setStudents(data);
+  //   // 模擬和伺服器要資料
+  //   // 最後設定到狀態中
+  //   setStudents(data);
 
-    // 3秒後關閉指示器
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 3000);
-  }, []);
+  //   // 3秒後關閉指示器
+  //   setTimeout(() => {
+  //     setIsLoading(false);
+  //   }, 3000);
+  // }, []);
 
-  const spinner = (
-    <>
-      <div className="spinner-grow text-primary" role="status">
-        <span className="sr-only">Loading...</span>
-      </div>
-      <div className="spinner-grow text-secondary" role="status">
-        <span className="sr-only">Loading...</span>
-      </div>
-      <div className="spinner-grow text-success" role="status">
-        <span className="sr-only">Loading...</span>
-      </div>
-    </>
-  );
+  // const spinner = (
+  //   <>
+  //     <div className="spinner-grow text-primary" role="status">
+  //       <span className="sr-only">Loading...</span>
+  //     </div>
+  //     <div className="spinner-grow text-secondary" role="status">
+  //       <span className="sr-only">Loading...</span>
+  //     </div>
+  //     <div className="spinner-grow text-success" role="status">
+  //       <span className="sr-only">Loading...</span>
+  //     </div>
+  //   </>
+  // );
+  const changeAvatar = (e) => {
+    var avatar = document.getElementsByName('member_photo')[0];
+    var previewAvatar = document.getElementById('preview-photo');
+    avatar.onchange = (e) => {
+      var file = avatar.files[0];
+      if (file) {
+        previewAvatar.src = URL.createObjectURL(file);
+        previewAvatar.classList.remove('d-none');
+      }
+    };
+  };
 
   const [close, setClose] = useState('fas fa-eye-slash');
   const [type, setType] = useState('password');
@@ -54,6 +66,17 @@ function MemberInfo(props) {
     setValidated(true);
   };
 
+  // useEffect(() => {
+  //   let getMember = async () => {
+  //     // http://localhost:3002/api/
+  //     let response = await axios.get(
+  //       `${API_URL}/member/${member.member_id}`,
+  //       data
+  //     );
+  //     console.log(response.data);
+  //   };
+  //   getMember();
+  // }, []);
   return (
     <>
       <div className="container mt-5">
@@ -67,13 +90,26 @@ function MemberInfo(props) {
                 會員資料
               </h2>
               <div className="avatarMember d-flex justify-content-center">
-                <img id="image" />
+                <img
+                  id="preview-photo"
+                  className="photo-img cover-fit d-none"
+                />
               </div>
               <h3 className="fs-24Member">歐陽范姜</h3>
               <h5 className="fs-16Member hotMember">衝浪熱愛者</h5>
               <button className="changeImgMember" type="file" id="theFile">
                 <i className="fas fa-pen"></i>&ensp;更換大頭貼
               </button>
+              <input
+                type="file"
+                class="form-control"
+                id="photo"
+                name="member_photo"
+                value={member.member_photo}
+                onChange={(e) => {
+                  changeAvatar(e.target.value);
+                }}
+              />
             </div>
             <div className="mt-5">
               <h3 className="fs-16Member mb-4 captionMember">
@@ -165,7 +201,18 @@ function MemberInfo(props) {
                 <label htmlFor="phone" className="col-12 mt-3 mb-1 fs-16Member">
                   生日
                 </label>
-                <select className="col-12 btn btnMember"></select>
+                {/* <select className="col-12 btn btnMember"></select> */}
+                <input
+                  type="date"
+                  className="form-control col-12 btn btnMember"
+                  id="date"
+                  placeholder="date"
+                  value={Date}
+                  onChange={(e) => {
+                    setDate(e.target.value);
+                  }}
+                  required
+                />
               </div>
               <h3 className="fs-24Member mt-5">送貨地址</h3>
               <Form.Group className="col-12">

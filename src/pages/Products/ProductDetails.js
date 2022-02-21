@@ -1,103 +1,64 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { Accordion, Figure } from 'react-bootstrap';
+import { Link, useParams } from 'react-router-dom';
+import { Accordion } from 'react-bootstrap';
 import axios from 'axios';
 
 // 導引資料、頁面
 import './ProductDetails.scss';
-import { API_URL, IMAGE_URL } from '../../utils/config';
-import longboard1 from './longboard1.jpg'; // 待釐清圖放src還是放在public
+import { API_URL } from '../../utils/config';
+// import { data } from '../../data/products.js'; // 前端假資料
+import longboard1 from './longboard1.jpg'; // 暫存推薦商品前端假圖片
 import greenTitle from '../../data/images/greenTitle.svg';
+import ProductAddCart from './Components/ProductDetails/ProductAddCart.js';
+import ProductDetailsContent from './Components/ProductDetails/ProductDetailsContent.js';
 
 // react-icons
 import { FaThumbsUp } from 'react-icons/fa';
 import { IoColorPalette } from 'react-icons/io5';
 import { MdOutlineSurfing } from 'react-icons/md';
-import {
-  AiFillStar,
-  AiOutlineStar,
-  AiOutlineDown,
-  AiOutlineUp,
-  AiFillLeftCircle,
-  AiFillRightCircle,
-  AiFillTags,
-  AiOutlinePlus,
-  AiOutlineMinus,
-} from 'react-icons/ai';
+import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
 // import { BsStarHalf } from 'react-icons/bs'; // 半星星
 
 function ProductDetails(props) {
-  const [product, setProduct] = useState({
-    product_id: '',
-    product_no: '',
-    product_group: '',
-    name: '',
-    product_detail: '',
-    big_cat_id: '',
-    small_cat_id: '',
-    image1: '',
-    image2: '',
-    image3: '',
-    image4: '',
-    image5: '',
-    brand_id: '',
-    color: '',
-    size: '',
-    material_id: '',
-    fin_compatibility_id: '',
-    price: '',
-    stock: 0,
-    create_time: '',
-    product_valid: '',
-  });
-
-  // 產品 "小分類、品牌、材質、衝浪板舵" 的id對照名稱
-  const smallCatTypes = [
-    '衝浪長板',
-    '衝浪快樂板',
-    '衝浪短板',
-    '衝浪板舵',
-    '衝浪腳繩',
-    '衝浪腳踏墊',
-    '衝浪板袋',
-    '衝浪斗篷毛巾衣',
-    '防寒衣',
-  ];
-  const brandTypes = ['Catch Surf', 'Solid Surf Co', 'JJF by Pyzel'];
-  const materialTypes = ['Polyethylene', 'EPOXY', 'EPS', '碳纖維'];
-  const finCompatibilityTypes = ['FCS II Longboard', 'FCS II', 'Single Tab'];
-
+  const [product, setProduct] = useState([
+    {
+      product_id: '',
+      product_no: '',
+      product_group: '',
+      name: '',
+      product_detail: '',
+      big_cat_id: '',
+      small_cat_id: '',
+      image1: '',
+      image2: '',
+      image3: '',
+      image4: '',
+      image5: '',
+      brand_id: '',
+      color: '',
+      size: '',
+      material_id: '',
+      fin_compatibility_id: '',
+      price: '',
+      stock: 0,
+      create_time: '',
+      product_valid: '',
+    },
+  ]);
   const [loading, setLoading] = useState(false);
 
-  // 為了處理網址
-  let navigate = useNavigate();
+  // 把前端網址上的參數stockId拿出來，要和App.js的網址參數相同
+  const { product_group } = useParams();
 
   // 初始化資料-模擬componentDidMount
   useEffect(() => {
     setLoading(true);
 
     let getProduct = async () => {
-      // 欲取得後端 http://localhost:3002/api/products 資料
-      let response = await axios.get(`${API_URL}/products/LB-0001`);
-      console.log(response);
-      console.log(response.data);
+      // 取得後端 http://localhost:3002/api/products 資料
+      let response = await axios.get(`${API_URL}/products/${product_group}`);
+      console.log('response.data', response.data);
       setProduct(response.data);
-
-      // 設定網址參數
-      const searchParams = new URLSearchParams(
-        `?product_no=${response.data.product_no}`
-      );
-      // 從網址取得
-      const product_no = searchParams.get('product_group')
-        ? searchParams.get('product_group')
-        : '';
-      const foundProduct = response.find((v, i) => v.product_no === product_no);
-
-      // 找到符合id的商品，更新Products狀態
-      if (foundProduct) {
-        setProduct(foundProduct);
-      }
-      // navigate(`/product-details?product_no=${response.id}`);
     };
     getProduct();
 
@@ -110,22 +71,6 @@ function ProductDetails(props) {
     </div>
   );
 
-  // console.log('product狀態', Object.keys(product));
-  const displayDetails = (
-    <>
-      {/* 中間商品細節區 */}
-      {/* 大小商品圖 */}
-    </>
-  );
-
-  const displaySizeDetailsSB = <>{/* 短板尺寸對照表 */}</>;
-
-  const displayCart = (
-    <>
-      {/* 右邊加入購物車區 */}
-      <h1>{product[0].name}</h1>
-    </>
-  );
   return (
     <>
       <div className="container">
@@ -178,11 +123,6 @@ function ProductDetails(props) {
                       <li className="liProducts">
                         <Link to="/" title="腳踏墊" className="linkProducts">
                           腳踏墊
-                        </Link>
-                      </li>
-                      <li className="liProducts">
-                        <Link to="/" title="衝浪板袋" className="linkProducts">
-                          衝浪板袋
                         </Link>
                       </li>
                     </ul>
@@ -393,16 +333,70 @@ function ProductDetails(props) {
               </div>
             </div>
           </aside>
-          {/* 中間商品細節區、右邊加入購物車區 */}
+          {/* 中間的商品細節區、右方的加入購物車區 */}
           <article className="col-10">
             <div className="row">
+              {/* 中間商品細節區 */}
               <div className="col-9">
-                {/* 中間商品細節區 */}
-                {loading ? spinner : displayDetails}
+                {loading ? (
+                  spinner
+                ) : (
+                  <ProductDetailsContent product={product} />
+                )}
+                {/* 評價 */}
+                <div className="m-5">
+                  <div className="text-secondary my-4 h2 text-center ">
+                    <img
+                      src={greenTitle}
+                      className="me-3"
+                      alt="greenTitle"
+                      height="12px"
+                      weight="32px"
+                    />
+                    評價
+                  </div>
+                  <div className="border mt-3 p-4">
+                    <div className="d-flex align-items-center">
+                      <img
+                        className="rounded-circle"
+                        src="https://fakeimg.pl/50x50/"
+                        alt=""
+                        height="50px"
+                        weight="50px"
+                      />
+                      <div className="m-3 ">Tony</div>
+                      <div className="d-flex justify-content-center ">
+                        <AiFillStar size={20} color="#ff7f6a" />
+                        <AiFillStar size={20} color="#ff7f6a" />
+                        <AiFillStar size={20} color="#ff7f6a" />
+                        <AiFillStar size={20} color="#ff7f6a" />
+                        <AiOutlineStar size={20} color="#ff7f6a" />
+                      </div>
+
+                      <div className="align-self-center ms-auto">
+                        2022年2月9日
+                      </div>
+                    </div>
+                    <div className="my-3">
+                      <p>
+                        出貨速度還好。外袋整潔，內箱產品完整，期待有更優惠的活動供回購。
+                        這款似可選剛好的尺寸，最好找店家試穿。
+                      </p>
+                      <img
+                        src={longboard1}
+                        width="100"
+                        className="mt-3"
+                        alt=""
+                      />
+                    </div>
+                  </div>
+                </div>
               </div>
+              {/* 右方的加入購物車區 */}
               <div className="col-3 p-0">
-                {/* 右邊加入購物車區 */}
-                {loading ? spinner : displayCart}
+                <div className="sticky">
+                  {loading ? spinner : <ProductAddCart product={product} />}
+                </div>
               </div>
             </div>
           </article>

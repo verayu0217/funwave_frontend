@@ -5,10 +5,26 @@
   border-radius: 8px;
   background-color: $funwave-lightgray;
 }
+
+// 人數加減按鈕
 .countButton {
   width: 30px;
   height: 30px;
   text-align: center;
+}
+
+// 個人資料表單
+.infoForm {
+  border-radius: 8px;
+}
+
+// 送出個人資料按鈕
+.sendFormBtn {
+  width: 100%;
+}
+
+.successBox {
+  background-color: $funwave-orange;
 }
 
 // 手機版

@@ -14,8 +14,13 @@ function Step3(props) {
   return (
     <div className="container">
       <div className="text-secondary h1 text-center position-relative">
-        <button className="btn btn-secondary my-2 position-absolute start-0">
-          返回
+        <button
+          className="btn btn-secondary my-2 position-absolute start-0"
+          onClick={() => {
+            setStep({ ...step, step2: true, step3: '' });
+          }}
+        >
+          上一步
         </button>
         <img
           src={greenTitle}
@@ -31,7 +36,7 @@ function Step3(props) {
         <Col lg="7">
           <Row className="gx-0">
             <Col lg="2">魚板</Col>
-            <Col lg="5" className="boarderCu">
+            <Col lg="5" className="boarder">
               <p className="m-0 text-center">正面</p>
               <Figure className="bottomPhotoCu">
                 <Figure.Image
@@ -41,7 +46,7 @@ function Step3(props) {
                 />
               </Figure>
             </Col>
-            <Col lg="5" className="boarderCu">
+            <Col lg="5" className="boarder">
               <p className="m-0 text-center">反面</p>
               <Figure className="bottomPhotoCu">
                 <Figure.Image
