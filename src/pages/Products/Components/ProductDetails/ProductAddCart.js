@@ -2,8 +2,7 @@
 
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-
-// react-icons
+import { Figure } from 'react-bootstrap';
 import {
   AiFillStar,
   AiOutlineStar,
@@ -11,6 +10,7 @@ import {
   AiOutlinePlus,
   AiOutlineMinus,
 } from 'react-icons/ai';
+import longboard1 from './longboard1.jpg'; // 暫存推薦商品前端假圖片
 
 function ProductAddCart(props) {
   const { product } = props;
@@ -45,24 +45,38 @@ function ProductAddCart(props) {
     },
   ];
 
-  // 將選擇的資料存進localStorage
+  // 將cartData存進localStorage
   localStorage.setItem('商品列表的購物車資料', JSON.stringify(cartData));
   console.log('商品列表的購物車資料-ProductDetail', cartData);
 
-  // 處理得出共有幾個尺寸
+  // 取出主貨號(product_group)中子貨號(product_no)的尺寸
   var sizeArr = [];
   product.map((product_no, i) => {
     return sizeArr.unshift(product[i].size);
   });
-  console.log(sizeArr); // ["6","5","6","5","6","5","6","5"]
+  // console.log("sizeArr",sizeArr); // ["6","5","6","5","6","5","6","5"]
   // 去除掉重複的尺寸
   var sizeUnique = sizeArr.filter(function (element, index, arr) {
-    return arr.indexOf(element) === index; // ["6","5"]
+    return arr.indexOf(element) === index;
   });
-  console.log(sizeUnique);
+  // console.log("sizeUnique",sizeUnique); // ["6","5"]
+  console.log('size', size);
+
+  // 取出主貨號(product_group)中子貨號(product_no)的顏色
+  var colorArr = [];
+  product.map((product_no, i) => {
+    return colorArr.unshift(product[i].color_id);
+  });
+  console.log('colorArr', colorArr); // [6, 6, 7, 7, 3, 3, 4, 4]
+  // 去除掉重複的顏色
+  var colorUnique = colorArr.filter(function (element, index, arr) {
+    return arr.indexOf(element) === index;
+  });
+  console.log('colorUnique', colorUnique); // [6, 7, 3, 4]
 
   return (
     <>
+      {/* 商品名稱、品牌、小分類、貨號 */}
       <h1>{product[0].name}</h1>
       <h2>{brandTypes[product[0].brand_id - 1]}</h2>
       <h2>{smallCatTypes[product[0].small_cat_id - 1]}</h2>
@@ -79,19 +93,32 @@ function ProductAddCart(props) {
         </div>
       </div>
       <p className="fs-6">#{product[0].product_no}</p>
+      {/* 選擇顏色 */}
       <div className="row mt-5 mb-3">
         <div className="col-4 pe-0">
           <div>選擇顏色：</div>
         </div>
         <div className="col-8 p-0">
           <div className="d-flex">
-            <div className="colorRadio rounded-circle me-3"></div>
-            <div className="colorRadio rounded-circle me-3"></div>
-            <div className="colorRadio rounded-circle me-3"></div>
-            <div className="colorRadio rounded-circle me-3"></div>
+            {colorUnique.map((index, i) => {
+              return (
+                <div className="me-2">
+                  <Figure>
+                    <Figure.Image
+                      width={75}
+                      height={75}
+                      alt="1"
+                      src={longboard1}
+                      className="border border-dark p-1 m-0"
+                    />
+                  </Figure>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
+      {/* 選擇尺寸 */}
       <div className="row">
         <div className="col-4 pe-0 mt-1">
           <div>選擇尺寸：</div>
@@ -102,7 +129,7 @@ function ProductAddCart(props) {
               return (
                 <div>
                   <button
-                    className="btn btn-dark sizeRadio text-center me-2 d-flex justify-content-center align-items-center"
+                    className="btn btn-dark sizeBtn text-center me-2 d-flex justify-content-center align-items-center"
                     onClick={() => {
                       setSize(index);
                     }}
@@ -112,18 +139,16 @@ function ProductAddCart(props) {
                 </div>
               );
             })}
-            {/* <div className="sizeRadio text-center me-2">4</div>
-            <div className="sizeRadio text-center me-2">5</div>
-            <div className="sizeRadio text-center me-2">6</div>
-            <div className="sizeRadio text-center me-2">7</div> */}
           </div>
         </div>
       </div>
+      {/* 單價 */}
       <div className="d-flex my-5 align-items-center">
-        <h2 className="fw-bolder">NT {product[0].price * count}</h2>
+        <h2 className="fw-bolder">NT {product[0].price.toLocaleString()}</h2>
         <AiFillTags size={16} color="#ff7f6a" className="ms-4" />
         <p className="fs-6 text-primary m-0 ms-1">精選優惠！</p>
       </div>
+      {/* 加減數量 */}
       <div className="d-flex justify-content-center align-items-center mb-4">
         <button
           type="button"
@@ -151,6 +176,7 @@ function ProductAddCart(props) {
           <AiOutlinePlus size={20} color="#ffffff" className="text-center" />
         </button>
       </div>
+      {/* 加入購物車 */}
       <Link to="/product-cart01">
         <button className="btn btn-secondary btnAddCart">加入購物車</button>
       </Link>

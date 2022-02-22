@@ -3,6 +3,13 @@ import { Link, useParams } from 'react-router-dom';
 import { Accordion } from 'react-bootstrap';
 import axios from 'axios';
 
+// react-icons
+import { FaThumbsUp } from 'react-icons/fa';
+import { IoColorPalette } from 'react-icons/io5';
+import { MdOutlineSurfing } from 'react-icons/md';
+import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
+// import { BsStarHalf } from 'react-icons/bs'; // 半星星
+
 // 導引資料、頁面
 import './ProductDetails.scss';
 import { API_URL } from '../../utils/config';
@@ -11,13 +18,6 @@ import longboard1 from './longboard1.jpg'; // 暫存推薦商品前端假圖片
 import greenTitle from '../../data/images/greenTitle.svg';
 import ProductAddCart from './Components/ProductDetails/ProductAddCart.js';
 import ProductDetailsContent from './Components/ProductDetails/ProductDetailsContent.js';
-
-// react-icons
-import { FaThumbsUp } from 'react-icons/fa';
-import { IoColorPalette } from 'react-icons/io5';
-import { MdOutlineSurfing } from 'react-icons/md';
-import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
-// import { BsStarHalf } from 'react-icons/bs'; // 半星星
 
 function ProductDetails(props) {
   const [product, setProduct] = useState([

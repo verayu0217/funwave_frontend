@@ -3,6 +3,11 @@ import { Link } from 'react-router-dom';
 import { Accordion } from 'react-bootstrap';
 import axios from 'axios';
 
+// react-icons
+import { FaThumbsUp } from 'react-icons/fa';
+import { IoColorPalette } from 'react-icons/io5';
+import { MdOutlineSurfing } from 'react-icons/md';
+
 // 導引資料、頁面
 import './Products.scss';
 import { API_URL } from '../../utils/config';
@@ -12,11 +17,6 @@ import SearchBar from './Components/SearchBar.js';
 import SortBar from './Components/SortBar.js';
 import FilterBar from './Components/FilterBar/FilterBar.js';
 import greenTitle from '../../data/images/greenTitle.svg';
-
-// react-icons
-import { FaThumbsUp } from 'react-icons/fa';
-import { IoColorPalette } from 'react-icons/io5';
-import { MdOutlineSurfing } from 'react-icons/md';
 
 function Products() {
   const [products, setProducts] = useState([]);
