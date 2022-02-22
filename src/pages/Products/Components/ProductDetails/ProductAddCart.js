@@ -15,6 +15,7 @@ import {
 function ProductAddCart(props) {
   const { product } = props;
   const [count, setCount] = useState(1);
+  const [size, setSize] = useState('');
 
   // 小分類、品牌的id對照名稱
   const smallCatTypes = [
@@ -47,6 +48,18 @@ function ProductAddCart(props) {
   // 將選擇的資料存進localStorage
   localStorage.setItem('商品列表的購物車資料', JSON.stringify(cartData));
   console.log('商品列表的購物車資料-ProductDetail', cartData);
+
+  // 處理得出共有幾個尺寸
+  var sizeArr = [];
+  product.map((product_no, i) => {
+    return sizeArr.unshift(product[i].size);
+  });
+  console.log(sizeArr); // ["6","5","6","5","6","5","6","5"]
+  // 去除掉重複的尺寸
+  var sizeUnique = sizeArr.filter(function (element, index, arr) {
+    return arr.indexOf(element) === index; // ["6","5"]
+  });
+  console.log(sizeUnique);
 
   return (
     <>
@@ -85,10 +98,24 @@ function ProductAddCart(props) {
         </div>
         <div className="col-8 p-0">
           <div className="d-flex">
-            <div className="sizeRadio text-center me-2">4</div>
+            {sizeUnique.map((index, i) => {
+              return (
+                <div>
+                  <button
+                    className="btn btn-dark sizeRadio text-center me-2 d-flex justify-content-center align-items-center"
+                    onClick={() => {
+                      setSize(index);
+                    }}
+                  >
+                    {index}
+                  </button>
+                </div>
+              );
+            })}
+            {/* <div className="sizeRadio text-center me-2">4</div>
             <div className="sizeRadio text-center me-2">5</div>
             <div className="sizeRadio text-center me-2">6</div>
-            <div className="sizeRadio text-center me-2">7</div>
+            <div className="sizeRadio text-center me-2">7</div> */}
           </div>
         </div>
       </div>

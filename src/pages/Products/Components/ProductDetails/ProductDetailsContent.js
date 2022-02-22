@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { Figure } from 'react-bootstrap';
 import longboard1 from './longboard1.jpg'; // 暫存推薦商品前端假圖片
 import { IMAGE_URL } from '../../../../utils/config';
+import ProductDetailsSmallImgs from './ProductDetailsSmallImgs.js';
 
 // react-icons
 import {
@@ -145,33 +146,8 @@ function ProductDetailsContent(props) {
       <div className="d-flex justify-content-evenly">
         <div className="d-flex flex-column align-items-center justify-content-around">
           <AiOutlineUp size={22} color="#333333" className="" />
-          <Figure>
-            <Figure.Image
-              width={75}
-              height={75}
-              alt={`${product[0].product_no}`}
-              src={`${IMAGE_URL}/products/${product[0].image1}`}
-              className="border border-dark p-1 m-0"
-            />
-          </Figure>
-          <Figure>
-            <Figure.Image
-              width={75}
-              height={75}
-              alt={`${product[0].product_no}`}
-              src={`${IMAGE_URL}/products/${product[0].image2}`}
-              className="border border-dark p-1 m-0"
-            />
-          </Figure>
-          <Figure>
-            <Figure.Image
-              width={75}
-              height={75}
-              alt={`${product[0].product_no}`}
-              src={`${IMAGE_URL}/products/${product[0].image3}`}
-              className="border border-dark p-1 m-0"
-            />
-          </Figure>
+          {/* 引用ProductDetailsSmallImgs.js */}
+          <ProductDetailsSmallImgs product={product} />
           <AiOutlineDown size={22} color="#333333" className="" />
         </div>
         <Figure>
