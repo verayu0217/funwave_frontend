@@ -1,13 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Figure } from 'react-bootstrap';
 import { IMAGE_URL } from '../../../../utils/config';
 
 function ProductDetailsSmallImgs(props) {
-  const { product } = props;
+  const { product, clickSmallImage, setClickSmallImage } = props;
 
   const image1 = (
     <>
-      <Figure>
+      <Figure
+        onClick={() => {
+          setClickSmallImage('image1');
+        }}
+      >
         <Figure.Image
           width={75}
           height={75}
@@ -21,7 +25,11 @@ function ProductDetailsSmallImgs(props) {
 
   const image2 = (
     <>
-      <Figure>
+      <Figure
+        onClick={() => {
+          setClickSmallImage('image2');
+        }}
+      >
         <Figure.Image
           width={75}
           height={75}
@@ -34,7 +42,11 @@ function ProductDetailsSmallImgs(props) {
   );
   const image3 = (
     <>
-      <Figure>
+      <Figure
+        onClick={() => {
+          setClickSmallImage('image3');
+        }}
+      >
         <Figure.Image
           width={75}
           height={75}
@@ -47,7 +59,11 @@ function ProductDetailsSmallImgs(props) {
   );
   const image4 = (
     <>
-      <Figure>
+      <Figure
+        onClick={() => {
+          setClickSmallImage('image4');
+        }}
+      >
         <Figure.Image
           width={75}
           height={75}
@@ -58,26 +74,14 @@ function ProductDetailsSmallImgs(props) {
       </Figure>
     </>
   );
-  const image5 = (
-    <>
-      <Figure>
-        <Figure.Image
-          width={75}
-          height={75}
-          alt={`${product[0].product_no}`}
-          src={`${IMAGE_URL}/products/${product[0].image5}`}
-          className="border border-dark p-1 m-0"
-        />
-      </Figure>
-    </>
-  );
+  console.log('clickSmallImage', clickSmallImage);
+
   return (
     <>
       {product[0].image1 !== '0' && image1}
       {product[0].image2 !== '0' && image2}
       {product[0].image3 !== '0' && image3}
       {product[0].image4 !== '0' && image4}
-      {/* {product[0].image5 !== '0' && image5} */}
     </>
   );
 }

@@ -15,7 +15,7 @@ import {
 } from 'react-icons/ai';
 
 function ProductDetailsContent(props) {
-  const { product } = props;
+  const { product, clickSmallImage, setClickSmallImage } = props;
 
   // 小分類、品牌、材質、衝浪板舵的id對照名稱
   const smallCatTypes = [
@@ -140,6 +140,62 @@ function ProductDetailsContent(props) {
     </>
   );
 
+  // 大圖 - image1
+  const bigImage1 = (
+    <>
+      <Figure>
+        <Figure.Image
+          width={450}
+          height={450}
+          alt={`${product[0].product_no}`}
+          src={`${IMAGE_URL}/products/${product[0].image1}`}
+        />
+      </Figure>
+    </>
+  );
+
+  // 大圖 - image2
+  const bigImage2 = (
+    <>
+      <Figure>
+        <Figure.Image
+          width={450}
+          height={450}
+          alt={`${product[0].product_no}`}
+          src={`${IMAGE_URL}/products/${product[0].image2}`}
+        />
+      </Figure>
+    </>
+  );
+
+  // 大圖 - image3
+  const bigImage3 = (
+    <>
+      <Figure>
+        <Figure.Image
+          width={450}
+          height={450}
+          alt={`${product[0].product_no}`}
+          src={`${IMAGE_URL}/products/${product[0].image3}`}
+        />
+      </Figure>
+    </>
+  );
+
+  // 大圖 - image4
+  const bigImage4 = (
+    <>
+      <Figure>
+        <Figure.Image
+          width={450}
+          height={450}
+          alt={`${product[0].product_no}`}
+          src={`${IMAGE_URL}/products/${product[0].image4}`}
+        />
+      </Figure>
+    </>
+  );
+
   return (
     <>
       {/* 大小商品圖 */}
@@ -147,17 +203,17 @@ function ProductDetailsContent(props) {
         <div className="d-flex flex-column align-items-center justify-content-around">
           <AiOutlineUp size={22} color="#333333" className="" />
           {/* 引用ProductDetailsSmallImgs.js */}
-          <ProductDetailsSmallImgs product={product} />
+          <ProductDetailsSmallImgs
+            product={product}
+            clickSmallImage={clickSmallImage}
+            setClickSmallImage={setClickSmallImage}
+          />
           <AiOutlineDown size={22} color="#333333" className="" />
         </div>
-        <Figure>
-          <Figure.Image
-            width={450}
-            height={450}
-            alt={`${product[0].product_no}`}
-            src={`${IMAGE_URL}/products/${product[0].image1}`}
-          />
-        </Figure>
+        {clickSmallImage === 'image1' && bigImage1}
+        {clickSmallImage === 'image2' && bigImage2}
+        {clickSmallImage === 'image3' && bigImage3}
+        {clickSmallImage === 'image4' && bigImage4}
       </div>
 
       {/* 推薦商品 */}

@@ -1,6 +1,6 @@
 // ProductAddCart.js 內容說明：商品細節頁右方的加入購物車區
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Figure } from 'react-bootstrap';
 import {
@@ -10,12 +10,13 @@ import {
   AiOutlinePlus,
   AiOutlineMinus,
 } from 'react-icons/ai';
-import longboard1 from './longboard1.jpg'; // 暫存推薦商品前端假圖片
+import { IMAGE_URL } from '../../../../utils/config';
 
 function ProductAddCart(props) {
   const { product } = props;
   const [count, setCount] = useState(1);
   const [size, setSize] = useState('');
+  const [color, setColor] = useState('');
   const [mycart, setMycart] = useState([]);
 
   // 小分類、品牌的id對照名稱
@@ -32,30 +33,47 @@ function ProductAddCart(props) {
   ];
   const brandTypes = ['Catch Surf', 'Solid Surf Co', 'JJF by Pyzel'];
 
+  console.log('product', product);
+
   // 取出主貨號(product_group)中子貨號(product_no)的尺寸
-  var sizeArr = [];
-  product.map((product_no, i) => {
-    return sizeArr.unshift(product[i].size);
+  let sizeArr = [];
+  product.map((v, i) => {
+    return sizeArr.unshift(v.size);
   });
-  // console.log("sizeArr",sizeArr); // ["6","5","6","5","6","5","6","5"]
   // 去除掉重複的尺寸
-  var sizeUnique = sizeArr.filter(function (element, index, arr) {
+  const sizeUnique = sizeArr.filter(function (element, index, arr) {
     return arr.indexOf(element) === index;
   });
-  // console.log("sizeUnique",sizeUnique); // ["6","5"]
-  // console.log('size', size);
+  sizeUnique.sort(function (a, b) {
+    return a - b;
+  });
 
   // 取出主貨號(product_group)中子貨號(product_no)的顏色
-  var colorArr = [];
-  product.map((product_no, i) => {
-    return colorArr.unshift(product[i].color_id);
+  // product裡的物件多一個product_filter欄位(去掉最後一個代表尺寸的字)
+  let productMap = product.map(function (item) {
+    let productNoArr = item.product_no.split('-');
+    let product_filter =
+      productNoArr[0] + '-' + productNoArr[1] + '-' + productNoArr[2];
+    item.product_filter = product_filter;
+    return item;
   });
-  // console.log('colorArr', colorArr); // [6, 6, 7, 7, 3, 3, 4, 4]
-  // 去除掉重複的顏色
-  var colorUnique = colorArr.filter(function (element, index, arr) {
-    return arr.indexOf(element) === index;
-  });
-  // console.log('colorUnique', colorUnique); // [6, 7, 3, 4]
+  // 去掉重複顏色的子貨號
+  function removeDuplicates(array, filter) {
+    let newArray = [];
+    let lookupObject = {};
+
+    for (let i in array) {
+      lookupObject[array[i][filter]] = array[i];
+    }
+    for (let i in lookupObject) {
+      newArray.push(lookupObject[i]);
+    }
+    return newArray;
+  }
+  const colorProduct = removeDuplicates(productMap, 'product_filter');
+  console.log('colorProduct', colorProduct);
+
+  console.log('color', color);
 
   // cartData資料待存進localStorage
   // let cartData = [
@@ -93,7 +111,7 @@ function ProductAddCart(props) {
 
     currentCart.push(item);
     localStorage.setItem('cart', JSON.stringify(currentCart));
-    console.log('商品列表的購物車資料-ProductDetail', currentCart);
+    console.log('商品購物車資料-ProductDetail', currentCart);
 
     // 設定資料
     setMycart(currentCart);
@@ -126,15 +144,21 @@ function ProductAddCart(props) {
         </div>
         <div className="col-8 p-0">
           <div className="d-flex">
-            {colorUnique.map((index, i) => {
+            {colorProduct.map((v, i) => {
               return (
-                <div className="me-2">
+                <div
+                  key={v.product_no}
+                  className="me-2"
+                  onClick={() => {
+                    setColor(v.color_id);
+                  }}
+                >
                   <Figure>
                     <Figure.Image
                       width={75}
                       height={75}
-                      alt="1"
-                      src={longboard1}
+                      alt={v.name}
+                      src={`${IMAGE_URL}/products/${v.image1}`}
                       className="border border-dark p-1 m-0"
                     />
                   </Figure>
@@ -153,7 +177,7 @@ function ProductAddCart(props) {
           <div className="d-flex">
             {sizeUnique.map((index, i) => {
               return (
-                <div>
+                <div key={i}>
                   <button
                     className="btn btn-dark sizeBtn text-center me-2 d-flex justify-content-center align-items-center"
                     onClick={() => {
