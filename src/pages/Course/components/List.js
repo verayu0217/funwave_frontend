@@ -1,7 +1,7 @@
 import moment from 'moment';
 import Item from './Item';
 const List = ({ listData, deleteData }) => {
-  let date = moment().format('YYYY-MM-DD');
+  let date = moment().format('YYYY年MM月DD日');
 
   return (
     <div>
