@@ -477,3 +477,7 @@ p {
   color: $funwave-white; // 修改
 }
 // ///////覆蓋SASS預設變數-結束
+//sweetalert
+.swal2-styled.swal2-confirm {
+  background-color:$primary
+}

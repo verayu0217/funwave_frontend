@@ -1,4 +1,5 @@
 import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
+import StarRating from './StarRating';
 
 const Item = ({ msg, date }) => {
   return (
@@ -25,13 +26,7 @@ const Item = ({ msg, date }) => {
 
             {/* 星星 */}
             <div className="align-self-center">
-              <div className="d-flex">
-                <AiFillStar size={20} color="#ff7f6a" />
-                <AiFillStar size={20} color="#ff7f6a" />
-                <AiFillStar size={20} color="#ff7f6a" />
-                <AiFillStar size={20} color="#ff7f6a" />
-                <AiOutlineStar size={20} color="#ff7f6a" />
-              </div>
+              <div className="d-flex">{/* TODO:要放已經評完價的星星 */}</div>
             </div>
 
             <div className=" align-self-center ms-auto">

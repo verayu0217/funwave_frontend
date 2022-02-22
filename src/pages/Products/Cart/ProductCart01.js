@@ -28,10 +28,10 @@ function CartPreOrder() {
   ];
 
   let cartData = [];
-  if (!localStorage.getItem('商品列表的購物車資料')) {
+  if (!localStorage.getItem('商品購物車資料')) {
     return;
   } else {
-    cartData = [...JSON.parse(localStorage.getItem('商品列表的購物車資料'))];
+    cartData = [...JSON.parse(localStorage.getItem('商品購物車資料'))];
   }
   console.log('商品列表的購物車資料-Cart', cartData);
   // setCartData(cartData);

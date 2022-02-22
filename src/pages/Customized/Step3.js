@@ -9,6 +9,7 @@ import longboardHole from '../../data/images/customize/longboardHole.png';
 
 function Step3(props) {
   const { step, setStep } = props;
+  const { surfingBoard, setSurfingBoard } = props;
   const [count, setCount] = useState(1);
 
   return (
@@ -77,13 +78,13 @@ function Step3(props) {
                     <AiOutlineMinus
                       size={20}
                       color="#ffffff"
-                      className="text-center"
+                      className="text-center m-auto"
                     />
                   </button>
                   {count}
                   <button
                     type="button"
-                    className="btn btn-secondary border rounded-circle p-0 countButton ms-2"
+                    className="btn btn-secondary border rounded-circle p-0 countButton ms-2 "
                     onClick={() => {
                       setCount(count + 1);
                     }}
@@ -108,6 +109,7 @@ function Step3(props) {
                 className="btn btn-secondary btnCu"
                 onClick={() => {
                   setStep({ ...step, step1: true, step3: '' });
+                  setSurfingBoard({ ...surfingBoard, size: '' });
                 }}
               >
                 繼續客製浪板

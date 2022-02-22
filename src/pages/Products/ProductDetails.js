@@ -22,33 +22,50 @@ import ProductDetailsContent from './Components/ProductDetails/ProductDetailsCon
 function ProductDetails(props) {
   const [product, setProduct] = useState([
     {
-      product_id: '',
+      product_id: 0,
       product_no: '',
       product_group: '',
       name: '',
       product_detail: '',
-      big_cat_id: '',
-      small_cat_id: '',
+      big_cat_id: 0,
+      small_cat_id: 0,
       image1: '',
       image2: '',
       image3: '',
       image4: '',
       image5: '',
-      brand_id: '',
-      color_id: '',
+      brand_id: 0,
+      color_id: 0,
       size: '',
-      material_id: '',
-      fin_compatibility_id: '',
-      price: '',
+      material_id: 0,
+      fin_compatibility_id: 0,
+      price: 0,
       stock: 0,
       create_time: '',
-      product_valid: '',
+      product_valid: 0,
     },
   ]);
+  const [clickSmallImage, setClickSmallImage] = useState('image1');
   const [loading, setLoading] = useState(false);
 
-  // 把前端網址上的參數stockId拿出來，要和App.js的網址參數相同
-  const { product_group } = useParams();
+  // 產品 "小分類、品牌、材質、衝浪板舵" 的id對照名稱
+  const smallCatTypes = [
+    '衝浪長板',
+    '衝浪快樂板',
+    '衝浪短板',
+    '衝浪板舵',
+    '衝浪腳繩',
+    '衝浪腳踏墊',
+    '衝浪板袋',
+    '衝浪斗篷毛巾衣',
+    '防寒衣',
+  ];
+  const brandTypes = ['Catch Surf', 'Solid Surf Co', 'JJF by Pyzel'];
+  const materialTypes = ['Polyethylene', 'EPOXY', 'EPS', '碳纖維'];
+  const finCompatibilityTypes = ['FCS II Longboard', 'FCS II', 'Single Tab'];
+
+  let params = useParams();
+  console.log('params', params);
 
   // 初始化資料-模擬componentDidMount
   useEffect(() => {
@@ -57,7 +74,6 @@ function ProductDetails(props) {
     let getProduct = async () => {
       // 取得後端 http://localhost:3002/api/products 資料
       let response = await axios.get(`${API_URL}/products/${product_group}`);
-      console.log('Product資料', response.data);
       setProduct(response.data);
     };
     getProduct();
@@ -341,7 +357,11 @@ function ProductDetails(props) {
                 {loading ? (
                   spinner
                 ) : (
-                  <ProductDetailsContent product={product} />
+                  <ProductDetailsContent
+                    product={product}
+                    clickSmallImage={clickSmallImage}
+                    setClickSmallImage={setClickSmallImage}
+                  />
                 )}
                 {/* <ProductDetailsContent product={product} /> */}
                 {/* 評價 */}

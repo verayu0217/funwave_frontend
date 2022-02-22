@@ -1,5 +1,7 @@
 import { useState } from 'react';
 
+import StarRating from './StarRating';
+
 // props拿出add
 const Edit = ({ add }) => {
   const [msg, setMsg] = useState('');
@@ -19,12 +21,14 @@ const Edit = ({ add }) => {
       ];
     });
   }
-  // console.log(msg);
-  // console.log(now);
 
   return (
     <div className="d-flex   flex-column">
-      <label className="h3">評價留言</label>
+      <label className="h3 mt-5">評價留言</label>
+      {/* 放星星 */}
+      <div>
+        <StarRating />
+      </div>
       <textarea
         name=""
         rows="4"

@@ -8,6 +8,7 @@ import { useAuth } from '../../../context/auth';
 import { API_URL } from '../../../utils/config';
 import { ERR_MSG } from '../../../utils/error';
 import './memberLogin.scss';
+import GoogleLoginFunwave from './GoogleLoginFunwave';
 
 function Login() {
   const { auth, setAuth } = useAuth();
@@ -153,6 +154,9 @@ function Login() {
                 <a href="https://accounts.google.com/signin/v2/identifier?hl=zh-TW&passive=true&continue=https%3A%2F%2Fwww.google.com%2Fsearch%3Fq%3Dgoogle%25E7%2599%25BB%25E5%2585%25A5%26oq%3Dgoogle%25E7%2599%25BB%25E5%2585%25A5%26aqs%3Dchrome..69i57.7639j0j1%26sourceid%3Dchrome%26ie%3DUTF-8&ec=GAZAAQ&flowName=GlifWebSignIn&flowEntry=ServiceLogin">
                   <FcGoogle className="mx-2 googleLogin" />
                 </a>
+              </li>
+              <li>
+                <GoogleLoginFunwave />
               </li>
               <Modal showModal={showModal} setshowModal={setshowModal} />
             </ul>

@@ -28,10 +28,11 @@ import MemberPoint from './pages/Members/MemberPoint';
 import MemberShoppingGold from './pages/Members/MemberShoppingGold';
 //課程
 
-import CourseContent from './pages/Course/CourseContent';
+import CourseCart from './pages/Course/CourseCart';
 import CourseCart01 from './pages/Course/CourseCart01';
 import CourseCart02 from './pages/Course/CourseCart02';
 import CourseCart03 from './pages/Course/CourseCart03';
+import CourseContent from './pages/Course/CourseContent';
 import Courses from './pages/Course/Courses';
 
 //商城
@@ -120,6 +121,7 @@ function App() {
           <Route path="/course/course-cart01" element={<CourseCart01 />} />
           <Route path="/course/course-cart02" element={<CourseCart02 />} />
           <Route path="/course/course-cart03" element={<CourseCart03 />} />
+          <Route path="/course/course-cart" element={<CourseCart />} />
         </Routes>
       </AuthContext.Provider>
     </>
