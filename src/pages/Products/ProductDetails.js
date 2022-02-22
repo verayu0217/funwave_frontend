@@ -79,8 +79,8 @@ function ProductDetails(props) {
   const brandTypes = ['Catch Surf', 'Solid Surf Co', 'JJF by Pyzel'];
   const materialTypes = ['Polyethylene', 'EPOXY', 'EPS', '碳纖維'];
   const finCompatibilityTypes = ['FCS II Longboard', 'FCS II', 'Single Tab'];
-  let params = '123';
-  // let params = useParams();
+
+  let params = useParams();
   console.log('params', params);
 
   // 初始化資料-模擬componentDidMount
