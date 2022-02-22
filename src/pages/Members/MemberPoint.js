@@ -1,7 +1,25 @@
+import React, { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
 import './Member.scss';
+import { API_URL } from '../../utils/config';
 import titleImgMember from '../../data/images/greenwave64x24.png';
 
-function MemberPoint() {
+const MemberPoint = () => {
+  const [data, setData] = useState([]);
+
+  // 為了處理網址
+  let navigate = useNavigate();
+
+  // 把網址上的 :id 拿出來
+  // const { orderId } = useParams();
+
+  useEffect(async () => {
+    // http://localhost:3002/api/member
+    let response = await axios.get(`${API_URL}/member/member-order`);
+    setData(response.data);
+  }, []);
   return (
     <>
       <div className="container mt-5">
@@ -61,14 +79,22 @@ function MemberPoint() {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td className="text-nowrap">2022-01-31</td>
-                  <td className="text-nowrap">消費NT$7200</td>
-                  <td className="text-nowrap">36</td>
-                  <td className="text-nowrap">2022/12/31</td>
-                  <td className="text-nowrap">57</td>
-                </tr>
-                <tr>
+                {data.map((item, index) => {
+                  return (
+                    <tr key={item.order_time}>
+                      <td className="text-nowrap">{item.order_time}</td>
+                      <td className="text-nowrap">消費NT${item.amount}</td>
+                      <td className="text-nowrap">
+                        {(item.amount / 200).toFixed()}
+                      </td>
+                      <td className="text-nowrap">{item.order_time}</td>
+                      <td className="text-nowrap">
+                        {(item.amount / 200).toFixed()}
+                      </td>
+                    </tr>
+                  );
+                })}
+                {/* <tr>
                   <td className="text-nowrap">2022-01-31</td>
                   <td className="text-nowrap">消費NT$7200</td>
                   <td className="text-nowrap">36</td>
@@ -83,11 +109,11 @@ function MemberPoint() {
                     2022/12/31<span className="orange">(已過期)</span>
                   </td>
                   <td className="text-nowrap orange">57</td>
-                </tr>
+                </tr> */}
               </tbody>
             </table>
           </div>
-          <nav aria-label="pageMember">
+          {/* <nav aria-label="pageMember">
             <ul className="d-flex justify-content-center mt-5">
               <li className="page-item">
                 <a className="page-link pageLinkMember" href="/">
@@ -105,11 +131,11 @@ function MemberPoint() {
                 </a>
               </li>
             </ul>
-          </nav>
+          </nav> */}
         </div>
       </div>
     </>
   );
-}
+};
 
 export default MemberPoint;

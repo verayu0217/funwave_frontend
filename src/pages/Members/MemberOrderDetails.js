@@ -51,7 +51,7 @@ function MemberOrderDetails(props) {
           <Accordion defaultActiveKey="0" alwaysOpen>
             <Accordion.Item className="border-0 dropdownMember" eventKey="0">
               <Accordion.Header className="accordionMember text-center gray">
-                購物車(2件)
+                購物車({data.length}件)
               </Accordion.Header>
               <Accordion.Body>
                 <Table
