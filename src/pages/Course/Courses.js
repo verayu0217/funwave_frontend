@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Link, Route } from 'react-router-dom';
-import axios from 'axios';
 
 // 引用上課地點組件
 import CourseSpot from './components/CourseSpot';
@@ -24,6 +23,7 @@ function Courses() {
             </div>
           </div>
         </div>
+
         {/* 課程簡介區  */}
         <div className="row col-10 m-auto course-box shadow-lg">
           <div className="text-secondary mt-5 h1 text-center mb-5">

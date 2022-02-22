@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import moment from 'moment';
+
+import StarRating from './StarRating';
 
 // props拿出add
 const Edit = ({ add }) => {
@@ -7,8 +8,6 @@ const Edit = ({ add }) => {
   function msgChange(e) {
     setMsg(e.target.value);
   }
-  // let now = moment().format('YYYY-MM-DD'); // 自動用今天的日期
-  // const [date, setDate] = useState(now);
 
   // 綁定button的onClick方法
   function addMsg() {
@@ -22,12 +21,14 @@ const Edit = ({ add }) => {
       ];
     });
   }
-  // console.log(msg);
-  // console.log(now);
 
   return (
     <div className="d-flex   flex-column">
-      <label className="h3">評價留言</label>
+      <label className="h3 mt-5">評價留言</label>
+      {/* 放星星 */}
+      <div>
+        <StarRating />
+      </div>
       <textarea
         name=""
         rows="4"

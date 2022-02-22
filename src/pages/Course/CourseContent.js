@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Navigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 // 引用課程評價
 import CourseEvaluate from './components/CourseEvaluate';
@@ -21,6 +21,8 @@ import lifeguard from '../../data/images/course/icon-lifeguard.png';
 import './CourseContent.scss';
 
 function CourseContent(props) {
+  let navigate = useNavigate();
+
   // 選擇課程
   const [course, setCourse] = useState('');
   // 選擇地點
@@ -32,7 +34,7 @@ function CourseContent(props) {
   const timeOptions = ['上午', '下午'];
 
   //提交報名資訊將資料帶到下一頁
-  function addItem(e) {
+  function addSubmit(e) {
     const coursePrice = course === '體驗課程' ? 1000 : 2000;
 
     let data = [
@@ -49,6 +51,7 @@ function CourseContent(props) {
     localStorage.setItem('報名資料', JSON.stringify(data));
 
     // 導向另外一頁
+    navigate('/course/course-cart', { replace: true });
   }
 
   return (
@@ -83,10 +86,10 @@ function CourseContent(props) {
             >
               <div className="col-12 col-md-6 col-lg-4">
                 <div className="d-flex justify-content-center">
-                  <img src={landcoach} className="cover-fit" alt="" />
+                  <img src={landcoach} className="cover-img" alt="" />
                 </div>
                 <div className="text-center">
-                  <p>陸上指導課程</p>
+                  <p className="text-secondary h3">陸上指導課程</p>
                   <p>
                     30分鐘路上課程、衝浪前必備的海洋知識、衝浪前必知的海上安全觀念、衝浪地形解析
                   </p>
@@ -95,10 +98,10 @@ function CourseContent(props) {
 
               <div className="col-12 col-md-6 col-lg-4">
                 <div className="d-flex justify-content-center">
-                  <img src={surfwithu} className="cover-fit" alt="" />
+                  <img src={surfwithu} className="cover-img" alt="" />
                 </div>
                 <div className="text-center">
-                  <p>下水陪衝課程</p>
+                  <p className="text-secondary h3">下水陪衝課程</p>
                   <p>
                     衝浪基本動作講解與示範、認識浪頭、認識洋流、基礎划水、基礎越浪、練習起乘基本動作，教練陪同
                   </p>
@@ -106,19 +109,19 @@ function CourseContent(props) {
               </div>
               <div className="col-12 col-md-6 col-lg-4">
                 <div className="d-flex justify-content-center">
-                  <img src={freeboard} className="cover-fit" alt="" />
+                  <img src={freeboard} className="cover-img" alt="" />
                 </div>
                 <div className="text-center">
-                  <p>衝浪板免費使用</p>
+                  <p className="text-secondary h3">衝浪板免費使用</p>
                   <p>1次衝浪新手練習板免費使用</p>
                 </div>
               </div>
               <div className="col-12 col-md-6 col-lg-4">
                 <div className="d-flex justify-content-center">
-                  <img src={tools} className="cover-fit" alt="" />
+                  <img src={tools} className="cover-img" alt="" />
                 </div>
                 <div className="text-center">
-                  <p>一應俱全的衝浪裝備</p>
+                  <p className="text-secondary h3">一應俱全的衝浪裝備</p>
                   <p>
                     提供當天所需要的衝浪裝備，包含防磨水母衣、防寒衣、盆洗設備
                   </p>
@@ -126,10 +129,10 @@ function CourseContent(props) {
               </div>
               <div className="col-12 col-md-6 col-lg-4">
                 <div className="d-flex justify-content-center">
-                  <img src={memory} className="cover-fit" alt="" />
+                  <img src={memory} className="cover-img" alt="" />
                 </div>
                 <div className="text-center">
-                  <p>留下美好回憶</p>
+                  <p className="text-secondary h3">留下美好回憶</p>
                   <p>
                     第一次站在衝浪板上，是件值得回味一輩子的回憶，我們提供您整堂課程以及你在海上帥氣、美美的衝浪回憶照片唷
                   </p>
@@ -137,10 +140,10 @@ function CourseContent(props) {
               </div>
               <div className="col-12 col-md-6 col-lg-4">
                 <div className="d-flex justify-content-center">
-                  <img src={lifeguard} className="cover-fit" alt="" />
+                  <img src={lifeguard} className="cover-img" alt="" />
                 </div>
                 <div className="text-center">
-                  <p>為您的安全把關</p>
+                  <p className="text-secondary h3">為您的安全把關</p>
                   <p>
                     每位來學習衝浪課的學員，除了有水上求生專業的教練為安全把關外，我們也會為學員辦理保險。讓你衝的快樂也衝的安心
                   </p>
@@ -316,54 +319,33 @@ function CourseContent(props) {
                 <Accordion defaultActiveKey="">
                   <div className="my-3">
                     <Accordion.Item eventKey="0">
-                      <Accordion.Header>Q1.學習衝浪安全嗎？</Accordion.Header>
+                      <Accordion.Header>Q1.衝浪會危險嗎？</Accordion.Header>
                       <Accordion.Body>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        sed do eiusmod tempor incididunt ut labore et dolore
-                        magna aliqua. Ut enim ad minim veniam, quis nostrud
-                        exercitation ullamco laboris nisi ut aliquip ex ea
-                        commodo consequat. Duis aute irure dolor in
-                        reprehenderit in voluptate velit esse cillum dolore eu
-                        fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-                        non proident, sunt in culpa qui officia deserunt mollit
-                        anim id est laborum.
+                        從事任何一種運動，一定有它的風險
+                        ，而衝浪活動跟許多運動比起來或許他稱做極限運動
+                        ，然而它比你想像中的還安全
+                        ；前提是你必須具備該有的正確觀念，有教練指導與自行摸索，風險是不同的。滑板與衝浪似乎很像，但滑板儘管是在安全的陸地，卻很容易摔傷，衝浪落水是由大海做緩衝，不痛也不容易受傷，讓人容易著迷願意一試再試。
                       </Accordion.Body>
                     </Accordion.Item>
                   </div>
                   <div className="my-3">
                     <Accordion.Item eventKey="1">
                       <Accordion.Header>
-                        Q2.從來沒有衝過浪適合參加衝浪課程嗎？
+                        Q2.不會游泳還是可以學衝浪嗎？
                       </Accordion.Header>
                       <Accordion.Body>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        sed do eiusmod tempor incididunt ut labore et dolore
-                        magna aliqua. Ut enim ad minim veniam, quis nostrud
-                        exercitation ullamco laboris nisi ut aliquip ex ea
-                        commodo consequat. Duis aute irure dolor in
-                        reprehenderit in voluptate velit esse cillum dolore eu
-                        fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-                        non proident, sunt in culpa qui officia deserunt mollit
-                        anim id est laborum.
+                        可以參與體驗課程，但您必須告知教練你不具備游泳能力。場地的挑選尤其對不會游泳的人格外重要，最適合的是平緩的沙岸，我們曾遇過不會有游泳的人，最後衝浪跟游泳都一起進步，台灣西部幾乎為平緩沙岸，尤其竹南近岸水淺夏季浪緩且小，非常適合初學者。
                       </Accordion.Body>
                     </Accordion.Item>
                   </div>
 
                   <div className="my-3">
                     <Accordion.Item eventKey="2">
-                      <Accordion.Header>
-                        Q3.上衝浪課我需要準備哪些東西？
-                      </Accordion.Header>
+                      <Accordion.Header>Q3.衝浪會很累嗎?</Accordion.Header>
                       <Accordion.Body>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        sed do eiusmod tempor incididunt ut labore et dolore
-                        magna aliqua. Ut enim ad minim veniam, quis nostrud
-                        exercitation ullamco laboris nisi ut aliquip ex ea
-                        commodo consequat. Duis aute irure dolor in
-                        reprehenderit in voluptate velit esse cillum dolore eu
-                        fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-                        non proident, sunt in culpa qui officia deserunt mollit
-                        anim id est laborum.
+                        衝浪所需要運動的肌肉群是你平常沒有在用的，我們不只是需要面對衝浪這個運動，還要應付海浪的衝擊甚至海流。
+                        若您期望你的第一堂衝浪課是從容應付的，
+                        請你兩個禮拜前做基礎的體力訓練，如：慢跑、走樓梯、瑜伽、伏地挺身都是很好課前的運動。
                       </Accordion.Body>
                     </Accordion.Item>
                   </div>
@@ -371,18 +353,14 @@ function CourseContent(props) {
                   <div className="my-3">
                     <Accordion.Item eventKey="3">
                       <Accordion.Header>
-                        Q4.別家衝浪教學價格都不一樣，怎麼選衝浪教學課程？
+                        Q4.上衝浪課之前需要帶什麼？
                       </Accordion.Header>
                       <Accordion.Body>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        sed do eiusmod tempor incididunt ut labore et dolore
-                        magna aliqua. Ut enim ad minim veniam, quis nostrud
-                        exercitation ullamco laboris nisi ut aliquip ex ea
-                        commodo consequat. Duis aute irure dolor in
-                        reprehenderit in voluptate velit esse cillum dolore eu
-                        fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-                        non proident, sunt in culpa qui officia deserunt mollit
-                        anim id est laborum.
+                        【衣著】以夏季來說，教學的地方基本上會提供防磨衣，或稱水母衣，防磨衣。
+                        【下着部分】男生：是需要 一 件
+                        四角泳褲、沙灘褲、或正統的衝浪褲 。
+                        女生：泳裝、熱褲、運動排汗長褲皆可。
+                        【其餘部分】隱形眼鏡、飲用水、防曬乳。
                       </Accordion.Body>
                     </Accordion.Item>
                   </div>
@@ -415,101 +393,100 @@ function CourseContent(props) {
                     />
                     課程報名
                   </div>
+                  <form onSubmit={addSubmit}>
+                    <div className="p-2 m-0">
+                      <label htmlFor="course">選擇課程</label>
+                      <select
+                        required
+                        className="form-select course"
+                        aria-label="Default select example"
+                        value={course}
+                        onChange={(e) => {
+                          setCourse(e.target.value);
+                        }}
+                      >
+                        <option value="">選擇課程</option>
+                        <option value="體驗課程">體驗課程</option>
+                        <option value="初階課程">初階課程</option>
+                        <option value="中階課程">中階課程</option>
+                        <option value="高階課程">高階課程</option>
+                      </select>
+                    </div>
 
-                  <div className="p-2 m-0">
-                    <label htmlFor="course">選擇課程</label>
-                    <select
-                      required
-                      className="form-select course"
-                      aria-label="Default select example"
-                      value={course}
-                      onChange={(e) => {
-                        setCourse(e.target.value);
-                      }}
-                    >
-                      <option value="">選擇課程</option>
-                      <option value="體驗課程">體驗課程</option>
-                      <option value="初階課程">初階課程</option>
-                      <option value="中階課程">中階課程</option>
-                      <option value="高階課程">高階課程</option>
-                    </select>
-                  </div>
+                    <div className="p-2 mt-3">
+                      <label>選擇地點</label>
+                      <select
+                        className="form-select"
+                        aria-label="Default select example"
+                        value={courseSpot}
+                        onChange={(e) => {
+                          setCourseSpot(e.target.value);
+                        }}
+                        required
+                      >
+                        <option value="">選擇地點</option>
+                        <option value="沙崙">沙崙</option>
+                        <option value="白沙灣">白沙灣</option>
+                        <option value="金山">金山</option>
+                        <option value="福隆">福隆</option>
+                        <option value="烏石港">烏石港</option>
+                        <option value="金樽">金樽</option>
+                        <option value="南灣">南灣</option>
+                        <option value="旗津">旗津</option>
+                      </select>
+                    </div>
 
-                  <div className="p-2 mt-3">
-                    <label>選擇地點</label>
-                    <select
-                      className="form-select"
-                      aria-label="Default select example"
-                      value={courseSpot}
-                      onChange={(e) => {
-                        setCourseSpot(e.target.value);
-                      }}
-                      required
-                    >
-                      <option value="">選擇地點</option>
-                      <option value="白沙灣">白沙灣</option>
-                      <option value="烏石港">烏石港</option>
-                      <option value="金樽">金樽</option>
-                      <option value="福隆">福隆</option>
-                    </select>
-                  </div>
+                    <div className="p-2 mt-3">
+                      <label>預約日期</label>
+                      <input
+                        type="date"
+                        className="form-control"
+                        id="date"
+                        placeholder="date"
+                        value={courseDate}
+                        onChange={(e) => {
+                          setCourseDate(e.target.value);
+                        }}
+                        required
+                      />
+                    </div>
 
-                  <div className="p-2 mt-3">
-                    <label>預約日期</label>
-                    <input
-                      type="date"
-                      className="form-control"
-                      id="date"
-                      placeholder="date"
-                      value={courseDate}
-                      onChange={(e) => {
-                        setCourseDate(e.target.value);
-                      }}
-                      required
-                    />
-                  </div>
-
-                  <div className="d-flex align-items-center my-3 ">
-                    <label className="p-2 ">選擇時段</label>
-                    {timeOptions.map((v, i) => {
-                      return (
-                        <div key={i}>
-                          <div className="form-check form-check-inline ">
-                            <input
-                              className="form-check-input"
-                              type="radio"
-                              name="morning"
-                              id="morning"
-                              value={v}
-                              checked={v === courseTime}
-                              onChange={(e) => {
-                                setCourseTime(e.target.value);
-                              }}
-                              required
-                            />
-                            <label className="form-check-label" htmlFor={v}>
-                              {v}
-                            </label>
+                    <div className="d-flex align-items-center my-3 ">
+                      <label className="p-2 ">選擇時段</label>
+                      {timeOptions.map((v, i) => {
+                        return (
+                          <div key={i}>
+                            <div className="form-check form-check-inline ">
+                              <input
+                                className="form-check-input"
+                                type="radio"
+                                name="morning"
+                                id="morning"
+                                value={v}
+                                checked={v === courseTime}
+                                onChange={(e) => {
+                                  setCourseTime(e.target.value);
+                                }}
+                                required
+                              />
+                              <label className="form-check-label" htmlFor={v}>
+                                {v}
+                              </label>
+                            </div>
                           </div>
-                        </div>
-                      );
-                    })}
-                  </div>
-                  <div>
-                    <button
-                      herf="/course/course-cart01"
-                      className="btn btn-primary text-white formBtn "
-                      type="submit"
-                      onClick={addItem}
-                    >
-                      立即報名
-                      <i className="fas fa-arrow-right text-white"></i>
-                    </button>
-
-                    <a href="/course/course-cart01" className="text-center">
-                      送出表單同時跳轉到加入購物車
-                    </a>
-                  </div>
+                        );
+                      })}
+                    </div>
+                    <div>
+                      <button
+                        className="btn btn-primary text-white formBtn "
+                        type="submit"
+                      >
+                        立即報名
+                        <i className="fas fa-arrow-right text-white"></i>
+                      </button>
+                    </div>
+                  </form>
                 </div>
               </div>
             </div>

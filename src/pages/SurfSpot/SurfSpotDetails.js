@@ -12,8 +12,8 @@ import { ImCross } from 'react-icons/im';
 import './surfSpotDetails.scss';
 
 function SurfSpotDetails(props) {
-  const [data, setData] = useState([]);
   const { showSurfSpotDetails, setshowSurfSpotDetails } = props;
+  const [data, setData] = useState([]);
   const surfSpotDetailsRef = useRef();
   const closeshowSurfSpotDetails = (e) => {
     if (surfSpotDetailsRef.current === e.target) {
@@ -24,7 +24,7 @@ function SurfSpotDetails(props) {
   useEffect(() => {
     let getSurfspot = async () => {
       // http://localhost:3002/api/
-      let response = await axios.get(`${API_URL}/Surfspot`);
+      let response = await axios.get(`${API_URL}/surfspot/content`);
       setData(response.data);
     };
     getSurfspot();
@@ -37,7 +37,7 @@ function SurfSpotDetails(props) {
       {showSurfSpotDetails ? (
         <div
           className="container-fluid animate__animated animate__fadeIn animate__faster taiwanMapBgBlack"
-          onclick={closeshowSurfSpotDetails}
+          onClick={closeshowSurfSpotDetails}
           ref={surfSpotDetailsRef}
         >
           <div className="container d-flex justify-content-center">
@@ -52,39 +52,46 @@ function SurfSpotDetails(props) {
                   <ImCross className="cross" />
                 </div>
                 <div className="row gx-0">
-                  <div className="col-md-6 col-sm-12 col-8 ms-5 pt-5">
-                    <p className="text-primary mb-2">新北市 淡水區</p>
-                    <h1 className="fw-bold">沙崙</h1>
-                    <p className="my-4">
-                      位於台灣新北市淡水區沙崙子、淡水河出海口東岸的廢棄海水浴場，介在淡水漁人碼頭與淡海新市鎮之間，為總面積六公頃的金黃色沙灘。
-                    </p>
-                    <Row className="spotType">
-                      <Col className="border-end">
-                        <Row className="d-flex justify-content-center text-dark fw-bold mb-2">
-                          類型
+                  {data.map((surfspot) => {
+                    return (
+                      <div
+                        key={surfspot.id}
+                        className="col-md-6 col-sm-12 col-8 ms-5 pt-5"
+                      >
+                        <p className="text-primary mb-2">
+                          {surfspot.city} {surfspot.country}
+                        </p>
+                        <h1 className="fw-bold">{surfspot.name}</h1>
+                        <p className="my-4">{surfspot.description}</p>
+                        <Row className="spotType">
+                          <Col className="border-end">
+                            <Row className="d-flex justify-content-center text-dark fw-bold mb-2">
+                              類型
+                            </Row>
+                            <Row className="d-flex justify-content-center">
+                              {surfspot.type}
+                            </Row>
+                          </Col>
+                          <Col className="border-end">
+                            <Row className="d-flex justify-content-center text-dark fw-bold mb-2">
+                              海床
+                            </Row>
+                            <Row className="d-flex justify-content-center">
+                              {surfspot.seafloor}
+                            </Row>
+                          </Col>
+                          <Col>
+                            <Row className="d-flex justify-content-center text-dark fw-bold mb-2">
+                              適合程度
+                            </Row>
+                            <Row className="d-flex justify-content-center">
+                              {surfspot.level}
+                            </Row>
+                          </Col>
                         </Row>
-                        <Row className="d-flex justify-content-center">
-                          沙灘
-                        </Row>
-                      </Col>
-                      <Col className="border-end">
-                        <Row className="d-flex justify-content-center text-dark fw-bold mb-2">
-                          海床
-                        </Row>
-                        <Row className="d-flex justify-content-center">
-                          沙底
-                        </Row>
-                      </Col>
-                      <Col>
-                        <Row className="d-flex justify-content-center text-dark fw-bold mb-2">
-                          適合程度
-                        </Row>
-                        <Row className="d-flex justify-content-center">
-                          新手 +
-                        </Row>
-                      </Col>
-                    </Row>
-                  </div>
+                      </div>
+                    );
+                  })}
 
                   <div className="col-md-5 col-sm-12 py-5">
                     <div className="mx-4 mb-2 fw-bold d-flex justify-content-start black">

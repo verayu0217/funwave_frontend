@@ -28,17 +28,18 @@ import MemberPoint from './pages/Members/MemberPoint';
 import MemberShoppingGold from './pages/Members/MemberShoppingGold';
 //課程
 
-import CourseContent from './pages/Course/CourseContent';
+import CourseCart from './pages/Course/CourseCart';
 import CourseCart01 from './pages/Course/CourseCart01';
 import CourseCart02 from './pages/Course/CourseCart02';
 import CourseCart03 from './pages/Course/CourseCart03';
+import CourseContent from './pages/Course/CourseContent';
 import Courses from './pages/Course/Courses';
 
 //商城
 import ProductDetails from './pages/Products/ProductDetails';
 import Products from './pages/Products/Products';
 //購物車
-import CartPreOrder from './pages/Products/Cart/CartPreOrder';
+import ProductCart01 from './pages/Products/Cart/ProductCart01';
 import CartManage from './pages/Products/Cart/CartManage';
 // import CartConfimOrder from './pages/Products/Cart/CartConfimOrder';
 // import CartComplete from './pages/Products/Cart/CartComplete';
@@ -47,6 +48,7 @@ import Customized from './pages/Customized/Customized';
 import CustomizedDetails from './pages/Customized/CustomizedDetails';
 //浪點
 import SurfSpot from './pages/SurfSpot/SurfSpot';
+// import SurfSpotDetails from './pages/SurfSpot/SurfSpotDetails';
 
 // 組合用元件(一般組件)
 // import Breadcrumb from './components/Breadcrumb';
@@ -84,15 +86,16 @@ function App() {
           <Route path="/home-try" element={<HomeTry />} />
           <Route path="/login" element={<LogIn />} />
           <Route path="/surfspot" element={<SurfSpot />} />
+          {/* <Route
+            path="/surfspot/surfspot-details/:surfspotId"
+            element={<SurfSpotDetails />}
+          /> */}
           <Route path="/product-details" element={<ProductDetails />} />
-          <Route
-            path="/product-details/:product_group"
-            element={<ProductDetails />}
-          >
+          <Route path="/products/:product_group" element={<ProductDetails />}>
             <Route path=":product_id" element={<ProductDetails />} />
           </Route>
           <Route path="/products" element={<Products />} />
-          <Route path="/cart-pre-order" element={<CartPreOrder />} />
+          <Route path="/product-cart01" element={<ProductCart01 />} />
           <Route
             path="/customized/customized-details"
             element={<CustomizedDetails />}
@@ -118,6 +121,7 @@ function App() {
           <Route path="/course/course-cart01" element={<CourseCart01 />} />
           <Route path="/course/course-cart02" element={<CourseCart02 />} />
           <Route path="/course/course-cart03" element={<CourseCart03 />} />
+          <Route path="/course/course-cart" element={<CourseCart />} />
         </Routes>
       </AuthContext.Provider>
     </>

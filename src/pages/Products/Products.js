@@ -1,28 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Accordion } from 'react-bootstrap';
-import { Routes, Route } from 'react-router-dom';
-
-// axios前端、後端(爬蟲)都可用
-// 先安裝 npm i axios
-// 再引用 axios
 import axios from 'axios';
 
-import { API_URL } from '../../utils/config';
+// react-icons
+import { FaThumbsUp } from 'react-icons/fa';
+import { IoColorPalette } from 'react-icons/io5';
+import { MdOutlineSurfing } from 'react-icons/md';
 
 // 導引資料、頁面
 import './Products.scss';
+import { API_URL } from '../../utils/config';
 // import { data } from '../../data/products.js'; // 前端假資料
 import ProductList from './Components/ProductList/ProductList.js';
 import SearchBar from './Components/SearchBar.js';
 import SortBar from './Components/SortBar.js';
 import FilterBar from './Components/FilterBar/FilterBar.js';
 import greenTitle from '../../data/images/greenTitle.svg';
-
-// react-icons
-import { FaThumbsUp } from 'react-icons/fa';
-import { IoColorPalette } from 'react-icons/io5';
-import { MdOutlineSurfing } from 'react-icons/md';
 
 function Products() {
   const [products, setProducts] = useState([]);
@@ -62,7 +56,6 @@ function Products() {
     let getProducts = async () => {
       // 欲取得後端 http://localhost:3002/api/products 資料
       let response = await axios.get(`${API_URL}/products`);
-      console.log(response);
       setProducts(response.data);
       setDisplayProducts(response.data);
     };
@@ -218,9 +211,6 @@ function Products() {
           <h1>FUN 商店</h1>
         </div>
       </div>
-      <Link to="/product-details">購物商城</Link>
-      <br />
-      <Link to="/cart-pre-order">購物車</Link>
       <div className="container">
         <h3>Breadcrumb</h3>
         <div className="row">

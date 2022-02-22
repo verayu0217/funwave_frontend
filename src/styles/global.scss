@@ -21,6 +21,7 @@ $secondary: $funwave-deepblue;
 $warning: $funwave-pink;
 $light: $funwave-lightblue;
 $dark: $funwave-deepgray;
+$info: $funwave-lightgray;
 
 // scss-docs-start theme-colors-map
 $theme-colors: (
@@ -131,11 +132,11 @@ $btn-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
 
 $btn-hover-bg-shade-amount: 15%;
 $btn-hover-bg-tint-amount: 15%;
-$btn-hover-border-shade-amount: 20%;
+$btn-hover-border-shade-amount: 10%;
 $btn-hover-border-tint-amount: 10%;
 $btn-active-bg-shade-amount: 20%;
 $btn-active-bg-tint-amount: 20%;
-$btn-active-border-shade-amount: 25%;
+$btn-active-border-shade-amount: 15%;
 $btn-active-border-tint-amount: 10%;
 
 // Forms表單  // 原始

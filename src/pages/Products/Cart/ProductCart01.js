@@ -9,6 +9,48 @@ import greenTitle from '../../../data/images/greenTitle.svg';
 import { AiOutlinePlus, AiOutlineMinus } from 'react-icons/ai';
 
 function CartPreOrder() {
+  const [count, setCount] = useState(1);
+  // 將localStorage的資料(cartDataLocalStorage)存為狀態cartData
+  // const [cartData, setCartData] = useState([]);
+
+  // 小分類、顏色的id對照名稱
+  const colorTypes = ['白', '黑', '藍', '綠', 'x', '紅', '橘'];
+  const smallCatTypes = [
+    '衝浪長板',
+    '衝浪快樂板',
+    '衝浪短板',
+    '衝浪板舵',
+    '衝浪腳繩',
+    '衝浪腳踏墊',
+    '衝浪板袋',
+    '衝浪斗篷毛巾衣',
+    '防寒衣',
+  ];
+
+  let cartData = [];
+  if (!localStorage.getItem('商品購物車資料')) {
+    return;
+  } else {
+    cartData = [...JSON.parse(localStorage.getItem('商品購物車資料'))];
+  }
+  console.log('商品列表的購物車資料-Cart', cartData);
+  // setCartData(cartData);
+  // DidMount
+  // useEffect(function () {
+  //   // 顯示出localStorage的資料
+  //   let cartDataLocalStorage = [];
+  //   if (!localStorage.getItem('商品列表的購物車資料')) {
+  //     return;
+  //   } else {
+  //     cartDataLocalStorage = [
+  //       ...JSON.parse(localStorage.getItem('商品列表的購物車資料')),
+  //     ];
+  //   }
+  //   // const c = [...JSON.parse(localStorage.getItem('商品列表的購物車資料'))];
+  //   // setCartData(cartDataLocalStorage);
+  //   console.log('商品列表的購物車資料-Cart', cartData);
+  // }, []);
+
   return (
     <>
       <div className="container">
@@ -71,18 +113,27 @@ function CartPreOrder() {
                       <p className="mb-0">Odysea Log x Evan Rossell</p>
                     </Figure.Caption>
                     <Figure.Caption>
-                      <p className="m-0">長板</p>
-                      <p className="m-0">顏色：白</p>
-                      <p className="mb-1">尺寸：6 ft</p>
+                      <p className="m-0">
+                        {smallCatTypes[cartData[0].small_cat_id - 1]}
+                      </p>
+                      <p className="m-0">
+                        顏色：{colorTypes[cartData[0].color_id - 1]}
+                      </p>
+                      <p className="mb-1">尺寸：{cartData[0].size} ft</p>
                     </Figure.Caption>
                     <Figure.Caption>
-                      <p className="m-0 fw-bold">NT 12,300</p>
+                      <p className="m-0 fw-bold">
+                        NT {cartData[0].price * cartData[0].count}
+                      </p>
                     </Figure.Caption>
                   </div>
-                  <div className="w-25">
+                  <div className="w-25 d-flex justify-content-center align-items-center">
                     <button
                       type="button"
-                      className="btn btn-secondary border rounded-circle p-0 countButton me-3"
+                      className="btn btn-secondary border rounded-circle p-0 me-3 countButton"
+                      onClick={() => {
+                        if (count - 1 >= 1) setCount(count - 1);
+                      }}
                     >
                       <AiOutlineMinus
                         size={18}
@@ -90,10 +141,13 @@ function CartPreOrder() {
                         className="text-center"
                       />
                     </button>
-                    1
+                    {cartData[0].count}
                     <button
                       type="button"
-                      className="btn btn-secondary border rounded-circle p-0 countButton ms-3"
+                      className="btn btn-secondary border rounded-circle p-0 ms-3 countButton"
+                      onClick={() => {
+                        setCount(count + 1);
+                      }}
                     >
                       <AiOutlinePlus
                         size={18}
