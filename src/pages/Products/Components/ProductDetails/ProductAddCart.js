@@ -16,6 +16,7 @@ function ProductAddCart(props) {
   const { product } = props;
   const [count, setCount] = useState(1);
   const [size, setSize] = useState('');
+  const [mycart, setMycart] = useState([]);
 
   // 小分類、品牌的id對照名稱
   const smallCatTypes = [
@@ -31,24 +32,6 @@ function ProductAddCart(props) {
   ];
   const brandTypes = ['Catch Surf', 'Solid Surf Co', 'JJF by Pyzel'];
 
-  // cartData資料待存進localStorage
-  let cartData = [
-    {
-      product_no: product[0].product_no,
-      name: product[0].name,
-      price: product[0].price,
-      stock: product[0].stock,
-      size: product[0].size,
-      color_id: product[0].color_id,
-      small_cat_id: product[0].small_cat_id,
-      count: count,
-    },
-  ];
-
-  // 將cartData存進localStorage
-  localStorage.setItem('商品列表的購物車資料', JSON.stringify(cartData));
-  console.log('商品列表的購物車資料-ProductDetail', cartData);
-
   // 取出主貨號(product_group)中子貨號(product_no)的尺寸
   var sizeArr = [];
   product.map((product_no, i) => {
@@ -60,19 +43,62 @@ function ProductAddCart(props) {
     return arr.indexOf(element) === index;
   });
   // console.log("sizeUnique",sizeUnique); // ["6","5"]
-  console.log('size', size);
+  // console.log('size', size);
 
   // 取出主貨號(product_group)中子貨號(product_no)的顏色
   var colorArr = [];
   product.map((product_no, i) => {
     return colorArr.unshift(product[i].color_id);
   });
-  console.log('colorArr', colorArr); // [6, 6, 7, 7, 3, 3, 4, 4]
+  // console.log('colorArr', colorArr); // [6, 6, 7, 7, 3, 3, 4, 4]
   // 去除掉重複的顏色
   var colorUnique = colorArr.filter(function (element, index, arr) {
     return arr.indexOf(element) === index;
   });
-  console.log('colorUnique', colorUnique); // [6, 7, 3, 4]
+  // console.log('colorUnique', colorUnique); // [6, 7, 3, 4]
+
+  // cartData資料待存進localStorage
+  // let cartData = [
+  //   {
+  //     product_no: product[0].product_no,
+  //     name: product[0].name,
+  //     price: product[0].price,
+  //     stock: product[0].stock,
+  //     size: product[0].size,
+  //     color_id: product[0].color_id,
+  //     small_cat_id: product[0].small_cat_id,
+  //     count: count,
+  //   },
+  // ];
+
+  // 將cartData存進localStorage
+  // localStorage.setItem('商品列表的購物車資料', JSON.stringify(cartData));
+  // console.log('商品列表的購物車資料-ProductDetail', cartData);
+
+  const updateCartToLocalStorage = (item) => {
+    const currentCart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    // find if the product in the localstorage with its id
+    // const index = currentCart.findIndex((v) => v.id === item.id);
+
+    // found: index! == -1
+    // if (index > -1) {
+    //   //currentCart[index].amount++
+    //   setProductName('這個商品已經加過了');
+    //   handleShow();
+    //   return;
+    // } else {
+    //   currentCart.push(item);
+    // }
+
+    currentCart.push(item);
+    localStorage.setItem('cart', JSON.stringify(currentCart));
+    console.log('商品列表的購物車資料-ProductDetail', currentCart);
+
+    // 設定資料
+    setMycart(currentCart);
+    // setProductName('產品：' + item.name + '已成功加入購物車');
+  };
 
   return (
     <>
@@ -177,9 +203,24 @@ function ProductAddCart(props) {
         </button>
       </div>
       {/* 加入購物車 */}
-      <Link to="/product-cart01">
-        <button className="btn btn-secondary btnAddCart">加入購物車</button>
-      </Link>
+      <Link to="/product-cart01">去購物車</Link>
+      <button
+        className="btn btn-secondary btnAddCart"
+        onClick={() => {
+          updateCartToLocalStorage({
+            product_no: '',
+            name: '',
+            price: '',
+            stock: '',
+            size: '',
+            color_id: '',
+            small_cat_id: '',
+            count: '',
+          });
+        }}
+      >
+        加入購物車
+      </button>
     </>
   );
 }
