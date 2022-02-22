@@ -7,7 +7,6 @@ import CircleRight from './CircleRight';
 import './surfSpot.scss';
 
 function SurfSpot() {
-  // const [all, setAll] = useState('');
   const [level, setLevel] = useState('');
   const [regional, setRegional] = useState('');
   return (
@@ -26,7 +25,7 @@ function SurfSpot() {
             <div className="mt-4 me-5 pe-5">
               <input
                 className="input"
-                type="radio"
+                type="checkbox"
                 name="tags"
                 id="all"
                 value="0"

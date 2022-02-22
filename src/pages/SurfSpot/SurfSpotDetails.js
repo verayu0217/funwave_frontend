@@ -12,7 +12,7 @@ import { ImCross } from 'react-icons/im';
 import './surfSpotDetails.scss';
 
 function SurfSpotDetails(props) {
-  const { showSurfSpotDetails, setshowSurfSpotDetails } = props;
+  const { showSurfSpotDetails, setshowSurfSpotDetails, spotId } = props;
   const [data, setData] = useState([]);
   const surfSpotDetailsRef = useRef();
   const closeshowSurfSpotDetails = (e) => {
@@ -26,9 +26,10 @@ function SurfSpotDetails(props) {
       // http://localhost:3002/api/
       let response = await axios.get(`${API_URL}/surfspot/content`);
       setData(response.data);
+      console.log(response.data);
     };
     getSurfspot();
-  }, []);
+  }, [spotId]);
 
   dayjs.locale('zh-tw');
   const now = dayjs(new Date()).format('YYYY/MM/DD 星期dd HH:mm');
@@ -52,45 +53,46 @@ function SurfSpotDetails(props) {
                   <ImCross className="cross" />
                 </div>
                 <div className="row gx-0">
-                  {data.map((surfspot) => {
-                    return (
-                      <div
-                        key={surfspot.id}
-                        className="col-md-6 col-sm-12 col-8 ms-5 pt-5"
-                      >
-                        <p className="text-primary mb-2">
-                          {surfspot.city} {surfspot.country}
-                        </p>
-                        <h1 className="fw-bold">{surfspot.name}</h1>
-                        <p className="my-4">{surfspot.description}</p>
-                        <Row className="spotType">
-                          <Col className="border-end">
-                            <Row className="d-flex justify-content-center text-dark fw-bold mb-2">
-                              類型
-                            </Row>
-                            <Row className="d-flex justify-content-center">
-                              {surfspot.type}
-                            </Row>
-                          </Col>
-                          <Col className="border-end">
-                            <Row className="d-flex justify-content-center text-dark fw-bold mb-2">
-                              海床
-                            </Row>
-                            <Row className="d-flex justify-content-center">
-                              {surfspot.seafloor}
-                            </Row>
-                          </Col>
-                          <Col>
-                            <Row className="d-flex justify-content-center text-dark fw-bold mb-2">
-                              適合程度
-                            </Row>
-                            <Row className="d-flex justify-content-center">
-                              {surfspot.level}
-                            </Row>
-                          </Col>
-                        </Row>
-                      </div>
-                    );
+                  {data.map((surfspot, i) => {
+                    if (i == spotId)
+                      return (
+                        <div
+                          key={surfspot.id}
+                          className="col-md-6 col-sm-12 col-8 ms-5 pt-5"
+                        >
+                          <p className="text-primary mb-2">
+                            {surfspot.city} {surfspot.country}
+                          </p>
+                          <h1 className="fw-bold">{surfspot.name}</h1>
+                          <p className="my-4">{surfspot.description}</p>
+                          <Row className="spotType">
+                            <Col className="border-end">
+                              <Row className="d-flex justify-content-center text-dark fw-bold mb-2">
+                                類型
+                              </Row>
+                              <Row className="d-flex justify-content-center">
+                                {surfspot.type}
+                              </Row>
+                            </Col>
+                            <Col className="border-end">
+                              <Row className="d-flex justify-content-center text-dark fw-bold mb-2">
+                                海床
+                              </Row>
+                              <Row className="d-flex justify-content-center">
+                                {surfspot.seafloor}
+                              </Row>
+                            </Col>
+                            <Col>
+                              <Row className="d-flex justify-content-center text-dark fw-bold mb-2">
+                                適合程度
+                              </Row>
+                              <Row className="d-flex justify-content-center">
+                                {surfspot.level}
+                              </Row>
+                            </Col>
+                          </Row>
+                        </div>
+                      );
                   })}
 
                   <div className="col-md-5 col-sm-12 py-5">
@@ -115,7 +117,7 @@ function SurfSpotDetails(props) {
                           <FaLocationArrow
                             size={20}
                             color="#17a8a2"
-                            className="mb-2"
+                            className="mb-2 NNW"
                           />
                         </Col>
                         <Col className="text-center">9.5m/s</Col>

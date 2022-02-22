@@ -20,7 +20,7 @@ function CircleLeft(props) {
         <div className="level1Radio">
           <input
             className="input"
-            type="radio"
+            type="checkbox"
             name="tag"
             id="level1"
             value="1"
@@ -36,7 +36,7 @@ function CircleLeft(props) {
         <div className="level2Radio">
           <input
             className="input"
-            type="radio"
+            type="checkbox"
             name="tag"
             id="level2"
             value="2"
@@ -52,7 +52,7 @@ function CircleLeft(props) {
         <div className="level3Radio">
           <input
             className="input"
-            type="radio"
+            type="checkbox"
             name="tag"
             id="level3"
             value="3"

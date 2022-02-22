@@ -1,9 +1,12 @@
 @import '../../styles/global.scss';
 
-.input[type="radio"]{
+.input[type="checkbox"]{
     display: none;
 }
-.input[type="radio"]:checked + label{
+// .input[type="radio"]{
+//     display: none;
+// }
+.input[type="checkbox"]:checked + label{
     color: $funwave-orange;
     cursor: pointer;
 }
