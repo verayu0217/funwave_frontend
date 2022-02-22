@@ -17,7 +17,7 @@ function CourseSpot() {
       // http://localhost:3002/api/還沒取
       let response = await axios.get(`${API_URL}/course/courseSpot/north`);
       setNorthSpot(response.data);
-      console.log(response.data);
+      // console.log(response.data);
     };
     getNorthSpot();
   }, []);
@@ -38,7 +38,7 @@ function CourseSpot() {
       {error && <div>{error}</div>}
 
       {/* 課程地點介紹區 */}
-      <div className="container my-5">
+      <div className="container">
         <div className="text-secondary  h1 text-center mb-5">
           <img
             src={greenTitle}
@@ -54,7 +54,6 @@ function CourseSpot() {
           {/* 北部/東北部  */}
           <p className="text-center h2 mb-3">北部/東北部</p>
           {north.map((spot) => {
-            console.log(spot.image);
             return (
               <div key={spot.id} className="col-md-6 col-lg-3 ">
                 <div className="spot-img shadow-sm">

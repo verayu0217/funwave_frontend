@@ -51,7 +51,7 @@ function CourseContent(props) {
     localStorage.setItem('報名資料', JSON.stringify(data));
 
     // 導向另外一頁
-    navigate('/course/course-cart01', { replace: true });
+    navigate('/course/course-cart', { replace: true });
   }
 
   return (
@@ -86,10 +86,10 @@ function CourseContent(props) {
             >
               <div className="col-12 col-md-6 col-lg-4">
                 <div className="d-flex justify-content-center">
-                  <img src={landcoach} className="cover-fit" alt="" />
+                  <img src={landcoach} className="cover-img" alt="" />
                 </div>
                 <div className="text-center">
-                  <p>陸上指導課程</p>
+                  <p className="text-secondary h3">陸上指導課程</p>
                   <p>
                     30分鐘路上課程、衝浪前必備的海洋知識、衝浪前必知的海上安全觀念、衝浪地形解析
                   </p>
@@ -98,10 +98,10 @@ function CourseContent(props) {
 
               <div className="col-12 col-md-6 col-lg-4">
                 <div className="d-flex justify-content-center">
-                  <img src={surfwithu} className="cover-fit" alt="" />
+                  <img src={surfwithu} className="cover-img" alt="" />
                 </div>
                 <div className="text-center">
-                  <p>下水陪衝課程</p>
+                  <p className="text-secondary h3">下水陪衝課程</p>
                   <p>
                     衝浪基本動作講解與示範、認識浪頭、認識洋流、基礎划水、基礎越浪、練習起乘基本動作，教練陪同
                   </p>
@@ -109,19 +109,19 @@ function CourseContent(props) {
               </div>
               <div className="col-12 col-md-6 col-lg-4">
                 <div className="d-flex justify-content-center">
-                  <img src={freeboard} className="cover-fit" alt="" />
+                  <img src={freeboard} className="cover-img" alt="" />
                 </div>
                 <div className="text-center">
-                  <p>衝浪板免費使用</p>
+                  <p className="text-secondary h3">衝浪板免費使用</p>
                   <p>1次衝浪新手練習板免費使用</p>
                 </div>
               </div>
               <div className="col-12 col-md-6 col-lg-4">
                 <div className="d-flex justify-content-center">
-                  <img src={tools} className="cover-fit" alt="" />
+                  <img src={tools} className="cover-img" alt="" />
                 </div>
                 <div className="text-center">
-                  <p>一應俱全的衝浪裝備</p>
+                  <p className="text-secondary h3">一應俱全的衝浪裝備</p>
                   <p>
                     提供當天所需要的衝浪裝備，包含防磨水母衣、防寒衣、盆洗設備
                   </p>
@@ -129,10 +129,10 @@ function CourseContent(props) {
               </div>
               <div className="col-12 col-md-6 col-lg-4">
                 <div className="d-flex justify-content-center">
-                  <img src={memory} className="cover-fit" alt="" />
+                  <img src={memory} className="cover-img" alt="" />
                 </div>
                 <div className="text-center">
-                  <p>留下美好回憶</p>
+                  <p className="text-secondary h3">留下美好回憶</p>
                   <p>
                     第一次站在衝浪板上，是件值得回味一輩子的回憶，我們提供您整堂課程以及你在海上帥氣、美美的衝浪回憶照片唷
                   </p>
@@ -140,10 +140,10 @@ function CourseContent(props) {
               </div>
               <div className="col-12 col-md-6 col-lg-4">
                 <div className="d-flex justify-content-center">
-                  <img src={lifeguard} className="cover-fit" alt="" />
+                  <img src={lifeguard} className="cover-img" alt="" />
                 </div>
                 <div className="text-center">
-                  <p>為您的安全把關</p>
+                  <p className="text-secondary h3">為您的安全把關</p>
                   <p>
                     每位來學習衝浪課的學員，除了有水上求生專業的教練為安全把關外，我們也會為學員辦理保險。讓你衝的快樂也衝的安心
                   </p>
@@ -431,8 +431,8 @@ function CourseContent(props) {
                         <option value="福隆">福隆</option>
                         <option value="烏石港">烏石港</option>
                         <option value="金樽">金樽</option>
-                        <option value="金樽">南灣</option>
-                        <option value="金樽">旗津</option>
+                        <option value="南灣">南灣</option>
+                        <option value="旗津">旗津</option>
                       </select>
                     </div>
 
