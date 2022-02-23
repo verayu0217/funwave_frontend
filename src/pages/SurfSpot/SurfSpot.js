@@ -29,13 +29,12 @@ function SurfSpot() {
                 name="tags"
                 id="all"
                 value="0"
-                onClick={() => {
-                  setLevel('0');
-                  setRegional('0');
+                onChange={() => {
+                  setLevel('');
+                  setRegional('');
                 }}
               />
-
-              <label className="allTitle">
+              <label htmlFor="all" className="allTitle">
                 <i value="0" className="fasAll fas fa-map-marker pe-2"></i>
                 全部浪點
               </label>

@@ -1,16 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Figure, Row, Col } from 'react-bootstrap';
 import { AiOutlinePlus, AiOutlineMinus } from 'react-icons/ai';
 import greenTitle from '../../data/images/greenTitle.svg';
-// import fishboardHole from '../../data/images/customize/fishboardHole.png';
-// import funboardHole from '../../data/images/customize/funboardHole.png';
+import fishboardHole from '../../data/images/customize/fishboardHole.png';
+import funboardHole from '../../data/images/customize/funboardHole.png';
 import gunboardHole from '../../data/images/customize/gunboardHole.png';
 import longboardHole from '../../data/images/customize/longboardHole.png';
 
 function Step3(props) {
-  const { step, setStep } = props;
-  const { surfingBoard, setSurfingBoard } = props;
+  const { step, setStep, surfingBoard, setSurfingBoard } = props;
   const [count, setCount] = useState(1);
+  const [board, setBoard] = useState({});
+  useEffect(() => {
+    console.log(surfingBoard);
+    if (surfingBoard.size === 1)
+      setBoard({ selected: fishboardHole, text: '魚板' });
+    if (surfingBoard.size === 2)
+      setBoard({ selected: funboardHole, text: '快樂板' });
+    if (surfingBoard.size === 3)
+      setBoard({ selected: gunboardHole, text: '槍板' });
+    if (surfingBoard.size === 4)
+      setBoard({ selected: longboardHole, text: '長板' });
+  }, [surfingBoard]);
 
   return (
     <div className="container">
@@ -36,23 +47,29 @@ function Step3(props) {
       <Row>
         <Col lg="7">
           <Row className="gx-0">
-            <Col lg="2">魚板</Col>
+            <Col lg="2">{board.text}</Col>
             <Col lg="5" className="boarder">
               <p className="m-0 text-center">正面</p>
-              <Figure className="bottomPhotoCu">
+              <Figure
+                style={{ backgroundColor: `${surfingBoard.front}` }}
+                className="position-relative"
+              >
                 <Figure.Image
-                  alt="fishboardHole"
-                  src={longboardHole}
+                  alt={board.text}
+                  src={board.selected}
                   className="m-0"
                 />
               </Figure>
             </Col>
             <Col lg="5" className="boarder">
               <p className="m-0 text-center">反面</p>
-              <Figure className="bottomPhotoCu">
+              <Figure
+                style={{ backgroundColor: `${surfingBoard.back}` }}
+                className="position-relative"
+              >
                 <Figure.Image
-                  alt="fishboardHole"
-                  src={gunboardHole}
+                  alt={board.text}
+                  src={board.selected}
                   className="m-0"
                 />
               </Figure>

@@ -8,8 +8,8 @@ import Step3 from './Step3';
 
 function CustomizedDetails() {
   const [surfingBoard, setSurfingBoard] = useState({
-    front: 'white',
-    back: 'white',
+    front: '#ffffff',
+    back: '#ffffff',
     frontpattern: '',
     backpattern: '',
     size: '',
@@ -61,6 +61,8 @@ function CustomizedDetails() {
             setStep={setStep}
             surfingBoard={surfingBoard}
             setSurfingBoard={setSurfingBoard}
+            pattern={pattern}
+            setPattern={setPattern}
           />
         )}
       </div>
