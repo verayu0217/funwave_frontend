@@ -58,12 +58,12 @@ function ProductDetails(props) {
   useEffect(() => {
     setLoading(true);
 
-    // let getProduct = async () => {
-    //   // 取得後端 http://localhost:3002/api/products 資料
-    // let response = await axios.get(`${API_URL}/products/${product_group}`);
-    //   setProduct(response.data);
-    // };
-    // getProduct();
+    let getProduct = async () => {
+      // 取得後端 http://localhost:3002/api/products 資料
+      let response = await axios.get(`${API_URL}/products/${product_group}`);
+      setProduct(response.data);
+    };
+    getProduct();
 
     setTimeout(() => setLoading(false), 0);
   }, []);
