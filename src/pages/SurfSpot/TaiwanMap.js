@@ -14,10 +14,8 @@ function TaiwanMap(props) {
   // 開啟浪點細節
   const [showSurfSpotDetails, setshowSurfSpotDetails] = useState(false);
   const [spotId, setspotId] = useState('');
-  const openSurfSpotDetails = () => {
+  const openSurfSpotDetails = (findspotId) => {
     setshowSurfSpotDetails((prev) => !prev);
-    let findspotId = data.find(({ id }) => id === surfspots.id);
-    console.log(findspotId);
     setspotId(findspotId);
   };
 
@@ -110,7 +108,7 @@ function TaiwanMap(props) {
             <i
               id={surfspot.id}
               tags={surfspot.tags}
-              onClick={openSurfSpotDetails}
+              onClick={() => openSurfSpotDetails(surfspot.id)}
               className={`myFas fas fa-map-marker ${surfspot.id}`}
               surfspot={surfspot}
             ></i>

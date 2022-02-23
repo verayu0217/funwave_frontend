@@ -25,8 +25,18 @@ function SurfSpotDetails(props) {
     let getSurfspot = async () => {
       // http://localhost:3002/api/
       let response = await axios.get(`${API_URL}/surfspot/content`);
-      setData(response.data);
-      console.log(response.data);
+      let findspotContent = response.data.filter((v) => {
+        return v.id === spotId;
+      });
+      console.log(findspotContent);
+
+      if (!findspotContent) {
+        setData(response.data);
+      } else {
+        setData(findspotContent);
+      }
+
+      // console.log(response.data);
     };
     getSurfspot();
   }, [spotId]);
@@ -54,45 +64,44 @@ function SurfSpotDetails(props) {
                 </div>
                 <div className="row gx-0">
                   {data.map((surfspot, i) => {
-                    if (i == spotId)
-                      return (
-                        <div
-                          key={surfspot.id}
-                          className="col-md-6 col-sm-12 col-8 ms-5 pt-5"
-                        >
-                          <p className="text-primary mb-2">
-                            {surfspot.city} {surfspot.country}
-                          </p>
-                          <h1 className="fw-bold">{surfspot.name}</h1>
-                          <p className="my-4">{surfspot.description}</p>
-                          <Row className="spotType">
-                            <Col className="border-end">
-                              <Row className="d-flex justify-content-center text-dark fw-bold mb-2">
-                                類型
-                              </Row>
-                              <Row className="d-flex justify-content-center">
-                                {surfspot.type}
-                              </Row>
-                            </Col>
-                            <Col className="border-end">
-                              <Row className="d-flex justify-content-center text-dark fw-bold mb-2">
-                                海床
-                              </Row>
-                              <Row className="d-flex justify-content-center">
-                                {surfspot.seafloor}
-                              </Row>
-                            </Col>
-                            <Col>
-                              <Row className="d-flex justify-content-center text-dark fw-bold mb-2">
-                                適合程度
-                              </Row>
-                              <Row className="d-flex justify-content-center">
-                                {surfspot.level}
-                              </Row>
-                            </Col>
-                          </Row>
-                        </div>
-                      );
+                    return (
+                      <div
+                        key={surfspot.id}
+                        className="col-md-6 col-sm-12 col-8 ms-5 pt-5"
+                      >
+                        <p className="text-primary mb-2">
+                          {surfspot.city} {surfspot.country}
+                        </p>
+                        <h1 className="fw-bold">{surfspot.name}</h1>
+                        <p className="my-4">{surfspot.description}</p>
+                        <Row className="spotType">
+                          <Col className="border-end">
+                            <Row className="d-flex justify-content-center text-dark fw-bold mb-2">
+                              類型
+                            </Row>
+                            <Row className="d-flex justify-content-center">
+                              {surfspot.type}
+                            </Row>
+                          </Col>
+                          <Col className="border-end">
+                            <Row className="d-flex justify-content-center text-dark fw-bold mb-2">
+                              海床
+                            </Row>
+                            <Row className="d-flex justify-content-center">
+                              {surfspot.seafloor}
+                            </Row>
+                          </Col>
+                          <Col>
+                            <Row className="d-flex justify-content-center text-dark fw-bold mb-2">
+                              適合程度
+                            </Row>
+                            <Row className="d-flex justify-content-center">
+                              {surfspot.level}
+                            </Row>
+                          </Col>
+                        </Row>
+                      </div>
+                    );
                   })}
 
                   <div className="col-md-5 col-sm-12 py-5">
