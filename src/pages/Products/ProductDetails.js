@@ -45,21 +45,11 @@ function ProductDetails(props) {
       product_valid: 0,
     },
   ]);
-  const [clickSmallImage, setClickSmallImage] = useState('image1');
+  const [clickSmallImage, setClickSmallImage] = useState('image1'); // 點選哪張小圖
   const [loading, setLoading] = useState(false);
-
-  // 產品 "小分類、品牌、材質、衝浪板舵" 的id對照名稱
-  const smallCatTypes = [
-    '衝浪長板',
-    '衝浪快樂板',
-    '衝浪短板',
-    '衝浪板舵',
-    '衝浪腳繩',
-    '衝浪腳踏墊',
-    '衝浪板袋',
-    '衝浪斗篷毛巾衣',
-    '防寒衣',
-  ];
+  const [count, setCount] = useState(1); // 加入購物車的數量
+  const [size, setSize] = useState(''); // 點選商品的尺寸
+  const [colorId, setColorId] = useState(''); // 點選商品的顏色
 
   // 把前端網址上的參數product_group拿出來，要和App.js的網址參數相同
   const { product_group } = useParams();
@@ -413,7 +403,19 @@ function ProductDetails(props) {
               {/* 右方的加入購物車區 */}
               <div className="col-3 p-0">
                 <div className="sticky">
-                  {loading ? spinner : <ProductAddCart product={product} />}
+                  {loading ? (
+                    spinner
+                  ) : (
+                    <ProductAddCart
+                      product={product}
+                      count={count}
+                      setCount={setCount}
+                      size={size}
+                      setSize={setSize}
+                      colorId={colorId}
+                      setColorId={setColorId}
+                    />
+                  )}
                   {/* <ProductAddCart product={product} /> */}
                 </div>
               </div>

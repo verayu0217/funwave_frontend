@@ -3,6 +3,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Figure } from 'react-bootstrap';
+import _ from 'lodash';
+
 import {
   AiFillStar,
   AiOutlineStar,
@@ -13,12 +15,9 @@ import {
 import { IMAGE_URL } from '../../../../utils/config';
 
 function ProductAddCart(props) {
-  const { product } = props;
-  const [count, setCount] = useState(1);
-  const [size, setSize] = useState('');
-  const [color, setColor] = useState('');
-  const [mycart, setMycart] = useState([]);
-  const [cartData, setCartData] = useState([]);
+  const { product, count, setCount, size, setSize, colorId, setColorId } =
+    props;
+  const [mycart, setMycart] = useState([]); // 要存進localStorage的資料
 
   // 小分類、品牌的id對照名稱
   const smallCatTypes = [
@@ -34,8 +33,7 @@ function ProductAddCart(props) {
   ];
   const brandTypes = ['Catch Surf', 'Solid Surf Co', 'JJF by Pyzel'];
 
-  console.log('product', product);
-
+  // 讓畫面有尺寸btn的值
   // 取出主貨號(product_group)中子貨號(product_no)的尺寸
   let sizeArr = [];
   product.map((v, i) => {
@@ -49,33 +47,9 @@ function ProductAddCart(props) {
     return a - b;
   });
 
-  // 取出主貨號(product_group)中子貨號(product_no)的顏色
-  // product裡的物件多一個product_filter欄位(去掉最後一個代表尺寸的字)
-  let productMap = product.map(function (item) {
-    let productNoArr = item.product_no.split('-');
-    let product_filter =
-      productNoArr[0] + '-' + productNoArr[1] + '-' + productNoArr[2];
-    item.product_filter = product_filter;
-
-    return item;
-  });
-  // 去掉重複顏色的子貨號
-  function removeDuplicates(array, filter) {
-    let newArray = [];
-    let lookupObject = {};
-
-    for (let i in array) {
-      lookupObject[array[i][filter]] = array[i];
-    }
-    for (let i in lookupObject) {
-      newArray.push(lookupObject[i]);
-    }
-
-    return newArray;
-  }
-  const colorProduct = removeDuplicates(productMap, 'product_filter');
-  // console.log('colorProduct', colorProduct);
-  // console.log('color', color);
+  // 讓畫面有顏色btn的值
+  const colorProduct = _.uniqBy(product, 'color_id');
+  console.log('colorProduct', colorProduct);
 
   // cartData資料待存進localStorage
   // let cartData = [
@@ -90,6 +64,16 @@ function ProductAddCart(props) {
   //     count: count,
   //   },
   // ];
+
+  console.log('product', product);
+
+  // 依據尺寸、顏色找到對應的子貨號(product_no)
+  let chosenProduct = product.filter(
+    (object) => (object['color_id'] === colorId) & (object['size'] === size)
+  );
+  // console.log('chosenProduct', chosenProduct);
+  let chosenProductOrder = product.indexOf(chosenProduct[0]);
+  // console.log('chosenProductOrder', chosenProductOrder);
 
   // 將cartData存進localStorage
   // localStorage.setItem('商品列表的購物車資料', JSON.stringify(cartData));
@@ -120,6 +104,9 @@ function ProductAddCart(props) {
     console.log('mycart', mycart);
     // setProductName('產品：' + item.name + '已成功加入購物車');
   };
+
+  console.log('size', size);
+  console.log('colorId', colorId);
 
   return (
     <>
@@ -153,7 +140,7 @@ function ProductAddCart(props) {
                   key={v.product_no}
                   className="me-2"
                   onClick={() => {
-                    setColor(v.color_id);
+                    setColorId(v.color_id);
                   }}
                 >
                   <Figure>
