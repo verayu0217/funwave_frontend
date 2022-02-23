@@ -4,28 +4,30 @@ import { Link, useNavigate } from 'react-router-dom';
 import { AiOutlinePlus, AiOutlineMinus } from 'react-icons/ai';
 
 function CourseCart01(props) {
-  const { step, setStep } = props;
-
-  let navigate = useNavigate();
+  // 宣告count是上課人數初始1
   const [count, setCount] = useState(1);
 
-  // 人數
-  // 顯示出localStorage的資料
-  //TODO: 判斷沒有資料時回到這頁要給他離開
-  let data = [];
-  if (!localStorage.getItem('報名資料')) {
-    // console.log('nothing');
-    // navigate('/course/course-content', { replace: true });
+  const [amount, setAmount] = useState('');
+  useEffect(() => {
+    const amount = coursePrice * count;
+    setAmount(count * coursePrice);
+    console.log('總計', amount);
+  }, [count, amount]);
 
-    return;
-  } else {
-    data = [...JSON.parse(localStorage.getItem('報名資料'))];
-  }
+  const {
+    step,
+    setStep,
+    course,
+    courseSpot,
+    courseTime,
+    courseDate,
+    setCourseDate,
+    coursePrice,
+  } = props;
 
-  console.log(data);
-  // 總計
-  const amount = data[0].coursePrice * count;
+  let navigate = useNavigate();
 
+  //TODO:alert換樣式不要太突兀
   // 刪除購物車資料並導向上一頁
   let deleteCourse = () => {
     localStorage.clear('報名資料');
@@ -56,56 +58,59 @@ function CourseCart01(props) {
               </tr>
             </thead>
 
-            {data.map((v, i) => {
-              return (
-                <tbody className="text-center" key={i}>
-                  <tr>
-                    <td>{v.course}</td>
-                    <td>{v.courseTime}</td>
-                    <td>{v.courseSpot}</td>
-                    <td>{v.coursePrice}</td>
-                    <td>
-                      <button
-                        type="button"
-                        className="btn btn-secondary border rounded-circle p-0 countButton me-2"
-                        onClick={() => {
-                          if (count - 1 >= 1) setCount(count - 1);
-                        }}
-                      >
-                        <AiOutlineMinus
-                          size={20}
-                          color="#ffffff"
-                          className="text-center"
-                        />
-                      </button>
+            <tbody className="text-center">
+              <tr>
+                <td>{course}</td>
+                <td>{courseTime}</td>
+                <td>{courseSpot}</td>
+                <td>{coursePrice}</td>
+                <td>
+                  <button
+                    type="button"
+                    className="btn btn-secondary border rounded-circle p-0 countButton me-2"
+                    onClick={() => {
+                      if (count - 1 >= 1) setCount(count - 1);
+                    }}
+                  >
+                    <AiOutlineMinus
+                      size={20}
+                      color="#ffffff"
+                      className="text-center"
+                    />
+                  </button>
 
-                      {count}
-                      <button
-                        type="button"
-                        className="btn btn-secondary border rounded-circle p-0 countButton ms-2"
-                        onClick={() => {
-                          setCount(count + 1);
-                        }}
-                      >
-                        <AiOutlinePlus
-                          size={20}
-                          color="#ffffff"
-                          className="text-center"
-                        />
-                      </button>
-                    </td>
-                    <td>{amount}</td>
-                    <td>{v.courseDate}</td>
-                    <td>
-                      <i
-                        className="fas fa-trash-alt"
-                        onClick={deleteCourse}
-                      ></i>
-                    </td>
-                  </tr>
-                </tbody>
-              );
-            })}
+                  {count}
+                  <button
+                    type="button"
+                    className="btn btn-secondary border rounded-circle p-0 countButton ms-2"
+                    onClick={() => {
+                      setCount(count + 1);
+                    }}
+                  >
+                    <AiOutlinePlus
+                      size={20}
+                      color="#ffffff"
+                      className="text-center"
+                    />
+                  </button>
+                </td>
+                <td>{amount}</td>
+                <td>
+                  <input
+                    type="date"
+                    value={courseDate}
+                    //修改日期完再存回localStorage
+                    onChange={(e) => {
+                      setCourseDate(e.target.value);
+                      localStorage.setItem('courseDate', e.target.value);
+                    }}
+                  ></input>
+                </td>
+                <td>
+                  <i className="fas fa-trash-alt" onClick={deleteCourse}></i>
+                </td>
+              </tr>
+            </tbody>
           </table>
 
           {/* 付款方式 */}

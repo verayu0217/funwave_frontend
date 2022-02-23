@@ -6,8 +6,8 @@ const List = ({ listData, deleteData }) => {
   return (
     <div>
       {listData.map((item, i) => {
-        const { msg } = item;
-        return <Item key={i} msg={msg} date={date} />;
+        const { msg, rating } = item;
+        return <Item key={i} msg={msg} date={date} rating={rating} />;
       })}
     </div>
   );

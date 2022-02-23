@@ -5,6 +5,7 @@ import StarRating from './StarRating';
 // props拿出add
 const Edit = ({ add }) => {
   const [msg, setMsg] = useState('');
+  const [rating, setRating] = useState('');
   function msgChange(e) {
     setMsg(e.target.value);
   }
@@ -13,13 +14,27 @@ const Edit = ({ add }) => {
   function addMsg() {
     // 從父層傳下來的set方法
     add(function (prevData) {
+      // 調換順序讓新留言在最上面
       return [
-        ...prevData,
         {
           msg,
+          rating,
         },
+        ...prevData,
       ];
     });
+
+    // 將留言暫存進localStorage 使用展開運算子=push
+    let perMsg = JSON.parse(localStorage.getItem('totalMsg')) || [];
+    let totalMsg = [
+      ...perMsg,
+      {
+        msg,
+        rating,
+      },
+    ];
+    //TODO:將留言存進資料庫
+    localStorage.setItem('totalMsg', JSON.stringify(totalMsg));
   }
 
   return (
@@ -27,7 +42,7 @@ const Edit = ({ add }) => {
       <label className="h3 mt-5">評價留言</label>
       {/* 放星星 */}
       <div>
-        <StarRating />
+        <StarRating setRating={setRating} />
       </div>
       <textarea
         name=""
