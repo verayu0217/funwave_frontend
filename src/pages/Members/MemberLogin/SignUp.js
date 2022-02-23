@@ -3,16 +3,19 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { API_URL } from '../../../utils/config';
 import { ERR_MSG } from '../../../utils/error';
+import Swal from 'sweetalert2';
 import 'animate.css';
 import './memberLogin.scss';
 
-function SignUp() {
+function SignUp(props) {
+  const { setshowModal } = props;
   const [close, setClose] = useState('fas fa-eye-slash');
   const [type, setType] = useState('password');
   const [member, setMember] = useState({
     email: '',
     name: '',
     password: '',
+    agree: null,
   });
   function handleChange(e) {
     setMember({ ...member, [e.target.name]: e.target.value });
@@ -22,9 +25,13 @@ function SignUp() {
     try {
       let response = await axios.post(`${API_URL}/auth/register`, member);
       console.log(response.data);
+      setMember({ ...member, email: '', name: '', password: '', agree: null });
+      setshowModal((prev) => !prev);
+      Swal.fire('註冊成功，請去信箱收取驗證信');
     } catch (e) {
-      // console.error('error', e.response.data);
-      console.error(ERR_MSG[e.response.data.code]);
+      console.error('error', ERR_MSG[e.response.data.code]);
+      // setMember({ ...member, email: '', name: '', password: '' });
+      Swal.fire(`${e.response.data.msg}\n請重新註冊`);
     }
   }
   return (
@@ -49,7 +56,7 @@ function SignUp() {
                   id="email"
                   value={member.email}
                   onChange={handleChange}
-                  required
+                  // required
                 />
               </li>
               <li className="mt-3">
@@ -61,7 +68,7 @@ function SignUp() {
                   id="name"
                   value={member.name}
                   onChange={handleChange}
-                  required
+                  // required
                 />
               </li>
               <li className="mt-3">
@@ -73,7 +80,7 @@ function SignUp() {
                   id=""
                   value={member.password}
                   onChange={handleChange}
-                  required
+                  // required
                 />
                 <div className="fasEye">
                   <i
@@ -97,7 +104,10 @@ function SignUp() {
                   name="agree"
                   id="agree"
                   value={member.agree}
-                  required
+                  onClick={() => {
+                    setMember({ ...member, agree: true });
+                  }}
+                  // required
                 />
                 <label className="form-check-label agreeSignup">
                   我同意<Link to="/">服務條款</Link>與

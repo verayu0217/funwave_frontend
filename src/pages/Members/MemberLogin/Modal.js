@@ -30,7 +30,7 @@ function Modal(props) {
               <ImCross className="cross " />
             </div>
 
-            <SignUp />
+            <SignUp setshowModal={setshowModal} />
           </div>
         </div>
       ) : null}

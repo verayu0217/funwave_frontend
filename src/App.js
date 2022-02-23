@@ -68,7 +68,7 @@ function App() {
       let response = await axios.get(`${API_URL}/auth/checklogin`, {
         withCredentials: true,
       });
-      setAuth(response.data);
+      setAuth(response.data.msg);
     } catch (e) {
       console.error({ ERR_MSG });
     }
