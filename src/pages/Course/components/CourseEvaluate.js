@@ -1,6 +1,6 @@
 import React from 'react';
 import greenTitle from '../../../data/images/greenTitle.svg';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import '../CourseContent.scss';
 import '../CourseCart.scss';
@@ -8,8 +8,16 @@ import '../CourseCart.scss';
 import Edit from './Edit';
 import List from './List';
 
-function CourseEvaluate() {
-  const [data, setData] = useState([]);
+// 暫時先取localStorage的留言
+let perMsg = JSON.parse(localStorage.getItem('totalMsg')) || [];
+console.log('這是localStorage', perMsg);
+
+function CourseEvaluate({ totalMsg = perMsg }) {
+  const [data, setData] = useState(totalMsg);
+  console.log('test', data);
+  useEffect(() => {
+    //TODO:要取資料庫的評價留言
+  }, []);
 
   return (
     <>
