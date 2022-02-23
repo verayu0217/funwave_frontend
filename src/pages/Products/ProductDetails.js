@@ -60,11 +60,8 @@ function ProductDetails(props) {
     '衝浪斗篷毛巾衣',
     '防寒衣',
   ];
-  const brandTypes = ['Catch Surf', 'Solid Surf Co', 'JJF by Pyzel'];
-  const materialTypes = ['Polyethylene', 'EPOXY', 'EPS', '碳纖維'];
-  const finCompatibilityTypes = ['FCS II Longboard', 'FCS II', 'Single Tab'];
 
-  // 把前端網址上的參數stockId拿出來，要和App.js的網址參數相同
+  // 把前端網址上的參數product_group拿出來，要和App.js的網址參數相同
   const { product_group } = useParams();
 
   // 初始化資料-模擬componentDidMount

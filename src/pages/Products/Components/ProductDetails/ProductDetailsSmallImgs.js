@@ -74,7 +74,7 @@ function ProductDetailsSmallImgs(props) {
       </Figure>
     </>
   );
-  console.log('clickSmallImage', clickSmallImage);
+  // console.log('clickSmallImage', clickSmallImage);
 
   return (
     <>
