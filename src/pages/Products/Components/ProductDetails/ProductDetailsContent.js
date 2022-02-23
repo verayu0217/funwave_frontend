@@ -5,8 +5,6 @@ import { Figure } from 'react-bootstrap';
 import longboard1 from './longboard1.jpg'; // 暫存推薦商品前端假圖片
 import { IMAGE_URL } from '../../../../utils/config';
 import ProductDetailsSmallImgs from './ProductDetailsSmallImgs.js';
-
-// react-icons
 import {
   AiOutlineDown,
   AiOutlineUp,

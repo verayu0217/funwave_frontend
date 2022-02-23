@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Figure, Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import './Cart.scss';
-import longboard1 from './longboard1.jpg'; // 待釐清圖放src還是放在public
+import { IMAGE_URL } from '../../../utils/config';
 import greenTitle from '../../../data/images/greenTitle.svg';
 
 // react-icons
@@ -37,9 +37,9 @@ function CartPreOrder() {
   // console.log('商品列表的購物車資料-Cart', mycart);
 
   function getCartFromLocalStorage() {
-    const newCart = localStorage.getItem('productCart') || '[]';
-    console.log(JSON.parse(newCart));
-    setMycart(JSON.parse(newCart));
+    const newCart = JSON.parse(localStorage.getItem('productCart') || '[]');
+    console.log('newCart', newCart);
+    setMycart(newCart);
   }
 
   useEffect(() => {
@@ -161,23 +161,28 @@ function CartPreOrder() {
                     <div className="px-5 py-4">
                       <Figure className="d-flex align-items-center">
                         <Figure.Image
-                          width={75}
-                          // height={350}
-                          alt="longboard1"
-                          src={longboard1}
-                          className="w-25 m-0"
+                          width={150}
+                          height={150}
+                          alt={item.product_no}
+                          src={`${IMAGE_URL}/products/${item.image1}`}
+                          className="m-0 cartImg"
                         />
-                        <div className="w-50">
+                        <div className="ps-4 cartDetails">
                           <Figure.Caption>
-                            <p className="mb-0">Odysea Log x Evan Rossell</p>
+                            <p className="mb-1 fs-3 fw-bold">{item.name}</p>
                           </Figure.Caption>
                           <Figure.Caption>
-                            <p className="m-0">{item.name}</p>
+                            <p className="m-0">{item.product_no}</p>
+                            <p className="m-0">
+                              {smallCatTypes[item.small_cat_id - 1]}
+                            </p>
                             <p className="m-0">顏色：{item.color_id}</p>
-                            <p className="mb-1">尺寸：{item.size}ft</p>
+                            <p className="mb-1">尺寸：{item.size} ft</p>
                           </Figure.Caption>
                           <Figure.Caption>
-                            <p className="m-0 fw-bold">NT {item.price}</p>
+                            <p className="m-0 fw-bold">
+                              NT {item.price.toLocaleString()}
+                            </p>
                           </Figure.Caption>
                         </div>
                         <div className="w-25 d-flex justify-content-center align-items-center">
@@ -194,6 +199,7 @@ function CartPreOrder() {
                               className="text-center"
                             />
                           </button>
+                          {item.count}
                           <button
                             type="button"
                             className="btn btn-secondary border rounded-circle p-0 ms-3 countButton"
