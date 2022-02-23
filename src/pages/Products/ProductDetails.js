@@ -22,32 +22,37 @@ import ProductDetailsContent from './Components/ProductDetails/ProductDetailsCon
 function ProductDetails(props) {
   const [product, setProduct] = useState([
     {
-      product_id: '',
+      product_id: 0,
       product_no: '',
       product_group: '',
       name: '',
       product_detail: '',
-      big_cat_id: '',
-      small_cat_id: '',
+      big_cat_id: 0,
+      small_cat_id: 0,
       image1: '',
       image2: '',
       image3: '',
       image4: '',
       image5: '',
-      brand_id: '',
-      color_id: '',
+      brand_id: 0,
+      color_id: 0,
       size: '',
-      material_id: '',
-      fin_compatibility_id: '',
-      price: '',
+      material_id: 0,
+      fin_compatibility_id: 0,
+      price: 0,
       stock: 0,
       create_time: '',
-      product_valid: '',
+      product_valid: 0,
     },
   ]);
+  const [chosenProductOrder, setChosenProductOrder] = useState(-1); // 點選尺寸、顏色後得出的子貨號(product_no)順序
+  const [clickSmallImage, setClickSmallImage] = useState('image1'); // 點選哪張小圖
   const [loading, setLoading] = useState(false);
+  const [count, setCount] = useState(1); // 加入購物車的數量
+  const [size, setSize] = useState(''); // 點選商品的尺寸
+  const [colorId, setColorId] = useState(''); // 點選商品的顏色
 
-  // 把前端網址上的參數stockId拿出來，要和App.js的網址參數相同
+  // 把前端網址上的參數product_group拿出來，要和App.js的網址參數相同
   const { product_group } = useParams();
 
   // 初始化資料-模擬componentDidMount
@@ -57,7 +62,6 @@ function ProductDetails(props) {
     let getProduct = async () => {
       // 取得後端 http://localhost:3002/api/products 資料
       let response = await axios.get(`${API_URL}/products/${product_group}`);
-      console.log('Product資料', response.data);
       setProduct(response.data);
     };
     getProduct();
@@ -341,7 +345,13 @@ function ProductDetails(props) {
                 {loading ? (
                   spinner
                 ) : (
-                  <ProductDetailsContent product={product} />
+                  <ProductDetailsContent
+                    product={product}
+                    clickSmallImage={clickSmallImage}
+                    setClickSmallImage={setClickSmallImage}
+                    chosenProductOrder={chosenProductOrder}
+                    setChosenProductOrder={setChosenProductOrder}
+                  />
                 )}
                 {/* <ProductDetailsContent product={product} /> */}
                 {/* 評價 */}
@@ -396,7 +406,21 @@ function ProductDetails(props) {
               {/* 右方的加入購物車區 */}
               <div className="col-3 p-0">
                 <div className="sticky">
-                  {loading ? spinner : <ProductAddCart product={product} />}
+                  {loading ? (
+                    spinner
+                  ) : (
+                    <ProductAddCart
+                      product={product}
+                      count={count}
+                      setCount={setCount}
+                      size={size}
+                      setSize={setSize}
+                      colorId={colorId}
+                      setColorId={setColorId}
+                      chosenProductOrder={chosenProductOrder}
+                      setChosenProductOrder={setChosenProductOrder}
+                    />
+                  )}
                   {/* <ProductAddCart product={product} /> */}
                 </div>
               </div>

@@ -1,8 +1,9 @@
 // ProductAddCart.js 內容說明：商品細節頁右方的加入購物車區
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Figure } from 'react-bootstrap';
+import { uniqBy } from 'lodash';
 import {
   AiFillStar,
   AiOutlineStar,
@@ -10,13 +11,21 @@ import {
   AiOutlinePlus,
   AiOutlineMinus,
 } from 'react-icons/ai';
-import longboard1 from './longboard1.jpg'; // 暫存推薦商品前端假圖片
+import { IMAGE_URL } from '../../../../utils/config';
 
 function ProductAddCart(props) {
-  const { product } = props;
-  const [count, setCount] = useState(1);
-  const [size, setSize] = useState('');
-  const [mycart, setMycart] = useState([]);
+  const {
+    product,
+    count,
+    setCount,
+    size,
+    setSize,
+    colorId,
+    setColorId,
+    chosenProductOrder,
+    setChosenProductOrder,
+  } = props;
+  const [mycart, setMycart] = useState([]); // 要存進localStorage的資料
 
   // 小分類、品牌的id對照名稱
   const smallCatTypes = [
@@ -32,31 +41,46 @@ function ProductAddCart(props) {
   ];
   const brandTypes = ['Catch Surf', 'Solid Surf Co', 'JJF by Pyzel'];
 
+  // 讓畫面有尺寸btn的值
   // 取出主貨號(product_group)中子貨號(product_no)的尺寸
-  var sizeArr = [];
-  product.map((product_no, i) => {
-    return sizeArr.unshift(product[i].size);
+  let sizeArr = [];
+  product.map((v, i) => {
+    return sizeArr.unshift(v.size);
   });
-  // console.log("sizeArr",sizeArr); // ["6","5","6","5","6","5","6","5"]
   // 去除掉重複的尺寸
-  var sizeUnique = sizeArr.filter(function (element, index, arr) {
+  const sizeUnique = sizeArr.filter(function (element, index, arr) {
     return arr.indexOf(element) === index;
   });
-  // console.log("sizeUnique",sizeUnique); // ["6","5"]
-  // console.log('size', size);
-
-  // 取出主貨號(product_group)中子貨號(product_no)的顏色
-  var colorArr = [];
-  product.map((product_no, i) => {
-    return colorArr.unshift(product[i].color_id);
+  sizeUnique.sort(function (a, b) {
+    return a - b;
   });
-  // console.log('colorArr', colorArr); // [6, 6, 7, 7, 3, 3, 4, 4]
-  // 去除掉重複的顏色
-  var colorUnique = colorArr.filter(function (element, index, arr) {
-    return arr.indexOf(element) === index;
-  });
-  // console.log('colorUnique', colorUnique); // [6, 7, 3, 4]
 
+  // 讓畫面有顏色btn的值
+  // 整理product為顏色不重複的colorProduct
+  const colorProduct = uniqBy(product, 'color_id');
+
+  // console.log('ProductAddCart.js - product', product);
+  // console.log('ProductAddCart.js - size', size);
+  // console.log('ProductAddCart.js - colorId', colorId);
+
+  // 依據尺寸、顏色找到對應的子貨號(product_no)
+  useEffect(() => {
+    // 還未選尺寸時，預設尺寸為第一個子貨號的尺寸
+    if (size === '') {
+      setSize(product[0].size);
+    } else {
+    }
+
+    let chosenProduct = product.filter(
+      (object) => (object['color_id'] === colorId) & (object['size'] === size)
+    );
+    // console.log('chosenProduct', chosenProduct);
+
+    setChosenProductOrder(product.indexOf(chosenProduct[0]));
+  }, [colorId, size]);
+  console.log('ProductAddCart.js - chosenProductOrder', chosenProductOrder);
+
+  // 我自己寫，原本的
   // cartData資料待存進localStorage
   // let cartData = [
   //   {
@@ -70,33 +94,21 @@ function ProductAddCart(props) {
   //     count: count,
   //   },
   // ];
-
   // 將cartData存進localStorage
   // localStorage.setItem('商品列表的購物車資料', JSON.stringify(cartData));
   // console.log('商品列表的購物車資料-ProductDetail', cartData);
 
+  // 參考老師的
   const updateCartToLocalStorage = (item) => {
-    const currentCart = JSON.parse(localStorage.getItem('cart')) || [];
-
-    // find if the product in the localstorage with its id
-    // const index = currentCart.findIndex((v) => v.id === item.id);
-
-    // found: index! == -1
-    // if (index > -1) {
-    //   //currentCart[index].amount++
-    //   setProductName('這個商品已經加過了');
-    //   handleShow();
-    //   return;
-    // } else {
-    //   currentCart.push(item);
-    // }
-
+    let currentCart = JSON.parse(localStorage.getItem('productCart')) || [];
+    // 每一筆資料都加入購物車
     currentCart.push(item);
-    localStorage.setItem('cart', JSON.stringify(currentCart));
-    console.log('商品列表的購物車資料-ProductDetail', currentCart);
+    localStorage.setItem('productCart', JSON.stringify(currentCart));
 
     // 設定資料
     setMycart(currentCart);
+    console.log('ProductAddCart.js - currentCart', currentCart);
+    // console.log('ProductAddCart.js - mycart', mycart);
     // setProductName('產品：' + item.name + '已成功加入購物車');
   };
 
@@ -118,7 +130,9 @@ function ProductAddCart(props) {
           <p className="fs-6">1則評論</p>
         </div>
       </div>
-      <p className="fs-6">#{product[0].product_no}</p>
+      <p className="fs-6">
+        #{product[chosenProductOrder > 0 ? chosenProductOrder : 0].product_no}
+      </p>
       {/* 選擇顏色 */}
       <div className="row mt-5 mb-3">
         <div className="col-4 pe-0">
@@ -126,15 +140,21 @@ function ProductAddCart(props) {
         </div>
         <div className="col-8 p-0">
           <div className="d-flex">
-            {colorUnique.map((index, i) => {
+            {colorProduct.map((v, i) => {
               return (
-                <div className="me-2">
+                <div
+                  key={v.product_no}
+                  className="me-2 cursorPointer"
+                  onClick={() => {
+                    setColorId(v.color_id);
+                  }}
+                >
                   <Figure>
                     <Figure.Image
                       width={75}
                       height={75}
-                      alt="1"
-                      src={longboard1}
+                      alt={v.name}
+                      src={`${IMAGE_URL}/products/${v.image1}`}
                       className="border border-dark p-1 m-0"
                     />
                   </Figure>
@@ -153,7 +173,7 @@ function ProductAddCart(props) {
           <div className="d-flex">
             {sizeUnique.map((index, i) => {
               return (
-                <div>
+                <div key={i}>
                   <button
                     className="btn btn-dark sizeBtn text-center me-2 d-flex justify-content-center align-items-center"
                     onClick={() => {
@@ -208,14 +228,15 @@ function ProductAddCart(props) {
         className="btn btn-secondary btnAddCart"
         onClick={() => {
           updateCartToLocalStorage({
-            product_no: '',
-            name: '',
-            price: '',
-            stock: '',
-            size: '',
-            color_id: '',
-            small_cat_id: '',
-            count: '',
+            product_no: product[chosenProductOrder].product_no,
+            name: product[0].name,
+            price: product[0].price,
+            image1: product[chosenProductOrder].image1,
+            color_id: product[chosenProductOrder].color_id,
+            size: product[chosenProductOrder].size,
+            small_cat_id: product[0].small_cat_id,
+            stock: product[chosenProductOrder].stock,
+            count: count,
           });
         }}
       >

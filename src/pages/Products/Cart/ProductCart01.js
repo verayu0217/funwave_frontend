@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Figure, Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import './Cart.scss';
-import longboard1 from './longboard1.jpg'; // 待釐清圖放src還是放在public
+import { IMAGE_URL } from '../../../utils/config';
 import greenTitle from '../../../data/images/greenTitle.svg';
 
 // react-icons
@@ -10,8 +10,9 @@ import { AiOutlinePlus, AiOutlineMinus } from 'react-icons/ai';
 
 function CartPreOrder() {
   const [count, setCount] = useState(1);
-  // 將localStorage的資料(cartDataLocalStorage)存為狀態cartData
-  // const [cartData, setCartData] = useState([]);
+  // 將localStorage的資料存為狀態mycart
+  const [mycart, setMycart] = useState([]);
+  const [mycartDisplay, setMycartDisplay] = useState([]);
 
   // 小分類、顏色的id對照名稱
   const colorTypes = ['白', '黑', '藍', '綠', 'x', '紅', '橘'];
@@ -27,29 +28,83 @@ function CartPreOrder() {
     '防寒衣',
   ];
 
-  let cartData = [];
-  if (!localStorage.getItem('商品列表的購物車資料')) {
-    return;
-  } else {
-    cartData = [...JSON.parse(localStorage.getItem('商品列表的購物車資料'))];
+  // let mycart = [];
+  // if (!localStorage.getItem('商品購物車資料')) {
+  //   return;
+  // } else {
+  //   mycart = [...JSON.parse(localStorage.getItem('商品購物車資料'))];
+  // }
+  // console.log('商品列表的購物車資料-Cart', mycart);
+
+  function getCartFromLocalStorage() {
+    const newCart = JSON.parse(localStorage.getItem('productCart') || '[]');
+    console.log('newCart', newCart);
+    setMycart(newCart);
   }
-  console.log('商品列表的購物車資料-Cart', cartData);
-  // setCartData(cartData);
-  // DidMount
-  // useEffect(function () {
-  //   // 顯示出localStorage的資料
-  //   let cartDataLocalStorage = [];
-  //   if (!localStorage.getItem('商品列表的購物車資料')) {
-  //     return;
-  //   } else {
-  //     cartDataLocalStorage = [
-  //       ...JSON.parse(localStorage.getItem('商品列表的購物車資料')),
-  //     ];
-  //   }
-  //   // const c = [...JSON.parse(localStorage.getItem('商品列表的購物車資料'))];
-  //   // setCartData(cartDataLocalStorage);
-  //   console.log('商品列表的購物車資料-Cart', cartData);
-  // }, []);
+
+  useEffect(() => {
+    getCartFromLocalStorage();
+  }, []);
+
+  // 模擬componentDidUpdate
+  useEffect(() => {
+    // mycartDisplay運算
+    let newMycartDisplay = [];
+
+    //尋找mycartDisplay
+    for (let i = 0; i < mycart.length; i++) {
+      //尋找mycartDisplay中有沒有此mycart[i].id
+      //有找到會返回陣列成員的索引值
+      //沒找到會返回-1
+      const index = newMycartDisplay.findIndex(
+        (value) => value.id === mycart[i].id
+      );
+      //有的話就數量+1
+      if (index !== -1) {
+        //每次只有加1個數量
+        //newMycartDisplay[index].amount++
+        //假設是加數量的
+        newMycartDisplay[index].amount += mycart[i].amount;
+      } else {
+        //沒有的話就把項目加入，數量為1
+        const newItem = { ...mycart[i] };
+        newMycartDisplay = [...newMycartDisplay, newItem];
+      }
+    }
+
+    console.log(newMycartDisplay);
+    setMycartDisplay(newMycartDisplay);
+  }, [mycart]);
+
+  // 更新購物車中的商品數量
+  const updateCartToLocalStorage = (item, isAdded = true) => {
+    console.log(item, isAdded);
+    const currentCart = JSON.parse(localStorage.getItem('productCart')) || [];
+
+    // find if the product in the localstorage with its id
+    const index = currentCart.findIndex((v) => v.id === item.id);
+
+    console.log('index', index);
+    // found: index! == -1
+    if (index > -1) {
+      isAdded ? currentCart[index].amount++ : currentCart[index].amount--;
+    }
+
+    localStorage.setItem('productCart', JSON.stringify(currentCart));
+
+    // 設定資料
+    setMycart(currentCart);
+  };
+
+  // 計算總價用的函式
+  const sum = (items) => {
+    let total = 0;
+    for (let i = 0; i < items.length; i++) {
+      total += items[i].amount * items[i].price;
+    }
+    return total;
+  };
+  // localStorage.removeItem('productCart');
 
   return (
     <>
@@ -66,7 +121,7 @@ function CartPreOrder() {
             衝浪商品購物車
           </div>
           <div className="d-flex justify-content-evenly">
-            <div className="d-flex align-items-center shadow py-2 cartStepsSigns borderRadius">
+            <div className="d-flex align-items-center shadow py-2 cartStepsSigns cartStepsSignsOrange borderRadius">
               <div className="fs-1 w-25 text-center">01</div>
               <div className="w-75">
                 確認清單及選擇付款、運送方式
@@ -99,65 +154,71 @@ function CartPreOrder() {
               <div className="p-4 border-bottom text-center">
                 <h1>購物車</h1>
               </div>
-              <div className="px-5 py-4">
-                <Figure className="d-flex align-items-center">
-                  <Figure.Image
-                    width={75}
-                    // height={350}
-                    alt="longboard1"
-                    src={longboard1}
-                    className="w-25 m-0"
-                  />
-                  <div className="w-50">
-                    <Figure.Caption>
-                      <p className="mb-0">Odysea Log x Evan Rossell</p>
-                    </Figure.Caption>
-                    <Figure.Caption>
-                      <p className="m-0">
-                        {smallCatTypes[cartData[0].small_cat_id - 1]}
-                      </p>
-                      <p className="m-0">
-                        顏色：{colorTypes[cartData[0].color_id - 1]}
-                      </p>
-                      <p className="mb-1">尺寸：{cartData[0].size} ft</p>
-                    </Figure.Caption>
-                    <Figure.Caption>
-                      <p className="m-0 fw-bold">
-                        NT {cartData[0].price * cartData[0].count}
-                      </p>
-                    </Figure.Caption>
-                  </div>
-                  <div className="w-25 d-flex justify-content-center align-items-center">
-                    <button
-                      type="button"
-                      className="btn btn-secondary border rounded-circle p-0 me-3 countButton"
-                      onClick={() => {
-                        if (count - 1 >= 1) setCount(count - 1);
-                      }}
-                    >
-                      <AiOutlineMinus
-                        size={18}
-                        color="#ffffff"
-                        className="text-center"
-                      />
-                    </button>
-                    {cartData[0].count}
-                    <button
-                      type="button"
-                      className="btn btn-secondary border rounded-circle p-0 ms-3 countButton"
-                      onClick={() => {
-                        setCount(count + 1);
-                      }}
-                    >
-                      <AiOutlinePlus
-                        size={18}
-                        color="#ffffff"
-                        className="text-center"
-                      />
-                    </button>
-                  </div>
-                </Figure>
-              </div>
+              {/* 購物車內的商品細節 */}
+              {mycart.map((item, index) => {
+                return (
+                  <>
+                    <div className="px-5 py-4">
+                      <Figure className="d-flex align-items-center">
+                        <Figure.Image
+                          width={150}
+                          height={150}
+                          alt={item.product_no}
+                          src={`${IMAGE_URL}/products/${item.image1}`}
+                          className="m-0 cartImg"
+                        />
+                        <div className="ps-4 cartDetails">
+                          <Figure.Caption>
+                            <p className="mb-1 fs-3 fw-bold">{item.name}</p>
+                          </Figure.Caption>
+                          <Figure.Caption>
+                            <p className="m-0">{item.product_no}</p>
+                            <p className="m-0">
+                              {smallCatTypes[item.small_cat_id - 1]}
+                            </p>
+                            <p className="m-0">顏色：{item.color_id}</p>
+                            <p className="mb-1">尺寸：{item.size} ft</p>
+                          </Figure.Caption>
+                          <Figure.Caption>
+                            <p className="m-0 fw-bold">
+                              NT {item.price.toLocaleString()}
+                            </p>
+                          </Figure.Caption>
+                        </div>
+                        <div className="w-25 d-flex justify-content-center align-items-center">
+                          <button
+                            type="button"
+                            className="btn btn-secondary border rounded-circle p-0 me-3 countButton"
+                            onClick={() => {
+                              if (count - 1 >= 1) setCount(count - 1);
+                            }}
+                          >
+                            <AiOutlineMinus
+                              size={18}
+                              color="#ffffff"
+                              className="text-center"
+                            />
+                          </button>
+                          {item.count}
+                          <button
+                            type="button"
+                            className="btn btn-secondary border rounded-circle p-0 ms-3 countButton"
+                            onClick={() => {
+                              setCount(count + 1);
+                            }}
+                          >
+                            <AiOutlinePlus
+                              size={18}
+                              color="#ffffff"
+                              className="text-center"
+                            />
+                          </button>
+                        </div>
+                      </Figure>
+                    </div>
+                  </>
+                );
+              })}
             </div>
             {/* 付款及運送方式 */}
             <div className="col-5 borderRadius p-0 ms-4 shadow">

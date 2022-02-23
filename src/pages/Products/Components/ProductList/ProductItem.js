@@ -64,7 +64,7 @@ function ProductItem(props) {
           <p className="mb-2">{smallCatTypes[small_cat_id - 1]}</p>
         </Figure.Caption>
         <Figure.Caption className="d-flex justify-content-center">
-          <p className="fw-bold">NT {price}</p>
+          <p className="fw-bold">NT {price.toLocaleString()}</p>
         </Figure.Caption>
       </Figure>
     </>

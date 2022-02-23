@@ -5,13 +5,16 @@
 .borderRadius {
   border-radius: 8px;
 }
+.cursorPointer {
+  cursor: pointer;
+}
 
 // header 三步驟
 .cartStepsSigns {
   background-color: $funwave-lightgray;
   width: 29%;
 }
-.cartStepsSigns:hover {
+.cartStepsSignsOrange {
   background: $orange;
 }
 
@@ -25,4 +28,10 @@
 }
 .cartNextBtn {
   width: 200px;
+}
+.cartImg {
+  width: 32%;
+}
+.cartDetails {
+  width: 43%;
 }

@@ -79,14 +79,17 @@ function MyNavbar() {
               </Nav.Link>
               {/* 登入/登出判斷 */}
               {auth ? (
-                <Nav.Link
-                  className="btnLogin mx-2"
-                  as={NavLink}
-                  to="/login"
-                  onClick={handleLogout}
-                >
-                  登出
-                </Nav.Link>
+                <>
+                  <p>welcome</p>
+                  <Nav.Link
+                    className="btnLogin mx-2"
+                    as={NavLink}
+                    to="/login"
+                    onClick={handleLogout}
+                  >
+                    登出
+                  </Nav.Link>
+                </>
               ) : (
                 <Nav.Link className="btnLogin mx-2" as={NavLink} to="/login">
                   登入/註冊

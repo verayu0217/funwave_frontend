@@ -9,18 +9,18 @@ import { IMAGE_URL } from '../../utils/config';
 import './Member.scss';
 // import titleImgMember from '../../data/images/greenwave64x24.png';
 
-function MemberOrderDetails(props) {
+function MemberCourseOrderDetails(props) {
   // const [open, setOpen] = useState(false);
   const [data, setData] = useState([]);
   // // 為了處理網址
   // let navigate = useNavigate();
   // // 把網址上的 :orderId 拿出來
-  const { orderId } = useParams();
+  const { courseId } = useParams();
 
   useEffect(() => {
     let getMemberOrderDetails = async () => {
       let response = await axios.get(
-        `${API_URL}/member/member-order/${orderId}`
+        `${API_URL}/member/member-courseorder/${courseId}`
       );
       setData(response.data);
     };
@@ -39,7 +39,7 @@ function MemberOrderDetails(props) {
         </div>
         <div className="row d-flex justify-content-center">
           <h2 className="mb-5 titleMember text-center">
-            {orderId}&nbsp;訂單內容
+            {courseId}&nbsp;訂單內容
           </h2>
           {data.map((item, index) => {
             if (index == 0)
@@ -74,15 +74,15 @@ function MemberOrderDetails(props) {
                         <tr>
                           <td className="d-flex tbInfoMember">
                             <img
-                              src={`${IMAGE_URL}/products/${item.image1}`}
+                              src={`${IMAGE_URL}/products/${item.product_image}`}
                               className="orderImgMember"
                               style={{ width: '100px', height: 'auto' }}
                             />
                           </td>
                           <td>
                             <div className="d-flex align-items-center flex-column">
-                              <p>{item.name}</p>
-                              <p className="m-0">SIZE: {item.size}</p>
+                              <p>{item.product_name}</p>
+                              <p className="m-0">SIZE: {item.product_size}</p>
                             </div>
                           </td>
                           <td>
@@ -94,14 +94,16 @@ function MemberOrderDetails(props) {
                           </td>
                           <td>
                             <p className="m-0" id="priceTotalId">
-                              NT${item.price}
+                              NT${item.product_price}
                             </p>
                             <p className="text-decoration-line-through remarkMember">
-                              NT${item.price + 1000}
+                              NT${item.product_price + 1000}
                             </p>
                           </td>
                           <td id="numId">{item.quantity}</td>
-                          <td id="total">NT${item.price * item.quantity}</td>
+                          <td id="total">
+                            NT${item.product_price * item.quantity}
+                          </td>
                         </tr>
                       );
                     })}
@@ -283,4 +285,4 @@ function MemberOrderDetails(props) {
   );
 }
 
-export default MemberOrderDetails;
+export default MemberCourseOrderDetails;

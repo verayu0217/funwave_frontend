@@ -1,25 +1,14 @@
-import React, { useState, usestate } from 'react';
-import { Figure, Row, Col } from 'react-bootstrap';
+import React, { useEffect, useState } from 'react';
+import { Row, Col } from 'react-bootstrap';
 import ControlledTabs from './ControlledTabs';
+import Step2Board from './Step2Board';
 import greenTitle from '../../data/images/greenTitle.svg';
-// import fishboardHole from '../../data/images/customize/fishboardHole.png';
-// import funboardHole from '../../data/images/customize/funboardHole.png';
-// import gunboardHole from '../../data/images/customize/gunboardHole.png';
-import longboardHole from '../../data/images/customize/longboardHole.png';
-import goodLuck from '../../data/images/customize/surfboardpicture/goodLuck.png';
+
+// import goodLuck from '../../data/images/customize/surfboardpicture/goodLuck.png';
 
 function Step2(props) {
-  const { step, setStep } = props;
-  // const { surfingBoard, setSurfingBoard } = props;
-  const [boardColor, setBoardColor] = useState({});
-  const [boardColor2, setBoardColor2] = useState({});
-
-  function changeColor(e) {
-    setBoardColor({ backgroundColor: e.target.value });
-  }
-  function changeColor2(e) {
-    setBoardColor2({ backgroundColor: e.target.value });
-  }
+  const { step, setStep, surfingBoard, setSurfingBoard, pattern, setPattern } =
+    props;
 
   return (
     <div className="container pb-3">
@@ -44,39 +33,15 @@ function Step2(props) {
         </div>
       </div>
       <hr className="mb-3 mt-0" />
-      {/* 以下假資料 */}
+      {/* 內容 */}
       <Row>
-        <Col lg="7">
-          <Row className="gx-0">
-            <Col lg="2">魚板</Col>
-            <Col lg="5" className="boarder">
-              <p className="m-0 text-center">正面</p>
-              <Figure style={boardColor} className="position-relative">
-                <Figure.Image
-                  alt="fishboardHole"
-                  src={longboardHole}
-                  className="m-0"
-                />
-                <Figure.Image
-                  alt="goodLuck"
-                  src={goodLuck}
-                  className="m-0 upperPictureCu position-absolute top-50 start-0"
-                />
-              </Figure>
-            </Col>
-            <Col lg="5" className="boarder">
-              <p className="m-0 text-center">反面</p>
-              <Figure className="position-relative">
-                <Figure.Image
-                  alt="fishboardHole"
-                  src={longboardHole}
-                  className="m-0"
-                />
-              </Figure>
-            </Col>
-          </Row>
-        </Col>
-
+        {/* 左邊 */}
+        <Step2Board
+          surfingBoard={surfingBoard}
+          setSurfingBoard={setSurfingBoard}
+          pattern={pattern}
+          setPattern={setPattern}
+        />
         {/* 右邊 */}
 
         <Col lg="5" className="text-center">
@@ -90,8 +55,10 @@ function Step2(props) {
                 <input
                   type="color"
                   className="p-0"
-                  // value="#ffffff"
-                  onChange={changeColor}
+                  value={surfingBoard.front}
+                  onChange={(e) => {
+                    setSurfingBoard({ ...surfingBoard, front: e.target.value });
+                  }}
                 />
               </Col>
               <Col>
@@ -99,7 +66,10 @@ function Step2(props) {
                 <input
                   type="color"
                   className="p-0"
-                  // onChange={changeColor2}
+                  value={surfingBoard.back}
+                  onChange={(e) => {
+                    setSurfingBoard({ ...surfingBoard, back: e.target.value });
+                  }}
                 />
               </Col>
             </Row>
@@ -107,11 +77,24 @@ function Step2(props) {
             <hr />
             <p>請選擇圖樣</p>
 
-            <ControlledTabs />
+            <ControlledTabs pattern={pattern} setPattern={setPattern} />
 
             <Row className="mt-2">
               <Col>
-                <button className="btn btn-secondary btnCu">清除重填</button>
+                <button
+                  className="btn btn-secondary btnCu"
+                  onClick={() => {
+                    setSurfingBoard({
+                      ...surfingBoard,
+                      front: '#ffffff',
+                      back: '#ffffff',
+                      frontpattern: '',
+                      backpattern: '',
+                    });
+                  }}
+                >
+                  清除重填
+                </button>
               </Col>
               <Col>
                 <button

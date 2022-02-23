@@ -1,83 +1,113 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Figure } from 'react-bootstrap';
 import { IMAGE_URL } from '../../../../utils/config';
 
 function ProductDetailsSmallImgs(props) {
-  const { product } = props;
+  const {
+    product,
+    clickSmallImage,
+    setClickSmallImage,
+    chosenProductOrder,
+    setChosenProductOrder,
+  } = props;
 
   const image1 = (
-    <>
-      <Figure>
+    <div className="cursorPointer">
+      <Figure
+        onClick={() => {
+          setClickSmallImage('image1');
+        }}
+      >
         <Figure.Image
           width={75}
           height={75}
-          alt={`${product[0].product_no}`}
-          src={`${IMAGE_URL}/products/${product[0].image1}`}
+          alt={`${
+            product[chosenProductOrder > 0 ? chosenProductOrder : 0].product_no
+          }`}
+          src={`${IMAGE_URL}/products/${
+            product[chosenProductOrder > 0 ? chosenProductOrder : 0].image1
+          }`}
           className="border border-dark p-1 m-0"
         />
       </Figure>
-    </>
+    </div>
   );
 
   const image2 = (
-    <>
-      <Figure>
+    <div className="cursorPointer">
+      <Figure
+        onClick={() => {
+          setClickSmallImage('image2');
+        }}
+      >
         <Figure.Image
           width={75}
           height={75}
-          alt={`${product[0].product_no}`}
-          src={`${IMAGE_URL}/products/${product[0].image2}`}
+          alt={`${
+            product[chosenProductOrder > 0 ? chosenProductOrder : 0].product_no
+          }`}
+          src={`${IMAGE_URL}/products/${
+            product[chosenProductOrder > 0 ? chosenProductOrder : 0].image2
+          }`}
           className="border border-dark p-1 m-0"
         />
       </Figure>
-    </>
+    </div>
   );
   const image3 = (
-    <>
-      <Figure>
+    <div className="cursorPointer">
+      <Figure
+        onClick={() => {
+          setClickSmallImage('image3');
+        }}
+      >
         <Figure.Image
           width={75}
           height={75}
-          alt={`${product[0].product_no}`}
-          src={`${IMAGE_URL}/products/${product[0].image3}`}
+          alt={`${
+            product[chosenProductOrder > 0 ? chosenProductOrder : 0].product_no
+          }`}
+          src={`${IMAGE_URL}/products/${
+            product[chosenProductOrder > 0 ? chosenProductOrder : 0].image3
+          }`}
           className="border border-dark p-1 m-0"
         />
       </Figure>
-    </>
+    </div>
   );
   const image4 = (
-    <>
-      <Figure>
+    <div className="cursorPointer">
+      <Figure
+        onClick={() => {
+          setClickSmallImage('image4');
+        }}
+      >
         <Figure.Image
           width={75}
           height={75}
-          alt={`${product[0].product_no}`}
-          src={`${IMAGE_URL}/products/${product[0].image4}`}
+          alt={`${
+            product[chosenProductOrder > 0 ? chosenProductOrder : 0].product_no
+          }`}
+          src={`${IMAGE_URL}/products/${
+            product[chosenProductOrder > 0 ? chosenProductOrder : 0].image4
+          }`}
           className="border border-dark p-1 m-0"
         />
       </Figure>
-    </>
+    </div>
   );
-  const image5 = (
-    <>
-      <Figure>
-        <Figure.Image
-          width={75}
-          height={75}
-          alt={`${product[0].product_no}`}
-          src={`${IMAGE_URL}/products/${product[0].image5}`}
-          className="border border-dark p-1 m-0"
-        />
-      </Figure>
-    </>
-  );
+  // console.log('clickSmallImage', clickSmallImage);
+
   return (
     <>
-      {product[0].image1 !== '0' && image1}
-      {product[0].image2 !== '0' && image2}
-      {product[0].image3 !== '0' && image3}
-      {product[0].image4 !== '0' && image4}
-      {/* {product[0].image5 !== '0' && image5} */}
+      {product[chosenProductOrder > 0 ? chosenProductOrder : 0].image1 !==
+        '0' && image1}
+      {product[chosenProductOrder > 0 ? chosenProductOrder : 0].image2 !==
+        '0' && image2}
+      {product[chosenProductOrder > 0 ? chosenProductOrder : 0].image3 !==
+        '0' && image3}
+      {product[chosenProductOrder > 0 ? chosenProductOrder : 0].image4 !==
+        '0' && image4}
     </>
   );
 }

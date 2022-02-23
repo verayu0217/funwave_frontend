@@ -7,7 +7,9 @@ import axios from 'axios';
 import { useAuth } from '../../../context/auth';
 import { API_URL } from '../../../utils/config';
 import { ERR_MSG } from '../../../utils/error';
+import Swal from 'sweetalert2';
 import './memberLogin.scss';
+import GoogleLoginFunwave from './GoogleLoginFunwave';
 
 function Login() {
   const { auth, setAuth } = useAuth();
@@ -39,12 +41,16 @@ function Login() {
 
       setAuth(response.data.data); // 把登入後 member 資料存回 context 讓其他地方可以用
       setIsLogin(true);
+      setMember({ ...member, email: '', password: '' });
       console.log(isLogin);
     } catch (e) {
       if (e.response) {
         console.error('測試登入', ERR_MSG[e.response.data.code]);
+        setMember({ ...member, email: '', password: '' });
+        Swal.fire(`${e.response.data.msg}\n請重新登入`);
       } else {
         console.error(e);
+        Swal.fire(`伺服器錯誤`);
       }
     }
   }
@@ -154,6 +160,7 @@ function Login() {
                   <FcGoogle className="mx-2 googleLogin" />
                 </a>
               </li>
+              <li>{/* <GoogleLoginFunwave /> */}</li>
               <Modal showModal={showModal} setshowModal={setshowModal} />
             </ul>
           </form>

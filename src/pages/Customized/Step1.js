@@ -1,5 +1,6 @@
 import React, { usestate } from 'react';
 import { Figure } from 'react-bootstrap';
+import Swal from 'sweetalert2';
 // import { Link } from 'react-router-dom';
 // import { API_URL, IMAGE_URL } from '../../utils/config';
 import greenTitle from '../../data/images/greenTitle.svg';
@@ -9,8 +10,17 @@ import gunboard from '../../data/images/customize/gunboardChoose.png';
 import longboard from '../../data/images/customize/longboardChoose.png';
 
 function Step1(props) {
-  const { step, setStep } = props;
-  const { surfingBoard, setSurfingBoard } = props;
+  const { step, setStep, surfingBoard, setSurfingBoard } = props;
+
+  function nextStep() {
+    if (surfingBoard.size === '') {
+      setStep({ ...step, step1: true, step2: '' });
+      Swal.fire('請選擇衝浪板');
+    } else {
+      setStep({ ...step, step1: '', step2: true });
+    }
+  }
+
   return (
     <div className="container mb-0 vh-100">
       <div className="text-secondary h1 text-center position-relative">
@@ -24,9 +34,7 @@ function Step1(props) {
         STEP1 選擇衝浪板外型
         <button
           className="btn btn-secondary position-absolute my-2 end-0"
-          onClick={() => {
-            setStep({ ...step, step1: '', step2: true });
-          }}
+          onClick={nextStep}
         >
           下一步
         </button>
@@ -81,14 +89,7 @@ function Step1(props) {
             setSurfingBoard({ ...surfingBoard, size: 3 });
           }}
         >
-          <Figure
-            // className={
-            //   surfingBoard.size === 3
-            //     ? 'align-self-end border border-primary'
-            //     : 'align-self-end'
-            // }
-            className="align-self-end"
-          >
+          <Figure className="m-auto">
             <Figure.Image width={70} alt="64x338" src={gunboard} />
             <Figure.Caption className="text-center text-black fw-bold pt-3">
               槍板
