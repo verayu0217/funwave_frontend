@@ -26,6 +26,7 @@ import MemberInfo from './pages/Members/MemberInfo';
 import MemberMessage from './pages/Members/MemberMessage';
 import MemberPoint from './pages/Members/MemberPoint';
 import MemberShoppingGold from './pages/Members/MemberShoppingGold';
+import MemberCourseOrder from './pages/Members/MemberCourseOrder';
 //課程
 
 import CourseCart from './pages/Course/CourseCart';
@@ -108,6 +109,10 @@ function App() {
           <Route
             path="/member/member-shopping-gold"
             element={<MemberShoppingGold />}
+          />
+          <Route
+            path="/member/member-courseorder"
+            element={<MemberCourseOrder />}
           />
           <Route path="/member/member-collect" element={<MemberCollect />} />
           <Route path="/member/member-message" element={<MemberMessage />} />
