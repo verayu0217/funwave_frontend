@@ -4,14 +4,14 @@ import { Link } from 'react-router-dom';
 import './Cart.scss';
 import { IMAGE_URL } from '../../../utils/config';
 import greenTitle from '../../../data/images/greenTitle.svg';
-
 // react-icons
 import { AiOutlinePlus, AiOutlineMinus } from 'react-icons/ai';
+import { CgTrash } from 'react-icons/cg';
 
 function CartPreOrder() {
-  const [count, setCount] = useState(1);
   // 將localStorage的資料存為狀態mycart
   const [mycart, setMycart] = useState([]);
+  // 整理重複的mycart為mycartDisplay
   const [mycartDisplay, setMycartDisplay] = useState([]);
 
   // 小分類、顏色的id對照名稱
@@ -28,71 +28,59 @@ function CartPreOrder() {
     '防寒衣',
   ];
 
-  // let mycart = [];
-  // if (!localStorage.getItem('商品購物車資料')) {
-  //   return;
-  // } else {
-  //   mycart = [...JSON.parse(localStorage.getItem('商品購物車資料'))];
-  // }
-  // console.log('商品列表的購物車資料-Cart', mycart);
-
+  // 模擬componentDidMount
+  // 提取LocalStorage的資料
   function getCartFromLocalStorage() {
+    // 如果購物車內沒資料，就給空陣列
     const newCart = JSON.parse(localStorage.getItem('productCart') || '[]');
     console.log('newCart', newCart);
     setMycart(newCart);
   }
-
   useEffect(() => {
     getCartFromLocalStorage();
   }, []);
 
   // 模擬componentDidUpdate
+  // 整理購物車中product_no相同的品項
   useEffect(() => {
-    // mycartDisplay運算
     let newMycartDisplay = [];
 
-    //尋找mycartDisplay
+    //尋找mycartDisplay中有沒有和mycart[i]同product_no
     for (let i = 0; i < mycart.length; i++) {
-      //尋找mycartDisplay中有沒有此mycart[i].id
       //有找到會返回陣列成員的索引值
       //沒找到會返回-1
       const index = newMycartDisplay.findIndex(
-        (value) => value.id === mycart[i].id
+        (value) => value.product_no === mycart[i].product_no
       );
-      //有的話就數量+1
+      //有的話就相加其數量
       if (index !== -1) {
-        //每次只有加1個數量
-        //newMycartDisplay[index].amount++
-        //假設是加數量的
-        newMycartDisplay[index].amount += mycart[i].amount;
+        newMycartDisplay[index].count += mycart[i].count;
       } else {
-        //沒有的話就把項目加入，數量為1
+        //沒有的話就把項目加入mycartDisplay
         const newItem = { ...mycart[i] };
         newMycartDisplay = [...newMycartDisplay, newItem];
       }
     }
 
-    console.log(newMycartDisplay);
+    console.log('newMycartDisplay', newMycartDisplay);
     setMycartDisplay(newMycartDisplay);
   }, [mycart]);
 
   // 更新購物車中的商品數量
-  const updateCartToLocalStorage = (item, isAdded = true) => {
+  const updateCartLocalStorage = (item, isAdded = true) => {
     console.log(item, isAdded);
     const currentCart = JSON.parse(localStorage.getItem('productCart')) || [];
 
-    // find if the product in the localstorage with its id
-    const index = currentCart.findIndex((v) => v.id === item.id);
+    const index = currentCart.findIndex(
+      (v) => v.product_no === item.product_no
+    );
 
-    console.log('index', index);
-    // found: index! == -1
+    // 排除沒找到的情況 index = -1
     if (index > -1) {
-      isAdded ? currentCart[index].amount++ : currentCart[index].amount--;
+      isAdded ? currentCart[index].count++ : currentCart[index].count--;
     }
 
     localStorage.setItem('productCart', JSON.stringify(currentCart));
-
-    // 設定資料
     setMycart(currentCart);
   };
 
@@ -100,7 +88,7 @@ function CartPreOrder() {
   const sum = (items) => {
     let total = 0;
     for (let i = 0; i < items.length; i++) {
-      total += items[i].amount * items[i].price;
+      total += items[i].count * items[i].price;
     }
     return total;
   };
@@ -155,10 +143,10 @@ function CartPreOrder() {
                 <h1>購物車</h1>
               </div>
               {/* 購物車內的商品細節 */}
-              {mycart.map((item, index) => {
+              {mycartDisplay.map((item, index) => {
                 return (
                   <>
-                    <div className="px-5 py-4">
+                    <div className="px-5 p-4 position-relative">
                       <Figure className="d-flex align-items-center">
                         <Figure.Image
                           width={150}
@@ -169,28 +157,33 @@ function CartPreOrder() {
                         />
                         <div className="ps-4 cartDetails">
                           <Figure.Caption>
-                            <p className="mb-1 fs-3 fw-bold">{item.name}</p>
+                            <p className="mb-1 fs-3 fw-bold fontBlack">
+                              {item.name}
+                            </p>
                           </Figure.Caption>
                           <Figure.Caption>
                             <p className="m-0">{item.product_no}</p>
                             <p className="m-0">
                               {smallCatTypes[item.small_cat_id - 1]}
                             </p>
-                            <p className="m-0">顏色：{item.color_id}</p>
+                            <p className="m-0">
+                              顏色：{colorTypes[item.color_id - 1]}
+                            </p>
                             <p className="mb-1">尺寸：{item.size} ft</p>
                           </Figure.Caption>
                           <Figure.Caption>
-                            <p className="m-0 fw-bold">
+                            <p className="m-0 fw-bold fontBlack">
                               NT {item.price.toLocaleString()}
                             </p>
                           </Figure.Caption>
                         </div>
-                        <div className="w-25 d-flex justify-content-center align-items-center">
+                        <div className="w-25 d-flex justify-content-start align-items-center">
                           <button
                             type="button"
                             className="btn btn-secondary border rounded-circle p-0 me-3 countButton"
                             onClick={() => {
-                              if (count - 1 >= 1) setCount(count - 1);
+                              if (item.count === 1) return;
+                              updateCartLocalStorage(item, false);
                             }}
                           >
                             <AiOutlineMinus
@@ -203,9 +196,7 @@ function CartPreOrder() {
                           <button
                             type="button"
                             className="btn btn-secondary border rounded-circle p-0 ms-3 countButton"
-                            onClick={() => {
-                              setCount(count + 1);
-                            }}
+                            onClick={() => updateCartLocalStorage(item, true)}
                           >
                             <AiOutlinePlus
                               size={18}
@@ -213,6 +204,11 @@ function CartPreOrder() {
                               className="text-center"
                             />
                           </button>
+                          <CgTrash
+                            size={20}
+                            className="text-center position-absolute trash"
+                          />
+                          {/* <i className="fas fa-trash-alt position-absolute trash"></i> */}
                         </div>
                       </Figure>
                     </div>
@@ -229,7 +225,7 @@ function CartPreOrder() {
                 <div className="row">
                   <div className="col-1"></div>
                   <div className="col-5">商品總金額</div>
-                  <div className="col-5 text-end">15,000</div>
+                  <div className="col-5 text-end">{sum(mycartDisplay)}</div>
                   <div className="col-1"></div>
                 </div>
                 <div className="row">
@@ -241,7 +237,9 @@ function CartPreOrder() {
                 <div className="row">
                   <div className="col-1"></div>
                   <div className="col-5">運費</div>
-                  <div className="col-5 text-end">- 100</div>
+                  <div className="col-5 text-end">
+                    -{sum(mycartDisplay) > 20000 ? 0 : 120}
+                  </div>
                   <div className="col-1"></div>
                 </div>
                 <div className="row">
@@ -252,10 +250,12 @@ function CartPreOrder() {
                 </div>
                 <div className="row mt-5">
                   <div className="col-1"></div>
-                  <div className="col-6 d-flex justify-content-end align-items-end">
+                  <div className="col-5 d-flex justify-content-end align-items-end">
                     總金額：
                   </div>
-                  <div className="col-4 text-end h2 m-0">NT 15,000</div>
+                  <div className="col-5 text-end h2 m-0">
+                    NT {sum(mycartDisplay).toLocaleString()}
+                  </div>
                   <div className="col-1"></div>
                 </div>
               </div>
