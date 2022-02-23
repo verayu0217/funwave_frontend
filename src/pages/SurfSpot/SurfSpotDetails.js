@@ -12,7 +12,7 @@ import { ImCross } from 'react-icons/im';
 import './surfSpotDetails.scss';
 
 function SurfSpotDetails(props) {
-  const { showSurfSpotDetails, setshowSurfSpotDetails } = props;
+  const { showSurfSpotDetails, setshowSurfSpotDetails, spotId } = props;
   const [data, setData] = useState([]);
   const surfSpotDetailsRef = useRef();
   const closeshowSurfSpotDetails = (e) => {
@@ -25,10 +25,21 @@ function SurfSpotDetails(props) {
     let getSurfspot = async () => {
       // http://localhost:3002/api/
       let response = await axios.get(`${API_URL}/surfspot/content`);
-      setData(response.data);
+      let findspotContent = response.data.filter((v) => {
+        return v.id === spotId;
+      });
+      console.log(findspotContent);
+
+      if (!findspotContent) {
+        setData(response.data);
+      } else {
+        setData(findspotContent);
+      }
+
+      // console.log(response.data);
     };
     getSurfspot();
-  }, []);
+  }, [spotId]);
 
   dayjs.locale('zh-tw');
   const now = dayjs(new Date()).format('YYYY/MM/DD 星期dd HH:mm');
@@ -52,7 +63,7 @@ function SurfSpotDetails(props) {
                   <ImCross className="cross" />
                 </div>
                 <div className="row gx-0">
-                  {data.map((surfspot) => {
+                  {data.map((surfspot, i) => {
                     return (
                       <div
                         key={surfspot.id}
@@ -115,7 +126,7 @@ function SurfSpotDetails(props) {
                           <FaLocationArrow
                             size={20}
                             color="#17a8a2"
-                            className="mb-2"
+                            className="mb-2 NNW"
                           />
                         </Col>
                         <Col className="text-center">9.5m/s</Col>

@@ -18,7 +18,7 @@ function CircleRight(props) {
       <div className="regionalERadio">
         <input
           className="input"
-          type="radio"
+          type="checkbox"
           name="tag"
           id="regionalE"
           value="E"
@@ -34,7 +34,7 @@ function CircleRight(props) {
       <div className="regionalENRadio">
         <input
           className="input"
-          type="radio"
+          type="checkbox"
           name="tag"
           id="regionalEN"
           value="EN"
@@ -50,7 +50,7 @@ function CircleRight(props) {
       <div className="regionalNRadio">
         <input
           className="input"
-          type="radio"
+          type="checkbox"
           name="tag"
           id="regionalN"
           value="N"
@@ -66,7 +66,7 @@ function CircleRight(props) {
       <div className="regionalWRadio">
         <input
           className="input"
-          type="radio"
+          type="checkbox"
           name="tag"
           id="regionalW"
           value="W"
@@ -82,7 +82,7 @@ function CircleRight(props) {
       <div className="regionalSRadio">
         <input
           className="input"
-          type="radio"
+          type="checkbox"
           name="tag"
           id="regionalS"
           value="S"

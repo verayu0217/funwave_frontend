@@ -18,6 +18,7 @@ function ProductAddCart(props) {
   const [size, setSize] = useState('');
   const [color, setColor] = useState('');
   const [mycart, setMycart] = useState([]);
+  const [cartData, setCartData] = useState([]);
 
   // 小分類、品牌的id對照名稱
   const smallCatTypes = [
@@ -55,6 +56,7 @@ function ProductAddCart(props) {
     let product_filter =
       productNoArr[0] + '-' + productNoArr[1] + '-' + productNoArr[2];
     item.product_filter = product_filter;
+
     return item;
   });
   // 去掉重複顏色的子貨號
@@ -68,12 +70,12 @@ function ProductAddCart(props) {
     for (let i in lookupObject) {
       newArray.push(lookupObject[i]);
     }
+
     return newArray;
   }
   const colorProduct = removeDuplicates(productMap, 'product_filter');
-  console.log('colorProduct', colorProduct);
-
-  console.log('color', color);
+  // console.log('colorProduct', colorProduct);
+  // console.log('color', color);
 
   // cartData資料待存進localStorage
   // let cartData = [
@@ -94,7 +96,7 @@ function ProductAddCart(props) {
   // console.log('商品列表的購物車資料-ProductDetail', cartData);
 
   const updateCartToLocalStorage = (item) => {
-    const currentCart = JSON.parse(localStorage.getItem('cart')) || [];
+    const currentCart = JSON.parse(localStorage.getItem('productCart')) || [];
 
     // find if the product in the localstorage with its id
     // const index = currentCart.findIndex((v) => v.id === item.id);
@@ -110,11 +112,12 @@ function ProductAddCart(props) {
     // }
 
     currentCart.push(item);
-    localStorage.setItem('cart', JSON.stringify(currentCart));
-    console.log('商品購物車資料-ProductDetail', currentCart);
+    localStorage.setItem('productCart', JSON.stringify(currentCart));
+    console.log('ProductDetail-currentCart', currentCart);
 
     // 設定資料
     setMycart(currentCart);
+    console.log('mycart', mycart);
     // setProductName('產品：' + item.name + '已成功加入購物車');
   };
 
@@ -233,7 +236,7 @@ function ProductAddCart(props) {
         onClick={() => {
           updateCartToLocalStorage({
             product_no: '',
-            name: '',
+            name: '1',
             price: '',
             stock: '',
             size: '',

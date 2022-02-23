@@ -11,6 +11,7 @@ import MemberShoppingGold from './MemberShoppingGold';
 import MemberCoupon from './MemberCoupon';
 import MemberMessage from './MemberMessage';
 import MemberCollect from './MemberCollect';
+import MemberCourseOrder from './MemberCourseOrder';
 
 function Member() {
   return (
@@ -49,6 +50,14 @@ function Member() {
                     eventKey="third"
                   >
                     訂單查詢
+                  </Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                  <Nav.Link
+                    className="fs-24Member linkWidthMember mb-4"
+                    eventKey="eighth"
+                  >
+                    課程查詢
                   </Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
@@ -107,6 +116,9 @@ function Member() {
                 </Tab.Pane>
                 <Tab.Pane eventKey="seventh">
                   <MemberMessage />
+                </Tab.Pane>
+                <Tab.Pane eventKey="eighth">
+                  <MemberCourseOrder />
                 </Tab.Pane>
               </Tab.Content>
             </Col>
