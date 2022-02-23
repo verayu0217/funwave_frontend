@@ -45,7 +45,7 @@ function ProductDetails(props) {
       product_valid: 0,
     },
   ]);
-  const [chosenProductOrder, setChosenProductOrder] = useState(0); // 點選尺寸、顏色後得出的子貨號(product_no)順序
+  const [chosenProductOrder, setChosenProductOrder] = useState(-1); // 點選尺寸、顏色後得出的子貨號(product_no)順序
   const [clickSmallImage, setClickSmallImage] = useState('image1'); // 點選哪張小圖
   const [loading, setLoading] = useState(false);
   const [count, setCount] = useState(1); // 加入購物車的數量

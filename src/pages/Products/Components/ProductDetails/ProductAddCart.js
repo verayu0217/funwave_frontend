@@ -57,10 +57,12 @@ function ProductAddCart(props) {
   });
 
   // 讓畫面有顏色btn的值
+  // 整理product為顏色不重複的colorProduct
   const colorProduct = _.uniqBy(product, 'color_id');
-  // console.log('colorProduct', colorProduct);
 
-  console.log('product', product);
+  console.log('ProductAddCart.js - product', product);
+  console.log('ProductAddCart.js - size', size);
+  console.log('ProductAddCart.js - colorId', colorId);
 
   useEffect(() => {
     // 依據尺寸、顏色找到對應的子貨號(product_no)
@@ -69,8 +71,8 @@ function ProductAddCart(props) {
     );
     // console.log('chosenProduct', chosenProduct);
 
-    setChosenProductOrder(product.indexOf(chosenProduct[0]) || 0);
-    console.log('chosenProductOrder', chosenProductOrder);
+    setChosenProductOrder(product.indexOf(chosenProduct[0]));
+    console.log('ProductAddCart.js - chosenProductOrder', chosenProductOrder);
   }, [colorId, size, chosenProductOrder]);
 
   // cartData資料待存進localStorage
@@ -109,16 +111,13 @@ function ProductAddCart(props) {
 
     currentCart.push(item);
     localStorage.setItem('productCart', JSON.stringify(currentCart));
-    console.log('ProductDetail-currentCart', currentCart);
+    // console.log('ProductDetail-currentCart', currentCart);
 
     // 設定資料
     setMycart(currentCart);
-    console.log('mycart', mycart);
+    // console.log('mycart', mycart);
     // setProductName('產品：' + item.name + '已成功加入購物車');
   };
-
-  console.log('size', size);
-  console.log('colorId', colorId);
 
   return (
     <>

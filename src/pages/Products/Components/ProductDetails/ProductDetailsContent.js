@@ -166,8 +166,15 @@ function ProductDetailsContent(props) {
           <Figure.Image
             width={450}
             height={450}
-            alt={`${product[0].product_no}`}
-            src={`${IMAGE_URL}/products/${product[0][clickSmallImage]}`}
+            alt={`${
+              product[chosenProductOrder > 0 ? chosenProductOrder : 0]
+                .product_no
+            }`}
+            src={`${IMAGE_URL}/products/${
+              product[chosenProductOrder > 0 ? chosenProductOrder : 0][
+                clickSmallImage
+              ]
+            }`}
           />
         </Figure>
       </div>
