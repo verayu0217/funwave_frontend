@@ -15,7 +15,13 @@ import {
 } from 'react-icons/ai';
 
 function ProductDetailsContent(props) {
-  const { product, clickSmallImage, setClickSmallImage } = props;
+  const {
+    product,
+    clickSmallImage,
+    setClickSmallImage,
+    chosenProductOrder,
+    setChosenProductOrder,
+  } = props;
 
   // 小分類、品牌、材質、衝浪板舵的id對照名稱
   const smallCatTypes = [
@@ -151,6 +157,8 @@ function ProductDetailsContent(props) {
             product={product}
             clickSmallImage={clickSmallImage}
             setClickSmallImage={setClickSmallImage}
+            chosenProductOrder={chosenProductOrder}
+            setChosenProductOrder={setChosenProductOrder}
           />
           <AiOutlineDown size={22} color="#333333" className="" />
         </div>

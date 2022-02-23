@@ -15,8 +15,17 @@ import {
 import { IMAGE_URL } from '../../../../utils/config';
 
 function ProductAddCart(props) {
-  const { product, count, setCount, size, setSize, colorId, setColorId } =
-    props;
+  const {
+    product,
+    count,
+    setCount,
+    size,
+    setSize,
+    colorId,
+    setColorId,
+    chosenProductOrder,
+    setChosenProductOrder,
+  } = props;
   const [mycart, setMycart] = useState([]); // 要存進localStorage的資料
 
   // 小分類、品牌的id對照名稱
@@ -49,7 +58,20 @@ function ProductAddCart(props) {
 
   // 讓畫面有顏色btn的值
   const colorProduct = _.uniqBy(product, 'color_id');
-  console.log('colorProduct', colorProduct);
+  // console.log('colorProduct', colorProduct);
+
+  console.log('product', product);
+
+  useEffect(() => {
+    // 依據尺寸、顏色找到對應的子貨號(product_no)
+    let chosenProduct = product.filter(
+      (object) => (object['color_id'] === colorId) & (object['size'] === size)
+    );
+    // console.log('chosenProduct', chosenProduct);
+
+    setChosenProductOrder(product.indexOf(chosenProduct[0]) || 0);
+    console.log('chosenProductOrder', chosenProductOrder);
+  }, [colorId, size, chosenProductOrder]);
 
   // cartData資料待存進localStorage
   // let cartData = [
@@ -64,16 +86,6 @@ function ProductAddCart(props) {
   //     count: count,
   //   },
   // ];
-
-  console.log('product', product);
-
-  // 依據尺寸、顏色找到對應的子貨號(product_no)
-  let chosenProduct = product.filter(
-    (object) => (object['color_id'] === colorId) & (object['size'] === size)
-  );
-  // console.log('chosenProduct', chosenProduct);
-  let chosenProductOrder = product.indexOf(chosenProduct[0]);
-  // console.log('chosenProductOrder', chosenProductOrder);
 
   // 將cartData存進localStorage
   // localStorage.setItem('商品列表的購物車資料', JSON.stringify(cartData));
@@ -138,7 +150,7 @@ function ProductAddCart(props) {
               return (
                 <div
                   key={v.product_no}
-                  className="me-2"
+                  className="me-2 cursorPointer"
                   onClick={() => {
                     setColorId(v.color_id);
                   }}

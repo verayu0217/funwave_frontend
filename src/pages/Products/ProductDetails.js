@@ -45,6 +45,7 @@ function ProductDetails(props) {
       product_valid: 0,
     },
   ]);
+  const [chosenProductOrder, setChosenProductOrder] = useState(0); // 點選尺寸、顏色後得出的子貨號(product_no)順序
   const [clickSmallImage, setClickSmallImage] = useState('image1'); // 點選哪張小圖
   const [loading, setLoading] = useState(false);
   const [count, setCount] = useState(1); // 加入購物車的數量
@@ -348,6 +349,8 @@ function ProductDetails(props) {
                     product={product}
                     clickSmallImage={clickSmallImage}
                     setClickSmallImage={setClickSmallImage}
+                    chosenProductOrder={chosenProductOrder}
+                    setChosenProductOrder={setChosenProductOrder}
                   />
                 )}
                 {/* <ProductDetailsContent product={product} /> */}
@@ -414,6 +417,8 @@ function ProductDetails(props) {
                       setSize={setSize}
                       colorId={colorId}
                       setColorId={setColorId}
+                      chosenProductOrder={chosenProductOrder}
+                      setChosenProductOrder={setChosenProductOrder}
                     />
                   )}
                   {/* <ProductAddCart product={product} /> */}
