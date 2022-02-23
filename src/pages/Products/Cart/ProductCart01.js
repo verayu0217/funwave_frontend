@@ -84,6 +84,18 @@ function CartPreOrder() {
     setMycart(currentCart);
   };
 
+  // 處理項目刪除用
+  const cartDelete = (product_no) => {
+    //1. 先從原本的陣列(物件)拷貝出一個新陣列(物件)
+    //2. 在拷貝出的新陣列(物件)上運算或處理
+    let newMycartDisplay = [...mycartDisplay].filter((v, i) => {
+      return v.product_no !== product_no;
+    });
+    //3. 設定回原本的狀態
+    setMycartDisplay(newMycartDisplay);
+    console.log('newMycartDisplay', newMycartDisplay);
+  };
+
   // 計算總價用的函式
   const sum = (items) => {
     let total = 0;
@@ -97,6 +109,7 @@ function CartPreOrder() {
   return (
     <>
       <div className="container">
+        {/* 購物車三步驟 */}
         <header className="m-5 py-2 px-5">
           <div className="text-secondary fw-bold h1 text-center mb-5">
             <img
@@ -135,6 +148,7 @@ function CartPreOrder() {
             </div>
           </div>
         </header>
+        {/* 購物車、付款及運送方式 */}
         <article>
           <div className="row mx-5 px-3 d-flex justify-content-center">
             {/* 購物車 */}
@@ -146,7 +160,8 @@ function CartPreOrder() {
               {mycartDisplay.map((item, index) => {
                 return (
                   <>
-                    <div className="px-5 p-4 position-relative">
+                    <div className="p-4 px-3">
+                      {/* 商品圖 */}
                       <Figure className="d-flex align-items-center">
                         <Figure.Image
                           width={150}
@@ -155,7 +170,8 @@ function CartPreOrder() {
                           src={`${IMAGE_URL}/products/${item.image1}`}
                           className="m-0 cartImg"
                         />
-                        <div className="ps-4 cartDetails">
+                        {/* 商品資訊 */}
+                        <div className="ps-3 cartDetails">
                           <Figure.Caption>
                             <p className="mb-1 fs-3 fw-bold fontBlack">
                               {item.name}
@@ -177,10 +193,11 @@ function CartPreOrder() {
                             </p>
                           </Figure.Caption>
                         </div>
+                        {/* 加減數量、刪除 */}
                         <div className="w-25 d-flex justify-content-start align-items-center">
                           <button
                             type="button"
-                            className="btn btn-secondary border rounded-circle p-0 me-3 countButton"
+                            className="btn btn-secondary border rounded-circle p-0 me-2 countButton"
                             onClick={() => {
                               if (item.count === 1) return;
                               updateCartLocalStorage(item, false);
@@ -195,7 +212,7 @@ function CartPreOrder() {
                           {item.count}
                           <button
                             type="button"
-                            className="btn btn-secondary border rounded-circle p-0 ms-3 countButton"
+                            className="btn btn-secondary border rounded-circle p-0 ms-2 countButton"
                             onClick={() => updateCartLocalStorage(item, true)}
                           >
                             <AiOutlinePlus
@@ -206,7 +223,8 @@ function CartPreOrder() {
                           </button>
                           <CgTrash
                             size={20}
-                            className="text-center position-absolute trash"
+                            className="text-center ms-3"
+                            onClick={() => cartDelete(item.product_no)}
                           />
                           {/* <i className="fas fa-trash-alt position-absolute trash"></i> */}
                         </div>
@@ -238,10 +256,21 @@ function CartPreOrder() {
                   <div className="col-1"></div>
                   <div className="col-5">運費</div>
                   <div className="col-5 text-end">
-                    -{sum(mycartDisplay) > 20000 ? 0 : 120}
+                    {sum(mycartDisplay) > 20000 ? 0 : 120}
                   </div>
                   <div className="col-1"></div>
                 </div>
+                {sum(mycartDisplay) < 20000 ? (
+                  <div className="row">
+                    <div className="col-11 text-end fs-6 text-primary">
+                      還差${20000 - sum(mycartDisplay)}就能免運喔
+                    </div>
+                    <div className="col-1"></div>
+                  </div>
+                ) : (
+                  ''
+                )}
+
                 <div className="row">
                   <div className="col-1"></div>
                   <div className="col-5">購物金</div>
@@ -254,7 +283,10 @@ function CartPreOrder() {
                     總金額：
                   </div>
                   <div className="col-5 text-end h2 m-0">
-                    NT {sum(mycartDisplay).toLocaleString()}
+                    NT{' '}
+                    {sum(mycartDisplay) > 20000
+                      ? sum(mycartDisplay).toLocaleString()
+                      : (sum(mycartDisplay) + 120).toLocaleString()}
                   </div>
                   <div className="col-1"></div>
                 </div>
@@ -275,7 +307,7 @@ function CartPreOrder() {
                 </Form.Select>
               </div>
               <div className="d-flex justify-content-center mt-5 mb-4">
-                <Link to="/cart-manage">
+                <Link to="/product-cart02">
                   <div className="btn btn-secondary cartNextBtn">下一步</div>
                 </Link>
               </div>
