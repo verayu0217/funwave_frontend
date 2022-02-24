@@ -27,10 +27,10 @@ const Edit = ({ add }) => {
     // 將留言暫存進localStorage 使用展開運算子=push
     let perMsg = JSON.parse(localStorage.getItem('totalMsg')) || [];
     let totalMsg = [
-      ...perMsg,
       {
         msg,
         rating,
+        ...perMsg,
       },
     ];
     //TODO:將留言存進資料庫

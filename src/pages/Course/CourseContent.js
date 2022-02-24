@@ -55,10 +55,10 @@ function CourseContent(props) {
 
     // 將選擇的資料逐一存進localStorage
     localStorage.setItem('course', JSON.stringify(course));
+    localStorage.setItem('courseTime', JSON.stringify(courseTime));
     localStorage.setItem('courseSpot', JSON.stringify(courseSpot));
     localStorage.setItem('courseDate', JSON.stringify(courseDate));
-    localStorage.setItem('courseTime', JSON.stringify(courseTime));
-    localStorage.setItem('coursePrice', JSON.stringify(coursePrice));
+    localStorage.setItem('coursePrice', coursePrice);
 
     // 導向另外一頁
     navigate('/course/course-cart', { replace: true });
