@@ -8,6 +8,9 @@
 .cursorPointer {
   cursor: pointer;
 }
+.fontBlack {
+  color: #333333d7;
+}
 
 // header 三步驟
 .cartStepsSigns {
@@ -30,8 +33,12 @@
   width: 200px;
 }
 .cartImg {
-  width: 32%;
+  width: 30%;
 }
 .cartDetails {
   width: 43%;
+}
+.trash {
+  right: 32px;
+  top: 95px;
 }
