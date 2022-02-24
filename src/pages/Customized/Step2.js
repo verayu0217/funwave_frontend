@@ -4,8 +4,6 @@ import ControlledTabs from './ControlledTabs';
 import Step2Board from './Step2Board';
 import greenTitle from '../../data/images/greenTitle.svg';
 
-// import goodLuck from '../../data/images/customize/surfboardpicture/goodLuck.png';
-
 function Step2(props) {
   const { step, setStep, surfingBoard, setSurfingBoard, pattern, setPattern } =
     props;
@@ -77,7 +75,12 @@ function Step2(props) {
             <hr />
             <p>請選擇圖樣</p>
 
-            <ControlledTabs pattern={pattern} setPattern={setPattern} />
+            <ControlledTabs
+              pattern={pattern}
+              setPattern={setPattern}
+              surfingBoard={surfingBoard}
+              setSurfingBoard={setSurfingBoard}
+            />
 
             <Row className="mt-2">
               <Col>
@@ -88,8 +91,8 @@ function Step2(props) {
                       ...surfingBoard,
                       front: '#ffffff',
                       back: '#ffffff',
-                      frontpattern: '',
-                      backpattern: '',
+                      frontpattern: 'blank.png',
+                      backpattern: 'blank.png',
                     });
                   }}
                 >

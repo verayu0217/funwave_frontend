@@ -6,11 +6,13 @@ import fishboardHole from '../../data/images/customize/fishboardHole.png';
 import funboardHole from '../../data/images/customize/funboardHole.png';
 import gunboardHole from '../../data/images/customize/gunboardHole.png';
 import longboardHole from '../../data/images/customize/longboardHole.png';
+import { IMAGE_URL } from '../../utils/config';
 
 function Step3(props) {
   const { step, setStep, surfingBoard, setSurfingBoard } = props;
   const [count, setCount] = useState(1);
   const [board, setBoard] = useState({});
+  const [mycart, setMycart] = useState([]); // 要存進localStorage的資料
   useEffect(() => {
     console.log(surfingBoard);
     if (surfingBoard.size === 1)
@@ -22,6 +24,21 @@ function Step3(props) {
     if (surfingBoard.size === 4)
       setBoard({ selected: longboardHole, text: '長板' });
   }, [surfingBoard]);
+
+  const amount = surfingBoard.price * count;
+
+  //localStorage  拿出來getItem 寫進去setItem
+  const addToLocal = (item) => {
+    // 將key值為productCart的value 取出 把字串轉回物件
+    let currentCart = JSON.parse(localStorage.getItem('productCart')) || [];
+
+    currentCart.push(item); // 每一筆資料都加入購物車 更新JS資料
+    localStorage.setItem('productCart', JSON.stringify(currentCart)); //更新localstorage資料
+
+    // 設定資料
+    // setMycart(currentCart);
+    // console.log('localstorage', currentCart);
+  };
 
   return (
     <div className="container">
@@ -59,6 +76,11 @@ function Step3(props) {
                   src={board.selected}
                   className="m-0"
                 />
+                <Figure.Image
+                  alt="picture"
+                  src={`${IMAGE_URL}/customized/${surfingBoard.frontpattern}`}
+                  className="m-0 upperPictureCu position-absolute imgPositionCu"
+                />
               </Figure>
             </Col>
             <Col lg="5" className="boarder">
@@ -72,6 +94,11 @@ function Step3(props) {
                   src={board.selected}
                   className="m-0"
                 />
+                <Figure.Image
+                  alt="picture"
+                  src={`${IMAGE_URL}/customized/${surfingBoard.backpattern}`}
+                  className="m-0 upperPictureCu position-absolute imgPositionCu"
+                />
               </Figure>
             </Col>
           </Row>
@@ -79,15 +106,20 @@ function Step3(props) {
         <Col lg="5">
           <Row>
             <Col xs lg="12">
-              價格:
+              <div className="d-flex justify-content-between">
+                <div className="m-5 h2 fw-bold">價格:</div>
+                <div className="m-5 h2 fw-bold">
+                  {surfingBoard.price.toLocaleString()}
+                </div>
+              </div>
             </Col>
             <Col xs lg="12">
               <div className="d-flex justify-content-between">
-                數量:
-                <div>
+                <div className="m-5 h2 fw-bold">數量:</div>
+                <div className="m-5 h2 d-flex justify-content-between fw-bold">
                   <button
                     type="button"
-                    className="btn btn-secondary border rounded-circle p-0 countButton me-2"
+                    className="btn btn-secondary border rounded-circle p-0 countButton m-auto me-2"
                     onClick={() => {
                       if (count - 1 >= 1) setCount(count - 1);
                     }}
@@ -101,7 +133,7 @@ function Step3(props) {
                   {count}
                   <button
                     type="button"
-                    className="btn btn-secondary border rounded-circle p-0 countButton ms-2 "
+                    className="btn btn-secondary border rounded-circle p-0 countButton m-auto ms-2"
                     onClick={() => {
                       setCount(count + 1);
                     }}
@@ -114,10 +146,15 @@ function Step3(props) {
                   </button>
                 </div>
               </div>
-              <hr className="my-3" />
+              <hr className="my-2" />
             </Col>
             <Col xs lg="12">
-              總額:
+              <div className="d-flex justify-content-between">
+                <div className="my-3 mx-5 h2 fw-bold">總額:</div>
+                <div className="my-3 mx-5 h2 fw-bold">
+                  NT{amount.toLocaleString()}
+                </div>
+              </div>
             </Col>
           </Row>
           <Row>
@@ -126,14 +163,37 @@ function Step3(props) {
                 className="btn btn-secondary btnCu"
                 onClick={() => {
                   setStep({ ...step, step1: true, step3: '' });
-                  setSurfingBoard({ ...surfingBoard, size: '' });
+                  setSurfingBoard({
+                    ...surfingBoard,
+                    size: '',
+                    frontpattern: 'blank.png',
+                    backpattern: 'blank.png',
+                  });
                 }}
               >
                 繼續客製浪板
               </button>
             </Col>
             <Col>
-              <button className="btn btn-primary btnCu">加入購物車</button>
+              <button
+                className="btn btn-primary btnCu"
+                onClick={() => {
+                  addToLocal({
+                    product_no: 'CB-0001-8-0',
+                    name: '客製化浪板',
+                    price: amount,
+                    image1: null,
+                    color_id: '客製化',
+                    size: surfingBoard.size,
+                    small_cat_id: 10,
+                    stock: 1,
+                    count: count,
+                    image_cu1: '',
+                  });
+                }}
+              >
+                加入購物車
+              </button>
             </Col>
           </Row>
         </Col>

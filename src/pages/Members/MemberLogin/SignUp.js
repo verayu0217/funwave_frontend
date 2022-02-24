@@ -36,10 +36,7 @@ function SignUp(props) {
   }
   return (
     <>
-      <form
-        className="d-flex justify-content-center align-items-center"
-        // onSubmit={signUpSubmit}
-      >
+      <form className="d-flex justify-content-center align-items-center">
         <div style={{ width: '60%' }}>
           <h4 className="h1 text-black fw-bold text-center">
             Welcome to Join Us !
@@ -56,7 +53,6 @@ function SignUp(props) {
                   id="email"
                   value={member.email}
                   onChange={handleChange}
-                  // required
                 />
               </li>
               <li className="mt-3">
@@ -68,7 +64,6 @@ function SignUp(props) {
                   id="name"
                   value={member.name}
                   onChange={handleChange}
-                  // required
                 />
               </li>
               <li className="mt-3">
