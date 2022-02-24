@@ -70,7 +70,6 @@ function App() {
         withCredentials: true,
       });
       setAuth(response.data);
-      console.log(auth);
     } catch (e) {
       console.error({ ERR_MSG });
     }
