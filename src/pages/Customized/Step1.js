@@ -49,11 +49,11 @@ function Step1(props) {
               : ' borderLightGray px-3 pt-1 d-flex'
           }
           onClick={() => {
-            setSurfingBoard({ ...surfingBoard, size: 1 });
+            setSurfingBoard({ ...surfingBoard, size: 1, price: 20000 });
           }}
         >
           <Figure className="m-auto">
-            <Figure.Image width={85} alt="126x260" src={fishboard} />
+            <Figure.Image width={85} alt="fishboard" src={fishboard} />
             <Figure.Caption className="text-center text-black fw-bold pt-3">
               魚板
             </Figure.Caption>
@@ -68,11 +68,11 @@ function Step1(props) {
               : ' borderLightGray px-3 pt-1 d-flex'
           }
           onClick={() => {
-            setSurfingBoard({ ...surfingBoard, size: 2 });
+            setSurfingBoard({ ...surfingBoard, size: 2, price: 25000 });
           }}
         >
           <Figure className="m-auto">
-            <Figure.Image width={83} alt="80x316" src={funboard} />
+            <Figure.Image width={83} alt="funboard" src={funboard} />
             <Figure.Caption className="text-center text-black fw-bold pt-3">
               快樂板
             </Figure.Caption>
@@ -86,11 +86,11 @@ function Step1(props) {
               : ' borderLightGray px-3 pt-1 d-flex'
           }
           onClick={() => {
-            setSurfingBoard({ ...surfingBoard, size: 3 });
+            setSurfingBoard({ ...surfingBoard, size: 3, price: 30000 });
           }}
         >
           <Figure className="m-auto">
-            <Figure.Image width={70} alt="64x338" src={gunboard} />
+            <Figure.Image width={70} alt="gunboard" src={gunboard} />
             <Figure.Caption className="text-center text-black fw-bold pt-3">
               槍板
             </Figure.Caption>
@@ -104,11 +104,11 @@ function Step1(props) {
               : ' borderLightGray px-3 pt-1 d-flex'
           }
           onClick={() => {
-            setSurfingBoard({ ...surfingBoard, size: 4 });
+            setSurfingBoard({ ...surfingBoard, size: 4, price: 35000 });
           }}
         >
           <Figure className="m-auto">
-            <Figure.Image width={85} alt="93x455" src={longboard} />
+            <Figure.Image width={85} alt="longboard" src={longboard} />
             <Figure.Caption className="text-center text-black fw-bold pt-3">
               長板
             </Figure.Caption>

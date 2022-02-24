@@ -4,7 +4,7 @@ import fishboardHole from '../../data/images/customize/fishboardHole.png';
 import funboardHole from '../../data/images/customize/funboardHole.png';
 import gunboardHole from '../../data/images/customize/gunboardHole.png';
 import longboardHole from '../../data/images/customize/longboardHole.png';
-import goodLuck from '../../data/images/customize/surfboardpicture/goodLuck.png';
+import { IMAGE_URL } from '../../utils/config';
 
 function Step2Board(props) {
   const { surfingBoard, setSurfingBoard, pattern, setPattern } = props;
@@ -39,10 +39,9 @@ function Step2Board(props) {
             />
             {/* 疊圖 */}
             <Figure.Image
-              alt="goodLuck"
-              src={goodLuck}
-              // `${IMAGE_URL}/customized/${img[0].id}`
-              className="m-0 upperPictureCu position-absolute top-50 start-0"
+              alt="picture"
+              src={`${IMAGE_URL}/customized/${surfingBoard.frontpattern}`}
+              className="m-0 upperPictureCu position-absolute imgPositionCu "
             />
           </Figure>
         </Col>
@@ -60,10 +59,9 @@ function Step2Board(props) {
             />
             {/* 疊圖 */}
             <Figure.Image
-              alt="goodLuck"
-              src={goodLuck}
-              // `${IMAGE_URL}/customized/${img[0].id}`
-              className="m-0 upperPictureCu position-absolute top-50 start-0"
+              alt="picture"
+              src={`${IMAGE_URL}/customized/${surfingBoard.backpattern}`}
+              className="m-0 upperPictureCu position-absolute imgPositionCu"
             />
           </Figure>
         </Col>

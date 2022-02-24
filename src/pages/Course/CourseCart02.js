@@ -26,29 +26,43 @@ function CourseCart02(props) {
         phone: phone,
       },
     ];
-    // console.log(info);
+    // 將選擇的資料逐一存進localStorage
+    localStorage.setItem('name', JSON.stringify(name));
+    localStorage.setItem('pid', JSON.stringify(pid));
+    localStorage.setItem('sex', JSON.stringify(sex));
+    localStorage.setItem('birthday', JSON.stringify(bdDay));
+    localStorage.setItem('phoneNum', JSON.stringify(phone));
 
-    //TODO:要把課程資料撈出跟個人資料一起
-    // 應該是在這頁處理拿出來的localStorage資料再存回去?
-    // 才可以提交到後端吧 還是把資料都放在父層 這邊解構?
+    let courseOrder = [
+      {
+        course: JSON.parse(localStorage.getItem('course')),
+        courseTime: JSON.parse(localStorage.getItem('courseTime')),
+        courseSpot: JSON.parse(localStorage.getItem('courseSpot')),
+        courseDate: JSON.parse(localStorage.getItem('courseDate')),
+        coursePrice: localStorage.getItem('coursePrice'),
+        amount: localStorage.getItem('amount'),
+        peopleNum: localStorage.getItem('peopleNum'),
+        payMethod: JSON.parse(localStorage.getItem('payMethod')),
+      },
+      ...info,
+    ];
+    console.log(courseOrder);
 
-    // 存進資料庫
-    // try {
-    //   let response = await axios.post(
-    //     `${API_URL}/course/courseOrder`,
-    //     dataInfo
-    //   );
-    //   console.log('有沒有送訂單', response.data);
-    // } catch (e) {
-    //   console.error('error', e.response.data);
-    //   // console.error("測試註冊", ERR_MSG[e.response.data.code]);
-    // }
+    //把課程資料撈出跟個人資料一起存進資料庫
+    try {
+      let response = await axios.post(
+        `${API_URL}/course/courseOrder`,
+        courseOrder
+      );
+      console.log('有沒有送訂單', response.data);
+    } catch (e) {
+      console.error('error', e.response.data);
+      // console.error("測試註冊", ERR_MSG[e.response.data.code]);
+    }
 
     //TODO:alert換一下樣式
     window.alert('你已報名完成');
-    console.log('yes');
     setStep({ ...step, step2: '', step3: true });
-    localStorage.clear('報名資料');
   }
   return (
     <>
@@ -120,8 +134,8 @@ function CourseCart02(props) {
               <label>出生年月日</label>
               <input
                 type="date"
-                min="1900-01-01"
-                max="2016-01-01"
+                minLength="1900-01-01"
+                maxLength="2016-01-01"
                 className="form-control"
                 id="bdDay"
                 placeholder="出生年月日"

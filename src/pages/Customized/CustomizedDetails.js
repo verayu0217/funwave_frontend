@@ -10,9 +10,10 @@ function CustomizedDetails() {
   const [surfingBoard, setSurfingBoard] = useState({
     front: '#ffffff',
     back: '#ffffff',
-    frontpattern: '',
-    backpattern: '',
+    frontpattern: 'blank.png',
+    backpattern: 'blank.png',
     size: '',
+    price: '',
   });
 
   const [step, setStep] = useState({
