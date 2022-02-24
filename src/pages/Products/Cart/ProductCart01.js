@@ -8,14 +8,14 @@ import greenTitle from '../../../data/images/greenTitle.svg';
 import { AiOutlinePlus, AiOutlineMinus } from 'react-icons/ai';
 import { CgTrash } from 'react-icons/cg';
 
-function CartPreOrder() {
+function ProductCart01() {
   // 將localStorage的資料存為狀態mycart
   const [mycart, setMycart] = useState([]);
   // 整理重複的mycart為mycartDisplay
   const [mycartDisplay, setMycartDisplay] = useState([]);
 
   // 小分類、顏色的id對照名稱
-  const colorTypes = ['白', '黑', '藍', '綠', 'x', '紅', '橘'];
+  const colorTypes = ['白', '黑', '藍', '綠', '黃', '紅', '橘'];
   const smallCatTypes = [
     '衝浪長板',
     '衝浪快樂板',
@@ -33,7 +33,7 @@ function CartPreOrder() {
   function getCartFromLocalStorage() {
     // 如果購物車內沒資料，就給空陣列
     const newCart = JSON.parse(localStorage.getItem('productCart') || '[]');
-    console.log('newCart', newCart);
+    console.log('newCart初始', newCart);
     setMycart(newCart);
   }
   useEffect(() => {
@@ -70,10 +70,12 @@ function CartPreOrder() {
   const updateCartLocalStorage = (item, isAdded = true) => {
     console.log(item, isAdded);
     const currentCart = JSON.parse(localStorage.getItem('productCart')) || [];
+    console.log('currentCart', currentCart);
 
     const index = currentCart.findIndex(
       (v) => v.product_no === item.product_no
     );
+    console.log('index', index);
 
     // 排除沒找到的情況 index = -1
     if (index > -1) {
@@ -82,6 +84,7 @@ function CartPreOrder() {
 
     localStorage.setItem('productCart', JSON.stringify(currentCart));
     setMycart(currentCart);
+    console.log('mycart', mycart); // 為何看起來慢一拍？？？
   };
 
   // 處理項目刪除用
@@ -93,7 +96,7 @@ function CartPreOrder() {
     });
     //3. 設定回原本的狀態
     setMycartDisplay(newMycartDisplay);
-    console.log('newMycartDisplay', newMycartDisplay);
+    // console.log('newMycartDisplay', newMycartDisplay);
   };
 
   // 計算總價用的函式
@@ -125,7 +128,7 @@ function CartPreOrder() {
             <div className="d-flex align-items-center shadow py-2 cartStepsSigns cartStepsSignsOrange borderRadius">
               <div className="fs-1 w-25 text-center">01</div>
               <div className="w-75">
-                確認清單及選擇付款、運送方式
+                確認清單 & 付款及配送方式
                 <br />
                 Cart & Check out
               </div>
@@ -135,7 +138,7 @@ function CartPreOrder() {
               <div className="w-75">
                 填寫訂購資料
                 <br />
-                Cart & Check out
+                Shipping & Billing Info
               </div>
             </div>
             <div className="d-flex justify-content-evenly align-items-center shadow py-2 cartStepsSigns borderRadius">
@@ -160,7 +163,7 @@ function CartPreOrder() {
               {mycartDisplay.map((item, index) => {
                 return (
                   <>
-                    <div className="p-4 px-3">
+                    <div className="py-4 px-3">
                       {/* 商品圖 */}
                       <Figure className="d-flex align-items-center">
                         <Figure.Image
@@ -234,16 +237,18 @@ function CartPreOrder() {
                 );
               })}
             </div>
-            {/* 付款及運送方式 */}
+            {/* 付款及送貨方式 */}
             <div className="col-5 borderRadius p-0 ms-4 shadow">
               <div className="p-4 border-bottom text-center">
-                <h1>付款及運送方式</h1>
+                <h1>付款及配送方式</h1>
               </div>
               <div className="px-5 py-4 cartAmount">
                 <div className="row">
                   <div className="col-1"></div>
                   <div className="col-5">商品總金額</div>
-                  <div className="col-5 text-end">{sum(mycartDisplay)}</div>
+                  <div className="col-5 text-end">
+                    {sum(mycartDisplay).toLocaleString()}
+                  </div>
                   <div className="col-1"></div>
                 </div>
                 <div className="row">
@@ -263,12 +268,19 @@ function CartPreOrder() {
                 {sum(mycartDisplay) < 20000 ? (
                   <div className="row">
                     <div className="col-11 text-end fs-6 text-primary">
-                      還差${20000 - sum(mycartDisplay)}就能免運喔
+                      商品消費差NT{' '}
+                      {(20000 - sum(mycartDisplay)).toLocaleString()} 即可享滿NT
+                      20,000免運優惠
                     </div>
                     <div className="col-1"></div>
                   </div>
                 ) : (
-                  ''
+                  <div className="row">
+                    <div className="col-11 text-end fs-6 text-primary">
+                      商品消費滿NT 20,000享免運優惠
+                    </div>
+                    <div className="col-1"></div>
+                  </div>
                 )}
 
                 <div className="row">
@@ -319,4 +331,4 @@ function CartPreOrder() {
   );
 }
 
-export default CartPreOrder;
+export default ProductCart01;

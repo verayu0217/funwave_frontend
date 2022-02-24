@@ -91,7 +91,6 @@ function App() {
             path="/surfspot/surfspot-details/:surfspotId"
             element={<SurfSpotDetails />}
           /> */}
-          <Route path="/product-details" element={<ProductDetails />} />
           <Route path="/products/:product_group" element={<ProductDetails />}>
             <Route path=":product_id" element={<ProductDetails />} />
           </Route>

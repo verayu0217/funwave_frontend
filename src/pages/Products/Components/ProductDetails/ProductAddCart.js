@@ -80,24 +80,6 @@ function ProductAddCart(props) {
   }, [colorId, size]);
   console.log('ProductAddCart.js - chosenProductOrder', chosenProductOrder);
 
-  // 我自己寫，原本的
-  // cartData資料待存進localStorage
-  // let cartData = [
-  //   {
-  //     product_no: product[0].product_no,
-  //     name: product[0].name,
-  //     price: product[0].price,
-  //     stock: product[0].stock,
-  //     size: product[0].size,
-  //     color_id: product[0].color_id,
-  //     small_cat_id: product[0].small_cat_id,
-  //     count: count,
-  //   },
-  // ];
-  // 將cartData存進localStorage
-  // localStorage.setItem('商品列表的購物車資料', JSON.stringify(cartData));
-  // console.log('商品列表的購物車資料-ProductDetail', cartData);
-
   // 參考老師的
   const updateCartToLocalStorage = (item) => {
     let currentCart = JSON.parse(localStorage.getItem('productCart')) || [];
@@ -109,7 +91,6 @@ function ProductAddCart(props) {
     setMycart(currentCart);
     console.log('ProductAddCart.js - currentCart', currentCart);
     // console.log('ProductAddCart.js - mycart', mycart);
-    // setProductName('產品：' + item.name + '已成功加入購物車');
   };
 
   return (
