@@ -1,6 +1,8 @@
 import React from 'react';
 import greenTitle from '../../../data/images/greenTitle.svg';
 import { useState, useEffect } from 'react';
+import { API_URL, IMAGE_URL } from '../../../utils/config';
+import axios from 'axios';
 
 import '../CourseContent.scss';
 import '../CourseCart.scss';
@@ -8,15 +10,22 @@ import '../CourseCart.scss';
 import Edit from './Edit';
 import List from './List';
 
-// 暫時先取localStorage的留言
-let perMsg = JSON.parse(localStorage.getItem('totalMsg')) || [];
+function CourseEvaluate() {
+  const [data, setData] = useState([]);
 
-function CourseEvaluate({ totalMsg = perMsg }) {
-  const [data, setData] = useState(totalMsg);
-  console.log('CourseEvaluate test', data);
-  useEffect(() => {
-    //TODO:要取資料庫的評價留言
-  }, []);
+  // // 取資料庫評價
+  // useEffect(() => {
+  //   //暫時先取localStorage,
+  //   // setData(JSON.parse(localStorage.getItem('totalMsg')));
+
+  //   let getEvaluate = async () => {
+  //     // http://localhost:3002/api/還沒取
+  //     let response = await axios.get(`${API_URL}/course/course-evaluate`);
+  //     setData(response.data);
+  //     console.log(response.data);
+  //   };
+  //   getEvaluate();
+  // }, [data]);
 
   return (
     <>
@@ -34,7 +43,7 @@ function CourseEvaluate({ totalMsg = perMsg }) {
             課程體驗評價
           </div>
 
-          <List listData={data} deleteData={setData} />
+          <List listData={data} deleteData={setData} setData={setData} />
           <Edit add={setData} />
 
           {/* <!-- 分頁 (Pagination) --> */}

@@ -1,40 +1,75 @@
 import { useState } from 'react';
-
+import axios from 'axios';
+import { API_URL, IMAGE_URL } from '../../../utils/config';
+import moment from 'moment';
 import StarRating from './StarRating';
+import { clearConfigCache } from 'prettier';
 
 // props拿出add
 const Edit = ({ add }) => {
+  //TODO: 新增留言時日期跟顯示留言的日期不是同一個變數但都是取今天日期不知道可嗎
+  let date = moment().format('YYYY-MM-DD');
+
   const [msg, setMsg] = useState('');
   const [rating, setRating] = useState('');
+  const [photo, setPhoto] = useState('');
+
   function msgChange(e) {
     setMsg(e.target.value);
   }
 
   // 綁定button的onClick方法
-  function addMsg() {
+  async function addMsg() {
     // 從父層傳下來的set方法
     add(function (prevData) {
       // 調換順序讓新留言在最上面
-      return [
-        {
-          msg,
-          rating,
-        },
-        ...prevData,
-      ];
+      return [{ msg, rating }, ...prevData];
     });
 
-    // 將留言暫存進localStorage 使用展開運算子=push
-    let perMsg = JSON.parse(localStorage.getItem('totalMsg')) || [];
     let totalMsg = [
       {
+        name: '路人甲',
+        date: date,
         msg,
         rating,
-        ...perMsg,
+        photo: photo,
       },
     ];
-    //TODO:將留言存進資料庫
-    localStorage.setItem('totalMsg', JSON.stringify(totalMsg));
+    //把留言存進資料庫
+    try {
+      // 方法1:沒有圖片上傳
+      // let response = await axios.post(
+      //   `${API_URL}/course/courseEvaluate`,
+      //   totalMsg
+      // );
+      // console.log('有沒有送留言', response.data);
+
+      // 方法2:有圖片上傳
+      let msgData = new FormData();
+      msgData.append('name', totalMsg[0].name);
+      msgData.append('date', totalMsg[0].date);
+      msgData.append('msg', totalMsg[0].msg);
+      msgData.append('rating', totalMsg[0].rating);
+      msgData.append('photo', totalMsg[0].photo);
+      let response = await axios.post(
+        `${API_URL}/course/courseEvaluate`,
+        msgData
+      );
+      console.log('有沒有送留言', response.data);
+    } catch (e) {
+      console.error('error', e.response.data);
+    }
+
+    // 將留言暫存進localStorage 使用展開運算子等同於push 一有新留言push
+    // let perMsg = [];
+    // let totalMsg = [
+    //   {
+    //     msg,
+    //     rating,
+    //   },
+    //   ...perMsg,
+    // ];
+    // localStorage.setItem('totalMsg', JSON.stringify(totalMsg));
   }
 
   return (
@@ -58,7 +93,8 @@ const Edit = ({ add }) => {
         name="photo"
         onChange={(e) => {
           // 圖片儲存的方式不太一樣
-          // setPhoto({ ...member, photo: e.target.files[0] });
+          // console.log('這裡', e.target.files[0]);
+          setPhoto(e.target.files[0]);
         }}
       ></input>
       <button onClick={addMsg} className="editBtn btn btn-primary mt-2">

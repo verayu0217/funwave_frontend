@@ -1,6 +1,9 @@
 import StarRating from './StarRating';
+import { useState, useEffect } from 'react';
+import { API_URL, IMAGE_URL } from '../../../utils/config';
+import axios from 'axios';
 
-const Item = ({ msg, date, rating }) => {
+const Item = ({ msg, date, rating, setData }) => {
   return (
     <div>
       {/* 留言 */}

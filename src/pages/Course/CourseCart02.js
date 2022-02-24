@@ -48,8 +48,7 @@ function CourseCart02(props) {
     ];
     console.log(courseOrder);
 
-    //TODO:要把課程資料撈出跟個人資料一起存進資料庫
-
+    //把課程資料撈出跟個人資料一起存進資料庫
     try {
       let response = await axios.post(
         `${API_URL}/course/courseOrder`,
@@ -63,7 +62,7 @@ function CourseCart02(props) {
 
     //TODO:alert換一下樣式
     window.alert('你已報名完成');
-    // setStep({ ...step, step2: '', step3: true });
+    setStep({ ...step, step2: '', step3: true });
   }
   return (
     <>
