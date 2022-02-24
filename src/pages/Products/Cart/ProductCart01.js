@@ -162,78 +162,76 @@ function ProductCart01() {
               {/* 購物車內的商品細節 */}
               {mycartDisplay.map((item, index) => {
                 return (
-                  <>
-                    <div className="py-4 px-3">
-                      {/* 商品圖 */}
-                      <Figure className="d-flex align-items-center">
-                        <Figure.Image
-                          width={150}
-                          height={150}
-                          alt={item.product_no}
-                          src={`${IMAGE_URL}/products/${item.image1}`}
-                          className="m-0 cartImg"
-                        />
-                        {/* 商品資訊 */}
-                        <div className="ps-3 cartDetails">
-                          <Figure.Caption>
-                            <p className="mb-1 fs-3 fw-bold fontBlack">
-                              {item.name}
-                            </p>
-                          </Figure.Caption>
-                          <Figure.Caption>
-                            <p className="m-0">{item.product_no}</p>
-                            <p className="m-0">
-                              {smallCatTypes[item.small_cat_id - 1]}
-                            </p>
-                            <p className="m-0">
-                              顏色：{colorTypes[item.color_id - 1]}
-                            </p>
-                            <p className="mb-1">尺寸：{item.size} ft</p>
-                          </Figure.Caption>
-                          <Figure.Caption>
-                            <p className="m-0 fw-bold fontBlack">
-                              NT {item.price.toLocaleString()}
-                            </p>
-                          </Figure.Caption>
-                        </div>
-                        {/* 加減數量、刪除 */}
-                        <div className="w-25 d-flex justify-content-start align-items-center">
-                          <button
-                            type="button"
-                            className="btn btn-secondary border rounded-circle p-0 me-2 countButton"
-                            onClick={() => {
-                              if (item.count === 1) return;
-                              updateCartLocalStorage(item, false);
-                            }}
-                          >
-                            <AiOutlineMinus
-                              size={18}
-                              color="#ffffff"
-                              className="text-center"
-                            />
-                          </button>
-                          {item.count}
-                          <button
-                            type="button"
-                            className="btn btn-secondary border rounded-circle p-0 ms-2 countButton"
-                            onClick={() => updateCartLocalStorage(item, true)}
-                          >
-                            <AiOutlinePlus
-                              size={18}
-                              color="#ffffff"
-                              className="text-center"
-                            />
-                          </button>
-                          <CgTrash
-                            size={20}
-                            className="text-center ms-3"
-                            onClick={() => cartDelete(item.product_no)}
+                  <div className="py-4 px-3" key={item.product_no}>
+                    {/* 商品圖 */}
+                    <Figure className="d-flex align-items-center">
+                      <Figure.Image
+                        width={150}
+                        height={150}
+                        alt={item.product_no}
+                        src={`${IMAGE_URL}/products/${item.image1}`}
+                        className="m-0 cartImg"
+                      />
+                      {/* 商品資訊 */}
+                      <div className="ps-3 cartDetails">
+                        <Figure.Caption>
+                          <p className="mb-1 fs-3 fw-bold fontBlack">
+                            {item.name}
+                          </p>
+                        </Figure.Caption>
+                        <Figure.Caption>
+                          <p className="m-0">{item.product_no}</p>
+                          <p className="m-0">
+                            {smallCatTypes[item.small_cat_id - 1]}
+                          </p>
+                          <p className="m-0">
+                            顏色：{colorTypes[item.color_id - 1]}
+                          </p>
+                          <p className="mb-1">尺寸：{item.size} ft</p>
+                        </Figure.Caption>
+                        <Figure.Caption>
+                          <p className="m-0 fw-bold fontBlack">
+                            NT {item.price.toLocaleString()}
+                          </p>
+                        </Figure.Caption>
+                      </div>
+                      {/* 加減數量、刪除 */}
+                      <div className="w-25 d-flex justify-content-start align-items-center">
+                        <button
+                          type="button"
+                          className="btn btn-secondary border rounded-circle p-0 me-2 countButton"
+                          onClick={() => {
+                            if (item.count === 1) return;
+                            updateCartLocalStorage(item, false);
+                          }}
+                        >
+                          <AiOutlineMinus
+                            size={18}
+                            color="#ffffff"
+                            className="text-center"
                           />
-                          {/* <i className="fas fa-trash-alt position-absolute trash"></i> */}
-                        </div>
-                      </Figure>
-                    </div>
-                  </>
+                        </button>
+                        {item.count}
+                        <button
+                          type="button"
+                          className="btn btn-secondary border rounded-circle p-0 ms-2 countButton"
+                          onClick={() => updateCartLocalStorage(item, true)}
+                        >
+                          <AiOutlinePlus
+                            size={18}
+                            color="#ffffff"
+                            className="text-center"
+                          />
+                        </button>
+                        <CgTrash
+                          size={20}
+                          className="text-center ms-3"
+                          onClick={() => cartDelete(item.product_no)}
+                        />
+                        {/* <i className="fas fa-trash-alt position-absolute trash"></i> */}
+                      </div>
+                    </Figure>
+                  </div>
                 );
               })}
             </div>

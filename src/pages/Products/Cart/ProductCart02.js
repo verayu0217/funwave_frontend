@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Form, Row, Col, Button, InputGroup } from 'react-bootstrap';
+import { AuthContext } from '../../../context/auth';
 
 import './Cart.scss';
 import greenTitle from '../../../data/images/greenTitle.svg';
 
 function ProductCart02() {
+  const { auth, setAuth } = useState();
+  console.log(auth);
+
   const [validated, setValidated] = useState(false);
 
   const handleSubmit = (event) => {
@@ -78,7 +82,10 @@ function ProductCart02() {
                         value=""
                         id="check"
                       />
-                      <label className="form-check-label mt-2 fs-6" for="check">
+                      <label
+                        className="form-check-label mt-2 fs-6"
+                        htmlFor="check"
+                      >
                         同步更新我的會員資料
                       </label>
                     </div>
@@ -194,7 +201,10 @@ function ProductCart02() {
                         value=""
                         id="check"
                       />
-                      <label className="form-check-label mt-2 fs-6" for="check">
+                      <label
+                        className="form-check-label mt-2 fs-6"
+                        htmlFor="check"
+                      >
                         同訂購人資訊
                       </label>
                     </div>
@@ -279,7 +289,10 @@ function ProductCart02() {
                         value=""
                         id="check"
                       />
-                      <label className="form-check-label mt-2 fs-6" for="check">
+                      <label
+                        className="form-check-label mt-2 fs-6"
+                        htmlFor="check"
+                      >
                         同訂購人地址
                       </label>
                     </div>
@@ -326,54 +339,67 @@ function ProductCart02() {
                     </div>
                   </div>
                 </div>
-                {/* 配送資訊 */}
-                <div className="px-5 py-4 border-top">
+                {/* 發票資訊 */}
+                <div className="px-5 py-4 border-top border-bottom">
                   <h3>發票資訊</h3>
                   <div className="d-flex">
-                    <div class="form-check me-4">
+                    <div className="form-check me-4">
                       <input
-                        class="form-check-input"
+                        className="form-check-input"
                         type="radio"
                         name="flexRadioDefault"
                         id="flexRadioDefault2"
-                        checked
+                        // checked
+                        // onChange={}
                       />
-                      <label class="form-check-label" for="flexRadioDefault2">
+                      <label
+                        className="form-check-label"
+                        htmlFor="flexRadioDefault2"
+                      >
                         捐贈發票
                       </label>
                     </div>
-                    <div class="form-check me-4">
+                    <div className="form-check me-4">
                       <input
-                        class="form-check-input"
+                        className="form-check-input"
                         type="radio"
                         name="flexRadioDefault"
                         id="flexRadioDefault2"
-                        checked
+                        // checked
                       />
-                      <label class="form-check-label" for="flexRadioDefault2">
+                      <label
+                        className="form-check-label"
+                        htmlFor="flexRadioDefault2"
+                      >
                         紙本發票
                       </label>
                     </div>
-                    <div class="form-check me-4">
+                    <div className="form-check me-4">
                       <input
-                        class="form-check-input"
+                        className="form-check-input"
                         type="radio"
                         name="flexRadioDefault"
                         id="flexRadioDefault1"
                       />
-                      <label class="form-check-label" for="flexRadioDefault1">
+                      <label
+                        className="form-check-label"
+                        htmlFor="flexRadioDefault1"
+                      >
                         電子發票（手機載具）
                       </label>
                     </div>
-                    <div class="form-check me-4">
+                    <div className="form-check me-4">
                       <input
-                        class="form-check-input"
+                        className="form-check-input"
                         type="radio"
                         name="flexRadioDefault"
                         id="flexRadioDefault2"
-                        checked
+                        // checked
                       />
-                      <label class="form-check-label" for="flexRadioDefault2">
+                      <label
+                        className="form-check-label"
+                        htmlFor="flexRadioDefault2"
+                      >
                         公司用發票（三聯式）
                       </label>
                     </div>
@@ -389,7 +415,12 @@ function ProductCart02() {
                       feedbackType="invalid"
                     />
                   </Form.Group>
-                  <Button type="submit">完成訂購</Button>
+                  <div className="d-flex justify-content-evenly mt-4">
+                    <button className="btn btn-secondary text-white">
+                      上一步
+                    </button>
+                    <Button type="submit">完成訂購！</Button>
+                  </div>
                 </div>
               </Form>
             </div>
