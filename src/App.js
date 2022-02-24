@@ -82,15 +82,12 @@ function App() {
     <>
       <AuthContext.Provider value={{ auth, setAuth }}>
         <Header />
+        {/* <Breadcrumb /> */}
         <Routes>
           <Route path="/home" element={<Home />} />
           <Route path="/home-try" element={<HomeTry />} />
           <Route path="/login" element={<LogIn />} />
           <Route path="/surfspot" element={<SurfSpot />} />
-          {/* <Route
-            path="/surfspot/surfspot-details/:surfspotId"
-            element={<SurfSpotDetails />}
-          /> */}
           <Route path="/product-details" element={<ProductDetails />} />
           <Route path="/products/:product_group" element={<ProductDetails />}>
             <Route path=":product_id" element={<ProductDetails />} />
