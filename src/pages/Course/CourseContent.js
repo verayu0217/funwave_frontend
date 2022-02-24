@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import moment from 'moment';
 
 // 引用課程評價
 import CourseEvaluate from './components/CourseEvaluate';
@@ -21,6 +22,11 @@ import lifeguard from '../../data/images/course/icon-lifeguard.png';
 import './CourseContent.scss';
 
 function CourseContent(props) {
+  // 預約日期調整明天以後才可選
+  let today = moment().format('YYYY-MM-DD');
+  today = today.split('-');
+  today = today[0] + '-' + today[1] + '-' + (Number(today[2]) + 1);
+
   let navigate = useNavigate();
 
   // 選擇課程
@@ -47,8 +53,12 @@ function CourseContent(props) {
       },
     ];
 
-    // 將選擇的資料存進localStorage
-    localStorage.setItem('報名資料', JSON.stringify(data));
+    // 將選擇的資料逐一存進localStorage
+    localStorage.setItem('course', JSON.stringify(course));
+    localStorage.setItem('courseTime', JSON.stringify(courseTime));
+    localStorage.setItem('courseSpot', JSON.stringify(courseSpot));
+    localStorage.setItem('courseDate', JSON.stringify(courseDate));
+    localStorage.setItem('coursePrice', coursePrice);
 
     // 導向另外一頁
     navigate('/course/course-cart', { replace: true });
@@ -444,6 +454,7 @@ function CourseContent(props) {
                         id="date"
                         placeholder="date"
                         value={courseDate}
+                        min={today}
                         onChange={(e) => {
                           setCourseDate(e.target.value);
                         }}

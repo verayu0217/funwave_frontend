@@ -3,8 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Figure } from 'react-bootstrap';
-import _ from 'lodash';
-
+import { uniqBy } from 'lodash';
 import {
   AiFillStar,
   AiOutlineStar,
@@ -15,8 +14,17 @@ import {
 import { IMAGE_URL } from '../../../../utils/config';
 
 function ProductAddCart(props) {
-  const { product, count, setCount, size, setSize, colorId, setColorId } =
-    props;
+  const {
+    product,
+    count,
+    setCount,
+    size,
+    setSize,
+    colorId,
+    setColorId,
+    chosenProductOrder,
+    setChosenProductOrder,
+  } = props;
   const [mycart, setMycart] = useState([]); // 要存進localStorage的資料
 
   // 小分類、品牌的id對照名稱
@@ -48,65 +56,42 @@ function ProductAddCart(props) {
   });
 
   // 讓畫面有顏色btn的值
-  const colorProduct = _.uniqBy(product, 'color_id');
-  console.log('colorProduct', colorProduct);
+  // 整理product為顏色不重複的colorProduct
+  const colorProduct = uniqBy(product, 'color_id');
 
-  // cartData資料待存進localStorage
-  // let cartData = [
-  //   {
-  //     product_no: product[0].product_no,
-  //     name: product[0].name,
-  //     price: product[0].price,
-  //     stock: product[0].stock,
-  //     size: product[0].size,
-  //     color_id: product[0].color_id,
-  //     small_cat_id: product[0].small_cat_id,
-  //     count: count,
-  //   },
-  // ];
-
-  console.log('product', product);
+  // console.log('ProductAddCart.js - product', product);
+  // console.log('ProductAddCart.js - size', size);
+  // console.log('ProductAddCart.js - colorId', colorId);
 
   // 依據尺寸、顏色找到對應的子貨號(product_no)
-  let chosenProduct = product.filter(
-    (object) => (object['color_id'] === colorId) & (object['size'] === size)
-  );
-  // console.log('chosenProduct', chosenProduct);
-  let chosenProductOrder = product.indexOf(chosenProduct[0]);
-  // console.log('chosenProductOrder', chosenProductOrder);
+  useEffect(() => {
+    // 還未選尺寸時，預設尺寸為第一個子貨號的尺寸
+    if (size === '') {
+      setSize(product[0].size);
+    } else {
+    }
 
-  // 將cartData存進localStorage
-  // localStorage.setItem('商品列表的購物車資料', JSON.stringify(cartData));
-  // console.log('商品列表的購物車資料-ProductDetail', cartData);
+    let chosenProduct = product.filter(
+      (object) => (object['color_id'] === colorId) & (object['size'] === size)
+    );
+    // console.log('chosenProduct', chosenProduct);
 
+    setChosenProductOrder(product.indexOf(chosenProduct[0]));
+  }, [colorId, size]);
+  console.log('ProductAddCart.js - chosenProductOrder', chosenProductOrder);
+
+  // 參考老師的
   const updateCartToLocalStorage = (item) => {
-    const currentCart = JSON.parse(localStorage.getItem('productCart')) || [];
-
-    // find if the product in the localstorage with its id
-    // const index = currentCart.findIndex((v) => v.id === item.id);
-
-    // found: index! == -1
-    // if (index > -1) {
-    //   //currentCart[index].amount++
-    //   setProductName('這個商品已經加過了');
-    //   handleShow();
-    //   return;
-    // } else {
-    //   currentCart.push(item);
-    // }
-
+    let currentCart = JSON.parse(localStorage.getItem('productCart')) || [];
+    // 每一筆資料都加入購物車
     currentCart.push(item);
     localStorage.setItem('productCart', JSON.stringify(currentCart));
-    console.log('ProductDetail-currentCart', currentCart);
 
     // 設定資料
     setMycart(currentCart);
-    console.log('mycart', mycart);
-    // setProductName('產品：' + item.name + '已成功加入購物車');
+    console.log('ProductAddCart.js - currentCart', currentCart);
+    // console.log('ProductAddCart.js - mycart', mycart);
   };
-
-  console.log('size', size);
-  console.log('colorId', colorId);
 
   return (
     <>
@@ -126,7 +111,9 @@ function ProductAddCart(props) {
           <p className="fs-6">1則評論</p>
         </div>
       </div>
-      <p className="fs-6">#{product[0].product_no}</p>
+      <p className="fs-6">
+        #{product[chosenProductOrder > 0 ? chosenProductOrder : 0].product_no}
+      </p>
       {/* 選擇顏色 */}
       <div className="row mt-5 mb-3">
         <div className="col-4 pe-0">
@@ -138,7 +125,7 @@ function ProductAddCart(props) {
               return (
                 <div
                   key={v.product_no}
-                  className="me-2"
+                  className="me-2 cursorPointer"
                   onClick={() => {
                     setColorId(v.color_id);
                   }}
@@ -222,14 +209,15 @@ function ProductAddCart(props) {
         className="btn btn-secondary btnAddCart"
         onClick={() => {
           updateCartToLocalStorage({
-            product_no: '',
-            name: '1',
-            price: '',
-            stock: '',
-            size: '',
-            color_id: '',
-            small_cat_id: '',
-            count: '',
+            product_no: product[chosenProductOrder].product_no,
+            name: product[0].name,
+            price: product[0].price,
+            image1: product[chosenProductOrder].image1,
+            color_id: product[chosenProductOrder].color_id,
+            size: product[chosenProductOrder].size,
+            small_cat_id: product[0].small_cat_id,
+            stock: product[chosenProductOrder].stock,
+            count: count,
           });
         }}
       >

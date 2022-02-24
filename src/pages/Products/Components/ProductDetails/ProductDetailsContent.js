@@ -5,8 +5,6 @@ import { Figure } from 'react-bootstrap';
 import longboard1 from './longboard1.jpg'; // 暫存推薦商品前端假圖片
 import { IMAGE_URL } from '../../../../utils/config';
 import ProductDetailsSmallImgs from './ProductDetailsSmallImgs.js';
-
-// react-icons
 import {
   AiOutlineDown,
   AiOutlineUp,
@@ -15,7 +13,13 @@ import {
 } from 'react-icons/ai';
 
 function ProductDetailsContent(props) {
-  const { product, clickSmallImage, setClickSmallImage } = props;
+  const {
+    product,
+    clickSmallImage,
+    setClickSmallImage,
+    chosenProductOrder,
+    setChosenProductOrder,
+  } = props;
 
   // 小分類、品牌、材質、衝浪板舵的id對照名稱
   const smallCatTypes = [
@@ -151,6 +155,8 @@ function ProductDetailsContent(props) {
             product={product}
             clickSmallImage={clickSmallImage}
             setClickSmallImage={setClickSmallImage}
+            chosenProductOrder={chosenProductOrder}
+            setChosenProductOrder={setChosenProductOrder}
           />
           <AiOutlineDown size={22} color="#333333" className="" />
         </div>
@@ -158,8 +164,15 @@ function ProductDetailsContent(props) {
           <Figure.Image
             width={450}
             height={450}
-            alt={`${product[0].product_no}`}
-            src={`${IMAGE_URL}/products/${product[0][clickSmallImage]}`}
+            alt={`${
+              product[chosenProductOrder > 0 ? chosenProductOrder : 0]
+                .product_no
+            }`}
+            src={`${IMAGE_URL}/products/${
+              product[chosenProductOrder > 0 ? chosenProductOrder : 0][
+                clickSmallImage
+              ]
+            }`}
           />
         </Figure>
       </div>

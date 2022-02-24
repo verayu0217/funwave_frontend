@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Tabs, Tab } from 'react-bootstrap';
-import { API_URL, IMAGE_URL } from '../../utils/config';
+import { IMAGE_URL } from '../../utils/config';
 
 function ControlledTabs(props) {
   const [key, setKey] = useState('positive');
-  const { pattern, setPattern } = props;
+  const { pattern, setPattern, surfingBoard, setSurfingBoard } = props;
 
   return (
     <>
@@ -15,7 +15,7 @@ function ControlledTabs(props) {
         className="mb-3 nav-justified"
       >
         <Tab eventKey="positive" title="正面" className="btnCu">
-          <div className="d-flex flex-wrap">
+          <div className="d-flex flex-wrap justify-content-center">
             {pattern.map((v, i) => {
               return (
                 <div className="boxCu m-1" key={v.id}>
@@ -23,13 +23,17 @@ function ControlledTabs(props) {
                     alt={v.id}
                     src={`${IMAGE_URL}/customized/${v.pattern}`}
                     className="cover-fit"
-                    // onClick={}
+                    onClick={() => {
+                      setSurfingBoard({
+                        ...surfingBoard,
+                        frontpattern: v.pattern,
+                      });
+                    }}
                   />
                 </div>
               );
             })}
           </div>
-          {/* <img className="cover-fit" src={goodLuck} alt="goodLuck" /> */}
         </Tab>
         <Tab eventKey="negative" title="反面" className="btnCu">
           <div className="d-flex flex-wrap justify-content-center">
@@ -40,6 +44,12 @@ function ControlledTabs(props) {
                     alt={v.id}
                     src={`${IMAGE_URL}/customized/${v.pattern}`}
                     className="cover-fit"
+                    onClick={() => {
+                      setSurfingBoard({
+                        ...surfingBoard,
+                        backpattern: v.pattern,
+                      });
+                    }}
                   />
                 </div>
               );

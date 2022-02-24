@@ -1,6 +1,5 @@
 import axios from 'axios';
-import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 import { API_URL } from '../../utils/config';
 
 import './CourseCart.scss';
@@ -8,24 +7,12 @@ import './CourseCart.scss';
 function CourseCart02(props) {
   const { step, setStep } = props;
 
-  let navigate = useNavigate();
-
-  // 姓名
-  const [name, setName] = useState('james');
-  // 身份證字號
-  const [pid, setId] = useState('j123456789');
-  // 性別
+  const [name, setName] = useState('James');
+  const [pid, setId] = useState('J122345678');
   const [sex, setSex] = useState('男生');
   const sexOptions = ['男生', '女生'];
-
-  // 出生日期
   const [bdDay, setBdDay] = useState('');
-
-  // 電話
-  const [phone, setPhone] = useState('0912345678');
-
-  // 監護人
-  const [guardian, setGuardian] = useState('Mary');
+  const [phone, setPhone] = useState('0933-456678');
 
   // 送出資料存進資料庫
   async function handleSubmit(e) {
@@ -37,27 +24,35 @@ function CourseCart02(props) {
         sex: sex,
         bdDay: bdDay,
         phone: phone,
-        guardian: guardian,
       },
     ];
-    // console.log(info);
+    // 將選擇的資料逐一存進localStorage
+    localStorage.setItem('name', JSON.stringify(name));
+    localStorage.setItem('pid', JSON.stringify(pid));
+    localStorage.setItem('sex', JSON.stringify(sex));
+    localStorage.setItem('birthday', JSON.stringify(bdDay));
+    localStorage.setItem('phoneNum', JSON.stringify(phone));
 
-    // 顯示出localStorage的資料
-    let data = [];
-    if (!localStorage.getItem('報名資料')) {
-      return;
-    } else {
-      data = [...JSON.parse(localStorage.getItem('報名資料'))];
-    }
-    // console.log(data);
-    // 合併課程報名與個人資料
-    let dataInfo = [...data, ...info];
-    console.log('here', dataInfo);
+    let courseOrder = [
+      {
+        course: JSON.parse(localStorage.getItem('course')),
+        courseTime: JSON.parse(localStorage.getItem('courseTime')),
+        courseSpot: JSON.parse(localStorage.getItem('courseSpot')),
+        courseDate: JSON.parse(localStorage.getItem('courseDate')),
+        coursePrice: localStorage.getItem('coursePrice'),
+        amount: localStorage.getItem('amount'),
+        peopleNum: localStorage.getItem('peopleNum'),
+        payMethod: JSON.parse(localStorage.getItem('payMethod')),
+      },
+      ...info,
+    ];
+    console.log(courseOrder);
 
+    //把課程資料撈出跟個人資料一起存進資料庫
     try {
       let response = await axios.post(
         `${API_URL}/course/courseOrder`,
-        dataInfo
+        courseOrder
       );
       console.log('有沒有送訂單', response.data);
     } catch (e) {
@@ -65,10 +60,9 @@ function CourseCart02(props) {
       // console.error("測試註冊", ERR_MSG[e.response.data.code]);
     }
 
+    //TODO:alert換一下樣式
     window.alert('你已報名完成');
-    console.log('yes');
     setStep({ ...step, step2: '', step3: true });
-    localStorage.clear('報名資料');
   }
   return (
     <>
@@ -98,7 +92,8 @@ function CourseCart02(props) {
                 type="text"
                 className="form-control"
                 id="pid"
-                placeholder="身分證字號"
+                placeholder="身分證字號(第一個英文字母需大寫)"
+                pattern="^[A-Z]\d{9}$"
                 name="pid"
                 value={pid}
                 onChange={(e) => {
@@ -139,6 +134,8 @@ function CourseCart02(props) {
               <label>出生年月日</label>
               <input
                 type="date"
+                minLength="1900-01-01"
+                maxLength="2016-01-01"
                 className="form-control"
                 id="bdDay"
                 placeholder="出生年月日"
@@ -154,27 +151,15 @@ function CourseCart02(props) {
             <div className="py-2">
               <label>電話</label>
               <input
+                maxlength="11"
+                pattern="09\d{2}-\d{6}"
                 type="text"
                 className="form-control"
                 id="phone"
-                placeholder="電話"
+                placeholder="手機號碼(格式:09xx-xxxxxx)"
                 value={phone}
                 onChange={(e) => {
                   setPhone(e.target.value);
-                }}
-                required
-              />
-            </div>
-            <div className="py-2">
-              <label>監護人</label>
-              <input
-                type="text"
-                className="form-control"
-                id="guardian"
-                placeholder="監護人姓名"
-                value={guardian}
-                onChange={(e) => {
-                  setGuardian(e.target.value);
                 }}
                 required
               />
@@ -192,7 +177,7 @@ function CourseCart02(props) {
               <button
                 type="submit"
                 className="btn btn-primary text-white mb-3 sendFormBtn"
-                // 加這句雖然跳轉到第三頁但會無法送資料到後端
+                // TODO:加這句雖然跳轉到第三頁但會無法送資料到後端
                 // onClick={() => {
                 //   setStep({ ...step, step2: '', step3: true });
                 // }}

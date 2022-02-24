@@ -5,6 +5,12 @@
 .borderRadius {
   border-radius: 8px;
 }
+.cursorPointer {
+  cursor: pointer;
+}
+.fontBlack {
+  color: #333333d7;
+}
 
 // header 三步驟
 .cartStepsSigns {
@@ -25,4 +31,14 @@
 }
 .cartNextBtn {
   width: 200px;
+}
+.cartImg {
+  width: 30%;
+}
+.cartDetails {
+  width: 43%;
+}
+.trash {
+  right: 32px;
+  top: 95px;
 }

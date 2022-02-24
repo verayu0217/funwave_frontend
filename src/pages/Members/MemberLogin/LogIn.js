@@ -160,7 +160,9 @@ function Login() {
                   <FcGoogle className="mx-2 googleLogin" />
                 </a>
               </li>
-              <li>{/* <GoogleLoginFunwave /> */}</li>
+              <li>
+                <GoogleLoginFunwave />
+              </li>
               <Modal showModal={showModal} setshowModal={setshowModal} />
             </ul>
           </form>

@@ -1,31 +1,52 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-
+import moment from 'moment';
 import { AiOutlinePlus, AiOutlineMinus } from 'react-icons/ai';
 
 function CourseCart01(props) {
-  const { step, setStep } = props;
+  // 預約日期調整明天以後才可選
+  let today = moment().format('YYYY-MM-DD');
+  today = today.split('-');
+  today = today[0] + '-' + today[1] + '-' + (Number(today[2]) + 1);
 
-  let navigate = useNavigate();
+  // 宣告count是上課人數初始1先存進localStorage
   const [count, setCount] = useState(1);
+  localStorage.setItem('peopleNum', count);
 
-  // 人數
-  // 顯示出localStorage的資料
-  //TODO: 判斷沒有資料時回到這頁要給他離開
-  let data = [];
-  if (!localStorage.getItem('報名資料')) {
-    // console.log('nothing');
-    // navigate('/course/course-content', { replace: true });
+  // 總金額算好也存進localStorage
+  const [amount, setAmount] = useState('');
+  useEffect(() => {
+    const amount = coursePrice * count;
+    setAmount(count * coursePrice);
+    // console.log('總計', amount);
+    localStorage.setItem('amount', amount);
+  }, [count, amount]);
 
-    return;
-  } else {
-    data = [...JSON.parse(localStorage.getItem('報名資料'))];
+  const {
+    step,
+    setStep,
+    course,
+    courseSpot,
+    courseTime,
+    courseDate,
+    setCourseDate,
+    coursePrice,
+  } = props;
+
+  // 付款方式被選存進localStorage
+  function creaditCard() {
+    localStorage.setItem('payMethod', JSON.stringify('信用卡'));
+  }
+  function cash() {
+    localStorage.setItem('payMethod', JSON.stringify('匯款'));
+  }
+  function transfor() {
+    localStorage.setItem('payMethod', JSON.stringify('現金'));
   }
 
-  console.log(data);
-  // 總計
-  const amount = data[0].coursePrice * count;
+  let navigate = useNavigate();
 
+  //TODO:alert換樣式不要太突兀
   // 刪除購物車資料並導向上一頁
   let deleteCourse = () => {
     localStorage.clear('報名資料');
@@ -56,56 +77,67 @@ function CourseCart01(props) {
               </tr>
             </thead>
 
-            {data.map((v, i) => {
-              return (
-                <tbody className="text-center" key={i}>
-                  <tr>
-                    <td>{v.course}</td>
-                    <td>{v.courseTime}</td>
-                    <td>{v.courseSpot}</td>
-                    <td>{v.coursePrice}</td>
-                    <td>
-                      <button
-                        type="button"
-                        className="btn btn-secondary border rounded-circle p-0 countButton me-2"
-                        onClick={() => {
-                          if (count - 1 >= 1) setCount(count - 1);
-                        }}
-                      >
-                        <AiOutlineMinus
-                          size={20}
-                          color="#ffffff"
-                          className="text-center"
-                        />
-                      </button>
+            <tbody className="text-center">
+              <tr>
+                <td>{course}</td>
+                <td>{courseTime}</td>
+                <td>{courseSpot}</td>
+                <td>{coursePrice}</td>
+                <td>
+                  <button
+                    type="button"
+                    className="btn btn-secondary border rounded-circle p-0 countButton me-2"
+                    onClick={() => {
+                      if (count - 1 >= 1) {
+                        setCount(count - 1);
+                        localStorage.setItem('peopleNum', count - 1);
+                      }
+                    }}
+                  >
+                    <AiOutlineMinus
+                      size={20}
+                      color="#ffffff"
+                      className="text-center"
+                    />
+                  </button>
 
-                      {count}
-                      <button
-                        type="button"
-                        className="btn btn-secondary border rounded-circle p-0 countButton ms-2"
-                        onClick={() => {
-                          setCount(count + 1);
-                        }}
-                      >
-                        <AiOutlinePlus
-                          size={20}
-                          color="#ffffff"
-                          className="text-center"
-                        />
-                      </button>
-                    </td>
-                    <td>{amount}</td>
-                    <td>{v.courseDate}</td>
-                    <td>
-                      <i
-                        className="fas fa-trash-alt"
-                        onClick={deleteCourse}
-                      ></i>
-                    </td>
-                  </tr>
-                </tbody>
-              );
-            })}
+                  {count}
+                  <button
+                    type="button"
+                    className="btn btn-secondary border rounded-circle p-0 countButton ms-2"
+                    onClick={() => {
+                      setCount(count + 1);
+                      localStorage.setItem('peopleNum', count + 1);
+                    }}
+                  >
+                    <AiOutlinePlus
+                      size={20}
+                      color="#ffffff"
+                      className="text-center"
+                    />
+                  </button>
+                </td>
+                <td>{amount}</td>
+                <td>
+                  <input
+                    type="date"
+                    min={today}
+                    value={courseDate}
+                    //修改日期完再存回localStorage
+                    onChange={(e) => {
+                      setCourseDate(e.target.value);
+                      localStorage.setItem(
+                        'courseDate',
+                        JSON.stringify(e.target.value)
+                      );
+                    }}
+                  ></input>
+                </td>
+                <td>
+                  <i className="fas fa-trash-alt" onClick={deleteCourse}></i>
+                </td>
+              </tr>
+            </tbody>
           </table>
 
           {/* 付款方式 */}
@@ -118,17 +150,17 @@ function CourseCart01(props) {
               <nav aria-label="..." className=" align-self-center">
                 <ul className="pagination pagination-sm">
                   <li className="payItem active" aria-current="page">
-                    <a className="pay-link" href="#/">
+                    <a className="pay-link" href="#/" onClick={creaditCard}>
                       信用卡
                     </a>
                   </li>
                   <li className="payItem">
-                    <a className="pay-link" href="#/">
+                    <a className="pay-link" href="#/" onClick={cash}>
                       匯款
                     </a>
                   </li>
                   <li className="payItem">
-                    <a className="pay-link" href="#/">
+                    <a className="pay-link" href="#/" onClick={transfor}>
                       現金
                     </a>
                   </li>
@@ -155,8 +187,13 @@ function CourseCart01(props) {
 
               <button
                 className="btn btn-primary text-white confirmBtn mt-3"
+                // TODO:alert是否要換樣式
                 onClick={() => {
-                  setStep({ ...step, step1: '', step2: true });
+                  if (localStorage.getItem('payMethod') == null) {
+                    window.alert('請點選付款方式');
+                  } else {
+                    setStep({ ...step, step1: '', step2: true });
+                  }
                 }}
               >
                 確認資訊
