@@ -10,11 +10,10 @@ import List from './List';
 
 // 暫時先取localStorage的留言
 let perMsg = JSON.parse(localStorage.getItem('totalMsg')) || [];
-console.log('這是localStorage', perMsg);
 
 function CourseEvaluate({ totalMsg = perMsg }) {
   const [data, setData] = useState(totalMsg);
-  console.log('test', data);
+  console.log('CourseEvaluate test', data);
   useEffect(() => {
     //TODO:要取資料庫的評價留言
   }, []);

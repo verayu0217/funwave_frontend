@@ -1,17 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-
+import moment from 'moment';
 import { AiOutlinePlus, AiOutlineMinus } from 'react-icons/ai';
 
 function CourseCart01(props) {
-  // 宣告count是上課人數初始1
-  const [count, setCount] = useState(1);
+  // 預約日期調整明天以後才可選
+  let today = moment().format('YYYY-MM-DD');
+  today = today.split('-');
+  today = today[0] + '-' + today[1] + '-' + (Number(today[2]) + 1);
 
+  // 宣告count是上課人數初始1先存進localStorage
+  const [count, setCount] = useState(1);
+  localStorage.setItem('peopleNum', count);
+
+  // 總金額算好也存進localStorage
   const [amount, setAmount] = useState('');
   useEffect(() => {
     const amount = coursePrice * count;
     setAmount(count * coursePrice);
-    console.log('總計', amount);
+    // console.log('總計', amount);
+    localStorage.setItem('amount', amount);
   }, [count, amount]);
 
   const {
@@ -24,6 +32,17 @@ function CourseCart01(props) {
     setCourseDate,
     coursePrice,
   } = props;
+
+  // 付款方式被選存進localStorage
+  function creaditCard() {
+    localStorage.setItem('payMethod', JSON.stringify('信用卡'));
+  }
+  function cash() {
+    localStorage.setItem('payMethod', JSON.stringify('匯款'));
+  }
+  function transfor() {
+    localStorage.setItem('payMethod', JSON.stringify('現金'));
+  }
 
   let navigate = useNavigate();
 
@@ -69,7 +88,10 @@ function CourseCart01(props) {
                     type="button"
                     className="btn btn-secondary border rounded-circle p-0 countButton me-2"
                     onClick={() => {
-                      if (count - 1 >= 1) setCount(count - 1);
+                      if (count - 1 >= 1) {
+                        setCount(count - 1);
+                        localStorage.setItem('peopleNum', count - 1);
+                      }
                     }}
                   >
                     <AiOutlineMinus
@@ -85,6 +107,7 @@ function CourseCart01(props) {
                     className="btn btn-secondary border rounded-circle p-0 countButton ms-2"
                     onClick={() => {
                       setCount(count + 1);
+                      localStorage.setItem('peopleNum', count + 1);
                     }}
                   >
                     <AiOutlinePlus
@@ -98,11 +121,15 @@ function CourseCart01(props) {
                 <td>
                   <input
                     type="date"
+                    min={today}
                     value={courseDate}
                     //修改日期完再存回localStorage
                     onChange={(e) => {
                       setCourseDate(e.target.value);
-                      localStorage.setItem('courseDate', e.target.value);
+                      localStorage.setItem(
+                        'courseDate',
+                        JSON.stringify(e.target.value)
+                      );
                     }}
                   ></input>
                 </td>
@@ -123,17 +150,17 @@ function CourseCart01(props) {
               <nav aria-label="..." className=" align-self-center">
                 <ul className="pagination pagination-sm">
                   <li className="payItem active" aria-current="page">
-                    <a className="pay-link" href="#/">
+                    <a className="pay-link" href="#/" onClick={creaditCard}>
                       信用卡
                     </a>
                   </li>
                   <li className="payItem">
-                    <a className="pay-link" href="#/">
+                    <a className="pay-link" href="#/" onClick={cash}>
                       匯款
                     </a>
                   </li>
                   <li className="payItem">
-                    <a className="pay-link" href="#/">
+                    <a className="pay-link" href="#/" onClick={transfor}>
                       現金
                     </a>
                   </li>
@@ -160,8 +187,13 @@ function CourseCart01(props) {
 
               <button
                 className="btn btn-primary text-white confirmBtn mt-3"
+                // TODO:alert是否要換樣式
                 onClick={() => {
-                  setStep({ ...step, step1: '', step2: true });
+                  if (localStorage.getItem('payMethod') == null) {
+                    window.alert('請點選付款方式');
+                  } else {
+                    setStep({ ...step, step1: '', step2: true });
+                  }
                 }}
               >
                 確認資訊
