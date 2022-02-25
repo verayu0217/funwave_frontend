@@ -10,29 +10,37 @@ import { API_URL } from '../../../utils/config';
 function ProductCart02() {
   // 會員資料傳入useContext
   const { auth, setAuth } = useAuth();
-  // console.log('auth', auth);
+  console.log('auth', auth);
 
   // 表單元素
+  // order-list欄位
   const [order, setOrder] = useState({
-    memberName: 'alice',
-    memberEmail: 'alice@test.com',
-    memberPhone: '123',
-    memberAddress: '123',
+    member_id: 1,
+    amount: 10,
+    payment: '貨到付款',
+    payment_status: '未付款',
+    delivery: '宅配到府',
     receiver: 'bob',
-    receiverEmail: 'bob@test.com',
     receiverPhone: '000',
     address: '台北市',
+    convenient_store: '一零一門市',
+    status: '訂單處理中',
+    order_time: '2021-12-13 14:33:56',
   });
-  // const [memberName, setMemberName] = useState([]);
-  // const [memberEmail, setMemberEmail] = useState([]);
-  // const [memberPhone, setMemberPhone] = useState([]);
-  // const [memberAddress, setMemberAddress] = useState([]);
-  // const [receiver, setReceiver] = useState([]);
-  // const [receiverEmail, setReceiverEmail] = useState([]);
-  // const [receiverPhone, setReceiverPhone] = useState([]);
-  // const [address, setAddress] = useState([]);
+  // 同步會員資料的欄位
+  const [memberName, setMemberName] = useState('');
+  const [memberEmail, setMemberEmail] = useState('');
+  const [memberPhone, setMemberPhone] = useState('');
+  const [memberAddress, setMemberAddress] = useState('');
+  const [receiverEmail, setReceiverEmail] = useState('');
 
   const [validated, setValidated] = useState(false);
+
+  // 模擬componentDidMount
+  // 將會員資料帶入訂購人資訊
+  useEffect(() => {
+    setMemberName(auth.name);
+  }, []);
 
   const handleChange = (e) => {
     // 1. 從原本的狀態物件上拷貝出一個新物件
@@ -43,45 +51,33 @@ function ProductCart02() {
   };
 
   // react-bootstrap原本的
-  const handleSubmit = (e) => {
+  // const handleSubmit = (e) => {
+  //   const form = e.currentTarget;
+  //   if (form.checkValidity() === false) {
+  //     e.preventDefault();
+  //     e.stopPropagation();
+  //   }
+
+  //   setValidated(true);
+  // };
+
+  async function handleSubmit(e) {
+    // 送出資料前的驗證
     const form = e.currentTarget;
     if (form.checkValidity() === false) {
       e.preventDefault();
       e.stopPropagation();
     }
-
     setValidated(true);
-  };
 
-  // 送出資料存進資料庫;
-  // async function handleSubmit(e) {
-  //   e.preventDefault();
-  //   let productOrder = [
-  //     {
-  //       member_id: '1',
-  //       amount: '1',
-  //       payment: '1',
-  //       payment_status: '1',
-  //       delivery: '1',
-  //       receiver: '1',
-  //       receiver_phone: '1',
-  //       address: '1',
-  //       convenient_store: '1',
-  //       status: '1',
-  //       order_time: '1',
-  //     },
-  //   ];
-  //   try {
-  //     let response = await axios.post(
-  //       `${API_URL}/products/productOrder`,
-  //       productOrder
-  //     );
-  //     console.log('有沒有送訂單', response.data);
-  //   } catch (e) {
-  //     console.error('error', e.response.data);
-  //     // console.error("測試註冊", ERR_MSG[e.response.data.code]);
-  //   }
-  // }
+    // 送出資料存進資料庫
+    try {
+      let response = await axios.post(`${API_URL}/products/cart`, order);
+      console.log(response.data);
+    } catch (e) {
+      console.error('error', e.response.data);
+    }
+  }
 
   return (
     <>
@@ -151,7 +147,6 @@ function ProductCart02() {
                       </label>
                     </div>
                   </div>
-
                   {/* 訂購人姓名 */}
                   <Form.Group
                     controlId="validationCustomUsername"
@@ -163,11 +158,12 @@ function ProductCart02() {
                         type="text"
                         placeholder="請輸入姓名"
                         aria-describedby="inputMemberName"
-                        id="memberName"
                         name="memberName"
-                        value={order.memberName}
+                        value={memberName}
                         required
-                        onChange={handleChange}
+                        onChange={(e) => {
+                          setMemberName(e.target.value);
+                        }}
                       />
                       <Form.Control.Feedback type="invalid">
                         請填寫訂購人姓名
@@ -185,11 +181,12 @@ function ProductCart02() {
                         type="email"
                         placeholder="請輸入E-mail"
                         aria-describedby="inputEmail"
-                        id="memberEmail"
                         name="memberEmail"
-                        value={order.memberEmail}
+                        value={memberEmail}
                         required
-                        onChange={handleChange}
+                        onChange={(e) => {
+                          setMemberEmail(e.target.value);
+                        }}
                       />
                       <Form.Control.Feedback type="invalid">
                         請填入正確格式的訂購人E-mail
@@ -208,11 +205,12 @@ function ProductCart02() {
                         type="text"
                         placeholder="請輸入手機號碼"
                         aria-describedby="inputPhone"
-                        id="memberPhone"
                         name="memberPhone"
-                        value={order.memberPhone}
+                        value={memberPhone}
                         required
-                        onChange={handleChange}
+                        onChange={(e) => {
+                          setMemberPhone(e.target.value);
+                        }}
                       />
                       <Form.Control.Feedback type="invalid">
                         請填寫訂購人手機號碼
@@ -252,11 +250,12 @@ function ProductCart02() {
                         <Form.Control
                           type="text"
                           placeholder="請輸入地址"
-                          id="memberAddress"
                           name="memberAddress"
-                          value={order.memberAddress}
+                          value={memberAddress}
                           required
-                          onChange={handleChange}
+                          onChange={(e) => {
+                            setMemberAddress(e.target.value);
+                          }}
                         />
                         <Form.Control.Feedback type="invalid">
                           請填寫訂購人詳細地址
@@ -295,7 +294,6 @@ function ProductCart02() {
                         type="text"
                         placeholder="請輸入姓名"
                         aria-describedby="inputReceiver"
-                        id="receiver"
                         name="receiver"
                         value={order.receiver}
                         required
@@ -317,11 +315,12 @@ function ProductCart02() {
                         type="email"
                         placeholder="請輸入E-mail"
                         aria-describedby="inputReceiverEmail"
-                        id="receiverEmail"
                         name="receiverEmail"
-                        value={order.receiverEmail}
+                        value={receiverEmail}
                         required
-                        onChange={handleChange}
+                        onChange={(e) => {
+                          setReceiverEmail(e.target.value);
+                        }}
                       />
                       <Form.Control.Feedback type="invalid">
                         請填入正確格式的收件人E-mail
@@ -340,7 +339,6 @@ function ProductCart02() {
                         type="text"
                         placeholder="請輸入手機號碼"
                         aria-describedby="inputReceiverPhone"
-                        id="receiverPhone"
                         name="receiverPhone"
                         value={order.receiverPhone}
                         required
@@ -404,7 +402,6 @@ function ProductCart02() {
                         <Form.Control
                           type="text"
                           placeholder="請輸入地址"
-                          id="address"
                           name="address"
                           value={order.address}
                           required
@@ -426,14 +423,11 @@ function ProductCart02() {
                         className="form-check-input"
                         type="radio"
                         name="flexRadioDefault"
-                        id="flexRadioDefault2"
+                        id="radio1"
                         // checked
                         // onChange={}
                       />
-                      <label
-                        className="form-check-label"
-                        htmlFor="flexRadioDefault2"
-                      >
+                      <label className="form-check-label" htmlFor="radio1">
                         捐贈發票
                       </label>
                     </div>
@@ -442,13 +436,10 @@ function ProductCart02() {
                         className="form-check-input"
                         type="radio"
                         name="flexRadioDefault"
-                        id="flexRadioDefault2"
+                        id="radio2"
                         // checked
                       />
-                      <label
-                        className="form-check-label"
-                        htmlFor="flexRadioDefault2"
-                      >
+                      <label className="form-check-label" htmlFor="radio2">
                         紙本發票
                       </label>
                     </div>
@@ -457,12 +448,9 @@ function ProductCart02() {
                         className="form-check-input"
                         type="radio"
                         name="flexRadioDefault"
-                        id="flexRadioDefault1"
+                        id="radio3"
                       />
-                      <label
-                        className="form-check-label"
-                        htmlFor="flexRadioDefault1"
-                      >
+                      <label className="form-check-label" htmlFor="radio3">
                         電子發票（手機載具）
                       </label>
                     </div>
@@ -471,13 +459,10 @@ function ProductCart02() {
                         className="form-check-input"
                         type="radio"
                         name="flexRadioDefault"
-                        id="flexRadioDefault2"
+                        id="radio4"
                         // checked
                       />
-                      <label
-                        className="form-check-label"
-                        htmlFor="flexRadioDefault2"
-                      >
+                      <label className="form-check-label" htmlFor="radio4">
                         公司用發票（三聯式）
                       </label>
                     </div>
