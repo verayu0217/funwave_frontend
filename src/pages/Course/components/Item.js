@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { API_URL, IMAGE_URL } from '../../../utils/config';
 import axios from 'axios';
 
-const Item = ({ msg, date, rating, setData }) => {
+const Item = ({ msg, date, rating }) => {
   return (
     <div>
       {/* 留言 */}
