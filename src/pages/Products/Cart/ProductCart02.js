@@ -13,27 +13,34 @@ function ProductCart02() {
   // console.log('auth', auth);
 
   // 表單元素
-  const [memberName, setMemberName] = useState([]);
-  const [memberEmail, setMemberEmail] = useState([]);
-  const [memberPhone, setMemberPhone] = useState([]);
-  const [memberAddress, setMemberAddress] = useState([]);
-  const [receiver, setReceiver] = useState([]);
-  const [receiverEmail, setReceiverEmail] = useState([]);
-  const [receiverPhone, setReceiverPhone] = useState([]);
-  const [address, setAddress] = useState([]);
+  const [order, setOrder] = useState({
+    memberName: 'alice',
+    memberEmail: 'alice@test.com',
+    memberPhone: '123',
+    memberAddress: '123',
+    receiver: 'bob',
+    receiverEmail: 'bob@test.com',
+    receiverPhone: '000',
+    address: '台北市',
+  });
+  // const [memberName, setMemberName] = useState([]);
+  // const [memberEmail, setMemberEmail] = useState([]);
+  // const [memberPhone, setMemberPhone] = useState([]);
+  // const [memberAddress, setMemberAddress] = useState([]);
+  // const [receiver, setReceiver] = useState([]);
+  // const [receiverEmail, setReceiverEmail] = useState([]);
+  // const [receiverPhone, setReceiverPhone] = useState([]);
+  // const [address, setAddress] = useState([]);
 
   const [validated, setValidated] = useState(false);
 
-  // const handleChange = (e) => {
-  //   // 1. 從原本的狀態物件上拷貝出一個新物件
-  //   // 2. 在拷貝的新物件上處理
-  //   // "合併"原有物件值的語法
-  //   // console.log('e.target.name', e.target.name);
-  //   // console.log('e.target.value', e.target.value);
-  //   const newOrder = { ...order, [e.target.name]: e.target.value };
-  //   // 3. 設定回狀態
-  //   setOrder(newOrder);
-  // };
+  const handleChange = (e) => {
+    // 1. 從原本的狀態物件上拷貝出一個新物件
+    // 2. 在拷貝的新物件上處理
+    // "合併"原有物件值的語法
+    // 3. 設定回狀態
+    setOrder({ ...order, [e.target.name]: e.target.value });
+  };
 
   // react-bootstrap原本的
   const handleSubmit = (e) => {
@@ -156,11 +163,11 @@ function ProductCart02() {
                         type="text"
                         placeholder="請輸入姓名"
                         aria-describedby="inputMemberName"
+                        id="memberName"
+                        name="memberName"
+                        value={order.memberName}
                         required
-                        value={memberName}
-                        onChange={(e) => {
-                          setMemberName(e.target.value);
-                        }}
+                        onChange={handleChange}
                       />
                       <Form.Control.Feedback type="invalid">
                         請填寫訂購人姓名
@@ -178,11 +185,11 @@ function ProductCart02() {
                         type="email"
                         placeholder="請輸入E-mail"
                         aria-describedby="inputEmail"
-                        value={memberEmail}
+                        id="memberEmail"
+                        name="memberEmail"
+                        value={order.memberEmail}
                         required
-                        onChange={(e) => {
-                          setMemberEmail(e.target.value);
-                        }}
+                        onChange={handleChange}
                       />
                       <Form.Control.Feedback type="invalid">
                         請填入正確格式的訂購人E-mail
@@ -201,11 +208,11 @@ function ProductCart02() {
                         type="text"
                         placeholder="請輸入手機號碼"
                         aria-describedby="inputPhone"
-                        value={memberPhone}
+                        id="memberPhone"
+                        name="memberPhone"
+                        value={order.memberPhone}
                         required
-                        onChange={(e) => {
-                          setMemberPhone(e.target.value);
-                        }}
+                        onChange={handleChange}
                       />
                       <Form.Control.Feedback type="invalid">
                         請填寫訂購人手機號碼
@@ -245,11 +252,11 @@ function ProductCart02() {
                         <Form.Control
                           type="text"
                           placeholder="請輸入地址"
-                          value={memberAddress}
+                          id="memberAddress"
+                          name="memberAddress"
+                          value={order.memberAddress}
                           required
-                          onChange={(e) => {
-                            setMemberAddress(e.target.value);
-                          }}
+                          onChange={handleChange}
                         />
                         <Form.Control.Feedback type="invalid">
                           請填寫訂購人詳細地址
@@ -288,11 +295,11 @@ function ProductCart02() {
                         type="text"
                         placeholder="請輸入姓名"
                         aria-describedby="inputReceiver"
-                        value={receiver}
+                        id="receiver"
+                        name="receiver"
+                        value={order.receiver}
                         required
-                        onChange={(e) => {
-                          setReceiver(e.target.value);
-                        }}
+                        onChange={handleChange}
                       />
                       <Form.Control.Feedback type="invalid">
                         請填寫收件人姓名
@@ -310,11 +317,11 @@ function ProductCart02() {
                         type="email"
                         placeholder="請輸入E-mail"
                         aria-describedby="inputReceiverEmail"
-                        value={receiverEmail}
+                        id="receiverEmail"
+                        name="receiverEmail"
+                        value={order.receiverEmail}
                         required
-                        onChange={(e) => {
-                          setReceiverEmail(e.target.value);
-                        }}
+                        onChange={handleChange}
                       />
                       <Form.Control.Feedback type="invalid">
                         請填入正確格式的收件人E-mail
@@ -333,11 +340,11 @@ function ProductCart02() {
                         type="text"
                         placeholder="請輸入手機號碼"
                         aria-describedby="inputReceiverPhone"
-                        value={receiverPhone}
+                        id="receiverPhone"
+                        name="receiverPhone"
+                        value={order.receiverPhone}
                         required
-                        onChange={(e) => {
-                          setReceiverPhone(e.target.value);
-                        }}
+                        onChange={handleChange}
                       />
                       <Form.Control.Feedback type="invalid">
                         請填寫收件人手機號碼
@@ -397,11 +404,11 @@ function ProductCart02() {
                         <Form.Control
                           type="text"
                           placeholder="請輸入地址"
-                          value={address}
+                          id="address"
+                          name="address"
+                          value={order.address}
                           required
-                          onChange={(e) => {
-                            setAddress(e.target.value);
-                          }}
+                          onChange={handleChange}
                         />
                         <Form.Control.Feedback type="invalid">
                           請填寫詳細地址
