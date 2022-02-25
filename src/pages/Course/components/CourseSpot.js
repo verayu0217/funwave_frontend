@@ -56,7 +56,7 @@ function CourseSpot() {
           {north.map((spot) => {
             return (
               <div key={spot.id} className="col-md-6 col-lg-3 ">
-                <div className="spot-img shadow-sm">
+                <div className="spot-img shadow-sm mt-3">
                   <img
                     src={`${IMAGE_URL}/course/${spot.image}`}
                     className="w-100 rounded"
@@ -76,7 +76,7 @@ function CourseSpot() {
           {others.map((spot) => {
             return (
               <div key={spot.id} className="col-md-6 col-lg-3 ">
-                <div className="spot-img shadow-sm">
+                <div className="spot-img shadow-sm mt-3">
                   <img
                     src={`${IMAGE_URL}/course/${spot.image}`}
                     className="w-100 rounded"

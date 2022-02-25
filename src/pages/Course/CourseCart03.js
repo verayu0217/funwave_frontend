@@ -1,16 +1,20 @@
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 import './CourseCart.scss';
 
 function CourseCart03() {
+  Swal.fire('報名成功，感謝您！');
+  // TODO:付款頁面尚未完成
+
   return (
     <>
       <div className="col-sm-10 col-lg-10 m-auto">
-        <div className="col-8 successBox border m-auto p-3 py-5">
+        {/* <div className="col-8 successBox border m-auto p-3 py-5">
           <p className="text-center text-white align-items-center fw-bold fs-1">
             報名成功，感謝您！
           </p>
-        </div>
+        </div> */}
       </div>
       <div className=" text-center mt-5">
         <Link

@@ -91,11 +91,12 @@ function ProductCart01() {
   const cartDelete = (product_no) => {
     //1. 先從原本的陣列(物件)拷貝出一個新陣列(物件)
     //2. 在拷貝出的新陣列(物件)上運算或處理
-    let newMycartDisplay = [...mycartDisplay].filter((v, i) => {
+    let newMycart = [...mycart].filter((v, i) => {
       return v.product_no !== product_no;
     });
     //3. 設定回原本的狀態
-    setMycartDisplay(newMycartDisplay);
+    setMycart(newMycart);
+    localStorage.setItem('productCart', JSON.stringify(newMycart));
     // console.log('newMycartDisplay', newMycartDisplay);
   };
 
