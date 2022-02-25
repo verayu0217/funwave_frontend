@@ -19,8 +19,8 @@ function ProductList(props) {
       <div className="d-flex flex-wrap">
         {products.map((productItem, i) => {
           return (
-            <Link to={`/products/${productItem.product_group}`}>
-              <ProductItem key={i} product={productItem} />
+            <Link to={`/products/${productItem.product_group}`} key={i}>
+              <ProductItem product={productItem} />
             </Link>
           );
         })}
