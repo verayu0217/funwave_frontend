@@ -10,8 +10,16 @@ const List = ({ listData, deleteData }) => {
   return (
     <div>
       {listData.map((item, i) => {
-        const { msg, rating } = item;
-        return <Item key={i} msg={msg} date={date} rating={rating} />;
+        const { message, rating, photo } = item;
+        return (
+          <Item
+            key={i}
+            message={message}
+            date={date}
+            rating={rating}
+            photo={photo}
+          />
+        );
       })}
     </div>
   );

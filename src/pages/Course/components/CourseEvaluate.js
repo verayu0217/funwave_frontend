@@ -12,15 +12,14 @@ import List from './List';
 
 function CourseEvaluate() {
   const [data, setData] = useState([]);
-  const submitState = useRef(false);
 
-  //TODO:取資料庫評價 ,怎麼把評完的內容帶出來
+  //取資料庫評價與圖片
   useEffect(() => {
     let getEvaluate = async () => {
-      // http://localhost:3002/api/還沒取
-      let response = await axios.get(`${API_URL}/course/course-evaluate`);
+      // http://localhost:3002/api/course/course-evaluate
+      let response = await axios.post(`${API_URL}/course/course-evaluate`);
       setData(response.data);
-      console.log('這是取到的資料', response.data[0].message);
+      // console.log(response.data[0].name);
     };
     getEvaluate();
   }, []);
@@ -44,6 +43,7 @@ function CourseEvaluate() {
           <List listData={data} deleteData={setData} setData={setData} />
           <Edit add={setData} />
 
+          {/* TODO:寫分頁 */}
           {/* <!-- 分頁 (Pagination) --> */}
           <nav aria-label="...">
             <ul class="pagination justify-content-center mt-3">

@@ -64,7 +64,7 @@ function CourseCart02(props) {
       // console.error("測試註冊", ERR_MSG[e.response.data.code]);
     }
 
-    //TODO:報名完要清除暫存 alert可以拿掉
+    //TODO:報名完清除暫存 alert可以拿掉
     window.alert('你已報名完成');
     localStorage.clear('course');
     localStorage.clear('courseSpot');

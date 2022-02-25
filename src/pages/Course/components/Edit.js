@@ -5,11 +5,11 @@ import moment from 'moment';
 import StarRating from './StarRating';
 
 // props拿出add
-const Edit = ({ add, submitState }) => {
+const Edit = ({ add }) => {
   //TODO: 新增留言時日期跟顯示留言的日期不是同一個變數但都是取今天日期不知道可嗎
   let date = moment().format('YYYY-MM-DD');
 
-  const [msg, setMsg] = useState('');
+  const [message, setMsg] = useState('');
   const [rating, setRating] = useState('');
   const [photo, setPhoto] = useState('');
 
@@ -19,24 +19,27 @@ const Edit = ({ add, submitState }) => {
 
   // 綁定button的onClick方法
   async function addMsg() {
-    if (msg === '') {
+    if (message === '') {
       window.alert('請填寫留言再送出');
+      return;
     }
     // 從父層傳下來的set方法
     add(function (prevData) {
       // 調換順序讓新留言在最上面
-      return [{ msg, rating }, ...prevData];
+      return [{ message, rating }, ...prevData];
     });
 
     let totalMsg = [
       {
         name: '路人甲',
         date: date,
-        msg,
+        message,
         rating,
         photo: photo,
       },
     ];
+
+    console.log(totalMsg);
     //把留言存進資料庫
     try {
       // 方法1:沒有圖片上傳
@@ -45,12 +48,11 @@ const Edit = ({ add, submitState }) => {
       //   totalMsg
       // );
       // console.log('有沒有送留言', response.data);
-
       // 方法2:有圖片上傳
       let msgData = new FormData();
       msgData.append('name', totalMsg[0].name);
       msgData.append('date', totalMsg[0].date);
-      msgData.append('msg', totalMsg[0].msg);
+      msgData.append('message', totalMsg[0].message);
       msgData.append('rating', totalMsg[0].rating);
       msgData.append('photo', totalMsg[0].photo);
       let response = await axios.post(
@@ -85,7 +87,7 @@ const Edit = ({ add, submitState }) => {
         name=""
         rows="4"
         cols="50"
-        value={msg}
+        value={message}
         onChange={msgChange}
       ></textarea>
       <input

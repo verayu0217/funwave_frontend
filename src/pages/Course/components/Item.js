@@ -2,8 +2,9 @@ import StarRating from './StarRating';
 import { useState, useEffect } from 'react';
 import { API_URL, IMAGE_URL } from '../../../utils/config';
 import axios from 'axios';
+import { clearConfigCache } from 'prettier';
 
-const Item = ({ msg, date, rating }) => {
+const Item = ({ message, date, rating, photo }) => {
   return (
     <div>
       {/* 留言 */}
@@ -12,9 +13,10 @@ const Item = ({ msg, date, rating }) => {
         <div className="d-flex flex-wrap">
           <div className="mt-2 align-self-center">
             {/* 大頭照  */}
+
             <img
               className="rounded-circle"
-              src="https://picsum.photos/id/237/50/50"
+              src={'https://picsum.photos/id/237/50/50'}
               alt=""
               height="50px"
               weight="50px"
@@ -40,14 +42,16 @@ const Item = ({ msg, date, rating }) => {
         {/* 第二排 */}
         <div className="m-3">
           {/* 文字 */}
-          <p>{msg}</p>
+          <p>{message}</p>
 
           {/* 圖片區  */}
           <div className="mt-3 d-flex justify-space-around">
             <img
-              src="https://picsum.photos/id/237/50/50"
-              className="rounded-3 m-1"
+              src={`http://localhost:3002/${photo}`}
+              className={photo === '' ? 'd-none' : 'rounded-3 m-1'}
               alt=""
+              height="60px"
+              weight="60px"
             />
           </div>
         </div>
