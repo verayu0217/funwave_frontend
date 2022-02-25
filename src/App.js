@@ -64,17 +64,19 @@ import Header from './components/Header';
 function App() {
   const [auth, setAuth] = useState(null);
 
-  async function checklogIn() {
-    try {
-      let response = await axios.get(`${API_URL}/auth/checklogin`, {
-        withCredentials: true,
-      });
-      setAuth(response.data);
-    } catch (e) {
-      console.error({ ERR_MSG });
-    }
-  }
   useEffect(() => {
+    async function checklogIn() {
+      try {
+        let response = await axios.get(`${API_URL}/auth/checklogin`, {
+          withCredentials: true,
+        });
+        setAuth(response.data);
+        console.log('appres', response);
+        console.log('App', auth);
+      } catch (e) {
+        console.error({ ERR_MSG });
+      }
+    }
     checklogIn();
   }, []);
 
