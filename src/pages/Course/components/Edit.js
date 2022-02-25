@@ -3,10 +3,9 @@ import axios from 'axios';
 import { API_URL, IMAGE_URL } from '../../../utils/config';
 import moment from 'moment';
 import StarRating from './StarRating';
-import { clearConfigCache } from 'prettier';
 
 // props拿出add
-const Edit = ({ add }) => {
+const Edit = ({ add, submitState }) => {
   //TODO: 新增留言時日期跟顯示留言的日期不是同一個變數但都是取今天日期不知道可嗎
   let date = moment().format('YYYY-MM-DD');
 
@@ -20,6 +19,9 @@ const Edit = ({ add }) => {
 
   // 綁定button的onClick方法
   async function addMsg() {
+    if (msg === '') {
+      window.alert('請填寫留言再送出');
+    }
     // 從父層傳下來的set方法
     add(function (prevData) {
       // 調換順序讓新留言在最上面

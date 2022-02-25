@@ -1,6 +1,6 @@
 import React from 'react';
 import greenTitle from '../../../data/images/greenTitle.svg';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { API_URL, IMAGE_URL } from '../../../utils/config';
 import axios from 'axios';
 
@@ -12,20 +12,18 @@ import List from './List';
 
 function CourseEvaluate() {
   const [data, setData] = useState([]);
+  const submitState = useRef(false);
 
-  // // 取資料庫評價
-  // useEffect(() => {
-  //   //暫時先取localStorage,
-  //   // setData(JSON.parse(localStorage.getItem('totalMsg')));
-
-  //   let getEvaluate = async () => {
-  //     // http://localhost:3002/api/還沒取
-  //     let response = await axios.get(`${API_URL}/course/course-evaluate`);
-  //     setData(response.data);
-  //     console.log(response.data);
-  //   };
-  //   getEvaluate();
-  // }, [data]);
+  //TODO:取資料庫評價 ,怎麼把評完的內容帶出來
+  useEffect(() => {
+    let getEvaluate = async () => {
+      // http://localhost:3002/api/還沒取
+      let response = await axios.get(`${API_URL}/course/course-evaluate`);
+      setData(response.data);
+      console.log('這是取到的資料', response.data[0].message);
+    };
+    getEvaluate();
+  }, []);
 
   return (
     <>

@@ -1,9 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import moment from 'moment';
+import Swal from 'sweetalert2';
+
 import { AiOutlinePlus, AiOutlineMinus } from 'react-icons/ai';
 
 function CourseCart01(props) {
+  const [payMethod, setPayMethod] = useState({
+    choosePay: '',
+  });
+
   // 預約日期調整明天以後才可選
   let today = moment().format('YYYY-MM-DD');
   today = today.split('-');
@@ -33,27 +39,43 @@ function CourseCart01(props) {
     coursePrice,
   } = props;
 
-  // 付款方式被選存進localStorage
-  function creaditCard() {
-    localStorage.setItem('payMethod', JSON.stringify('信用卡'));
-  }
-  function cash() {
-    localStorage.setItem('payMethod', JSON.stringify('匯款'));
-  }
-  function transfor() {
-    localStorage.setItem('payMethod', JSON.stringify('現金'));
+  function nextStep() {
+    if (payMethod.choosePay === '') {
+      setStep({ ...step, step1: true, step2: '' });
+      Swal.fire('請選擇付款方式');
+    } else {
+      setStep({ ...step, step1: '', step2: true });
+    }
   }
 
   let navigate = useNavigate();
 
-  //TODO:alert換樣式不要太突兀
   // 刪除購物車資料並導向上一頁
   let deleteCourse = () => {
-    localStorage.clear('報名資料');
-    window.alert('你的購物車沒有資料');
+    Swal.fire({
+      title: '您確定要刪除購物車項目嗎?',
+      text: '',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: '確定',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        localStorage.clear('course');
+        localStorage.clear('courseSpot');
+        localStorage.clear('courseDate');
+        localStorage.clear('courseTime');
+        localStorage.clear('coursePrice');
+        localStorage.clear('amount');
+        localStorage.clear('count');
+        localStorage.clear('payMethod');
+        Swal.fire('Deleted!', '你已刪除課程', 'success');
 
-    // 導回上一頁
-    navigate('/course/course-content', { replace: true });
+        // 導回上一頁
+        navigate('/course/course-content', { replace: true });
+      }
+    });
   };
 
   return (
@@ -149,18 +171,63 @@ function CourseCart01(props) {
             <div className="col-sm-12 col-md-10 ">
               <nav aria-label="..." className=" align-self-center">
                 <ul className="pagination pagination-sm">
-                  <li className="payItem active" aria-current="page">
-                    <a className="pay-link" href="#/" onClick={creaditCard}>
+                  <li className="payItem" aria-current="page">
+                    <a
+                      id="creditCard"
+                      className={
+                        payMethod.choosePay === '信用卡'
+                          ? 'pay-link-on'
+                          : 'pay-link-off'
+                      }
+                      href="#/"
+                      onClick={() => {
+                        setPayMethod({ choosePay: '信用卡' });
+                        localStorage.setItem(
+                          'payMethod',
+                          JSON.stringify('信用卡')
+                        );
+                      }}
+                    >
                       信用卡
                     </a>
                   </li>
                   <li className="payItem">
-                    <a className="pay-link" href="#/" onClick={cash}>
+                    <a
+                      id="transfor"
+                      className={
+                        payMethod.choosePay === '匯款'
+                          ? 'pay-link-on'
+                          : 'pay-link-off'
+                      }
+                      href="#/"
+                      onClick={() => {
+                        setPayMethod({ choosePay: '匯款' });
+                        localStorage.setItem(
+                          'payMethod',
+                          JSON.stringify('匯款')
+                        );
+                      }}
+                    >
                       匯款
                     </a>
                   </li>
                   <li className="payItem">
-                    <a className="pay-link" href="#/" onClick={transfor}>
+                    <a
+                      id="cash"
+                      className={
+                        payMethod.choosePay === '現金'
+                          ? 'pay-link-on'
+                          : 'pay-link-off'
+                      }
+                      href="#/"
+                      onClick={() => {
+                        setPayMethod({ choosePay: '現金' });
+                        localStorage.setItem(
+                          'payMethod',
+                          JSON.stringify('現金')
+                        );
+                      }}
+                    >
                       現金
                     </a>
                   </li>
@@ -187,14 +254,7 @@ function CourseCart01(props) {
 
               <button
                 className="btn btn-primary text-white confirmBtn mt-3"
-                // TODO:alert是否要換樣式
-                onClick={() => {
-                  if (localStorage.getItem('payMethod') == null) {
-                    window.alert('請點選付款方式');
-                  } else {
-                    setStep({ ...step, step1: '', step2: true });
-                  }
-                }}
+                onClick={nextStep}
               >
                 確認資訊
                 <i className="fas fa-arrow-right text-white"></i>
@@ -207,17 +267,51 @@ function CourseCart01(props) {
         <div className="mobile col-9 m-auto">
           <p className="h3">衝浪課程</p>
           <div className="row border  text-center">
-            <p>課程名稱:初階衝浪</p>
-            <p>預約日期:2022-1-24</p>
-            <p>上課地點:白沙灣</p>
-            <p>上課時段:上午</p>
-            <p>人數:- 1 +</p>
-            <p>單價:NT2,000</p>
+            <p>課程名稱:{course}</p>
+            <p>預約日期:{courseDate}</p>
+            <p>上課地點:{courseSpot}</p>
+            <p>上課時段:{courseTime}</p>
+            <p>
+              人數:{' '}
+              <button
+                type="button"
+                className="btn btn-secondary border rounded-circle p-0 countButton me-2"
+                onClick={() => {
+                  if (count - 1 >= 1) {
+                    setCount(count - 1);
+                    localStorage.setItem('peopleNum', count - 1);
+                  }
+                }}
+              >
+                <AiOutlineMinus
+                  size={20}
+                  color="#ffffff"
+                  className="text-center"
+                />
+              </button>{' '}
+              {count}{' '}
+              <button
+                type="button"
+                className="btn btn-secondary border rounded-circle p-0 countButton ms-2"
+                onClick={() => {
+                  setCount(count + 1);
+                  localStorage.setItem('peopleNum', count + 1);
+                }}
+              >
+                <AiOutlinePlus
+                  size={20}
+                  color="#ffffff"
+                  className="text-center"
+                />
+              </button>
+            </p>
+            <p>單價:NT{coursePrice}</p>
+            <i className="fas fa-trash-alt mb-3" onClick={deleteCourse}></i>
           </div>
 
           {/* <總計  */}
           <div className="d-flex justify-content-end border-bottom">
-            <p className="h3">總計 NT 2,000</p>
+            <p className="h3">總計 NT {amount}</p>
           </div>
 
           {/* 付款方式 */}
@@ -226,18 +320,54 @@ function CourseCart01(props) {
 
             <nav aria-label="...">
               <ul className="pagination pagination-sm">
-                <li className="payItem active" aria-current="page">
-                  <a className="pay-link" href="#/">
+                <li className="payItem " aria-current="page">
+                  <a
+                    className={
+                      payMethod.choosePay === '信用卡'
+                        ? 'pay-link-on'
+                        : 'pay-link-off'
+                    }
+                    href="#/"
+                    onClick={() => {
+                      setPayMethod({ choosePay: '信用卡' });
+                      localStorage.setItem(
+                        'payMethod',
+                        JSON.stringify('信用卡')
+                      );
+                    }}
+                  >
                     信用卡
                   </a>
                 </li>
                 <li className="payItem">
-                  <a className="pay-link" href="#/">
+                  <a
+                    className={
+                      payMethod.choosePay === '匯款'
+                        ? 'pay-link-on'
+                        : 'pay-link-off'
+                    }
+                    href="#/"
+                    onClick={() => {
+                      setPayMethod({ choosePay: '匯款' });
+                      localStorage.setItem('payMethod', JSON.stringify('匯款'));
+                    }}
+                  >
                     匯款
                   </a>
                 </li>
                 <li className="payItem">
-                  <a className="pay-link" href="#/">
+                  <a
+                    className={
+                      payMethod.choosePay === '現金'
+                        ? 'pay-link-on'
+                        : 'pay-link-off'
+                    }
+                    href="#/"
+                    onClick={() => {
+                      setPayMethod({ choosePay: '現金' });
+                      localStorage.setItem('payMethod', JSON.stringify('現金'));
+                    }}
+                  >
                     現金
                   </a>
                 </li>
@@ -257,7 +387,11 @@ function CourseCart01(props) {
             <button
               className="btn btn-primary text-white confirmBtn mt-3"
               onClick={() => {
-                setStep({ ...step, step1: '', step2: true });
+                if (localStorage.getItem('payMethod') == null) {
+                  window.alert('請點選付款方式');
+                } else {
+                  setStep({ ...step, step1: '', step2: true });
+                }
               }}
             >
               確認資訊

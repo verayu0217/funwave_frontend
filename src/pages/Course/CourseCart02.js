@@ -8,10 +8,12 @@ function CourseCart02(props) {
   const { step, setStep } = props;
 
   const [name, setName] = useState('James');
-  const [pid, setId] = useState('J122345678');
-  const [sex, setSex] = useState('男生');
-  const sexOptions = ['男生', '女生'];
-  const [bdDay, setBdDay] = useState('');
+  // const [pid, setId] = useState('J122345678');
+  const [email, setEmail] = useState('test@gmail.com');
+  const [sex, setSex] = useState('先生');
+  const sexOptions = ['先生', '小姐'];
+  // const [bdDay, setBdDay] = useState('');
+  const [note, setNote] = useState('');
   const [phone, setPhone] = useState('0933-456678');
 
   // 送出資料存進資料庫
@@ -20,18 +22,20 @@ function CourseCart02(props) {
     let info = [
       {
         name: name,
-        pid: pid,
+        // pid: pid,
+        email: email,
         sex: sex,
-        bdDay: bdDay,
+        note: note,
+        // bdDay: bdDay,
         phone: phone,
       },
     ];
-    // 將選擇的資料逐一存進localStorage
-    localStorage.setItem('name', JSON.stringify(name));
-    localStorage.setItem('pid', JSON.stringify(pid));
-    localStorage.setItem('sex', JSON.stringify(sex));
-    localStorage.setItem('birthday', JSON.stringify(bdDay));
-    localStorage.setItem('phoneNum', JSON.stringify(phone));
+    // 個人資料不要存進localStorage
+    // localStorage.setItem('name', JSON.stringify(name));
+    // localStorage.setItem('pid', JSON.stringify(pid));
+    // localStorage.setItem('sex', JSON.stringify(sex));
+    // localStorage.setItem('birthday', JSON.stringify(bdDay));
+    // localStorage.setItem('phoneNum', JSON.stringify(phone));
 
     let courseOrder = [
       {
@@ -60,8 +64,16 @@ function CourseCart02(props) {
       // console.error("測試註冊", ERR_MSG[e.response.data.code]);
     }
 
-    //TODO:alert換一下樣式
+    //TODO:報名完要清除暫存 alert可以拿掉
     window.alert('你已報名完成');
+    localStorage.clear('course');
+    localStorage.clear('courseSpot');
+    localStorage.clear('courseDate');
+    localStorage.clear('courseTime');
+    localStorage.clear('coursePrice');
+    localStorage.clear('amount');
+    localStorage.clear('count');
+    localStorage.clear('payMethod');
     setStep({ ...step, step2: '', step3: true });
   }
   return (
@@ -71,7 +83,7 @@ function CourseCart02(props) {
           <h1 className="text-center text-secondary">請填寫課程報名資訊</h1>
           <form className="col-8 m-auto" onSubmit={handleSubmit}>
             <div className="py-2 mt-3">
-              <label>姓名</label>
+              <label>* 姓名</label>
               <input
                 type="text"
                 className="form-control"
@@ -86,7 +98,7 @@ function CourseCart02(props) {
               />
             </div>
 
-            <div className="py-2 mt-3">
+            {/* <div className="py-2 mt-3">
               <label>身分證字號</label>
               <input
                 type="text"
@@ -101,10 +113,10 @@ function CourseCart02(props) {
                 }}
                 required
               />
-            </div>
+            </div> */}
 
             <div className="d-flex align-items-center py-2 mt-3">
-              <label className="p-2 ">性別:</label>
+              <label className="p-2 ">* 性別:</label>
               {sexOptions.map((v, i) => {
                 return (
                   <div key={i}>
@@ -130,7 +142,22 @@ function CourseCart02(props) {
               })}
             </div>
 
-            <div className="py-2">
+            <div className="py-2 mt-3">
+              <label>* 信箱</label>
+              <input
+                className="form-control"
+                type="email"
+                id="email"
+                name="email"
+                value={email}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
+                required
+              />
+            </div>
+
+            {/* <div className="py-2">
               <label>出生年月日</label>
               <input
                 type="date"
@@ -146,10 +173,10 @@ function CourseCart02(props) {
                 }}
                 required
               />
-            </div>
+            </div> */}
 
             <div className="py-2">
-              <label>電話</label>
+              <label>* 電話</label>
               <input
                 maxlength="11"
                 pattern="09\d{2}-\d{6}"
@@ -162,6 +189,18 @@ function CourseCart02(props) {
                   setPhone(e.target.value);
                 }}
                 required
+              />
+            </div>
+            <div className="py-2">
+              <label>備註</label>
+              <textarea
+                type="textarea"
+                className="form-control"
+                id=""
+                value={note}
+                onChange={(e) => {
+                  setNote(e.target.value);
+                }}
               />
             </div>
 
