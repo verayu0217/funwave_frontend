@@ -15,23 +15,23 @@ function ProductCart02() {
   // 表單元素
   // order-list欄位
   const [order, setOrder] = useState({
-    member_id: 1,
-    amount: 10,
-    payment: '貨到付款',
-    payment_status: '未付款',
-    delivery: '宅配到府',
-    receiver: 'bob',
-    receiverPhone: '000',
-    address: '台北市',
-    convenient_store: '一零一門市',
+    member_id: 0,
+    amount: 0,
+    payment: 'a',
+    payment_status: 'a',
+    delivery: 'a',
+    receiver: 'a',
+    receiverPhone: '0',
+    address: 'a',
+    convenient_store: 'a',
     status: '訂單處理中',
     order_time: '2021-12-13 14:33:56',
   });
   // 同步會員資料的欄位
   const [memberName, setMemberName] = useState('');
-  const [memberEmail, setMemberEmail] = useState('');
-  const [memberPhone, setMemberPhone] = useState('');
-  const [memberAddress, setMemberAddress] = useState('');
+  const [memberEmail, setMemberEmail] = useState(''); // 待useContext添此欄位
+  const [memberPhone, setMemberPhone] = useState(''); // 待useContext添此欄位
+  const [memberAddress, setMemberAddress] = useState(''); // 待useContext添此欄位
   const [receiverEmail, setReceiverEmail] = useState('');
 
   const [validated, setValidated] = useState(false);
@@ -39,15 +39,29 @@ function ProductCart02() {
   // 模擬componentDidMount
   // 將會員資料帶入訂購人資訊
   useEffect(() => {
-    setMemberName(auth.name);
+    // member_id
+    let newOrder = { ...order };
+    newOrder['member_id'] = auth.id;
+    setOrder(newOrder);
+    // memberName
+    let newMemberName = memberName;
+    newMemberName = auth.name;
+    setMemberName(newMemberName);
+    setMemberEmail('member@gmail.com');
+    setMemberPhone('0900000000');
+    setMemberAddress('會員地址');
   }, []);
+  console.log('memberName', memberName);
 
   const handleChange = (e) => {
     // 1. 從原本的狀態物件上拷貝出一個新物件
     // 2. 在拷貝的新物件上處理
     // "合併"原有物件值的語法
     // 3. 設定回狀態
-    setOrder({ ...order, [e.target.name]: e.target.value });
+    let newOrder = { ...order };
+    newOrder[e.target.name] = e.target.value;
+    console.log('newOrder', newOrder);
+    setOrder(newOrder);
   };
 
   // react-bootstrap原本的
@@ -69,6 +83,8 @@ function ProductCart02() {
       e.stopPropagation();
     }
     setValidated(true);
+    // 這裡有問題！！！
+    e.preventDefault(); // 我自己加的
 
     // 送出資料存進資料庫
     try {
@@ -127,7 +143,12 @@ function ProductCart02() {
               <div className="p-4 border-bottom text-center">
                 <h1>訂購資訊</h1>
               </div>
-              <Form noValidate validated={validated} onSubmit={handleSubmit}>
+              <Form
+                noValidate
+                validated={validated}
+                onSubmit={handleSubmit}
+                method="post"
+              >
                 {/* 訂購人資訊 */}
                 <div className="px-5 py-4">
                   <div className="d-flex justify-content-between">
@@ -304,30 +325,7 @@ function ProductCart02() {
                       </Form.Control.Feedback>
                     </InputGroup>
                   </Form.Group>
-                  {/* 收件人信箱 */}
-                  <Form.Group
-                    controlId="validationCustomUsername"
-                    className="mb-3"
-                  >
-                    <Form.Label>E-mail</Form.Label>
-                    <InputGroup hasValidation>
-                      <Form.Control
-                        type="email"
-                        placeholder="請輸入E-mail"
-                        aria-describedby="inputReceiverEmail"
-                        name="receiverEmail"
-                        value={receiverEmail}
-                        required
-                        onChange={(e) => {
-                          setReceiverEmail(e.target.value);
-                        }}
-                      />
-                      <Form.Control.Feedback type="invalid">
-                        請填入正確格式的收件人E-mail
-                      </Form.Control.Feedback>
-                    </InputGroup>
-                  </Form.Group>
-                  {/* 手機號碼 */}
+                  {/* 收件人手機號碼 */}
                   <Form.Group
                     controlId="validationCustomUsername"
                     className="mb-3"
@@ -411,6 +409,75 @@ function ProductCart02() {
                           請填寫詳細地址
                         </Form.Control.Feedback>
                       </Form.Group>
+                    </div>
+                  </div>
+                  {/* 收件超商門市 */}
+                  <div className="row mb-3">
+                    <div className="col-4">
+                      <Form.Label>縣市</Form.Label>
+                      <Form.Select aria-label="Default select example">
+                        <option>請選擇縣市</option>
+                        <option value="1">台北市</option>
+                        <option value="2">新北市</option>
+                        <option value="3">桃園市</option>
+                        <option value="4">台中市</option>
+                        <option value="5">台南市</option>
+                        <option value="6">高雄市</option>
+                        <option value="7">基隆市</option>
+                        <option value="8">新竹市</option>
+                        <option value="9">新竹縣</option>
+                        <option value="10">彰化縣</option>
+                        <option value="11">苗栗縣</option>
+                        <option value="12">南投縣</option>
+                        <option value="13">雲林縣</option>
+                        <option value="14">嘉義市</option>
+                        <option value="15">嘉義縣</option>
+                        <option value="16">屏東縣</option>
+                        <option value="17">台東縣</option>
+                        <option value="18">花蓮縣</option>
+                        <option value="19">宜蘭縣</option>
+                      </Form.Select>
+                    </div>
+                    <div className="col-8">
+                      <Form.Label>超商門市</Form.Label>
+                      <Form.Select aria-label="Default select example">
+                        <option>請選擇門市</option>
+                        <option
+                          value="1"
+                          name="convenient_store"
+                          onChange={handleChange}
+                        >
+                          台北門市
+                        </option>
+                        <option
+                          value="2"
+                          name="convenient_store"
+                          onChange={handleChange}
+                        >
+                          新北門市
+                        </option>
+                        <option
+                          value="3"
+                          name="convenient_store"
+                          onChange={handleChange}
+                        >
+                          桃園門市
+                        </option>
+                        <option
+                          value="4"
+                          name="convenient_store"
+                          onChange={handleChange}
+                        >
+                          台中門市
+                        </option>
+                        <option
+                          value="5"
+                          name="convenient_store"
+                          onChange={handleChange}
+                        >
+                          台南門市
+                        </option>
+                      </Form.Select>
                     </div>
                   </div>
                 </div>
