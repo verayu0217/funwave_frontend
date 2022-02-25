@@ -24,7 +24,7 @@ function GoogleLoginFunwave() {
     setLoginData(data);
     localStorage.setItem('loginData', JSON.stringify(data));
   };
-  console.log(loginData);
+  // console.log(loginData);
 
   const handleFailure = (result) => {
     alert(result);

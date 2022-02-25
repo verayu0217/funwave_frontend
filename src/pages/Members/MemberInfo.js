@@ -6,8 +6,11 @@ import axios from 'axios';
 import { API_URL } from '../../utils/config';
 import './Member.scss';
 import titleImgMember from '../../data/images/greenwave64x24.png';
+import { useAuth } from '../../context/auth';
 
 function MemberInfo(props) {
+  const { auth, setAuth } = useAuth();
+  console.log('會員資訊', auth);
   const [member, setMember] = useState([]);
   const [Date, setDate] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
