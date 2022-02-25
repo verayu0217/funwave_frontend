@@ -12,7 +12,7 @@ import logo from '../data/images/FunwaveLogo-black2.png';
 
 function MyNavbar() {
   const { auth, setAuth } = useAuth();
-
+  // console.log(auth);
   const handleLogout = async () => {
     await axios.get(`${API_URL}/auth/logout`, {
       withCredentials: true,
