@@ -1,5 +1,8 @@
 @import './global.scss';
-
+.breadcrumb{
+  text-decoration: none;
+  color: $funwave-deepgray;
+}
 .navbar {
   padding: 0rem 1.5rem;
 

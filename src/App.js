@@ -64,18 +64,19 @@ import Header from './components/Header';
 function App() {
   const [auth, setAuth] = useState(null);
 
-  async function checklogIn() {
-    try {
-      let response = await axios.get(`${API_URL}/auth/checklogin`, {
-        withCredentials: true,
-      });
-      setAuth(response.data);
-      console.log(auth);
-    } catch (e) {
-      console.error({ ERR_MSG });
-    }
-  }
   useEffect(() => {
+    async function checklogIn() {
+      try {
+        let response = await axios.get(`${API_URL}/auth/checklogin`, {
+          withCredentials: true,
+        });
+        setAuth(response.data);
+        console.log('appres', response);
+        console.log('App', auth);
+      } catch (e) {
+        console.error({ ERR_MSG });
+      }
+    }
     checklogIn();
   }, []);
 
@@ -83,16 +84,12 @@ function App() {
     <>
       <AuthContext.Provider value={{ auth, setAuth }}>
         <Header />
+        {/* <Breadcrumb /> */}
         <Routes>
           <Route path="/home" element={<Home />} />
           <Route path="/home-try" element={<HomeTry />} />
           <Route path="/login" element={<LogIn />} />
           <Route path="/surfspot" element={<SurfSpot />} />
-          {/* <Route
-            path="/surfspot/surfspot-details/:surfspotId"
-            element={<SurfSpotDetails />}
-          /> */}
-          <Route path="/product-details" element={<ProductDetails />} />
           <Route path="/products/:product_group" element={<ProductDetails />}>
             <Route path=":product_id" element={<ProductDetails />} />
           </Route>

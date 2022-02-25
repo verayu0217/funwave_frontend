@@ -188,7 +188,7 @@ function Step3(props) {
                     small_cat_id: 10,
                     stock: 1,
                     count: count,
-                    image_cu1: '',
+                    image_cu1: 'test.jpg',
                   });
                 }}
               >

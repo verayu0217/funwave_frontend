@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { withRouter } from '../../utils/withRouter';
+import Breadcrumb from '../../components/Breadcrumb';
 import greenTitle from '../../data/images/greenTitle.svg';
 import CircleLeft from './CircleLeft';
 import Taiwanmap from './TaiwanMap';
@@ -6,16 +8,16 @@ import CircleRight from './CircleRight';
 
 import './surfSpot.scss';
 
-function SurfSpot() {
+function SurfSpot(props) {
+  // console.log(props);
   const [level, setLevel] = useState('');
   const [regional, setRegional] = useState('');
   return (
     <>
       <div className="taiwanMapBg">
         <div className="container">
-          <div className="wrapBread">麵包屑</div>
+          <Breadcrumb />
         </div>
-
         <div className="d-flex justify-content-center">
           <div className="text-center mt-3">
             <img src={greenTitle} className="greenTitle" alt="greenTitle" />
@@ -53,4 +55,4 @@ function SurfSpot() {
   );
 }
 
-export default SurfSpot;
+export default withRouter(SurfSpot);

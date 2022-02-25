@@ -37,12 +37,11 @@ function Login() {
       let response = await axios.post(`${API_URL}/auth/login`, member, {
         withCredentials: true, //跨源存取cookie
       });
-      console.log(response.data);
+      console.log('登入時傳送資料:', response.data);
 
-      setAuth(response.data.data); // 把登入後 member 資料存回 context 讓其他地方可以用
+      setAuth(response.data.data); // 把登入後 member 資料存回 context 讓其他地方可以用,auth.js line:115
       setIsLogin(true);
       setMember({ ...member, email: '', password: '' });
-      console.log(isLogin);
     } catch (e) {
       if (e.response) {
         console.error('測試登入', ERR_MSG[e.response.data.code]);
@@ -54,7 +53,7 @@ function Login() {
       }
     }
   }
-
+  console.log('登入後auth', auth);
   if (isLogin) {
     // 轉頁效果
     return <Navigate to="/home" />;
