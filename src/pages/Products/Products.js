@@ -11,7 +11,6 @@ import { MdOutlineSurfing } from 'react-icons/md';
 // 導引資料、頁面
 import './Products.scss';
 import { API_URL } from '../../utils/config';
-// import { data } from '../../data/products.js'; // 前端假資料
 import ProductList from './Components/ProductList/ProductList.js';
 import SearchBar from './Components/SearchBar.js';
 import SortBar from './Components/SortBar.js';
@@ -47,7 +46,7 @@ function Products() {
     }
   }, [isLoading]);
 
-  // 前端透過axios從後端撈資料!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  // 前端透過axios從後端撈資料
   // 初始化資料-模擬componentDidMount
   useEffect(() => {
     // 先開起載入指示器
@@ -61,18 +60,6 @@ function Products() {
     };
     getProducts();
   }, []);
-
-  // 前端假資料     可刪除，暫留供看看～～～
-  // 初始化資料-模擬componentDidMount
-  // useEffect(() => {
-  //   // 先開起載入指示器
-  //   setIsLoading(true);
-
-  //   // 模擬和伺服器要資料
-  //   // 最後設定到狀態中
-  //   setProducts(data);
-  //   setDisplayProducts(data);
-  // }, []);
 
   // 載入指示 spinner動畫
   const spinner = (
