@@ -50,17 +50,17 @@ function CourseEvaluate() {
           {/* TODO:寫分頁 */}
           {/* <!-- 分頁 (Pagination) --> */}
           <nav aria-label="...">
-            <ul class="pagination justify-content-center mt-3">
-              <li class="page-item active" aria-current="page">
-                <span class="page-link">1</span>
+            <ul className="pagination justify-content-center mt-3">
+              <li className="page-item active" aria-current="page">
+                <span className="page-link">1</span>
               </li>
-              <li class="page-item">
-                <a class="page-link" href="#/">
+              <li className="page-item">
+                <a className="page-link" href="#/">
                   2
                 </a>
               </li>
-              <li class="page-item">
-                <a class="page-link" href="#/">
+              <li className="page-item">
+                <a className="page-link" href="#/">
                   3
                 </a>
               </li>

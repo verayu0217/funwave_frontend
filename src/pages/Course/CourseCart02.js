@@ -136,7 +136,7 @@ function CourseCart02(props) {
             <div className="py-2">
               <label>* 電話</label>
               <input
-                maxlength="11"
+                maxLength="11"
                 pattern="09\d{2}-\d{6}"
                 type="text"
                 className="form-control"

@@ -40,9 +40,9 @@ function CourseCart(props) {
 
   return (
     <>
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-sm-10 col-lg-10 m-auto">
+      <div className="container-fluid">
+        <div className="row">
+          <div className="col-sm-10 col-lg-10 m-auto">
             {/* 標題 */}
             <div className="text-secondary fw-bold my-5 h1 text-center ">
               <img

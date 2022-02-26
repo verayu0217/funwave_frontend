@@ -46,6 +46,8 @@ function CourseContent(props) {
 
   //提交報名資訊將資料帶到下一頁
   function addSubmit(e) {
+    e.preventDefault();
+
     const coursePrice = course === '體驗課程' ? 1000 : 2000;
 
     let data = [
@@ -65,12 +67,10 @@ function CourseContent(props) {
     localStorage.setItem('courseDate', JSON.stringify(courseDate));
     localStorage.setItem('coursePrice', coursePrice);
 
-    // 導向另外一頁
-    // navigate('/course/course-cart', { replace: true });
-  }
-
-  if (goTo) {
-    return <Navigate to="/course/course-cart"></Navigate>;
+    // 如果有登入導向另外一頁
+    if (goTo) {
+      return navigate('/course/course-cart', { replace: true });
+    }
   }
 
   return (
@@ -389,7 +389,7 @@ function CourseContent(props) {
           </div>
 
           {/* 課程體驗評價  */}
-          <CourseEvaluate />
+          {/* <CourseEvaluate /> */}
 
           {/* 課程報名 */}
           <div className="row">
@@ -503,7 +503,7 @@ function CourseContent(props) {
                         type="submit"
                         onClick={() => {
                           if (auth === null) {
-                            return alert('請登入');
+                            return alert('請先登入會員');
                           } else {
                             return setGoTo(true);
                           }

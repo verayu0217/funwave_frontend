@@ -110,7 +110,7 @@ function MemberInfo(props) {
               </button>
               <input
                 type="file"
-                class="form-control"
+                className="form-control"
                 id="photo"
                 name="member_photo"
                 value={member.member_photo}
