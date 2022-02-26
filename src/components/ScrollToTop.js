@@ -1,17 +1,44 @@
-import React from 'react';
-import { withRouter } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { BiArrowFromBottom } from 'react-icons/bi';
+import { className } from '../utils/className';
+import { withRouter } from '../utils/withRouter';
 
-// 頁面切換時要用捲軸讓頁面回到最上方
-class ScrollToTop extends React.Component {
-  componentDidUpdate(prevProps) {
-    if (this.props.location !== prevProps.location) {
-      window.scrollTo(0, 0);
+function ScrollToTop() {
+  const [isVisible, setIsVisible] = useState(false);
+  const toggleVisibility = () => {
+    if (window.pageYOffset > 100) {
+      setIsVisible(true);
+    } else {
+      setIsVisible(false);
     }
-  }
+  };
+  const Totop = () => {
+    window.scrollTo({
+      top: (0, 0),
+      behavior: 'smooth',
+    });
+  };
 
-  render() {
-    return this.props.children;
-  }
+  useEffect(() => {
+    window.addEventListener('scroll', toggleVisibility);
+    return () => {
+      window.removeEventListener('scroll', toggleVisibility);
+    };
+  }, []);
+
+  return (
+    // <div className="">
+    <button
+      onClick={Totop}
+      className={className(
+        isVisible ? 'opacity-100' : 'opacity-0',
+        'bg-primary totop'
+      )}
+    >
+      <BiArrowFromBottom size={30} />
+    </button>
+    // </div>
+  );
 }
 
 export default withRouter(ScrollToTop);
