@@ -5,9 +5,12 @@ import './Custom.scss';
 import RecommendCard from './RecommendCard';
 import Ad from './Ad';
 import Step from './Step';
-import StepList from './StepList';
+import { useAuth } from '../../context/auth';
 
 function Customized() {
+  const { auth, setAuth } = useAuth();
+  console.log('authDetail', auth);
+
   return (
     <>
       <div className="container-fluid bannerCu">

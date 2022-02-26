@@ -30,7 +30,7 @@ function CourseStep(props) {
           >
             <div className="fs-1 w-25 text-center">02</div>
             <div className="w-75">
-              填寫個人資料
+              填寫訂購資料
               <br />
               Cart & Check out
             </div>

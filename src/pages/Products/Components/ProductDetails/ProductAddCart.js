@@ -1,7 +1,7 @@
 // ProductAddCart.js 內容說明：商品細節頁右方的加入購物車區
 
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { Figure } from 'react-bootstrap';
 import { uniqBy } from 'lodash';
 import {
@@ -12,8 +12,13 @@ import {
   AiOutlineMinus,
 } from 'react-icons/ai';
 import { IMAGE_URL } from '../../../../utils/config';
+import { useAuth } from '../../../../context/auth';
 
 function ProductAddCart(props) {
+  // 會員資料傳入useContext
+  const { auth, setAuth } = useAuth();
+  console.log('auth', auth);
+
   const {
     product,
     count,
@@ -27,6 +32,7 @@ function ProductAddCart(props) {
   } = props;
   const [mycart, setMycart] = useState([]); // 要存進localStorage的資料
 
+  const [goTo, setGoTo] = useState(false);
   // 小分類、品牌的id對照名稱
   const smallCatTypes = [
     '衝浪長板',
@@ -91,7 +97,16 @@ function ProductAddCart(props) {
     setMycart(currentCart);
     console.log('ProductAddCart.js - currentCart', currentCart);
     // console.log('ProductAddCart.js - mycart', mycart);
+
+    // if (auth === null) {
+    //   return alert('請登入會員');
+    // } else {
+    // }
   };
+
+  if (goTo) {
+    return <Navigate to="/product-cart01"></Navigate>;
+  }
 
   return (
     <>
@@ -204,12 +219,23 @@ function ProductAddCart(props) {
         </button>
       </div>
       {/* 加入購物車 */}
-      <Link to="/product-cart01">去購物車</Link>
+      <button
+        onClick={() => {
+          if (auth === null) {
+            return alert('請登入會員');
+          } else {
+            setGoTo(true);
+          }
+        }}
+      >
+        去購物車
+      </button>
+
       <button
         className="btn btn-secondary btnAddCart"
         onClick={() => {
           updateCartToLocalStorage({
-            product_no: product[chosenProductOrder].product_no,
+            product_no: product[chosenProductOrder].product_no, // undefined!!
             name: product[0].name,
             price: product[0].price,
             image1: product[chosenProductOrder].image1,

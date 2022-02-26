@@ -1,26 +1,146 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { Form, Row, Col, Button, InputGroup } from 'react-bootstrap';
-import { AuthContext } from '../../../context/auth';
+import { Form, Button, InputGroup } from 'react-bootstrap';
+import axios from 'axios';
 
+import { useAuth } from '../../../context/auth';
 import './Cart.scss';
 import greenTitle from '../../../data/images/greenTitle.svg';
+import { API_URL } from '../../../utils/config';
 
 function ProductCart02() {
-  const { auth, setAuth } = useState();
-  console.log(auth);
+  // 會員資料傳入useContext
+  const { auth, setAuth } = useAuth();
+  console.log('auth', auth);
+  // 將localStorage的資料存為狀態orderCart
+  const [orderCart, setOrderCart] = useState([]);
+  // 整理重複的orderCart為orderCartDisplay
+  const [orderCartDisplay, setOrderCartDisplay] = useState([]);
+
+  // 表單元素
+  // order-list欄位
+  const [order, setOrder] = useState({
+    member_id: 0,
+    amount: 0,
+    payment: 'a',
+    payment_status: 'a',
+    delivery: 'a',
+    receiver: 'a',
+    receiverPhone: '0',
+    address: 'a',
+    convenient_store: 'a',
+    status: '訂單處理中',
+    order_time: '2021-12-13 14:33:56',
+  });
+  // 同步會員資料的欄位
+  const [memberName, setMemberName] = useState('');
+  const [memberEmail, setMemberEmail] = useState(''); // 待useContext添此欄位
+  const [memberPhone, setMemberPhone] = useState(''); // 待useContext添此欄位
+  const [memberAddress, setMemberAddress] = useState(''); // 待useContext添此欄位
 
   const [validated, setValidated] = useState(false);
 
-  const handleSubmit = (event) => {
-    const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
+  // 模擬componentDidMount
+  // 提取LocalStorage的資料
+  function getCartFromLocalStorage() {
+    // 如果購物車內沒資料，就給空陣列
+    const orderCart = JSON.parse(localStorage.getItem('productCart') || '[]');
+    console.log('orderCart', orderCart);
+    setOrderCart(orderCart);
+  }
+  useEffect(() => {
+    getCartFromLocalStorage();
+  }, []);
+
+  // 模擬componentDidUpdate
+  // 整理orderCart中product_no相同的品項
+  useEffect(() => {
+    let newOrderCartDisplay = [];
+
+    //尋找orderCartDisplay中有沒有和mycart[i]同product_no
+    for (let i = 0; i < orderCart.length; i++) {
+      //有找到會返回陣列成員的索引值
+      //沒找到會返回-1
+      const index = newOrderCartDisplay.findIndex(
+        (value) => value.product_no === orderCart[i].product_no
+      );
+      //有的話就相加其數量
+      if (index !== -1) {
+        newOrderCartDisplay[index].count += orderCart[i].count;
+      } else {
+        //沒有的話就把項目加入orderCartDisplay
+        const newItem = { ...orderCart[i] };
+        newOrderCartDisplay = [...newOrderCartDisplay, newItem];
+      }
     }
 
-    setValidated(true);
+    console.log('newOrderCartDisplay', newOrderCartDisplay);
+    setOrderCartDisplay(newOrderCartDisplay);
+  }, [orderCart]);
+
+  // 計算總價用的函式
+  const sum = (items) => {
+    let total = 0;
+    for (let i = 0; i < items.length; i++) {
+      total += items[i].count * items[i].price;
+    }
+    return total;
   };
+
+  console.log('sum(orderCartDisplay)', sum(orderCartDisplay));
+  // 模擬componentDidMount
+  // 將會員資料帶入訂購人資訊
+  useEffect(() => {
+    // member_id，從useContext帶入
+    // amount，從localstorage帶入單價、數量，然後再計算
+    setOrder({
+      ...order,
+      member_id: auth.id,
+      amount: sum(orderCartDisplay),
+    });
+
+    // memberName
+    setMemberName(auth.name);
+    setMemberEmail(auth.email);
+    setMemberPhone(auth.phone);
+    setMemberAddress(auth.address);
+  }, []);
+
+  // onchange表單內的欄位(限order物件內的欄位)
+  const handleChange = (e) => {
+    setOrder({ ...order, [e.target.name]: e.target.value });
+    console.log('order', order);
+  };
+
+  // react-bootstrap原本的
+  // const handleSubmit = (e) => {
+  //   const form = e.currentTarget;
+  //   if (form.checkValidity() === false) {
+  //     e.preventDefault();
+  //     e.stopPropagation();
+  //   }
+
+  //   setValidated(true);
+  // };
+
+  async function handleSubmit(e) {
+    // 送出資料前的驗證
+    const form = e.currentTarget;
+    if (form.checkValidity() === false) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    setValidated(true);
+    // 這裡有問題！！！
+    e.preventDefault(); // 我自己加的
+
+    // 送出資料存進資料庫
+    try {
+      let response = await axios.post(`${API_URL}/products/cart`, order);
+      console.log(response.data);
+    } catch (e) {
+      console.error('error', e.response.data);
+    }
+  }
 
   return (
     <>
@@ -70,7 +190,12 @@ function ProductCart02() {
               <div className="p-4 border-bottom text-center">
                 <h1>訂購資訊</h1>
               </div>
-              <Form noValidate validated={validated} onSubmit={handleSubmit}>
+              <Form
+                noValidate
+                validated={validated}
+                onSubmit={handleSubmit}
+                method="post"
+              >
                 {/* 訂購人資訊 */}
                 <div className="px-5 py-4">
                   <div className="d-flex justify-content-between">
@@ -90,8 +215,7 @@ function ProductCart02() {
                       </label>
                     </div>
                   </div>
-
-                  {/* 姓名 */}
+                  {/* 訂購人姓名 */}
                   <Form.Group
                     controlId="validationCustomUsername"
                     className="mb-3"
@@ -100,16 +224,21 @@ function ProductCart02() {
                     <InputGroup hasValidation>
                       <Form.Control
                         type="text"
-                        placeholder="Username"
-                        aria-describedby="inputUsername"
-                        defaultValue="嚴以軒"
+                        placeholder="請輸入姓名"
+                        aria-describedby="inputMemberName"
+                        name="memberName"
+                        value={memberName}
                         required
+                        onChange={(e) => {
+                          setMemberName(e.target.value);
+                        }}
                       />
                       <Form.Control.Feedback type="invalid">
-                        email
+                        請填寫訂購人姓名
                       </Form.Control.Feedback>
                     </InputGroup>
                   </Form.Group>
+                  {/* 訂購人信箱 */}
                   <Form.Group
                     controlId="validationCustomUsername"
                     className="mb-3"
@@ -118,17 +247,21 @@ function ProductCart02() {
                     <InputGroup hasValidation>
                       <Form.Control
                         type="email"
-                        placeholder="Email"
+                        placeholder="請輸入E-mail"
                         aria-describedby="inputEmail"
-                        defaultValue="gp@gmail.com"
+                        name="memberEmail"
+                        value={memberEmail}
                         required
+                        onChange={(e) => {
+                          setMemberEmail(e.target.value);
+                        }}
                       />
                       <Form.Control.Feedback type="invalid">
-                        請填入正確格式的E-mail
+                        請填入正確格式的訂購人E-mail
                       </Form.Control.Feedback>
                     </InputGroup>
                   </Form.Group>
-                  {/* 手機號碼 */}
+                  {/* 訂購人手機號碼 */}
                   <Form.Group
                     controlId="validationCustomUsername"
                     className="mb-3"
@@ -138,21 +271,25 @@ function ProductCart02() {
                     <InputGroup hasValidation>
                       <Form.Control
                         type="text"
-                        placeholder="Phone"
+                        placeholder="請輸入手機號碼"
                         aria-describedby="inputPhone"
-                        defaultValue="0900000000"
+                        name="memberPhone"
+                        value={memberPhone}
                         required
+                        onChange={(e) => {
+                          setMemberPhone(e.target.value);
+                        }}
                       />
                       <Form.Control.Feedback type="invalid">
-                        請填寫手機號碼
+                        請填寫訂購人手機號碼
                       </Form.Control.Feedback>
                     </InputGroup>
                   </Form.Group>
-                  {/* 地址 */}
+                  {/* 訂購人地址 */}
                   <div className="row mb-3">
                     <div className="col-4">
                       <Form.Label>縣市</Form.Label>
-                      <Form.Select aria-label="Default select example">
+                      <Form.Select aria-label="select">
                         <option>請選擇縣市</option>
                         <option value="1">台北市</option>
                         <option value="2">新北市</option>
@@ -180,11 +317,16 @@ function ProductCart02() {
                         <Form.Label>詳細地址</Form.Label>
                         <Form.Control
                           type="text"
-                          placeholder="Address"
+                          placeholder="請輸入地址"
+                          name="memberAddress"
+                          value={memberAddress}
                           required
+                          onChange={(e) => {
+                            setMemberAddress(e.target.value);
+                          }}
                         />
                         <Form.Control.Feedback type="invalid">
-                          請填寫詳細地址
+                          請填寫訂購人詳細地址
                         </Form.Control.Feedback>
                       </Form.Group>
                     </div>
@@ -209,7 +351,7 @@ function ProductCart02() {
                       </label>
                     </div>
                   </div>
-                  {/* 姓名 */}
+                  {/* 收件人姓名 */}
                   <Form.Group
                     controlId="validationCustomUsername"
                     className="mb-3"
@@ -218,46 +360,19 @@ function ProductCart02() {
                     <InputGroup hasValidation>
                       <Form.Control
                         type="text"
-                        placeholder="Username"
-                        aria-describedby="inputUsername"
-                        defaultValue="嚴以軒"
+                        placeholder="請輸入姓名"
+                        aria-describedby="inputReceiver"
+                        name="receiver"
+                        value={order.receiver}
                         required
+                        onChange={handleChange}
                       />
                       <Form.Control.Feedback type="invalid">
-                        email
+                        請填寫收件人姓名
                       </Form.Control.Feedback>
                     </InputGroup>
                   </Form.Group>
-                  {/* <Form.Group controlId="validationCustom01">
-                    <Form.Label>First name</Form.Label>
-                    <Form.Control
-                      required
-                      type="email"
-                      placeholder="First name"
-                      defaultValue="p@gmail.com"
-                    />
-                    <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-                  </Form.Group> */}
-                  {/* 信箱 */}
-                  <Form.Group
-                    controlId="validationCustomUsername"
-                    className="mb-3"
-                  >
-                    <Form.Label>E-mail (帳號)</Form.Label>
-                    <InputGroup hasValidation>
-                      <Form.Control
-                        type="email"
-                        placeholder="Email"
-                        aria-describedby="inputEmail"
-                        defaultValue="gp@gmail.com"
-                        required
-                      />
-                      <Form.Control.Feedback type="invalid">
-                        請填入正確格式的E-mail
-                      </Form.Control.Feedback>
-                    </InputGroup>
-                  </Form.Group>
-                  {/* 手機號碼 */}
+                  {/* 收件人手機號碼 */}
                   <Form.Group
                     controlId="validationCustomUsername"
                     className="mb-3"
@@ -267,13 +382,15 @@ function ProductCart02() {
                     <InputGroup hasValidation>
                       <Form.Control
                         type="text"
-                        placeholder="Phone"
-                        aria-describedby="inputPhone"
-                        defaultValue="0900000000"
+                        placeholder="請輸入手機號碼"
+                        aria-describedby="inputReceiverPhone"
+                        name="receiverPhone"
+                        value={order.receiverPhone}
                         required
+                        onChange={handleChange}
                       />
                       <Form.Control.Feedback type="invalid">
-                        請填寫手機號碼
+                        請填寫收件人手機號碼
                       </Form.Control.Feedback>
                     </InputGroup>
                   </Form.Group>
@@ -329,8 +446,11 @@ function ProductCart02() {
                         <Form.Label>詳細地址</Form.Label>
                         <Form.Control
                           type="text"
-                          placeholder="Address"
+                          placeholder="請輸入地址"
+                          name="address"
+                          value={order.address}
                           required
+                          onChange={handleChange}
                         />
                         <Form.Control.Feedback type="invalid">
                           請填寫詳細地址
@@ -338,8 +458,77 @@ function ProductCart02() {
                       </Form.Group>
                     </div>
                   </div>
+                  {/* 收件超商門市 */}
+                  <div className="row mb-3">
+                    <div className="col-4">
+                      <Form.Label>縣市</Form.Label>
+                      <Form.Select aria-label="Default select example">
+                        <option>請選擇縣市</option>
+                        <option value="1">台北市</option>
+                        <option value="2">新北市</option>
+                        <option value="3">桃園市</option>
+                        <option value="4">台中市</option>
+                        <option value="5">台南市</option>
+                        <option value="6">高雄市</option>
+                        <option value="7">基隆市</option>
+                        <option value="8">新竹市</option>
+                        <option value="9">新竹縣</option>
+                        <option value="10">彰化縣</option>
+                        <option value="11">苗栗縣</option>
+                        <option value="12">南投縣</option>
+                        <option value="13">雲林縣</option>
+                        <option value="14">嘉義市</option>
+                        <option value="15">嘉義縣</option>
+                        <option value="16">屏東縣</option>
+                        <option value="17">台東縣</option>
+                        <option value="18">花蓮縣</option>
+                        <option value="19">宜蘭縣</option>
+                      </Form.Select>
+                    </div>
+                    <div className="col-8">
+                      <Form.Label>超商門市</Form.Label>
+                      <Form.Select aria-label="Default select example">
+                        <option>請選擇門市</option>
+                        <option
+                          value="1"
+                          name="convenient_store"
+                          onChange={handleChange}
+                        >
+                          台北門市
+                        </option>
+                        <option
+                          value="2"
+                          name="convenient_store"
+                          onChange={handleChange}
+                        >
+                          新北門市
+                        </option>
+                        <option
+                          value="3"
+                          name="convenient_store"
+                          onChange={handleChange}
+                        >
+                          桃園門市
+                        </option>
+                        <option
+                          value="4"
+                          name="convenient_store"
+                          onChange={handleChange}
+                        >
+                          台中門市
+                        </option>
+                        <option
+                          value="5"
+                          name="convenient_store"
+                          onChange={handleChange}
+                        >
+                          台南門市
+                        </option>
+                      </Form.Select>
+                    </div>
+                  </div>
                 </div>
-                {/* 發票資訊 */}
+                {/* 發票資訊，目前無作用！ */}
                 <div className="px-5 py-4 border-top border-bottom">
                   <h3>發票資訊</h3>
                   <div className="d-flex">
@@ -348,14 +537,11 @@ function ProductCart02() {
                         className="form-check-input"
                         type="radio"
                         name="flexRadioDefault"
-                        id="flexRadioDefault2"
+                        id="radio1"
                         // checked
                         // onChange={}
                       />
-                      <label
-                        className="form-check-label"
-                        htmlFor="flexRadioDefault2"
-                      >
+                      <label className="form-check-label" htmlFor="radio1">
                         捐贈發票
                       </label>
                     </div>
@@ -364,13 +550,10 @@ function ProductCart02() {
                         className="form-check-input"
                         type="radio"
                         name="flexRadioDefault"
-                        id="flexRadioDefault2"
+                        id="radio2"
                         // checked
                       />
-                      <label
-                        className="form-check-label"
-                        htmlFor="flexRadioDefault2"
-                      >
+                      <label className="form-check-label" htmlFor="radio2">
                         紙本發票
                       </label>
                     </div>
@@ -379,12 +562,9 @@ function ProductCart02() {
                         className="form-check-input"
                         type="radio"
                         name="flexRadioDefault"
-                        id="flexRadioDefault1"
+                        id="radio3"
                       />
-                      <label
-                        className="form-check-label"
-                        htmlFor="flexRadioDefault1"
-                      >
+                      <label className="form-check-label" htmlFor="radio3">
                         電子發票（手機載具）
                       </label>
                     </div>
@@ -393,13 +573,10 @@ function ProductCart02() {
                         className="form-check-input"
                         type="radio"
                         name="flexRadioDefault"
-                        id="flexRadioDefault2"
+                        id="radio4"
                         // checked
                       />
-                      <label
-                        className="form-check-label"
-                        htmlFor="flexRadioDefault2"
-                      >
+                      <label className="form-check-label" htmlFor="radio4">
                         公司用發票（三聯式）
                       </label>
                     </div>

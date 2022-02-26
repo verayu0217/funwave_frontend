@@ -1,6 +1,6 @@
 import React from 'react';
 import greenTitle from '../../../data/images/greenTitle.svg';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { API_URL, IMAGE_URL } from '../../../utils/config';
 import axios from 'axios';
 
@@ -13,19 +13,16 @@ import List from './List';
 function CourseEvaluate() {
   const [data, setData] = useState([]);
 
-  // // 取資料庫評價
-  // useEffect(() => {
-  //   //暫時先取localStorage,
-  //   // setData(JSON.parse(localStorage.getItem('totalMsg')));
-
-  //   let getEvaluate = async () => {
-  //     // http://localhost:3002/api/還沒取
-  //     let response = await axios.get(`${API_URL}/course/course-evaluate`);
-  //     setData(response.data);
-  //     console.log(response.data);
-  //   };
-  //   getEvaluate();
-  // }, [data]);
+  //取資料庫評價與圖片
+  useEffect(() => {
+    let getEvaluate = async () => {
+      // http://localhost:3002/api/course/course-evaluate
+      let response = await axios.post(`${API_URL}/course/course-evaluate`);
+      setData(response.data);
+      // console.log(response.data[0].name);
+    };
+    getEvaluate();
+  }, []);
 
   return (
     <>
@@ -46,6 +43,7 @@ function CourseEvaluate() {
           <List listData={data} deleteData={setData} setData={setData} />
           <Edit add={setData} />
 
+          {/* TODO:寫分頁 */}
           {/* <!-- 分頁 (Pagination) --> */}
           <nav aria-label="...">
             <ul class="pagination justify-content-center mt-3">

@@ -14,7 +14,7 @@ function CourseSpot() {
   // 取得資料庫北部上課地點
   useEffect(() => {
     let getNorthSpot = async () => {
-      // http://localhost:3002/api/還沒取
+      // http://localhost:3002/api/course/courseSpot/north
       let response = await axios.get(`${API_URL}/course/courseSpot/north`);
       setNorthSpot(response.data);
       // console.log(response.data);
@@ -26,7 +26,7 @@ function CourseSpot() {
 
   useEffect(() => {
     let getOtherSpot = async () => {
-      // http://localhost:3002') + '/img'
+      // http://localhost:3002/api/course/courseSpot/others
       let response = await axios.get(`${API_URL}/course/courseSpot/others`);
       setOtherSpot(response.data);
     };
@@ -56,7 +56,7 @@ function CourseSpot() {
           {north.map((spot) => {
             return (
               <div key={spot.id} className="col-md-6 col-lg-3 ">
-                <div className="spot-img shadow-sm">
+                <div className="spot-img shadow-sm mt-3">
                   <img
                     src={`${IMAGE_URL}/course/${spot.image}`}
                     className="w-100 rounded"
@@ -76,7 +76,7 @@ function CourseSpot() {
           {others.map((spot) => {
             return (
               <div key={spot.id} className="col-md-6 col-lg-3 ">
-                <div className="spot-img shadow-sm">
+                <div className="spot-img shadow-sm mt-3">
                   <img
                     src={`${IMAGE_URL}/course/${spot.image}`}
                     className="w-100 rounded"

@@ -44,7 +44,28 @@
   }
 
   // 付款選項按鈕
-  .pay-link {
+  .pay-link-on {
+    background-color: $deepblue;
+    color: $white;
+    border: 0.5px solid;
+    border-color: $gray;
+    display: block;
+    text-align: center;
+    width: 100px;
+    padding: 3px;
+    text-decoration: none;
+  }
+
+  .payItem:first-child .pay-link-on {
+    border-top-left-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
+  }
+  .payItem:last-child .pay-link-on {
+    border-top-right-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+  }
+
+  .pay-link-off {
     border: 0.5px solid;
     border-color: $gray;
     color: $black;
@@ -54,16 +75,12 @@
     padding: 3px;
     text-decoration: none;
   }
-  .pay-link:active,
-  .pay-link:hover {
-    background-color: $deepblue;
-    color: $white;
-  }
-  .payItem:first-child .pay-link {
+
+  .payItem:first-child .pay-link-off {
     border-top-left-radius: 0.5rem;
     border-bottom-left-radius: 0.5rem;
   }
-  .payItem:last-child .pay-link {
+  .payItem:last-child .pay-link-off {
     border-top-right-radius: 0.5rem;
     border-bottom-right-radius: 0.5rem;
   }
@@ -86,26 +103,43 @@
   }
 
   // 付款選項按鈕
-  .pay-link {
+  .pay-link-on {
+    background-color: $deepblue;
+    color: $white;
     border: 0.5px solid;
     border-color: $gray;
-    color: $black;
     display: block;
     text-align: center;
     width: 150px;
     padding: 3px;
     text-decoration: none;
   }
-  .pay-link:active,
-  .pay-link:hover {
-    background-color: $deepblue;
-    color: $white;
-  }
-  .payItem:first-child .pay-link {
+
+  .payItem:first-child .pay-link-on {
     border-top-left-radius: 0.5rem;
     border-bottom-left-radius: 0.5rem;
   }
-  .payItem:last-child .pay-link {
+  .payItem:last-child .pay-link-on {
+    border-top-right-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+  }
+
+  .pay-link-off {
+    color: $black;
+    border: 0.5px solid;
+    border-color: $gray;
+    display: block;
+    text-align: center;
+    width: 150px;
+    padding: 3px;
+    text-decoration: none;
+  }
+
+  .payItem:first-child .pay-link-off {
+    border-top-left-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
+  }
+  .payItem:last-child .pay-link-off {
     border-top-right-radius: 0.5rem;
     border-bottom-right-radius: 0.5rem;
   }
