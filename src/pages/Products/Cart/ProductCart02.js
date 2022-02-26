@@ -11,6 +11,10 @@ function ProductCart02() {
   // 會員資料傳入useContext
   const { auth, setAuth } = useAuth();
   console.log('auth', auth);
+  // 將localStorage的資料存為狀態orderCart
+  const [orderCart, setOrderCart] = useState([]);
+  // 整理重複的orderCart為orderCartDisplay
+  const [orderCartDisplay, setOrderCartDisplay] = useState([]);
 
   // 表單元素
   // order-list欄位
@@ -32,36 +36,79 @@ function ProductCart02() {
   const [memberEmail, setMemberEmail] = useState(''); // 待useContext添此欄位
   const [memberPhone, setMemberPhone] = useState(''); // 待useContext添此欄位
   const [memberAddress, setMemberAddress] = useState(''); // 待useContext添此欄位
-  const [receiverEmail, setReceiverEmail] = useState('');
 
   const [validated, setValidated] = useState(false);
 
   // 模擬componentDidMount
+  // 提取LocalStorage的資料
+  function getCartFromLocalStorage() {
+    // 如果購物車內沒資料，就給空陣列
+    const orderCart = JSON.parse(localStorage.getItem('productCart') || '[]');
+    console.log('orderCart', orderCart);
+    setOrderCart(orderCart);
+  }
+  useEffect(() => {
+    getCartFromLocalStorage();
+  }, []);
+
+  // 模擬componentDidUpdate
+  // 整理orderCart中product_no相同的品項
+  useEffect(() => {
+    let newOrderCartDisplay = [];
+
+    //尋找orderCartDisplay中有沒有和mycart[i]同product_no
+    for (let i = 0; i < orderCart.length; i++) {
+      //有找到會返回陣列成員的索引值
+      //沒找到會返回-1
+      const index = newOrderCartDisplay.findIndex(
+        (value) => value.product_no === orderCart[i].product_no
+      );
+      //有的話就相加其數量
+      if (index !== -1) {
+        newOrderCartDisplay[index].count += orderCart[i].count;
+      } else {
+        //沒有的話就把項目加入orderCartDisplay
+        const newItem = { ...orderCart[i] };
+        newOrderCartDisplay = [...newOrderCartDisplay, newItem];
+      }
+    }
+
+    console.log('newOrderCartDisplay', newOrderCartDisplay);
+    setOrderCartDisplay(newOrderCartDisplay);
+  }, [orderCart]);
+
+  // 計算總價用的函式
+  const sum = (items) => {
+    let total = 0;
+    for (let i = 0; i < items.length; i++) {
+      total += items[i].count * items[i].price;
+    }
+    return total;
+  };
+
+  console.log('sum(orderCartDisplay)', sum(orderCartDisplay));
+  // 模擬componentDidMount
   // 將會員資料帶入訂購人資訊
   useEffect(() => {
-    // member_id
-    let newOrder = { ...order };
-    newOrder['member_id'] = auth.id;
-    setOrder(newOrder);
-    // memberName
-    let newMemberName = memberName;
-    newMemberName = auth.name;
-    setMemberName(newMemberName);
-    setMemberEmail('member@gmail.com');
-    setMemberPhone('0900000000');
-    setMemberAddress('會員地址');
-  }, []);
-  console.log('memberName', memberName);
+    // member_id，從useContext帶入
+    // amount，從localstorage帶入單價、數量，然後再計算
+    setOrder({
+      ...order,
+      member_id: auth.id,
+      amount: sum(orderCartDisplay),
+    });
 
+    // memberName
+    setMemberName(auth.name);
+    setMemberEmail(auth.email);
+    setMemberPhone(auth.phone);
+    setMemberAddress(auth.address);
+  }, []);
+
+  // onchange表單內的欄位(限order物件內的欄位)
   const handleChange = (e) => {
-    // 1. 從原本的狀態物件上拷貝出一個新物件
-    // 2. 在拷貝的新物件上處理
-    // "合併"原有物件值的語法
-    // 3. 設定回狀態
-    let newOrder = { ...order };
-    newOrder[e.target.name] = e.target.value;
-    console.log('newOrder', newOrder);
-    setOrder(newOrder);
+    setOrder({ ...order, [e.target.name]: e.target.value });
+    console.log('order', order);
   };
 
   // react-bootstrap原本的
