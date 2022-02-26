@@ -58,8 +58,7 @@ import Header from './components/Header';
 // import Footer from './components/Footer';
 // import MainContent from './components/MainContent';
 // import SideBar from './components/SideBar';
-// import Notfound from './components/Notfound';
-// import axios from 'axios';
+import NotFound from './components/NotFound';
 
 function App() {
   const [auth, setAuth] = useState(null);
@@ -128,6 +127,7 @@ function App() {
           <Route path="/course/course-cart02" element={<CourseCart02 />} />
           <Route path="/course/course-cart03" element={<CourseCart03 />} />
           <Route path="/course/course-cart" element={<CourseCart />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </AuthContext.Provider>
     </>
