@@ -14,6 +14,7 @@ import './surfSpotDetails.scss';
 function SurfSpotDetails(props) {
   const { showSurfSpotDetails, setshowSurfSpotDetails, spotId } = props;
   const [data, setData] = useState([]);
+  const [info, setInfo] = useState([]);
   const surfSpotDetailsRef = useRef();
   const closeshowSurfSpotDetails = (e) => {
     if (surfSpotDetailsRef.current === e.target) {
@@ -39,6 +40,22 @@ function SurfSpotDetails(props) {
       // console.log(response.data);
     };
     getSurfspot();
+  }, [spotId]);
+
+  useEffect(() => {
+    let getInfo = async () => {
+      let response = await axios.get(`${API_URL}/surfspot/wave-info`);
+      let findSpotInfo = response.data.filter((v) => {
+        return v.id === spotId;
+      });
+      console.log(findSpotInfo);
+      if (!findSpotInfo) {
+        setInfo(response.data);
+      } else {
+        setInfo(findSpotInfo);
+      }
+    };
+    getInfo();
   }, [spotId]);
 
   dayjs.locale('zh-tw');
@@ -103,74 +120,92 @@ function SurfSpotDetails(props) {
                       </div>
                     );
                   })}
-
-                  <div className="col-md-5 col-sm-12 py-5">
-                    <div className="mx-4 mb-2 fw-bold d-flex justify-content-start black">
-                      {now}
-                    </div>
-                    <div className="spotInfo p-4 mx-4">
-                      <Row className="mb-3">
-                        <Col className="text-center text-dark fw-bold">
-                          風級
-                        </Col>
-                        <Col className="text-center text-dark fw-bold">
-                          風向
-                        </Col>
-                        <Col className="text-center text-dark fw-bold">
-                          風速
-                        </Col>
-                      </Row>
-                      <Row className="mb-4 pb-3 border-bottom">
-                        <Col className="align-items-center text-center">5</Col>
-                        <Col className="text-center">
-                          <FaLocationArrow
-                            size={20}
-                            color="#17a8a2"
-                            className="mb-2 NNW"
-                          />
-                        </Col>
-                        <Col className="text-center">9.5m/s</Col>
-                      </Row>
-                      <Row className="mb-3">
-                        <Col className="text-center text-dark fw-bold">
-                          氣溫
-                        </Col>
-                        <Col className="text-center text-dark fw-bold">
-                          海溫
-                        </Col>
-                        <Col className="text-center text-dark fw-bold">UV</Col>
-                      </Row>
-                      <Row className="mb-4 pb-3 border-bottom">
-                        <Col className="text-center">18°C</Col>
-                        <Col className="text-center">20°C</Col>
-                        <Col className="text-center">3</Col>
-                      </Row>
-                      <Row className="mb-3">
-                        <Col className="text-center text-dark fw-bold">
-                          乾潮
-                        </Col>
-                        <Col className="text-center text-dark fw-bold">
-                          滿潮
-                        </Col>
-                        <Col className="text-center text-dark fw-bold">
-                          日落
-                        </Col>
-                      </Row>
-                      <Row className="mb-2">
-                        <Col className="text-center">
-                          00:43
-                          <br />
-                          12:22
-                        </Col>
-                        <Col className="text-center">
-                          07:28
-                          <br />
-                          17:38
-                        </Col>
-                        <Col className="text-center mt-2">17:48</Col>
-                      </Row>
-                    </div>
-                  </div>
+                  {info.map((information, i) => {
+                    return (
+                      <div
+                        key={information.id}
+                        className="col-md-5 col-sm-12 py-5"
+                      >
+                        <div className="mx-4 mb-2 fw-bold d-flex justify-content-start black">
+                          {now}
+                        </div>
+                        <div className="spotInfo p-4 mx-4">
+                          <Row className="mb-3">
+                            <Col className="text-center text-dark fw-bold">
+                              風級
+                            </Col>
+                            <Col className="text-center text-dark fw-bold">
+                              風向
+                            </Col>
+                            <Col className="text-center text-dark fw-bold">
+                              風速
+                            </Col>
+                          </Row>
+                          <Row className="mb-4 pb-3 border-bottom">
+                            <Col className="align-items-center text-center">
+                              {information.windScale}
+                            </Col>
+                            <Col className="text-center">
+                              <FaLocationArrow
+                                size={20}
+                                color="#17a8a2"
+                                className={`mb-2 ${information.windDirection}`}
+                              />
+                            </Col>
+                            <Col className="text-center">
+                              {information.windSpeed}m/s
+                            </Col>
+                          </Row>
+                          <Row className="mb-3">
+                            <Col className="text-center text-dark fw-bold">
+                              氣溫
+                            </Col>
+                            <Col className="text-center text-dark fw-bold">
+                              海溫
+                            </Col>
+                            <Col className="text-center text-dark fw-bold">
+                              UV
+                            </Col>
+                          </Row>
+                          <Row className="mb-4 pb-3 border-bottom">
+                            <Col className="text-center">
+                              {information.temperature}°C
+                            </Col>
+                            <Col className="text-center">
+                              {information.seatTmperature}°C
+                            </Col>
+                            <Col className="text-center">{information.uv}</Col>
+                          </Row>
+                          <Row className="mb-3">
+                            <Col className="text-center text-dark fw-bold">
+                              乾潮
+                            </Col>
+                            <Col className="text-center text-dark fw-bold">
+                              滿潮
+                            </Col>
+                            <Col className="text-center text-dark fw-bold">
+                              日落
+                            </Col>
+                          </Row>
+                          <Row className="mb-2">
+                            <Col className="text-center">
+                              {information.dryTime1}
+                              <br />
+                              {information.dryTime2}
+                            </Col>
+                            <Col className="text-center">
+                              {information.fullTime1}
+                              <br />
+                              {information.fullTime2}
+                            </Col>
+                            <Col className="text-center mt-2">
+                              {information.sunsetTime}
+                            </Col>
+                          </Row>
+                        </div>
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
             </div>
