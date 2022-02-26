@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Navigate } from 'react-router-dom';
 import moment from 'moment';
+import { useAuth } from '../../context/auth';
 
 // 引用課程評價
 import CourseEvaluate from './components/CourseEvaluate';
@@ -22,6 +23,8 @@ import lifeguard from '../../data/images/course/icon-lifeguard.png';
 import './CourseContent.scss';
 
 function CourseContent(props) {
+  const { auth, setAuth } = useAuth();
+
   // 預約日期調整明天以後才可選
   let today = moment().format('YYYY-MM-DD');
   today = today.split('-');
@@ -38,6 +41,8 @@ function CourseContent(props) {
   // 課程時間
   const [courseTime, setCourseTime] = useState('');
   const timeOptions = ['上午', '下午'];
+
+  const [goTo, setGoTo] = useState(false);
 
   //提交報名資訊將資料帶到下一頁
   function addSubmit(e) {
@@ -61,7 +66,11 @@ function CourseContent(props) {
     localStorage.setItem('coursePrice', coursePrice);
 
     // 導向另外一頁
-    navigate('/course/course-cart', { replace: true });
+    // navigate('/course/course-cart', { replace: true });
+  }
+
+  if (goTo) {
+    return <Navigate to="/course/course-cart"></Navigate>;
   }
 
   return (
@@ -492,6 +501,13 @@ function CourseContent(props) {
                       <button
                         className="btn btn-primary text-white formBtn "
                         type="submit"
+                        onClick={() => {
+                          if (auth === null) {
+                            return alert('請登入');
+                          } else {
+                            return setGoTo(true);
+                          }
+                        }}
                       >
                         立即報名
                         <i className="fas fa-arrow-right text-white"></i>

@@ -3,6 +3,7 @@ import greenTitle from '../../../data/images/greenTitle.svg';
 import { useState, useEffect, useRef } from 'react';
 import { API_URL, IMAGE_URL } from '../../../utils/config';
 import axios from 'axios';
+// import { useAuth } from '../../../context/auth';
 
 import '../CourseContent.scss';
 import '../CourseCart.scss';
@@ -11,9 +12,12 @@ import Edit from './Edit';
 import List from './List';
 
 function CourseEvaluate() {
+  // const { auth, setAuth } = useAuth();
+  // if (auth === null) {
+  // }
   const [data, setData] = useState([]);
 
-  //取資料庫評價與圖片
+  //取資料庫評價與圖片 TODO:後端先改用get
   useEffect(() => {
     let getEvaluate = async () => {
       // http://localhost:3002/api/course/course-evaluate
