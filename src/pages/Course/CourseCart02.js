@@ -30,12 +30,6 @@ function CourseCart02(props) {
         phone: phone,
       },
     ];
-    // 個人資料不要存進localStorage
-    // localStorage.setItem('name', JSON.stringify(name));
-    // localStorage.setItem('pid', JSON.stringify(pid));
-    // localStorage.setItem('sex', JSON.stringify(sex));
-    // localStorage.setItem('birthday', JSON.stringify(bdDay));
-    // localStorage.setItem('phoneNum', JSON.stringify(phone));
 
     let courseOrder = [
       {
@@ -61,7 +55,6 @@ function CourseCart02(props) {
       console.log('有沒有送訂單', response.data);
     } catch (e) {
       console.error('error', e.response.data);
-      // console.error("測試註冊", ERR_MSG[e.response.data.code]);
     }
 
     //TODO:報名完清除暫存 alert可以拿掉
@@ -97,23 +90,6 @@ function CourseCart02(props) {
                 required
               />
             </div>
-
-            {/* <div className="py-2 mt-3">
-              <label>身分證字號</label>
-              <input
-                type="text"
-                className="form-control"
-                id="pid"
-                placeholder="身分證字號(第一個英文字母需大寫)"
-                pattern="^[A-Z]\d{9}$"
-                name="pid"
-                value={pid}
-                onChange={(e) => {
-                  setId(e.target.value);
-                }}
-                required
-              />
-            </div> */}
 
             <div className="d-flex align-items-center py-2 mt-3">
               <label className="p-2 ">* 性別:</label>
@@ -156,24 +132,6 @@ function CourseCart02(props) {
                 required
               />
             </div>
-
-            {/* <div className="py-2">
-              <label>出生年月日</label>
-              <input
-                type="date"
-                minLength="1900-01-01"
-                maxLength="2016-01-01"
-                className="form-control"
-                id="bdDay"
-                placeholder="出生年月日"
-                name="bdDay"
-                value={bdDay}
-                onChange={(e) => {
-                  setBdDay(e.target.value);
-                }}
-                required
-              />
-            </div> */}
 
             <div className="py-2">
               <label>* 電話</label>
