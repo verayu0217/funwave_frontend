@@ -12,8 +12,8 @@ import { BiHeart } from 'react-icons/bi';
 // import { FaHeart } from 'react-icons/fa'; // 全愛心
 
 function Home() {
-  const { auth, setAuth } = useAuth();
-  console.log('authHome', auth);
+  // const { auth, setAuth } = useAuth();
+  // console.log('authHome', auth);
   return (
     <>
       {/* 首圖 */}

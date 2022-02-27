@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { Row, Col } from 'react-bootstrap';
-import ControlledTabs from './ControlledTabs';
+import Step2Tabs from './Step2Tabs';
 import Step2Board from './Step2Board';
 import greenTitle from '../../data/images/greenTitle.svg';
 
 function Step2(props) {
   const { step, setStep, surfingBoard, setSurfingBoard, pattern, setPattern } =
     props;
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className="container pb-3">
@@ -33,7 +36,7 @@ function Step2(props) {
       <hr className="mb-3 mt-0" />
       {/* 內容 */}
       <Row>
-        {/* 左邊 */}
+        {/* 板子改變 */}
         <Step2Board
           surfingBoard={surfingBoard}
           setSurfingBoard={setSurfingBoard}
@@ -75,7 +78,7 @@ function Step2(props) {
             <hr />
             <p>請選擇圖樣</p>
 
-            <ControlledTabs
+            <Step2Tabs
               pattern={pattern}
               setPattern={setPattern}
               surfingBoard={surfingBoard}

@@ -21,6 +21,7 @@
 //名人
 .photoCu {
   max-width: 440px;
+  min-width: 350px;
   max-height: 250px;
   object-fit: cover;
   border-radius: 8px;
@@ -40,8 +41,8 @@
 }
 //step1
 .chooseBoardCu {
-  max-height: 550px;
-  // cursor: pointer;
+  // max-height: 550px;
+  cursor: pointer;
 }
 .boardOrange{
   border:4px solid $primary;
@@ -49,12 +50,7 @@
 .borderLightGray{
   border:4px solid $lightgray;
 }
-.imgPositionCu{
-  top:35% ;
-  width:45%;
-  left:28%
 
-}
 //step2
 .boarderCu {
   // 手機大小
@@ -79,20 +75,27 @@ input[type='color']::-webkit-color-swatch-wrapper {
 input[type='color']::-webkit-color-swatch {
   border: none;
   border-radius: 50%;
+  cursor: pointer;
 }
 .cover-fit {
-  width: 100%;
+  // width: 100%;
   height: 100%;
 }
 .boxCu{
   height: 100px;
   width: 100px;
   border-radius: 8px;
-  overflow: hidden;
+  
+  overflow:hidden;
   border: 1px solid black;
 }
 .upperPictureCu {
   z-index: 50;
+}
+.imgPositionCu{
+  top:32% ;
+  width:40%;
+  left:30%
 }
 //細節
 .whiteBg {
