@@ -32,7 +32,7 @@ function ProductAddCart(props) {
   } = props;
   const [mycart, setMycart] = useState([]); // 要存進localStorage的資料
 
-  const [goTo, setGoTo] = useState(false);
+  const [goToCart, setGoToCart] = useState(false);
   // 小分類、品牌的id對照名稱
   const smallCatTypes = [
     '衝浪長板',
@@ -104,7 +104,7 @@ function ProductAddCart(props) {
     // }
   };
 
-  if (goTo) {
+  if (goToCart) {
     return <Navigate to="/product-cart01"></Navigate>;
   }
 
@@ -224,7 +224,7 @@ function ProductAddCart(props) {
           if (auth === null) {
             return alert('請登入會員');
           } else {
-            setGoTo(true);
+            setGoToCart(true);
           }
         }}
       >
@@ -235,7 +235,7 @@ function ProductAddCart(props) {
         className="btn btn-secondary btnAddCart"
         onClick={() => {
           updateCartToLocalStorage({
-            product_no: product[chosenProductOrder].product_no, // undefined!!
+            product_no: product[chosenProductOrder].product_no, // undefined!! Bug
             name: product[0].name,
             price: product[0].price,
             image1: product[chosenProductOrder].image1,
