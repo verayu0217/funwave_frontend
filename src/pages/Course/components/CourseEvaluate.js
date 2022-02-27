@@ -3,6 +3,7 @@ import greenTitle from '../../../data/images/greenTitle.svg';
 import { useState, useEffect, useRef } from 'react';
 import { API_URL, IMAGE_URL } from '../../../utils/config';
 import axios from 'axios';
+// import { useAuth } from '../../../context/auth';
 
 import '../CourseContent.scss';
 import '../CourseCart.scss';
@@ -11,9 +12,12 @@ import Edit from './Edit';
 import List from './List';
 
 function CourseEvaluate() {
+  // const { auth, setAuth } = useAuth();
+  // if (auth === null) {
+  // }
   const [data, setData] = useState([]);
 
-  //取資料庫評價與圖片
+  //取資料庫評價與圖片 TODO:後端先改用get
   useEffect(() => {
     let getEvaluate = async () => {
       // http://localhost:3002/api/course/course-evaluate
@@ -46,17 +50,17 @@ function CourseEvaluate() {
           {/* TODO:寫分頁 */}
           {/* <!-- 分頁 (Pagination) --> */}
           <nav aria-label="...">
-            <ul class="pagination justify-content-center mt-3">
-              <li class="page-item active" aria-current="page">
-                <span class="page-link">1</span>
+            <ul className="pagination justify-content-center mt-3">
+              <li className="page-item active" aria-current="page">
+                <span className="page-link">1</span>
               </li>
-              <li class="page-item">
-                <a class="page-link" href="#/">
+              <li className="page-item">
+                <a className="page-link" href="#/">
                   2
                 </a>
               </li>
-              <li class="page-item">
-                <a class="page-link" href="#/">
+              <li className="page-item">
+                <a className="page-link" href="#/">
                   3
                 </a>
               </li>

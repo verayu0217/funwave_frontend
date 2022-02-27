@@ -84,6 +84,18 @@
     border-top-right-radius: 0.5rem;
     border-bottom-right-radius: 0.5rem;
   }
+
+  .pay-link-on:hover {
+    color: white;
+    background-color: $deepblue;
+    color: $white;
+  }
+
+  .pay-link-off:hover {
+    color: black;
+    background-color: $deepblue;
+    color: $white;
+  }
 }
 
 // 電腦板
@@ -142,5 +154,16 @@
   .payItem:last-child .pay-link-off {
     border-top-right-radius: 0.5rem;
     border-bottom-right-radius: 0.5rem;
+  }
+  .pay-link-on:hover {
+    color: white;
+    background-color: $deepblue;
+    color: $white;
+  }
+
+  .pay-link-off:hover {
+    color: black;
+    background-color: $deepblue;
+    color: $white;
   }
 }

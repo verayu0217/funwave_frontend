@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Navigate } from 'react-router-dom';
 import moment from 'moment';
+import { useAuth } from '../../context/auth';
 
 // 引用課程評價
 import CourseEvaluate from './components/CourseEvaluate';
@@ -22,6 +23,8 @@ import lifeguard from '../../data/images/course/icon-lifeguard.png';
 import './CourseContent.scss';
 
 function CourseContent(props) {
+  const { auth, setAuth } = useAuth();
+
   // 預約日期調整明天以後才可選
   let today = moment().format('YYYY-MM-DD');
   today = today.split('-');
@@ -39,8 +42,12 @@ function CourseContent(props) {
   const [courseTime, setCourseTime] = useState('');
   const timeOptions = ['上午', '下午'];
 
+  const [goTo, setGoTo] = useState(false);
+
   //提交報名資訊將資料帶到下一頁
   function addSubmit(e) {
+    e.preventDefault();
+
     const coursePrice = course === '體驗課程' ? 1000 : 2000;
 
     let data = [
@@ -60,8 +67,10 @@ function CourseContent(props) {
     localStorage.setItem('courseDate', JSON.stringify(courseDate));
     localStorage.setItem('coursePrice', coursePrice);
 
-    // 導向另外一頁
-    navigate('/course/course-cart', { replace: true });
+    // 如果有登入導向另外一頁
+    if (goTo) {
+      return navigate('/course/course-cart', { replace: true });
+    }
   }
 
   return (
@@ -380,7 +389,7 @@ function CourseContent(props) {
           </div>
 
           {/* 課程體驗評價  */}
-          <CourseEvaluate />
+          {/* <CourseEvaluate /> */}
 
           {/* 課程報名 */}
           <div className="row">
@@ -492,6 +501,13 @@ function CourseContent(props) {
                       <button
                         className="btn btn-primary text-white formBtn "
                         type="submit"
+                        onClick={() => {
+                          if (auth === null) {
+                            return alert('請先登入會員');
+                          } else {
+                            return setGoTo(true);
+                          }
+                        }}
                       >
                         立即報名
                         <i className="fas fa-arrow-right text-white"></i>

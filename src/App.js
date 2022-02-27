@@ -53,37 +53,38 @@ import SurfSpot from './pages/SurfSpot/SurfSpot';
 
 // 組合用元件(一般組件)
 // import Breadcrumb from './components/Breadcrumb';
-// import ScrollToTop from './components/ScrollToTop';
+import ScrollToTop from './components/ScrollToTop';
 import Header from './components/Header';
 // import Footer from './components/Footer';
 // import MainContent from './components/MainContent';
 // import SideBar from './components/SideBar';
-// import Notfound from './components/Notfound';
-// import axios from 'axios';
+import NotFound from './components/NotFound';
 
 function App() {
   const [auth, setAuth] = useState(null);
-
-  useEffect(() => {
-    async function checklogIn() {
-      try {
-        let response = await axios.get(`${API_URL}/auth/checklogin`, {
-          withCredentials: true,
-        });
-        setAuth(response.data);
-        console.log('appres', response);
-        console.log('App', auth);
-      } catch (e) {
-        console.error({ ERR_MSG });
-      }
+  async function checklogIn() {
+    try {
+      let response = await axios.get(`${API_URL}/auth/checklogin`, {
+        withCredentials: true,
+      });
+      setAuth(response.data);
+      console.log('App', auth);
+    } catch (e) {
+      console.error({ ERR_MSG });
     }
-    checklogIn();
+  }
+  // console.log('App2', auth);
+  useEffect(() => {
+    if (!auth) {
+      checklogIn();
+    }
   }, []);
 
   return (
     <>
       <AuthContext.Provider value={{ auth, setAuth }}>
         <Header />
+        <ScrollToTop />
         {/* <Breadcrumb /> */}
         <Routes>
           <Route path="/home" element={<Home />} />
@@ -126,6 +127,7 @@ function App() {
           <Route path="/course/course-cart02" element={<CourseCart02 />} />
           <Route path="/course/course-cart03" element={<CourseCart03 />} />
           <Route path="/course/course-cart" element={<CourseCart />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </AuthContext.Provider>
     </>
