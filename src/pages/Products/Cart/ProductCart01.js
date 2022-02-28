@@ -11,9 +11,15 @@ import { CgTrash } from 'react-icons/cg';
 function ProductCart01() {
   // 將localStorage的資料存為狀態mycart
   const [mycart, setMycart] = useState([]);
+
   // 整理重複的mycart為mycartDisplay
   const [mycartDisplay, setMycartDisplay] = useState([]);
 
+  // 付款方式、運送方式
+  const [payDeliver, setPayDeliver] = useState({
+    payment: '',
+    delivery: '',
+  });
   // 小分類、顏色的id對照名稱
   const colorTypes = ['白', '黑', '藍', '綠', '黃', '紅', '橘'];
   const smallCatTypes = [
@@ -23,13 +29,12 @@ function ProductCart01() {
     '衝浪板舵',
     '衝浪腳繩',
     '衝浪腳踏墊',
-    '衝浪板袋',
     '衝浪斗篷毛巾衣',
     '防寒衣',
   ];
 
   // 模擬componentDidMount
-  // 提取LocalStorage的資料
+  // 提取LocalStorage的資料(productCart)
   function getCartFromLocalStorage() {
     // 如果購物車內沒資料，就給空陣列
     const newCart = JSON.parse(localStorage.getItem('productCart') || '[]');
@@ -66,6 +71,12 @@ function ProductCart01() {
     setMycartDisplay(newMycartDisplay);
   }, [mycart]);
 
+  // 模擬componentDidUpdate
+  // 將整理好的mycart存進LocalStorage(productCartDisplay)
+  useEffect(() => {
+    localStorage.setItem('productCartDisplay', JSON.stringify(mycartDisplay));
+  }, [mycartDisplay]);
+
   // 更新購物車中的商品數量
   const updateCartLocalStorage = (item, isAdded = true) => {
     console.log(item, isAdded);
@@ -84,7 +95,6 @@ function ProductCart01() {
 
     localStorage.setItem('productCart', JSON.stringify(currentCart));
     setMycart(currentCart);
-    console.log('mycart', mycart); // 為何看起來慢一拍？？？
   };
 
   // 處理項目刪除用
@@ -97,7 +107,6 @@ function ProductCart01() {
     //3. 設定回原本的狀態
     setMycart(newMycart);
     localStorage.setItem('productCart', JSON.stringify(newMycart));
-    // console.log('newMycartDisplay', newMycartDisplay);
   };
 
   // 計算總價用的函式
@@ -110,6 +119,11 @@ function ProductCart01() {
   };
   // localStorage.removeItem('productCart');
 
+  function handleChange(e) {
+    // 物件裡要用變數當key值，要用[]
+    // e.target.name是抓input的name (因為使用name當key值，所以name要和物件裡的key值一樣)，屬於html
+    setPayDeliver({ ...payDeliver, [e.target.name]: e.target.value });
+  }
   return (
     <>
       <div className="container">

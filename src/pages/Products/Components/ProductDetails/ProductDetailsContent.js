@@ -29,7 +29,6 @@ function ProductDetailsContent(props) {
     '衝浪板舵',
     '衝浪腳繩',
     '衝浪腳踏墊',
-    '衝浪板袋',
     '衝浪斗篷毛巾衣',
     '防寒衣',
   ];

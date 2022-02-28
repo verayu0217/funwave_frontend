@@ -353,7 +353,6 @@ function ProductDetails(props) {
                     setChosenProductOrder={setChosenProductOrder}
                   />
                 )}
-                {/* <ProductDetailsContent product={product} /> */}
                 {/* 評價 */}
                 <div className="m-5">
                   <div className="text-secondary my-4 h2 text-center ">
@@ -421,7 +420,6 @@ function ProductDetails(props) {
                       setChosenProductOrder={setChosenProductOrder}
                     />
                   )}
-                  {/* <ProductAddCart product={product} /> */}
                 </div>
               </div>
             </div>
