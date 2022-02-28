@@ -7,7 +7,7 @@ import longboardHole from '../../data/images/customize/longboardHole.png';
 import { IMAGE_URL } from '../../utils/config';
 
 function Step2Board(props) {
-  const { surfingBoard, setSurfingBoard, pattern, setPattern } = props;
+  const { surfingBoard } = props;
   const [board, setBoard] = useState({});
 
   useEffect(() => {
@@ -24,7 +24,9 @@ function Step2Board(props) {
   return (
     <Col lg="7">
       <Row className="gx-0">
-        <Col lg="2">{board.text}</Col>
+        <Col lg="2" xs="12">
+          <div className="text-center fw-bold h1">{board.text}</div>
+        </Col>
         <Col lg="5" className="boarder">
           <p className="m-0 text-center">正面</p>
           {/* 正面浪板 */}
