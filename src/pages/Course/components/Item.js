@@ -1,10 +1,9 @@
 import StarRating from './StarRating';
 import { useState, useEffect } from 'react';
 import { API_URL, IMAGE_URL } from '../../../utils/config';
-import axios from 'axios';
-import { clearConfigCache } from 'prettier';
+import { useAuth } from '../../../context/auth';
 
-const Item = ({ message, date, rating, photo }) => {
+const Item = ({ message, date, rating, photo, name }) => {
   return (
     <div>
       {/* 留言 */}
@@ -24,13 +23,13 @@ const Item = ({ message, date, rating, photo }) => {
           </div>
 
           {/* 名稱 */}
-          <div className="m-3 align-self-center">頭號奈粉</div>
+          <div className="m-3 align-self-center">{name}</div>
 
           {/* 星星 */}
           <div className="align-self-center">
             <div className="d-flex">
               {/* 放評完價的星星 disable(true)不能讓它點擊 */}
-              <StarRating initStarts={rating} disable />
+              <StarRating initStarts={rating} disable rating={rating} />
             </div>
           </div>
 
@@ -46,13 +45,18 @@ const Item = ({ message, date, rating, photo }) => {
 
           {/* 圖片區  */}
           <div className="mt-3 d-flex justify-space-around">
-            <img
-              src={`http://localhost:3002/${photo}`}
-              className={photo === '' ? 'd-none' : 'rounded-3 m-1'}
-              alt=""
-              height="60px"
-              weight="60px"
-            />
+            {/* 如果沒有圖片就不顯示圖片*/}
+            {photo ? (
+              <img
+                src={`http://localhost:3002/${photo}`}
+                // className={photo === '' ? 'd-none' : 'rounded-3 m-1'}
+                alt=""
+                height="60px"
+                weight="60px"
+              />
+            ) : (
+              ''
+            )}
           </div>
         </div>
       </div>

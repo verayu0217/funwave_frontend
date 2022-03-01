@@ -72,7 +72,7 @@ function Courses() {
               className="btn btn-primary text-white mb-5 courseIntroBtn"
             >
               詳細課程內容
-              <i className="fas fa-arrow-right text-white"></i>
+              <i className="fas fa-arrow-right text-white ms-2"></i>
             </Link>
           </div>
         </div>
