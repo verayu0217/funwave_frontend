@@ -174,10 +174,6 @@ function CourseCart02(props) {
               <button
                 type="submit"
                 className="btn btn-primary text-white mb-3 sendFormBtn"
-                // TODO:加這句雖然跳轉到第三頁但會無法送資料到後端
-                // onClick={() => {
-                //   setStep({ ...step, step2: '', step3: true });
-                // }}
               >
                 送出資料，去付款
               </button>

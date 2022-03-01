@@ -10,7 +10,7 @@ const List = ({ listData }) => {
   return (
     <div>
       {listData.map((item, i) => {
-        const { message, date, rating, photo } = item;
+        const { message, date, rating, photo, name } = item;
         return (
           <Item
             key={i}
@@ -18,6 +18,7 @@ const List = ({ listData }) => {
             date={date}
             rating={rating}
             photo={photo}
+            name={name}
           />
         );
       })}

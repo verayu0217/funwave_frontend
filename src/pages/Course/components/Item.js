@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { API_URL, IMAGE_URL } from '../../../utils/config';
 import { useAuth } from '../../../context/auth';
 
-const Item = ({ message, date, rating, photo }) => {
+const Item = ({ message, date, rating, photo, name }) => {
   return (
     <div>
       {/* 留言 */}
@@ -23,7 +23,7 @@ const Item = ({ message, date, rating, photo }) => {
           </div>
 
           {/* 名稱 */}
-          <div className="m-3 align-self-center">會員名稱</div>
+          <div className="m-3 align-self-center">{name}</div>
 
           {/* 星星 */}
           <div className="align-self-center">

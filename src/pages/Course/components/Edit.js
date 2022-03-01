@@ -6,8 +6,6 @@ import StarRating from './StarRating';
 
 // props拿出add
 const Edit = ({ add, auth }) => {
-  // TODO:取得會員名稱後給name
-
   // console.log(auth?.name);
   //新增留言時帶入日期
   let today = moment().format('YYYY-MM-DD');
@@ -19,11 +17,12 @@ const Edit = ({ add, auth }) => {
   const [photo, setPhoto] = useState('');
   const [date, setDate] = useState(today);
 
-  // useEffect(() => {
-  //   if (auth === null) {
-  //     return;
-  //   }
-  // });
+  // 取得會員名稱給name
+  useEffect(() => {
+    if (auth !== null) {
+      setName(auth.name);
+    }
+  });
 
   function msgChange(e) {
     setMsg(e.target.value);
@@ -38,12 +37,12 @@ const Edit = ({ add, auth }) => {
     // 從父層傳下來的setData方法
     add(function (prevData) {
       // 調換順序讓新留言在最上面
-      return [{ message, rating, date }, ...prevData];
+      return [{ message, rating, date, name }, ...prevData];
     });
 
     let totalMsg = [
       {
-        name: '路人甲',
+        name: name,
         date: date,
         message,
         rating,
