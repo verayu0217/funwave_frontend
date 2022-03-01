@@ -11,6 +11,7 @@ import {
   AiOutlinePlus,
   AiOutlineMinus,
 } from 'react-icons/ai';
+import 'animate.css';
 import { IMAGE_URL } from '../../../../utils/config';
 import { useAuth } from '../../../../context/auth';
 
@@ -32,7 +33,9 @@ function ProductAddCart(props) {
   } = props;
   const [mycart, setMycart] = useState([]); // 要存進localStorage的資料
 
+  // 判斷是否登入，登入才能進購物車
   const [goToCart, setGoToCart] = useState(false);
+
   // 小分類、品牌的id對照名稱
   const smallCatTypes = [
     '衝浪長板',
@@ -85,7 +88,6 @@ function ProductAddCart(props) {
   }, [colorId, size]);
   console.log('ProductAddCart.js - chosenProductOrder', chosenProductOrder);
 
-  // 參考老師的
   const updateCartToLocalStorage = (item) => {
     let currentCart = JSON.parse(localStorage.getItem('productCart')) || [];
     // 每一筆資料都加入購物車
