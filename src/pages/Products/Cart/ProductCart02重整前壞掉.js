@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Form, Button, InputGroup } from 'react-bootstrap';
+import { Link, Navigate } from 'react-router-dom';
 import axios from 'axios';
+import _ from 'lodash';
 
 import { useAuth } from '../../../context/auth';
 import './Cart.scss';
-import greenTitle from '../../../data/images/greenTitle.svg';
+import CartHeader from '../Components/Cart/CartHeader02.js';
+import CartInvoice from '../Components/Cart/CartInvoice.js';
 import { API_URL } from '../../../utils/config';
 
 function ProductCart02() {
@@ -12,30 +15,34 @@ function ProductCart02() {
   const { auth, setAuth } = useAuth();
   console.log('auth', auth);
 
-  // 將localStorage的資料存為狀態orderCart
+  // 將localStorage的資料(productCartDisplay)存為狀態orderCart
   const [orderCart, setOrderCart] = useState([]);
 
-  // 整理重複的orderCart為orderCartDisplay
-  const [orderCartDisplay, setOrderCartDisplay] = useState([]);
+  // 將localStorage的付款方式、運送方式存為狀態payment、delivery
+  const [payment, setPayment] = useState('信用卡');
+  const [delivery, setDelivery] = useState('宅配到府');
+
+  // 子貨號、單價要存進order_details資料表
+  const [orderDetails, setOrderDetails] = useState([]);
 
   // 表單元素 (要存進order-list、order_details資料表)
   const [order, setOrder] = useState({
     member_id: 0,
     amount: 0,
-    payment: 'a',
-    payment_status: 'a',
-    delivery: 'a',
-    receiver: 'a',
+    payment: '信用卡',
+    payment_status: '未付款',
+    delivery: '宅配到府',
+    receiver: '收件人',
     receiver_phone: '0',
     address: 'a',
     convenient_store: 'a',
     status: '訂單處理中',
     order_time: '2021-12-13 14:33:56',
-    order_details: [],
+    order_details: [
+      { product_no: 12345, count: 30 },
+      { product_no: 123456, count: 300 },
+    ],
   });
-
-  // 表單元素 (要存進order_details資料表)
-  const [orderDetails, setOrderDetails] = useState([]);
 
   // 表單元素 (可同步會員資料)
   const [memberName, setMemberName] = useState('');
@@ -45,44 +52,42 @@ function ProductCart02() {
 
   const [validated, setValidated] = useState(false);
 
-  // 模擬componentDidMount
-  // 提取LocalStorage的資料，和ProductCart01.js相同之步驟
-  function getCartFromLocalStorage() {
-    const orderCart = JSON.parse(localStorage.getItem('productCart') || '[]');
-    console.log('orderCart', orderCart);
-    setOrderCart(orderCart);
-  }
-  useEffect(() => {
-    getCartFromLocalStorage();
-  }, []);
+  // 同步會員資料
+  const [updateMember, setUpdateMember] = useState(false);
+  const [updateAuth, setUpdateAuth] = useState({
+    account: '',
+    address: '',
+    email: '',
+    id: 0,
+    name: '',
+    phone: '',
+  });
 
-  // 模擬componentDidUpdate
-  // 整理orderCart中product_no相同的品項，和ProductCart01.js相同之步驟
-  useEffect(() => {
-    let newOrderCartDisplay = [];
+  // 縣市
+  const counties = [
+    '請選擇縣市',
+    '台北市',
+    '新北市',
+    '桃園市',
+    '台中市',
+    '台南市',
+    '高雄市',
+    '基隆市',
+    '新竹市',
+    '新竹縣',
+    '彰化縣',
+    '苗栗縣',
+    '南投縣',
+    '雲林縣',
+    '嘉義市',
+    '嘉義縣',
+    '屏東縣',
+    '台東縣',
+    '花蓮縣',
+    '宜蘭縣',
+  ];
 
-    for (let i = 0; i < orderCart.length; i++) {
-      const index = newOrderCartDisplay.findIndex(
-        (value) => value.product_no === orderCart[i].product_no
-      );
-      if (index !== -1) {
-        newOrderCartDisplay[index].count += orderCart[i].count;
-      } else {
-        const newItem = { ...orderCart[i] };
-        newOrderCartDisplay = [...newOrderCartDisplay, newItem];
-      }
-    }
-
-    console.log('newOrderCartDisplay', newOrderCartDisplay);
-    setOrderCartDisplay(newOrderCartDisplay);
-  }, [orderCart]);
-
-  useEffect(() => {
-    setOrderDetails(orderCartDisplay);
-    console.log('orderDetails', orderDetails);
-  }, [orderCartDisplay]);
-
-  // 計算總價用的函式，和ProductCart01.js相同之步驟
+  // 計算總價用的函式
   const sum = (items) => {
     let total = 0;
     for (let i = 0; i < items.length; i++) {
@@ -91,31 +96,76 @@ function ProductCart02() {
     return total;
   };
 
-  console.log(sum(orderCartDisplay));
-
   // 模擬componentDidMount
+  // 提取LocalStorage的資料(productCartDisplay、payment、delivery)
+  function getCartFromLocalStorage() {
+    // LocalStorage: productCartDisplay
+    const newOrderCart = JSON.parse(
+      localStorage.getItem('productCartDisplay') || '[]'
+    );
+    setOrderCart(newOrderCart);
+
+    // LocalStorage: payment
+    const newPayment = JSON.parse(localStorage.getItem('payment') || '[]');
+    setPayment(newPayment);
+
+    // LocalStorage: delivery
+    const newDelivery = JSON.parse(localStorage.getItem('delivery') || '[]');
+    setDelivery(newDelivery);
+  }
   useEffect(() => {
-    // member_id，從useContext帶入
-    // amount，從localstorage帶入單價、數量，然後再計算
+    getCartFromLocalStorage();
+  }, []);
+
+  useEffect(() => {
+    let map = orderCart.map((x) => _.pick(x, 'product_no', 'count'));
+    setOrderDetails(map);
+    console.log('orderDetails', orderDetails);
+  }, [orderCart]);
+
+  // 模擬componentDidUpdate
+  // 要帶入已知的資料，必須隨者orderDetails, orderCart, auth變動
+  useEffect(() => {
+    // member_id，從useContext帶入(必須隨auth變動)
+    // amount，從localstorage帶入單價、數量，然後再計算(必須隨orderCart變動)
+    // order_details，從localstorage帶入單價、數量
     setOrder({
       ...order,
-      member_id: auth.id,
-      amount: sum(orderCartDisplay), // 順序bug!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+      member_id: auth?.id,
+      amount: sum(orderCart),
       order_details: orderDetails,
+      payment: payment,
+      delivery: delivery,
     });
 
     // memberName、memberEmail、memberPhone、memberAddress，從useContext帶入
-    setMemberName(auth.name);
-    setMemberEmail(auth.email);
-    setMemberPhone(auth.phone);
-    setMemberAddress(auth.address);
-  }, []);
+    setMemberName(auth?.name);
+    setMemberEmail(auth?.email);
+    setMemberPhone(auth?.phone);
+    setMemberAddress(auth?.address);
+  }, [orderDetails, orderCart, auth, delivery, payment]);
 
   // 表單中的onchange事件 (限order物件內的欄位)
   const handleChange = (e) => {
     setOrder({ ...order, [e.target.name]: e.target.value });
-    console.log('order', order);
   };
+
+  // 表單中的onchange事件 (限updateAuth物件內的欄位)
+  // const handleChangeAuth = (e) => {
+  //   let newUpdateAuth = {};
+  //   newUpdateAuth[e.target.name] = e.target.value;
+  //   // setUpdateAuth(newUpdateAuth);
+  // };
+  useEffect(() => {
+    let newUpdateAuth = {};
+    newUpdateAuth['account'] = memberName;
+    newUpdateAuth['name'] = memberName;
+    newUpdateAuth['address'] = memberAddress;
+    newUpdateAuth['email'] = memberEmail;
+    newUpdateAuth['phone'] = memberPhone;
+    console.log('newUpdateAuth', newUpdateAuth);
+    setUpdateAuth(newUpdateAuth);
+  }, [memberName, memberAddress, memberEmail, memberPhone]);
 
   // react-bootstrap原本的
   // const handleSubmit = (e) => {
@@ -140,9 +190,9 @@ function ProductCart02() {
     e.preventDefault(); // 我自己加的
 
     // 送出資料存進資料庫
-    // order.details = [...]
+    // withCredentials: true，才會儲存auth cookies，重整才會保有auth資料
     try {
-      let response = await axios.post(`${API_URL}/products/order_list`, order);
+      let response = await axios.post(`${API_URL}/cartProducts`, order);
       console.log(response.data);
     } catch (e) {
       console.error('error', e.response.data);
@@ -152,50 +202,21 @@ function ProductCart02() {
   return (
     <>
       <div className="container">
-        {/* 購物車三步驟 */}
-        <header className="m-5 py-2 px-5">
-          <div className="text-secondary fw-bold h1 text-center mb-5">
-            <img
-              src={greenTitle}
-              className="greenTitle me-3"
-              alt="greenTitle"
-              height="24px"
-              weight="64px"
-            />
-            衝浪商品購物車
-          </div>
-          <div className="d-flex justify-content-evenly">
-            <div className="d-flex align-items-center shadow py-2 cartStepsSigns borderRadius">
-              <div className="fs-1 w-25 text-center">01</div>
-              <div className="w-75">
-                確認清單 & 付款及配送方式
-                <br />
-                Cart & Check out
-              </div>
-            </div>
-            <div className="d-flex justify-content-evenly align-items-center shadow py-2 cartStepsSigns cartStepsSignsOrange borderRadius">
-              <div className="fs-1 w-25 text-center">02</div>
-              <div className="w-75">
-                填寫訂購資料
-                <br />
-                Shipping & Billing Info
-              </div>
-            </div>
-            <div className="d-flex justify-content-evenly align-items-center shadow py-2 cartStepsSigns borderRadius">
-              <div className="fs-1 w-25 text-center">03</div>
-              <div className="w-75">
-                購物完成！
-                <br />
-                Order completed
-              </div>
-            </div>
-          </div>
-        </header>
+        {/* 購物車三步驟進度條 */}
+        <CartHeader />
         <article>
           <div className="row d-flex justify-content-center">
             <div className="col-8 m-0 p-0 shadow borderRadius">
               <div className="p-4 border-bottom text-center">
-                <h1>訂購資訊{order.amount}</h1>
+                <h1>
+                  訂購資訊{order.amount}
+                  {order.payment}
+                  {order.delivery}
+                </h1>
+                <h1>
+                  a{order.orderDetails}
+                  {order.orderCart}
+                </h1>
               </div>
               <Form
                 noValidate
@@ -213,6 +234,13 @@ function ProductCart02() {
                         type="checkbox"
                         value=""
                         id="check"
+                        onClick={() => {
+                          if (updateMember === false) {
+                            setUpdateMember(true);
+                          } else {
+                            setUpdateMember(false);
+                          }
+                        }}
                       />
                       <label
                         className="form-check-label mt-2 fs-6"
@@ -233,7 +261,7 @@ function ProductCart02() {
                         type="text"
                         placeholder="請輸入姓名"
                         aria-describedby="inputMemberName"
-                        name="memberName"
+                        name="name"
                         value={memberName}
                         required
                         onChange={(e) => {
@@ -256,7 +284,7 @@ function ProductCart02() {
                         type="email"
                         placeholder="請輸入E-mail"
                         aria-describedby="inputEmail"
-                        name="memberEmail"
+                        name="email"
                         value={memberEmail}
                         required
                         onChange={(e) => {
@@ -280,7 +308,7 @@ function ProductCart02() {
                         type="text"
                         placeholder="請輸入手機號碼"
                         aria-describedby="inputPhone"
-                        name="memberPhone"
+                        name="phone"
                         value={memberPhone}
                         required
                         onChange={(e) => {
@@ -297,26 +325,11 @@ function ProductCart02() {
                     <div className="col-4">
                       <Form.Label>縣市</Form.Label>
                       <Form.Select aria-label="select">
-                        <option>請選擇縣市</option>
-                        <option value="1">台北市</option>
-                        <option value="2">新北市</option>
-                        <option value="3">桃園市</option>
-                        <option value="4">台中市</option>
-                        <option value="5">台南市</option>
-                        <option value="6">高雄市</option>
-                        <option value="7">基隆市</option>
-                        <option value="8">新竹市</option>
-                        <option value="9">新竹縣</option>
-                        <option value="10">彰化縣</option>
-                        <option value="11">苗栗縣</option>
-                        <option value="12">南投縣</option>
-                        <option value="13">雲林縣</option>
-                        <option value="14">嘉義市</option>
-                        <option value="15">嘉義縣</option>
-                        <option value="16">屏東縣</option>
-                        <option value="17">台東縣</option>
-                        <option value="18">花蓮縣</option>
-                        <option value="19">宜蘭縣</option>
+                        {counties.map((x, i) => (
+                          <option value={x} key={i}>
+                            {x}
+                          </option>
+                        ))}
                       </Form.Select>
                     </div>
                     <div className="col-8">
@@ -425,27 +438,12 @@ function ProductCart02() {
                   <div className="row mb-3">
                     <div className="col-4">
                       <Form.Label>縣市</Form.Label>
-                      <Form.Select aria-label="Default select example">
-                        <option>請選擇縣市</option>
-                        <option value="1">台北市</option>
-                        <option value="2">新北市</option>
-                        <option value="3">桃園市</option>
-                        <option value="4">台中市</option>
-                        <option value="5">台南市</option>
-                        <option value="6">高雄市</option>
-                        <option value="7">基隆市</option>
-                        <option value="8">新竹市</option>
-                        <option value="9">新竹縣</option>
-                        <option value="10">彰化縣</option>
-                        <option value="11">苗栗縣</option>
-                        <option value="12">南投縣</option>
-                        <option value="13">雲林縣</option>
-                        <option value="14">嘉義市</option>
-                        <option value="15">嘉義縣</option>
-                        <option value="16">屏東縣</option>
-                        <option value="17">台東縣</option>
-                        <option value="18">花蓮縣</option>
-                        <option value="19">宜蘭縣</option>
+                      <Form.Select aria-label="select">
+                        {counties.map((x, i) => (
+                          <option value={x} key={i}>
+                            {x}
+                          </option>
+                        ))}
                       </Form.Select>
                     </div>
                     <div className="col-8">
@@ -470,26 +468,11 @@ function ProductCart02() {
                     <div className="col-4">
                       <Form.Label>縣市</Form.Label>
                       <Form.Select aria-label="Default select example">
-                        <option>請選擇縣市</option>
-                        <option value="1">台北市</option>
-                        <option value="2">新北市</option>
-                        <option value="3">桃園市</option>
-                        <option value="4">台中市</option>
-                        <option value="5">台南市</option>
-                        <option value="6">高雄市</option>
-                        <option value="7">基隆市</option>
-                        <option value="8">新竹市</option>
-                        <option value="9">新竹縣</option>
-                        <option value="10">彰化縣</option>
-                        <option value="11">苗栗縣</option>
-                        <option value="12">南投縣</option>
-                        <option value="13">雲林縣</option>
-                        <option value="14">嘉義市</option>
-                        <option value="15">嘉義縣</option>
-                        <option value="16">屏東縣</option>
-                        <option value="17">台東縣</option>
-                        <option value="18">花蓮縣</option>
-                        <option value="19">宜蘭縣</option>
+                        {counties.map((x, i) => (
+                          <option value={x} key={i}>
+                            {x}
+                          </option>
+                        ))}
                       </Form.Select>
                     </div>
                     <div className="col-8">
@@ -535,60 +518,8 @@ function ProductCart02() {
                     </div>
                   </div>
                 </div>
-                {/* 發票資訊，目前無作用！ */}
-                <div className="px-5 py-4 border-top border-bottom">
-                  <h3>發票資訊</h3>
-                  <div className="d-flex">
-                    <div className="form-check me-4">
-                      <input
-                        className="form-check-input"
-                        type="radio"
-                        name="flexRadioDefault"
-                        id="radio1"
-                        // checked
-                        // onChange={}
-                      />
-                      <label className="form-check-label" htmlFor="radio1">
-                        捐贈發票
-                      </label>
-                    </div>
-                    <div className="form-check me-4">
-                      <input
-                        className="form-check-input"
-                        type="radio"
-                        name="flexRadioDefault"
-                        id="radio2"
-                        // checked
-                      />
-                      <label className="form-check-label" htmlFor="radio2">
-                        紙本發票
-                      </label>
-                    </div>
-                    <div className="form-check me-4">
-                      <input
-                        className="form-check-input"
-                        type="radio"
-                        name="flexRadioDefault"
-                        id="radio3"
-                      />
-                      <label className="form-check-label" htmlFor="radio3">
-                        電子發票（手機載具）
-                      </label>
-                    </div>
-                    <div className="form-check me-4">
-                      <input
-                        className="form-check-input"
-                        type="radio"
-                        name="flexRadioDefault"
-                        id="radio4"
-                        // checked
-                      />
-                      <label className="form-check-label" htmlFor="radio4">
-                        公司用發票（三聯式）
-                      </label>
-                    </div>
-                  </div>
-                </div>
+                {/* 發票資訊 */}
+                <CartInvoice />
                 <div className="px-5 py-4">
                   {/* 同意接受服務條款及隱私權政策 */}
                   <Form.Group className="mb-3">

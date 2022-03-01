@@ -265,13 +265,13 @@ function Products() {
                 </h3>
                 <div
                   className="form-check ms-3"
-                  onClick={(e) => {
-                    setPriceRange('5000');
-                    navigate({
-                      pathname: '/products',
-                      search: `?priceRange=5000`,
-                    });
-                  }}
+                  // onClick={(e) => {
+                  //   setPriceRange('5000');
+                  //   navigate({
+                  //     pathname: '/products',
+                  //     search: `?priceRange=5000`,
+                  //   });
+                  // }}
                 >
                   <input
                     className="form-check-input"
