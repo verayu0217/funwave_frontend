@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { Button, Table, Accordion, Form } from 'react-bootstrap';
 import axios from 'axios';
 import { API_URL } from '../../utils/config';
+import { useAuth } from '../../context/auth';
 import { IMAGE_URL } from '../../utils/config';
 
 import './Member.scss';
@@ -14,18 +15,37 @@ function MemberOrderDetails(props) {
   const [data, setData] = useState([]);
   // // 為了處理網址
   // let navigate = useNavigate();
-  // // 把網址上的 :orderId 拿出來
-  const { orderId } = useParams();
+  // // 把網址上的 :order_id 拿出來
+  const { auth, setAuth } = useAuth();
+  const { order_id } = useParams();
+
+  async function handleCancel(order_id) {
+    let response = await axios.post(
+      `${API_URL}/member/order/${order_id}/delete`
+    );
+    console.log(response.data);
+    if (response.data.isDeleted) {
+      const updatedOrders = data.map((order) => {
+        return Object.assign(order, {
+          status: '訂單已取消',
+          valid: 2,
+        });
+      });
+      setData(updatedOrders);
+      // TODO: redirect to order list
+    }
+  }
 
   useEffect(() => {
     let getMemberOrderDetails = async () => {
       let response = await axios.get(
-        `${API_URL}/member/member-order/${orderId}`
+        `${API_URL}/member/member-orderdetails/${order_id}`
       );
       setData(response.data);
     };
     getMemberOrderDetails();
   }, []);
+  console.log('data', data);
   return (
     <>
       <div className="container mt-5 containerDetailsMember">
@@ -39,12 +59,15 @@ function MemberOrderDetails(props) {
         </div>
         <div className="row d-flex justify-content-center">
           <h2 className="mb-5 titleMember text-center">
-            {orderId}&nbsp;訂單內容
+            {order_id}&nbsp;訂單內容
           </h2>
           {data.map((item, index) => {
             if (index == 0)
               return (
-                <h2 className="text-center gray">合計：NT${item.amount}</h2>
+                <h2 className="text-center gray">
+                  合計：NT${' '}
+                  {data.reduce((pre, cur) => pre + cur.price * cur.quantity, 0)}
+                </h2>
               );
           })}
           {/* <h5 className="text-center gray">購物車(2件)</h5> */}
@@ -61,7 +84,9 @@ function MemberOrderDetails(props) {
                 >
                   <thead>
                     <tr>
-                      <th className="text-nowrap text-start">商品資訊</th>
+                      <th colSpan={2} className="text-nowrap text-center">
+                        商品資訊
+                      </th>
                       <th className="text-nowrap">優惠</th>
                       <th className="text-nowrap">單件價格</th>
                       <th className="text-nowrap">數量</th>
@@ -101,7 +126,9 @@ function MemberOrderDetails(props) {
                             </p>
                           </td>
                           <td id="numId">{item.quantity}</td>
-                          <td id="total">NT${item.price * item.quantity}</td>
+                          <td id="total" className="text-end">
+                            NT${item.price * item.quantity}
+                          </td>
                         </tr>
                       );
                     })}
@@ -152,7 +179,12 @@ function MemberOrderDetails(props) {
                                   <div className="row d-flex justify-content-end">
                                     <p className="col-6 text-start">小計：</p>
                                     <p className="col-6" id="countId">
-                                      NT${item.amount}
+                                      NT$
+                                      {data.reduce(
+                                        (pre, cur) =>
+                                          pre + cur.price * cur.quantity,
+                                        0
+                                      )}
                                     </p>
                                   </div>
                                   {/* <div className="row d-flex justify-content-end">
@@ -174,7 +206,14 @@ function MemberOrderDetails(props) {
                                   </div>
                                   <div className="row d-flex justify-content-end">
                                     <p className="col-6 text-start">合計：</p>
-                                    <p className="col-6">NT${item.amount}</p>
+                                    <p className="col-6">
+                                      NT$
+                                      {data.reduce(
+                                        (pre, cur) =>
+                                          pre + cur.price * cur.quantity,
+                                        0
+                                      )}
+                                    </p>
                                   </div>
                                 </div>
                               </div>
@@ -189,7 +228,16 @@ function MemberOrderDetails(props) {
           </Accordion>
         </div>
         <div className="text-end mt-3">
-          <Button className="pinkBtnMember">取消訂單</Button>
+          <Button
+            className={`pinkBtnMember ${
+              data.status === '訂單處理中' ? '' : 'd-none'
+            }`}
+            onClick={() => {
+              handleCancel(data[0].id);
+            }}
+          >
+            取消訂單
+          </Button>
         </div>
         <Accordion className="mt-4 mb-4" defaultActiveKey="0" flush alwaysOpen>
           <Accordion.Item className="dropdownMember" eventKey="0">
@@ -237,15 +285,13 @@ function MemberOrderDetails(props) {
                         <br />
                         <p>付款方式：{item.payment}</p>
                         <p>付款狀態：{item.payment_status}</p>
-                        {/* <p>交易序號：</p> */}
-                        {/* <p>發票號碼：</p> */}
                       </div>
-                      <div className="col-12 mt-5">
+                      {/* <div className="col-12 mt-5">
                         <p className="fw-bold">訂單狀態通知</p>
                         <br />
-                      </div>
+                      </div> */}
 
-                      <Form>
+                      {/* <Form>
                         <Form.Group
                           className="col-12 mt-3"
                           controlId="exampleForm.ControlTextarea1"
@@ -271,7 +317,7 @@ function MemberOrderDetails(props) {
                             發送
                           </Button>
                         </div>
-                      </Form>
+                      </Form> */}
                     </div>
                   );
               })}
