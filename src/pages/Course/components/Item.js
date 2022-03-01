@@ -49,10 +49,10 @@ const Item = ({ message, date, rating, photo, name }) => {
             {photo ? (
               <img
                 src={`http://localhost:3002/${photo}`}
-                // className={photo === '' ? 'd-none' : 'rounded-3 m-1'}
+                className={photo === '' ? 'd-none' : 'rounded-3 m-1'}
                 alt=""
-                height="60px"
-                weight="60px"
+                height="80px"
+                weight="80px"
               />
             ) : (
               ''

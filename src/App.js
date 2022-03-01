@@ -129,8 +129,9 @@ function App() {
           <Route path="/course/course-cart02" element={<CourseCart02 />} />
           <Route path="/course/course-cart03" element={<CourseCart03 />} />
           <Route path="/course/course-cart" element={<CourseCart />} />
-          <Route path="/course/course-evaluate" element={<CourseEvaluate />} />
-
+          <Route path="/course/course-evaluate" element={<CourseEvaluate />}>
+            <Route path=":currentPage" element={<CourseEvaluate />} />
+          </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>
       </AuthContext.Provider>
