@@ -30,12 +30,10 @@ function ScrollToTop() {
     // <div className="">
     <button
       onClick={Totop}
-      className={className(
-        isVisible ? 'opacity-100' : 'opacity-0',
-        'bg-primary totop'
-      )}
+      className={className(isVisible ? 'opacity-100' : 'opacity-0', 'totop')}
     >
-      <BiArrowFromBottom size={30} />
+      <h1>🏄‍♂️</h1>
+      {/* <BiArrowFromBottom size={30} /> */}
     </button>
     // </div>
   );
