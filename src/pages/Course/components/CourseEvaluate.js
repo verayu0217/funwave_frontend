@@ -47,7 +47,7 @@ function CourseEvaluate() {
     let pages = [];
     for (let i = 1; i <= 5; i++) {
       pages.push(
-        <li className="page-item">
+        <li key={i} className="page-item">
           <a className="page-link" href="#/">
             {i}
           </a>
