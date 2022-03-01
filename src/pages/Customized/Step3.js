@@ -1,28 +1,23 @@
 import React, { useState, useEffect } from 'react';
-import { Figure, Row, Col } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 import { AiOutlinePlus, AiOutlineMinus } from 'react-icons/ai';
 import greenTitle from '../../data/images/greenTitle.svg';
-import fishboardHole from '../../data/images/customize/fishboardHole.png';
-import funboardHole from '../../data/images/customize/funboardHole.png';
-import gunboardHole from '../../data/images/customize/gunboardHole.png';
-import longboardHole from '../../data/images/customize/longboardHole.png';
-import { IMAGE_URL } from '../../utils/config';
+import Step2Board from './Step2Board';
 
 function Step3(props) {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const { step, setStep, surfingBoard, setSurfingBoard } = props;
   const [count, setCount] = useState(1);
   const [board, setBoard] = useState({});
-  const [mycart, setMycart] = useState([]); // 要存進localStorage的資料
+  // const [mycart, setMycart] = useState([]); // 要存進localStorage的資料
   useEffect(() => {
     console.log(surfingBoard);
-    if (surfingBoard.size === 1)
-      setBoard({ selected: fishboardHole, text: '魚板' });
-    if (surfingBoard.size === 2)
-      setBoard({ selected: funboardHole, text: '快樂板' });
-    if (surfingBoard.size === 3)
-      setBoard({ selected: gunboardHole, text: '槍板' });
-    if (surfingBoard.size === 4)
-      setBoard({ selected: longboardHole, text: '長板' });
+    if (surfingBoard.size === 1) setBoard({ text: '魚板' });
+    if (surfingBoard.size === 2) setBoard({ text: '快樂板' });
+    if (surfingBoard.size === 3) setBoard({ text: '槍板' });
+    if (surfingBoard.size === 4) setBoard({ text: '長板' });
   }, [surfingBoard]);
 
   const amount = surfingBoard.price * count;
@@ -62,47 +57,12 @@ function Step3(props) {
       </div>
       <hr className="mb-3 mt-0" />
       <Row>
-        <Col lg="7">
-          <Row className="gx-0">
-            <Col lg="2">{board.text}</Col>
-            <Col lg="5" className="boarder">
-              <p className="m-0 text-center">正面</p>
-              <Figure
-                style={{ backgroundColor: `${surfingBoard.front}` }}
-                className="position-relative"
-              >
-                <Figure.Image
-                  alt={board.text}
-                  src={board.selected}
-                  className="m-0"
-                />
-                <Figure.Image
-                  alt="picture"
-                  src={`${IMAGE_URL}/customized/${surfingBoard.frontpattern}`}
-                  className="m-0 upperPictureCu position-absolute imgPositionCu"
-                />
-              </Figure>
-            </Col>
-            <Col lg="5" className="boarder">
-              <p className="m-0 text-center">反面</p>
-              <Figure
-                style={{ backgroundColor: `${surfingBoard.back}` }}
-                className="position-relative"
-              >
-                <Figure.Image
-                  alt={board.text}
-                  src={board.selected}
-                  className="m-0"
-                />
-                <Figure.Image
-                  alt="picture"
-                  src={`${IMAGE_URL}/customized/${surfingBoard.backpattern}`}
-                  className="m-0 upperPictureCu position-absolute imgPositionCu"
-                />
-              </Figure>
-            </Col>
-          </Row>
-        </Col>
+        {/* 左邊板子 */}
+        <Step2Board
+          surfingBoard={surfingBoard}
+          setSurfingBoard={setSurfingBoard}
+        />
+
         <Col lg="5">
           <Row>
             <Col xs lg="12">
@@ -166,6 +126,8 @@ function Step3(props) {
                   setSurfingBoard({
                     ...surfingBoard,
                     size: '',
+                    front: '#ffffff',
+                    back: '#ffffff',
                     frontpattern: 'blank.png',
                     backpattern: 'blank.png',
                   });
@@ -180,7 +142,7 @@ function Step3(props) {
                 onClick={() => {
                   addToLocal({
                     product_no: 'CB-0001-8-0',
-                    name: '客製化浪板',
+                    name: `客製化${board.text}`,
                     price: amount,
                     image1: null,
                     color_id: '客製化',
@@ -189,6 +151,7 @@ function Step3(props) {
                     stock: 1,
                     count: count,
                     image_cu1: 'test.jpg',
+                    style: `${surfingBoard.front} + ${surfingBoard.frontpattern} & ${surfingBoard.back} + ${surfingBoard.backpattern}`,
                   });
                 }}
               >

@@ -7,41 +7,34 @@ import axios from 'axios';
 import { FaThumbsUp } from 'react-icons/fa';
 import { IoColorPalette } from 'react-icons/io5';
 import { MdOutlineSurfing } from 'react-icons/md';
-import { RiMoneyDollarCircleFill, RiRulerFill } from 'react-icons/ri';
 
 // 導引資料、頁面
 import './Products.scss';
 import { API_URL } from '../../utils/config';
 import ProductList from './Components/ProductList/ProductList.js';
-// import SearchBar from './Components/SearchBar.js';
+import SearchBar from './Components/SearchBar.js';
 import SortBar from './Components/SortBar.js';
-// import FilterBar from './Components/FilterBar/FilterBar.js';
+import FilterBar from './Components/FilterBar/FilterBar.js';
 import greenTitle from '../../data/images/greenTitle.svg';
-import { useNavigate } from 'react-router-dom';
 
 function Products() {
-  // 商品列表原始資料
   const [products, setProducts] = useState([]);
-
-  // 商品列表經過排序的資料
   const [displayProducts, setDisplayProducts] = useState([]);
 
-  // 排序
+  // 下面四個狀態是對應到四種不同的表單元素
+  const [searchWord, setSearchWord] = useState('');
   const [sortBy, setSortBy] = useState('');
-
-  // 手風琴大分類
-  const [bigCatsClick, setBigCatsClick] = useState(0);
-  // 手風琴小分類
-  const [smallCatsClick, setSmallCatsClick] = useState(0);
-
-  // 篩選條件
   const [priceRange, setPriceRange] = useState('all');
+  const priceRangeTypes = [
+    'NT 5,000以下',
+    'NT 5,000 - 10,000',
+    'NT 10,000 - 15,000',
+    'NT 15,000以上',
+  ];
+  const [size, setSize] = useState([]);
+  const sizeTypes = ['4', '5', '6'];
 
-  // 載入指示器
   const [isLoading, setIsLoading] = useState(false);
-
-  // 為了處理網址
-  let navigate = useNavigate();
 
   // 載入中spinner
   //x秒後自動關掉spinner(設定isLoading為false)
@@ -54,20 +47,20 @@ function Products() {
   }, [isLoading]);
 
   // 前端透過axios從後端撈資料
+  // 初始化資料-模擬componentDidMount
   useEffect(() => {
     // 先開起載入指示器
     setIsLoading(true);
 
     let getProducts = async () => {
       // 欲取得後端 http://localhost:3002/api/products 資料
-      let response = await axios.get(
-        `${API_URL}/products?bigCats=${bigCatsClick}`
-      );
+      let response = await axios.get(`${API_URL}/products`);
+      console.log('response', response);
       setProducts(response.data);
       setDisplayProducts(response.data);
     };
     getProducts();
-  }, [bigCatsClick]);
+  }, []);
 
   // 載入指示 spinner動畫
   const spinner = (
@@ -80,7 +73,18 @@ function Products() {
     </>
   );
 
-  // 排序方式
+  // 四個表單元素的處理方法
+  const handleSearch = (products, searchWord) => {
+    let newProducts = [...products];
+
+    if (searchWord.length) {
+      newProducts = products.filter((product) => {
+        return product.name.includes(searchWord);
+      });
+    }
+    return newProducts;
+  };
+
   const handleSort = (products, sortBy) => {
     let newProducts = [...products];
 
@@ -99,23 +103,90 @@ function Products() {
     return newProducts;
   };
 
+  const handlePriceRange = (products, priceRange) => {
+    let newProducts = [...products];
+
+    // 處理價格區間選項
+    switch (priceRange) {
+      case 'NT 5,000以下':
+        newProducts = products.filter((p) => {
+          return p.price <= 5000;
+        });
+        break;
+      case 'NT 5,000 - 10,000':
+        newProducts = products.filter((p) => {
+          return p.price >= 5000 && p.price <= 10000;
+        });
+        break;
+      case 'NT 10,000 - 15,000':
+        newProducts = products.filter((p) => {
+          return p.price >= 10000 && p.price <= 15000;
+        });
+        break;
+      case 'NT 15,000以上':
+        newProducts = products.filter((p) => {
+          return p.price >= 15000;
+        });
+        break;
+      // 指所有的產品都出現
+      default:
+        break;
+    }
+
+    return newProducts;
+  };
+
+  const handlesize = (products, size) => {
+    let newProducts = [...products];
+
+    // 處理勾選標記(多選是or)
+    if (size.length > 0) {
+      newProducts = [...newProducts].filter((product) => {
+        let isFound = false;
+
+        // 原本資料裡的size字串轉為陣列，一個商品可以有多種size
+        const productsize = product.size.split(',');
+
+        // 用目前使用者勾選的標籤用迴圈找，有找到就回傳true
+        for (let i = 0; i < size.length; i++) {
+          if (productsize.includes(size[i])) {
+            isFound = true; // 找到設為true
+            break; // 找到一個就可以，中斷迴圈
+          }
+        }
+        return isFound;
+      });
+    }
+
+    return newProducts;
+  };
+
   // 當四個過濾表單元素有更動時
   // 模擬componentDidMount、componentDidUpdate
   // ps. 一開始也會載入
   useEffect(() => {
+    // 搜尋字串太少不需要搜尋
+    if (searchWord.length < 2 && searchWord.length !== 0) return;
+
     // 先開起載入指示器
     setIsLoading(true);
 
     let newProducts = [];
 
+    // 處理搜尋
+    newProducts = handleSearch(products, searchWord);
+
     // 處理排序
-    newProducts = handleSort(products, sortBy);
+    newProducts = handleSort(newProducts, sortBy);
+
+    // 處理勾選標記
+    newProducts = handlesize(newProducts, size);
+
+    // 處理價格區間選項
+    newProducts = handlePriceRange(newProducts, priceRange);
 
     setDisplayProducts(newProducts);
-  }, [products, sortBy]);
-  console.log('bigCatsClick', bigCatsClick);
-  console.log('smallCatsClick', smallCatsClick);
-  console.log('priceRange', priceRange);
+  }, [searchWord, products, sortBy, size, priceRange]);
 
   return (
     <>
@@ -133,119 +204,76 @@ function Products() {
         <div className="row">
           <aside className="col-2 asideProducts">
             <div className="sticky">
-              {/* 大小分類 */}
+              {/* 大分類 */}
               <Accordion className="mt-4" defaultActiveKey="0" flush alwaysOpen>
                 <Accordion.Item eventKey="0">
-                  <Accordion.Header
-                    className="accordionTitle"
-                    onClick={(e) => {
-                      setBigCatsClick(1);
-                      navigate(`/products?bigCats=1`);
-                    }}
-                  >
+                  <Accordion.Header className="accordionTitle">
                     <h3>衝浪板</h3>
                   </Accordion.Header>
                   <Accordion.Body>
                     <ul className="ulProducts">
-                      <li
-                        className="liProducts"
-                        onClick={(e) => {
-                          setSmallCatsClick(1);
-                          navigate(`/products?smallCats=1`);
-                        }}
-                      >
-                        長板
+                      <li className="liProducts">
+                        <Link to="/" title="長板" className="linkProducts">
+                          長板
+                        </Link>
                       </li>
-                      <li
-                        className="liProducts"
-                        onClick={(e) => {
-                          setSmallCatsClick(2);
-                          navigate(`/products?smallCats=2`);
-                        }}
-                      >
-                        快樂板
+                      <li className="liProducts">
+                        <Link to="/" title="快樂板" className="linkProducts">
+                          快樂板
+                        </Link>
                       </li>
-                      <li
-                        className="liProducts"
-                        onClick={(e) => {
-                          setSmallCatsClick(3);
-                          navigate(`/products?smallCats=3`);
-                        }}
-                      >
-                        短板
+                      <li className="liProducts">
+                        <Link to="/" title="短板" className="linkProducts">
+                          短板
+                        </Link>
                       </li>
                     </ul>
                   </Accordion.Body>
                 </Accordion.Item>
                 <Accordion.Item eventKey="1">
-                  <Accordion.Header
-                    onClick={(e) => {
-                      setBigCatsClick(2);
-                      navigate(`/products?bigCats=2`);
-                    }}
-                  >
+                  <Accordion.Header>
                     <h3>衝浪板配件</h3>
                   </Accordion.Header>
                   <Accordion.Body>
                     <ul className="ulProducts">
-                      <li
-                        className="liProducts"
-                        onClick={(e) => {
-                          setSmallCatsClick(4);
-                          navigate(`/products?smallCats=4`);
-                        }}
-                      >
-                        衝浪板舵
+                      <li className="liProducts">
+                        <Link to="/" title="衝浪板舵" className="linkProducts">
+                          衝浪板舵
+                        </Link>
                       </li>
-                      <li
-                        className="liProducts"
-                        onClick={(e) => {
-                          setSmallCatsClick(5);
-                          navigate(`/products?smallCats=5`);
-                        }}
-                      >
-                        腳繩
+                      <li className="liProducts">
+                        <Link to="/" title="腳繩" className="linkProducts">
+                          腳繩
+                        </Link>
                       </li>
-                      <li
-                        className="liProducts"
-                        onClick={(e) => {
-                          setSmallCatsClick(6);
-                          navigate(`/products?smallCats=6`);
-                        }}
-                      >
-                        腳踏墊
+                      <li className="liProducts">
+                        <Link to="/" title="腳踏墊" className="linkProducts">
+                          腳踏墊
+                        </Link>
+                      </li>
+                      <li className="liProducts">
+                        <Link to="/" title="衝浪板袋" className="linkProducts">
+                          衝浪板袋
+                        </Link>
                       </li>
                     </ul>
                   </Accordion.Body>
                 </Accordion.Item>
                 <Accordion.Item eventKey="2">
-                  <Accordion.Header
-                    onClick={(e) => {
-                      setBigCatsClick(3);
-                      navigate(`/products?bigCats=3`);
-                    }}
-                  >
+                  <Accordion.Header>
                     <h3>衝浪相關衣物</h3>
                   </Accordion.Header>
                   <Accordion.Body>
                     <ul className="ulProducts">
-                      <li
-                        className="liProducts"
-                        onClick={(e) => {
-                          setSmallCatsClick(7);
-                          navigate(`/products?smallCats=7`);
-                        }}
-                      >
-                        衝浪斗篷毛巾衣
+                      <li className="liProducts">
+                        <Link to="/" title="防寒衣物" className="linkProducts">
+                          衝浪斗篷毛巾衣
+                        </Link>
                       </li>
-                      <li
-                        className="liProducts"
-                        onClick={(e) => {
-                          setSmallCatsClick(8);
-                          navigate(`/products?smallCats=8`);
-                        }}
-                      >
-                        防寒衣
+                      <li className="liProducts">
+                        <Link to="/" title="防寒衣" className="linkProducts">
+                          防寒衣
+                        </Link>
                       </li>
                     </ul>
                   </Accordion.Body>
@@ -253,74 +281,14 @@ function Products() {
               </Accordion>
 
               {/* 篩選 */}
-              {/* 價格篩選 */}
-              <div className="mt-5">
-                <h3 className="d-flex align-items-center filterProducts pb-2 ps-3">
-                  <RiMoneyDollarCircleFill
-                    size={24}
-                    color="#17a8a2"
-                    className="me-3"
-                  />
-                  價格
-                </h3>
-                <div
-                  className="form-check ms-3"
-                  onClick={(e) => {
-                    setPriceRange('5000');
-                    navigate({
-                      pathname: '/products',
-                      search: `?priceRange=5000`,
-                    });
-                  }}
-                >
-                  <input
-                    className="form-check-input"
-                    type="radio"
-                    id="price1"
-                    name="price1"
-                    value="price1"
-                  />
-                  <label className="form-check-label ms-2" htmlFor="price1">
-                    NT 5,000以下
-                  </label>
-                </div>
-                <div className="form-check ms-3">
-                  <input
-                    className="form-check-input"
-                    type="radio"
-                    id="price2"
-                    name="price2"
-                    value="price2"
-                  />
-                  <label className="form-check-label ms-2" htmlFor="price2">
-                    NT 5,000 - 15,000
-                  </label>
-                </div>
-                <div className="form-check ms-3">
-                  <input
-                    className="form-check-input"
-                    type="radio"
-                    id="price3"
-                    name="price3"
-                    value="price3"
-                  />
-                  <label className="form-check-label ms-2" htmlFor="price3">
-                    NT 15,000 - 25,000
-                  </label>
-                </div>
-                <div className="form-check ms-3">
-                  <input
-                    className="form-check-input"
-                    type="radio"
-                    id="price3"
-                    name="price3"
-                    value="price3"
-                  />
-                  <label className="form-check-label ms-2" htmlFor="price3">
-                    NT 25,000以上
-                  </label>
-                </div>
-              </div>
+              <FilterBar
+                priceRangeTypes={priceRangeTypes}
+                priceRange={priceRange}
+                setPriceRange={setPriceRange}
+                sizeTypes={sizeTypes}
+                size={size}
+                setSize={setSize}
+              />
               {/* 品牌篩選 */}
               <div className="mt-5">
                 <h3 className="d-flex align-items-center filterProducts pb-2 ps-3">
@@ -335,7 +303,7 @@ function Products() {
                     name="brand1"
                     value="brand1"
                   />
-                  <label className="form-check-label ms-2" htmlFor="brand1">
+                  <label className="form-check-label ms-3" htmlFor="brand1">
                     A
                   </label>
                 </div>
@@ -347,7 +315,7 @@ function Products() {
                     name="brand2"
                     value="brand2"
                   />
-                  <label className="form-check-label ms-2" htmlFor="brand2">
+                  <label className="form-check-label ms-3" htmlFor="brand2">
                     B
                   </label>
                 </div>
@@ -359,7 +327,7 @@ function Products() {
                     name="brand3"
                     value="brand3"
                   />
-                  <label className="form-check-label ms-2" htmlFor="brand3">
+                  <label className="form-check-label ms-3" htmlFor="brand3">
                     C
                   </label>
                 </div>
@@ -378,7 +346,7 @@ function Products() {
                     name="color1"
                     value="color1"
                   />
-                  <label className="form-check-label ms-2" htmlFor="color1">
+                  <label className="form-check-label ms-3" htmlFor="color1">
                     紅色
                   </label>
                 </div>
@@ -390,8 +358,8 @@ function Products() {
                     name="color2"
                     value="color2"
                   />
-                  <label className="form-check-label ms-2" htmlFor="color2">
-                    橘色
+                  <label className="form-check-label ms-3" htmlFor="color2">
+                    橙色
                   </label>
                 </div>
                 <div className="form-check ms-3">
@@ -402,7 +370,7 @@ function Products() {
                     name="color3"
                     value="color3"
                   />
-                  <label className="form-check-label ms-2" htmlFor="color3">
+                  <label className="form-check-label ms-3" htmlFor="color3">
                     黃色
                   </label>
                 </div>
@@ -414,7 +382,7 @@ function Products() {
                     name="color4"
                     value="color4"
                   />
-                  <label className="form-check-label ms-2" htmlFor="color4">
+                  <label className="form-check-label ms-3" htmlFor="color4">
                     綠色
                   </label>
                 </div>
@@ -426,7 +394,7 @@ function Products() {
                     name="color5"
                     value="color5"
                   />
-                  <label className="form-check-label ms-2" htmlFor="color5">
+                  <label className="form-check-label ms-3" htmlFor="color5">
                     藍色
                   </label>
                 </div>
@@ -438,87 +406,8 @@ function Products() {
                     name="color6"
                     value="color6"
                   />
-                  <label className="form-check-label ms-2" htmlFor="color6">
-                    黑色
-                  </label>
-                </div>
-                <div className="form-check ms-3">
-                  <input
-                    className="form-check-input"
-                    type="radio"
-                    id="color6"
-                    name="color6"
-                    value="color6"
-                  />
-                  <label className="form-check-label ms-2" htmlFor="color6">
-                    白色
-                  </label>
-                </div>
-              </div>
-              {/* 尺寸篩選 */}
-              <div className="mt-5">
-                <h3 className="d-flex align-items-center filterProducts pb-2 ps-3">
-                  <RiRulerFill size={22} color="#17a8a2" className="me-3" />
-                  尺寸
-                </h3>
-                <div className="form-check ms-3">
-                  <input
-                    className="form-check-input"
-                    type="radio"
-                    id="size1"
-                    name="size1"
-                    value="size1"
-                  />
-                  <label className="form-check-label ms-2" htmlFor="size1">
-                    5
-                  </label>
-                </div>
-                <div className="form-check ms-3">
-                  <input
-                    className="form-check-input"
-                    type="radio"
-                    id="size2"
-                    name="size2"
-                    value="size2"
-                  />
-                  <label className="form-check-label ms-2" htmlFor="size2">
-                    6
-                  </label>
-                </div>
-                <div className="form-check ms-3">
-                  <input
-                    className="form-check-input"
-                    type="radio"
-                    id="size3"
-                    name="size3"
-                    value="size3"
-                  />
-                  <label className="form-check-label ms-2" htmlFor="size3">
-                    7
-                  </label>
-                </div>
-                <div className="form-check ms-3">
-                  <input
-                    className="form-check-input"
-                    type="radio"
-                    id="size3"
-                    name="size3"
-                    value="size3"
-                  />
-                  <label className="form-check-label ms-2" htmlFor="size3">
-                    8
-                  </label>
-                </div>
-                <div className="form-check ms-3">
-                  <input
-                    className="form-check-input"
-                    type="radio"
-                    id="size3"
-                    name="size3"
-                    value="size3"
-                  />
-                  <label className="form-check-label ms-2" htmlFor="size3">
-                    9
+                  <label className="form-check-label ms-3" htmlFor="color6">
+                    紫色
                   </label>
                 </div>
               </div>
@@ -540,7 +429,7 @@ function Products() {
                     name="fin1"
                     value="fin1"
                   />
-                  <label className="form-check-label ms-2" htmlFor="fin1">
+                  <label className="form-check-label ms-3" htmlFor="fin1">
                     Single Tab
                   </label>
                 </div>
@@ -552,7 +441,7 @@ function Products() {
                     name="fin2"
                     value="fin2"
                   />
-                  <label className="form-check-label ms-2" htmlFor="fin2">
+                  <label className="form-check-label ms-3" htmlFor="fin2">
                     FCS II
                   </label>
                 </div>
@@ -564,8 +453,20 @@ function Products() {
                     name="fin3"
                     value="fin3"
                   />
-                  <label className="form-check-label ms-2" htmlFor="fin3">
+                  <label className="form-check-label ms-3" htmlFor="fin3">
                     FCS II Longboard
+                  </label>
+                </div>
+                <div className="form-check ms-3">
+                  <input
+                    className="form-check-input"
+                    type="radio"
+                    id="fin4"
+                    name="fin4"
+                    value="fin4"
+                  />
+                  <label className="form-check-label ms-3" htmlFor="fin4">
+                    Longboard
                   </label>
                 </div>
               </div>
@@ -584,7 +485,10 @@ function Products() {
                 />
                 <h1 className="m-0">短板</h1>
               </div>
-
+              <SearchBar
+                searchWord={searchWord}
+                setSearchWord={setSearchWord}
+              />
               <div className="d-flex justify-content-end mt-2 mb-2">
                 <SortBar sortBy={sortBy} setSortBy={setSortBy} />
               </div>

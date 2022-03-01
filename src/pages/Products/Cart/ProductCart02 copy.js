@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Form, Button, InputGroup } from 'react-bootstrap';
 import axios from 'axios';
-import _ from 'lodash';
 
 import { useAuth } from '../../../context/auth';
 import './Cart.scss';
-import CartHeader from '../Components/Cart/CartHeader.js';
+import greenTitle from '../../../data/images/greenTitle.svg';
 import { API_URL } from '../../../utils/config';
 
 function ProductCart02() {
@@ -16,10 +15,13 @@ function ProductCart02() {
   // 將localStorage的資料存為狀態orderCart
   const [orderCart, setOrderCart] = useState([]);
 
+  // 整理重複的orderCart為orderCartDisplay
+  const [orderCartDisplay, setOrderCartDisplay] = useState([]);
+
   // 表單元素 (要存進order-list、order_details資料表)
   const [order, setOrder] = useState({
     member_id: 0,
-    amount: 0, // 狀態改變錯誤，因為非同步問題，待解！！！
+    amount: 0,
     payment: 'a',
     payment_status: 'a',
     delivery: 'a',
@@ -29,10 +31,7 @@ function ProductCart02() {
     convenient_store: 'a',
     status: '訂單處理中',
     order_time: '2021-12-13 14:33:56',
-    order_details: [
-      { product_no: 12345, count: 30 },
-      { product_no: 123456, count: 300 },
-    ], // 狀態改變錯誤，因為非同步問題，待解！！！
+    order_details: [],
   });
 
   // 表單元素 (要存進order_details資料表)
@@ -46,31 +45,44 @@ function ProductCart02() {
 
   const [validated, setValidated] = useState(false);
 
-  // 縣市
-  const counties = [
-    '請選擇縣市',
-    '台北市',
-    '新北市',
-    '桃園市',
-    '台中市',
-    '台南市',
-    '高雄市',
-    '基隆市',
-    '新竹市',
-    '新竹縣',
-    '彰化縣',
-    '苗栗縣',
-    '南投縣',
-    '雲林縣',
-    '嘉義市',
-    '嘉義縣',
-    '屏東縣',
-    '台東縣',
-    '花蓮縣',
-    '宜蘭縣',
-  ];
+  // 模擬componentDidMount
+  // 提取LocalStorage的資料，和ProductCart01.js相同之步驟
+  function getCartFromLocalStorage() {
+    const orderCart = JSON.parse(localStorage.getItem('productCart') || '[]');
+    console.log('orderCart', orderCart);
+    setOrderCart(orderCart);
+  }
+  useEffect(() => {
+    getCartFromLocalStorage();
+  }, []);
 
-  // 計算總價用的函式
+  // 模擬componentDidUpdate
+  // 整理orderCart中product_no相同的品項，和ProductCart01.js相同之步驟
+  useEffect(() => {
+    let newOrderCartDisplay = [];
+
+    for (let i = 0; i < orderCart.length; i++) {
+      const index = newOrderCartDisplay.findIndex(
+        (value) => value.product_no === orderCart[i].product_no
+      );
+      if (index !== -1) {
+        newOrderCartDisplay[index].count += orderCart[i].count;
+      } else {
+        const newItem = { ...orderCart[i] };
+        newOrderCartDisplay = [...newOrderCartDisplay, newItem];
+      }
+    }
+
+    console.log('newOrderCartDisplay', newOrderCartDisplay);
+    setOrderCartDisplay(newOrderCartDisplay);
+  }, [orderCart]);
+
+  useEffect(() => {
+    setOrderDetails(orderCartDisplay);
+    console.log('orderDetails', orderDetails);
+  }, [orderCartDisplay]);
+
+  // 計算總價用的函式，和ProductCart01.js相同之步驟
   const sum = (items) => {
     let total = 0;
     for (let i = 0; i < items.length; i++) {
@@ -79,36 +91,17 @@ function ProductCart02() {
     return total;
   };
 
-  // 模擬componentDidMount
-  // 提取LocalStorage的資料(productCartDisplay)
-  function getCartFromLocalStorage() {
-    // 如果購物車內沒資料，就給空陣列
-    const newOrderCart = JSON.parse(
-      localStorage.getItem('productCartDisplay') || '[]'
-    );
-    console.log('newOrderCart初始', newOrderCart);
-    setOrderCart(newOrderCart);
-  }
-  useEffect(() => {
-    getCartFromLocalStorage();
-  }, []);
-
-  console.log('sum(orderCart)', sum(orderCart));
+  console.log(sum(orderCartDisplay));
 
   // 模擬componentDidMount
   useEffect(() => {
-    let map = orderCart.map((x) => _.pick(x, 'product_no', 'count'));
-    setOrderDetails(map);
-    // console.log('orderDetails', orderDetails);
-
     // member_id，從useContext帶入
     // amount，從localstorage帶入單價、數量，然後再計算
     setOrder({
       ...order,
       member_id: auth.id,
-      // sum(orderCart)都會因為非同步，而抓到amount: 0，待解!!!!!!!!!!
-      amount: sum(orderCart),
-      // order_details: orderDetails,
+      amount: sum(orderCartDisplay), // 順序bug!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+      order_details: orderDetails,
     });
 
     // memberName、memberEmail、memberPhone、memberAddress，從useContext帶入
@@ -121,7 +114,7 @@ function ProductCart02() {
   // 表單中的onchange事件 (限order物件內的欄位)
   const handleChange = (e) => {
     setOrder({ ...order, [e.target.name]: e.target.value });
-    console.log('order', order); // 非同步，顯示前一個
+    console.log('order', order);
   };
 
   // react-bootstrap原本的
@@ -149,7 +142,7 @@ function ProductCart02() {
     // 送出資料存進資料庫
     // order.details = [...]
     try {
-      let response = await axios.post(`${API_URL}/cartProducts`, order);
+      let response = await axios.post(`${API_URL}/products/order_list`, order);
       console.log(response.data);
     } catch (e) {
       console.error('error', e.response.data);
@@ -159,8 +152,45 @@ function ProductCart02() {
   return (
     <>
       <div className="container">
-        {/* 購物車三步驟進度條 */}
-        <CartHeader />
+        {/* 購物車三步驟 */}
+        <header className="m-5 py-2 px-5">
+          <div className="text-secondary fw-bold h1 text-center mb-5">
+            <img
+              src={greenTitle}
+              className="greenTitle me-3"
+              alt="greenTitle"
+              height="24px"
+              weight="64px"
+            />
+            衝浪商品購物車
+          </div>
+          <div className="d-flex justify-content-evenly">
+            <div className="d-flex align-items-center shadow py-2 cartStepsSigns borderRadius">
+              <div className="fs-1 w-25 text-center">01</div>
+              <div className="w-75">
+                確認清單 & 付款及配送方式
+                <br />
+                Cart & Check out
+              </div>
+            </div>
+            <div className="d-flex justify-content-evenly align-items-center shadow py-2 cartStepsSigns cartStepsSignsOrange borderRadius">
+              <div className="fs-1 w-25 text-center">02</div>
+              <div className="w-75">
+                填寫訂購資料
+                <br />
+                Shipping & Billing Info
+              </div>
+            </div>
+            <div className="d-flex justify-content-evenly align-items-center shadow py-2 cartStepsSigns borderRadius">
+              <div className="fs-1 w-25 text-center">03</div>
+              <div className="w-75">
+                購物完成！
+                <br />
+                Order completed
+              </div>
+            </div>
+          </div>
+        </header>
         <article>
           <div className="row d-flex justify-content-center">
             <div className="col-8 m-0 p-0 shadow borderRadius">
@@ -267,11 +297,26 @@ function ProductCart02() {
                     <div className="col-4">
                       <Form.Label>縣市</Form.Label>
                       <Form.Select aria-label="select">
-                        {counties.map((x, i) => (
-                          <option value={x} key={i}>
-                            {x}
-                          </option>
-                        ))}
+                        <option>請選擇縣市</option>
+                        <option value="1">台北市</option>
+                        <option value="2">新北市</option>
+                        <option value="3">桃園市</option>
+                        <option value="4">台中市</option>
+                        <option value="5">台南市</option>
+                        <option value="6">高雄市</option>
+                        <option value="7">基隆市</option>
+                        <option value="8">新竹市</option>
+                        <option value="9">新竹縣</option>
+                        <option value="10">彰化縣</option>
+                        <option value="11">苗栗縣</option>
+                        <option value="12">南投縣</option>
+                        <option value="13">雲林縣</option>
+                        <option value="14">嘉義市</option>
+                        <option value="15">嘉義縣</option>
+                        <option value="16">屏東縣</option>
+                        <option value="17">台東縣</option>
+                        <option value="18">花蓮縣</option>
+                        <option value="19">宜蘭縣</option>
                       </Form.Select>
                     </div>
                     <div className="col-8">
@@ -380,12 +425,27 @@ function ProductCart02() {
                   <div className="row mb-3">
                     <div className="col-4">
                       <Form.Label>縣市</Form.Label>
-                      <Form.Select aria-label="select">
-                        {counties.map((x, i) => (
-                          <option value={x} key={i}>
-                            {x}
-                          </option>
-                        ))}
+                      <Form.Select aria-label="Default select example">
+                        <option>請選擇縣市</option>
+                        <option value="1">台北市</option>
+                        <option value="2">新北市</option>
+                        <option value="3">桃園市</option>
+                        <option value="4">台中市</option>
+                        <option value="5">台南市</option>
+                        <option value="6">高雄市</option>
+                        <option value="7">基隆市</option>
+                        <option value="8">新竹市</option>
+                        <option value="9">新竹縣</option>
+                        <option value="10">彰化縣</option>
+                        <option value="11">苗栗縣</option>
+                        <option value="12">南投縣</option>
+                        <option value="13">雲林縣</option>
+                        <option value="14">嘉義市</option>
+                        <option value="15">嘉義縣</option>
+                        <option value="16">屏東縣</option>
+                        <option value="17">台東縣</option>
+                        <option value="18">花蓮縣</option>
+                        <option value="19">宜蘭縣</option>
                       </Form.Select>
                     </div>
                     <div className="col-8">

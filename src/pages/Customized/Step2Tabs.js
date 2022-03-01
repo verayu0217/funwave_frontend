@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { Tabs, Tab } from 'react-bootstrap';
 import { IMAGE_URL } from '../../utils/config';
 
-function ControlledTabs(props) {
+function Step2Tabs(props) {
   const [key, setKey] = useState('positive');
-  const { pattern, setPattern, surfingBoard, setSurfingBoard } = props;
+  const { pattern, surfingBoard, setSurfingBoard } = props;
 
   return (
     <>
@@ -14,7 +14,7 @@ function ControlledTabs(props) {
         onSelect={(k) => setKey(k)}
         className="mb-3 nav-justified"
       >
-        <Tab eventKey="positive" title="正面" className="btnCu">
+        <Tab eventKey="positive" title="正面">
           <div className="d-flex flex-wrap justify-content-center">
             {pattern.map((v, i) => {
               return (
@@ -35,7 +35,7 @@ function ControlledTabs(props) {
             })}
           </div>
         </Tab>
-        <Tab eventKey="negative" title="反面" className="btnCu">
+        <Tab eventKey="negative" title="反面">
           <div className="d-flex flex-wrap justify-content-center">
             {pattern.map((v, i) => {
               return (
@@ -61,4 +61,4 @@ function ControlledTabs(props) {
   );
 }
 
-export default ControlledTabs;
+export default Step2Tabs;

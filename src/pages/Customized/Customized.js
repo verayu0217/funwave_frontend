@@ -8,9 +8,6 @@ import Step from './Step';
 import { useAuth } from '../../context/auth';
 
 function Customized() {
-  const { auth, setAuth } = useAuth();
-  console.log('authDetail', auth);
-
   return (
     <>
       <div className="container-fluid bannerCu">
@@ -56,7 +53,6 @@ function Customized() {
           </Row>
           <Ad />
           <Step />
-          {/* <StepList /> */}
           <div className=" text-center">
             <Link
               to="/customized/customized-details"

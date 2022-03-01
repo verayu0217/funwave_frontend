@@ -11,7 +11,8 @@ import { BiHeart } from 'react-icons/bi';
 // 文字過長會跑版、後端圖片如何置換
 
 function ProductItem(props) {
-  const { product_id, name, image1, price, small_cat_id } = props.product;
+  const { name, image1, price, small_cat_id } = props.product;
+  // 小分類的id對照名稱
   const smallCatTypes = [
     '長板',
     '快樂板',
@@ -19,28 +20,16 @@ function ProductItem(props) {
     '衝浪板舵',
     '腳繩',
     '腳踏墊',
-    '衝浪板袋',
     '衝浪斗篷毛巾衣',
     '防寒衣',
   ];
 
   return (
     <>
-      {/* <tr>
-        <td className="number text-center">{id}</td>
-        <td className="image">
-          <img src={picture} alt="" />
-        </td>
-        <td className="product">
-          <strong>{name}</strong>
-        </td>
-        <td className="rate text-right">{tags}</td>
-        <td className="price text-right">${price}</td>
-      </tr> */}
-
+      {/* 商品列表的個別商品 */}
       <Figure className="mt-4 position-relative">
         <Figure.Image
-          width={268}
+          width={265}
           height={350}
           alt={`${image1}`}
           src={`${IMAGE_URL}/products/${image1}`}

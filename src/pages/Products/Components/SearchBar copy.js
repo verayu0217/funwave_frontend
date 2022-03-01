@@ -11,8 +11,6 @@ function SearchBar(props) {
         value={searchWord}
         onChange={(e) => setSearchWord(e.target.value)}
       />
-      {/* form-control會有會有自己的border-radius，好像蓋不掉，待研究！ */}
-      {/* 在此用onChange，應該不用button感應吧 */}
     </>
   );
 }
