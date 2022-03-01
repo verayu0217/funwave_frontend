@@ -210,11 +210,11 @@ function CourseContent(props) {
 
                         <a
                           href="#test"
-                          className="btn btn-primary courseBtn mb-3"
+                          className="btn btn-primary courseBtn mb-3 align-self-start"
                         >
                           立即報名
                           {/* <i className="fas fa-long-arrow-righ"></i> */}
-                          <i className="fas fa-arrow-right text-white"></i>
+                          <i className="fas fa-arrow-right text-white ms-2"></i>
                         </a>
                       </div>
                     </div>
@@ -245,11 +245,11 @@ function CourseContent(props) {
 
                         <a
                           href="#test"
-                          className="btn btn-primary courseBtn mb-3"
+                          className="btn btn-primary courseBtn mb-3 align-self-start"
                         >
                           立即報名
                           {/* <i className="fas fa-long-arrow-righ"></i> */}
-                          <i className="fas fa-arrow-right text-white"></i>
+                          <i className="fas fa-arrow-right text-white ms-2"></i>
                         </a>
                       </div>
                     </div>
@@ -276,11 +276,11 @@ function CourseContent(props) {
 
                         <a
                           href="#test"
-                          className="btn btn-primary courseBtn mb-3"
+                          className="btn btn-primary courseBtn mb-3 align-self-start"
                         >
                           立即報名
                           {/* <i className="fas fa-long-arrow-righ"></i> */}
-                          <i className="fas fa-arrow-right text-white"></i>
+                          <i className="fas fa-arrow-right text-white ms-2"></i>
                         </a>
                       </div>
                     </div>
@@ -306,11 +306,11 @@ function CourseContent(props) {
 
                         <a
                           href="#test"
-                          className="btn btn-primary courseBtn mb-3"
+                          className="btn btn-primary courseBtn mb-3 align-self-start"
                         >
                           立即報名
                           {/* <i className="fas fa-long-arrow-righ"></i> */}
-                          <i className="fas fa-arrow-right text-white"></i>
+                          <i className="fas fa-arrow-right text-white ms-2"></i>
                         </a>
                       </div>
                     </div>
@@ -389,7 +389,7 @@ function CourseContent(props) {
           </div>
 
           {/* 課程體驗評價  */}
-          {/* <CourseEvaluate /> */}
+          <CourseEvaluate />
 
           {/* 課程報名 */}
           <div className="row">
@@ -411,6 +411,7 @@ function CourseContent(props) {
                       weight="64px"
                     />
                     課程報名
+                    <p className="gray">請先登入會員</p>
                   </div>
                   <form onSubmit={addSubmit}>
                     <div className="p-2 m-0">
@@ -510,7 +511,7 @@ function CourseContent(props) {
                         }}
                       >
                         立即報名
-                        <i className="fas fa-arrow-right text-white"></i>
+                        <i className="fas fa-arrow-right text-white ms-2"></i>
                       </button>
                     </div>
                   </form>

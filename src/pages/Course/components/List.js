@@ -4,13 +4,13 @@ import { useState, useEffect } from 'react';
 import { API_URL, IMAGE_URL } from '../../../utils/config';
 import axios from 'axios';
 
-const List = ({ listData, deleteData }) => {
-  let date = moment().format('YYYY年MM月DD日');
+const List = ({ listData }) => {
+  // console.log(listData);
 
   return (
     <div>
       {listData.map((item, i) => {
-        const { message, rating, photo } = item;
+        const { message, date, rating, photo } = item;
         return (
           <Item
             key={i}

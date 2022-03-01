@@ -7,14 +7,14 @@ import './CourseCart.scss';
 function CourseCart02(props) {
   const { step, setStep } = props;
 
-  const [name, setName] = useState('James');
+  const [name, setName] = useState('james');
   // const [pid, setId] = useState('J122345678');
-  const [email, setEmail] = useState('test@gmail.com');
+  const [email, setEmail] = useState('james@gmail.com');
   const [sex, setSex] = useState('先生');
   const sexOptions = ['先生', '小姐'];
   // const [bdDay, setBdDay] = useState('');
   const [note, setNote] = useState('');
-  const [phone, setPhone] = useState('0933-456678');
+  const [phone, setPhone] = useState('0933-123456');
 
   // 送出資料存進資料庫
   async function handleSubmit(e) {
@@ -57,8 +57,8 @@ function CourseCart02(props) {
       console.error('error', e.response.data);
     }
 
-    //TODO:報名完清除暫存 alert可以拿掉
-    window.alert('你已報名完成');
+    //報名完清除暫存
+    // window.alert('你已報名完成');
     localStorage.clear('course');
     localStorage.clear('courseSpot');
     localStorage.clear('courseDate');

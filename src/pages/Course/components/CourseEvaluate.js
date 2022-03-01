@@ -3,7 +3,7 @@ import greenTitle from '../../../data/images/greenTitle.svg';
 import { useState, useEffect, useRef } from 'react';
 import { API_URL, IMAGE_URL } from '../../../utils/config';
 import axios from 'axios';
-// import { useAuth } from '../../../context/auth';
+import { useAuth } from '../../../context/auth';
 
 import '../CourseContent.scss';
 import '../CourseCart.scss';
@@ -12,21 +12,50 @@ import Edit from './Edit';
 import List from './List';
 
 function CourseEvaluate() {
-  // const { auth, setAuth } = useAuth();
-  // if (auth === null) {
-  // }
-  const [data, setData] = useState([]);
+  const { auth, setAuth } = useAuth();
 
-  //取資料庫評價與圖片 TODO:後端先改用get
+  const [data, setData] = useState([]);
+  const [page, setPage] = useState(1);
+  const [lastPage, setLastPage] = useState(1);
+
   useEffect(() => {
     let getEvaluate = async () => {
       // http://localhost:3002/api/course/course-evaluate
       let response = await axios.post(`${API_URL}/course/course-evaluate`);
       setData(response.data);
       // console.log(response.data[0].name);
+      // setLastPage(response.data.pagination.lastPage);
     };
     getEvaluate();
   }, []);
+
+  //TODO:取資料庫評價與圖片 有分頁後端先改用get
+  // useEffect(() => {
+  //   let getEvaluate = async () => {
+  //     // http://localhost:3002/api/course/course-evaluate
+  //     let response = await axios.get(
+  //       `${API_URL}/course/course-evaluate?page=1`
+  //     );
+  //     setData(response.data.evaluate);
+  //     // console.log(response.data[0].name);
+  //     // setLastPage(response.data.pagination.lastPage);
+  //   };
+  //   getEvaluate();
+  // }, []);
+
+  const getPages = () => {
+    let pages = [];
+    for (let i = 1; i <= 5; i++) {
+      pages.push(
+        <li className="page-item">
+          <a className="page-link" href="#/">
+            {i}
+          </a>
+        </li>
+      );
+    }
+    return pages;
+  };
 
   return (
     <>
@@ -44,14 +73,18 @@ function CourseEvaluate() {
             課程體驗評價
           </div>
 
-          <List listData={data} deleteData={setData} setData={setData} />
-          <Edit add={setData} />
+          <List listData={data} setData={setData} />
+          {/* 判斷是會員才顯示可評價否則隱藏 */}
+          <div className={auth === null ? 'd-none' : ''}>
+            <Edit auth={auth} add={setData} />
+          </div>
 
           {/* TODO:寫分頁 */}
           {/* <!-- 分頁 (Pagination) --> */}
           <nav aria-label="...">
             <ul className="pagination justify-content-center mt-3">
-              <li className="page-item active" aria-current="page">
+              {getPages()}
+              {/* <li className="page-item active" aria-current="page">
                 <span className="page-link">1</span>
               </li>
               <li className="page-item">
@@ -63,7 +96,7 @@ function CourseEvaluate() {
                 <a className="page-link" href="#/">
                   3
                 </a>
-              </li>
+              </li> */}
             </ul>
           </nav>
         </div>
