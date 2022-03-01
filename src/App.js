@@ -27,6 +27,7 @@ import MemberMessage from './pages/Members/MemberMessage';
 import MemberPoint from './pages/Members/MemberPoint';
 import MemberShoppingGold from './pages/Members/MemberShoppingGold';
 import MemberCourseOrder from './pages/Members/MemberCourseOrder';
+import MemberCourseOrderDetails from './pages/Members/MemberCourseOrderDetails';
 //課程
 
 import CourseCart from './pages/Course/CourseCart';
@@ -35,7 +36,6 @@ import CourseCart02 from './pages/Course/CourseCart02';
 import CourseCart03 from './pages/Course/CourseCart03';
 import CourseContent from './pages/Course/CourseContent';
 import CourseEvaluate from './pages/Course/components/CourseEvaluate';
-
 import Courses from './pages/Course/Courses';
 
 //商城
@@ -105,7 +105,11 @@ function App() {
           />
           <Route path="/customized" element={<Customized />} />
           <Route
-            path="/member/member-order/:orderId"
+            path="/member/member-courseorder/:id"
+            element={<MemberCourseOrderDetails />}
+          />
+          <Route
+            path="/member/member-order/:order_id"
             element={<MemberOrderDetails />}
           />
           <Route
@@ -129,8 +133,9 @@ function App() {
           <Route path="/course/course-cart02" element={<CourseCart02 />} />
           <Route path="/course/course-cart03" element={<CourseCart03 />} />
           <Route path="/course/course-cart" element={<CourseCart />} />
-          <Route path="/course/course-evaluate" element={<CourseEvaluate />} />
-
+          <Route path="/course/course-evaluate" element={<CourseEvaluate />}>
+            <Route path=":currentPage" element={<CourseEvaluate />} />
+          </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>
       </AuthContext.Provider>

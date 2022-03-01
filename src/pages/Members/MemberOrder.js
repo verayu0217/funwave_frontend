@@ -4,21 +4,51 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { API_URL } from '../../utils/config';
 import './Member.scss';
+import { useAuth } from '../../context/auth';
 import titleImgMember from '../../data/images/greenwave64x24.png';
 
 const MemberOrder = () => {
   const [data, setData] = useState([]);
+  const { auth, setAuth } = useAuth();
 
   // 為了處理網址
   let navigate = useNavigate();
 
-  // 把網址上的 :id 拿出來
-  // const { orderId } = useParams();
+  async function handleDelete(order_id) {
+    let response = await axios.post(
+      `${API_URL}/member/member-order/${order_id}/delete`
+    );
+    console.log(response.data);
+    if (response.data.isDeleted) {
+      setData(data.filter((order) => order.id !== order_id));
+    }
+    // console.log(response.data);
+    // if (response.data.isDeleted) {
+    //   const updatedOrders = data.map((order) => {
+    //     return Object.assign(order, {
+    //       status: '訂單已取消',
+    //       valid: 2,
+    //     });
+    //   });
+    //   setData(updatedOrders);
+    // }
+  }
 
-  useEffect(async () => {
-    // http://localhost:3002/api/member
-    let response = await axios.get(`${API_URL}/member/member-order`);
-    setData(response.data);
+  useEffect(() => {
+    async function getMemberOrderList() {
+      let response = await axios.get(
+        `${API_URL}/member/member-order/${auth.member_id}`
+      );
+
+      let orders = [];
+      response.data.forEach(function (orderData) {
+        orders.push(orderData);
+      });
+
+      setData(orders);
+    }
+
+    getMemberOrderList();
   }, []);
   return (
     <>
@@ -65,9 +95,19 @@ const MemberOrder = () => {
                         >
                           <i className="fas fa-edit"></i>
                         </Link>
-                        <Link to="/" className="deleteIconMember orange">
+                        <span
+                          className="deleteIconMember orange"
+                          onClick={() => {
+                            handleDelete(order_list.id);
+                          }}
+                          // onClick={() => {
+                          //   if (order_list.valid !== 2) {
+                          //     handleDelete(order_list.id);
+                          //   }
+                          // }}
+                        >
                           <i className="fas fa-trash-alt"></i>
-                        </Link>
+                        </span>
                       </td>
                     </tr>
                   );

@@ -4,21 +4,40 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { API_URL } from '../../utils/config';
 import './Member.scss';
+import { useAuth } from '../../context/auth';
 import titleImgMember from '../../data/images/greenwave64x24.png';
 
 const MemberCourseOrder = () => {
   const [data, setData] = useState([]);
-
+  const { auth, setAuth } = useAuth();
   // 為了處理網址
   let navigate = useNavigate();
 
-  // 把網址上的 :id 拿出來
-  // const { orderId } = useParams();
+  async function handleDelete(id) {
+    let response = await axios.post(
+      `${API_URL}/member/member-courseorder/${id}/delete`
+    );
+    console.log(response.data);
+    if (response.data.isDeleted) {
+      setData(data.filter((course) => course.id !== id));
+    }
+  }
 
-  useEffect(async () => {
-    // http://localhost:3002/api/member
-    let response = await axios.get(`${API_URL}/member/member-courseorder`);
-    setData(response.data);
+  useEffect(() => {
+    async function getMemberCourseOrderList() {
+      let response = await axios.get(
+        `${API_URL}/member/member-courseorder/${auth.member_id}`
+      );
+
+      let courses = [];
+      response.data.forEach(function (courseData) {
+        courses.push(courseData);
+      });
+
+      setData(courses);
+    }
+
+    getMemberCourseOrderList();
   }, []);
   return (
     <>
@@ -50,7 +69,7 @@ const MemberCourseOrder = () => {
                     <tr key={course_order.courseDate}>
                       <td>{course_order.id}</td>
                       <td>{course_order.courseDate}</td>
-                      <td>{course_order.coursePrice}</td>
+                      <td>{course_order.amount}</td>
                       {/* <td
                         className={`prepareColorMember ${
                           course_order.status === '訂單已完成' ? 'black' : ''
@@ -65,9 +84,14 @@ const MemberCourseOrder = () => {
                         >
                           <i className="fas fa-edit"></i>
                         </Link>
-                        <Link to="/" className="deleteIconMember orange">
+                        <span
+                          className="deleteIconMember orange"
+                          onClick={() => {
+                            handleDelete(course_order.id);
+                          }}
+                        >
                           <i className="fas fa-trash-alt"></i>
-                        </Link>
+                        </span>
                       </td>
                     </tr>
                   );
