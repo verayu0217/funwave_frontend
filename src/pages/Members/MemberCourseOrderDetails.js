@@ -17,7 +17,7 @@ function MemberCourseOrderDetails(props) {
   // 為了處理網址
   let navigate = useNavigate();
 
-  async function handleDelete(id) {
+  async function handleCancel(id) {
     let response = await axios.post(
       `${API_URL}/member/member-courseorder/${id}/delete`
     );
@@ -30,7 +30,7 @@ function MemberCourseOrderDetails(props) {
   useEffect(() => {
     async function getMemberCourseOrderDetails() {
       let response = await axios.get(
-        `${API_URL}/member/member-courseorder/${id}`
+        `${API_URL}/member/member-courseorderdetails/${id}`
       );
 
       let courses = [];
@@ -191,14 +191,21 @@ function MemberCourseOrderDetails(props) {
           </Accordion>
         </div>
         <div className="text-end mt-3">
-          <Button
-            className="pinkBtnMember"
-            onClick={() => {
-              handleDelete(data[0].id);
-            }}
-          >
-            取消訂單
-          </Button>
+          {data.map((item, index) => {
+            if (index == 0)
+              return (
+                <Button
+                  className={`${
+                    item.status === '訂單處理中' ? 'd-block' : 'd-none'
+                  }`}
+                  onClick={() => {
+                    handleCancel(data[0].id);
+                  }}
+                >
+                  取消訂單
+                </Button>
+              );
+          })}
         </div>
         <Accordion className="mt-4 mb-4" defaultActiveKey="0" flush alwaysOpen>
           <Accordion.Item className="dropdownMember" eventKey="0">

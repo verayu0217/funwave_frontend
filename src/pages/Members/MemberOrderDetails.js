@@ -227,17 +227,22 @@ function MemberOrderDetails(props) {
             </Accordion.Item>
           </Accordion>
         </div>
-        <div className="text-end mt-3">
-          <Button
-            className={`pinkBtnMember ${
-              data.status === '訂單處理中' ? '' : 'd-none'
-            }`}
-            onClick={() => {
-              handleCancel(data[0].id);
-            }}
-          >
-            取消訂單
-          </Button>
+        <div className="d-flex flex-row-reverse mt-3">
+          {data.map((item, index) => {
+            if (index == 0)
+              return (
+                <Button
+                  className={`${
+                    item.status === '訂單處理中' ? 'd-block' : 'd-none'
+                  }`}
+                  onClick={() => {
+                    handleCancel(data[0].id);
+                  }}
+                >
+                  取消訂單
+                </Button>
+              );
+          })}
         </div>
         <Accordion className="mt-4 mb-4" defaultActiveKey="0" flush alwaysOpen>
           <Accordion.Item className="dropdownMember" eventKey="0">
