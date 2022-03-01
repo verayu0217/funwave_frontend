@@ -3,13 +3,14 @@ import Modal from './Modal';
 import { Link, Navigate } from 'react-router-dom';
 import { BsFacebook } from 'react-icons/bs';
 import { FcGoogle } from 'react-icons/fc';
+import { Form } from 'react-bootstrap';
 import axios from 'axios';
 import { useAuth } from '../../../context/auth';
 import { API_URL } from '../../../utils/config';
 import { ERR_MSG } from '../../../utils/error';
 import Swal from 'sweetalert2';
 import './memberLogin.scss';
-import GoogleLoginFunwave from './GoogleLoginFunwave';
+// import GoogleLoginFunwave from './GoogleLoginFunwave';
 
 function Login() {
   const { auth, setAuth } = useAuth();
@@ -17,6 +18,7 @@ function Login() {
   const [close, setClose] = useState('fas fa-eye-slash');
   const [type, setType] = useState('password');
   const [showModal, setshowModal] = useState(false);
+  // 切換彈窗
   const openSignUp = () => {
     setshowModal((prev) => !prev);
   };
@@ -30,7 +32,6 @@ function Login() {
   }
 
   async function logInSubmit(e) {
-    console.log('loginSubmit');
     e.preventDefault();
 
     try {
@@ -53,6 +54,7 @@ function Login() {
       }
     }
   }
+
   console.log('登入後auth', auth);
   if (isLogin) {
     // 轉頁效果
@@ -84,7 +86,7 @@ function Login() {
               </div>
             </div>
           </div>
-          <form
+          <Form
             className="col-md-5 col-sm-12 vh-100 d-flex align-items-center justify-content-center"
             onSubmit={logInSubmit}
           >
@@ -94,7 +96,7 @@ function Login() {
               </li>
               <li className="mt-3">
                 <label className="fw-bold">電子信箱</label>
-                <input
+                <Form.Control
                   className="form-control mt-1"
                   type="email"
                   name="email"
@@ -106,7 +108,7 @@ function Login() {
               </li>
               <li className="mt-3">
                 <label className="fw-bold">密碼</label>
-                <input
+                <Form.Control
                   className="form-control mt-1"
                   type={type}
                   name="password"
@@ -138,7 +140,6 @@ function Login() {
                       className="mt-2 me-1 form-check-input"
                       type="checkbox"
                       name="remember"
-                      id=""
                     />
                     <label className="mt-1 form-check-label">記住我</label>
                   </div>
@@ -159,12 +160,10 @@ function Login() {
                   <FcGoogle className="mx-2 googleLogin" />
                 </a>
               </li>
-              <li>
-                <GoogleLoginFunwave />
-              </li>
+              <li>{/* <GoogleLoginFunwave /> */}</li>
               <Modal showModal={showModal} setshowModal={setshowModal} />
             </ul>
-          </form>
+          </Form>
         </div>
       </div>
     </>
