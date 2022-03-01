@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Tab, Row, Col, Nav } from 'react-bootstrap';
 import axios from 'axios';
 import { API_URL } from '../../utils/config';
+import { Link, Navigate } from 'react-router-dom';
 
 import './Member.scss';
 
@@ -19,6 +20,7 @@ import { useAuth } from '../../context/auth';
 function Member() {
   const { auth, setAuth } = useAuth();
   const { member, setMember } = useState();
+  const [goTo, setGoTo] = useState(false);
 
   let getAuth = async () => {
     let response = await axios.get(`${API_URL}/member/${auth.member_id}`);
@@ -138,7 +140,7 @@ function Member() {
           </Tab.Container>
         </div>
       ) : (
-        ''
+        <Navigate to="/login"></Navigate>
       )}
     </>
   );
