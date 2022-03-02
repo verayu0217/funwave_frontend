@@ -1,9 +1,7 @@
 // FilterBar.js 內容說明：商品主頁左方的篩選
 
 import React from 'react';
-// import chroma from 'chroma-js';
-// import Select, { StylesConfig } from 'react-select';
-// import { ColourOption, colourOptions } from '../../../../data/reactSelect.ts';
+import { Button } from 'react-bootstrap';
 
 // react-icons
 import { FaThumbsUp } from 'react-icons/fa';
@@ -47,9 +45,33 @@ function FilterBar(props) {
 
   return (
     <>
+      <Button
+        variant="outline-light"
+        size="sm"
+        className="ms-3 mt-5"
+        onClick={(e) => {
+          setPriceLowest('all');
+          setPriceHighest('all');
+          setBrand('all');
+          setColor1('0');
+          setColor2('0');
+          setColor3('0');
+          setColor4('0');
+          setColor5('0');
+          setColor6('0');
+          setColor7('0');
+          setColor8('0');
+          setColor9('0');
+          setFin1('0');
+          setFin2('0');
+          setFin3('0');
+        }}
+      >
+        清除所有篩選
+      </Button>
       {/* 篩選 */}
       {/* 價格篩選 */}
-      <div className="mt-5">
+      <div className="mt-3">
         <h3 className="d-flex align-items-center filterProducts pb-2 ps-3">
           <RiMoneyDollarCircleFill size={24} color="#17a8a2" className="me-3" />
           價格

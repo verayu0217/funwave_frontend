@@ -10,7 +10,7 @@ function ProductAccordion(props) {
   return (
     <>
       {/* 大小分類 */}
-      <Accordion className="mt-4" defaultActiveKey="0" flush alwaysOpen>
+      <Accordion className="mt-4" flush alwaysOpen>
         <Accordion.Item eventKey="0">
           <Accordion.Header
             className="accordionTitle"
