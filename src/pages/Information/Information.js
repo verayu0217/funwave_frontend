@@ -368,7 +368,7 @@ function Information() {
                         {/* 資訊大標題 */}
                         <div className="d-flex justify-content-center align-items-center flex-row pt-4 pb-4 titleInfo">
                                 <img src={greenTitle} className="me-3" alt="greenTitle" height="24px" width="64px"/>
-                                <h1 className="m-0 fw-bold">全部文章</h1>
+                                <h1 className="m-0 fw-bold deepblue">全部文章</h1>
                         </div>
                         {/* 卡片容器 */}
                         <div className="row d-flex justify-content-center">
@@ -451,7 +451,7 @@ function Information() {
                         {/* 資訊大標題 */}
                         <div className="d-flex justify-content-center align-items-center flex-row pt-4 pb-4 titleInfo">
                                 <img src={greenTitle} className="me-3" alt="greenTitle" height="24px" width="64px"/>
-                                <h1 className="m-0 fw-bold">人物故事</h1>
+                                <h1 className="m-0 fw-bold deepblue">人物故事</h1>
                         </div>
                         {/* 卡片容器 */}
                         <div className="row d-flex justify-content-center">
@@ -534,7 +534,7 @@ function Information() {
                         {/* 資訊大標題 */}
                         <div className="d-flex justify-content-center align-items-center flex-row pt-4 pb-4 titleInfo">
                                 <img src={greenTitle} className="me-3" alt="greenTitle" height="24px" width="64px"/>
-                                <h1 className="m-0 fw-bold">衝浪主題</h1>
+                                <h1 className="m-0 fw-bold deepblue">衝浪主題</h1>
                         </div>
                         {/* 卡片容器 */}
                         <div className="row d-flex justify-content-center">

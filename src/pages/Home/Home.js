@@ -212,9 +212,6 @@ function Home() {
     }, []);
 
 
-    
-
-
 
 
 return (
@@ -244,7 +241,7 @@ return (
             </div>
             {/* 副標題 */}
             <div className="text-center pb-3">
-                <h3 className="m-0">一群衝浪愛好者建立的浪友集散地</h3>
+                <h3 className="m-0 deepblue">一群衝浪愛好者建立的浪友集散地</h3>
             </div>
             {/* 關於介紹內容 */}
             <div className="text-center aboutContentHome pb-5 px-5 gray">
@@ -296,7 +293,7 @@ return (
         <div className="row d-flex space-between pb-4">   
                 <div className="d-flex justify-content-center align-items-center titleShopHome">
                     <img src={greenTitle} className="me-3" alt="greenTitle" height="24px" width="64px"/>
-                    <h1 className="m-0 fw-bold">FUN商店 · 精選衝浪商品 </h1>
+                    <h1 className="m-0 fw-bold deepblue">FUN商店 · 精選衝浪商品 </h1>
                 </div>
                 {/* 商店按鈕 */}
                 {/* <div className="d-flex justify-content-center">
@@ -597,7 +594,7 @@ return (
                     {/* 客製化大標題 */} 
                     <div className="d-flex justify-content-start align-items-center pb-4 titleCustomHome">
                         <img src={greenTitle} className="me-3" alt="greenTitle" height="24px" width="64px"/>
-                        <h1 className="m-0 fw-bold">FUN訂製 · 客製化衝浪板</h1>
+                        <h1 className="m-0 fw-bold deepblue">FUN訂製 · 客製化衝浪板</h1>
                     </div>
                     {/* 客製化描述之一 */} 
                     <div className="row pb-4 d-flex justify-content-start">
@@ -687,7 +684,7 @@ return (
                         {/* 課程大標題 */} 
                         <div className="d-flex justify-content-start align-items-center pb-4 titleCustomHome">
                             <img src={greenTitle} className="me-3" alt="greenTitle" height="24px" width="64px"/>
-                            <h1 className="m-0 fw-bold">FUN課程 · 精心規劃安排</h1>
+                            <h1 className="m-0 fw-bold deepblue">FUN課程 · 精心規劃安排</h1>
                         </div>
                         <div className="d-flex justify-content-center align-items-center pb-4">
                             <FaCrown
@@ -781,7 +778,7 @@ return (
                         {/* 教練大標題 */}
                         <div className="d-flex justify-content-center align-items-center flex-row pb-4 titleCustomHome">
                                 <img src={greenTitle} className="me-3" alt="greenTitle" height="24px" width="64px"/>
-                                <h1 className="m-0 fw-bold">FUN心教練 · 用心教學</h1>
+                                <h1 className="m-0 fw-bold deepblue">FUN心教練 · 用心教學</h1>
                         </div>
                         {/* 教練01 */}
                         <div className="row d-flex align-items-center pb-4">
@@ -866,7 +863,7 @@ return (
             {/* 浪點大標題 */}
             <div className="d-flex justify-content-center align-items-center flex-row pb-4 titleCustomHome">
                     <img src={greenTitle} className="me-3" alt="greenTitle" height="24px" width="64px"/>
-                    <h1 className="m-0 fw-bold">FUN浪點 · 即時浪點資訊</h1>
+                    <h1 className="m-0 fw-bold deepblue">FUN浪點 · 即時浪點資訊</h1>
             </div>
             <div className="d-flex justify-content-center align-items-center flex-row">
                 <img src={taiwanHome} className="me-3" alt="taiwanHome" height="748px" width="492px"/>
@@ -895,7 +892,7 @@ return (
             {/* 資訊大標題 */}
             <div className="d-flex justify-content-center align-items-center flex-row pb-4 titleCustomHome">
                     <img src={greenTitle} className="me-3" alt="greenTitle" height="24px" width="64px"/>
-                    <h1 className="m-0 fw-bold">FUN浪日誌 · 衝浪新知文章</h1>
+                    <h1 className="m-0 fw-bold deepblue">FUN浪日誌 · 衝浪新知文章</h1>
             </div>
 
             <div>
