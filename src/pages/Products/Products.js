@@ -9,7 +9,6 @@ import SortBar from './Components/ProductList/SortBar.js';
 import ProductAccordion from './Components/ProductList/ProductAccordion.js';
 import FilterBar from './Components/ProductList/FilterBar.js';
 import greenTitle from '../../data/images/greenTitle.svg';
-import { useNavigate } from 'react-router-dom';
 
 function Products() {
   // 商品列表原始資料
@@ -22,18 +21,28 @@ function Products() {
   const [sortBy, setSortBy] = useState('');
 
   // 手風琴大小分類
-  const [bigCatsClick, setBigCatsClick] = useState(0);
-  const [smallCatsClick, setSmallCatsClick] = useState(0);
+  const [bigCatsClick, setBigCatsClick] = useState('0');
+  const [smallCatsClick, setSmallCatsClick] = useState('0');
 
   // 篩選條件 - 價錢區間
   const [priceLowest, setPriceLowest] = useState('all');
   const [priceHighest, setPriceHighest] = useState('all');
+  // 篩選條件 - 品牌
+  const [brand, setBrand] = useState('all');
+  // 篩選條件 - 顏色 (0代表沒有選此顏色，1代表有選此顏色)
+  const [color1, setColor1] = useState('0');
+  const [color2, setColor2] = useState('0');
+  const [color3, setColor3] = useState('0');
+  const [color4, setColor4] = useState('0');
+  const [color5, setColor5] = useState('0');
+  const [color6, setColor6] = useState('0');
+  const [color7, setColor7] = useState('0');
+  const [color8, setColor8] = useState('0');
+  const [color9, setColor9] = useState('0');
+  const [color, setColor] = useState('');
 
   // 載入指示器
   const [isLoading, setIsLoading] = useState(false);
-
-  // 為了處理網址
-  let navigate = useNavigate();
 
   // 載入中spinner
   //x秒後自動關掉spinner(設定isLoading為false)
@@ -53,13 +62,13 @@ function Products() {
     let getProducts = async () => {
       // 欲取得後端 http://localhost:3002/api/products 資料
       let response = await axios.get(
-        `${API_URL}/products?bigCats=${bigCatsClick}&smallCats=${smallCatsClick}&priceLowest=${priceLowest}&priceHighest=${priceHighest}`
+        `${API_URL}/products?bigCats=${bigCatsClick}&smallCats=${smallCatsClick}&priceLowest=${priceLowest}&priceHighest=${priceHighest}&brand=${brand}`
       );
       setProducts(response.data);
       setDisplayProducts(response.data);
     };
     getProducts();
-  }, [bigCatsClick, smallCatsClick, priceLowest, priceHighest]);
+  }, [bigCatsClick, smallCatsClick, priceLowest, priceHighest, brand]);
 
   // 載入指示 spinner動畫
   const spinner = (
@@ -106,10 +115,19 @@ function Products() {
     setDisplayProducts(newProducts);
   }, [products, sortBy]);
 
-  console.log('bigCatsClick', bigCatsClick);
-  console.log('smallCatsClick', smallCatsClick);
-  console.log('priceLowest', priceLowest);
-  console.log('priceHighest', priceHighest);
+  useEffect(() => {
+    let newColor = color1 + color2;
+    console.log(newColor);
+    console.log('color1', color1);
+    console.log('color2', color2);
+  }, [color1, color2]);
+
+  // console.log('bigCatsClick', bigCatsClick);
+  // console.log('smallCatsClick', smallCatsClick);
+  // console.log('priceLowest', priceLowest);
+  // console.log('priceHighest', priceHighest);
+  // console.log('brand', brand);
+  // console.log('color', color);
 
   return (
     <>
@@ -140,6 +158,26 @@ function Products() {
                 setPriceLowest={setPriceLowest}
                 priceHighest={priceHighest}
                 setPriceHighest={setPriceHighest}
+                brand={brand}
+                setBrand={setBrand}
+                color1={color1}
+                setColor1={setColor1}
+                color2={color2}
+                setColor2={setColor2}
+                color3={color3}
+                setColor3={setColor3}
+                color4={color4}
+                setColor4={setColor4}
+                color5={color5}
+                setColor5={setColor5}
+                color6={color6}
+                setColor6={setColor6}
+                color7={color7}
+                setColor7={setColor7}
+                color8={color8}
+                setColor8={setColor8}
+                color9={color9}
+                setColor9={setColor9}
               />
             </div>
           </aside>

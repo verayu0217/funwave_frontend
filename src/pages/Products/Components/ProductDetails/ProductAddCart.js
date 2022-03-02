@@ -17,14 +17,11 @@ import {
 } from 'react-icons/ai';
 import 'animate.css';
 import { IMAGE_URL } from '../../../../utils/config';
-import { useAuth } from '../../../../context/auth';
 
 function ProductAddCart(props) {
-  // 會員資料傳入useContext
-  const { auth, setAuth } = useAuth();
-  console.log('auth', auth);
-
   const {
+    auth,
+    setAuth,
     product,
     count,
     setCount,
