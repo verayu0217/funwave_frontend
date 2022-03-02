@@ -89,6 +89,10 @@ function Products() {
     color7,
     color8,
     color9,
+    fin,
+    fin1,
+    fin2,
+    fin3,
   ]);
 
   // 載入指示 spinner動畫
@@ -163,6 +167,9 @@ function Products() {
   console.log('brand', brand);
   console.log('color', color);
   console.log('fin', fin);
+  console.log('fin1', fin1);
+  console.log('fin2', fin2);
+  console.log('fin3', fin3);
 
   return (
     <>
