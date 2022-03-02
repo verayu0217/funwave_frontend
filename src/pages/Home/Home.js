@@ -106,81 +106,81 @@ function Home() {
         return null;
     }
 
-    console.log("在外面suitBtnState為:" + suitBtnState);
+    // console.log("在外面suitBtnState為:" + suitBtnState);
 
     // 載入商品套組didUpdate
     useEffect( () => {  
 
-        console.log("在useEffect裡suitBtnState為:" + suitBtnState);
+        // console.log("在useEffect裡suitBtnState為:" + suitBtnState);
     
         switch(suitBtnState) {
         case "1":
-            console.log("switch的case1，suitBtnState為：" + suitBtnState);
+            // console.log("switch的case1，suitBtnState為：" + suitBtnState);
             let getSuitOneInfo = async () => {
                 // 模擬和伺服器要資料
                 let response = await axios.get(`${API_URL}/home/suit-one`);
                 //看看response抓到什麼
-                console.log(response);
+                // console.log(response);
                 // 最後設定到狀態中
                 setSuitData(response.data);
             };
             getSuitOneInfo();
             break;
         case "2":
-            console.log("switch的case2，suitBtnState為：" + suitBtnState);
+            // console.log("switch的case2，suitBtnState為：" + suitBtnState);
             let getSuitTwoInfo = async () => {
                 // 模擬和伺服器要資料
                 let response = await axios.get(`${API_URL}/home/suit-two`);
                 //看看response抓到什麼
-                console.log(response);
+                // console.log(response);
                 // 最後設定到狀態中
                 setSuitData(response.data);
             };
             getSuitTwoInfo();
             break;
         case "3":
-            console.log("switch的case3，suitBtnState為：" + suitBtnState);
+            // console.log("switch的case3，suitBtnState為：" + suitBtnState);
             let getSuitThreeInfo = async () => {
                 // 模擬和伺服器要資料
                 let response = await axios.get(`${API_URL}/home/suit-three`);
                 //看看response抓到什麼
-                console.log(response);
+                // console.log(response);
                 // 最後設定到狀態中
                 setSuitData(response.data);
             };
             getSuitThreeInfo();
             break;
         case "4":
-            console.log("switch的case4，suitBtnState為：" + suitBtnState);
+            // console.log("switch的case4，suitBtnState為：" + suitBtnState);
             let getSuitFourInfo = async () => {
                 // 模擬和伺服器要資料
                 let response = await axios.get(`${API_URL}/home/suit-four`);
                 //看看response抓到什麼
-                console.log(response);
+                // console.log(response);
                 // 最後設定到狀態中
                 setSuitData(response.data);
             };
             getSuitFourInfo();
             break;
         case "5":
-            console.log("switch的case5，suitBtnState為：" + suitBtnState);
+            // console.log("switch的case5，suitBtnState為：" + suitBtnState);
             let getSuitFiveInfo = async () => {
                 // 模擬和伺服器要資料
                 let response = await axios.get(`${API_URL}/home/suit-five`);
                 //看看response抓到什麼
-                console.log(response);
+                // console.log(response);
                 // 最後設定到狀態中
                 setSuitData(response.data);
             };
             getSuitFiveInfo();
             break;
         case "6":
-            console.log("switch的case6，suitBtnState為：" + suitBtnState);
+            // console.log("switch的case6，suitBtnState為：" + suitBtnState);
             let getSuitSixInfo = async () => {
                 // 模擬和伺服器要資料
                 let response = await axios.get(`${API_URL}/home/suit-six`);
                 //看看response抓到什麼
-                console.log(response);
+                // console.log(response);
                 // 最後設定到狀態中
                 setSuitData(response.data);
             };
@@ -191,8 +191,8 @@ function Home() {
         }
     }, [suitBtnState]);
 
-    console.log("現在進入return前的suitData為:");
-    console.log(suitData);
+    // console.log("現在進入return前的suitData為:");
+    // console.log(suitData);
 
     // 載入卡片文章資料didMount
     useEffect( () => {
@@ -203,7 +203,7 @@ function Home() {
                 // 模擬和伺服器要資料
                 let response = await axios.get(`${API_URL}/home/card-info-home`);
                 //看看response抓到什麼
-                console.log(response);
+                // console.log(response);
                 // 最後設定到狀態中
                 setCardInfoData(response.data);
             };
