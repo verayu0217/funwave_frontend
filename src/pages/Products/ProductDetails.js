@@ -18,11 +18,8 @@ import longboard1 from './longboard1.jpg'; // 暫存推薦商品前端假圖片
 import greenTitle from '../../data/images/greenTitle.svg';
 import ProductAddCart from './Components/ProductDetails/ProductAddCart.js';
 import ProductDetailsContent from './Components/ProductDetails/ProductDetailsContent.js';
-import { useAuth } from '../../context/auth';
 
 function ProductDetails(props) {
-  const { auth, setAuth } = useAuth();
-  console.log('auth', auth);
   const [product, setProduct] = useState([
     {
       product_id: 0,
@@ -54,7 +51,6 @@ function ProductDetails(props) {
   const [count, setCount] = useState(1); // 加入購物車的數量
   const [size, setSize] = useState(''); // 點選商品的尺寸
   const [colorId, setColorId] = useState(''); // 點選商品的顏色
-  const [productGroup, setProductGroup] = useState('');
 
   // 把前端網址上的參數product_group拿出來，要和App.js的網址參數相同
   const { product_group } = useParams();
@@ -78,12 +74,6 @@ function ProductDetails(props) {
       <span className="sr-only">Loading...</span>
     </div>
   );
-
-  useEffect(() => {
-    setProductGroup(product_group);
-  }, [productGroup]);
-
-  console.log('product_group', productGroup);
 
   return (
     <>
@@ -356,10 +346,6 @@ function ProductDetails(props) {
                   spinner
                 ) : (
                   <ProductDetailsContent
-                    auth={auth}
-                    setAuth={setAuth}
-                    productGroup={productGroup}
-                    setProductGroup={setProductGroup}
                     product={product}
                     clickSmallImage={clickSmallImage}
                     setClickSmallImage={setClickSmallImage}
@@ -423,8 +409,6 @@ function ProductDetails(props) {
                     spinner
                   ) : (
                     <ProductAddCart
-                      auth={auth}
-                      setAuth={setAuth}
                       product={product}
                       count={count}
                       setCount={setCount}
