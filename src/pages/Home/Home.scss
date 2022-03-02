@@ -1,6 +1,7 @@
 // 待找到方法放在public，就可刪除此行
 @import '../../styles/global.scss';
 
+// 首頁
 .heroSectionHome {
     height: 100vh;
 
@@ -24,6 +25,13 @@
     text-shadow: 0 0 10px $funwave-white, 0 0 20px $funwave-white, 0 0 30px $funwave-white, 0 0 40px $funwave-white;
 }
 
+.waveVerticalW {
+    position: relative;
+    left: 20px;
+    bottom: 20px;
+}
+
+// 關於
 .aboutSectionHome {
     height: 1190px;
     transform: translateY(-268px);
@@ -33,13 +41,24 @@
 }
 
 
-.titleHome {
+.titleAboutHome {
     padding-top: 288px;
 }
 
-.titleHome>h1 {
+.titleShopHome {
+    padding-top: 288px;    
+}
+
+.titleCustomHome {
+    padding-top: 80px;
+}
+
+.titleHome {
+
+}
+
+h1 {
     color: $deepblue;
-    font-weight: bold;
 }
 
 
@@ -96,8 +115,124 @@
 }
 
 
-
+// 商店
 .shopSectionHome {
     transform: translateY(-800px);
-    
+    padding: 0 10%;
 }
+
+
+.shopPicLeftRightHome {
+    width: 100%;
+}
+
+.shopPicCenterHome {
+    width: 100%;
+}
+
+.costumSectionHome {
+    transform: translateY(-700px);
+}
+
+
+// 課程與教練
+.classSectionHome {
+    transform: translateY(-600px);
+    height: 1080px;
+    background: url('../../data/images/home/lightgrayBG-02.png') center center no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+.classContainerHome {
+    padding-top: 110px;
+}
+
+
+// 浪點
+.surfPointSectionHome {
+    height: 3419px;
+    background: url('../../data/images/home/SPinfoBG.png') center center no-repeat;
+    background-size: cover;
+    position: relative;
+
+}
+
+.surfPointContainerHome {
+    padding-top: 200px;
+}
+
+.infoContainerHome {
+
+}
+
+.cardHome {
+    height: 640px;
+    width: 100%;
+    background-color: $funwave-white;
+    border-radius: 8px;
+}
+
+
+.badgeHome {
+    position: absolute;
+    left: 24px;
+    bottom: 12px;
+    margin: 0px;
+    padding: 0px;
+}
+
+.cardPicDivHome {
+    width: 100%;
+    height: 300px;
+    overflow:hidden;
+    border-radius: 8px 8px 0 0;
+    position: relative;
+}
+
+.cardPicHome {
+    width: 160%;
+    min-width: 600px; 
+    height: auto;
+}
+
+.cardTitleHome {
+    height: 120px;
+    overflow:hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    white-space: normal;
+}
+
+.cardTextHome {
+    height: 120px;
+    overflow:hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    white-space: normal;
+}
+
+.cardinfoHome {
+    height: 60px;
+}
+
+// 最新資訊
+
+
+// footer
+.footerSectionHome {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    height: 460px;
+    background: url('../../data/images/home/footerBG.png') center center no-repeat;
+    background-size: cover;
+}
+
+
