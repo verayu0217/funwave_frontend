@@ -272,7 +272,7 @@ function InformationDetails() {
                                     return (
                                     <React.Fragment key={prevDataItem.info_id}>
 
-                                    {prevDataItem.big_title === null ? <div className="prevNextBoxInfo h5 gray text-start">沒有更多文章了~看看其他分類文章吧</div> : <div className="prevNextBoxInfo h5 text-start">
+                                    {prevDataItem.big_title === null ? <div className="prevNextBoxInfo h5 gray text-start">沒有更多文章了~看看其他分類文章吧<br/><Link to={`/information`}>返回文章分類主頁面</Link></div> : <div className="prevNextBoxInfo h5 text-start">
                                         <a className="h5" href="" onClick={()=> navigate(`/information/${prevDataItem.info_no}`)}>{prevDataItem.big_title}</a>
                                     </div>}
 
