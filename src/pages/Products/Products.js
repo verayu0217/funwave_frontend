@@ -39,7 +39,12 @@ function Products() {
   const [color7, setColor7] = useState('0');
   const [color8, setColor8] = useState('0');
   const [color9, setColor9] = useState('0');
-  const [color, setColor] = useState('false');
+  const [color, setColor] = useState('false'); // false代表沒有篩選任何顏色
+  // 篩選條件 - 顏色 (0代表沒有選此顏色，1代表有選此顏色)
+  const [fin1, setFin1] = useState('0');
+  const [fin2, setFin2] = useState('0');
+  const [fin3, setFin3] = useState('0');
+  const [fin, setFin] = useState('false'); // false代表沒有篩選任何顏色
 
   // 載入指示器
   const [isLoading, setIsLoading] = useState(false);
@@ -62,7 +67,7 @@ function Products() {
     let getProducts = async () => {
       // 欲取得後端 http://localhost:3002/api/products 資料
       let response = await axios.get(
-        `${API_URL}/products?bigCats=${bigCatsClick}&smallCats=${smallCatsClick}&priceLowest=${priceLowest}&priceHighest=${priceHighest}&brand=${brand}&color=${color}&color1=${color1}&color2=${color2}&color3=${color3}&color4=${color4}&color5=${color5}&color6=${color6}&color7=${color7}&color8=${color8}&color9=${color9}`
+        `${API_URL}/products?bigCats=${bigCatsClick}&smallCats=${smallCatsClick}&priceLowest=${priceLowest}&priceHighest=${priceHighest}&brand=${brand}&color=${color}&color1=${color1}&color2=${color2}&color3=${color3}&color4=${color4}&color5=${color5}&color6=${color6}&color7=${color7}&color8=${color8}&color9=${color9}&fin=${fin}&fin1=${fin1}&fin2=${fin2}&fin3=${fin3}`
       );
       setProducts(response.data);
       setDisplayProducts(response.data);
@@ -141,12 +146,23 @@ function Products() {
     }
   }, [color1, color2, color3, color4, color5, color6, color7, color8, color9]);
 
+  // 處理適用衝浪舵類型多選篩選
+  useEffect(() => {
+    let newFin = `${fin1}${fin2}${fin3}`;
+    if (newFin === '000') {
+      setFin('false');
+    } else {
+      setFin('true');
+    }
+  }, [fin1, fin2, fin3]);
+
   console.log('bigCatsClick', bigCatsClick);
   console.log('smallCatsClick', smallCatsClick);
   console.log('priceLowest', priceLowest);
   console.log('priceHighest', priceHighest);
   console.log('brand', brand);
   console.log('color', color);
+  console.log('fin', fin);
 
   return (
     <>
@@ -197,6 +213,12 @@ function Products() {
                 setColor8={setColor8}
                 color9={color9}
                 setColor9={setColor9}
+                fin1={fin1}
+                setFin1={setFin1}
+                fin2={fin2}
+                setFin2={setFin2}
+                fin3={fin3}
+                setFin3={setFin3}
               />
             </div>
           </aside>

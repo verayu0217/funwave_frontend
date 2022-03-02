@@ -37,6 +37,12 @@ function FilterBar(props) {
     setColor8,
     color9,
     setColor9,
+    fin1,
+    setFin1,
+    fin2,
+    setFin2,
+    fin3,
+    setFin3,
   } = props;
 
   return (
@@ -359,83 +365,25 @@ function FilterBar(props) {
           </label>
         </div>
       </div>
-      {/* 尺寸篩選 */}
-      <div className="mt-5">
-        <h3 className="d-flex align-items-center filterProducts pb-2 ps-3">
-          <RiRulerFill size={22} color="#17a8a2" className="me-3" />
-          尺寸
-        </h3>
-        <div className="form-check ms-3">
-          <input
-            className="form-check-input"
-            type="radio"
-            id="size1"
-            name="size1"
-            value="size1"
-          />
-          <label className="form-check-label ms-2" htmlFor="size1">
-            5
-          </label>
-        </div>
-        <div className="form-check ms-3">
-          <input
-            className="form-check-input"
-            type="radio"
-            id="size2"
-            name="size2"
-            value="size2"
-          />
-          <label className="form-check-label ms-2" htmlFor="size2">
-            6
-          </label>
-        </div>
-        <div className="form-check ms-3">
-          <input
-            className="form-check-input"
-            type="radio"
-            id="size3"
-            name="size3"
-            value="size3"
-          />
-          <label className="form-check-label ms-2" htmlFor="size3">
-            7
-          </label>
-        </div>
-        <div className="form-check ms-3">
-          <input
-            className="form-check-input"
-            type="radio"
-            id="size3"
-            name="size3"
-            value="size3"
-          />
-          <label className="form-check-label ms-2" htmlFor="size3">
-            8
-          </label>
-        </div>
-        <div className="form-check ms-3">
-          <input
-            className="form-check-input"
-            type="radio"
-            id="size3"
-            name="size3"
-            value="size3"
-          />
-          <label className="form-check-label ms-2" htmlFor="size3">
-            9
-          </label>
-        </div>
-      </div>
       {/* 適用衝浪舵篩選 */}
       <div className="mt-5">
         <h3 className="d-flex align-items-center filterProducts pb-2 ps-3">
           <MdOutlineSurfing size={24} color="#17a8a2" className="me-3" />
           適用衝浪舵類型
         </h3>
-        <div className="form-check ms-3">
+        <div
+          className="form-check ms-3"
+          onChange={(e) => {
+            if (fin1 === '0') {
+              setFin1('1');
+            } else {
+              setFin1('0');
+            }
+          }}
+        >
           <input
             className="form-check-input"
-            type="radio"
+            type="checkbox"
             id="fin1"
             name="fin1"
             value="fin1"
@@ -444,10 +392,19 @@ function FilterBar(props) {
             Single Tab
           </label>
         </div>
-        <div className="form-check ms-3">
+        <div
+          className="form-check ms-3"
+          onChange={(e) => {
+            if (fin2 === '0') {
+              setFin2('2');
+            } else {
+              setFin2('0');
+            }
+          }}
+        >
           <input
             className="form-check-input"
-            type="radio"
+            type="checkbox"
             id="fin2"
             name="fin2"
             value="fin2"
@@ -456,10 +413,19 @@ function FilterBar(props) {
             FCS II
           </label>
         </div>
-        <div className="form-check ms-3">
+        <div
+          className="form-check ms-3"
+          onChange={(e) => {
+            if (fin3 === '0') {
+              setFin3('3');
+            } else {
+              setFin3('0');
+            }
+          }}
+        >
           <input
             className="form-check-input"
-            type="radio"
+            type="checkbox"
             id="fin3"
             name="fin3"
             value="fin3"
