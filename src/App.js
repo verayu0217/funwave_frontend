@@ -60,7 +60,7 @@ import SurfSpot from './pages/SurfSpot/SurfSpot';
 // import Breadcrumb from './components/Breadcrumb';
 import ScrollToTop from './components/ScrollToTop';
 import Header from './components/Header';
-import Footer from './components/Footer';
+// import Footer from './components/Footer';
 // import MainContent from './components/MainContent';
 // import SideBar from './components/SideBar';
 import NotFound from './components/NotFound';
@@ -146,7 +146,7 @@ function App() {
           </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>
-        <Footer />
+        {/* <Footer /> */}
       </AuthContext.Provider>
     </>
   );
