@@ -1,5 +1,5 @@
 @import './global.scss';
-.breadcrumb{
+.breadcrumb {
   text-decoration: none;
   color: $funwave-deepgray;
 }
@@ -48,6 +48,12 @@
           height: 30px;
         }
       }
+      .headerImgMember {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        overflow: hidden;
+      }
       .btnLogin {
         background-color: $primary;
         border: none;
@@ -78,7 +84,7 @@
 }
 
 //scrolltotop
-.totop{
+.totop {
   border: none;
   border-radius: 50%;
   position: fixed;
@@ -91,30 +97,30 @@
 }
 
 //NotFound
-.errorword{
+.errorword {
   padding: 3rem 0rem 3rem 0rem;
   margin: 3rem 0rem 3rem 0rem;
 }
-#home{
-  text-decoration:none;
+#home {
+  text-decoration: none;
 }
 @media screen and (max-width: 770px) {
-  .notFound{
+  .notFound {
     max-width: 450px;
   }
 }
 
 @media screen and (max-width: 380px) {
-  .notFound{
+  .notFound {
     max-width: 350px;
     min-width: 300px;
   }
-  .errorword{
+  .errorword {
     padding: 0;
     margin: auto;
     text-align: center;
   }
-  #home{
+  #home {
     display: flex;
     justify-content: center;
   }
