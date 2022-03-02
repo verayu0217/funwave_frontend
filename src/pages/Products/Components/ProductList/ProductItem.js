@@ -34,11 +34,11 @@ function ProductItem(props) {
           alt={`${image1}`}
           src={`${IMAGE_URL}/products/${image1}`}
         />
-        <BiHeart
+        {/* <BiHeart
           size={21}
           color="#ff7f6a"
           className="float-end position-absolute top-0 end-0"
-        />
+        /> */}
         <div className="d-flex justify-content-center mt-2">
           <AiFillStar size={20} color="#ff7f6a" />
           <AiFillStar size={20} color="#ff7f6a" />
