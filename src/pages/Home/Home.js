@@ -236,12 +236,12 @@ return (
                 {/* 大標題 */}
                 <div className="d-flex justify-content-center align-items-center titleAboutHome">
                     <img src={greenTitle} className="me-3" alt="greenTitle" height="24px" weight="64px"/>
-                    <h1 className="m-0 fw-bold">FUNWAVE · FUN浪</h1>
+                    <h1 className="m-0 fw-bold deepblue">FUNWAVE · FUN浪</h1>
                 </div>
             </div>
             {/* 副標題 */}
             <div className="text-center pb-3">
-                <h3 className="m-0 deepblue">一群衝浪愛好者建立的浪友集散地</h3>
+                <h3 className="m-0">一群衝浪愛好者建立的浪友集散地</h3>
             </div>
             {/* 關於介紹內容 */}
             <div className="text-center aboutContentHome pb-5 px-5 gray">
