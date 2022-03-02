@@ -173,7 +173,7 @@ function SurfSpotDetails(props) {
                               {information.temperature}°C
                             </Col>
                             <Col className="text-center">
-                              {information.seatTmperature}°C
+                              {information.seaTemperature}°C
                             </Col>
                             <Col className="text-center">{information.uv}</Col>
                           </Row>
