@@ -56,7 +56,7 @@ function InformationDetails() {
             <div className="container-fluid titlePicSectionInfo">
                 <div className="container titleSectionInfo d-flex flex-row align-items-start">
                     <div className="titleWordInfo d-flex flex-column align-items-start text-start mb-4">
-                        <span class="badge bg-dark h6">{infoNoDataItem.info_cat}</span>
+                        <span className="badge bg-dark h6">{infoNoDataItem.info_cat}</span>
                         <h1 className="white">{infoNoDataItem.big_title}</h1>
                         <h6 className="white">{infoNoDataItem.create_time} {infoNoDataItem.author}</h6>
                     </div>

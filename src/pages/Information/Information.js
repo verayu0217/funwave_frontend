@@ -475,9 +475,9 @@ function Information() {
                                     {/* 卡片圖片容器-中間 */}
                                     <div className="cardPicDivHome d-flex justify-content-center align-items-center">
                                         {/* 卡片圖片標籤-中間 */}
-                                        <span class="badgeHome badge bg-dark h6">{catOneItem.info_cat}</span>
+                                        <span className="badgeHome badge bg-dark h6">{catOneItem.info_cat}</span>
                                         {/* 卡片圖片本體-中間 */}
-                                        <img class="cardPicHome" src={`${IMAGE_URL}/information/${catOneItem.big_img}`} alt={catOneItem.big_img}/>
+                                        <img className="cardPicHome" src={`${IMAGE_URL}/information/${catOneItem.big_img}`} alt={catOneItem.big_img}/>
                                     </div>
                                     {/* 卡片文字容器-中間 */}
                                     <div>
@@ -557,9 +557,9 @@ function Information() {
                                     {/* 卡片圖片容器-中間 */}
                                     <div className="cardPicDivHome d-flex justify-content-center align-items-center">
                                         {/* 卡片圖片標籤-中間 */}
-                                        <span class="badgeHome badge bg-dark h6">{catTwoItem.info_cat}</span>
+                                        <span className="badgeHome badge bg-dark h6">{catTwoItem.info_cat}</span>
                                         {/* 卡片圖片本體-中間 */}
-                                        <img class="cardPicHome" src={`${IMAGE_URL}/information/${catTwoItem.big_img}`} alt={catTwoItem.big_img}/>
+                                        <img className="cardPicHome" src={`${IMAGE_URL}/information/${catTwoItem.big_img}`} alt={catTwoItem.big_img}/>
                                     </div>
                                     {/* 卡片文字容器-中間 */}
                                     <div>
