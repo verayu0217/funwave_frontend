@@ -39,60 +39,6 @@ function FilterBar(props) {
     setColor9,
   } = props;
 
-  // react-select
-  // const colourStyles: StylesConfig<ColourOption, true> = {
-  //   control: (styles) => ({ ...styles, backgroundColor: 'white' }),
-  //   option: (styles, { data, isDisabled, isFocused, isSelected }) => {
-  //     const color = chroma(data.color);
-  //     return {
-  //       ...styles,
-  //       backgroundColor: isDisabled
-  //         ? undefined
-  //         : isSelected
-  //         ? data.color
-  //         : isFocused
-  //         ? color.alpha(0.1).css()
-  //         : undefined,
-  //       color: isDisabled
-  //         ? '#ccc'
-  //         : isSelected
-  //         ? chroma.contrast(color, 'white') > 2
-  //           ? 'white'
-  //           : 'black'
-  //         : data.color,
-  //       cursor: isDisabled ? 'not-allowed' : 'default',
-
-  //       ':active': {
-  //         ...styles[':active'],
-  //         backgroundColor: !isDisabled
-  //           ? isSelected
-  //             ? data.color
-  //             : color.alpha(0.3).css()
-  //           : undefined,
-  //       },
-  //     };
-  //   },
-  //   multiValue: (styles, { data }) => {
-  //     const color = chroma(data.color);
-  //     return {
-  //       ...styles,
-  //       backgroundColor: color.alpha(0.1).css(),
-  //     };
-  //   },
-  //   multiValueLabel: (styles, { data }) => ({
-  //     ...styles,
-  //     color: data.color,
-  //   }),
-  //   multiValueRemove: (styles, { data }) => ({
-  //     ...styles,
-  //     color: data.color,
-  //     ':hover': {
-  //       backgroundColor: data.color,
-  //       color: 'white',
-  //     },
-  //   }),
-  // };
-
   return (
     <>
       {/* 篩選 */}
@@ -209,16 +155,6 @@ function FilterBar(props) {
         </select>
       </div>
       {/* 顏色篩選 */}
-      {/* <Select
-        closeMenuOnSelect={false}
-        defaultValue={[colourOptions[0], colourOptions[1]]}
-        isMulti
-        options={colourOptions}
-        styles={colourStyles}
-        onChange={(e) => {
-          setColor(e.target.value);
-        }}
-      /> */}
       <div className="mt-5">
         <h3 className="d-flex align-items-center filterProducts pb-2 ps-3">
           <IoColorPalette size={22} color="#17a8a2" className="me-3" />
@@ -251,7 +187,7 @@ function FilterBar(props) {
           className="form-check ms-3"
           onChange={(e) => {
             if (color2 === '0') {
-              setColor2('1');
+              setColor2('2');
             } else {
               setColor2('0');
             }
@@ -271,8 +207,12 @@ function FilterBar(props) {
         {/* 藍 */}
         <div
           className="form-check ms-3"
-          onClick={(e) => {
-            setColor3('1');
+          onChange={(e) => {
+            if (color3 === '0') {
+              setColor3('3');
+            } else {
+              setColor3('0');
+            }
           }}
         >
           <input
@@ -289,8 +229,12 @@ function FilterBar(props) {
         {/* 綠 */}
         <div
           className="form-check ms-3"
-          onClick={(e) => {
-            setColor4('1');
+          onChange={(e) => {
+            if (color4 === '0') {
+              setColor4('4');
+            } else {
+              setColor4('0');
+            }
           }}
         >
           <input
@@ -307,8 +251,12 @@ function FilterBar(props) {
         {/* 黃 */}
         <div
           className="form-check ms-3"
-          onClick={(e) => {
-            setColor5('1');
+          onChange={(e) => {
+            if (color5 === '0') {
+              setColor5('5');
+            } else {
+              setColor5('0');
+            }
           }}
         >
           <input
@@ -325,8 +273,12 @@ function FilterBar(props) {
         {/* 紅 */}
         <div
           className="form-check ms-3"
-          onClick={(e) => {
-            setColor6('1');
+          onChange={(e) => {
+            if (color6 === '0') {
+              setColor6('6');
+            } else {
+              setColor6('0');
+            }
           }}
         >
           <input
@@ -343,8 +295,12 @@ function FilterBar(props) {
         {/* 橘 */}
         <div
           className="form-check ms-3"
-          onClick={(e) => {
-            setColor7('1');
+          onChange={(e) => {
+            if (color7 === '0') {
+              setColor7('7');
+            } else {
+              setColor7('0');
+            }
           }}
         >
           <input
@@ -361,8 +317,12 @@ function FilterBar(props) {
         {/* 棕 */}
         <div
           className="form-check ms-3"
-          onClick={(e) => {
-            setColor8('1');
+          onChange={(e) => {
+            if (color8 === '0') {
+              setColor8('8');
+            } else {
+              setColor8('0');
+            }
           }}
         >
           <input
@@ -379,8 +339,12 @@ function FilterBar(props) {
         {/* 灰 */}
         <div
           className="form-check ms-3"
-          onClick={(e) => {
-            setColor9('1');
+          onChange={(e) => {
+            if (color9 === '0') {
+              setColor9('9');
+            } else {
+              setColor9('0');
+            }
           }}
         >
           <input

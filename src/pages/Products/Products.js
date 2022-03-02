@@ -39,7 +39,7 @@ function Products() {
   const [color7, setColor7] = useState('0');
   const [color8, setColor8] = useState('0');
   const [color9, setColor9] = useState('0');
-  const [color, setColor] = useState('');
+  const [color, setColor] = useState('false');
 
   // 載入指示器
   const [isLoading, setIsLoading] = useState(false);
@@ -62,13 +62,29 @@ function Products() {
     let getProducts = async () => {
       // 欲取得後端 http://localhost:3002/api/products 資料
       let response = await axios.get(
-        `${API_URL}/products?bigCats=${bigCatsClick}&smallCats=${smallCatsClick}&priceLowest=${priceLowest}&priceHighest=${priceHighest}&brand=${brand}`
+        `${API_URL}/products?bigCats=${bigCatsClick}&smallCats=${smallCatsClick}&priceLowest=${priceLowest}&priceHighest=${priceHighest}&brand=${brand}&color=${color}&color1=${color1}&color2=${color2}&color3=${color3}&color4=${color4}&color5=${color5}&color6=${color6}&color7=${color7}&color8=${color8}&color9=${color9}`
       );
       setProducts(response.data);
       setDisplayProducts(response.data);
     };
     getProducts();
-  }, [bigCatsClick, smallCatsClick, priceLowest, priceHighest, brand]);
+  }, [
+    bigCatsClick,
+    smallCatsClick,
+    priceLowest,
+    priceHighest,
+    brand,
+    color,
+    color1,
+    color2,
+    color3,
+    color4,
+    color5,
+    color6,
+    color7,
+    color8,
+    color9,
+  ]);
 
   // 載入指示 spinner動畫
   const spinner = (
@@ -115,19 +131,22 @@ function Products() {
     setDisplayProducts(newProducts);
   }, [products, sortBy]);
 
+  // 處理顏色多選篩選
   useEffect(() => {
-    let newColor = color1 + color2;
-    console.log(newColor);
-    console.log('color1', color1);
-    console.log('color2', color2);
-  }, [color1, color2]);
+    let newColor = `${color1}${color2}${color3}${color4}${color5}${color6}${color7}${color8}${color9}`;
+    if (newColor === '000000000') {
+      setColor('false');
+    } else {
+      setColor('true');
+    }
+  }, [color1, color2, color3, color4, color5, color6, color7, color8, color9]);
 
-  // console.log('bigCatsClick', bigCatsClick);
-  // console.log('smallCatsClick', smallCatsClick);
-  // console.log('priceLowest', priceLowest);
-  // console.log('priceHighest', priceHighest);
-  // console.log('brand', brand);
-  // console.log('color', color);
+  console.log('bigCatsClick', bigCatsClick);
+  console.log('smallCatsClick', smallCatsClick);
+  console.log('priceLowest', priceLowest);
+  console.log('priceHighest', priceHighest);
+  console.log('brand', brand);
+  console.log('color', color);
 
   return (
     <>
