@@ -53,7 +53,7 @@ function MyNavbar() {
             </Nav.Link>
           </Nav> */}
             <form className="d-flex btnGroup">
-              <input
+              {/* <input
                 className="form-control me-2 searchIpt"
                 type="search"
                 placeholder="Search"
@@ -62,7 +62,7 @@ function MyNavbar() {
               />
               <button className="btn iconGroup" type="submit">
                 <i className="fas fa-search"></i>
-              </button>
+              </button> */}
               {/* <button className="btn" type="submit">
               <i className="fas fa-shopping-cart"></i>
             </button> */}
@@ -88,7 +88,17 @@ function MyNavbar() {
               {/* 登入/登出判斷 */}
               {auth ? (
                 <>
-                  <p>welcome</p>
+                  <img
+                    id="preview-photo"
+                    className="photo-img cover-fit"
+                    src={`http://localhost:3002${auth.photo}`}
+                    style={{
+                      width: '50px',
+                      height: '50px',
+                      borderRadius: '50%',
+                    }}
+                  />
+                  <span>&ensp;{auth.name}</span>
                   <Nav.Link
                     className="btnLogin mx-2"
                     as={NavLink}

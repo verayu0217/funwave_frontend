@@ -1,6 +1,9 @@
 // FilterBar.js 內容說明：商品主頁左方的篩選
 
 import React from 'react';
+// import chroma from 'chroma-js';
+// import Select, { StylesConfig } from 'react-select';
+// import { ColourOption, colourOptions } from '../../../../data/reactSelect.ts';
 
 // react-icons
 import { FaThumbsUp } from 'react-icons/fa';
@@ -9,7 +12,87 @@ import { MdOutlineSurfing } from 'react-icons/md';
 import { RiMoneyDollarCircleFill, RiRulerFill } from 'react-icons/ri';
 
 function FilterBar(props) {
-  const { priceLowest, setPriceLowest, priceHighest, setPriceHighest } = props;
+  const {
+    priceLowest,
+    setPriceLowest,
+    priceHighest,
+    setPriceHighest,
+    brand,
+    setBrand,
+    color1,
+    setColor1,
+    color2,
+    setColor2,
+    color3,
+    setColor3,
+    color4,
+    setColor4,
+    color5,
+    setColor5,
+    color6,
+    setColor6,
+    color7,
+    setColor7,
+    color8,
+    setColor8,
+    color9,
+    setColor9,
+  } = props;
+
+  // react-select
+  // const colourStyles: StylesConfig<ColourOption, true> = {
+  //   control: (styles) => ({ ...styles, backgroundColor: 'white' }),
+  //   option: (styles, { data, isDisabled, isFocused, isSelected }) => {
+  //     const color = chroma(data.color);
+  //     return {
+  //       ...styles,
+  //       backgroundColor: isDisabled
+  //         ? undefined
+  //         : isSelected
+  //         ? data.color
+  //         : isFocused
+  //         ? color.alpha(0.1).css()
+  //         : undefined,
+  //       color: isDisabled
+  //         ? '#ccc'
+  //         : isSelected
+  //         ? chroma.contrast(color, 'white') > 2
+  //           ? 'white'
+  //           : 'black'
+  //         : data.color,
+  //       cursor: isDisabled ? 'not-allowed' : 'default',
+
+  //       ':active': {
+  //         ...styles[':active'],
+  //         backgroundColor: !isDisabled
+  //           ? isSelected
+  //             ? data.color
+  //             : color.alpha(0.3).css()
+  //           : undefined,
+  //       },
+  //     };
+  //   },
+  //   multiValue: (styles, { data }) => {
+  //     const color = chroma(data.color);
+  //     return {
+  //       ...styles,
+  //       backgroundColor: color.alpha(0.1).css(),
+  //     };
+  //   },
+  //   multiValueLabel: (styles, { data }) => ({
+  //     ...styles,
+  //     color: data.color,
+  //   }),
+  //   multiValueRemove: (styles, { data }) => ({
+  //     ...styles,
+  //     color: data.color,
+  //     ':hover': {
+  //       backgroundColor: data.color,
+  //       color: 'white',
+  //     },
+  //   }),
+  // };
+
   return (
     <>
       {/* 篩選 */}
@@ -102,69 +185,117 @@ function FilterBar(props) {
           <FaThumbsUp size={20} color="#17a8a2" className="me-3" />
           品牌
         </h3>
-        <select className="form-select" aria-label="Default select example">
+        <select
+          className="form-select"
+          aria-label="Default select example"
+          onChange={(e) => {
+            setBrand(e.target.value);
+          }}
+        >
           <option selected>請選擇品牌</option>
-          <option value="1">Catch Surf</option>
-          <option value="2">Solid Surf Co</option>
-          <option value="3">JJF by Pyzel</option>
-          <option value="4">Modern</option>
-          <option value="5">Softech</option>
           <option value="6">Almond Surfboards</option>
-          <option value="7">Lib Tech</option>
-          <option value="8">True Ames</option>
+          <option value="1">Catch Surf</option>
           <option value="9">Captain Fin</option>
           <option value="10">Creatures of Leisure</option>
-          <option value="11">Roam</option>
-          <option value="12">Pro-Lite</option>
           <option value="13">en.saintjacques</option>
+          <option value="3">JJF by Pyzel</option>
+          <option value="7">Lib Tech</option>
+          <option value="4">Modern</option>
+          <option value="12">Pro-Lite</option>
+          <option value="11">Roam</option>
+          <option value="5">Softech</option>
+          <option value="2">Solid Surf Co</option>
+          <option value="8">True Ames</option>
         </select>
       </div>
       {/* 顏色篩選 */}
+      {/* <Select
+        closeMenuOnSelect={false}
+        defaultValue={[colourOptions[0], colourOptions[1]]}
+        isMulti
+        options={colourOptions}
+        styles={colourStyles}
+        onChange={(e) => {
+          setColor(e.target.value);
+        }}
+      /> */}
       <div className="mt-5">
         <h3 className="d-flex align-items-center filterProducts pb-2 ps-3">
           <IoColorPalette size={22} color="#17a8a2" className="me-3" />
           顏色
         </h3>
-        <div className="form-check ms-3">
+        {/* 白 */}
+        <div
+          className="form-check ms-3"
+          onChange={(e) => {
+            if (color1 === '0') {
+              setColor1('1');
+            } else {
+              setColor1('0');
+            }
+          }}
+        >
           <input
             className="form-check-input"
-            type="radio"
+            type="checkbox"
             id="color1"
             name="color1"
             value="color1"
           />
           <label className="form-check-label ms-2" htmlFor="color1">
-            紅色
+            白色
           </label>
         </div>
-        <div className="form-check ms-3">
+        {/* 黑 */}
+        <div
+          className="form-check ms-3"
+          onChange={(e) => {
+            if (color2 === '0') {
+              setColor2('1');
+            } else {
+              setColor2('0');
+            }
+          }}
+        >
           <input
             className="form-check-input"
-            type="radio"
+            type="checkbox"
             id="color2"
             name="color2"
             value="color2"
           />
           <label className="form-check-label ms-2" htmlFor="color2">
-            橘色
+            黑色
           </label>
         </div>
-        <div className="form-check ms-3">
+        {/* 藍 */}
+        <div
+          className="form-check ms-3"
+          onClick={(e) => {
+            setColor3('1');
+          }}
+        >
           <input
             className="form-check-input"
-            type="radio"
+            type="checkbox"
             id="color3"
             name="color3"
             value="color3"
           />
           <label className="form-check-label ms-2" htmlFor="color3">
-            黃色
+            藍色
           </label>
         </div>
-        <div className="form-check ms-3">
+        {/* 綠 */}
+        <div
+          className="form-check ms-3"
+          onClick={(e) => {
+            setColor4('1');
+          }}
+        >
           <input
             className="form-check-input"
-            type="radio"
+            type="checkbox"
             id="color4"
             name="color4"
             value="color4"
@@ -173,40 +304,94 @@ function FilterBar(props) {
             綠色
           </label>
         </div>
-        <div className="form-check ms-3">
+        {/* 黃 */}
+        <div
+          className="form-check ms-3"
+          onClick={(e) => {
+            setColor5('1');
+          }}
+        >
           <input
             className="form-check-input"
-            type="radio"
+            type="checkbox"
             id="color5"
             name="color5"
             value="color5"
           />
           <label className="form-check-label ms-2" htmlFor="color5">
-            藍色
+            黃色
           </label>
         </div>
-        <div className="form-check ms-3">
+        {/* 紅 */}
+        <div
+          className="form-check ms-3"
+          onClick={(e) => {
+            setColor6('1');
+          }}
+        >
           <input
             className="form-check-input"
-            type="radio"
+            type="checkbox"
             id="color6"
             name="color6"
             value="color6"
           />
           <label className="form-check-label ms-2" htmlFor="color6">
-            黑色
+            紅色
           </label>
         </div>
-        <div className="form-check ms-3">
+        {/* 橘 */}
+        <div
+          className="form-check ms-3"
+          onClick={(e) => {
+            setColor7('1');
+          }}
+        >
           <input
             className="form-check-input"
-            type="radio"
-            id="color6"
-            name="color6"
-            value="color6"
+            type="checkbox"
+            id="color7"
+            name="color7"
+            value="color7"
           />
-          <label className="form-check-label ms-2" htmlFor="color6">
-            白色
+          <label className="form-check-label ms-2" htmlFor="color7">
+            橘色
+          </label>
+        </div>
+        {/* 棕 */}
+        <div
+          className="form-check ms-3"
+          onClick={(e) => {
+            setColor8('1');
+          }}
+        >
+          <input
+            className="form-check-input"
+            type="checkbox"
+            id="color8"
+            name="color8"
+            value="color8"
+          />
+          <label className="form-check-label ms-2" htmlFor="color8">
+            棕色
+          </label>
+        </div>
+        {/* 灰 */}
+        <div
+          className="form-check ms-3"
+          onClick={(e) => {
+            setColor9('1');
+          }}
+        >
+          <input
+            className="form-check-input"
+            type="checkbox"
+            id="color9"
+            name="color9"
+            value="color9"
+          />
+          <label className="form-check-label ms-2" htmlFor="color9">
+            灰色
           </label>
         </div>
       </div>
