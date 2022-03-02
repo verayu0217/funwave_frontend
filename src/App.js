@@ -10,7 +10,7 @@ import { ERR_MSG } from './utils/error';
 
 // 頁面用元件(路由組件)
 //首頁
-import Home from './pages/Home/';
+import Home from './pages/Home/Home';
 //scss示範頁
 import HomeTry from './pages/HomeTry/';
 
