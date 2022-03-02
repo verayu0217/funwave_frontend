@@ -234,8 +234,8 @@ return (
 
     {/* 關於 */}
     <div className="container-fluid aboutSectionHome">
-        <div class="container mx-auto aboutContainerHome">
-            <div class="row mx-auto pb-4">  
+        <div className="container mx-auto aboutContainerHome">
+            <div className="row mx-auto pb-4">  
                 {/* 大標題 */}
                 <div className="d-flex justify-content-center align-items-center titleAboutHome">
                     <img src={greenTitle} className="me-3" alt="greenTitle" height="24px" weight="64px"/>
@@ -293,7 +293,7 @@ return (
     {/* 商店 */}
     <div className="conatainer shopSectionHome">
         {/* 商店標頭 */}
-        <div class="row d-flex space-between pb-4">   
+        <div className="row d-flex space-between pb-4">   
                 <div className="d-flex justify-content-center align-items-center titleShopHome">
                     <img src={greenTitle} className="me-3" alt="greenTitle" height="24px" width="64px"/>
                     <h1 className="m-0 fw-bold">FUN商店 · 精選衝浪商品 </h1>
