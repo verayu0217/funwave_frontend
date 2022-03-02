@@ -20,6 +20,6 @@ const data = [
   { id: 107019, name: '溫芸興', birth: 990202 },
   { id: 107020, name: '陳婉如', birth: 990116 },
   { id: 107021, name: '蔡睿斌', birth: 990316 },
-]
+];
 
-export { data }
+export { data };

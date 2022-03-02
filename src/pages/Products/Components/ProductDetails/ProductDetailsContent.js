@@ -5,15 +5,22 @@ import { Figure } from 'react-bootstrap';
 import longboard1 from './longboard1.jpg'; // 暫存推薦商品前端假圖片
 import { IMAGE_URL } from '../../../../utils/config';
 import ProductDetailsSmallImgs from './ProductDetailsSmallImgs.js';
+import ProductDetailsAddWish from './ProductDetailsAddWish';
 import {
   AiOutlineDown,
   AiOutlineUp,
   AiFillLeftCircle,
   AiFillRightCircle,
 } from 'react-icons/ai';
+import { BiHeart } from 'react-icons/bi';
+// import { FaHeart } from 'react-icons/fa'; // 全愛心
 
 function ProductDetailsContent(props) {
   const {
+    auth,
+    setAuth,
+    productGroup,
+    setProductGroup,
     product,
     clickSmallImage,
     setClickSmallImage,
@@ -146,7 +153,7 @@ function ProductDetailsContent(props) {
   return (
     <>
       {/* 大小商品圖 */}
-      <div className="d-flex justify-content-evenly">
+      <div className="d-flex justify-content-evenly position-relative">
         <div className="d-flex flex-column align-items-center justify-content-around">
           <AiOutlineUp size={22} color="#333333" className="" />
           {/* 引用ProductDetailsSmallImgs.js */}
@@ -174,6 +181,12 @@ function ProductDetailsContent(props) {
             }`}
           />
         </Figure>
+        <ProductDetailsAddWish
+          productGroup={productGroup}
+          setProductGroup={setProductGroup}
+          auth={auth}
+          setAuth={setAuth}
+        />
       </div>
 
       {/* 推薦商品 */}

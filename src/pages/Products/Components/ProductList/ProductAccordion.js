@@ -15,8 +15,8 @@ function ProductAccordion(props) {
           <Accordion.Header
             className="accordionTitle"
             onClick={(e) => {
-              setBigCatsClick(1);
-              setSmallCatsClick(0);
+              setBigCatsClick('1');
+              setSmallCatsClick('0');
             }}
           >
             <h3>衝浪板</h3>
@@ -26,7 +26,7 @@ function ProductAccordion(props) {
               <li
                 className="liProducts"
                 onClick={(e) => {
-                  setSmallCatsClick(1);
+                  setSmallCatsClick('1');
                 }}
               >
                 長板
@@ -34,7 +34,7 @@ function ProductAccordion(props) {
               <li
                 className="liProducts"
                 onClick={(e) => {
-                  setSmallCatsClick(2);
+                  setSmallCatsClick('2');
                 }}
               >
                 快樂板
@@ -42,7 +42,7 @@ function ProductAccordion(props) {
               <li
                 className="liProducts"
                 onClick={(e) => {
-                  setSmallCatsClick(3);
+                  setSmallCatsClick('3');
                 }}
               >
                 短板
@@ -53,8 +53,8 @@ function ProductAccordion(props) {
         <Accordion.Item eventKey="1">
           <Accordion.Header
             onClick={(e) => {
-              setBigCatsClick(2);
-              setSmallCatsClick(0);
+              setBigCatsClick('2');
+              setSmallCatsClick('0');
             }}
           >
             <h3>衝浪板配件</h3>
@@ -64,7 +64,7 @@ function ProductAccordion(props) {
               <li
                 className="liProducts"
                 onClick={(e) => {
-                  setSmallCatsClick(4);
+                  setSmallCatsClick('4');
                 }}
               >
                 衝浪板舵
@@ -72,7 +72,7 @@ function ProductAccordion(props) {
               <li
                 className="liProducts"
                 onClick={(e) => {
-                  setSmallCatsClick(5);
+                  setSmallCatsClick('5');
                 }}
               >
                 腳繩
@@ -80,7 +80,7 @@ function ProductAccordion(props) {
               <li
                 className="liProducts"
                 onClick={(e) => {
-                  setSmallCatsClick(6);
+                  setSmallCatsClick('6');
                 }}
               >
                 腳踏墊
@@ -91,8 +91,8 @@ function ProductAccordion(props) {
         <Accordion.Item eventKey="2">
           <Accordion.Header
             onClick={(e) => {
-              setBigCatsClick(3);
-              setSmallCatsClick(0);
+              setBigCatsClick('3');
+              setSmallCatsClick('0');
             }}
           >
             <h3>衝浪相關衣物</h3>
@@ -102,7 +102,7 @@ function ProductAccordion(props) {
               <li
                 className="liProducts"
                 onClick={(e) => {
-                  setSmallCatsClick(7);
+                  setSmallCatsClick('7');
                 }}
               >
                 衝浪斗篷毛巾衣
@@ -110,7 +110,7 @@ function ProductAccordion(props) {
               <li
                 className="liProducts"
                 onClick={(e) => {
-                  setSmallCatsClick(8);
+                  setSmallCatsClick('8');
                 }}
               >
                 防寒衣
