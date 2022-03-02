@@ -54,7 +54,7 @@ function Breadcrumb(props) {
       <nav aria-label="breadcrumb">
         <ol className="breadcrumb mb-0">
           <li className="breadcrumb-item">
-            <Link to=">" className="breadcrumb mt-1 mb-0">
+            <Link to="/home" className="breadcrumb mt-1 mb-0">
               首頁
             </Link>
           </li>

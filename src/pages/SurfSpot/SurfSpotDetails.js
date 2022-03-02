@@ -26,6 +26,7 @@ function SurfSpotDetails(props) {
     let getSurfspot = async () => {
       // http://localhost:3002/api/
       let response = await axios.get(`${API_URL}/surfspot/content`);
+      // console.log('response', response.data);
       let findspotContent = response.data.filter((v) => {
         return v.id === spotId;
       });
