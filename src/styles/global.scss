@@ -31,6 +31,36 @@ $theme-colors: (
   'light': $funwave-lightblue,
   'dark': $funwave-deepgray,
 );
+::selection{
+  background:  $funwave-lightblue;
+  color: white;
+}
+
+// 輪軸背景
+::-webkit-scrollbar {
+  background-color: #f5f5f5bd;
+  scrollbar-width: thin;   
+} 
+// 輪軸bar
+::-webkit-scrollbar-thumb {
+  background: #ccd4db;
+  overflow-x: hidden;
+  &:hover {
+    background: #81d7d3;
+  }
+  &:active {
+    background: $funwave-lightblue;
+    -webkit-box-shadow: outset 0 0 6px rgba(71, 70, 63, 0.8);
+  }
+}
+
+// [[ :focus 焦點效果 ]]//
+.focus-primary {
+&:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px #ffc9658e;
+}
+}
 
 // scss-docs-start spacer-variables-maps  // 原始
 $spacer: 1rem;

@@ -1,7 +1,7 @@
 import React from 'react';
 import celebrity from '../../data/images/customize/customizedCelebirty.jpg';
 import prize from '../../data/images/customize/customizedPrize.jpg';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 
 function Ad() {
   return (

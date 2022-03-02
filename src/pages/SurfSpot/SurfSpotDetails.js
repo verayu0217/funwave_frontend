@@ -26,6 +26,7 @@ function SurfSpotDetails(props) {
     let getSurfspot = async () => {
       // http://localhost:3002/api/
       let response = await axios.get(`${API_URL}/surfspot/content`);
+      // console.log('response', response.data);
       let findspotContent = response.data.filter((v) => {
         return v.id === spotId;
       });
@@ -172,7 +173,7 @@ function SurfSpotDetails(props) {
                               {information.temperature}°C
                             </Col>
                             <Col className="text-center">
-                              {information.seatTmperature}°C
+                              {information.seaTemperature}°C
                             </Col>
                             <Col className="text-center">{information.uv}</Col>
                           </Row>
