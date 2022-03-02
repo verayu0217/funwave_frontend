@@ -1,4 +1,4 @@
-//  ProductDetailsContent.js 內容說明：商品細節頁中間的商品細節區
+// ProductDetailsContent.js 內容說明：商品細節頁中間的商品細節區
 
 import React, { useState } from 'react';
 import { Figure } from 'react-bootstrap';
