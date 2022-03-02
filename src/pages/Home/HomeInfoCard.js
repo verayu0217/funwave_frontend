@@ -23,9 +23,9 @@ function HomeInfoCard(props) {
                         {/* 卡片圖片容器-中間 */}
                         <div className="cardPicDivHome d-flex justify-content-center align-items-center">
                             {/* 卡片圖片標籤-中間 */}
-                            <span class="badgeHome badge bg-dark h6">{cardInfoDataItem.info_cat}</span>
+                            <span className="badgeHome badge bg-dark h6">{cardInfoDataItem.info_cat}</span>
                             {/* 卡片圖片本體-中間 */}
-                            <img class="cardPicHome" src={`${IMAGE_URL}/information/${cardInfoDataItem.big_img}`} alt={cardInfoDataItem.big_img}/>
+                            <img className="cardPicHome" src={`${IMAGE_URL}/information/${cardInfoDataItem.big_img}`} alt={cardInfoDataItem.big_img}/>
                         </div>
                         {/* 卡片文字容器-中間 */}
                         <div>

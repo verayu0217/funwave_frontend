@@ -82,7 +82,7 @@ const MemberCourseOrder = () => {
                           to={`/member/member-courseorder/${course_order.id}`}
                           className="deepblue me-3"
                         >
-                          <i class="fas fa-external-link-alt"></i>
+                          <i className="fas fa-external-link-alt"></i>
                         </Link>
                         <span
                           className="deleteIconMember orange"

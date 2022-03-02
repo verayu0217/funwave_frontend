@@ -102,7 +102,7 @@ function FilterBar(props) {
           <FaThumbsUp size={20} color="#17a8a2" className="me-3" />
           品牌
         </h3>
-        <select class="form-select" aria-label="Default select example">
+        <select className="form-select" aria-label="Default select example">
           <option selected>請選擇品牌</option>
           <option value="1">Catch Surf</option>
           <option value="2">Solid Surf Co</option>
