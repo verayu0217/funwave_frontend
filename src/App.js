@@ -95,7 +95,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
           <Route path="/home-try" element={<HomeTry />} />
-          <Route path="/information" element={<Information />} ></Route>
+          <Route path="/information" element={<Information />}></Route>
           <Route path="/information" element={<InformationDetails />}>
             <Route path=":info_no" element={<InformationDetails />}></Route>
           </Route>
