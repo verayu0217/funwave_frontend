@@ -4,27 +4,44 @@ import { Link } from 'react-router-dom';
 import { Button, Table, Accordion, Form } from 'react-bootstrap';
 import axios from 'axios';
 import { API_URL } from '../../utils/config';
+import { useAuth } from '../../context/auth';
 import { IMAGE_URL } from '../../utils/config';
 
 import './Member.scss';
 // import titleImgMember from '../../data/images/greenwave64x24.png';
 
 function MemberCourseOrderDetails(props) {
-  // const [open, setOpen] = useState(false);
   const [data, setData] = useState([]);
-  // // 為了處理網址
-  // let navigate = useNavigate();
-  // // 把網址上的 :orderId 拿出來
-  const { courseId } = useParams();
+  const { auth, setAuth } = useAuth();
+  const { id } = useParams();
+  // 為了處理網址
+  let navigate = useNavigate();
+
+  async function handleCancel(id) {
+    let response = await axios.post(
+      `${API_URL}/member/member-courseorder/${id}/delete`
+    );
+    console.log(response.data);
+    if (response.data.isDeleted) {
+      setData(data.filter((course) => course.id !== id));
+    }
+  }
 
   useEffect(() => {
-    let getMemberOrderDetails = async () => {
+    async function getMemberCourseOrderDetails() {
       let response = await axios.get(
-        `${API_URL}/member/member-courseorder/${courseId}`
+        `${API_URL}/member/member-courseorderdetails/${id}`
       );
-      setData(response.data);
-    };
-    getMemberOrderDetails();
+
+      let courses = [];
+      response.data.forEach(function (courseData) {
+        courses.push(courseData);
+      });
+
+      setData(courses);
+    }
+
+    getMemberCourseOrderDetails();
   }, []);
   return (
     <>
@@ -32,15 +49,13 @@ function MemberCourseOrderDetails(props) {
         <div className="me-5">
           <Link
             className="btn saveMember fs-16Member"
-            to={`/member/member-order`}
+            to={`/member/member-courseorder`}
           >
             <i className="fas fa-arrow-left"></i>&nbsp;回上一頁
           </Link>
         </div>
         <div className="row d-flex justify-content-center">
-          <h2 className="mb-5 titleMember text-center">
-            {courseId}&nbsp;訂單內容
-          </h2>
+          <h2 className="mb-5 titleMember text-center">{id}&nbsp;訂單內容</h2>
           {data.map((item, index) => {
             if (index == 0)
               return (
@@ -61,10 +76,10 @@ function MemberCourseOrderDetails(props) {
                 >
                   <thead>
                     <tr>
-                      <th className="text-nowrap text-start">商品資訊</th>
-                      <th className="text-nowrap">優惠</th>
-                      <th className="text-nowrap">單件價格</th>
-                      <th className="text-nowrap">數量</th>
+                      <th className="text-nowrap text-start">課程</th>
+                      <th className="text-nowrap">地點</th>
+                      <th className="text-nowrap">價格</th>
+                      <th className="text-nowrap">人數</th>
                       <th className="text-nowrap text-end">小計</th>
                     </tr>
                   </thead>
@@ -72,37 +87,16 @@ function MemberCourseOrderDetails(props) {
                     {data.map((item) => {
                       return (
                         <tr>
-                          <td className="d-flex tbInfoMember">
-                            <img
-                              src={`${IMAGE_URL}/products/${item.product_image}`}
-                              className="orderImgMember"
-                              style={{ width: '100px', height: 'auto' }}
-                            />
-                          </td>
+                          <td className="d-flex tbInfoMember">{item.course}</td>
                           <td>
                             <div className="d-flex align-items-center flex-column">
-                              <p>{item.product_name}</p>
-                              <p className="m-0">SIZE: {item.product_size}</p>
+                              {item.courseSpot}
                             </div>
                           </td>
-                          <td>
-                            <span className="discountHintMember">優惠促銷</span>
-                            <br />
-                            <p>
-                              【品牌日】會員符合資格可享折扣，不得與其他優惠同時使用。
-                            </p>
-                          </td>
-                          <td>
-                            <p className="m-0" id="priceTotalId">
-                              NT${item.product_price}
-                            </p>
-                            <p className="text-decoration-line-through remarkMember">
-                              NT${item.product_price + 1000}
-                            </p>
-                          </td>
-                          <td id="numId">{item.quantity}</td>
-                          <td id="total">
-                            NT${item.product_price * item.quantity}
+                          <td>NT${item.coursePrice}</td>
+                          <td>{item.peopleNum}</td>
+                          <td id="total" className="text-end">
+                            NT${item.amount}
                           </td>
                         </tr>
                       );
@@ -154,7 +148,11 @@ function MemberCourseOrderDetails(props) {
                                   <div className="row d-flex justify-content-end">
                                     <p className="col-6 text-start">小計：</p>
                                     <p className="col-6" id="countId">
-                                      NT${item.amount}
+                                      NT$
+                                      {data.reduce(
+                                        (pre, cur) => pre + cur.amount,
+                                        0
+                                      )}
                                     </p>
                                   </div>
                                   {/* <div className="row d-flex justify-content-end">
@@ -171,12 +169,14 @@ function MemberCourseOrderDetails(props) {
                               </div>
                             </div> */}
                                   <div className="row d-flex justify-content-end">
-                                    <p className="col-6 text-start">運費：</p>
-                                    <p className="col-6">NT$0</p>
-                                  </div>
-                                  <div className="row d-flex justify-content-end">
                                     <p className="col-6 text-start">合計：</p>
-                                    <p className="col-6">NT${item.amount}</p>
+                                    <p className="col-6">
+                                      NT$
+                                      {data.reduce(
+                                        (pre, cur) => pre + cur.amount,
+                                        0
+                                      )}
+                                    </p>
                                   </div>
                                 </div>
                               </div>
@@ -191,7 +191,21 @@ function MemberCourseOrderDetails(props) {
           </Accordion>
         </div>
         <div className="text-end mt-3">
-          <Button className="pinkBtnMember">取消訂單</Button>
+          {data.map((item, index) => {
+            if (index == 0)
+              return (
+                <Button
+                  className={`${
+                    item.status === '訂單處理中' ? 'd-block' : 'd-none'
+                  }`}
+                  onClick={() => {
+                    handleCancel(data[0].id);
+                  }}
+                >
+                  取消訂單
+                </Button>
+              );
+          })}
         </div>
         <Accordion className="mt-4 mb-4" defaultActiveKey="0" flush alwaysOpen>
           <Accordion.Item className="dropdownMember" eventKey="0">
@@ -204,50 +218,48 @@ function MemberCourseOrderDetails(props) {
                       <div className="col-6">
                         <p className="fw-bold">訂單資訊</p>
                         <br />
-                        <p>訂單號碼：{item.order_id}</p>
+                        <p>訂單號碼：{item.id}</p>
+                        <p>姓名：{item.member_name}</p>
                         <p>訂單信箱：{item.member_email}</p>
+                        <p>電話號碼：{item.member_phone}</p>
                         <p>訂單日期：{item.order_time}</p>
-                        <p>訂單狀態：{item.status}</p>
+                        {/* <p>訂單狀態：{item.status}</p> */}
                       </div>
                       <div className="col-6">
                         <p className="fw-bold">顧客資訊</p>
                         <br />
-                        <p>姓名：{item.member_name}</p>
-                        <p>電話號碼：{item.member_phone}</p>
+                        <p>
+                          姓名：{item.name}
+                          {item.sex}
+                        </p>
+                        <p>訂單信箱：{item.email}</p>
+                        <p>電話號碼：{item.phone}</p>
+                        <p>訂單日期：{item.courseDate}</p>
                         {/* <p>生日：{item.}</p> */}
                         {/* <p>手機號碼：{item.}</p> */}
                       </div>
                       <div className="col-6 mt-5">
-                        <p className="fw-bold">送貨資訊</p>
+                        <p className="fw-bold">課程資訊</p>
                         <br />
-                        <p>收件人名稱：{item.receiver}</p>
-                        <p>收件人電話號碼：{item.receiver_phone}</p>
-                        <p>送貨方式：{item.delivery}</p>
+                        <p>課程名稱：{item.course}</p>
+                        <p>課程地點：{item.courseSpot}</p>
+                        <p>課程時間：{item.courseTime}</p>
                         {/* <p>送貨狀態：</p> */}
                         {/* <p>或件追蹤編號：</p> */}
-                        <p>
-                          地址：
-                          {`${
-                            item.delivery === '超商取貨'
-                              ? item.convenient_store
-                              : item.address
-                          }`}
-                        </p>
+                        <p>人數：{item.peopleNum}</p>
                       </div>
                       <div className="col-6 mt-5">
                         <p className="fw-bold">付款資訊</p>
                         <br />
-                        <p>付款方式：{item.payment}</p>
-                        <p>付款狀態：{item.payment_status}</p>
-                        {/* <p>交易序號：</p> */}
-                        {/* <p>發票號碼：</p> */}
+                        <p>付款方式：{item.payMethod}</p>
+                        {/* <p>付款狀態：{item.payment_status}</p> */}
                       </div>
-                      <div className="col-12 mt-5">
+                      {/* <div className="col-12 mt-5">
                         <p className="fw-bold">訂單狀態通知</p>
                         <br />
-                      </div>
+                      </div> */}
 
-                      <Form>
+                      {/* <Form>
                         <Form.Group
                           className="col-12 mt-3"
                           controlId="exampleForm.ControlTextarea1"
@@ -273,7 +285,7 @@ function MemberCourseOrderDetails(props) {
                             發送
                           </Button>
                         </div>
-                      </Form>
+                      </Form> */}
                     </div>
                   );
               })}

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import moment from 'moment';
 import Swal from 'sweetalert2';
+import { CgTrash } from 'react-icons/cg';
 
 import { AiOutlinePlus, AiOutlineMinus } from 'react-icons/ai';
 
@@ -156,7 +157,12 @@ function CourseCart01(props) {
                   ></input>
                 </td>
                 <td>
-                  <i className="fas fa-trash-alt" onClick={deleteCourse}></i>
+                  <CgTrash
+                    size={20}
+                    className="text-center ms-3"
+                    onClick={deleteCourse}
+                  />
+                  {/* <i className="fas fa-trash-alt" onClick={deleteCourse}></i> */}
                 </td>
               </tr>
             </tbody>

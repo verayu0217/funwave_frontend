@@ -73,7 +73,16 @@ function MyNavbar() {
               {/* <button className="btn" type="submit">
               <i className="fas fa-user"></i>
             </button> */}
-              <Nav.Link className="iconGroup" as={NavLink} to="/member">
+              <Nav.Link
+                className="iconGroup"
+                as={NavLink}
+                to="/member"
+                onClick={() => {
+                  if (auth === null) {
+                    return alert('請先登入會員');
+                  }
+                }}
+              >
                 <i className="fas fa-user"></i>
               </Nav.Link>
               {/* 登入/登出判斷 */}

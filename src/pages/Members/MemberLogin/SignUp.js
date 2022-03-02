@@ -53,6 +53,7 @@ function SignUp(props) {
                   id="email"
                   value={member.email}
                   onChange={handleChange}
+                  required
                 />
               </li>
               <li className="mt-3">
@@ -64,6 +65,7 @@ function SignUp(props) {
                   id="name"
                   value={member.name}
                   onChange={handleChange}
+                  required
                 />
               </li>
               <li className="mt-3">
@@ -75,7 +77,7 @@ function SignUp(props) {
                   id=""
                   value={member.password}
                   onChange={handleChange}
-                  // required
+                  required
                 />
                 <div className="fasEye">
                   <i
@@ -102,7 +104,7 @@ function SignUp(props) {
                   onClick={() => {
                     setMember({ ...member, agree: true });
                   }}
-                  // required
+                  required
                 />
                 <label className="form-check-label agreeSignup">
                   我同意<Link to="/">服務條款</Link>與

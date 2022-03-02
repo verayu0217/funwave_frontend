@@ -4,21 +4,39 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './Member.scss';
 import { API_URL } from '../../utils/config';
+import { useAuth } from '../../context/auth';
 import titleImgMember from '../../data/images/greenwave64x24.png';
 
 const MemberPoint = () => {
+  const { auth, setAuth } = useAuth();
   const [data, setData] = useState([]);
 
   // 為了處理網址
   let navigate = useNavigate();
 
   // 把網址上的 :id 拿出來
-  // const { orderId } = useParams();
+  // const { order_id } = useParams();
 
-  useEffect(async () => {
-    // http://localhost:3002/api/member
-    let response = await axios.get(`${API_URL}/member/member-order`);
-    setData(response.data);
+  useEffect(() => {
+    async function getMemberOrderList() {
+      let response = await axios.get(
+        `${API_URL}/member/member-order/${auth.member_id}`
+      );
+
+      let orders = [];
+      let accumulated = 0;
+      // reverse for accumulate
+      response.data.reverse().forEach(function (orderData) {
+        accumulated += orderData.amount;
+        orderData.accumulated = accumulated;
+        orders.push(orderData);
+      });
+
+      // reverse for display
+      setData(orders.reverse());
+    }
+
+    getMemberOrderList();
   }, []);
   return (
     <>
@@ -38,16 +56,24 @@ const MemberPoint = () => {
                     <i className="fas fa-bell fasMember bellIconMember"></i>
                     <i className="fal fa-usd-circle"></i>
                   </div>
-                  <div className="d-flex justify-content-center align-items-center flex-column">
-                    <p className="card-text fs-20Member">現有總點數</p>
-                    <h3 className="fs-45Member">
-                      57<span className="fs-20Member">點</span>
-                    </h3>
-                    <p className="card-text m-0 fs-20Member">等值&nbsp;NT$57</p>
-                    <p className="card-text markMember m-0 orange">
-                      到期日：2022/12/31
-                    </p>
-                  </div>
+                  {data.map((order_list, i) => {
+                    // only last order
+                    if (i === 0) {
+                      return (
+                        <div className="d-flex justify-content-center align-items-center flex-column">
+                          <p className="card-text fs-20Member">現有總點數</p>
+                          <h3 className="fs-45Member">
+                            {(order_list.accumulated / 200).toFixed()}
+                            <span className="fs-20Member">點</span>
+                          </h3>
+                          <p className="card-text m-0 fs-20Member">
+                            等值&nbsp;NT$
+                            {(order_list.accumulated / 200).toFixed()}
+                          </p>
+                        </div>
+                      );
+                    }
+                  })}
                 </div>
               </div>
               <div className="col-1 lineWrapMember">
@@ -74,7 +100,6 @@ const MemberPoint = () => {
                   <th className="fs-20Member">日期</th>
                   <th className="fs-20Member text-nowrap">點數更動原因</th>
                   <th className="fs-20Member text-nowrap">獲得點數</th>
-                  <th className="fs-20Member">到期日</th>
                   <th className="fs-20Member text-nowrap">現有總點數</th>
                 </tr>
               </thead>
@@ -87,9 +112,8 @@ const MemberPoint = () => {
                       <td className="text-nowrap">
                         {(item.amount / 200).toFixed()}
                       </td>
-                      <td className="text-nowrap">{item.order_time}</td>
                       <td className="text-nowrap">
-                        {(item.amount / 200).toFixed()}
+                        {(item.accumulated / 200).toFixed()}
                       </td>
                     </tr>
                   );

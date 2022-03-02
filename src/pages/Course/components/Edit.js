@@ -1,17 +1,28 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { API_URL, IMAGE_URL } from '../../../utils/config';
 import moment from 'moment';
 import StarRating from './StarRating';
 
 // props拿出add
-const Edit = ({ add }) => {
-  //TODO: 新增留言時日期跟顯示留言的日期不是同一個變數但都是取今天日期不知道可嗎
-  let date = moment().format('YYYY-MM-DD');
+const Edit = ({ add, auth }) => {
+  // console.log(auth?.name);
+  //新增留言時帶入日期
+  let today = moment().format('YYYY-MM-DD');
+
+  const [name, setName] = useState('');
 
   const [message, setMsg] = useState('');
   const [rating, setRating] = useState('');
   const [photo, setPhoto] = useState('');
+  const [date, setDate] = useState(today);
+
+  // 取得會員名稱給name
+  useEffect(() => {
+    if (auth !== null) {
+      setName(auth.name);
+    }
+  });
 
   function msgChange(e) {
     setMsg(e.target.value);
@@ -23,15 +34,15 @@ const Edit = ({ add }) => {
       window.alert('請填寫留言再送出');
       return;
     }
-    // 從父層傳下來的set方法
+    // 從父層傳下來的setData方法
     add(function (prevData) {
       // 調換順序讓新留言在最上面
-      return [{ message, rating }, ...prevData];
+      return [{ message, rating, date, name }, ...prevData];
     });
 
     let totalMsg = [
       {
-        name: '路人甲',
+        name: name,
         date: date,
         message,
         rating,
@@ -81,7 +92,7 @@ const Edit = ({ add }) => {
       <label className="h3 mt-5">評價留言</label>
       {/* 放星星 */}
       <div>
-        <StarRating setRating={setRating} />
+        <StarRating setRating={setRating} rating={rating} />
       </div>
       <textarea
         name=""

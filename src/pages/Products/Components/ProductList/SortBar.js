@@ -1,3 +1,5 @@
+// SortBar.js 內容說明：商品主頁右方的價錢排序
+
 import React from 'react';
 
 function SortBar(props) {
@@ -21,5 +23,3 @@ function SortBar(props) {
 }
 
 export default SortBar;
-
-// 複習2022.2.11

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Figure, Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import './Cart.scss';
+import CartHeader from '../Components/Cart/CartHeader01.js';
 import { IMAGE_URL } from '../../../utils/config';
 import greenTitle from '../../../data/images/greenTitle.svg';
 // react-icons
@@ -16,10 +17,9 @@ function ProductCart01() {
   const [mycartDisplay, setMycartDisplay] = useState([]);
 
   // 付款方式、運送方式
-  const [payDeliver, setPayDeliver] = useState({
-    payment: '',
-    delivery: '',
-  });
+  const [payment, setPayment] = useState('信用卡');
+  const [delivery, setDelivery] = useState('宅配到府');
+
   // 小分類、顏色的id對照名稱
   const colorTypes = ['白', '黑', '藍', '綠', '黃', '紅', '橘'];
   const smallCatTypes = [
@@ -72,7 +72,7 @@ function ProductCart01() {
   }, [mycart]);
 
   // 模擬componentDidUpdate
-  // 將整理好的mycart存進LocalStorage(productCartDisplay)
+  // 將mycartDisplay(整理好的mycart)存進LocalStorage(productCartDisplay)
   useEffect(() => {
     localStorage.setItem('productCartDisplay', JSON.stringify(mycartDisplay));
   }, [mycartDisplay]);
@@ -119,53 +119,28 @@ function ProductCart01() {
   };
   // localStorage.removeItem('productCart');
 
-  function handleChange(e) {
-    // 物件裡要用變數當key值，要用[]
-    // e.target.name是抓input的name (因為使用name當key值，所以name要和物件裡的key值一樣)，屬於html
-    setPayDeliver({ ...payDeliver, [e.target.name]: e.target.value });
+  // 抓付款方式setPayment
+  function handleChangePay(e) {
+    setPayment(e.target.value);
   }
+
+  // 抓運送方式setDelivery
+  function handleChangeDelivery(e) {
+    setDelivery(e.target.value);
+  }
+
+  useEffect(() => {
+    localStorage.setItem('payment', JSON.stringify(payment));
+    localStorage.setItem('delivery', JSON.stringify(delivery));
+  }, [payment, delivery]);
+
+  console.log('payment', payment);
+  console.log('delivery', delivery);
   return (
     <>
       <div className="container">
         {/* 購物車三步驟 */}
-        <header className="m-5 py-2 px-5">
-          <div className="text-secondary fw-bold h1 text-center mb-5">
-            <img
-              src={greenTitle}
-              className="greenTitle me-3"
-              alt="greenTitle"
-              height="24px"
-              weight="64px"
-            />
-            衝浪商品購物車
-          </div>
-          <div className="d-flex justify-content-evenly">
-            <div className="d-flex align-items-center shadow py-2 cartStepsSigns cartStepsSignsOrange borderRadius">
-              <div className="fs-1 w-25 text-center">01</div>
-              <div className="w-75">
-                確認清單 & 付款及配送方式
-                <br />
-                Cart & Check out
-              </div>
-            </div>
-            <div className="d-flex justify-content-evenly align-items-center shadow py-2 cartStepsSigns borderRadius">
-              <div className="fs-1 w-25 text-center">02</div>
-              <div className="w-75">
-                填寫訂購資料
-                <br />
-                Shipping & Billing Info
-              </div>
-            </div>
-            <div className="d-flex justify-content-evenly align-items-center shadow py-2 cartStepsSigns borderRadius">
-              <div className="fs-1 w-25 text-center">03</div>
-              <div className="w-75">
-                購物完成！
-                <br />
-                Order completed
-              </div>
-            </div>
-          </div>
-        </header>
+        <CartHeader />
         {/* 購物車、付款及運送方式 */}
         <article>
           <div className="row mx-5 px-3 d-flex justify-content-center">
@@ -274,23 +249,23 @@ function ProductCart01() {
                   <div className="col-1"></div>
                   <div className="col-5">運費</div>
                   <div className="col-5 text-end">
-                    {sum(mycartDisplay) > 20000 ? 0 : 120}
+                    {sum(mycartDisplay) > 5000 ? 0 : 120}
                   </div>
                   <div className="col-1"></div>
                 </div>
-                {sum(mycartDisplay) < 20000 ? (
+                {sum(mycartDisplay) < 5000 ? (
                   <div className="row">
                     <div className="col-11 text-end fs-6 text-primary">
                       商品消費差NT{' '}
-                      {(20000 - sum(mycartDisplay)).toLocaleString()} 即可享滿NT
-                      20,000免運優惠
+                      {(5000 - sum(mycartDisplay)).toLocaleString()} 即可享滿NT
+                      5,000免運優惠
                     </div>
                     <div className="col-1"></div>
                   </div>
                 ) : (
                   <div className="row">
                     <div className="col-11 text-end fs-6 text-primary">
-                      商品消費滿NT 20,000享免運優惠
+                      商品消費滿NT 5,000享免運優惠
                     </div>
                     <div className="col-1"></div>
                   </div>
@@ -318,17 +293,17 @@ function ProductCart01() {
               </div>
               <div className="px-5 py-4">
                 <h5>付款方式</h5>
-                <Form.Select aria-label="select">
-                  <option>付款方式</option>
-                  <option value="pay1">信用卡線上付款</option>
-                  <option value="pay2">貨到付款(宅配)</option>
-                  <option value="pay3">貨到付款(超商)</option>
+                <Form.Select aria-label="select" onChange={handleChangePay}>
+                  <option value="信用卡">信用卡線上付款</option>
+                  <option value="貨到付款">貨到付款</option>
                 </Form.Select>
                 <h5 className="mt-4">運送方式</h5>
-                <Form.Select aria-label="select">
-                  <option>運送方式</option>
-                  <option value="ship1">宅配</option>
-                  <option value="ship2">超商取貨</option>
+                <Form.Select
+                  aria-label="select"
+                  onChange={handleChangeDelivery}
+                >
+                  <option value="宅配到府">宅配到府</option>
+                  <option value="超商取貨">超商取貨</option>
                 </Form.Select>
               </div>
               <div className="d-flex justify-content-center mt-5 mb-4">
