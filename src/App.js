@@ -15,8 +15,8 @@ import Home from './pages/Home/Home';
 import HomeTry from './pages/HomeTry/';
 
 //資訊
-// import Information from './pages/Information/Information';
-// import InformationDetails from './pages/Information/InformationDetails';
+import Information from './pages/Information/Information';
+import InformationDetails from './pages/Information/InformationDetails';
 
 //會員
 import LogIn from './pages/Members/MemberLogin/LogIn';
@@ -95,10 +95,10 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
           <Route path="/home-try" element={<HomeTry />} />
-          {/* <Route path="/information" element={<Information />} ></Route>
+          <Route path="/information" element={<Information />} ></Route>
           <Route path="/information" element={<InformationDetails />}>
             <Route path=":info_no" element={<InformationDetails />}></Route>
-          </Route> */}
+          </Route>
           <Route path="/login" element={<LogIn />} />
           <Route path="/surfspot" element={<SurfSpot />} />
           <Route path="/products/:product_group" element={<ProductDetails />}>
