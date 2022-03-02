@@ -9,6 +9,9 @@
 }
 
 // 中間商品細節區
+.addWish {
+  right: 50px;
+}
 
 // 右邊加入購物車區
 .sizebtn {
@@ -22,4 +25,7 @@
 }
 .btnAddCart {
   width: 100%;
+}
+.proDetailHeart :hover{
+  cursor: pointer;
 }
