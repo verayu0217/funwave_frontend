@@ -151,7 +151,7 @@ function Information() {
                 // 模擬和伺服器要資料
                 let response = await axios.get(`${API_URL}/information/caro`);
                 //看看response抓到什麼
-                console.log(response);
+                // console.log(response);
                 // 最後設定到狀態中
                 setCaroData(response.data);
             };
@@ -167,7 +167,7 @@ function Information() {
                 // 模擬和伺服器要資料
                 let response = await axios.get(`${API_URL}/information?page=${nowPage}`); // pagination
                 //看看response抓到什麼
-                console.log(response);
+                // console.log(response);
                 // 最後設定到狀態中
                 setAllInfo(response.data.pageData);
                 setAllLastPage(response.data.pagination.lastPage);
@@ -184,7 +184,7 @@ function Information() {
                         {searchWord, nowPage}
                     );
                     
-                    console.log("有沒有送搜尋關鍵字到後端", response.data);
+                    // console.log("有沒有送搜尋關鍵字到後端", response.data);
 
                     setAllInfo(response.data.pageData);
                     setAllLastPage(response.data.pagination.lastPage);
@@ -208,7 +208,7 @@ function Information() {
                 // 模擬和伺服器要資料
                 let response = await axios.get(`${API_URL}/information/cat-one?page=${catOneNowPage}`);
                 //看看response抓到什麼
-                console.log(response);
+                // console.log(response);
                 // 最後設定到狀態中
                 setCatOneInfo(response.data.pageData);
                 setCatOneLastPage(response.data.pagination.lastPage);
@@ -223,7 +223,7 @@ function Information() {
                         {catOneSearchWord, catOneNowPage}
                     );
                     
-                    console.log("有沒有送搜尋關鍵字到後端", response.data);
+                    // console.log("有沒有送搜尋關鍵字到後端", response.data);
 
                     setCatOneInfo(response.data.pageData);
                     setCatOneLastPage(response.data.pagination.lastPage);
@@ -243,7 +243,7 @@ function Information() {
                 // 模擬和伺服器要資料
                 let response = await axios.get(`${API_URL}/information/cat-two?page=${catTwoNowPage}`);
                 //看看response抓到什麼
-                console.log(response);
+                // console.log(response);
                 // 最後設定到狀態中
                 setCatTwoInfo(response.data.pageData);
                 setCatTwoLastPage(response.data.pagination.lastPage)
@@ -258,7 +258,7 @@ function Information() {
                         {catTwoSearchWord, catTwoNowPage}
                     );
                     
-                    console.log("有沒有送搜尋關鍵字到後端", response.data);
+                    // console.log("有沒有送搜尋關鍵字到後端", response.data);
 
                     setCatTwoInfo(response.data.pageData);
                     setCatTwoLastPage(response.data.pagination.lastPage);
