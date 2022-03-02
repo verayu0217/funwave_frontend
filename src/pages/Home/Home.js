@@ -901,6 +901,16 @@ return (
                     setCardInfoData={setCardInfoData}
                 />
             </div>
+            {/* 文章按鈕 */}
+            <div className="d-flex justify-content-center align-items-center flex-row py-5">
+                <a className="btn btn-primary ps-5" href="/information">看更多衝浪文章
+                <FaLongArrowAltRight
+                        className="ps-2 me-5"
+                        size={24}
+                        color="#ffffff"
+                />
+                </a>
+            </div> {/* 文章按鈕-結束 */}
 
         </div> {/* 資訊容器 container */}
     </div> {/* container-fluid */}
