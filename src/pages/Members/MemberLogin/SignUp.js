@@ -36,7 +36,10 @@ function SignUp(props) {
   }
   return (
     <>
-      <form className="d-flex justify-content-center align-items-center">
+      <form
+        className="d-flex justify-content-center align-items-center"
+        onSubmit={signUpSubmit}
+      >
         <div style={{ width: '60%' }}>
           <h4 className="h1 text-black fw-bold text-center">
             Welcome to Join Us !
@@ -119,7 +122,7 @@ function SignUp(props) {
               className="btn btn-primary text-white"
               style={{ width: '280px' }}
               type="submit"
-              onClick={signUpSubmit}
+              // onClick={signUpSubmit}
             >
               註冊
             </button>

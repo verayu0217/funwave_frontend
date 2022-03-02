@@ -195,48 +195,7 @@ function ProductDetailsContent(props) {
               <p className="fw-bold">NT 2,000</p>
             </Figure.Caption>
           </Figure>
-          <Figure>
-            <Figure.Image
-              width={115}
-              // height={80}
-              alt="longboard1"
-              src={longboard1}
-            />
-            <Figure.Caption className="d-flex justify-content-center">
-              <p className="recommendProducts mb-0">衝浪板</p>
-            </Figure.Caption>
-            <Figure.Caption className="d-flex justify-content-center">
-              <p className="fw-bold">NT 2,000</p>
-            </Figure.Caption>
-          </Figure>
-          <Figure>
-            <Figure.Image
-              width={115}
-              // height={80}
-              alt="longboard1"
-              src={longboard1}
-            />
-            <Figure.Caption className="d-flex justify-content-center">
-              <p className="recommendProducts mb-0">衝浪板</p>
-            </Figure.Caption>
-            <Figure.Caption className="d-flex justify-content-center">
-              <p className="fw-bold">NT 2,000</p>
-            </Figure.Caption>
-          </Figure>
-          <Figure>
-            <Figure.Image
-              width={115}
-              // height={80}
-              alt="longboard1"
-              src={longboard1}
-            />
-            <Figure.Caption className="d-flex justify-content-center">
-              <p className="recommendProducts mb-0">衝浪板</p>
-            </Figure.Caption>
-            <Figure.Caption className="d-flex justify-content-center">
-              <p className="fw-bold">NT 2,000</p>
-            </Figure.Caption>
-          </Figure>
+
           <AiFillRightCircle size={22} color="#17a8a2" className="" />
         </div>
       </div>

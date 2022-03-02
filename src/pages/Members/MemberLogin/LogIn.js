@@ -40,9 +40,13 @@ function Login() {
       });
       console.log('登入時傳送資料:', response.data);
 
+      //token存到localStorage
+      localStorage.setItem('token', 'Bearer ' + response.data.token);
+
       setAuth(response.data.data); // 把登入後 member 資料存回 context 讓其他地方可以用,auth.js line:115
       setIsLogin(true);
       setMember({ ...member, email: '', password: '' });
+      jwtVerity();
     } catch (e) {
       if (e.response) {
         console.error('測試登入', ERR_MSG[e.response.data.code]);
@@ -52,6 +56,24 @@ function Login() {
         console.error(e);
         Swal.fire(`伺服器錯誤`);
       }
+    }
+  }
+  async function jwtVerity() {
+    //jwt驗證 送api
+    try {
+      let response = await axios.post(
+        `${API_URL}/auth/jwt-verify`,
+        {},
+        {
+          headers: {
+            // 'Content-Type': 'application/json',
+            Authorization: localStorage.getItem('token'),
+          },
+        }
+      );
+      console.log('jwt驗證', response);
+    } catch (e) {
+      console.error(e);
     }
   }
 
