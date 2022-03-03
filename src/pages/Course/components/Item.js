@@ -1,7 +1,4 @@
 import StarRating from './StarRating';
-import { useState, useEffect } from 'react';
-import { API_URL, IMAGE_URL } from '../../../utils/config';
-import { useAuth } from '../../../context/auth';
 
 const Item = ({ message, date, rating, photo, name }) => {
   return (

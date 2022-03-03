@@ -78,7 +78,11 @@ function Products() {
 
   // 讓頁面從頂端開始 待處理
   // useEffect(() => {
-  //   window.scrollTo(0, 0);
+  //   window.scrollTo({
+  //     top: 100,
+  //     left: 100,
+  //     behavior: 'auto',
+  //   });
   // }, []);
 
   // 前端透過axios從後端撈資料

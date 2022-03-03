@@ -39,7 +39,7 @@ function Member() {
                     <Nav.Link className="fs-24Member linkWidthMember my-5">
                       您好,
                       <br />
-                      {auth.name}
+                      {auth.member_name}
                     </Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
@@ -74,7 +74,7 @@ function Member() {
                       課程查詢
                     </Nav.Link>
                   </Nav.Item>
-                  <Nav.Item>
+                  {/* <Nav.Item>
                     <Nav.Link
                       className="fs-24Member linkWidthMember mb-4"
                       eventKey="fourth"
@@ -89,7 +89,7 @@ function Member() {
                     >
                       我的優惠券
                     </Nav.Link>
-                  </Nav.Item>
+                  </Nav.Item> */}
                   <Nav.Item>
                     <Nav.Link
                       className="fs-24Member linkWidthMember mb-4"
@@ -104,6 +104,74 @@ function Member() {
                       eventKey="seventh"
                     >
                       留言
+                    </Nav.Link>
+                  </Nav.Item>
+                </Nav>
+              </Col>
+              <Col className="tabBarMember tabBarPhoneMember" lg={3}>
+                <Nav justify className="row">
+                  <Nav.Item className="col-2">
+                    <Nav.Link
+                      className="fs-24Member linkWidthMember mb-0"
+                      eventKey="first"
+                    >
+                      <i class="far fa-address-card"></i>
+                    </Nav.Link>
+                  </Nav.Item>
+                  <Nav.Item className="col-2">
+                    <Nav.Link
+                      className="fs-24Member linkWidthMember mb-0"
+                      eventKey="second"
+                    >
+                      <i class="fas fa-donate"></i>
+                    </Nav.Link>
+                  </Nav.Item>
+                  <Nav.Item className="col-2">
+                    <Nav.Link
+                      className="fs-24Member linkWidthMember mb-0"
+                      eventKey="third"
+                    >
+                      <i class="far fa-list-alt"></i>
+                    </Nav.Link>
+                  </Nav.Item>
+                  <Nav.Item className="col-2">
+                    <Nav.Link
+                      className="fs-24Member linkWidthMember mb-0"
+                      eventKey="eighth"
+                    >
+                      <i class="fas fa-chalkboard-teacher"></i>
+                    </Nav.Link>
+                  </Nav.Item>
+                  {/* <Nav.Item>
+                    <Nav.Link
+                      className="fs-24Member linkWidthMember mb-4"
+                      eventKey="fourth"
+                    >
+                      我的購物金
+                    </Nav.Link>
+                  </Nav.Item>
+                  <Nav.Item>
+                    <Nav.Link
+                      className="fs-24Member linkWidthMember mb-4"
+                      eventKey="fifth"
+                    >
+                      我的優惠券
+                    </Nav.Link>
+                  </Nav.Item> */}
+                  <Nav.Item className="col-2">
+                    <Nav.Link
+                      className="fs-24Member linkWidthMember mb-0"
+                      eventKey="sixth"
+                    >
+                      <i class="fas fa-heart"></i>
+                    </Nav.Link>
+                  </Nav.Item>
+                  <Nav.Item className="col-2">
+                    <Nav.Link
+                      className="fs-24Member linkWidthMember mb-0"
+                      eventKey="seventh"
+                    >
+                      <i class="far fa-comments"></i>
                     </Nav.Link>
                   </Nav.Item>
                 </Nav>

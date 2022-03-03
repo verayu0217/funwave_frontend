@@ -6,6 +6,7 @@ import axios from 'axios';
 import { API_URL } from '../../utils/config';
 import { useAuth } from '../../context/auth';
 import { IMAGE_URL } from '../../utils/config';
+import Swal from 'sweetalert2';
 
 import './Member.scss';
 // import titleImgMember from '../../data/images/greenwave64x24.png';
@@ -20,6 +21,19 @@ function MemberOrderDetails(props) {
   const { order_id } = useParams();
 
   async function handleCancel(order_id) {
+    const { isConfirmed } = await Swal.fire({
+      title: '您確定要取消訂單嗎?',
+      text: '',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#ff7f6a',
+      cancelButtonColor: '#17a8a2',
+      cancelButtonText: '取消',
+      confirmButtonText: '確定',
+    });
+    if (!isConfirmed) {
+      return;
+    }
     let response = await axios.post(
       `${API_URL}/member/order/${order_id}/delete`
     );
@@ -50,10 +64,7 @@ function MemberOrderDetails(props) {
     <>
       <div className="container mt-5 containerDetailsMember">
         <div className="me-5">
-          <Link
-            className="btn saveMember fs-16Member"
-            to={`/member/member-order`}
-          >
+          <Link className="btn saveMember fs-16Member" to={`/member`}>
             <i className="fas fa-arrow-left"></i>&nbsp;回上一頁
           </Link>
         </div>
@@ -87,7 +98,9 @@ function MemberOrderDetails(props) {
                       <th colSpan={2} className="text-nowrap text-center">
                         商品資訊
                       </th>
-                      <th className="text-nowrap">優惠</th>
+                      <th className="text-nowrap" style={{ minWidth: '180px' }}>
+                        優惠
+                      </th>
                       <th className="text-nowrap">單件價格</th>
                       <th className="text-nowrap">數量</th>
                       <th className="text-nowrap text-end">小計</th>
@@ -101,10 +114,10 @@ function MemberOrderDetails(props) {
                             <img
                               src={`${IMAGE_URL}/products/${item.image1}`}
                               className="orderImgMember"
-                              style={{ width: '100px', height: 'auto' }}
+                              style={{ width: '120px', height: 'auto' }}
                             />
                           </td>
-                          <td>
+                          <td style={{ minWidth: '120px' }}>
                             <div className="d-flex align-items-center flex-column">
                               <p>{item.name}</p>
                               <p className="m-0">SIZE: {item.size}</p>
