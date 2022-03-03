@@ -1,8 +1,4 @@
-import moment from 'moment';
 import Item from './Item';
-import { useState, useEffect } from 'react';
-import { API_URL, IMAGE_URL } from '../../../utils/config';
-import axios from 'axios';
 
 const List = ({ listData }) => {
   // console.log(listData);

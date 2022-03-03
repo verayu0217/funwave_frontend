@@ -108,6 +108,11 @@ function Home() {
 
     // console.log("在外面suitBtnState為:" + suitBtnState);
 
+    // 處理千分位函式
+    function thousand(x) {
+        return x.toLocaleString('zh-TW');
+    }
+
     // 載入商品套組didUpdate
     useEffect( () => {  
 
@@ -340,7 +345,7 @@ return (
                                 <p className="mb-2">小分類</p>
                             </Figure.Caption> */}
                                 <Figure.Caption className="d-flex justify-content-center">
-                                <p className="text-dark">NT {suitDataItem.priceB}</p>
+                                <p className="text-dark">NT {thousand(suitDataItem.priceB)}</p>
                             </Figure.Caption>
                             <div className="d-flex justify-content-center mt-1">
                                 <AiFillEye
@@ -380,7 +385,7 @@ return (
                                 <p className="mb-2">小分類</p>
                             </Figure.Caption> */}
                                 <Figure.Caption className="d-flex justify-content-center">
-                                <p className="text-dark">NT {suitDataItem.priceC}</p>
+                                <p className="text-dark">NT {thousand(suitDataItem.priceC)}</p>
                             </Figure.Caption>
                             <div className="d-flex justify-content-center mt-1">
                                 <AiFillEye
@@ -440,7 +445,7 @@ return (
                                 <p className="mb-2">小分類</p>
                             </Figure.Caption> */}
                             <Figure.Caption className="d-flex justify-content-center">
-                                <p className="text-dark">NT {suitDataItem.priceA}</p>
+                                <p className="text-dark">NT {thousand(suitDataItem.priceA)}</p>
                             </Figure.Caption>
                             <div className="d-flex justify-content-center mt-1">
                                 <AiFillEye
@@ -508,7 +513,7 @@ return (
                                 <p className="mb-2">小分類</p>
                             </Figure.Caption> */}
                                 <Figure.Caption className="d-flex justify-content-center">
-                                <p className="text-dark">NT {suitDataItem.priceE}</p>
+                                <p className="text-dark">NT {thousand(suitDataItem.priceE)}</p>
                             </Figure.Caption>
                             <div className="d-flex justify-content-center mt-1">
                                 <AiFillEye
@@ -548,7 +553,7 @@ return (
                                 <p className="mb-2">小分類</p>
                             </Figure.Caption> */}
                                 <Figure.Caption className="d-flex justify-content-center">
-                                <p className="text-dark">NT {suitDataItem.priceF}</p>
+                                <p className="text-dark">NT {thousand(suitDataItem.priceF)}</p>
                             </Figure.Caption>
                             <div className="d-flex justify-content-center mt-1">
                                 <AiFillEye
