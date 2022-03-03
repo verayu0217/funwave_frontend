@@ -31,6 +31,8 @@ function ProductAddCart(props) {
     setColorId,
     chosenProductOrder,
     setChosenProductOrder,
+    fav,
+    setFav,
   } = props;
   const [mycart, setMycart] = useState([]); // 要存進localStorage的資料
 
@@ -110,12 +112,25 @@ function ProductAddCart(props) {
     return <Navigate to="/product-cart01"></Navigate>;
   }
 
+  const toggleFavAction = (product) => {
+    let currentProduct = JSON.parse(localStorage.getItem('likeID')) || [];
+    currentProduct.push(product);
+    localStorage.setItem('likeID', JSON.stringify(currentProduct));
+    console.log('currentProduct', currentProduct);
+  };
+
   return (
     <>
       {/* 商品名稱、品牌、小分類、貨號 */}
       <div className="d-flex justify-content-between">
         <h1>{product[0].name}</h1>
-        <BiHeart size={21} color="#ff7f6a" className="proDetailHeart" />
+        <BiHeart
+          size={30}
+          color="#ff7f6a"
+          className="proDetailHeart"
+          type="button"
+          onClick={() => toggleFavAction(setFav())}
+        />
       </div>
 
       <h2>{brandTypes[product[0].brand_id - 1]}</h2>
