@@ -16,6 +16,10 @@ import Pagination from 'react-bootstrap/Pagination';
 import onClick from 'react-bootstrap/PageItem';
 import PageItem from 'react-bootstrap/PageItem';
 
+// 修日期dayjs套件引入
+import dayjs from 'dayjs';
+import 'dayjs/locale/zh-tw';
+
 
 function Information() {
     // 使用useNavigate
@@ -142,6 +146,15 @@ function Information() {
         }
         return pageList;
     }
+
+    // 處理日期函式
+    function dateAdjust(date) {
+        dayjs.locale('zh-tw');
+        let newDate = dayjs(date).format('YYYY-MM-DD');
+        return newDate;
+    }
+
+
 
     // useEffect
     // Carosel用資料抓取
@@ -300,7 +313,7 @@ function Information() {
                         <span className="badge bg-dark h6">{caroDataItem.info_catA}</span>
                         <a className="h1 white caroAInfo" href="" onClick={()=> navigate(`/information/${caroDataItem.info_noA}`)}>{caroDataItem.big_titleA}
                         </a>
-                        <h6>{caroDataItem.create_timeA} {caroDataItem.authorA}</h6>
+                        <h6>{dateAdjust(caroDataItem.create_timeA)} {caroDataItem.authorA}</h6>
                     </div>
                     </Carousel.Caption>
                 </Carousel.Item>
@@ -315,7 +328,7 @@ function Information() {
                         <span className="badge bg-dark h6">{caroDataItem.info_catB}</span>
                         <a className="h1 white caroAInfo" href="" onClick={()=> navigate(`/information/${caroDataItem.info_noB}`)}>{caroDataItem.big_titleB}
                         </a>
-                        <h6>{caroDataItem.create_timeB} {caroDataItem.authorB}</h6>
+                        <h6>{dateAdjust(caroDataItem.create_timeB)} {caroDataItem.authorB}</h6>
                     </div>
                     </Carousel.Caption>
                 </Carousel.Item>
@@ -330,7 +343,7 @@ function Information() {
                         <span className="badge bg-dark h6">{caroDataItem.info_catC}</span>
                         <a className="h1 white caroAInfo" href="" onClick={()=> navigate(`/information/${caroDataItem.info_noC}`)}>{caroDataItem.big_titleC}
                         </a>
-                        <h6>{caroDataItem.create_timeC} {caroDataItem.authorC}</h6>
+                        <h6>{dateAdjust(caroDataItem.create_timeC)} {caroDataItem.authorC}</h6>
                     </div>
                     </Carousel.Caption>
                 </Carousel.Item>
@@ -346,14 +359,15 @@ function Information() {
         <div className="container pt-5">
             {/* <div className="row"></div> */}
             <div className="row">
+                <div className="tab-content">
                 <Tabs
-                    className="fw-b" // 沒作用
+                    className="tab-content" // 沒作用
                     id="controlled-tab-info"
                     activeKey={key}
                     onSelect={(k) => setKey(k)}
                     className="mb-3"
                     >
-                    <Tab className="" eventKey="allCat" title="全部文章">
+                    <Tab className="tab-content" eventKey="allCat" title="全部文章">
                         {/* <Sonnet /> */}
                         <div className="d-flex justify-content-end">
                                     <input
@@ -406,7 +420,7 @@ function Information() {
                                             </div>
                                             <div className="cardinfoHome d-flex justify-content-between align-items-center px-4 pt-5 pb-4">
                                                 {/* 文章卡片按鈕 */}
-                                                <h6>{allInfoItem.create_time} {allInfoItem.author}</h6>
+                                                <h6>{dateAdjust(allInfoItem.create_time)} {allInfoItem.author}</h6>
                                                 <div>
                                                     <a className="btn btn-primary" href="" onClick={()=> navigate(`/information/${allInfoItem.info_no}`)}>看更多
                                                     <FaLongArrowAltRight
@@ -490,7 +504,7 @@ function Information() {
                                         </div>
                                         <div className="cardinfoHome d-flex justify-content-between align-items-center px-4 pt-5 pb-4">
                                             {/* 文章卡片按鈕 */}
-                                            <h6>{catOneItem.create_time} {catOneItem.author}</h6>
+                                            <h6>{dateAdjust(catOneItem.create_time)} {catOneItem.author}</h6>
                                             <div>
                                                 <a className="btn btn-primary" href="" onClick={()=> navigate(`/information/${catOneItem.info_no}`)}>看更多
                                                 <FaLongArrowAltRight
@@ -572,7 +586,7 @@ function Information() {
                                         </div>
                                         <div className="cardinfoHome d-flex justify-content-between align-items-center px-4 pt-5 pb-4">
                                             {/* 文章卡片按鈕 */}
-                                            <h6>{catTwoItem.create_time} {catTwoItem.author}</h6>
+                                            <h6>{dateAdjust(catTwoItem.create_time)} {catTwoItem.author}</h6>
                                             <div>
                                                 <a className="btn btn-primary" href="" onClick={()=> navigate(`/information/${catTwoItem.info_no}`)}>看更多
                                                 <FaLongArrowAltRight
@@ -601,6 +615,7 @@ function Information() {
                         </Pagination>
                     </Tab>
                 </Tabs>
+                </div>
             </div>
         </div>
     </>
