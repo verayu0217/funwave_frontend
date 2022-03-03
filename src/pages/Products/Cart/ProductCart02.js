@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Form, Button, InputGroup } from 'react-bootstrap';
+import { Link, Navigate } from 'react-router-dom';
+import { Form, Button, InputGroup, Spinner } from 'react-bootstrap';
 import axios from 'axios';
 import _ from 'lodash';
 
 import './Cart.scss';
 import CartHeader from '../Components/Cart/CartHeader02.js';
 import CartMemberInfo from '../Components/Cart/CartMemberInfo.js';
+import CartReceiverInfo from '../Components/Cart/CartReceiverInfo.js';
 import { useAuth } from '../../../context/auth'; // 從useContext拿會員資料
 import { API_URL } from '../../../utils/config';
 
@@ -24,10 +26,10 @@ function ProductCart02() {
     payment: 'a',
     payment_status: 'a',
     delivery: 'a',
-    receiver: 'a',
-    receiver_phone: '0',
-    address: 'a',
-    convenient_store: 'a',
+    receiver: '收件人',
+    receiver_phone: '0988888888',
+    address: '地址',
+    convenient_store: '',
     status: '訂單處理中',
     order_time: '2021-12-13 14:33:56',
     order_details: [
@@ -44,6 +46,12 @@ function ProductCart02() {
   const [memberEmail, setMemberEmail] = useState('');
   const [memberPhone, setMemberPhone] = useState('');
   const [memberAddress, setMemberAddress] = useState('');
+
+  // 訂購人資訊勾選同步更新會員資料
+  const [memberSync, setMemberSync] = useState(false); // true代表訂購人資訊勾選同步更新會員資料
+
+  // 收件人資訊勾選同訂購人資訊
+  const [receiverSync, setReceiverSync] = useState(false); // true代表收件人資訊勾選同訂購人資訊
 
   const [validated, setValidated] = useState(false);
 
@@ -73,17 +81,33 @@ function ProductCart02() {
 
   // 會員資料帶入訂購人資訊
   useEffect(() => {
-    // member_id，從useContext帶入
-    // setOrder({
-    //   ...order,
-    //   member_id: auth.member_id,
-    // });
-    // memberName、memberEmail、memberPhone、memberAddress，從useContext帶入
-    // setMemberName(auth.member_name);
-    // setMemberEmail(auth.member_email);
-    // setMemberPhone(auth.member_phone);
-    // setMemberAddress(auth.member_address);
-  }, []);
+    // member_id、memberName、memberEmail、memberPhone、memberAddress，從useContext帶入
+    // 這裡條件還是無法阻擋重整auth為null而壞掉的情況！
+    if (auth !== null) {
+      setOrder({
+        ...order,
+        member_id: auth.member_id,
+      });
+
+      setMemberName(auth.member_name);
+      setMemberEmail(auth.member_email);
+      setMemberPhone(auth.member_phone);
+      setMemberAddress(auth.member_address);
+    } else {
+    }
+  }, [auth]);
+
+  // 收件人資訊勾選同訂購人資訊
+  useEffect(() => {
+    if (receiverSync === true) {
+      setOrder({
+        ...order,
+        receiver: memberName,
+        receiver_phone: memberPhone,
+      });
+    } else {
+    }
+  }, [receiverSync]);
 
   // react-bootstrap原本的
   const handleSubmit = (e) => {
@@ -100,11 +124,13 @@ function ProductCart02() {
   console.log('memberEmail', memberEmail);
   console.log('memberPhone', memberPhone);
   console.log('memberAddress', memberAddress);
+  console.log('memberSync', memberSync);
+  console.log('receiverSync', receiverSync);
 
   return (
     <>
       {auth === null ? (
-        <h1>請登入</h1>
+        Spinner
       ) : (
         <div className="container">
           {/* 購物車三步驟進度條 */}
@@ -113,7 +139,7 @@ function ProductCart02() {
             <div className="row d-flex justify-content-center">
               <div className="col-8 m-0 p-0 shadow borderRadius">
                 <div className="p-4 border-bottom text-center">
-                  <h1>訂購資訊{order.amount}</h1>
+                  <h1>訂購資訊{order.member_id}</h1>
                 </div>
                 <Form
                   noValidate
@@ -133,9 +159,16 @@ function ProductCart02() {
                     setMemberPhone={setMemberPhone}
                     memberAddress={memberAddress}
                     setMemberAddress={setMemberAddress}
+                    memberSync={memberSync}
+                    setMemberSync={setMemberSync}
                   />
                   {/* 收件人資訊 */}
-
+                  <CartReceiverInfo
+                    order={order}
+                    setOrder={setOrder}
+                    receiverSync={receiverSync}
+                    setReceiverSync={setReceiverSync}
+                  />
                   {/* 配送資訊 */}
 
                   {/* 發票資訊，目前無作用！ */}

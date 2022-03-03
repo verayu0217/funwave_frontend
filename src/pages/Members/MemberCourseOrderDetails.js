@@ -6,6 +6,7 @@ import axios from 'axios';
 import { API_URL } from '../../utils/config';
 import { useAuth } from '../../context/auth';
 import { IMAGE_URL } from '../../utils/config';
+import Swal from 'sweetalert2';
 
 import './Member.scss';
 // import titleImgMember from '../../data/images/greenwave64x24.png';
@@ -18,6 +19,19 @@ function MemberCourseOrderDetails(props) {
   let navigate = useNavigate();
 
   async function handleCancel(id) {
+    const { isConfirmed } = await Swal.fire({
+      title: '您確定要取消訂單嗎?',
+      text: '',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#ff7f6a',
+      cancelButtonColor: '#17a8a2',
+      cancelButtonText: '取消',
+      confirmButtonText: '確定',
+    });
+    if (!isConfirmed) {
+      return;
+    }
     let response = await axios.post(
       `${API_URL}/member/member-courseorder/${id}/delete`
     );
@@ -47,10 +61,7 @@ function MemberCourseOrderDetails(props) {
     <>
       <div className="container mt-5 containerDetailsMember">
         <div className="me-5">
-          <Link
-            className="btn saveMember fs-16Member"
-            to={`/member/member-courseorder`}
-          >
+          <Link className="btn saveMember fs-16Member" to={`/member`}>
             <i className="fas fa-arrow-left"></i>&nbsp;回上一頁
           </Link>
         </div>
@@ -87,8 +98,10 @@ function MemberCourseOrderDetails(props) {
                     {data.map((item) => {
                       return (
                         <tr>
-                          <td className="d-flex tbInfoMember">{item.course}</td>
-                          <td>
+                          <td className="d-flex tbInfoMember text-nowrap">
+                            {item.course}
+                          </td>
+                          <td className=" text-nowrap">
                             <div className="d-flex align-items-center flex-column">
                               {item.courseSpot}
                             </div>
@@ -146,7 +159,9 @@ function MemberCourseOrderDetails(props) {
                                 <div className="col-7"></div>
                                 <div className="col-5">
                                   <div className="row d-flex justify-content-end">
-                                    <p className="col-6 text-start">小計：</p>
+                                    <p className="col-6 text-start text-nowrap">
+                                      小計：
+                                    </p>
                                     <p className="col-6" id="countId">
                                       NT$
                                       {data.reduce(
@@ -169,7 +184,9 @@ function MemberCourseOrderDetails(props) {
                               </div>
                             </div> */}
                                   <div className="row d-flex justify-content-end">
-                                    <p className="col-6 text-start">合計：</p>
+                                    <p className="col-6 text-start text-nowrap">
+                                      合計：
+                                    </p>
                                     <p className="col-6">
                                       NT$
                                       {data.reduce(

@@ -40,6 +40,11 @@ function ProductCart01() {
     '防寒衣',
   ];
 
+  // 讓頁面從頂端開始
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   // 模擬componentDidMount
   // 提取LocalStorage的資料(productCart)
   function getCartFromLocalStorage() {
@@ -140,6 +145,13 @@ function ProductCart01() {
     localStorage.setItem('payment', JSON.stringify(payment));
     localStorage.setItem('delivery', JSON.stringify(delivery));
   }, [payment, delivery]);
+
+  // 載入中
+  const spinner = (
+    <div className="spinner-grow text-primary" role="status">
+      <span className="sr-only">Loading...</span>
+    </div>
+  );
 
   console.log('payment', payment);
   console.log('delivery', delivery);
