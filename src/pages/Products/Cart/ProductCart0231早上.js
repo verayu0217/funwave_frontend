@@ -117,7 +117,7 @@ function ProductCart02() {
     setMemberAddress(auth.member_address);
   }, [auth, orderCart]);
 
-  // 表單中的onchange事件 (限order物件內的欄位)
+  // 表單中的onchange事件 (限狀態order(表單元素)內的欄位使用)
   const handleChange = (e) => {
     setOrder({ ...order, [e.target.name]: e.target.value });
     console.log('order', order); // 非同步，顯示前一個

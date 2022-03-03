@@ -59,6 +59,7 @@ function CartMemberInfo(props) {
             </label>
           </div>
         </div>
+
         {/* 訂購人姓名 */}
         <Form.Group controlId="validationCustomUsername" className="mb-3">
           <Form.Label>姓名</Form.Label>
@@ -79,6 +80,7 @@ function CartMemberInfo(props) {
             </Form.Control.Feedback>
           </InputGroup>
         </Form.Group>
+
         {/* 訂購人信箱 */}
         <Form.Group controlId="validationCustomUsername" className="mb-3">
           <Form.Label>E-mail (帳號)</Form.Label>
@@ -99,6 +101,7 @@ function CartMemberInfo(props) {
             </Form.Control.Feedback>
           </InputGroup>
         </Form.Group>
+
         {/* 訂購人手機號碼 */}
         <Form.Group controlId="validationCustomUsername" className="mb-3">
           {/* 要驗證號碼跟長度！！！！！！！ */}
@@ -120,6 +123,7 @@ function CartMemberInfo(props) {
             </Form.Control.Feedback>
           </InputGroup>
         </Form.Group>
+
         {/* 訂購人地址 */}
         <div className="row mb-3">
           <div className="col-4">
