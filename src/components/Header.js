@@ -6,7 +6,7 @@ import { Navbar, Nav, NavDropdown, Container } from 'react-bootstrap';
 import Swal from 'sweetalert2';
 
 // 要使用能有active css效果的NavLink元件
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, Navigate } from 'react-router-dom';
 
 import '../styles/component.scss';
 import logo from '../data/images/FunwaveLogo-black2.png';
@@ -14,6 +14,7 @@ import logo from '../data/images/FunwaveLogo-black2.png';
 function MyNavbar() {
   const { auth, setAuth } = useAuth();
   const [cartCount, setCartCount] = useState(0);
+  const [goToCart, setGoToCart] = useState(false);
 
   setInterval(function () {
     const productCart = localStorage.getItem('productCart');
@@ -28,6 +29,10 @@ function MyNavbar() {
     });
     setAuth(null);
   };
+
+  if (goToCart) {
+    return <Navigate to="/product-cart01"></Navigate>;
+  }
   return (
     <>
       <Navbar expand="lg" className="shadow-sm">
@@ -76,7 +81,18 @@ function MyNavbar() {
               {/* <button className="btn" type="submit">
               <i className="fas fa-shopping-cart"></i>
             </button> */}
-              <Nav.Link className="iconGroup" as={NavLink} to="/product-cart01">
+              <Nav.Link
+                className="iconGroup"
+                as={NavLink}
+                to="/"
+                onClick={() => {
+                  if (auth === null) {
+                    Swal.fire('請先登入會員');
+                  } else {
+                    setGoToCart(true);
+                  }
+                }}
+              >
                 <i className="fas fa-shopping-cart"></i>
                 <span>&ensp;({cartCount})</span>
               </Nav.Link>
