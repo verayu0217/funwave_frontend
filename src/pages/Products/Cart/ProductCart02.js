@@ -79,7 +79,7 @@ function ProductCart02() {
     return total;
   };
 
-  // 模擬componentDidMount
+  // 模擬componentDidMountauth
   // 提取LocalStorage的資料(productCartDisplay)
   function getCartFromLocalStorage() {
     // 如果購物車內沒資料，就給空陣列
@@ -105,16 +105,16 @@ function ProductCart02() {
     // amount，從localstorage帶入單價、數量，然後再計算
     setOrder({
       ...order,
-      member_id: auth.id,
+      member_id: auth.member_id,
       amount: sum(orderCart),
       order_details: orderDetails,
     });
 
     // memberName、memberEmail、memberPhone、memberAddress，從useContext帶入
-    setMemberName(auth.name);
-    setMemberEmail(auth.email);
-    setMemberPhone(auth.phone);
-    setMemberAddress(auth.address);
+    setMemberName(auth.member_name);
+    setMemberEmail(auth.member_email);
+    setMemberPhone(auth.member_phone);
+    setMemberAddress(auth.member_address);
   }, [auth, orderCart]);
 
   // 表單中的onchange事件 (限order物件內的欄位)
