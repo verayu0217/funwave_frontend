@@ -3,10 +3,10 @@ import { Form, Button, InputGroup } from 'react-bootstrap';
 import axios from 'axios';
 import _ from 'lodash';
 
-import { useAuth } from '../../../context/auth';
 import './Cart.scss';
 import CartHeader from '../Components/Cart/CartHeader02.js';
 import CartMemberInfo from '../Components/Cart/CartMemberInfo.js';
+import { useAuth } from '../../../context/auth'; // 從useContext拿會員資料
 import { API_URL } from '../../../utils/config';
 
 function ProductCart02() {

@@ -1,15 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { Figure, Form } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import './Cart.scss';
 import CartHeader from '../Components/Cart/CartHeader01.js';
 import { IMAGE_URL } from '../../../utils/config';
-import greenTitle from '../../../data/images/greenTitle.svg';
+import { useAuth } from '../../../context/auth'; // 從useContext拿會員資料
 // react-icons
 import { AiOutlinePlus, AiOutlineMinus } from 'react-icons/ai';
 import { CgTrash } from 'react-icons/cg';
 
 function ProductCart01() {
+  // 會員資料傳入useContext
+  const { auth, setAuth } = useAuth();
+  console.log('auth', auth);
+
   // 將localStorage的資料存為狀態mycart
   const [mycart, setMycart] = useState([]);
 
@@ -19,6 +23,9 @@ function ProductCart01() {
   // 付款方式、運送方式
   const [payment, setPayment] = useState('信用卡');
   const [delivery, setDelivery] = useState('宅配到府');
+
+  // 判斷是否登入，登入才能進購物車
+  const [goToCart, setGoToCart] = useState(false);
 
   // 小分類、顏色的id對照名稱
   const colorTypes = ['白', '黑', '藍', '綠', '黃', '紅', '橘'];
@@ -136,6 +143,13 @@ function ProductCart01() {
 
   console.log('payment', payment);
   console.log('delivery', delivery);
+
+  console.log('goToCart', goToCart);
+  // 登入才可以進購物車
+  if (goToCart) {
+    return <Navigate to="/product-cart01"></Navigate>;
+  }
+
   return (
     <>
       <div className="container">
@@ -306,7 +320,16 @@ function ProductCart01() {
                   <option value="超商取貨">超商取貨</option>
                 </Form.Select>
               </div>
-              <div className="d-flex justify-content-center mt-5 mb-4">
+              <div
+                className="d-flex justify-content-center mt-5 mb-4"
+                onClick={() => {
+                  if (auth === null) {
+                    return alert('請登入會員');
+                  } else {
+                    setGoToCart(true);
+                  }
+                }}
+              >
                 <Link to="/product-cart02">
                   <div className="btn btn-secondary cartNextBtn">下一步</div>
                 </Link>

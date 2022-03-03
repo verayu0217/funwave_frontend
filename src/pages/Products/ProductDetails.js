@@ -13,7 +13,6 @@ import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
 // 導引資料、頁面
 import './ProductDetails.scss';
 import { API_URL } from '../../utils/config';
-// import { data } from '../../data/products.js'; // 前端假資料
 import longboard1 from './longboard1.jpg'; // 暫存推薦商品前端假圖片
 import greenTitle from '../../data/images/greenTitle.svg';
 import ProductAddCart from './Components/ProductDetails/ProductAddCart.js';
