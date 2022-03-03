@@ -1,0 +1,52 @@
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
+// 待找到方法放在public，就可刪除此行
+@import '../../styles/global.scss';
+
+
+
+.slideHome .imgHome {
+width: 100%;
+margin: 0 auto;
+}
+
+.slideHomeCover {
+
+}
+
+
+.slideHome {
+    transform: scale(0.7);
+    transition: transform 300ms;
+    opacity: 0.7;
+}
+
+.activeSlideHome {
+transform: scale(0.9);
+opacity: 1;
+}
+
+.arrowCard {
+position: absolute;
+cursor: pointer;
+z-index: 10;
+}
+
+.arrowCard svg {
+color: white;
+transition: color 300ms;
+}
+
+.arrowCard svg:hover {
+color: #17a8a2;
+}
+
+.nextCard {
+right: 0%;
+top: 50%;
+}
+
+.prevCard {
+left: 0%;
+top: 50%;
+}

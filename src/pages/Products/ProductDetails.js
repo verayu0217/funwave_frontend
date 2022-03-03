@@ -55,6 +55,11 @@ function ProductDetails(props) {
   // 把前端網址上的參數product_group拿出來，要和App.js的網址參數相同
   const { product_group } = useParams();
 
+  // 讓頁面從頂端開始
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   // 初始化資料-模擬componentDidMount
   useEffect(() => {
     setLoading(true);

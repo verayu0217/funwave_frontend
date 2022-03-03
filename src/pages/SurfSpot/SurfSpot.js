@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { withRouter } from '../../utils/withRouter';
-import Breadcrumb from '../../components/Breadcrumb';
+// import Breadcrumb from '../../components/Breadcrumb';
 import greenTitle from '../../data/images/greenTitle.svg';
 import CircleLeft from './CircleLeft';
 import Taiwanmap from './TaiwanMap';
@@ -15,9 +15,7 @@ function SurfSpot(props) {
   return (
     <>
       <div className="taiwanMapBg">
-        <div className="container">
-          <Breadcrumb />
-        </div>
+        <div className="container">{/* <Breadcrumb /> */}</div>
         <div className="d-flex justify-content-center">
           <div className="text-center mt-3">
             <img src={greenTitle} className="greenTitle" alt="greenTitle" />

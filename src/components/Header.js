@@ -53,7 +53,7 @@ function MyNavbar() {
             </Nav.Link>
           </Nav> */}
             <form className="d-flex btnGroup">
-              <input
+              {/* <input
                 className="form-control me-2 searchIpt"
                 type="search"
                 placeholder="Search"
@@ -62,7 +62,7 @@ function MyNavbar() {
               />
               <button className="btn iconGroup" type="submit">
                 <i className="fas fa-search"></i>
-              </button>
+              </button> */}
               {/* <button className="btn" type="submit">
               <i className="fas fa-shopping-cart"></i>
             </button> */}
@@ -73,13 +73,30 @@ function MyNavbar() {
               {/* <button className="btn" type="submit">
               <i className="fas fa-user"></i>
             </button> */}
-              <Nav.Link className="iconGroup" as={NavLink} to="/member">
+              <Nav.Link
+                className="iconGroup"
+                as={NavLink}
+                to="/member"
+                onClick={() => {
+                  if (auth === null) {
+                    return alert('請先登入會員');
+                  }
+                }}
+              >
                 <i className="fas fa-user"></i>
               </Nav.Link>
               {/* 登入/登出判斷 */}
               {auth ? (
                 <>
-                  <p>welcome</p>
+                  <div className="d-flex align-items-center">
+                    <img
+                      className={`headerImgMember cover-fit me-2 ${
+                        auth.photo == '' ? 'd-none' : 'd-block'
+                      }`}
+                      src={`http://localhost:3002${auth.photo}`}
+                    />
+                    <p className="mb-0">{auth.name}</p>
+                  </div>
                   <Nav.Link
                     className="btnLogin mx-2"
                     as={NavLink}

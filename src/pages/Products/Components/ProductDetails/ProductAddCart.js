@@ -1,3 +1,7 @@
+// react-icons
+import { BiHeart } from 'react-icons/bi';
+// import { FaHeart } from 'react-icons/fa'; // 全愛心
+
 // ProductAddCart.js 內容說明：商品細節頁右方的加入購物車區
 
 import React, { useState, useEffect } from 'react';
@@ -13,14 +17,11 @@ import {
 } from 'react-icons/ai';
 import 'animate.css';
 import { IMAGE_URL } from '../../../../utils/config';
-import { useAuth } from '../../../../context/auth';
 
 function ProductAddCart(props) {
-  // 會員資料傳入useContext
-  const { auth, setAuth } = useAuth();
-  console.log('auth', auth);
-
   const {
+    auth,
+    setAuth,
     product,
     count,
     setCount,
@@ -112,7 +113,11 @@ function ProductAddCart(props) {
   return (
     <>
       {/* 商品名稱、品牌、小分類、貨號 */}
-      <h1>{product[0].name}</h1>
+      <div className="d-flex justify-content-between">
+        <h1>{product[0].name}</h1>
+        <BiHeart size={21} color="#ff7f6a" className="proDetailHeart" />
+      </div>
+
       <h2>{brandTypes[product[0].brand_id - 1]}</h2>
       <h2>{smallCatTypes[product[0].small_cat_id - 1]}</h2>
       <div className="row">

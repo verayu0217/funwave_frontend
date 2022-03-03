@@ -84,11 +84,6 @@ function TaiwanMap(props) {
     setsurfspots(filterData);
   }, [level, regional]);
 
-  // 排除篩選的全部浪點
-  // useEffect(() => {
-  //   setSurfspots(data);
-  // }, [all]);
-
   // 初始全部浪點
   useEffect(() => {
     setsurfspots(data);

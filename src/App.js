@@ -10,11 +10,14 @@ import { ERR_MSG } from './utils/error';
 
 // 頁面用元件(路由組件)
 //首頁
-import Home from './pages/Home/';
+import Home from './pages/Home/Home';
 //scss示範頁
 import HomeTry from './pages/HomeTry/';
 
 //資訊
+import Information from './pages/Information/Information';
+import InformationDetails from './pages/Information/InformationDetails';
+
 //會員
 import LogIn from './pages/Members/MemberLogin/LogIn';
 import Member from './pages/Members/Member';
@@ -27,6 +30,7 @@ import MemberMessage from './pages/Members/MemberMessage';
 import MemberPoint from './pages/Members/MemberPoint';
 import MemberShoppingGold from './pages/Members/MemberShoppingGold';
 import MemberCourseOrder from './pages/Members/MemberCourseOrder';
+import MemberCourseOrderDetails from './pages/Members/MemberCourseOrderDetails';
 //課程
 
 import CourseCart from './pages/Course/CourseCart';
@@ -35,7 +39,6 @@ import CourseCart02 from './pages/Course/CourseCart02';
 import CourseCart03 from './pages/Course/CourseCart03';
 import CourseContent from './pages/Course/CourseContent';
 import CourseEvaluate from './pages/Course/components/CourseEvaluate';
-
 import Courses from './pages/Course/Courses';
 
 //商城
@@ -89,8 +92,13 @@ function App() {
         <ScrollToTop />
         {/* <Breadcrumb /> */}
         <Routes>
+          <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
           <Route path="/home-try" element={<HomeTry />} />
+          <Route path="/information" element={<Information />}></Route>
+          <Route path="/information" element={<InformationDetails />}>
+            <Route path=":info_no" element={<InformationDetails />}></Route>
+          </Route>
           <Route path="/login" element={<LogIn />} />
           <Route path="/surfspot" element={<SurfSpot />} />
           <Route path="/products/:product_group" element={<ProductDetails />}>
@@ -105,7 +113,11 @@ function App() {
           />
           <Route path="/customized" element={<Customized />} />
           <Route
-            path="/member/member-order/:orderId"
+            path="/member/member-courseorder/:id"
+            element={<MemberCourseOrderDetails />}
+          />
+          <Route
+            path="/member/member-order/:order_id"
             element={<MemberOrderDetails />}
           />
           <Route
@@ -134,6 +146,7 @@ function App() {
           </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>
+        {/* <Footer /> */}
       </AuthContext.Provider>
     </>
   );

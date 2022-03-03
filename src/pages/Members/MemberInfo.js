@@ -1,5 +1,5 @@
 import { data } from '../../data/';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Form, Row, Col, Button } from 'react-bootstrap';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -8,40 +8,47 @@ import './Member.scss';
 import titleImgMember from '../../data/images/greenwave64x24.png';
 import { useAuth } from '../../context/auth';
 
+const MemberLevel1 = '衝浪入門者';
+const MemberLevel2 = '衝浪熱愛者';
+const MemberLevel3 = '衝浪高手者';
+
 function MemberInfo(props) {
   const { auth, setAuth } = useAuth();
-  console.log('會員資訊', auth);
-  const [member, setMember] = useState([]);
-  const [Date, setDate] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const { memberId } = useParams();
-  // useEffect(() => {
-  //   // 先開起載入指示器
-  //   setIsLoading(true);
+  const [photo, setPhoto] = useState([]);
+  const [memberClassName, setMemberClassName] = useState('');
+  const [member, setMember] = useState({
+    photo: '',
+    member_name: '',
+    member_email: '',
+    password: '',
+    member_address: '',
+    member_phone: '',
+    receiver_name: '',
+    receiver_phone: '',
+    receiver_address: '',
+    remark: '',
+    level: '',
+  });
 
-  //   // 模擬和伺服器要資料
-  //   // 最後設定到狀態中
-  //   setStudents(data);
+  function handleChange(e) {
+    member[e.target.id] = e.target.value;
+    setMember(member);
+  }
 
-  //   // 3秒後關閉指示器
-  //   setTimeout(() => {
-  //     setIsLoading(false);
-  //   }, 3000);
-  // }, []);
+  async function memberSubmit(e) {
+    e.preventDefault();
 
-  // const spinner = (
-  //   <>
-  //     <div className="spinner-grow text-primary" role="status">
-  //       <span className="sr-only">Loading...</span>
-  //     </div>
-  //     <div className="spinner-grow text-secondary" role="status">
-  //       <span className="sr-only">Loading...</span>
-  //     </div>
-  //     <div className="spinner-grow text-success" role="status">
-  //       <span className="sr-only">Loading...</span>
-  //     </div>
-  //   </>
-  // );
+    let msgData = new FormData();
+    console.log(41, JSON.stringify(member));
+    msgData.append('data', JSON.stringify(member));
+    if (photo) msgData.append('photo', photo);
+
+    let response = await axios.post(
+      `${API_URL}/member/${member.member_id}`,
+      msgData
+    );
+    console.log(response);
+  }
 
   // 大頭貼更換
   const changeAvatar = (e) => {
@@ -49,6 +56,7 @@ function MemberInfo(props) {
     var previewAvatar = document.getElementById('preview-photo');
 
     var file = avatar.files[0];
+    setPhoto(file);
     if (file) {
       previewAvatar.src = URL.createObjectURL(file);
       previewAvatar.classList.remove('d-none');
@@ -70,17 +78,32 @@ function MemberInfo(props) {
   };
 
   useEffect(() => {
-    let getMemberOrderDetails = async () => {
-      let response = await axios.get(`${API_URL}/member/${memberId}`);
-      setMember(response.data);
-    };
-    getMemberOrderDetails();
+    axios.get(`${API_URL}/member/${auth.member_id}`).then((response) => {
+      if (response.data.length > 0) {
+        const member = response.data[0];
+        const amount = Number(response.data[0].amount);
+        switch (true) {
+          case amount >= 15000: {
+            member.level = MemberLevel3;
+            setMemberClassName('masterMember');
+            break;
+          }
+          case amount >= 8000: {
+            member.level = MemberLevel2;
+            setMemberClassName('hotMember');
+            break;
+          }
+          default: {
+            member.level = MemberLevel1;
+            setMemberClassName('startMember');
+          }
+        }
+        setMember(member);
+      }
+    });
   }, []);
   return (
     <>
-      {/* {
-      data.map((item) => {
-        return ( */}
       <div className="container mt-5">
         {/* <div className="row d-flex justify-content-around"> */}
         <Form
@@ -100,11 +123,14 @@ function MemberInfo(props) {
               <div className="avatarMember d-flex justify-content-center">
                 <img
                   id="preview-photo"
-                  className="photo-img cover-fit d-none"
+                  className="photo-img cover-fit"
+                  src={`http://localhost:3002${member.member_photo}`}
                 />
               </div>
-              <h3 className="fs-24Member">歐陽范姜</h3>
-              <h5 className="fs-16Member hotMember">衝浪熱愛者</h5>
+              <h3 className="fs-24Member">{member.member_name}</h3>
+              <h5 className={`fs-16Membe ${memberClassName}`}>
+                {member.level}
+              </h5>
               <button className="changeImgMember" type="file" id="theFile">
                 <i className="fas fa-pen"></i>&ensp;更換大頭貼
               </button>
@@ -113,7 +139,7 @@ function MemberInfo(props) {
                 className="form-control"
                 id="photo"
                 name="member_photo"
-                value={member.member_photo}
+                value={member.photo}
                 onChange={(e) => {
                   changeAvatar(e.target.value);
                 }}
@@ -128,9 +154,7 @@ function MemberInfo(props) {
               <h5 className="hotMember fs-16Member">衝浪熱愛者</h5>
               <p>消費$8,000/年以上的衝浪愛好者，衝得小有心得，偶爾更新配備。</p>
               <h5 className="startMember fs-16Member">衝浪入門者</h5>
-              <p>
-                消費$3,500/年以上的衝浪入門者，初次享受衝浪，慢慢越陷越深...。
-              </p>
+              <p>初次享受衝浪的衝浪入門者，慢慢越陷越深...。</p>
             </div>
           </div>
           <div className="col-4">
@@ -143,13 +167,11 @@ function MemberInfo(props) {
                 <Form.Control
                   className="col-12 btn btnMember"
                   type="text"
-                  id="name"
+                  id="member_name"
                   placeholder=""
                   required
-                  defaultValue={data.member_name}
-                  onChange={(e) => {
-                    setMember(e.target.value);
-                  }}
+                  defaultValue={member.member_name}
+                  onChange={handleChange}
                 />
               </Form.Group>
               <Form.Group className="col-12">
@@ -158,13 +180,12 @@ function MemberInfo(props) {
                 </Form.Label>
                 <Form.Control
                   className="col-12 btn btnMember"
+                  id="member_email"
                   type="email"
                   placeholder=""
                   required
                   defaultValue={member.member_email}
-                  onChange={(e) => {
-                    setMember(e.target.value);
-                  }}
+                  onChange={handleChange}
                 />
               </Form.Group>
               <Form.Group
@@ -172,7 +193,7 @@ function MemberInfo(props) {
                 controlId="formPlaintextPassword"
               >
                 <Form.Label className="col-12 mt-3 fs-16Member">
-                  密碼
+                  密碼(*必填)
                 </Form.Label>
                 <Form.Control
                   className="col-12 btn btnMember pwControlMember"
@@ -180,10 +201,8 @@ function MemberInfo(props) {
                   type={type}
                   placeholder=""
                   required
-                  defaultValue={member.member_password}
-                  onChange={(e) => {
-                    setMember(e.target.value);
-                  }}
+                  defaultValue=""
+                  onChange={handleChange}
                 />
                 <Form.Label className="passwordImgMember">
                   <i
@@ -207,32 +226,26 @@ function MemberInfo(props) {
                 <Form.Control
                   className="col-12 btn btnMember"
                   type="number"
-                  id="phone"
+                  id="member_phone"
                   placeholder=""
                   required
                   defaultValue={member.member_phone}
-                  onChange={(e) => {
-                    setMember(e.target.value);
-                  }}
+                  onChange={handleChange}
                 />
               </Form.Group>
-              <div className="col-12">
-                <label htmlFor="phone" className="col-12 mt-3 mb-1 fs-16Member">
-                  生日
-                </label>
-                {/* <select className="col-12 btn btnMember"></select> */}
-                <input
-                  type="date"
-                  className="form-control col-12 btn btnMember"
-                  id="date"
-                  placeholder="date"
-                  value={Date}
-                  onChange={(e) => {
-                    setMember(e.target.value);
-                  }}
-                  required
+              <Form.Group className="col-12">
+                <Form.Label className="col-12 mt-3 mb-1 fs-16Member">
+                  地址
+                </Form.Label>
+                <Form.Control
+                  className="col-12 btn btnMember"
+                  type="text"
+                  id="member_address"
+                  placeholder=""
+                  defaultValue={member.member_address}
+                  onChange={handleChange}
                 />
-              </div>
+              </Form.Group>
               <h3 className="fs-24Member mt-5">送貨地址</h3>
               <Form.Group className="col-12">
                 <Form.Label className="col-12 mt-3 mb-1 fs-16Member">
@@ -241,13 +254,10 @@ function MemberInfo(props) {
                 <Form.Control
                   className="col-12 btn btnMember"
                   type="text"
-                  id="name"
+                  id="receiver_name"
                   placeholder=""
-                  required
-                  defaultValue={data.receiver}
-                  onChange={(e) => {
-                    setMember(e.target.value);
-                  }}
+                  defaultValue={member.receiver_name}
+                  onChange={handleChange}
                 />
               </Form.Group>
               <Form.Group className="col-12">
@@ -257,73 +267,23 @@ function MemberInfo(props) {
                 <Form.Control
                   className="col-12 btn btnMember"
                   type="number"
-                  id="phone"
+                  id="receiver_phone"
                   placeholder=""
-                  required
-                  defaultValue={data.receiver_phone}
-                  onChange={(e) => {
-                    setMember(e.target.value);
-                  }}
+                  defaultValue={member.receiver_phone}
+                  onChange={handleChange}
                 />
               </Form.Group>
               <Form.Group className="col-12">
                 <Form.Label className="col-12 mt-3 mb-1 fs-16Member">
-                  送貨國家
-                </Form.Label>
-                <Form.Select
-                  className="col-12 btn btnMember"
-                  aria-label="Default select example"
-                  required
-                >
-                  <option value="1">台灣</option>
-                  <option value="2">日本</option>
-                  <option value="3">美國</option>
-                </Form.Select>
-              </Form.Group>
-              <Form.Group className="d-flex justify-content-between col-12">
-                <Form.Group className="col-6">
-                  <Form.Label className="col-11 formWidthMember mt-3 mb-1 fs-16Member">
-                    城市
-                  </Form.Label>
-                  <Form.Select
-                    className="col-11 formWidthMember btn btnMember"
-                    aria-label="Default select example"
-                    required
-                  >
-                    <option value="1">台北市</option>
-                    <option value="2">桃園市</option>
-                    <option value="3">高雄市</option>
-                  </Form.Select>
-                </Form.Group>
-                <Form.Group className="col-6 d-flex justify-content-end flex-column">
-                  <Form.Label className="col-11 formWidthMember mt-3 mb-1 fs-16Member ms-auto">
-                    區域
-                  </Form.Label>
-                  <Form.Select
-                    className="col-11 formWidthMember btn btnMember ms-auto"
-                    aria-label="Default select example"
-                    required
-                  >
-                    <option value="1">信義區</option>
-                    <option value="2">中壢區</option>
-                    <option value="3">左營區</option>
-                  </Form.Select>
-                </Form.Group>
-              </Form.Group>
-              <Form.Group className="col-12">
-                <Form.Label className="col-12 mt-3 mb-1 fs-16Member">
-                  地址
+                  收件人地址
                 </Form.Label>
                 <Form.Control
                   className="col-12 btn btnMember"
                   type="text"
-                  id="phone"
+                  id="receiver_address"
                   placeholder=""
-                  required
-                  defaultValue={data.address}
-                  onChange={(e) => {
-                    setMember(e.target.value);
-                  }}
+                  defaultValue={member.receiver_address}
+                  onChange={handleChange}
                 />
               </Form.Group>
               <Form.Group
@@ -335,7 +295,10 @@ function MemberInfo(props) {
                 </Form.Label>
                 <Form.Control
                   as="textarea"
+                  type="text"
+                  id="remark"
                   row={1}
+                  defaultValue={member.remark}
                   className="col-12 btn btnMember"
                 />
               </Form.Group>
@@ -346,6 +309,7 @@ function MemberInfo(props) {
                 <Button
                   type="submit"
                   className="btn btnMember saveMember fs-16Member"
+                  onClick={memberSubmit}
                 >
                   儲存變更
                 </Button>
@@ -355,10 +319,6 @@ function MemberInfo(props) {
         </Form>
         {/* </div> */}
       </div>
-      {/* )
-      })
-    } */}
-      {/* {isLoading ? spinner : display} */}
     </>
   );
 }

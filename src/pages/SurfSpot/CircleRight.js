@@ -95,17 +95,6 @@ function CircleRight(props) {
           南部
         </label>
       </div>
-      {/* <circle className="cls-1 smCircle" cx="12.63" cy="237.63" r="12.5" />
-        <circle className="cls-1 smCircle" cx="141.09" cy="26.64" r="12.5" />
-        <circle className="cls-1 smCircle" cx="53.68" cy="105.34" r="12.5" />
-        <circle className="cls-1 smCircle" cx="53.68" cy="369.91" r="12.5" />
-        <circle className="cls-1 smCircle" cx="141.09" cy="448.79" r="12.5" /> */}
-
-      {/* <span className="cls-2 fw-bold EText text-nowrap">東部</span>
-      <span className="cls-2 fw-bold ENText text-nowrap">東北部</span>
-      <span className="cls-2 fw-bold NText text-nowrap">北部</span>
-      <span className="cls-2 fw-bold WText text-nowrap">西部</span>
-      <span className="cls-2 fw-bold SText text-nowrap">南部</span> */}
     </div>
   );
 }

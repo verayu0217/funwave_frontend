@@ -1,0 +1,68 @@
+// 待找到方法放在public，就可刪除此行
+@import '../../styles/global.scss';
+
+
+.titlePicSectionInfo {
+    position: relative;
+}
+
+// .titleSectionInfo{
+
+// }
+
+.titleWordInfo {
+
+    padding-right: 8%;
+    position: absolute;
+    bottom: 6%;
+
+}
+
+.titleTopPicBoxInfo {
+    width: 100%;
+
+    max-height: 680px;
+    background-color: pink;
+    border: 1px solid red;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.titleTopPicInfo {
+    width: 150%;
+    height: auto;
+}
+
+.contentSectionInfo {
+    margin: 0% 8%;
+
+}
+
+.contentPicBoxInfo {
+    width: 100%;
+    max-height: 400px;
+    background-color: pink;
+    border: 1px solid red;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contentPicInfo {
+    width: 110%;
+    height: auto;
+}
+
+.lineInfo {
+    width: 100%;
+    height: 1px;
+    border-top: 1px solid #acc0d8;
+}
+
+.prevNextBoxInfo {
+    width: 30%;
+    text-decoration: none;
+}
