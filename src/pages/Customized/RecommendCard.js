@@ -1,28 +1,69 @@
 import React from 'react';
 import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
 import './Custom.scss';
+import { Row, Col } from 'react-bootstrap';
 
 function RecommendCard() {
   return (
-    <>
-      <div className="shadow rounded bg-white p-2 mb-5 mt-5">
-        <div className="m-3">
-          <p className="gray">
-            超推薦他們的衝浪板!超推薦他們的衝浪板!超推薦他們的衝浪板!超推薦他們的衝浪板!超推薦他們的衝浪板!超推薦他們的衝浪板!超推薦他們的衝浪板!超推薦他們的衝浪板!
-          </p>
-          <div className="d-flex justify-content-between mt-5">
-            <p>歐陽范姜</p>
-            <div className="d-flex justify-content-center ">
-              <AiFillStar size={20} color="#ff7f6a" />
-              <AiFillStar size={20} color="#ff7f6a" />
-              <AiFillStar size={20} color="#ff7f6a" />
-              <AiFillStar size={20} color="#ff7f6a" />
-              <AiOutlineStar size={20} color="#ff7f6a" />
+    <Row>
+      <Col>
+        <div className="shadow rounded bg-white p-2 cardMArginCu mb-1">
+          <div className="m-3">
+            <p className="gray">
+              超推薦他們的衝浪板!超推薦他們的衝浪板!超推薦他們的衝浪板!超推薦他們的衝浪板!超推薦他們的衝浪板!超推薦他們的衝浪板!超推薦他們的衝浪板!超推薦他們的衝浪板!
+            </p>
+            <div className="d-flex justify-content-between mt-5">
+              <p>歐陽范姜</p>
+              <div className="d-flex justify-content-center ">
+                <AiFillStar size={20} color="#ff7f6a" />
+                <AiFillStar size={20} color="#ff7f6a" />
+                <AiFillStar size={20} color="#ff7f6a" />
+                <AiFillStar size={20} color="#ff7f6a" />
+                <AiOutlineStar size={20} color="#ff7f6a" />
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </>
+      </Col>
+      <Col>
+        <div className="shadow rounded bg-white p-2 cardMArginCu mb-1">
+          <div className="m-3">
+            <p className="gray">
+              超推薦他們的衝浪板!超推薦他們的衝浪板!超推薦他們的衝浪板!超推薦他們的衝浪板!超推薦他們的衝浪板!超推薦他們的衝浪板!超推薦他們的衝浪板!超推薦他們的衝浪板!
+            </p>
+            <div className="d-flex justify-content-between mt-5">
+              <p>陽范姜</p>
+              <div className="d-flex justify-content-center ">
+                <AiFillStar size={20} color="#ff7f6a" />
+                <AiFillStar size={20} color="#ff7f6a" />
+                <AiFillStar size={20} color="#ff7f6a" />
+                <AiFillStar size={20} color="#ff7f6a" />
+                <AiOutlineStar size={20} color="#ff7f6a" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </Col>
+      <Col>
+        <div className="shadow rounded bg-white p-2 cardMArginCu mb-1">
+          <div className="m-3">
+            <p className="gray">
+              超推薦他們的衝浪板!超推薦他們的衝浪板!超推薦他們的衝浪板!超推薦他們的衝浪板!超推薦他們的衝浪板!超推薦他們的衝浪板!超推薦他們的衝浪板!超推薦他們的衝浪板!
+            </p>
+            <div className="d-flex justify-content-between mt-5">
+              <p>范姜</p>
+              <div className="d-flex justify-content-center ">
+                <AiFillStar size={20} color="#ff7f6a" />
+                <AiFillStar size={20} color="#ff7f6a" />
+                <AiFillStar size={20} color="#ff7f6a" />
+                <AiFillStar size={20} color="#ff7f6a" />
+                <AiOutlineStar size={20} color="#ff7f6a" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </Col>
+    </Row>
   );
 }
 
