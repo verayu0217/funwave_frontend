@@ -55,6 +55,27 @@
         border-bottom: 4px solid $funwave-deepblue;
       }
     }
+    .tabBarPhoneMember {
+      display: none;
+    }
+  }
+  @media screen and (max-width: 992px) {
+    .tabWrapMember {
+      padding: 0px;
+      height: 52px;
+      .tabBarMember {
+        display: none;
+      }
+      .tabBarPhoneMember {
+        background-color: $white;
+        display: flex;
+        flex-direction: row !important;
+        height: 52px !important;
+        .nav-link.active {
+          color: $primary;
+        }
+      }
+    }
   }
   .tabContentMember {
     display: flex;

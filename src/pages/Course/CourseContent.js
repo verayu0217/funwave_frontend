@@ -25,11 +25,12 @@ import './CourseContent.scss';
 function CourseContent(props) {
   const { auth, setAuth } = useAuth();
 
-  // 預約日期調整明天以後才可選
-  let today = moment().format('YYYY-MM-DD');
-  today = today.split('-');
-  today = today[0] + '-' + today[1] + '-' + (Number(today[2]) + 1);
-
+  // TODO:預約日期調整明天以後才可選個位數加0但十位數這樣會有問題要怎麼判斷
+  let today = moment().format('L');
+  today = today.split('/');
+  // let day = Number(today[1]) + 1;
+  today = today[2] + '-' + today[0] + '-' + '0' + (Number(today[1]) + 1);
+  console.log(today);
   let navigate = useNavigate();
 
   // 選擇課程
@@ -411,7 +412,11 @@ function CourseContent(props) {
                       weight="64px"
                     />
                     課程報名
-                    <p className="gray">請先登入會員</p>
+                    {auth ? (
+                      <p className="gray">Welcome</p>
+                    ) : (
+                      <p className="gray">請先登入會員</p>
+                    )}
                   </div>
                   <form onSubmit={addSubmit}>
                     <div className="p-2 m-0">
