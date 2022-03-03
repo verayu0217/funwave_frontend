@@ -40,7 +40,7 @@ function Products() {
   const [color8, setColor8] = useState('0');
   const [color9, setColor9] = useState('0');
   const [color, setColor] = useState('false'); // false代表沒有篩選任何顏色
-  // 篩選條件 - 適用衝浪舵類型 (0代表沒有選此顏色)
+  // 篩選條件 - 適用衝浪舵類型 (0代表沒有選此衝浪舵類型)
   const [fin1, setFin1] = useState('0');
   const [fin2, setFin2] = useState('0');
   const [fin3, setFin3] = useState('0');
@@ -52,6 +52,20 @@ function Products() {
   // 載入指示器
   const [isLoading, setIsLoading] = useState(false);
 
+  // 標題對照表
+  const bigCatsTypes = ['衝浪用品', '衝浪板', '衝浪板配件', '衝浪相關衣物'];
+  const smallCatsTypes = [
+    '衝浪用品',
+    '衝浪長板',
+    '衝浪快樂板',
+    '衝浪短板',
+    '衝浪板舵',
+    '衝浪腳繩',
+    '衝浪腳踏墊',
+    '衝浪斗篷毛巾衣',
+    '防寒衣',
+  ];
+
   // 載入中spinner
   //x秒後自動關掉spinner(設定isLoading為false)
   useEffect(() => {
@@ -61,6 +75,11 @@ function Products() {
       }, 0);
     }
   }, [isLoading]);
+
+  // 讓頁面從頂端開始 待處理
+  // useEffect(() => {
+  //   window.scrollTo(0, 0);
+  // }, []);
 
   // 前端透過axios從後端撈資料
   useEffect(() => {
@@ -244,8 +263,13 @@ function Products() {
                   height="24px"
                   weight="64px"
                 />
-                <h1 className="m-0">短板</h1>
+                <h1 className="m-0">
+                  {smallCatsClick === '0'
+                    ? bigCatsTypes[bigCatsClick]
+                    : smallCatsTypes[smallCatsClick]}
+                </h1>
               </div>
+              {/* 搜尋 */}
               <input
                 type="text"
                 placeholder="  🔍  以商品名稱搜尋"

@@ -90,6 +90,7 @@ function FilterBar(props) {
             id="price1"
             name="price"
             value="price1"
+            checked={priceHighest === '5000'}
           />
           <label className="form-check-label ms-2" htmlFor="price1">
             NT 5,000以下
@@ -109,6 +110,7 @@ function FilterBar(props) {
             id="price2"
             name="price"
             value="price2"
+            checked={priceHighest === '15000'}
           />
           <label className="form-check-label ms-2" htmlFor="price2">
             NT 5,000 - 15,000
@@ -128,6 +130,7 @@ function FilterBar(props) {
             id="price3"
             name="price"
             value="price3"
+            checked={priceHighest === '25000'}
           />
           <label className="form-check-label ms-2" htmlFor="price3">
             NT 15,000 - 25,000
@@ -147,6 +150,7 @@ function FilterBar(props) {
             id="price4"
             name="price"
             value="price4"
+            checked={priceHighest === '1000000'}
           />
           <label className="form-check-label ms-2" htmlFor="price4">
             NT 25,000以上
@@ -162,6 +166,7 @@ function FilterBar(props) {
         <select
           className="form-select"
           aria-label="Default select example"
+          value={brand}
           onChange={(e) => {
             setBrand(e.target.value);
           }}
@@ -205,6 +210,7 @@ function FilterBar(props) {
             id="color1"
             name="color1"
             value="color1"
+            checked={color1 === '1'}
           />
           <label className="form-check-label ms-2" htmlFor="color1">
             白色
@@ -227,6 +233,7 @@ function FilterBar(props) {
             id="color2"
             name="color2"
             value="color2"
+            checked={color2 === '2'}
           />
           <label className="form-check-label ms-2" htmlFor="color2">
             黑色
@@ -249,6 +256,7 @@ function FilterBar(props) {
             id="color3"
             name="color3"
             value="color3"
+            checked={color3 === '3'}
           />
           <label className="form-check-label ms-2" htmlFor="color3">
             藍色
@@ -271,6 +279,7 @@ function FilterBar(props) {
             id="color4"
             name="color4"
             value="color4"
+            checked={color4 === '4'}
           />
           <label className="form-check-label ms-2" htmlFor="color4">
             綠色
@@ -293,6 +302,7 @@ function FilterBar(props) {
             id="color5"
             name="color5"
             value="color5"
+            checked={color5 === '5'}
           />
           <label className="form-check-label ms-2" htmlFor="color5">
             黃色
@@ -315,6 +325,7 @@ function FilterBar(props) {
             id="color6"
             name="color6"
             value="color6"
+            checked={color6 === '6'}
           />
           <label className="form-check-label ms-2" htmlFor="color6">
             紅色
@@ -337,6 +348,7 @@ function FilterBar(props) {
             id="color7"
             name="color7"
             value="color7"
+            checked={color7 === '7'}
           />
           <label className="form-check-label ms-2" htmlFor="color7">
             橘色
@@ -359,6 +371,7 @@ function FilterBar(props) {
             id="color8"
             name="color8"
             value="color8"
+            checked={color8 === '8'}
           />
           <label className="form-check-label ms-2" htmlFor="color8">
             棕色
@@ -381,6 +394,7 @@ function FilterBar(props) {
             id="color9"
             name="color9"
             value="color9"
+            checked={color9 === '9'}
           />
           <label className="form-check-label ms-2" htmlFor="color9">
             灰色
@@ -409,6 +423,7 @@ function FilterBar(props) {
             id="fin1"
             name="fin1"
             value="fin1"
+            checked={fin1 === '1'}
           />
           <label className="form-check-label ms-2" htmlFor="fin1">
             Single Tab
@@ -430,6 +445,7 @@ function FilterBar(props) {
             id="fin2"
             name="fin2"
             value="fin2"
+            checked={fin2 === '2'}
           />
           <label className="form-check-label ms-2" htmlFor="fin2">
             FCS II
@@ -451,6 +467,7 @@ function FilterBar(props) {
             id="fin3"
             name="fin3"
             value="fin3"
+            checked={fin3 === '3'}
           />
           <label className="form-check-label ms-2" htmlFor="fin3">
             FCS II Longboard
