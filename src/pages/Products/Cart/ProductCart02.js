@@ -47,7 +47,10 @@ function ProductCart02() {
   const [memberPhone, setMemberPhone] = useState('');
   const [memberAddress, setMemberAddress] = useState('');
 
-  // 同訂購人資訊
+  // 訂購人資訊勾選同步更新會員資料
+  const [memberSync, setMemberSync] = useState(false); // true代表訂購人資訊勾選同步更新會員資料
+
+  // 收件人資訊勾選同訂購人資訊
   const [receiverSync, setReceiverSync] = useState(false); // true代表收件人資訊勾選同訂購人資訊
 
   const [validated, setValidated] = useState(false);
@@ -94,6 +97,18 @@ function ProductCart02() {
     }
   }, [auth]);
 
+  // 收件人資訊勾選同訂購人資訊
+  useEffect(() => {
+    if (receiverSync === true) {
+      setOrder({
+        ...order,
+        receiver: memberName,
+        receiver_phone: memberPhone,
+      });
+    } else {
+    }
+  }, [receiverSync]);
+
   // react-bootstrap原本的
   const handleSubmit = (e) => {
     const form = e.currentTarget;
@@ -109,6 +124,8 @@ function ProductCart02() {
   console.log('memberEmail', memberEmail);
   console.log('memberPhone', memberPhone);
   console.log('memberAddress', memberAddress);
+  console.log('memberSync', memberSync);
+  console.log('receiverSync', receiverSync);
 
   return (
     <>
@@ -142,9 +159,16 @@ function ProductCart02() {
                     setMemberPhone={setMemberPhone}
                     memberAddress={memberAddress}
                     setMemberAddress={setMemberAddress}
+                    memberSync={memberSync}
+                    setMemberSync={setMemberSync}
                   />
                   {/* 收件人資訊 */}
-                  <CartReceiverInfo order={order} setOrder={setOrder} />
+                  <CartReceiverInfo
+                    order={order}
+                    setOrder={setOrder}
+                    receiverSync={receiverSync}
+                    setReceiverSync={setReceiverSync}
+                  />
                   {/* 配送資訊 */}
 
                   {/* 發票資訊，目前無作用！ */}

@@ -15,6 +15,8 @@ function CartMemberInfo(props) {
     setMemberPhone,
     memberAddress,
     setMemberAddress,
+    memberSync,
+    setMemberSync,
   } = props;
 
   // 縣市
@@ -53,6 +55,13 @@ function CartMemberInfo(props) {
               type="checkbox"
               value=""
               id="check"
+              onClick={() => {
+                if (memberSync === false) {
+                  setMemberSync(true);
+                } else {
+                  setMemberSync(false);
+                }
+              }}
             />
             <label className="form-check-label mt-2 fs-6" htmlFor="check">
               同步更新我的會員資料

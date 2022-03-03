@@ -4,9 +4,9 @@ import React from 'react';
 import { Form, InputGroup } from 'react-bootstrap';
 
 function CartReceiverInfo(props) {
-  const { order, setOrder } = props;
+  const { order, setOrder, receiverSync, setReceiverSync } = props;
 
-  // 表單中的onchange事件 (限狀態order(表單元素)內的欄位使用)
+  // 表單中的onchange事件 (限表單元素(狀態order)內的欄位使用)
   const handleChange = (e) => {
     setOrder({ ...order, [e.target.name]: e.target.value });
   };
@@ -26,6 +26,13 @@ function CartReceiverInfo(props) {
               type="checkbox"
               value=""
               id="check"
+              onClick={() => {
+                if (receiverSync === false) {
+                  setReceiverSync(true);
+                } else {
+                  setReceiverSync(false);
+                }
+              }}
             />
             <label className="form-check-label mt-2 fs-6" htmlFor="check">
               同訂購人資訊
