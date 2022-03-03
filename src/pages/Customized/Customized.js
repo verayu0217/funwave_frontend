@@ -40,17 +40,9 @@ function Customized() {
           <h3 className="text-center fw-bold mb-5">
             他們都推薦FUNWAVE的訂製衝浪板
           </h3>
-          <Row>
-            <Col>
-              <RecommendCard />
-            </Col>
-            <Col>
-              <RecommendCard />
-            </Col>
-            <Col>
-              <RecommendCard />
-            </Col>
-          </Row>
+
+          <RecommendCard />
+
           <Ad />
           <Step />
           <div className=" text-center">
