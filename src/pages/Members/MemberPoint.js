@@ -1,6 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import {
+  Tab,
+  Row,
+  Col,
+  Nav,
+  Collapse,
+  Button,
+  Table,
+  Accordion,
+} from 'react-bootstrap';
 import axios from 'axios';
 import './Member.scss';
 import { API_URL } from '../../utils/config';
@@ -20,7 +30,7 @@ const MemberPoint = () => {
 
   async function getMemberCourseOrderList(page = 1) {
     let response = await axios.get(
-      `${API_URL}/member/member-order/${auth.member_id}?page=${page}`
+      `${API_URL}/member/member-point/${auth.member_id}?page=${page}`
     );
 
     let orders = [];
@@ -62,14 +72,14 @@ const MemberPoint = () => {
     <>
       <div className="container mt-5">
         <div className="row px-5">
-          <div className="col-12 mx-auto">
+          <div className="col-lg-12 col-md-12 col-12 mx-auto">
             <h2 className="mb-5 titleMember text-center">
               <span className="me-2">
                 <img src={titleImgMember} className="titleImgMember" />
               </span>
               會員點數
             </h2>
-            <div className="card cardMember mt-5 mb-3 p-4">
+            <div className="col-12 card cardMember mt-5 mb-3 p-4">
               <div className="row g-0">
                 <div className="col-5 d-flex justify-content-center align-items-center">
                   <div className="d-flex align-items-center">
@@ -112,12 +122,12 @@ const MemberPoint = () => {
               </div>
             </div>
           </div>
-          <div className="col-12 d-flex mt-4">
+          <div className="col-lg-12 col-12 d-flex mt-4">
             <h3 className="fs-20Member p-0">點數紀錄</h3>
           </div>
-          <div className="col-12 table-wrap d-flex justify-content-center mb-5 p-0">
-            <table
-              responsive
+          <div className="col-lg-12 col-12 table-wrap d-flex justify-content-center mb-5 p-0">
+            <Table
+              responsive="sm"
               className="table table-control align-middle text-center my-3 tableMemberOrder tableMemberPoint"
             >
               <thead>
@@ -162,22 +172,50 @@ const MemberPoint = () => {
                   <td className="text-nowrap orange">57</td>
                 </tr> */}
               </tbody>
-            </table>
+            </Table>
           </div>
           <nav aria-label="pageMember">
             <ul className="d-flex justify-content-center mt-5">
+              <li class="page-item">
+                <a
+                  class="page-link pageLinkMember"
+                  href="#/"
+                  onClick={(e) => {
+                    changePage(1);
+                    navigate(1);
+                  }}
+                  aria-label="Previous"
+                >
+                  <span aria-hidden="true">&laquo;</span>
+                  <span class="sr-only">Previous</span>
+                </a>
+              </li>
               {Array.from(Array(pages).keys()).map((p) => {
                 return (
                   <li className="page-item">
                     <a
                       className="page-link pageLinkMember"
-                      onClick={() => changePage(p + 1)}
+                      onClick={(e) => changePage(p + 1)}
                     >
                       {p + 1}
                     </a>
                   </li>
                 );
               })}
+              <li class="page-item">
+                <a
+                  class="page-link pageLinkMember"
+                  href="#/"
+                  onClick={(e) => {
+                    changePage(pages);
+                    navigate({ pages });
+                  }}
+                  aria-label="Next"
+                >
+                  <span aria-hidden="true">&raquo;</span>
+                  <span class="sr-only">Next</span>
+                </a>
+              </li>
             </ul>
           </nav>
         </div>
