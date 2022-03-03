@@ -8,6 +8,7 @@ import { RiArrowRightCircleFill } from 'react-icons/ri';
 import { RiArrowLeftCircleFill } from 'react-icons/ri';
 
 import HomeInfoCard from './HomeInfoCard.js';
+import { useParams, useNavigate, Link } from "react-router-dom";
 
 
 
@@ -54,9 +55,11 @@ return (
                         <React.Fragment key={idx}>
 
                         <div className={idx === cardIndex ? "slideHome activeSlideHome" : "slideHomeCover slideHome"} key = {idx}>
+                            <Link to={`/information/${cardInfoDataItem.info_no}`} style={{textDecoration: 'none', color: '#333333'}}>
                             <div className="imgHome">
                                 <HomeInfoCard cardInfoDataItem={cardInfoDataItem}/>
                             </div>
+                            </Link>
                         </div>
 
                         </React.Fragment>

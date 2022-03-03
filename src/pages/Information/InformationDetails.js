@@ -25,19 +25,49 @@ function InformationDetails() {
     // 下一頁的資料
     const [nextData, setNextData] = useState([]);
 
-    useEffect(() => {
-        let getInfoNoData = async () => {
-        let response = await axios.get(`${API_URL}/information/${info_no}`);
+    // 載入指示器[1]
+    const [isLoading, setIsLoading] = useState(false);
 
-        // console.log("InfornationDetails頁收到的response.data,data:", response.data.data);
-        // console.log("InfornationDetails頁收到的response.data.prevData:", response.data.prevData);
-        // console.log("InfornationDetails頁收到的response.data.nextData:", response.data.nextData);
-        setInfoNoData(response.data.data);
-        setPrevData(response.data.prevData);
-        setNextData(response.data.nextData);
-        };
-        getInfoNoData();
+
+    // 載入spinner
+    // x秒後自動關掉spinner
+    useEffect(() => {
+        if (isLoading) {
+        setTimeout(() => {
+            setIsLoading(false);
+        }, 2);
+        }
     }, []);
+
+
+    useEffect(() => {
+        // 開啟
+
+        let getInfoNoData = async () => {
+            let response = await axios.get(`${API_URL}/information/${info_no}`);
+
+            // console.log("InfornationDetails頁收到的response.data,data:", response.data.data);
+            // console.log("InfornationDetails頁收到的response.data.prevData:", response.data.prevData);
+            // console.log("InfornationDetails頁收到的response.data.nextData:", response.data.nextData);
+            setInfoNoData(response.data.data);
+            setPrevData(response.data.prevData);
+            setNextData(response.data.nextData);
+            setIsLoading(false); // 關掉spinner
+            };
+            getInfoNoData();
+    }, []);
+
+    // 載入指示 spinner動畫
+    const spinner = (
+    <>
+        <div className="d-flex justify-content-center align-items-center">
+        {/* <Spinner animation="border" variant="secondary" /> */}
+        <div className="spinner-border text-secondary" variant="secondary" role="status">
+            <span className="sr-only">Loading...</span>
+        </div>
+        </div>
+    </>
+    );
     
 
 
@@ -45,7 +75,9 @@ function InformationDetails() {
     return (
     <>
     <div>
-        <h3>麵包屑</h3>
+    <h3>麵包屑</h3>
+    {/* <h3>麵包{spinner}</h3> */}
+    {/* {isLoading ? spinner : <h3>麵包屑拿到了資料了</h3>} */}
     </div>
 
     {infoNoData.map( (infoNoDataItem, i) => {
@@ -54,20 +86,32 @@ function InformationDetails() {
 
             {/* 上方大圖 */}
             <div className="container-fluid titlePicSectionInfo">
-                <div className="container titleSectionInfo d-flex flex-row align-items-start">
-                    <div className="titleWordInfo d-flex flex-column align-items-start text-start mb-4">
-                        <span className="badge bg-dark h6">{infoNoDataItem.info_cat}</span>
-                        <h1 className="white">{infoNoDataItem.big_title}</h1>
-                        <h6 className="white">{infoNoDataItem.create_time} {infoNoDataItem.author}</h6>
-                    </div>
-                </div>
-                <div className="titleTopPicBoxInfo">
-                    <img
-                        className="titleTopPicInfo"
-                        src={`${IMAGE_URL}/information/${infoNoDataItem.big_img}`}
-                        alt={infoNoDataItem.big_img}
-                    />
-                </div>        
+            {(() => {
+                if (isLoading === true) {
+                    return <>{spinner}</>;
+                }
+                else{
+                    return (
+                        <>
+                        {/* 資料拿到 */}
+                        <div className="container titleSectionInfo d-flex flex-row align-items-start">
+                            <div className="titleWordInfo d-flex flex-column align-items-start text-start mb-4">
+                                <span className="badge bg-dark h6">{infoNoDataItem.info_cat}</span>
+                                <h1 className="white">{infoNoDataItem.big_title}</h1>
+                                <h6 className="white">{infoNoDataItem.create_time} {infoNoDataItem.author}</h6>
+                            </div>
+                        </div>
+                        <div className="titleTopPicBoxInfo">
+                            <img
+                                className="titleTopPicInfo"
+                                src={`${IMAGE_URL}/information/${infoNoDataItem.big_img}`}
+                                alt={infoNoDataItem.big_img}
+                            />
+                        </div>
+                        </>      
+                    )
+                }
+            })()} {/* IIFE */}
             </div> {/* container-fluid */}
 
             {(() => {
@@ -315,7 +359,7 @@ function InformationDetails() {
                     );
                 }
 
-            })()}
+            })()} {/* IIFE */}
 
 
             </React.Fragment>

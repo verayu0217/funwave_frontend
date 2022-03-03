@@ -1,9 +1,7 @@
 // FilterBar.js 內容說明：商品主頁左方的篩選
 
 import React from 'react';
-// import chroma from 'chroma-js';
-// import Select, { StylesConfig } from 'react-select';
-// import { ColourOption, colourOptions } from '../../../../data/reactSelect.ts';
+import { Button } from 'react-bootstrap';
 
 // react-icons
 import { FaThumbsUp } from 'react-icons/fa';
@@ -37,67 +35,43 @@ function FilterBar(props) {
     setColor8,
     color9,
     setColor9,
+    fin1,
+    setFin1,
+    fin2,
+    setFin2,
+    fin3,
+    setFin3,
   } = props;
-
-  // react-select
-  // const colourStyles: StylesConfig<ColourOption, true> = {
-  //   control: (styles) => ({ ...styles, backgroundColor: 'white' }),
-  //   option: (styles, { data, isDisabled, isFocused, isSelected }) => {
-  //     const color = chroma(data.color);
-  //     return {
-  //       ...styles,
-  //       backgroundColor: isDisabled
-  //         ? undefined
-  //         : isSelected
-  //         ? data.color
-  //         : isFocused
-  //         ? color.alpha(0.1).css()
-  //         : undefined,
-  //       color: isDisabled
-  //         ? '#ccc'
-  //         : isSelected
-  //         ? chroma.contrast(color, 'white') > 2
-  //           ? 'white'
-  //           : 'black'
-  //         : data.color,
-  //       cursor: isDisabled ? 'not-allowed' : 'default',
-
-  //       ':active': {
-  //         ...styles[':active'],
-  //         backgroundColor: !isDisabled
-  //           ? isSelected
-  //             ? data.color
-  //             : color.alpha(0.3).css()
-  //           : undefined,
-  //       },
-  //     };
-  //   },
-  //   multiValue: (styles, { data }) => {
-  //     const color = chroma(data.color);
-  //     return {
-  //       ...styles,
-  //       backgroundColor: color.alpha(0.1).css(),
-  //     };
-  //   },
-  //   multiValueLabel: (styles, { data }) => ({
-  //     ...styles,
-  //     color: data.color,
-  //   }),
-  //   multiValueRemove: (styles, { data }) => ({
-  //     ...styles,
-  //     color: data.color,
-  //     ':hover': {
-  //       backgroundColor: data.color,
-  //       color: 'white',
-  //     },
-  //   }),
-  // };
 
   return (
     <>
+      <Button
+        variant="outline-light"
+        size="sm"
+        className="ms-3 mt-5"
+        onClick={(e) => {
+          setPriceLowest('all');
+          setPriceHighest('all');
+          setBrand('all');
+          setColor1('0');
+          setColor2('0');
+          setColor3('0');
+          setColor4('0');
+          setColor5('0');
+          setColor6('0');
+          setColor7('0');
+          setColor8('0');
+          setColor9('0');
+          setFin1('0');
+          setFin2('0');
+          setFin3('0');
+        }}
+      >
+        清除所有篩選
+      </Button>
       {/* 篩選 */}
       {/* 價格篩選 */}
-      <div className="mt-5">
+      <div className="mt-3">
         <h3 className="d-flex align-items-center filterProducts pb-2 ps-3">
           <RiMoneyDollarCircleFill size={24} color="#17a8a2" className="me-3" />
           價格
@@ -116,6 +90,7 @@ function FilterBar(props) {
             id="price1"
             name="price"
             value="price1"
+            checked={priceHighest === '5000'}
           />
           <label className="form-check-label ms-2" htmlFor="price1">
             NT 5,000以下
@@ -135,6 +110,7 @@ function FilterBar(props) {
             id="price2"
             name="price"
             value="price2"
+            checked={priceHighest === '15000'}
           />
           <label className="form-check-label ms-2" htmlFor="price2">
             NT 5,000 - 15,000
@@ -154,6 +130,7 @@ function FilterBar(props) {
             id="price3"
             name="price"
             value="price3"
+            checked={priceHighest === '25000'}
           />
           <label className="form-check-label ms-2" htmlFor="price3">
             NT 15,000 - 25,000
@@ -173,6 +150,7 @@ function FilterBar(props) {
             id="price4"
             name="price"
             value="price4"
+            checked={priceHighest === '1000000'}
           />
           <label className="form-check-label ms-2" htmlFor="price4">
             NT 25,000以上
@@ -188,6 +166,7 @@ function FilterBar(props) {
         <select
           className="form-select"
           aria-label="Default select example"
+          value={brand}
           onChange={(e) => {
             setBrand(e.target.value);
           }}
@@ -209,16 +188,6 @@ function FilterBar(props) {
         </select>
       </div>
       {/* 顏色篩選 */}
-      {/* <Select
-        closeMenuOnSelect={false}
-        defaultValue={[colourOptions[0], colourOptions[1]]}
-        isMulti
-        options={colourOptions}
-        styles={colourStyles}
-        onChange={(e) => {
-          setColor(e.target.value);
-        }}
-      /> */}
       <div className="mt-5">
         <h3 className="d-flex align-items-center filterProducts pb-2 ps-3">
           <IoColorPalette size={22} color="#17a8a2" className="me-3" />
@@ -241,6 +210,7 @@ function FilterBar(props) {
             id="color1"
             name="color1"
             value="color1"
+            checked={color1 === '1'}
           />
           <label className="form-check-label ms-2" htmlFor="color1">
             白色
@@ -251,7 +221,7 @@ function FilterBar(props) {
           className="form-check ms-3"
           onChange={(e) => {
             if (color2 === '0') {
-              setColor2('1');
+              setColor2('2');
             } else {
               setColor2('0');
             }
@@ -263,6 +233,7 @@ function FilterBar(props) {
             id="color2"
             name="color2"
             value="color2"
+            checked={color2 === '2'}
           />
           <label className="form-check-label ms-2" htmlFor="color2">
             黑色
@@ -271,8 +242,12 @@ function FilterBar(props) {
         {/* 藍 */}
         <div
           className="form-check ms-3"
-          onClick={(e) => {
-            setColor3('1');
+          onChange={(e) => {
+            if (color3 === '0') {
+              setColor3('3');
+            } else {
+              setColor3('0');
+            }
           }}
         >
           <input
@@ -281,6 +256,7 @@ function FilterBar(props) {
             id="color3"
             name="color3"
             value="color3"
+            checked={color3 === '3'}
           />
           <label className="form-check-label ms-2" htmlFor="color3">
             藍色
@@ -289,8 +265,12 @@ function FilterBar(props) {
         {/* 綠 */}
         <div
           className="form-check ms-3"
-          onClick={(e) => {
-            setColor4('1');
+          onChange={(e) => {
+            if (color4 === '0') {
+              setColor4('4');
+            } else {
+              setColor4('0');
+            }
           }}
         >
           <input
@@ -299,6 +279,7 @@ function FilterBar(props) {
             id="color4"
             name="color4"
             value="color4"
+            checked={color4 === '4'}
           />
           <label className="form-check-label ms-2" htmlFor="color4">
             綠色
@@ -307,8 +288,12 @@ function FilterBar(props) {
         {/* 黃 */}
         <div
           className="form-check ms-3"
-          onClick={(e) => {
-            setColor5('1');
+          onChange={(e) => {
+            if (color5 === '0') {
+              setColor5('5');
+            } else {
+              setColor5('0');
+            }
           }}
         >
           <input
@@ -317,6 +302,7 @@ function FilterBar(props) {
             id="color5"
             name="color5"
             value="color5"
+            checked={color5 === '5'}
           />
           <label className="form-check-label ms-2" htmlFor="color5">
             黃色
@@ -325,8 +311,12 @@ function FilterBar(props) {
         {/* 紅 */}
         <div
           className="form-check ms-3"
-          onClick={(e) => {
-            setColor6('1');
+          onChange={(e) => {
+            if (color6 === '0') {
+              setColor6('6');
+            } else {
+              setColor6('0');
+            }
           }}
         >
           <input
@@ -335,6 +325,7 @@ function FilterBar(props) {
             id="color6"
             name="color6"
             value="color6"
+            checked={color6 === '6'}
           />
           <label className="form-check-label ms-2" htmlFor="color6">
             紅色
@@ -343,8 +334,12 @@ function FilterBar(props) {
         {/* 橘 */}
         <div
           className="form-check ms-3"
-          onClick={(e) => {
-            setColor7('1');
+          onChange={(e) => {
+            if (color7 === '0') {
+              setColor7('7');
+            } else {
+              setColor7('0');
+            }
           }}
         >
           <input
@@ -353,6 +348,7 @@ function FilterBar(props) {
             id="color7"
             name="color7"
             value="color7"
+            checked={color7 === '7'}
           />
           <label className="form-check-label ms-2" htmlFor="color7">
             橘色
@@ -361,8 +357,12 @@ function FilterBar(props) {
         {/* 棕 */}
         <div
           className="form-check ms-3"
-          onClick={(e) => {
-            setColor8('1');
+          onChange={(e) => {
+            if (color8 === '0') {
+              setColor8('8');
+            } else {
+              setColor8('0');
+            }
           }}
         >
           <input
@@ -371,6 +371,7 @@ function FilterBar(props) {
             id="color8"
             name="color8"
             value="color8"
+            checked={color8 === '8'}
           />
           <label className="form-check-label ms-2" htmlFor="color8">
             棕色
@@ -379,8 +380,12 @@ function FilterBar(props) {
         {/* 灰 */}
         <div
           className="form-check ms-3"
-          onClick={(e) => {
-            setColor9('1');
+          onChange={(e) => {
+            if (color9 === '0') {
+              setColor9('9');
+            } else {
+              setColor9('0');
+            }
           }}
         >
           <input
@@ -389,76 +394,10 @@ function FilterBar(props) {
             id="color9"
             name="color9"
             value="color9"
+            checked={color9 === '9'}
           />
           <label className="form-check-label ms-2" htmlFor="color9">
             灰色
-          </label>
-        </div>
-      </div>
-      {/* 尺寸篩選 */}
-      <div className="mt-5">
-        <h3 className="d-flex align-items-center filterProducts pb-2 ps-3">
-          <RiRulerFill size={22} color="#17a8a2" className="me-3" />
-          尺寸
-        </h3>
-        <div className="form-check ms-3">
-          <input
-            className="form-check-input"
-            type="radio"
-            id="size1"
-            name="size1"
-            value="size1"
-          />
-          <label className="form-check-label ms-2" htmlFor="size1">
-            5
-          </label>
-        </div>
-        <div className="form-check ms-3">
-          <input
-            className="form-check-input"
-            type="radio"
-            id="size2"
-            name="size2"
-            value="size2"
-          />
-          <label className="form-check-label ms-2" htmlFor="size2">
-            6
-          </label>
-        </div>
-        <div className="form-check ms-3">
-          <input
-            className="form-check-input"
-            type="radio"
-            id="size3"
-            name="size3"
-            value="size3"
-          />
-          <label className="form-check-label ms-2" htmlFor="size3">
-            7
-          </label>
-        </div>
-        <div className="form-check ms-3">
-          <input
-            className="form-check-input"
-            type="radio"
-            id="size3"
-            name="size3"
-            value="size3"
-          />
-          <label className="form-check-label ms-2" htmlFor="size3">
-            8
-          </label>
-        </div>
-        <div className="form-check ms-3">
-          <input
-            className="form-check-input"
-            type="radio"
-            id="size3"
-            name="size3"
-            value="size3"
-          />
-          <label className="form-check-label ms-2" htmlFor="size3">
-            9
           </label>
         </div>
       </div>
@@ -468,37 +407,67 @@ function FilterBar(props) {
           <MdOutlineSurfing size={24} color="#17a8a2" className="me-3" />
           適用衝浪舵類型
         </h3>
-        <div className="form-check ms-3">
+        <div
+          className="form-check ms-3"
+          onChange={(e) => {
+            if (fin1 === '0') {
+              setFin1('1');
+            } else {
+              setFin1('0');
+            }
+          }}
+        >
           <input
             className="form-check-input"
-            type="radio"
+            type="checkbox"
             id="fin1"
             name="fin1"
             value="fin1"
+            checked={fin1 === '1'}
           />
           <label className="form-check-label ms-2" htmlFor="fin1">
             Single Tab
           </label>
         </div>
-        <div className="form-check ms-3">
+        <div
+          className="form-check ms-3"
+          onChange={(e) => {
+            if (fin2 === '0') {
+              setFin2('2');
+            } else {
+              setFin2('0');
+            }
+          }}
+        >
           <input
             className="form-check-input"
-            type="radio"
+            type="checkbox"
             id="fin2"
             name="fin2"
             value="fin2"
+            checked={fin2 === '2'}
           />
           <label className="form-check-label ms-2" htmlFor="fin2">
             FCS II
           </label>
         </div>
-        <div className="form-check ms-3">
+        <div
+          className="form-check ms-3"
+          onChange={(e) => {
+            if (fin3 === '0') {
+              setFin3('3');
+            } else {
+              setFin3('0');
+            }
+          }}
+        >
           <input
             className="form-check-input"
-            type="radio"
+            type="checkbox"
             id="fin3"
             name="fin3"
             value="fin3"
+            checked={fin3 === '3'}
           />
           <label className="form-check-label ms-2" htmlFor="fin3">
             FCS II Longboard

@@ -29,7 +29,7 @@ function Products() {
   const [priceHighest, setPriceHighest] = useState('all');
   // 篩選條件 - 品牌
   const [brand, setBrand] = useState('all');
-  // 篩選條件 - 顏色 (0代表沒有選此顏色，1代表有選此顏色)
+  // 篩選條件 - 顏色 (0代表沒有選此顏色)
   const [color1, setColor1] = useState('0');
   const [color2, setColor2] = useState('0');
   const [color3, setColor3] = useState('0');
@@ -39,10 +39,32 @@ function Products() {
   const [color7, setColor7] = useState('0');
   const [color8, setColor8] = useState('0');
   const [color9, setColor9] = useState('0');
-  const [color, setColor] = useState('');
+  const [color, setColor] = useState('false'); // false代表沒有篩選任何顏色
+  // 篩選條件 - 適用衝浪舵類型 (0代表沒有選此衝浪舵類型)
+  const [fin1, setFin1] = useState('0');
+  const [fin2, setFin2] = useState('0');
+  const [fin3, setFin3] = useState('0');
+  const [fin, setFin] = useState('false'); // false代表沒有篩選任何適用衝浪舵類型
+
+  // 搜尋
+  const [search, setSearch] = useState('');
 
   // 載入指示器
   const [isLoading, setIsLoading] = useState(false);
+
+  // 標題對照表
+  const bigCatsTypes = ['衝浪用品', '衝浪板', '衝浪板配件', '衝浪相關衣物'];
+  const smallCatsTypes = [
+    '衝浪用品',
+    '衝浪長板',
+    '衝浪快樂板',
+    '衝浪短板',
+    '衝浪板舵',
+    '衝浪腳繩',
+    '衝浪腳踏墊',
+    '衝浪斗篷毛巾衣',
+    '防寒衣',
+  ];
 
   // 載入中spinner
   //x秒後自動關掉spinner(設定isLoading為false)
@@ -54,6 +76,11 @@ function Products() {
     }
   }, [isLoading]);
 
+  // 讓頁面從頂端開始 待處理
+  // useEffect(() => {
+  //   window.scrollTo(0, 0);
+  // }, []);
+
   // 前端透過axios從後端撈資料
   useEffect(() => {
     // 先開起載入指示器
@@ -62,13 +89,34 @@ function Products() {
     let getProducts = async () => {
       // 欲取得後端 http://localhost:3002/api/products 資料
       let response = await axios.get(
-        `${API_URL}/products?bigCats=${bigCatsClick}&smallCats=${smallCatsClick}&priceLowest=${priceLowest}&priceHighest=${priceHighest}&brand=${brand}`
+        `${API_URL}/products?bigCats=${bigCatsClick}&smallCats=${smallCatsClick}&priceLowest=${priceLowest}&priceHighest=${priceHighest}&brand=${brand}&color=${color}&color1=${color1}&color2=${color2}&color3=${color3}&color4=${color4}&color5=${color5}&color6=${color6}&color7=${color7}&color8=${color8}&color9=${color9}&fin=${fin}&fin1=${fin1}&fin2=${fin2}&fin3=${fin3}&search=${search}`
       );
       setProducts(response.data);
       setDisplayProducts(response.data);
     };
     getProducts();
-  }, [bigCatsClick, smallCatsClick, priceLowest, priceHighest, brand]);
+  }, [
+    bigCatsClick,
+    smallCatsClick,
+    priceLowest,
+    priceHighest,
+    brand,
+    color,
+    color1,
+    color2,
+    color3,
+    color4,
+    color5,
+    color6,
+    color7,
+    color8,
+    color9,
+    fin,
+    fin1,
+    fin2,
+    fin3,
+    search,
+  ]);
 
   // 載入指示 spinner動畫
   const spinner = (
@@ -115,19 +163,37 @@ function Products() {
     setDisplayProducts(newProducts);
   }, [products, sortBy]);
 
+  // 處理顏色多選篩選
   useEffect(() => {
-    let newColor = color1 + color2;
-    console.log(newColor);
-    console.log('color1', color1);
-    console.log('color2', color2);
-  }, [color1, color2]);
+    let newColor = `${color1}${color2}${color3}${color4}${color5}${color6}${color7}${color8}${color9}`;
+    if (newColor === '000000000') {
+      setColor('false');
+    } else {
+      setColor('true');
+    }
+  }, [color1, color2, color3, color4, color5, color6, color7, color8, color9]);
 
-  // console.log('bigCatsClick', bigCatsClick);
-  // console.log('smallCatsClick', smallCatsClick);
-  // console.log('priceLowest', priceLowest);
-  // console.log('priceHighest', priceHighest);
-  // console.log('brand', brand);
-  // console.log('color', color);
+  // 處理適用衝浪舵類型多選篩選
+  useEffect(() => {
+    let newFin = `${fin1}${fin2}${fin3}`;
+    if (newFin === '000') {
+      setFin('false');
+    } else {
+      setFin('true');
+    }
+  }, [fin1, fin2, fin3]);
+
+  console.log('bigCatsClick', bigCatsClick);
+  console.log('smallCatsClick', smallCatsClick);
+  console.log('priceLowest', priceLowest);
+  console.log('priceHighest', priceHighest);
+  console.log('brand', brand);
+  console.log('color', color);
+  console.log('fin', fin);
+  console.log('fin1', fin1);
+  console.log('fin2', fin2);
+  console.log('fin3', fin3);
+  console.log('search', search);
 
   return (
     <>
@@ -178,6 +244,12 @@ function Products() {
                 setColor8={setColor8}
                 color9={color9}
                 setColor9={setColor9}
+                fin1={fin1}
+                setFin1={setFin1}
+                fin2={fin2}
+                setFin2={setFin2}
+                fin3={fin3}
+                setFin3={setFin3}
               />
             </div>
           </aside>
@@ -191,18 +263,49 @@ function Products() {
                   height="24px"
                   weight="64px"
                 />
-                <h1 className="m-0">短板</h1>
+                <h1 className="m-0">
+                  {smallCatsClick === '0'
+                    ? bigCatsTypes[bigCatsClick]
+                    : smallCatsTypes[smallCatsClick]}
+                </h1>
               </div>
+              {/* 搜尋 */}
               <input
                 type="text"
                 placeholder="  🔍  以商品名稱搜尋"
                 className="form-control mt-1 rounded-pill position-absolute top-0 end-0 w-25 text-muted"
-                value=""
+                value={search}
+                onChange={(e) => {
+                  setSearch(e.target.value);
+                }}
               />
-              <div className="d-flex justify-content-end mt-2 mb-2">
-                <SortBar sortBy={sortBy} setSortBy={setSortBy} />
-              </div>
+              {search !== '' && displayProducts.length === 0 ? (
+                <>
+                  <div className="p-5 text-center">
+                    <h2>
+                      未找到含有 "
+                      <span style={{ color: '#17a8a2' }}>{search}</span>
+                      " 的商品名稱
+                      <br />
+                    </h2>
+                  </div>
+                </>
+              ) : (
+                <div className="d-flex justify-content-end mt-2 mb-2">
+                  <SortBar sortBy={sortBy} setSortBy={setSortBy} />
+                </div>
+              )}
             </header>
+            {search === '' && displayProducts.length === 0 ? (
+              <div className="p-4 text-center">
+                <h2>
+                  未有對應的商品名稱
+                  <br />
+                </h2>
+              </div>
+            ) : (
+              ''
+            )}
             {isLoading ? spinner : <ProductList products={displayProducts} />}
 
             {/* 星星圖備用 (全、半、空) */}
