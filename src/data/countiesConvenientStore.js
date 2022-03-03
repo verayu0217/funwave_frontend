@@ -1,5 +1,5 @@
 // 縣市對應之超商
-const countiesConvenientStore = [
+const data = [
   { county: '請選擇縣市', convenientStore: ['請選擇門市'] },
   {
     county: '台北市',
@@ -222,3 +222,5 @@ const countiesConvenientStore = [
     ],
   },
 ];
+
+export { data };

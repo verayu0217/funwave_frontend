@@ -2,6 +2,8 @@
 
 import React, { useState, useEffect } from 'react';
 import { Form, Button, InputGroup } from 'react-bootstrap';
+// 各縣市對應之超商
+import { data } from '../../../../data/CountiesConvenientStore.js';
 
 function CartShipping(props) {
   const {
@@ -50,10 +52,8 @@ function CartShipping(props) {
 
   // function 輸入縣市會產出對應超商的陣列
   const countiesToConvenientStore = (chosenCounty) => {
-    let a = countiesConvenientStore.filter(
-      (item) => item.county === chosenCounty
-    );
-    return a[0].convenientStore;
+    let stores = data.filter((item) => item.county === chosenCounty);
+    return stores[0].convenientStore;
   };
 
   console.log('convenientStoreCounty', convenientStoreCounty);
@@ -124,9 +124,7 @@ function CartShipping(props) {
               </Form.Select>
             </div>
             <div className="col-8">
-              <Form.Label>
-                超商門市{countiesToConvenientStore(convenientStoreCounty)}
-              </Form.Label>
+              <Form.Label>超商門市</Form.Label>
               <Form.Select
                 aria-label="Default select example"
                 value={convenientStore}
@@ -141,42 +139,6 @@ function CartShipping(props) {
                     </option>
                   )
                 )}
-                {/* <option>請選擇門市</option>
-                <option
-                  value="1"
-                  name="convenient_store"
-                  onChange={handleChange}
-                >
-                  台北門市
-                </option>
-                <option
-                  value="2"
-                  name="convenient_store"
-                  onChange={handleChange}
-                >
-                  新北門市
-                </option>
-                <option
-                  value="3"
-                  name="convenient_store"
-                  onChange={handleChange}
-                >
-                  桃園門市
-                </option>
-                <option
-                  value="4"
-                  name="convenient_store"
-                  onChange={handleChange}
-                >
-                  台中門市
-                </option>
-                <option
-                  value="5"
-                  name="convenient_store"
-                  onChange={handleChange}
-                >
-                  台南門市
-                </option> */}
               </Form.Select>
             </div>
           </div>
