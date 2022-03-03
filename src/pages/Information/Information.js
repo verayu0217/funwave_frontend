@@ -313,7 +313,7 @@ function Information() {
                         <span className="badge bg-dark h6">{caroDataItem.info_catA}</span>
                         <a className="h1 white caroAInfo" href="" onClick={()=> navigate(`/information/${caroDataItem.info_noA}`)}>{caroDataItem.big_titleA}
                         </a>
-                        <h6>{dateAdjust(caroDataItem.create_timeA)} {caroDataItem.authorA}</h6>
+                        <h6 className="caroADate">{dateAdjust(caroDataItem.create_timeA)} {caroDataItem.authorA}</h6>
                     </div>
                     </Carousel.Caption>
                 </Carousel.Item>
@@ -328,7 +328,7 @@ function Information() {
                         <span className="badge bg-dark h6">{caroDataItem.info_catB}</span>
                         <a className="h1 white caroAInfo" href="" onClick={()=> navigate(`/information/${caroDataItem.info_noB}`)}>{caroDataItem.big_titleB}
                         </a>
-                        <h6>{dateAdjust(caroDataItem.create_timeB)} {caroDataItem.authorB}</h6>
+                        <h6 className="caroADate">{dateAdjust(caroDataItem.create_timeB)} {caroDataItem.authorB}</h6>
                     </div>
                     </Carousel.Caption>
                 </Carousel.Item>
@@ -343,7 +343,7 @@ function Information() {
                         <span className="badge bg-dark h6">{caroDataItem.info_catC}</span>
                         <a className="h1 white caroAInfo" href="" onClick={()=> navigate(`/information/${caroDataItem.info_noC}`)}>{caroDataItem.big_titleC}
                         </a>
-                        <h6>{dateAdjust(caroDataItem.create_timeC)} {caroDataItem.authorC}</h6>
+                        <h6 className="caroADate">{dateAdjust(caroDataItem.create_timeC)} {caroDataItem.authorC}</h6>
                     </div>
                     </Carousel.Caption>
                 </Carousel.Item>
@@ -356,27 +356,37 @@ function Information() {
         </div> 
 
         {/* 輪播部分以下 */}
-        <div className="container pt-5">
+        <div className="container contentSectionInfo pt-5">
             {/* <div className="row"></div> */}
             <div className="row">
                 <div className="tab-content">
                 <Tabs
-                    className="tab-content" // 沒作用
+                    className="" // 沒作用
                     id="controlled-tab-info"
                     activeKey={key}
                     onSelect={(k) => setKey(k)}
                     className="mb-3"
                     >
-                    <Tab className="tab-content" eventKey="allCat" title="全部文章">
+                    <Tab className="" eventKey="allCat" title="全部文章">
                         {/* <Sonnet /> */}
                         <div className="d-flex justify-content-end">
                                     <input
                                     type="text"
                                     placeholder="  🔍  以關鍵字搜尋"
-                                    className="form-control mt-1 rounded-pill w-25 text-muted"
+                                    className="searchInfoPC form-control mt-1 rounded-pill w-25 text-muted"
                                     value={searchWord}
                                     onChange={(e) => handleAllSearch(e)}
-                                />
+                                    />
+                            {/* </form> */}
+                        </div>
+                        <div className="d-flex justify-content-center">
+                                    <input
+                                    type="text"
+                                    placeholder="  🔍  以關鍵字搜尋"
+                                    className="searchInfoMO form-control mt-1 rounded-pill w-50 text-muted"
+                                    value={searchWord}
+                                    onChange={(e) => handleAllSearch(e)}
+                                    />
                             {/* </form> */}
                         </div>
                         {/* 資訊大標題 */}
@@ -443,11 +453,14 @@ function Information() {
                         </div> {/* 卡片容器-結束 */}
 
                         {/* 全部文章pagination */}
-                        <Pagination size="sm">
-                            <Pagination.First onClick={(e) => setNowPage(1)}/>
-                            {getAllPageList()}
-                            <Pagination.Last onClick={(e) => setNowPage(allLastPage)}/>
-                        </Pagination>
+                        <div className="d-flex justify-content-center mb-5">
+                            <Pagination size="sm">
+                                <Pagination.First onClick={(e) => setNowPage(1)}/>
+                                {getAllPageList()}
+                                <Pagination.Last onClick={(e) => setNowPage(allLastPage)}/>
+                            </Pagination>
+                        </div>
+
 
                     </Tab>
 
@@ -526,11 +539,13 @@ function Information() {
                         </div> {/* 卡片容器-結束 */}
 
                         {/* 分類一pagination */}
-                        <Pagination size="sm">
-                            <Pagination.First onClick={(e) => getCatOnePageList(1)}/>
-                            {getCatOnePageList()}
-                            <Pagination.Last onClick={(e) => getCatOnePageList(catOneLastPage)}/>
-                        </Pagination>
+                        <div className="d-flex justify-content-center mb-5">
+                            <Pagination size="sm">
+                                <Pagination.First onClick={(e) => getCatOnePageList(1)}/>
+                                {getCatOnePageList()}
+                                <Pagination.Last onClick={(e) => getCatOnePageList(catOneLastPage)}/>
+                            </Pagination>
+                        </div>
 
                     </Tab>
 
@@ -608,11 +623,13 @@ function Information() {
                         </div> {/* 卡片容器-結束 */}
                         
                         {/* 分類二pagination */}
-                        <Pagination size="sm">
-                            <Pagination.First onClick={(e) => getCatTwoPageList(1)}/>
-                            {getCatTwoPageList()}
-                            <Pagination.Last onClick={(e) => getCatTwoPageList(catTwoLastPage)}/>
-                        </Pagination>
+                        <div className="d-flex justify-content-center mb-5">
+                            <Pagination size="sm">
+                                <Pagination.First onClick={(e) => getCatTwoPageList(1)}/>
+                                {getCatTwoPageList()}
+                                <Pagination.Last onClick={(e) => getCatTwoPageList(catTwoLastPage)}/>
+                            </Pagination>
+                        </div>
                     </Tab>
                 </Tabs>
                 </div>

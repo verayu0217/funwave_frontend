@@ -16,6 +16,18 @@
     font-weight: bold;
 }
 
+.contentSectionInfo {
+    .searchInfoMO {
+        display: none;
+    }
+}
+
+.contentSectionInfo {
+    .searchInfoPC {
+        display: block;
+    }
+}
+
 // @media screen and (max-width: 768px) {
 
 // }
@@ -103,5 +115,34 @@
     .nav-item .nav-link {
         font-weight: bold;
     }
+
+    .carousel-caption {
+        h1 {
+            font-size: 1.3rem;
+        }
+    }
+
+    .carousel .badge {
+        display: none;
+    }
+
+    // .carousel .caroADate {
+    //     display: none;
+    // }
+
+
+    .contentSectionInfo {
+        .searchInfoPC {
+            display: none;
+        }
+    }
+
+    .contentSectionInfo {
+        .searchInfoMO {
+            display: block;
+            margin: 10px 0px;
+        }
+    }
+
 }
 
