@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import './Home.scss';
 
 // 首頁、關於引用
-import logoPicW from '../../data/images/logoPicW.svg';
+import logoPicW from '../../data/images/home/logoPicW.png';
 import greenTitle from '../../data/images/greenTitle.svg';
 import waveVerticalW from '../../data/images/home/waveVerticalW.svg';
 
@@ -220,7 +220,7 @@ return (
     <div className="container-fluid heroSectionHome">
         {/* 首頁logo */}
         <div className="d-flex justify-content-center align-items-end logoPicHome">
-                <img src={logoPicW} className="logoPicW ratio ratio-1x1" alt="logoPicW" height=""></img>
+                <img src={logoPicW} className="logoPicW" alt="logoPicW" height=""></img>
         </div>
         {/* 首頁slogan */}
         <div className="d-flex justify-content-center text-center sloganHome px-5">
