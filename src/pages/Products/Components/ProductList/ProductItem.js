@@ -1,17 +1,41 @@
 import React from 'react';
 import { Figure } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import { IMAGE_URL } from '../../../../utils/config';
+import { useFav } from '../../../../context/fav';
 
 // react-icons
 import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
 // import { BsStarHalf } from 'react-icons/bs'; // 半星星
 import { BiHeart } from 'react-icons/bi';
-// import { FaHeart } from 'react-icons/fa'; // 全愛心
+import { FaHeart } from 'react-icons/fa'; // 全愛心
 
 // 文字過長會跑版、後端圖片如何置換
 
 function ProductItem(props) {
-  const { name, image1, price, small_cat_id, brand_id } = props.product;
+  const {
+    name,
+    image1,
+    price,
+    small_cat_id,
+    brand_id,
+    product_group,
+    product_id,
+  } = props.product;
+  const { fav, setFav } = useFav();
+
+  const favorite = (item) => {
+    setFav(true);
+    let currentProduct = JSON.parse(localStorage.getItem('likeID')) || [];
+    currentProduct.push(item);
+    localStorage.setItem('likeID', JSON.stringify(currentProduct));
+  };
+  const delFavorite = (item) => {
+    setFav(false);
+
+    let currentProduct = JSON.parse(localStorage.getItem('likeID')) || [];
+    localStorage.removeItem('likeID', JSON.stringify(currentProduct));
+  };
   // 小分類、品牌的id對照名稱
   const smallCatTypes = [
     '長板',
@@ -41,39 +65,64 @@ function ProductItem(props) {
 
   return (
     <>
-      {/* 商品列表的個別商品 */}
-      <Figure className="mt-4 position-relative">
-        <Figure.Image
-          width={265}
-          height={350}
-          alt={`${image1}`}
-          src={`${IMAGE_URL}/products/${image1}`}
+      {fav ? (
+        <FaHeart
+          size={21}
+          color="#ff7f6a"
+          className="position-absolute top-5"
+          onClick={(e) => {
+            setFav(false);
+          }}
         />
-        {/* <BiHeart
+      ) : (
+        <BiHeart
+          size={21}
+          color="#ff7f6a"
+          className="position-absolute top-5"
+          // onClick={favorite(products.product_id)}
+          // onClick={() => {
+          //   setFav(true);
+          // }}
+          onClick={(e) => {
+            favorite(product_id);
+          }}
+        />
+      )}
+      <Link to={`/products/${product_group}`}>
+        {/* 商品列表的個別商品 */}
+        <Figure className="mt-4 position-relative">
+          <Figure.Image
+            width={265}
+            height={350}
+            alt={`${image1}`}
+            src={`${IMAGE_URL}/products/${image1}`}
+          />
+          {/* <BiHeart
           size={21}
           color="#ff7f6a"
           className="float-end position-absolute top-0 end-0"
         /> */}
-        <div className="d-flex justify-content-center mt-2">
-          <AiFillStar size={20} color="#ff7f6a" />
-          <AiFillStar size={20} color="#ff7f6a" />
-          <AiFillStar size={20} color="#ff7f6a" />
-          <AiFillStar size={20} color="#ff7f6a" />
-          <AiOutlineStar size={20} color="#ff7f6a" />
-        </div>
-        <Figure.Caption className="d-flex justify-content-center">
-          <p className="mb-0 mt-2">{name}</p>
-        </Figure.Caption>
-        <Figure.Caption className="d-flex justify-content-center">
-          <p className="mb-0">{brandTypes[brand_id - 1]}</p>
-        </Figure.Caption>
-        <Figure.Caption className="d-flex justify-content-center">
-          <p className="mb-2">{smallCatTypes[small_cat_id - 1]}</p>
-        </Figure.Caption>
-        <Figure.Caption className="d-flex justify-content-center">
-          <p className="fw-bold">NT {price.toLocaleString()}</p>
-        </Figure.Caption>
-      </Figure>
+          <div className="d-flex justify-content-center mt-2">
+            <AiFillStar size={20} color="#ff7f6a" />
+            <AiFillStar size={20} color="#ff7f6a" />
+            <AiFillStar size={20} color="#ff7f6a" />
+            <AiFillStar size={20} color="#ff7f6a" />
+            <AiOutlineStar size={20} color="#ff7f6a" />
+          </div>
+          <Figure.Caption className="d-flex justify-content-center">
+            <p className="mb-0 mt-2">{name}</p>
+          </Figure.Caption>
+          <Figure.Caption className="d-flex justify-content-center">
+            <p className="mb-0">{brandTypes[brand_id - 1]}</p>
+          </Figure.Caption>
+          <Figure.Caption className="d-flex justify-content-center">
+            <p className="mb-2">{smallCatTypes[small_cat_id - 1]}</p>
+          </Figure.Caption>
+          <Figure.Caption className="d-flex justify-content-center">
+            <p className="fw-bold">NT {price.toLocaleString()}</p>
+          </Figure.Caption>
+        </Figure>
+      </Link>
     </>
   );
 }

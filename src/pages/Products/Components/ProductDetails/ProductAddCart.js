@@ -1,7 +1,3 @@
-// react-icons
-import { BiHeart } from 'react-icons/bi';
-// import { FaHeart } from 'react-icons/fa'; // 全愛心
-
 // ProductAddCart.js 內容說明：商品細節頁右方的加入購物車區
 
 import React, { useState, useEffect } from 'react';
@@ -15,13 +11,18 @@ import {
   AiOutlinePlus,
   AiOutlineMinus,
 } from 'react-icons/ai';
+import { BiHeart } from 'react-icons/bi';
+// import { FaHeart } from 'react-icons/fa'; // 全愛心
 import 'animate.css';
+import { useAuth } from '../../../../context/auth';
 import { IMAGE_URL } from '../../../../utils/config';
 
 function ProductAddCart(props) {
+  // 會員資料傳入useContext
+  const { auth, setAuth } = useAuth();
+  console.log('auth', auth);
+
   const {
-    auth,
-    setAuth,
     product,
     count,
     setCount,
@@ -31,6 +32,8 @@ function ProductAddCart(props) {
     setColorId,
     chosenProductOrder,
     setChosenProductOrder,
+    fav,
+    setFav,
   } = props;
   const [mycart, setMycart] = useState([]); // 要存進localStorage的資料
 
@@ -99,23 +102,33 @@ function ProductAddCart(props) {
     setMycart(currentCart);
     console.log('ProductAddCart.js - currentCart', currentCart);
     // console.log('ProductAddCart.js - mycart', mycart);
-
-    // if (auth === null) {
-    //   return alert('請登入會員');
-    // } else {
-    // }
   };
 
+  console.log('goToCart', goToCart);
+  // 登入才可以進購物車
   if (goToCart) {
     return <Navigate to="/product-cart01"></Navigate>;
   }
+
+  const toggleFavAction = (product) => {
+    let currentProduct = JSON.parse(localStorage.getItem('likeID')) || [];
+    currentProduct.push(product);
+    localStorage.setItem('likeID', JSON.stringify(currentProduct));
+    console.log('currentProduct', currentProduct);
+  };
 
   return (
     <>
       {/* 商品名稱、品牌、小分類、貨號 */}
       <div className="d-flex justify-content-between">
         <h1>{product[0].name}</h1>
-        <BiHeart size={21} color="#ff7f6a" className="proDetailHeart" />
+        <BiHeart
+          size={30}
+          color="#ff7f6a"
+          className="proDetailHeart"
+          type="button"
+          onClick={() => toggleFavAction(setFav())}
+        />
       </div>
 
       <h2>{brandTypes[product[0].brand_id - 1]}</h2>
