@@ -1,7 +1,3 @@
-// react-icons
-import { BiHeart } from 'react-icons/bi';
-// import { FaHeart } from 'react-icons/fa'; // 全愛心
-
 // ProductAddCart.js 內容說明：商品細節頁右方的加入購物車區
 
 import React, { useState, useEffect } from 'react';
@@ -15,13 +11,18 @@ import {
   AiOutlinePlus,
   AiOutlineMinus,
 } from 'react-icons/ai';
+import { BiHeart } from 'react-icons/bi';
+// import { FaHeart } from 'react-icons/fa'; // 全愛心
 import 'animate.css';
+import { useAuth } from '../../../../context/auth';
 import { IMAGE_URL } from '../../../../utils/config';
 
 function ProductAddCart(props) {
+  // 會員資料傳入useContext
+  const { auth, setAuth } = useAuth();
+  console.log('auth', auth);
+
   const {
-    auth,
-    setAuth,
     product,
     count,
     setCount,
@@ -99,13 +100,10 @@ function ProductAddCart(props) {
     setMycart(currentCart);
     console.log('ProductAddCart.js - currentCart', currentCart);
     // console.log('ProductAddCart.js - mycart', mycart);
-
-    // if (auth === null) {
-    //   return alert('請登入會員');
-    // } else {
-    // }
   };
 
+  console.log('goToCart', goToCart);
+  // 登入才可以進購物車
   if (goToCart) {
     return <Navigate to="/product-cart01"></Navigate>;
   }
