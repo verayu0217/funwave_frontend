@@ -16,7 +16,7 @@ function CourseStep(props) {
           >
             <div className="fs-1 w-25 text-center">01</div>
             <div className="w-75">
-              確認課程明細及選擇付款方式
+              確認課程明細
               <br />
               Cart & Check out
             </div>
@@ -30,7 +30,7 @@ function CourseStep(props) {
           >
             <div className="fs-1 w-25 text-center">02</div>
             <div className="w-75">
-              填寫訂購資料
+              填寫訂購資料及付款方式
               <br />
               Cart & Check out
             </div>

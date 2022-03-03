@@ -25,7 +25,7 @@ function CourseEvaluate() {
   // page可能是字串===是判斷型別這裡就parseInt
   // page從變數改用狀態並且從三元運算改為或
   const [page, setPage] = useState(parseInt(currentPage, 10) || 1);
-  console.log('currentPage', currentPage);
+  // console.log('currentPage', currentPage);
 
   // useEffect(() => {
   //   let getEvaluate = async () => {
@@ -38,7 +38,7 @@ function CourseEvaluate() {
   //   getEvaluate();
   // }, []);
 
-  //TODO:取資料庫評價與圖片 有分頁後端先改用get
+  //取資料庫評價與圖片 有分頁後端先改用get
   useEffect(() => {
     let getEvaluate = async () => {
       // http://localhost:3002/api/course/course-evaluate
@@ -101,24 +101,10 @@ function CourseEvaluate() {
             <Edit auth={auth} add={setData} />
           </div>
 
-          {/* TODO:寫分頁 */}
           {/* <!-- 分頁 (Pagination) --> */}
           <nav aria-label="...">
             <ul className="pagination justify-content-center mt-3">
               {getPages()}
-              {/* <li className="page-item active" aria-current="page">
-                <span className="page-link">1</span>
-              </li>
-              <li className="page-item">
-                <a className="page-link" href="#/">
-                  2
-                </a>
-              </li>
-              <li className="page-item">
-                <a className="page-link" href="#/">
-                  3
-                </a>
-              </li> */}
             </ul>
           </nav>
         </div>

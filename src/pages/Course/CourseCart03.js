@@ -7,7 +7,6 @@ function CourseCart03(props) {
   const { step, setStep } = props;
 
   Swal.fire('報名成功，感謝您！');
-  // TODO:付款頁面尚未完成
 
   return (
     <>
