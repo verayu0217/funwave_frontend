@@ -141,6 +141,7 @@ function ProductCart01() {
     setDelivery(e.target.value);
   }
 
+  // 儲存付款方式、運送方式到localStorage，供下一頁Cart02使用
   useEffect(() => {
     localStorage.setItem('payment', JSON.stringify(payment));
     localStorage.setItem('delivery', JSON.stringify(delivery));
@@ -153,10 +154,10 @@ function ProductCart01() {
     </div>
   );
 
-  console.log('payment', payment);
-  console.log('delivery', delivery);
+  // console.log('payment', payment);
+  // console.log('delivery', delivery);
 
-  console.log('goToCart', goToCart);
+  // console.log('goToCart', goToCart);
   // 登入才可以進購物車
   if (goToCart) {
     return <Navigate to="/product-cart01"></Navigate>;

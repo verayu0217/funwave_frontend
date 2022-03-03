@@ -8,6 +8,7 @@ import './Cart.scss';
 import CartHeader from '../Components/Cart/CartHeader02.js';
 import CartMemberInfo from '../Components/Cart/CartMemberInfo.js';
 import CartReceiverInfo from '../Components/Cart/CartReceiverInfo.js';
+import CartShipping from '../Components/Cart/CartShipping.js';
 import { useAuth } from '../../../context/auth'; // 從useContext拿會員資料
 import { API_URL } from '../../../utils/config';
 
@@ -19,6 +20,10 @@ function ProductCart02() {
   // 將localStorage的資料(productCartDisplay)存為狀態orderCart
   const [orderCart, setOrderCart] = useState([]);
 
+  // 將localStorage的付款方式、運送方式(payment、delivery)存為狀態payment、delivery
+  const [payment, setPayment] = useState('信用卡');
+  const [delivery, setDelivery] = useState('宅配到府');
+
   // 表單元素 (要存進order-list、order_details資料表)
   const [order, setOrder] = useState({
     member_id: 0,
@@ -28,7 +33,7 @@ function ProductCart02() {
     delivery: 'a',
     receiver: '收件人',
     receiver_phone: '0988888888',
-    address: '地址',
+    address: '三重區',
     convenient_store: '',
     status: '訂單處理中',
     order_time: '2021-12-13 14:33:56',
@@ -52,6 +57,9 @@ function ProductCart02() {
 
   // 收件人資訊勾選同訂購人資訊
   const [receiverSync, setReceiverSync] = useState(false); // true代表收件人資訊勾選同訂購人資訊
+
+  // 配送資訊勾選同訂購人地址
+  const [addressSync, setAddressSync] = useState(false); // true代表配送資訊勾選同訂購人地址
 
   const [validated, setValidated] = useState(false);
 
@@ -79,9 +87,8 @@ function ProductCart02() {
     '宜蘭縣',
   ];
 
-  // 會員資料帶入訂購人資訊
+  // 會員資料帶入訂購人資訊 (member_id、memberName、memberEmail、memberPhone、memberAddress，從useContext帶入)
   useEffect(() => {
-    // member_id、memberName、memberEmail、memberPhone、memberAddress，從useContext帶入
     // 這裡條件還是無法阻擋重整auth為null而壞掉的情況！
     if (auth !== null) {
       setOrder({
@@ -109,6 +116,32 @@ function ProductCart02() {
     }
   }, [receiverSync]);
 
+  // 收件人資訊勾選同訂購人資訊
+  useEffect(() => {
+    if (addressSync === true) {
+      setOrder({
+        ...order,
+        address: memberAddress,
+      });
+    } else {
+    }
+  }, [addressSync]);
+
+  // 拿取前一頁Cart01儲存在localStorage的付款方式、運送方式，將其儲存為狀態payment、delivery
+  useEffect(() => {
+    let localStoragePayment = JSON.parse(
+      localStorage.getItem('payment') || '[]'
+    );
+    let localStorageDelivery = JSON.parse(
+      localStorage.getItem('delivery') || '[]'
+    );
+    setPayment(localStoragePayment);
+    setDelivery(localStorageDelivery);
+  }, []);
+
+  console.log('payment02', payment);
+  console.log('delivery02', delivery);
+
   // react-bootstrap原本的
   const handleSubmit = (e) => {
     const form = e.currentTarget;
@@ -126,6 +159,7 @@ function ProductCart02() {
   console.log('memberAddress', memberAddress);
   console.log('memberSync', memberSync);
   console.log('receiverSync', receiverSync);
+  console.log('addressSync', addressSync);
 
   return (
     <>
@@ -170,6 +204,14 @@ function ProductCart02() {
                     setReceiverSync={setReceiverSync}
                   />
                   {/* 配送資訊 */}
+                  <CartShipping
+                    order={order}
+                    setOrder={setOrder}
+                    delivery={delivery}
+                    setDelivery={setDelivery}
+                    addressSync={addressSync}
+                    setAddressSync={setAddressSync}
+                  />
 
                   {/* 發票資訊，目前無作用！ */}
 
