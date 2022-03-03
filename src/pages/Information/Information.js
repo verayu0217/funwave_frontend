@@ -11,7 +11,7 @@ import { FaLongArrowAltRight } from 'react-icons/fa';
 import axios from 'axios';
 import { API_URL } from '../../utils/config';
 import { IMAGE_URL } from '../../utils/config';
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import Pagination from 'react-bootstrap/Pagination';
 import onClick from 'react-bootstrap/PageItem';
 import PageItem from 'react-bootstrap/PageItem';
@@ -151,7 +151,7 @@ function Information() {
                 // 模擬和伺服器要資料
                 let response = await axios.get(`${API_URL}/information/caro`);
                 //看看response抓到什麼
-                console.log(response);
+                // console.log(response);
                 // 最後設定到狀態中
                 setCaroData(response.data);
             };
@@ -167,7 +167,7 @@ function Information() {
                 // 模擬和伺服器要資料
                 let response = await axios.get(`${API_URL}/information?page=${nowPage}`); // pagination
                 //看看response抓到什麼
-                console.log(response);
+                // console.log(response);
                 // 最後設定到狀態中
                 setAllInfo(response.data.pageData);
                 setAllLastPage(response.data.pagination.lastPage);
@@ -184,7 +184,7 @@ function Information() {
                         {searchWord, nowPage}
                     );
                     
-                    console.log("有沒有送搜尋關鍵字到後端", response.data);
+                    // console.log("有沒有送搜尋關鍵字到後端", response.data);
 
                     setAllInfo(response.data.pageData);
                     setAllLastPage(response.data.pagination.lastPage);
@@ -208,7 +208,7 @@ function Information() {
                 // 模擬和伺服器要資料
                 let response = await axios.get(`${API_URL}/information/cat-one?page=${catOneNowPage}`);
                 //看看response抓到什麼
-                console.log(response);
+                // console.log(response);
                 // 最後設定到狀態中
                 setCatOneInfo(response.data.pageData);
                 setCatOneLastPage(response.data.pagination.lastPage);
@@ -223,7 +223,7 @@ function Information() {
                         {catOneSearchWord, catOneNowPage}
                     );
                     
-                    console.log("有沒有送搜尋關鍵字到後端", response.data);
+                    // console.log("有沒有送搜尋關鍵字到後端", response.data);
 
                     setCatOneInfo(response.data.pageData);
                     setCatOneLastPage(response.data.pagination.lastPage);
@@ -243,7 +243,7 @@ function Information() {
                 // 模擬和伺服器要資料
                 let response = await axios.get(`${API_URL}/information/cat-two?page=${catTwoNowPage}`);
                 //看看response抓到什麼
-                console.log(response);
+                // console.log(response);
                 // 最後設定到狀態中
                 setCatTwoInfo(response.data.pageData);
                 setCatTwoLastPage(response.data.pagination.lastPage)
@@ -258,7 +258,7 @@ function Information() {
                         {catTwoSearchWord, catTwoNowPage}
                     );
                     
-                    console.log("有沒有送搜尋關鍵字到後端", response.data);
+                    // console.log("有沒有送搜尋關鍵字到後端", response.data);
 
                     setCatTwoInfo(response.data.pageData);
                     setCatTwoLastPage(response.data.pagination.lastPage);
@@ -368,7 +368,7 @@ function Information() {
                         {/* 資訊大標題 */}
                         <div className="d-flex justify-content-center align-items-center flex-row pt-4 pb-4 titleInfo">
                                 <img src={greenTitle} className="me-3" alt="greenTitle" height="24px" width="64px"/>
-                                <h1 className="m-0 fw-bold">全部文章</h1>
+                                <h1 className="m-0 fw-bold deepblue">全部文章</h1>
                         </div>
                         {/* 卡片容器 */}
                         <div className="row d-flex justify-content-center">
@@ -386,39 +386,40 @@ function Information() {
                                 return (
                                 <React.Fragment key={allInfoItem.info_id}>
                                 <div className="col-12 col-lg-5 p-5" key={allInfoItem.info_no}>
-                            
+                                    <Link to={`/information/${allInfoItem.info_no}`} style={{textDecoration: 'none', color: '#333333'}}>
                                     {/* 卡片本體-中間 */}
-                                <div className="cardHome shadow">
-                                    {/* 卡片圖片容器-中間 */}
-                                    <div className="cardPicDivHome d-flex justify-content-center align-items-center">
-                                        {/* 卡片圖片標籤-中間 */}
-                                        <span class="badgeHome badge bg-dark h6">{allInfoItem.info_cat}</span>
-                                        {/* 卡片圖片本體-中間 */}
-                                        <img class="cardPicHome" src={`${IMAGE_URL}/information/${allInfoItem.big_img}`} alt={allInfoItem.big_img}/>
-                                    </div>
-                                    {/* 卡片文字容器-中間 */}
-                                    <div>
-                                        <div className="cardTitleHome px-4 pt-4 pb-4">
-                                            <h3>{allInfoItem.big_title}</h3>
+                                    <div className="cardHome shadow">
+                                        {/* 卡片圖片容器-中間 */}
+                                        <div className="cardPicDivHome d-flex justify-content-center align-items-center">
+                                            {/* 卡片圖片標籤-中間 */}
+                                            <span class="badgeHome badge bg-dark h6">{allInfoItem.info_cat}</span>
+                                            {/* 卡片圖片本體-中間 */}
+                                            <img class="cardPicHome" src={`${IMAGE_URL}/information/${allInfoItem.big_img}`} alt={allInfoItem.big_img}/>
                                         </div>
-                                        <div className="cardTextHome px-4 pt-4 pb-4">
-                                            <p>{allInfoItem.one_text_one}</p>
+                                        {/* 卡片文字容器-中間 */}
+                                        <div>
+                                            <div className="cardTitleHome px-4 pt-4 pb-4">
+                                                <h3>{allInfoItem.big_title}</h3>
+                                            </div>
+                                            <div className="cardTextHome px-4 pt-4 pb-4">
+                                                <p>{allInfoItem.one_text_one}</p>
+                                            </div>
+                                            <div className="cardinfoHome d-flex justify-content-between align-items-center px-4 pt-5 pb-4">
+                                                {/* 文章卡片按鈕 */}
+                                                <h6>{allInfoItem.create_time} {allInfoItem.author}</h6>
+                                                <div>
+                                                    <a className="btn btn-primary" href="" onClick={()=> navigate(`/information/${allInfoItem.info_no}`)}>看更多
+                                                    <FaLongArrowAltRight
+                                                            className="ps-2"
+                                                            size={24}
+                                                            color="#ffffff"
+                                                    />
+                                                    </a>
+                                                </div> {/* 文章卡片按鈕-結束 */}
+                                            </div>
                                         </div>
-                                        <div className="cardinfoHome d-flex justify-content-between align-items-center px-4 pt-5 pb-4">
-                                            {/* 文章卡片按鈕 */}
-                                            <h6>{allInfoItem.create_time} {allInfoItem.author}</h6>
-                                            <div>
-                                                <a className="btn btn-primary" href="" onClick={()=> navigate(`/information/${allInfoItem.info_no}`)}>看更多
-                                                <FaLongArrowAltRight
-                                                        className="ps-2"
-                                                        size={24}
-                                                        color="#ffffff"
-                                                />
-                                                </a>
-                                            </div> {/* 文章卡片按鈕-結束 */}
-                                        </div>
-                                    </div>
-                                </div> {/* 卡片本體-中間 cardHome */}
+                                    </div> {/* 卡片本體-中間 cardHome */}
+                                    </Link>
                                 </div> {/* column */}
                                 </React.Fragment>
                                 );
@@ -451,7 +452,7 @@ function Information() {
                         {/* 資訊大標題 */}
                         <div className="d-flex justify-content-center align-items-center flex-row pt-4 pb-4 titleInfo">
                                 <img src={greenTitle} className="me-3" alt="greenTitle" height="24px" width="64px"/>
-                                <h1 className="m-0 fw-bold">人物故事</h1>
+                                <h1 className="m-0 fw-bold deepblue">人物故事</h1>
                         </div>
                         {/* 卡片容器 */}
                         <div className="row d-flex justify-content-center">
@@ -475,9 +476,9 @@ function Information() {
                                     {/* 卡片圖片容器-中間 */}
                                     <div className="cardPicDivHome d-flex justify-content-center align-items-center">
                                         {/* 卡片圖片標籤-中間 */}
-                                        <span class="badgeHome badge bg-dark h6">{catOneItem.info_cat}</span>
+                                        <span className="badgeHome badge bg-dark h6">{catOneItem.info_cat}</span>
                                         {/* 卡片圖片本體-中間 */}
-                                        <img class="cardPicHome" src={`${IMAGE_URL}/information/${catOneItem.big_img}`} alt={catOneItem.big_img}/>
+                                        <img className="cardPicHome" src={`${IMAGE_URL}/information/${catOneItem.big_img}`} alt={catOneItem.big_img}/>
                                     </div>
                                     {/* 卡片文字容器-中間 */}
                                     <div>
@@ -534,7 +535,7 @@ function Information() {
                         {/* 資訊大標題 */}
                         <div className="d-flex justify-content-center align-items-center flex-row pt-4 pb-4 titleInfo">
                                 <img src={greenTitle} className="me-3" alt="greenTitle" height="24px" width="64px"/>
-                                <h1 className="m-0 fw-bold">衝浪主題</h1>
+                                <h1 className="m-0 fw-bold deepblue">衝浪主題</h1>
                         </div>
                         {/* 卡片容器 */}
                         <div className="row d-flex justify-content-center">
@@ -557,9 +558,9 @@ function Information() {
                                     {/* 卡片圖片容器-中間 */}
                                     <div className="cardPicDivHome d-flex justify-content-center align-items-center">
                                         {/* 卡片圖片標籤-中間 */}
-                                        <span class="badgeHome badge bg-dark h6">{catTwoItem.info_cat}</span>
+                                        <span className="badgeHome badge bg-dark h6">{catTwoItem.info_cat}</span>
                                         {/* 卡片圖片本體-中間 */}
-                                        <img class="cardPicHome" src={`${IMAGE_URL}/information/${catTwoItem.big_img}`} alt={catTwoItem.big_img}/>
+                                        <img className="cardPicHome" src={`${IMAGE_URL}/information/${catTwoItem.big_img}`} alt={catTwoItem.big_img}/>
                                     </div>
                                     {/* 卡片文字容器-中間 */}
                                     <div>

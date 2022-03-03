@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import './Home.scss';
 
 // 首頁、關於引用
-import logoPicW from '../../data/images/logoPicW.svg';
+import logoPicW from '../../data/images/home/logoPicW.png';
 import greenTitle from '../../data/images/greenTitle.svg';
 import waveVerticalW from '../../data/images/home/waveVerticalW.svg';
 
@@ -212,9 +212,6 @@ function Home() {
     }, []);
 
 
-    
-
-
 
 
 return (
@@ -223,7 +220,7 @@ return (
     <div className="container-fluid heroSectionHome">
         {/* 首頁logo */}
         <div className="d-flex justify-content-center align-items-end logoPicHome">
-                <img src={logoPicW} className="logoPicW ratio ratio-1x1" alt="logoPicW" height=""></img>
+                <img src={logoPicW} className="logoPicW" alt="logoPicW" height=""></img>
         </div>
         {/* 首頁slogan */}
         <div className="d-flex justify-content-center text-center sloganHome px-5">
@@ -239,7 +236,7 @@ return (
                 {/* 大標題 */}
                 <div className="d-flex justify-content-center align-items-center titleAboutHome">
                     <img src={greenTitle} className="me-3" alt="greenTitle" height="24px" weight="64px"/>
-                    <h1 className="m-0 fw-bold">FUNWAVE · FUN浪</h1>
+                    <h1 className="m-0 fw-bold deepblue">FUNWAVE · FUN浪</h1>
                 </div>
             </div>
             {/* 副標題 */}
@@ -296,7 +293,7 @@ return (
         <div className="row d-flex space-between pb-4">   
                 <div className="d-flex justify-content-center align-items-center titleShopHome">
                     <img src={greenTitle} className="me-3" alt="greenTitle" height="24px" width="64px"/>
-                    <h1 className="m-0 fw-bold">FUN商店 · 精選衝浪商品 </h1>
+                    <h1 className="m-0 fw-bold deepblue">FUN商店 · 精選衝浪商品 </h1>
                 </div>
                 {/* 商店按鈕 */}
                 {/* <div className="d-flex justify-content-center">
@@ -597,7 +594,7 @@ return (
                     {/* 客製化大標題 */} 
                     <div className="d-flex justify-content-start align-items-center pb-4 titleCustomHome">
                         <img src={greenTitle} className="me-3" alt="greenTitle" height="24px" width="64px"/>
-                        <h1 className="m-0 fw-bold">FUN訂製 · 客製化衝浪板</h1>
+                        <h1 className="m-0 fw-bold deepblue">FUN訂製 · 客製化衝浪板</h1>
                     </div>
                     {/* 客製化描述之一 */} 
                     <div className="row pb-4 d-flex justify-content-start">
@@ -687,7 +684,7 @@ return (
                         {/* 課程大標題 */} 
                         <div className="d-flex justify-content-start align-items-center pb-4 titleCustomHome">
                             <img src={greenTitle} className="me-3" alt="greenTitle" height="24px" width="64px"/>
-                            <h1 className="m-0 fw-bold">FUN課程 · 精心規劃安排</h1>
+                            <h1 className="m-0 fw-bold deepblue">FUN課程 · 精心規劃安排</h1>
                         </div>
                         <div className="d-flex justify-content-center align-items-center pb-4">
                             <FaCrown
@@ -781,7 +778,7 @@ return (
                         {/* 教練大標題 */}
                         <div className="d-flex justify-content-center align-items-center flex-row pb-4 titleCustomHome">
                                 <img src={greenTitle} className="me-3" alt="greenTitle" height="24px" width="64px"/>
-                                <h1 className="m-0 fw-bold">FUN心教練 · 用心教學</h1>
+                                <h1 className="m-0 fw-bold deepblue">FUN心教練 · 用心教學</h1>
                         </div>
                         {/* 教練01 */}
                         <div className="row d-flex align-items-center pb-4">
@@ -866,7 +863,7 @@ return (
             {/* 浪點大標題 */}
             <div className="d-flex justify-content-center align-items-center flex-row pb-4 titleCustomHome">
                     <img src={greenTitle} className="me-3" alt="greenTitle" height="24px" width="64px"/>
-                    <h1 className="m-0 fw-bold">FUN浪點 · 即時浪點資訊</h1>
+                    <h1 className="m-0 fw-bold deepblue">FUN浪點 · 即時浪點資訊</h1>
             </div>
             <div className="d-flex justify-content-center align-items-center flex-row">
                 <img src={taiwanHome} className="me-3" alt="taiwanHome" height="748px" width="492px"/>
@@ -895,7 +892,7 @@ return (
             {/* 資訊大標題 */}
             <div className="d-flex justify-content-center align-items-center flex-row pb-4 titleCustomHome">
                     <img src={greenTitle} className="me-3" alt="greenTitle" height="24px" width="64px"/>
-                    <h1 className="m-0 fw-bold">FUN浪日誌 · 衝浪新知文章</h1>
+                    <h1 className="m-0 fw-bold deepblue">FUN浪日誌 · 衝浪新知文章</h1>
             </div>
 
             <div>
@@ -904,6 +901,16 @@ return (
                     setCardInfoData={setCardInfoData}
                 />
             </div>
+            {/* 文章按鈕 */}
+            <div className="d-flex justify-content-center align-items-center flex-row py-5">
+                <a className="btn btn-primary ps-5" href="/information">看更多衝浪文章
+                <FaLongArrowAltRight
+                        className="ps-2 me-5"
+                        size={24}
+                        color="#ffffff"
+                />
+                </a>
+            </div> {/* 文章按鈕-結束 */}
 
         </div> {/* 資訊容器 container */}
     </div> {/* container-fluid */}

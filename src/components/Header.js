@@ -88,17 +88,15 @@ function MyNavbar() {
               {/* 登入/登出判斷 */}
               {auth ? (
                 <>
-                  <img
-                    id="preview-photo"
-                    className="photo-img cover-fit"
-                    src={`http://localhost:3002${auth.photo}`}
-                    style={{
-                      width: '50px',
-                      height: '50px',
-                      borderRadius: '50%',
-                    }}
-                  />
-                  <span>&ensp;{auth.name}</span>
+                  <div className="d-flex align-items-center">
+                    <img
+                      className={`headerImgMember cover-fit me-2 ${
+                        auth.photo == '' ? 'd-none' : 'd-block'
+                      }`}
+                      src={`http://localhost:3002${auth.photo}`}
+                    />
+                    <p className="mb-0">{auth.name}</p>
+                  </div>
                   <Nav.Link
                     className="btnLogin mx-2"
                     as={NavLink}

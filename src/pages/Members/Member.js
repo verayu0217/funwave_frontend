@@ -39,7 +39,7 @@ function Member() {
                     <Nav.Link className="fs-24Member linkWidthMember my-5">
                       您好,
                       <br />
-                      {auth.member_name}
+                      {auth.name}
                     </Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
