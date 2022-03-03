@@ -109,7 +109,7 @@ function Information() {
         let pageList = [];
         for (let i = 1; i <= allLastPage; i++){
             pageList.push(
-            <div>
+            <div key={i}>
                 {nowPage === i ? <Pagination.Item key={i} onClick={(e) => setNowPage(i)} active>{i}</Pagination.Item> : <Pagination.Item key={i} onClick={(e) => setNowPage(i)}>{i}</Pagination.Item>}               
             </div> 
             );
@@ -122,7 +122,7 @@ function Information() {
         let pageList = [];
         for (let i = 1; i <= catOneLastPage; i++){
             pageList.push(
-            <div>
+            <div key={i}>
                 {catOneNowPage === i ? <Pagination.Item key={i} onClick={(e) => setCatOneNowPage(i)} active>{i}</Pagination.Item> : <Pagination.Item key={i} onClick={(e) => setCatOneNowPage(i)}>{i}</Pagination.Item>}               
             </div> 
             );
@@ -135,7 +135,7 @@ function Information() {
         let pageList = [];
         for (let i = 1; i <= catTwoLastPage; i++){
             pageList.push(
-            <div>
+            <div key={i}>
                 {catTwoNowPage === i ? <Pagination.Item key={i} onClick={(e) => setCatTwoNowPage(i)} active>{i}</Pagination.Item> : <Pagination.Item key={i} onClick={(e) => setCatTwoNowPage(i)}>{i}</Pagination.Item>}               
             </div> 
             );
@@ -284,7 +284,7 @@ function Information() {
 
         {caroData.map( (caroDataItem, i) => {
             return (
-            <React.Fragment key={caroDataItem.info_id}>
+            <React.Fragment key={i}>
             
             <Carousel activeIndex={index} onSelect={handleSelect}>
                 <Carousel.Item  className="">
@@ -297,7 +297,7 @@ function Information() {
                     </div>
                     <Carousel.Caption  className="">
                     <div className="d-flex flex-column align-items-start text-start mb-4">
-                        <span class="badge bg-dark h6">{caroDataItem.info_catA}</span>
+                        <span className="badge bg-dark h6">{caroDataItem.info_catA}</span>
                         <a className="h1 white caroAInfo" href="" onClick={()=> navigate(`/information/${caroDataItem.info_noA}`)}>{caroDataItem.big_titleA}
                         </a>
                         <h6>{caroDataItem.create_timeA} {caroDataItem.authorA}</h6>
@@ -312,7 +312,7 @@ function Information() {
                     />
                     <Carousel.Caption  className="">
                     <div className="d-flex flex-column align-items-start text-start mb-4">
-                        <span class="badge bg-dark h6">{caroDataItem.info_catB}</span>
+                        <span className="badge bg-dark h6">{caroDataItem.info_catB}</span>
                         <a className="h1 white caroAInfo" href="" onClick={()=> navigate(`/information/${caroDataItem.info_noB}`)}>{caroDataItem.big_titleB}
                         </a>
                         <h6>{caroDataItem.create_timeB} {caroDataItem.authorB}</h6>
@@ -327,7 +327,7 @@ function Information() {
                     />
                     <Carousel.Caption  className="">
                     <div className="d-flex flex-column align-items-start text-start mb-4">
-                        <span class="badge bg-dark h6">{caroDataItem.info_catC}</span>
+                        <span className="badge bg-dark h6">{caroDataItem.info_catC}</span>
                         <a className="h1 white caroAInfo" href="" onClick={()=> navigate(`/information/${caroDataItem.info_noC}`)}>{caroDataItem.big_titleC}
                         </a>
                         <h6>{caroDataItem.create_timeC} {caroDataItem.authorC}</h6>
@@ -384,7 +384,7 @@ function Information() {
                             {/* 全部文章卡片 */}
                             {allInfo.map( (allInfoItem, i) => {
                                 return (
-                                <React.Fragment key={allInfoItem.info_id}>
+                                <React.Fragment key={allInfoItem.info_no}>
                                 <div className="col-12 col-lg-5 p-5" key={allInfoItem.info_no}>
                                     <Link to={`/information/${allInfoItem.info_no}`} style={{textDecoration: 'none', color: '#333333'}}>
                                     {/* 卡片本體-中間 */}
@@ -392,9 +392,9 @@ function Information() {
                                         {/* 卡片圖片容器-中間 */}
                                         <div className="cardPicDivHome d-flex justify-content-center align-items-center">
                                             {/* 卡片圖片標籤-中間 */}
-                                            <span class="badgeHome badge bg-dark h6">{allInfoItem.info_cat}</span>
+                                            <span className="badgeHome badge bg-dark h6">{allInfoItem.info_cat}</span>
                                             {/* 卡片圖片本體-中間 */}
-                                            <img class="cardPicHome" src={`${IMAGE_URL}/information/${allInfoItem.big_img}`} alt={allInfoItem.big_img}/>
+                                            <img className="cardPicHome" src={`${IMAGE_URL}/information/${allInfoItem.big_img}`} alt={allInfoItem.big_img}/>
                                         </div>
                                         {/* 卡片文字容器-中間 */}
                                         <div>
@@ -468,7 +468,7 @@ function Information() {
                             {/* 分類一文章卡片 */}    
                             {catOneInfo.map( (catOneItem, i) => {
                                 return (
-                                <React.Fragment key={catOneItem.info_id}>
+                                <React.Fragment key={catOneItem.info_no}>
                                 <div className="col-12 col-lg-5 p-5" key={catOneItem.info_no} >
 
                                     {/* 卡片本體-中間 */}
@@ -551,7 +551,7 @@ function Information() {
                             {/* 分類二文章卡片 */}
                             {catTwoInfo.map( (catTwoItem, i) => {
                                 return (
-                                <React.Fragment key={catTwoItem.info_id}>
+                                <React.Fragment key={catTwoItem.info_no}>
                                 <div className="col-12 col-lg-5 p-5" key={catTwoItem.info_no}>
                                     {/* 卡片本體-中間 */}
                                 <div className="cardHome shadow">
