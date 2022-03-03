@@ -29,7 +29,7 @@ function Products() {
   const [priceHighest, setPriceHighest] = useState('all');
   // 篩選條件 - 品牌
   const [brand, setBrand] = useState('all');
-  // 篩選條件 - 顏色 (0代表沒有選此顏色，1代表有選此顏色)
+  // 篩選條件 - 顏色 (0代表沒有選此顏色)
   const [color1, setColor1] = useState('0');
   const [color2, setColor2] = useState('0');
   const [color3, setColor3] = useState('0');
@@ -40,11 +40,14 @@ function Products() {
   const [color8, setColor8] = useState('0');
   const [color9, setColor9] = useState('0');
   const [color, setColor] = useState('false'); // false代表沒有篩選任何顏色
-  // 篩選條件 - 顏色 (0代表沒有選此顏色，1代表有選此顏色)
+  // 篩選條件 - 適用衝浪舵類型 (0代表沒有選此顏色)
   const [fin1, setFin1] = useState('0');
   const [fin2, setFin2] = useState('0');
   const [fin3, setFin3] = useState('0');
-  const [fin, setFin] = useState('false'); // false代表沒有篩選任何顏色
+  const [fin, setFin] = useState('false'); // false代表沒有篩選任何適用衝浪舵類型
+
+  // 搜尋
+  const [search, setSearch] = useState('');
 
   // 載入指示器
   const [isLoading, setIsLoading] = useState(false);
@@ -67,7 +70,7 @@ function Products() {
     let getProducts = async () => {
       // 欲取得後端 http://localhost:3002/api/products 資料
       let response = await axios.get(
-        `${API_URL}/products?bigCats=${bigCatsClick}&smallCats=${smallCatsClick}&priceLowest=${priceLowest}&priceHighest=${priceHighest}&brand=${brand}&color=${color}&color1=${color1}&color2=${color2}&color3=${color3}&color4=${color4}&color5=${color5}&color6=${color6}&color7=${color7}&color8=${color8}&color9=${color9}&fin=${fin}&fin1=${fin1}&fin2=${fin2}&fin3=${fin3}`
+        `${API_URL}/products?bigCats=${bigCatsClick}&smallCats=${smallCatsClick}&priceLowest=${priceLowest}&priceHighest=${priceHighest}&brand=${brand}&color=${color}&color1=${color1}&color2=${color2}&color3=${color3}&color4=${color4}&color5=${color5}&color6=${color6}&color7=${color7}&color8=${color8}&color9=${color9}&fin=${fin}&fin1=${fin1}&fin2=${fin2}&fin3=${fin3}&search=${search}`
       );
       setProducts(response.data);
       setDisplayProducts(response.data);
@@ -93,6 +96,7 @@ function Products() {
     fin1,
     fin2,
     fin3,
+    search,
   ]);
 
   // 載入指示 spinner動畫
@@ -170,6 +174,7 @@ function Products() {
   console.log('fin1', fin1);
   console.log('fin2', fin2);
   console.log('fin3', fin3);
+  console.log('search', search);
 
   return (
     <>
@@ -245,11 +250,27 @@ function Products() {
                 type="text"
                 placeholder="  🔍  以商品名稱搜尋"
                 className="form-control mt-1 rounded-pill position-absolute top-0 end-0 w-25 text-muted"
-                value=""
+                value={search}
+                onChange={(e) => {
+                  setSearch(e.target.value);
+                }}
               />
-              <div className="d-flex justify-content-end mt-2 mb-2">
-                <SortBar sortBy={sortBy} setSortBy={setSortBy} />
-              </div>
+              {search !== '' && displayProducts.length === 0 ? (
+                <>
+                  <div className="p-5 text-center">
+                    <h2>
+                      未找到含有 "
+                      <span style={{ color: '#17a8a2' }}>{search}</span>
+                      " 的商品名稱
+                      <br />
+                    </h2>
+                  </div>
+                </>
+              ) : (
+                <div className="d-flex justify-content-end mt-2 mb-2">
+                  <SortBar sortBy={sortBy} setSortBy={setSortBy} />
+                </div>
+              )}
             </header>
             {isLoading ? spinner : <ProductList products={displayProducts} />}
 
