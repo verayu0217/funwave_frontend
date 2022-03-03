@@ -12,14 +12,16 @@ import {
   AiOutlineMinus,
 } from 'react-icons/ai';
 import { BiHeart } from 'react-icons/bi';
-// import { FaHeart } from 'react-icons/fa'; // 全愛心
+import { FaHeart } from 'react-icons/fa'; // 全愛心
 import 'animate.css';
 import { useAuth } from '../../../../context/auth';
+import { useFav } from '../../../../context/fav';
 import { IMAGE_URL } from '../../../../utils/config';
 
 function ProductAddCart(props) {
   // 會員資料傳入useContext
   const { auth, setAuth } = useAuth();
+  const { fav, setFav } = useFav();
   console.log('auth', auth);
 
   const {
@@ -32,8 +34,6 @@ function ProductAddCart(props) {
     setColorId,
     chosenProductOrder,
     setChosenProductOrder,
-    fav,
-    setFav,
   } = props;
   const [mycart, setMycart] = useState([]); // 要存進localStorage的資料
 
@@ -110,11 +110,16 @@ function ProductAddCart(props) {
     return <Navigate to="/product-cart01"></Navigate>;
   }
 
-  const toggleFavAction = (product) => {
+  const favorite = (item) => {
+    setFav(true);
     let currentProduct = JSON.parse(localStorage.getItem('likeID')) || [];
-    currentProduct.push(product);
+    currentProduct.push(item);
     localStorage.setItem('likeID', JSON.stringify(currentProduct));
-    console.log('currentProduct', currentProduct);
+  };
+  const deleteFavorite = (item) => {
+    setFav(false);
+    let currentProduct = JSON.parse(localStorage.getItem('likeID')) || [];
+    // currentProduct.find((item)=>{item===});
   };
 
   return (
@@ -122,13 +127,25 @@ function ProductAddCart(props) {
       {/* 商品名稱、品牌、小分類、貨號 */}
       <div className="d-flex justify-content-between">
         <h1>{product[0].name}</h1>
-        <BiHeart
-          size={30}
-          color="#ff7f6a"
-          className="proDetailHeart"
-          type="button"
-          onClick={() => toggleFavAction(setFav())}
-        />
+        {fav ? (
+          <FaHeart
+            size={30}
+            color="#ff7f6a"
+            className="proDetailHeart"
+            onClick={(e) => {
+              setFav(false);
+              deleteFavorite(product[0].product_group);
+            }}
+          />
+        ) : (
+          <BiHeart
+            size={30}
+            color="#ff7f6a"
+            className="proDetailHeart"
+            type="button"
+            onClick={(e) => favorite(product[0].product_group)}
+          />
+        )}
       </div>
 
       <h2>{brandTypes[product[0].brand_id - 1]}</h2>
