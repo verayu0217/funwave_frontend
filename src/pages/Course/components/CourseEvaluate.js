@@ -104,7 +104,25 @@ function CourseEvaluate() {
           {/* <!-- 分頁 (Pagination) --> */}
           <nav aria-label="...">
             <ul className="pagination justify-content-center mt-3">
+              {/* 加最前頁 */}
+              <li class="page-item">
+                  <a class="page-link" href="#/" onClick={(e) => {
+                    setPage(1);
+                    navigate(1); }} aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">Previous</span>
+                  </a>
+                </li>
               {getPages()}
+              {/* 加最後頁 */}
+              <li class="page-item">
+                <a class="page-link" href="#/" onClick={(e) => {
+                  setPage(lastPage);
+                  navigate({ lastPage }); }} aria-label="Next">
+                  <span aria-hidden="true">&raquo;</span>
+                  <span class="sr-only">Next</span>
+                </a>
+              </li>
             </ul>
           </nav>
         </div>
