@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { useAuth } from '../context/auth';
 import { API_URL } from '../utils/config';
 import { Navbar, Nav, NavDropdown, Container } from 'react-bootstrap';
+import Swal from 'sweetalert2';
 
 // 要使用能有active css效果的NavLink元件
 import { Link, NavLink } from 'react-router-dom';
@@ -12,6 +13,15 @@ import logo from '../data/images/FunwaveLogo-black2.png';
 
 function MyNavbar() {
   const { auth, setAuth } = useAuth();
+  const [cartCount, setCartCount] = useState(0);
+
+  setInterval(function () {
+    const productCart = localStorage.getItem('productCart');
+    if (productCart) {
+      setCartCount(JSON.parse(productCart).length);
+    }
+  }, 500);
+
   const handleLogout = async () => {
     await axios.get(`${API_URL}/auth/logout`, {
       withCredentials: true,
@@ -66,9 +76,9 @@ function MyNavbar() {
               {/* <button className="btn" type="submit">
               <i className="fas fa-shopping-cart"></i>
             </button> */}
-              <Nav.Link className="iconGroup" as={NavLink} to="/">
+              <Nav.Link className="iconGroup" as={NavLink} to="/product-cart01">
                 <i className="fas fa-shopping-cart"></i>
-                <span>&ensp;(0)</span>
+                <span>&ensp;({cartCount})</span>
               </Nav.Link>
               {/* <button className="btn" type="submit">
               <i className="fas fa-user"></i>
@@ -79,7 +89,7 @@ function MyNavbar() {
                 to="/member"
                 onClick={() => {
                   if (auth === null) {
-                    return alert('請先登入會員');
+                    Swal.fire('請先登入會員');
                   }
                 }}
               >
@@ -93,9 +103,9 @@ function MyNavbar() {
                       className={`headerImgMember cover-fit me-2 ${
                         auth.photo == '' ? 'd-none' : 'd-block'
                       }`}
-                      src={`http://localhost:3002${auth.photo}`}
+                      src={`http://localhost:3002${auth.member_photo}`}
                     />
-                    <p className="mb-0">{auth.name}</p>
+                    <p className="mb-0">{auth.member_name}</p>
                   </div>
                   <Nav.Link
                     className="btnLogin mx-2"
