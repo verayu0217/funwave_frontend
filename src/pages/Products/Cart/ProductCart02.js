@@ -17,30 +17,29 @@ function ProductCart02() {
   const { auth, setAuth } = useAuth();
   console.log('auth', auth);
 
-  // 將localStorage的資料(productCartDisplay)存為狀態orderCart
+  // 將localStorage的資料(productCartDisplay、payment、delivery、amount)存為狀態orderCart、payment、delivery、amount
   const [orderCart, setOrderCart] = useState([]);
-
-  // 將localStorage的付款方式、運送方式(payment、delivery)存為狀態payment、delivery
   const [payment, setPayment] = useState('信用卡');
   const [delivery, setDelivery] = useState('宅配到府');
+  const [amount, setAmount] = useState(0);
 
   // 表單元素 (要存進order-list、order_details資料表)
   const [order, setOrder] = useState({
-    member_id: 0,
+    member_id: 0, // 問題待釐清！
     amount: 0,
     payment: 'a',
-    payment_status: 'a',
-    delivery: 'a',
-    receiver: '收件人',
-    receiver_phone: '0988888888',
-    address: '三重區',
+    payment_status: '未付款',
+    delivery: '',
+    receiver: '',
+    receiver_phone: '',
+    address: '',
     convenient_store: '',
     status: '訂單處理中',
-    order_time: '2021-12-13 14:33:56',
+    order_time: '2021-12-13 14:33:56', // 待
     order_details: [
       { product_no: 12345, count: 30 },
       { product_no: 123456, count: 300 },
-    ],
+    ], // 待
   });
 
   // 子貨號、單價要存進order_details資料表
@@ -63,29 +62,32 @@ function ProductCart02() {
 
   const [validated, setValidated] = useState(false);
 
-  // 縣市
-  const counties = [
-    '請選擇縣市',
-    '台北市',
-    '新北市',
-    '桃園市',
-    '台中市',
-    '台南市',
-    '高雄市',
-    '基隆市',
-    '新竹市',
-    '新竹縣',
-    '彰化縣',
-    '苗栗縣',
-    '南投縣',
-    '雲林縣',
-    '嘉義市',
-    '嘉義縣',
-    '屏東縣',
-    '台東縣',
-    '花蓮縣',
-    '宜蘭縣',
-  ];
+  // 拿取前一頁Cart01儲存在localStorage的購物車品項、付款方式、運送方式、總金額，將其儲存為狀orderCart、payment、delivery
+  useEffect(() => {
+    const localStorageOrderCart = JSON.parse(
+      localStorage.getItem('productCartDisplay') || '[]'
+    );
+    let localStoragePayment = JSON.parse(
+      localStorage.getItem('payment') || '[]'
+    );
+    let localStorageDelivery = JSON.parse(
+      localStorage.getItem('delivery') || '[]'
+    );
+    let localStorageAmount = JSON.parse(localStorage.getItem('amount') || 0);
+    setOrderCart(localStorageOrderCart);
+    setPayment(localStoragePayment);
+    setDelivery(localStorageDelivery);
+    setAmount(localStorageAmount);
+  }, []);
+  console.log('amount', amount);
+
+  // 將狀態amount存入表單元素(狀態order)
+  useEffect(() => {
+    setOrder({
+      ...order,
+      amount: amount,
+    });
+  }, [amount]);
 
   // 會員資料帶入訂購人資訊 (member_id、memberName、memberEmail、memberPhone、memberAddress，從useContext帶入)
   useEffect(() => {
@@ -127,17 +129,14 @@ function ProductCart02() {
     }
   }, [addressSync]);
 
-  // 拿取前一頁Cart01儲存在localStorage的付款方式、運送方式，將其儲存為狀態payment、delivery
+  // 將狀態payment、delivery存入表單元素(狀態order)
   useEffect(() => {
-    let localStoragePayment = JSON.parse(
-      localStorage.getItem('payment') || '[]'
-    );
-    let localStorageDelivery = JSON.parse(
-      localStorage.getItem('delivery') || '[]'
-    );
-    setPayment(localStoragePayment);
-    setDelivery(localStorageDelivery);
-  }, []);
+    setOrder({
+      ...order,
+      payment: payment,
+      delivery: delivery,
+    });
+  }, [payment, delivery]);
 
   console.log('payment02', payment);
   console.log('delivery02', delivery);
@@ -160,6 +159,7 @@ function ProductCart02() {
   console.log('memberSync', memberSync);
   console.log('receiverSync', receiverSync);
   console.log('addressSync', addressSync);
+  console.log('orderCart', orderCart);
 
   return (
     <>
@@ -173,7 +173,12 @@ function ProductCart02() {
             <div className="row d-flex justify-content-center">
               <div className="col-8 m-0 p-0 shadow borderRadius">
                 <div className="p-4 border-bottom text-center">
-                  <h1>訂購資訊{order.member_id}</h1>
+                  <h1>
+                    訂購資訊{order.member_id}
+                    {order.payment}
+                    {order.delivery}
+                    {order.amount}
+                  </h1>
                 </div>
                 <Form
                   noValidate
