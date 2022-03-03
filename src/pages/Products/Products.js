@@ -296,6 +296,16 @@ function Products() {
                 </div>
               )}
             </header>
+            {search === '' && displayProducts.length === 0 ? (
+              <div className="p-4 text-center">
+                <h2>
+                  未有對應的商品名稱
+                  <br />
+                </h2>
+              </div>
+            ) : (
+              ''
+            )}
             {isLoading ? spinner : <ProductList products={displayProducts} />}
 
             {/* 星星圖備用 (全、半、空) */}
