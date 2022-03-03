@@ -36,10 +36,7 @@ function ProductCart02() {
     convenient_store: '',
     status: '訂單處理中',
     order_time: '2021-12-13 14:33:56', // 待
-    order_details: [
-      { product_no: 12345, count: 30 },
-      { product_no: 123456, count: 300 },
-    ], // 待
+    order_details: [],
   });
 
   // 子貨號、單價要存進order_details資料表
@@ -88,6 +85,20 @@ function ProductCart02() {
       amount: amount,
     });
   }, [amount]);
+
+  // 將整理好的購物車資料orderCart，物件陣列篩選欄位只剩product_no、count
+  useEffect(() => {
+    let map = orderCart.map((x) => _.pick(x, 'product_no', 'count'));
+    setOrderDetails(map);
+  }, [orderCart]);
+  console.log('orderDetails', orderDetails);
+
+  useEffect(() => {
+    setOrder({
+      ...order,
+      order_details: orderDetails,
+    });
+  }, [orderDetails]);
 
   // 會員資料帶入訂購人資訊 (member_id、memberName、memberEmail、memberPhone、memberAddress，從useContext帶入)
   useEffect(() => {
@@ -141,16 +152,24 @@ function ProductCart02() {
   console.log('payment02', payment);
   console.log('delivery02', delivery);
 
-  // react-bootstrap原本的
-  const handleSubmit = (e) => {
+  async function handleSubmit(e) {
+    // 送出資料前的驗證
     const form = e.currentTarget;
     if (form.checkValidity() === false) {
       e.preventDefault();
       e.stopPropagation();
     }
-
     setValidated(true);
-  };
+    e.preventDefault();
+
+    // 送出資料存進資料庫
+    try {
+      let response = await axios.post(`${API_URL}/cartProducts`, order);
+      console.log(response.data);
+    } catch (e) {
+      console.error('error', e.response.data);
+    }
+  }
 
   console.log('memberName', memberName);
   console.log('memberEmail', memberEmail);
