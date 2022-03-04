@@ -255,8 +255,8 @@ function ProductCart01() {
                 );
               })}
             </div>
-            {/* 付款及送貨方式 */}
-            <div className="col-5 borderRadius p-0 ms-4 shadow">
+            {/* 付款及配送方式 */}
+            <div className="col-5 borderRadius p-0 pb-4 ms-4 shadow align-self-start">
               <div className="p-4 border-bottom text-center">
                 <h1>付款及配送方式</h1>
               </div>
