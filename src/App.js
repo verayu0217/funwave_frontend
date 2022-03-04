@@ -68,7 +68,14 @@ import NotFound from './components/NotFound';
 
 function App() {
   const [auth, setAuth] = useState(null);
-  const [fav, setFav] = useState(false);
+  const [fav, setFav] = useState({
+    // status: false,
+    wishID: [],
+  });
+  useEffect(() => {
+    let wishProduct = JSON.parse(localStorage.getItem('likeID')) || [];
+    setFav({ ...fav, wishID: wishProduct });
+  }, []);
 
   console.log('App2', auth);
   useEffect(() => {

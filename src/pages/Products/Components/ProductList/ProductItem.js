@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Figure } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { IMAGE_URL } from '../../../../utils/config';
@@ -13,29 +13,25 @@ import { FaHeart } from 'react-icons/fa'; // 全愛心
 // 文字過長會跑版、後端圖片如何置換
 
 function ProductItem(props) {
-  const {
-    name,
-    image1,
-    price,
-    small_cat_id,
-    brand_id,
-    product_group,
-    product_id,
-  } = props.product;
+  const { name, image1, price, small_cat_id, brand_id, product_group } =
+    props.product;
   const { fav, setFav } = useFav();
 
   const favorite = (item) => {
-    setFav(true);
-    let currentProduct = JSON.parse(localStorage.getItem('likeID')) || [];
-    currentProduct.push(item);
-    localStorage.setItem('likeID', JSON.stringify(currentProduct));
+    let wishProduct = JSON.parse(localStorage.getItem('likeID')) || [];
+    wishProduct.push(item);
+    localStorage.setItem('likeID', JSON.stringify(wishProduct));
+    setFav({ ...fav, wishID: wishProduct });
   };
   const delFavorite = (item) => {
-    setFav(false);
-
-    let currentProduct = JSON.parse(localStorage.getItem('likeID')) || [];
-    localStorage.removeItem('likeID', JSON.stringify(currentProduct));
+    console.log('b', fav.wishID);
+    let filterwish = fav.wishID.filter((value) => value !== item);
+    setFav({ ...fav, wishID: filterwish });
+    console.log('bb', filterwish);
+    localStorage.removeItem('likeID');
+    localStorage.setItem('likeID', JSON.stringify(filterwish));
   };
+  console.log('a', fav);
   // 小分類、品牌的id對照名稱
   const smallCatTypes = [
     '長板',
@@ -65,13 +61,13 @@ function ProductItem(props) {
 
   return (
     <>
-      {fav ? (
+      {fav.wishID.includes(product_group) ? (
         <FaHeart
           size={21}
           color="#ff7f6a"
           className="position-absolute top-5"
           onClick={(e) => {
-            setFav(false);
+            delFavorite(product_group);
           }}
         />
       ) : (
@@ -79,12 +75,8 @@ function ProductItem(props) {
           size={21}
           color="#ff7f6a"
           className="position-absolute top-5"
-          // onClick={favorite(products.product_id)}
-          // onClick={() => {
-          //   setFav(true);
-          // }}
           onClick={(e) => {
-            favorite(product_id);
+            favorite(product_group);
           }}
         />
       )}
