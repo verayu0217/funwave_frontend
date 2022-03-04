@@ -155,20 +155,18 @@ function ProductCart02() {
   async function handleSubmit(e) {
     // 送出資料前的驗證
     const form = e.currentTarget;
+    e.preventDefault();
     if (form.checkValidity() === false) {
-      e.preventDefault();
       e.stopPropagation();
+    } else {
+      try {
+        let response = await axios.post(`${API_URL}/cartProducts`, order);
+        console.log(response.data);
+      } catch (e) {
+        console.error('error', e.response.data);
+      }
     }
     setValidated(true);
-    e.preventDefault();
-
-    // 送出資料存進資料庫
-    try {
-      let response = await axios.post(`${API_URL}/cartProducts`, order);
-      console.log(response.data);
-    } catch (e) {
-      console.error('error', e.response.data);
-    }
   }
 
   console.log('memberName', memberName);
