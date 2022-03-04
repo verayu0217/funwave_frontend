@@ -10,14 +10,14 @@ function FavoriteStar() {
   return (
     <>
       <Link to="/collect">
-        <div className="favWrap">
+        <div className="favWrap d-flex">
           <MdStar
             size={40}
             className="favStar"
             type="button"
             onClick=""
           ></MdStar>
-          <span className="myFav">我的收藏</span>
+          <div className="myFav">我的收藏</div>
         </div>
       </Link>
     </>
