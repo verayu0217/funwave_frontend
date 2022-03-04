@@ -65,6 +65,7 @@ import Header from './components/Header';
 // import MainContent from './components/MainContent';
 // import SideBar from './components/SideBar';
 import NotFound from './components/NotFound';
+import FavoriteStar from './components/FavoriteStar';
 
 function App() {
   const [auth, setAuth] = useState(null);
@@ -103,6 +104,7 @@ function App() {
           <Header />
           <ScrollToTop />
           {/* <Breadcrumb /> */}
+          <FavoriteStar />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/home" element={<Home />} />
