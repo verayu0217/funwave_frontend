@@ -19,30 +19,6 @@ function CartMemberInfo(props) {
     setMemberSync,
   } = props;
 
-  // 縣市
-  const counties = [
-    '請選擇縣市',
-    '台北市',
-    '新北市',
-    '桃園市',
-    '台中市',
-    '台南市',
-    '高雄市',
-    '基隆市',
-    '新竹市',
-    '新竹縣',
-    '彰化縣',
-    '苗栗縣',
-    '南投縣',
-    '雲林縣',
-    '嘉義市',
-    '嘉義縣',
-    '屏東縣',
-    '台東縣',
-    '花蓮縣',
-    '宜蘭縣',
-  ];
-
   return (
     <>
       {/* 訂購人資訊 */}
@@ -134,35 +110,23 @@ function CartMemberInfo(props) {
         </Form.Group>
 
         {/* 訂購人地址 */}
-        <div className="row mb-3">
-          <div className="col-4">
-            <Form.Label>縣市</Form.Label>
-            <Form.Select aria-label="select">
-              {counties.map((x, i) => (
-                <option value={x} key={i}>
-                  {x}
-                </option>
-              ))}
-            </Form.Select>
-          </div>
-          <div className="col-8">
-            <Form.Group controlId="validationCustom03">
-              <Form.Label>詳細地址</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="請輸入地址"
-                name="memberAddress"
-                value={memberAddress}
-                required
-                onChange={(e) => {
-                  setMemberAddress(e.target.value);
-                }}
-              />
-              <Form.Control.Feedback type="invalid">
-                請填寫訂購人詳細地址
-              </Form.Control.Feedback>
-            </Form.Group>
-          </div>
+        <div className="mb-3">
+          <Form.Group controlId="validationCustom03">
+            <Form.Label>詳細地址</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="請輸入地址"
+              name="memberAddress"
+              value={memberAddress}
+              required
+              onChange={(e) => {
+                setMemberAddress(e.target.value);
+              }}
+            />
+            <Form.Control.Feedback type="invalid">
+              請填寫訂購人詳細地址
+            </Form.Control.Feedback>
+          </Form.Group>
         </div>
       </div>
     </>

@@ -8,6 +8,7 @@ import './Cart.scss';
 import CartHeader from '../Components/Cart/CartHeader02.js';
 import CartMemberInfo from '../Components/Cart/CartMemberInfo.js';
 import CartReceiverInfo from '../Components/Cart/CartReceiverInfo.js';
+import CartShipping from '../Components/Cart/CartShipping.js';
 import { useAuth } from '../../../context/auth'; // 從useContext拿會員資料
 import { API_URL } from '../../../utils/config';
 
@@ -16,26 +17,26 @@ function ProductCart02() {
   const { auth, setAuth } = useAuth();
   console.log('auth', auth);
 
-  // 將localStorage的資料(productCartDisplay)存為狀態orderCart
+  // 將localStorage的資料(productCartDisplay、payment、delivery、amount)存為狀態orderCart、payment、delivery、amount
   const [orderCart, setOrderCart] = useState([]);
+  const [payment, setPayment] = useState('信用卡');
+  const [delivery, setDelivery] = useState('宅配到府');
+  const [amount, setAmount] = useState(0);
 
   // 表單元素 (要存進order-list、order_details資料表)
   const [order, setOrder] = useState({
-    member_id: 0,
+    member_id: 0, // 問題待釐清！
     amount: 0,
     payment: 'a',
-    payment_status: 'a',
-    delivery: 'a',
-    receiver: '收件人',
-    receiver_phone: '0988888888',
-    address: '地址',
+    payment_status: '未付款',
+    delivery: '',
+    receiver: '',
+    receiver_phone: '',
+    address: '',
     convenient_store: '',
     status: '訂單處理中',
-    order_time: '2021-12-13 14:33:56',
-    order_details: [
-      { product_no: 12345, count: 30 },
-      { product_no: 123456, count: 300 },
-    ],
+    order_time: '2021-12-13 14:33:56', // 待
+    order_details: [],
   });
 
   // 子貨號、單價要存進order_details資料表
@@ -53,35 +54,54 @@ function ProductCart02() {
   // 收件人資訊勾選同訂購人資訊
   const [receiverSync, setReceiverSync] = useState(false); // true代表收件人資訊勾選同訂購人資訊
 
+  // 配送資訊勾選同訂購人地址
+  const [addressSync, setAddressSync] = useState(false); // true代表配送資訊勾選同訂購人地址
+
   const [validated, setValidated] = useState(false);
 
-  // 縣市
-  const counties = [
-    '請選擇縣市',
-    '台北市',
-    '新北市',
-    '桃園市',
-    '台中市',
-    '台南市',
-    '高雄市',
-    '基隆市',
-    '新竹市',
-    '新竹縣',
-    '彰化縣',
-    '苗栗縣',
-    '南投縣',
-    '雲林縣',
-    '嘉義市',
-    '嘉義縣',
-    '屏東縣',
-    '台東縣',
-    '花蓮縣',
-    '宜蘭縣',
-  ];
-
-  // 會員資料帶入訂購人資訊
+  // 拿取前一頁Cart01儲存在localStorage的購物車品項、付款方式、運送方式、總金額，將其儲存為狀orderCart、payment、delivery
   useEffect(() => {
-    // member_id、memberName、memberEmail、memberPhone、memberAddress，從useContext帶入
+    const localStorageOrderCart = JSON.parse(
+      localStorage.getItem('productCartDisplay') || '[]'
+    );
+    let localStoragePayment = JSON.parse(
+      localStorage.getItem('payment') || '[]'
+    );
+    let localStorageDelivery = JSON.parse(
+      localStorage.getItem('delivery') || '[]'
+    );
+    let localStorageAmount = JSON.parse(localStorage.getItem('amount') || 0);
+    setOrderCart(localStorageOrderCart);
+    setPayment(localStoragePayment);
+    setDelivery(localStorageDelivery);
+    setAmount(localStorageAmount);
+  }, []);
+  console.log('amount', amount);
+
+  // 將狀態amount存入表單元素(狀態order)
+  useEffect(() => {
+    setOrder({
+      ...order,
+      amount: amount,
+    });
+  }, [amount]);
+
+  // 將整理好的購物車資料orderCart，物件陣列篩選欄位只剩product_no、count
+  useEffect(() => {
+    let map = orderCart.map((x) => _.pick(x, 'product_no', 'count'));
+    setOrderDetails(map);
+  }, [orderCart]);
+  console.log('orderDetails', orderDetails);
+
+  useEffect(() => {
+    setOrder({
+      ...order,
+      order_details: orderDetails,
+    });
+  }, [orderDetails]);
+
+  // 會員資料帶入訂購人資訊 (member_id、memberName、memberEmail、memberPhone、memberAddress，從useContext帶入)
+  useEffect(() => {
     // 這裡條件還是無法阻擋重整auth為null而壞掉的情況！
     if (auth !== null) {
       setOrder({
@@ -109,16 +129,47 @@ function ProductCart02() {
     }
   }, [receiverSync]);
 
-  // react-bootstrap原本的
-  const handleSubmit = (e) => {
+  // 收件人資訊勾選同訂購人資訊
+  useEffect(() => {
+    if (addressSync === true) {
+      setOrder({
+        ...order,
+        address: memberAddress,
+      });
+    } else {
+    }
+  }, [addressSync]);
+
+  // 將狀態payment、delivery存入表單元素(狀態order)
+  useEffect(() => {
+    setOrder({
+      ...order,
+      payment: payment,
+      delivery: delivery,
+    });
+  }, [payment, delivery]);
+
+  console.log('payment02', payment);
+  console.log('delivery02', delivery);
+
+  async function handleSubmit(e) {
+    // 送出資料前的驗證
     const form = e.currentTarget;
     if (form.checkValidity() === false) {
       e.preventDefault();
       e.stopPropagation();
     }
-
     setValidated(true);
-  };
+    e.preventDefault();
+
+    // 送出資料存進資料庫
+    try {
+      let response = await axios.post(`${API_URL}/cartProducts`, order);
+      console.log(response.data);
+    } catch (e) {
+      console.error('error', e.response.data);
+    }
+  }
 
   console.log('memberName', memberName);
   console.log('memberEmail', memberEmail);
@@ -126,6 +177,8 @@ function ProductCart02() {
   console.log('memberAddress', memberAddress);
   console.log('memberSync', memberSync);
   console.log('receiverSync', receiverSync);
+  console.log('addressSync', addressSync);
+  console.log('orderCart', orderCart);
 
   return (
     <>
@@ -139,7 +192,12 @@ function ProductCart02() {
             <div className="row d-flex justify-content-center">
               <div className="col-8 m-0 p-0 shadow borderRadius">
                 <div className="p-4 border-bottom text-center">
-                  <h1>訂購資訊{order.member_id}</h1>
+                  <h1>
+                    訂購資訊{order.member_id}
+                    {order.payment}
+                    {order.delivery}
+                    {order.amount}
+                  </h1>
                 </div>
                 <Form
                   noValidate
@@ -170,6 +228,14 @@ function ProductCart02() {
                     setReceiverSync={setReceiverSync}
                   />
                   {/* 配送資訊 */}
+                  <CartShipping
+                    order={order}
+                    setOrder={setOrder}
+                    delivery={delivery}
+                    setDelivery={setDelivery}
+                    addressSync={addressSync}
+                    setAddressSync={setAddressSync}
+                  />
 
                   {/* 發票資訊，目前無作用！ */}
 
@@ -184,10 +250,21 @@ function ProductCart02() {
                       />
                     </Form.Group>
                     <div className="d-flex justify-content-evenly mt-4">
-                      <button className="btn btn-secondary text-white">
-                        上一步
-                      </button>
-                      <Button type="submit">完成訂購！</Button>
+                      <Link to={`/product-cart01`}>
+                        <button className="btn btn-secondary text-white">
+                          上一步
+                        </button>
+                      </Link>
+                      <Button
+                        type="submit"
+                        // onClick={() => {
+                        //   if (order.convenient_store === '') {
+                        //     alert('請選擇門市');
+                        //   }
+                        // }}
+                      >
+                        完成訂購！
+                      </Button>
                     </div>
                   </div>
                 </Form>

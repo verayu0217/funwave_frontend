@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import {
-  Tab,
-  Row,
-  Col,
-  Nav,
-  Collapse,
-  Button,
-  Table,
-  Accordion,
-} from 'react-bootstrap';
+// import {
+//   Tab,
+//   Row,
+//   Col,
+//   Nav,
+//   Collapse,
+//   Button,
+//   Table,
+//   Accordion,
+// } from 'react-bootstrap';
+import Table from 'react-bootstrap/Table';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
@@ -96,7 +97,7 @@ const MemberOrder = () => {
   return (
     <>
       <div className="container mt-5">
-        <div className="row d-flex justify-content-center px-5">
+        <div className="row">
           <h2 className="mb-5 titleMember text-center">
             <span className="me-2">
               <img src={titleImgMember} className="titleImgMember" />
@@ -107,12 +108,9 @@ const MemberOrder = () => {
             <h3 className="fs-20Member">訂單查詢</h3>
           </div>
           <div className="">
-            {/* <table
-              responsive="sm"
-              className="table table-control align-middle text-center my-3 tableMemberOrder"
-            > */}
+            {/* <table className="table table-control align-middle text-center"> */}
             <Table
-              responsive="sm"
+              responsive
               hover
               className="table table-control align-middle text-center tableMemberOrderDetails"
             >
@@ -174,18 +172,46 @@ const MemberOrder = () => {
           </div>
           <nav aria-label="pageMember">
             <ul className="d-flex justify-content-center mt-5">
+              <li class="page-item">
+                <a
+                  class="page-link pageLinkMember"
+                  href="#/"
+                  onClick={(e) => {
+                    changePage(1);
+                    navigate(1);
+                  }}
+                  aria-label="Previous"
+                >
+                  <span aria-hidden="true">&laquo;</span>
+                  <span class="sr-only">Previous</span>
+                </a>
+              </li>
               {Array.from(Array(pages).keys()).map((p) => {
                 return (
                   <li className="page-item">
                     <a
                       className="page-link pageLinkMember"
-                      onClick={() => changePage(p + 1)}
+                      onClick={(e) => changePage(p + 1)}
                     >
                       {p + 1}
                     </a>
                   </li>
                 );
               })}
+              <li class="page-item">
+                <a
+                  class="page-link pageLinkMember"
+                  href="#/"
+                  onClick={(e) => {
+                    changePage(pages);
+                    navigate({ pages });
+                  }}
+                  aria-label="Next"
+                >
+                  <span aria-hidden="true">&raquo;</span>
+                  <span class="sr-only">Next</span>
+                </a>
+              </li>
             </ul>
           </nav>
         </div>
