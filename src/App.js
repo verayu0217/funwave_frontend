@@ -115,7 +115,9 @@ function App() {
             <Route path="/products/:product_group" element={<ProductDetails />}>
               <Route path=":product_id" element={<ProductDetails />} />
             </Route>
-            <Route path="/products" element={<Products />} />
+            <Route path="/products" element={<Products />}>
+              <Route path=":currentPage" element={<Products />} />
+            </Route>
             <Route path="/product-cart01" element={<ProductCart01 />} />
             <Route path="/product-cart02" element={<ProductCart02 />} />
             <Route path="/product-cart03" element={<ProductCart03 />} />
