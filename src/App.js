@@ -72,6 +72,7 @@ function App() {
     // status: false,
     wishID: [],
   });
+  // 初始化就要抓localStorage裡有加入收藏的wishID
   useEffect(() => {
     let wishProduct = JSON.parse(localStorage.getItem('likeID')) || [];
     setFav({ ...fav, wishID: wishProduct });
