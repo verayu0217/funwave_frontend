@@ -11,12 +11,7 @@ function FavoriteStar() {
     <>
       <Link to="/collect">
         <div className="favWrap">
-          <MdStar
-            size={40}
-            className="favStar"
-            type="button"
-            onClick=""
-          ></MdStar>
+          <MdStar size={40} className="favStar" type="button"></MdStar>
           <span className="myFav">我的收藏</span>
         </div>
       </Link>
