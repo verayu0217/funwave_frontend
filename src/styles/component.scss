@@ -67,32 +67,26 @@
 // 我的最愛星星
 .favWrap{
   position: absolute;
-  background: #ffffff;
+  background: $funwave-lightgray;
   right: 0;
-  transform: translateY(20px);
+  transform: translateY(70px);
   padding: 5px 10px 5px 5px;
   border-radius: 8px 0 0 8px;
   box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.2);
   z-index: 200;
-  transition: display .3s;
-}
-// .favWrap::after{
-//   content:"我的收藏";
-//   transition: 1s;
-//   padding: 20px 0 0 5px;
-//   max-width: 0;
-//   overflow: hidden;
-// }
-.favWrap:hover .myFav{
-  display: inline-block;
-  max-width: 100px;
-  padding: 5px 0 0 5px;
 }
 .myFav{
-  display: none;
+  max-width: 0;
+  transition: .5s;
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 8px 0 0 5px;
+}
+.favWrap:hover .myFav{
+  max-width: 100px;
 }
 .favStar{
-  color: #f0dd31;
+  color: $funwave-deepblue;
 }
 @media screen and (max-width: 1100px) {
   .nav-menu {

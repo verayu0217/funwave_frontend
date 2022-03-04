@@ -10,6 +10,8 @@ import Swal from 'sweetalert2';
 
 import { useAuth } from '../../context/auth';
 
+import CreditCard from './components/CreditCard';
+import './components/CreditCard.css';
 import './CourseCart.scss';
 
 function CourseCart02(props) {
@@ -26,24 +28,14 @@ function CourseCart02(props) {
     choosePay: '',
   });
 
-  // useEffect(() => {
-  //   if (payMethod.choosePay !== '') {
-  //     setPayMethod({
-  //       choosePay: JSON.parse(localStorage.getItem('payMethod')),
-  //     });
-  //   }
-  // }, []);
-
-  const [creditCard, setCreditCard] = useState({
-    cardName: '',
-    cardNum1: '',
-    cardNum2: '',
-    cardNum3: '',
-    cardNum4: '',
-    cardMonth: '',
-    cardYear: '',
-    cardThree: '',
-  });
+  // 表單返回怎麼保留付款狀態
+  useEffect(() => {
+    const Method = localStorage.getItem('payMethod');
+    console.log(payMethod, Method);
+    if (payMethod.choosePay !== Method) {
+      setPayMethod({ choosePay: JSON.parse(Method) });
+    }
+  }, []);
 
   // 取得會員名稱給表單資料
   useEffect(() => {
@@ -51,26 +43,14 @@ function CourseCart02(props) {
       setName(auth.name);
       setEmail(auth.email);
       setPhone(auth.phone);
-      // TODO:性別怎麼從資料庫取得
     }
   });
-
-  function handleCard(e) {
-    setCreditCard({ ...creditCard, [e.target.name]: e.target.value });
-    //e.target.name可以抓到input的名稱當作key值用中括號
-  }
-  function next(obj, next) {
-    if (obj.value.length == obj.maxLength)
-      //注意此處maxLength的大小寫
-      obj.form.elements[next].focus();
-  }
-  console.log(creditCard);
 
   // 送出資料存進資料庫
   async function handleSubmit(e) {
     e.preventDefault();
 
-    if (payMethod.choosePay === '') {
+    if (!payMethod.choosePay) {
       Swal.fire('請選擇付款方式');
       setStep({ ...step, step1: '', step2: true });
     } else {
@@ -157,8 +137,16 @@ function CourseCart02(props) {
         </table>
 
         {/* <總計  */}
-        <div className="d-flex justify-content-end">
-          <p className="h3 ">訂單總金額: NT {localStorage.getItem('amount')}</p>
+        {/* TODO:金額總計算.toLocaleString()沒用 */}
+        <div className="d-flex flex-column">
+          <p className="align-self-end">
+            金額計算: NT{' '}
+            {Number(localStorage.getItem('amount')).toLocaleString()}
+          </p>
+          <p className="h3 align-self-end ">
+            訂單總金額: NT{' '}
+            {Number(localStorage.getItem('amount')).toLocaleString()}
+          </p>
         </div>
 
         {/* 付款方式 */}
@@ -235,144 +223,8 @@ function CourseCart02(props) {
               className="col-sm-12 col-md-10 border border-1 border-dark p-3 rounded 
             "
             >
-              <p className="h3">請輸入您的信用卡資訊</p>
-
-              <Container>
-                <Form>
-                  <Row>
-                    <Form.Group className="d-flex flex-cloumn">
-                      <Form.Label className="col-3">*持卡人姓名</Form.Label>
-                      <Form.Control
-                        className=" border"
-                        type="text"
-                        id=""
-                        name="cardName"
-                        placeholder=""
-                        required
-                        defaultValue={creditCard.name}
-                        onChange={handleCard}
-                      />
-                    </Form.Group>
-                  </Row>
-                  <Row>
-                    <Form.Group className="d-flex mt-2">
-                      <Form.Label className="col-3 ">*信用卡號</Form.Label>
-                      <Col xs={1} className="me-2">
-                        <Form.Control
-                          className=" border"
-                          type="text"
-                          id=""
-                          minLength={4}
-                          maxLength={4}
-                          name="cardNum1"
-                          placeholder=""
-                          required
-                          defaultValue={creditCard.cardNum1}
-                          onChange={handleCard}
-                        />
-                      </Col>
-                      -
-                      <Col xs={1} className="mx-2">
-                        <Form.Control
-                          className=" border"
-                          type="text"
-                          id=""
-                          minLength={4}
-                          maxLength={4}
-                          name="cardNum2"
-                          placeholder=""
-                          required
-                          defaultValue={creditCard.cardNum2}
-                          onChange={handleCard}
-                        />
-                      </Col>
-                      -
-                      <Col xs={1} className="mx-2">
-                        <Form.Control
-                          className=" border"
-                          type="text"
-                          id=""
-                          minLength={4}
-                          maxLength={4}
-                          name="cardNum3"
-                          placeholder=""
-                          required
-                          defaultValue={creditCard.cardNum3}
-                          onChange={handleCard}
-                        />
-                      </Col>
-                      -
-                      <Col xs={1} className="mx-2">
-                        <Form.Control
-                          className=" border"
-                          type="text"
-                          id=""
-                          minLength={4}
-                          maxLength={4}
-                          name="cardNum4"
-                          placeholder=""
-                          required
-                          defaultValue={creditCard.cardNum4}
-                          onChange={handleCard}
-                        />
-                      </Col>
-                    </Form.Group>
-                  </Row>
-                  <Row>
-                    <Form.Group className="d-flex mt-2">
-                      <Form.Label className="col-3 ">*有效期限</Form.Label>
-                      <Col xs={1} className="me-2">
-                        <Form.Control
-                          className=" border"
-                          type="text"
-                          id=""
-                          minLength={2}
-                          maxLength={2}
-                          name="cardMonth"
-                          placeholder="MM"
-                          required
-                          defaultValue={creditCard.cardMonth}
-                          onChange={handleCard}
-                        />
-                      </Col>
-                      -
-                      <Col xs={1} className="mx-2">
-                        <Form.Control
-                          className=" border"
-                          type="text"
-                          id=""
-                          minLength={2}
-                          maxLength={2}
-                          name="cardYear"
-                          placeholder="YY"
-                          required
-                          defaultValue={creditCard.cardYear}
-                          onChange={handleCard}
-                        />
-                      </Col>
-                      <p className="mx-3 ">末3碼</p>
-                      <Col xs={2} className="d-flex">
-                        <Form.Control
-                          className=" border me-2"
-                          type="text"
-                          id=""
-                          minLength={3}
-                          maxLength={3}
-                          name="cardThree"
-                          placeholder="末三碼"
-                          required
-                          defaultValue={creditCard.cardThree}
-                          onChange={handleCard}
-                        />
-                        <BsCreditCard
-                          size={25}
-                          className="text-center justify-content-center align-self-center "
-                        ></BsCreditCard>
-                      </Col>
-                    </Form.Group>
-                  </Row>
-                </Form>
-              </Container>
+              <p className="h3 text-primary">請輸入您的信用卡資訊</p>
+              <CreditCard />
             </div>
           ) : (
             ''
@@ -381,7 +233,7 @@ function CourseCart02(props) {
           {/* 顯示匯款(轉帳)資訊內容 */}
           {JSON.parse(localStorage.getItem('payMethod')) === '匯款' ? (
             <div className="col-sm-12 col-md-10 border border-1 border-dark p-3 rounded">
-              <p className="h3">請在備註欄備註您的匯款帳號後5碼</p>
+              <p className="h3 text-primary">請在備註欄備註您的匯款帳號後5碼</p>
               <Container>
                 <Row>
                   <p className="">銀行:國泰世華銀行-中壢分行</p>
@@ -398,11 +250,11 @@ function CourseCart02(props) {
           {/* 顯示現金資訊內容 */}
           {JSON.parse(localStorage.getItem('payMethod')) === '現金' ? (
             <div className="col-sm-12 col-md-10 border border-1 border-dark p-3 rounded">
-              <p className="h3">您選擇當日現金付款</p>
+              <p className="h3 text-primary">您選擇當日現金付款</p>
               <Container>
                 <Row>
-                  <p className="text-warning">可收振興五倍券</p>
-                  <p className="text-warning">振興消費．千元Fun送衝浪好禮</p>
+                  <p className="">可收振興五倍券</p>
+                  <p className="">振興消費．千元Fun送衝浪好禮</p>
                 </Row>
               </Container>
             </div>
@@ -425,8 +277,13 @@ function CourseCart02(props) {
         </div>
 
         {/* <總計  */}
-        <div className="d-flex justify-content-end border-bottom">
-          <p className="h3">訂單總金額: NT{localStorage.getItem('amount')} </p>
+        <div className="d-flex flex-column border-bottom">
+          <p className="align-self-end">
+            金額計算: NT{localStorage.getItem('amount')}{' '}
+          </p>
+          <p className="h3 align-self-end">
+            訂單總金額: NT{localStorage.getItem('amount')}{' '}
+          </p>
         </div>
 
         {/* 付款方式 */}
@@ -489,144 +346,12 @@ function CourseCart02(props) {
           {/* 顯示信用卡資訊內容 */}
           {JSON.parse(localStorage.getItem('payMethod')) === '信用卡' ? (
             <div
-              className="col-sm-12 col-md-10 border border-1 border-dark p-3 rounded 
+              className="border border-1 border-dark p-3 rounded 
             "
             >
-              <p className="h3">請輸入您的信用卡資訊</p>
+              <p className=" text-primary">請輸入您的信用卡資訊</p>
 
-              <Container>
-                <Row>
-                  <Form.Group className="">
-                    <Form.Label className="">*持卡人姓名</Form.Label>
-
-                    <Form.Control
-                      className=" border"
-                      type="text"
-                      id="name"
-                      placeholder=""
-                      required
-                      // defaultValue={data.member_name}
-                      // onChange={(e) => {
-                      //   setMember(e.target.value);
-                      // }}
-                    />
-                  </Form.Group>
-                </Row>
-                <Row>
-                  <Form.Group className=" mt-2">
-                    <Form.Label className="">*信用卡號</Form.Label>
-                    <div className="d-flex">
-                      <Col className="me-2">
-                        <Form.Control
-                          className=" border"
-                          type="text"
-                          id="name"
-                          placeholder=""
-                          required
-                          // defaultValue={data.member_name}
-                          // onChange={(e) => {
-                          //   setMember(e.target.value);
-                          // }}
-                        />
-                      </Col>
-                      -
-                      <Col className="mx-2">
-                        <Form.Control
-                          className=" border"
-                          type="text"
-                          id="name"
-                          placeholder=""
-                          required
-                          // defaultValue={data.member_name}
-                          // onChange={(e) => {
-                          //   setMember(e.target.value);
-                          // }}
-                        />
-                      </Col>
-                      -
-                      <Col className="mx-2">
-                        <Form.Control
-                          className=" border"
-                          type="text"
-                          id="name"
-                          placeholder=""
-                          required
-                          // defaultValue={data.member_name}
-                          // onChange={(e) => {
-                          //   setMember(e.target.value);
-                          // }}
-                        />
-                      </Col>
-                      -
-                      <Col className="mx-2">
-                        <Form.Control
-                          className=" border"
-                          type="text"
-                          id="name"
-                          placeholder=""
-                          required
-                          // defaultValue={data.member_name}
-                          // onChange={(e) => {
-                          //   setMember(e.target.value);
-                          // }}
-                        />
-                      </Col>
-                    </div>
-                  </Form.Group>
-                </Row>
-                <Row>
-                  <Form.Group className=" mt-2">
-                    <Form.Label className="col-3 ">*有效期限</Form.Label>
-                    <div className="d-flex">
-                      <Col className="me-2">
-                        <Form.Control
-                          className=" border"
-                          type="text"
-                          id=""
-                          placeholder="MM"
-                          required
-                          // defaultValue={data.member_name}
-                          // onChange={(e) => {
-                          //   setMember(e.target.value);
-                          // }}
-                        />
-                      </Col>
-                      -
-                      <Col className="mx-2">
-                        <Form.Control
-                          className=" border"
-                          type="text"
-                          id=""
-                          placeholder="YY"
-                          required
-                          // defaultValue={data.member_name}
-                          // onChange={(e) => {
-                          //   setMember(e.target.value);
-                          // }}
-                        />
-                      </Col>
-                      <p className="mx-2 ">末3碼</p>
-                      <Col className="me-2">
-                        <Form.Control
-                          className=" border"
-                          type="text"
-                          id=""
-                          placeholder="末三碼"
-                          required
-                          // defaultValue={data.member_name}
-                          // onChange={(e) => {
-                          //   setMember(e.target.value);
-                          // }}
-                        />
-                      </Col>
-                      <BsCreditCard
-                        size={25}
-                        className="text-center justify-content-center align-self-center "
-                      ></BsCreditCard>
-                    </div>
-                  </Form.Group>
-                </Row>
-              </Container>
+              <CreditCard />
             </div>
           ) : (
             ''
@@ -634,8 +359,8 @@ function CourseCart02(props) {
 
           {/* 顯示匯款(轉帳)資訊內容 */}
           {JSON.parse(localStorage.getItem('payMethod')) === '匯款' ? (
-            <div className="col-sm-12 col-md-10 border border-1 border-dark p-3 rounded">
-              <p className="h3">請在備註欄備註您的匯款帳號後5碼</p>
+            <div className=" border border-1 border-dark p-3 rounded">
+              <p className=" text-primary">請在備註欄備註您的匯款帳號後5碼</p>
               <Container>
                 <Row>
                   <p className="">銀行:國泰世華銀行-中壢分行</p>
@@ -651,12 +376,12 @@ function CourseCart02(props) {
 
           {/* 顯示現金資訊內容 */}
           {JSON.parse(localStorage.getItem('payMethod')) === '現金' ? (
-            <div className="col-sm-12 col-md-10 border border-1 border-dark p-3 rounded">
-              <p className="h3">您選擇當日現金付款</p>
+            <div className=" border border-1 border-dark p-3 rounded">
+              <p className=" text-primary">您選擇當日現金付款</p>
               <Container>
                 <Row>
-                  <p className="text-warning">可收振興五倍券</p>
-                  <p className="text-warning">振興消費．千元Fun送衝浪好禮</p>
+                  <p className="">可收振興五倍券</p>
+                  <p className="">振興消費．千元Fun送衝浪好禮</p>
                 </Row>
               </Container>
             </div>
@@ -687,8 +412,8 @@ function CourseCart02(props) {
               />
             </div>
 
-            <div className="d-flex align-items-center py-2 mt-3">
-              <label className="p-2 ">* 性別:</label>
+            <label className="p-2 ">* 性別:</label>
+            <div className="align-items-center d-flex">
               {sexOptions.map((v, i) => {
                 return (
                   <div key={i}>

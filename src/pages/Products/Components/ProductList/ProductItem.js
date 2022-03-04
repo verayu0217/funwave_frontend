@@ -64,7 +64,7 @@ function ProductItem(props) {
         <FaHeart
           size={21}
           color="#ff7f6a"
-          className="position-absolute top-5 hand"
+          className="position-absolute top-5 proHeart"
           onClick={(e) => {
             delFavorite(product_group);
           }}
@@ -73,7 +73,7 @@ function ProductItem(props) {
         <BiHeart
           size={21}
           color="#ff7f6a"
-          className="position-absolute top-5 hand"
+          className="position-absolute top-5 proHeart"
           onClick={(e) => {
             favorite(product_group);
           }}
