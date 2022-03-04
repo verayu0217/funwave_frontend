@@ -110,16 +110,18 @@ function ProductAddCart(props) {
     return <Navigate to="/product-cart01"></Navigate>;
   }
 
+  // 加入/刪除收藏
   const favorite = (item) => {
-    setFav(true);
-    let currentProduct = JSON.parse(localStorage.getItem('likeID')) || [];
-    currentProduct.push(item);
-    localStorage.setItem('likeID', JSON.stringify(currentProduct));
+    let wishProduct = JSON.parse(localStorage.getItem('likeID')) || [];
+    wishProduct.push(item);
+    localStorage.setItem('likeID', JSON.stringify(wishProduct));
+    setFav({ ...fav, wishID: wishProduct });
   };
   const deleteFavorite = (item) => {
-    setFav(false);
-    let currentProduct = JSON.parse(localStorage.getItem('likeID')) || [];
-    // currentProduct.find((item)=>{item===});
+    let filterwish = fav.wishID.filter((value) => value !== item);
+    setFav({ ...fav, wishID: filterwish });
+    localStorage.removeItem('likeID');
+    localStorage.setItem('likeID', JSON.stringify(filterwish));
   };
 
   return (
@@ -127,7 +129,7 @@ function ProductAddCart(props) {
       {/* 商品名稱、品牌、小分類、貨號 */}
       <div className="d-flex justify-content-between">
         <h1>{product[0].name}</h1>
-        {fav ? (
+        {fav.wishID.includes(product[0].product_group) ? (
           <FaHeart
             size={30}
             color="#ff7f6a"
