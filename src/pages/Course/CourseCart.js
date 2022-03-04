@@ -16,6 +16,11 @@ function CourseCart(props) {
     step3: '',
   });
 
+  // 一進來畫面滑到top
+  // useEffect(() => {
+  //   window.scrollTo(0, 0);
+  // }, []);
+
   // 將courseContent的表單狀態設定在父層
   const [course, setCourse] = useState('');
   const [courseSpot, setCourseSpot] = useState('');

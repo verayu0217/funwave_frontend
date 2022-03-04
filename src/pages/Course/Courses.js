@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Link, Route } from 'react-router-dom';
+import coach01 from '../../data/images/course/coach01.jpg';
+import coach02 from '../../data/images/course/coach02.jpg';
+import coach03 from '../../data/images/course/coach03.jpg';
+import coach04 from '../../data/images/course/coach04.jpg';
+import coach05 from '../../data/images/course/coach05.jpg';
+import coach06 from '../../data/images/course/coach06.jpg';
 
 // 引用上課地點組件
 import CourseSpot from './components/CourseSpot';
@@ -82,7 +88,7 @@ function Courses() {
 
         {/* 教練介紹區 */}
         {/* TODO:教練切版 */}
-        <div className="row">
+        <div className="row my-5  col-9 m-auto">
           <div className="text-secondary  mt-3 h1 text-center mb-3">
             <img
               src={greenTitle}

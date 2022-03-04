@@ -3,7 +3,6 @@ import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
 
 // 創建一個獨立星星預設grey,並新增一個onSelect屬性
 const Star = ({ selected = false, disable = false, onSelect = (f) => f }) => (
-  // TODO:星星樣式空的要怎麼改
   <AiFillStar
     size={20}
     color={selected ? '#ff7f6a' : 'grey'}
