@@ -16,6 +16,10 @@ import Pagination from 'react-bootstrap/Pagination';
 import onClick from 'react-bootstrap/PageItem';
 import PageItem from 'react-bootstrap/PageItem';
 
+// 修日期dayjs套件引入
+import dayjs from 'dayjs';
+import 'dayjs/locale/zh-tw';
+
 
 function Information() {
     // 使用useNavigate
@@ -109,7 +113,7 @@ function Information() {
         let pageList = [];
         for (let i = 1; i <= allLastPage; i++){
             pageList.push(
-            <div>
+            <div key={i}>
                 {nowPage === i ? <Pagination.Item key={i} onClick={(e) => setNowPage(i)} active>{i}</Pagination.Item> : <Pagination.Item key={i} onClick={(e) => setNowPage(i)}>{i}</Pagination.Item>}               
             </div> 
             );
@@ -122,7 +126,7 @@ function Information() {
         let pageList = [];
         for (let i = 1; i <= catOneLastPage; i++){
             pageList.push(
-            <div>
+            <div key={i}>
                 {catOneNowPage === i ? <Pagination.Item key={i} onClick={(e) => setCatOneNowPage(i)} active>{i}</Pagination.Item> : <Pagination.Item key={i} onClick={(e) => setCatOneNowPage(i)}>{i}</Pagination.Item>}               
             </div> 
             );
@@ -135,13 +139,22 @@ function Information() {
         let pageList = [];
         for (let i = 1; i <= catTwoLastPage; i++){
             pageList.push(
-            <div>
+            <div key={i}>
                 {catTwoNowPage === i ? <Pagination.Item key={i} onClick={(e) => setCatTwoNowPage(i)} active>{i}</Pagination.Item> : <Pagination.Item key={i} onClick={(e) => setCatTwoNowPage(i)}>{i}</Pagination.Item>}               
             </div> 
             );
         }
         return pageList;
     }
+
+    // 處理日期函式
+    function dateAdjust(date) {
+        dayjs.locale('zh-tw');
+        let newDate = dayjs(date).format('YYYY-MM-DD');
+        return newDate;
+    }
+
+
 
     // useEffect
     // Carosel用資料抓取
@@ -281,73 +294,80 @@ function Information() {
         </div>
         {/* 輪播部分 */}
         <div className="container-fluid caroBoxInfo">
+            <div className="row">
+                <div className="col-12">
 
-        {caroData.map( (caroDataItem, i) => {
-            return (
-            <React.Fragment key={caroDataItem.info_id}>
-            
-            <Carousel activeIndex={index} onSelect={handleSelect}>
-                <Carousel.Item  className="">
-                    <div className="">
-                        <img
-                        className="d-block w-100"
-                        src={`${IMAGE_URL}/information/${caroDataItem.big_imgA}`}
-                        alt="First slide"
-                        />
-                    </div>
-                    <Carousel.Caption  className="">
-                    <div className="d-flex flex-column align-items-start text-start mb-4">
-                        <span class="badge bg-dark h6">{caroDataItem.info_catA}</span>
-                        <a className="h1 white caroAInfo" href="" onClick={()=> navigate(`/information/${caroDataItem.info_noA}`)}>{caroDataItem.big_titleA}
-                        </a>
-                        <h6>{caroDataItem.create_timeA} {caroDataItem.authorA}</h6>
-                    </div>
-                    </Carousel.Caption>
-                </Carousel.Item>
-                <Carousel.Item>
-                    <img
-                    className="d-block w-100"
-                    src={`${IMAGE_URL}/information/${caroDataItem.big_imgB}`}
-                    alt="Second slide"
-                    />
-                    <Carousel.Caption  className="">
-                    <div className="d-flex flex-column align-items-start text-start mb-4">
-                        <span class="badge bg-dark h6">{caroDataItem.info_catB}</span>
-                        <a className="h1 white caroAInfo" href="" onClick={()=> navigate(`/information/${caroDataItem.info_noB}`)}>{caroDataItem.big_titleB}
-                        </a>
-                        <h6>{caroDataItem.create_timeB} {caroDataItem.authorB}</h6>
-                    </div>
-                    </Carousel.Caption>
-                </Carousel.Item>
-                <Carousel.Item>
-                    <img
-                    className="d-block w-100"
-                    src={`${IMAGE_URL}/information/${caroDataItem.big_imgC}`}
-                    alt="Third slide"
-                    />
-                    <Carousel.Caption  className="">
-                    <div className="d-flex flex-column align-items-start text-start mb-4">
-                        <span class="badge bg-dark h6">{caroDataItem.info_catC}</span>
-                        <a className="h1 white caroAInfo" href="" onClick={()=> navigate(`/information/${caroDataItem.info_noC}`)}>{caroDataItem.big_titleC}
-                        </a>
-                        <h6>{caroDataItem.create_timeC} {caroDataItem.authorC}</h6>
-                    </div>
-                    </Carousel.Caption>
-                </Carousel.Item>
-            </Carousel>
+                    {caroData.map( (caroDataItem, i) => {
+                    return (
+                    <React.Fragment key={i}>
+                    
+                    <Carousel activeIndex={index} onSelect={handleSelect}>
+                        <Carousel.Item  className="">
+                            <div className="">
+                                <img
+                                className="d-block w-100"
+                                src={`${IMAGE_URL}/information/${caroDataItem.big_imgA}`}
+                                alt="First slide"
+                                />
+                            </div>
+                            <Carousel.Caption  className="">
+                            <div className="d-flex flex-column align-items-start text-start mb-4">
+                                <span className="badge bg-dark h6">{caroDataItem.info_catA}</span>
+                                <a className="h1 white caroAInfo" href="" onClick={()=> navigate(`/information/${caroDataItem.info_noA}`)}>{caroDataItem.big_titleA}
+                                </a>
+                                <h6 className="caroADate">{dateAdjust(caroDataItem.create_timeA)} {caroDataItem.authorA}</h6>
+                            </div>
+                            </Carousel.Caption>
+                            </Carousel.Item>
+                            <Carousel.Item>
+                                <img
+                                className="d-block w-100"
+                                src={`${IMAGE_URL}/information/${caroDataItem.big_imgB}`}
+                                alt="Second slide"
+                                />
+                                <Carousel.Caption  className="">
+                                <div className="d-flex flex-column align-items-start text-start mb-4">
+                                    <span className="badge bg-dark h6">{caroDataItem.info_catB}</span>
+                                    <a className="h1 white caroAInfo" href="" onClick={()=> navigate(`/information/${caroDataItem.info_noB}`)}>{caroDataItem.big_titleB}
+                                    </a>
+                                    <h6 className="caroADate">{dateAdjust(caroDataItem.create_timeB)} {caroDataItem.authorB}</h6>
+                                </div>
+                                </Carousel.Caption>
+                            </Carousel.Item>
+                            <Carousel.Item>
+                                <img
+                                className="d-block w-100"
+                                src={`${IMAGE_URL}/information/${caroDataItem.big_imgC}`}
+                                alt="Third slide"
+                                />
+                                <Carousel.Caption  className="">
+                                <div className="d-flex flex-column align-items-start text-start mb-4">
+                                    <span className="badge bg-dark h6">{caroDataItem.info_catC}</span>
+                                    <a className="h1 white caroAInfo" href="" onClick={()=> navigate(`/information/${caroDataItem.info_noC}`)}>{caroDataItem.big_titleC}
+                                    </a>
+                                    <h6 className="caroADate">{dateAdjust(caroDataItem.create_timeC)} {caroDataItem.authorC}</h6>
+                                </div>
+                                </Carousel.Caption>
+                            </Carousel.Item>
+                    </Carousel>
 
-            </React.Fragment>
-            )
-        })}
+                    </React.Fragment>
+                    )
+                    })}
 
-        </div> 
+                </div> {/* col */}
+            </div> {/* row */}
+        </div> {/* container-fluid */}
 
         {/* 輪播部分以下 */}
-        <div className="container pt-5">
+        <div className="container contentSectionInfo pt-5">
             {/* <div className="row"></div> */}
             <div className="row">
+                <div className="col-12">
+
+                <div className="">
                 <Tabs
-                    className="fw-b" // 沒作用
+                    className="" // 沒作用
                     id="controlled-tab-info"
                     activeKey={key}
                     onSelect={(k) => setKey(k)}
@@ -359,10 +379,20 @@ function Information() {
                                     <input
                                     type="text"
                                     placeholder="  🔍  以關鍵字搜尋"
-                                    className="form-control mt-1 rounded-pill w-25 text-muted"
+                                    className="searchInfoPC form-control mt-1 rounded-pill w-25 text-muted"
                                     value={searchWord}
                                     onChange={(e) => handleAllSearch(e)}
-                                />
+                                    />
+                            {/* </form> */}
+                        </div>
+                        <div className="d-flex justify-content-center">
+                                    <input
+                                    type="text"
+                                    placeholder="  🔍  以關鍵字搜尋"
+                                    className="searchInfoMO form-control mt-1 rounded-pill w-50 text-muted"
+                                    value={searchWord}
+                                    onChange={(e) => handleAllSearch(e)}
+                                    />
                             {/* </form> */}
                         </div>
                         {/* 資訊大標題 */}
@@ -384,7 +414,7 @@ function Information() {
                             {/* 全部文章卡片 */}
                             {allInfo.map( (allInfoItem, i) => {
                                 return (
-                                <React.Fragment key={allInfoItem.info_id}>
+                                <React.Fragment key={allInfoItem.info_no}>
                                 <div className="col-12 col-lg-5 p-5" key={allInfoItem.info_no}>
                                     <Link to={`/information/${allInfoItem.info_no}`} style={{textDecoration: 'none', color: '#333333'}}>
                                     {/* 卡片本體-中間 */}
@@ -392,9 +422,9 @@ function Information() {
                                         {/* 卡片圖片容器-中間 */}
                                         <div className="cardPicDivHome d-flex justify-content-center align-items-center">
                                             {/* 卡片圖片標籤-中間 */}
-                                            <span class="badgeHome badge bg-dark h6">{allInfoItem.info_cat}</span>
+                                            <span className="badgeHome badge bg-dark h6">{allInfoItem.info_cat}</span>
                                             {/* 卡片圖片本體-中間 */}
-                                            <img class="cardPicHome" src={`${IMAGE_URL}/information/${allInfoItem.big_img}`} alt={allInfoItem.big_img}/>
+                                            <img className="cardPicHome" src={`${IMAGE_URL}/information/${allInfoItem.big_img}`} alt={allInfoItem.big_img}/>
                                         </div>
                                         {/* 卡片文字容器-中間 */}
                                         <div>
@@ -406,7 +436,7 @@ function Information() {
                                             </div>
                                             <div className="cardinfoHome d-flex justify-content-between align-items-center px-4 pt-5 pb-4">
                                                 {/* 文章卡片按鈕 */}
-                                                <h6>{allInfoItem.create_time} {allInfoItem.author}</h6>
+                                                <h6>{dateAdjust(allInfoItem.create_time)} {allInfoItem.author}</h6>
                                                 <div>
                                                     <a className="btn btn-primary" href="" onClick={()=> navigate(`/information/${allInfoItem.info_no}`)}>看更多
                                                     <FaLongArrowAltRight
@@ -429,11 +459,14 @@ function Information() {
                         </div> {/* 卡片容器-結束 */}
 
                         {/* 全部文章pagination */}
-                        <Pagination size="sm">
-                            <Pagination.First onClick={(e) => setNowPage(1)}/>
-                            {getAllPageList()}
-                            <Pagination.Last onClick={(e) => setNowPage(allLastPage)}/>
-                        </Pagination>
+                        <div className="d-flex justify-content-center mb-5">
+                            <Pagination size="sm">
+                                <Pagination.First onClick={(e) => setNowPage(1)}/>
+                                {getAllPageList()}
+                                <Pagination.Last onClick={(e) => setNowPage(allLastPage)}/>
+                            </Pagination>
+                        </div>
+
 
                     </Tab>
 
@@ -468,7 +501,7 @@ function Information() {
                             {/* 分類一文章卡片 */}    
                             {catOneInfo.map( (catOneItem, i) => {
                                 return (
-                                <React.Fragment key={catOneItem.info_id}>
+                                <React.Fragment key={catOneItem.info_no}>
                                 <div className="col-12 col-lg-5 p-5" key={catOneItem.info_no} >
 
                                     {/* 卡片本體-中間 */}
@@ -490,7 +523,7 @@ function Information() {
                                         </div>
                                         <div className="cardinfoHome d-flex justify-content-between align-items-center px-4 pt-5 pb-4">
                                             {/* 文章卡片按鈕 */}
-                                            <h6>{catOneItem.create_time} {catOneItem.author}</h6>
+                                            <h6>{dateAdjust(catOneItem.create_time)} {catOneItem.author}</h6>
                                             <div>
                                                 <a className="btn btn-primary" href="" onClick={()=> navigate(`/information/${catOneItem.info_no}`)}>看更多
                                                 <FaLongArrowAltRight
@@ -512,11 +545,13 @@ function Information() {
                         </div> {/* 卡片容器-結束 */}
 
                         {/* 分類一pagination */}
-                        <Pagination size="sm">
-                            <Pagination.First onClick={(e) => getCatOnePageList(1)}/>
-                            {getCatOnePageList()}
-                            <Pagination.Last onClick={(e) => getCatOnePageList(catOneLastPage)}/>
-                        </Pagination>
+                        <div className="d-flex justify-content-center mb-5">
+                            <Pagination size="sm">
+                                <Pagination.First onClick={(e) => getCatOnePageList(1)}/>
+                                {getCatOnePageList()}
+                                <Pagination.Last onClick={(e) => getCatOnePageList(catOneLastPage)}/>
+                            </Pagination>
+                        </div>
 
                     </Tab>
 
@@ -551,7 +586,7 @@ function Information() {
                             {/* 分類二文章卡片 */}
                             {catTwoInfo.map( (catTwoItem, i) => {
                                 return (
-                                <React.Fragment key={catTwoItem.info_id}>
+                                <React.Fragment key={catTwoItem.info_no}>
                                 <div className="col-12 col-lg-5 p-5" key={catTwoItem.info_no}>
                                     {/* 卡片本體-中間 */}
                                 <div className="cardHome shadow">
@@ -572,7 +607,7 @@ function Information() {
                                         </div>
                                         <div className="cardinfoHome d-flex justify-content-between align-items-center px-4 pt-5 pb-4">
                                             {/* 文章卡片按鈕 */}
-                                            <h6>{catTwoItem.create_time} {catTwoItem.author}</h6>
+                                            <h6>{dateAdjust(catTwoItem.create_time)} {catTwoItem.author}</h6>
                                             <div>
                                                 <a className="btn btn-primary" href="" onClick={()=> navigate(`/information/${catTwoItem.info_no}`)}>看更多
                                                 <FaLongArrowAltRight
@@ -594,14 +629,20 @@ function Information() {
                         </div> {/* 卡片容器-結束 */}
                         
                         {/* 分類二pagination */}
-                        <Pagination size="sm">
-                            <Pagination.First onClick={(e) => getCatTwoPageList(1)}/>
-                            {getCatTwoPageList()}
-                            <Pagination.Last onClick={(e) => getCatTwoPageList(catTwoLastPage)}/>
-                        </Pagination>
+                        <div className="d-flex justify-content-center mb-5">
+                            <Pagination size="sm">
+                                <Pagination.First onClick={(e) => getCatTwoPageList(1)}/>
+                                {getCatTwoPageList()}
+                                <Pagination.Last onClick={(e) => getCatTwoPageList(catTwoLastPage)}/>
+                            </Pagination>
+                        </div>
                     </Tab>
                 </Tabs>
-            </div>
+                </div> {/*  */}
+
+                </div> {/* col */}
+
+            </div> {/* row */}
         </div>
     </>
     );

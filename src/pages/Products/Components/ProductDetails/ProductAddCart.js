@@ -1,7 +1,3 @@
-// react-icons
-import { BiHeart } from 'react-icons/bi';
-// import { FaHeart } from 'react-icons/fa'; // 全愛心
-
 // ProductAddCart.js 內容說明：商品細節頁右方的加入購物車區
 
 import React, { useState, useEffect } from 'react';
@@ -15,13 +11,20 @@ import {
   AiOutlinePlus,
   AiOutlineMinus,
 } from 'react-icons/ai';
+import { BiHeart } from 'react-icons/bi';
+import { FaHeart } from 'react-icons/fa'; // 全愛心
 import 'animate.css';
+import { useAuth } from '../../../../context/auth';
+import { useFav } from '../../../../context/fav';
 import { IMAGE_URL } from '../../../../utils/config';
 
 function ProductAddCart(props) {
+  // 會員資料傳入useContext
+  const { auth, setAuth } = useAuth();
+  const { fav, setFav } = useFav();
+  console.log('auth', auth);
+
   const {
-    auth,
-    setAuth,
     product,
     count,
     setCount,
@@ -99,23 +102,52 @@ function ProductAddCart(props) {
     setMycart(currentCart);
     console.log('ProductAddCart.js - currentCart', currentCart);
     // console.log('ProductAddCart.js - mycart', mycart);
-
-    // if (auth === null) {
-    //   return alert('請登入會員');
-    // } else {
-    // }
   };
 
+  console.log('goToCart', goToCart);
+  // 登入才可以進購物車
   if (goToCart) {
     return <Navigate to="/product-cart01"></Navigate>;
   }
+
+  // 加入/刪除收藏
+  const favorite = (item) => {
+    let wishProduct = JSON.parse(localStorage.getItem('likeID')) || [];
+    wishProduct.push(item);
+    localStorage.setItem('likeID', JSON.stringify(wishProduct));
+    setFav({ ...fav, wishID: wishProduct });
+  };
+  const deleteFavorite = (item) => {
+    let filterwish = fav.wishID.filter((value) => value !== item);
+    setFav({ ...fav, wishID: filterwish });
+    localStorage.removeItem('likeID');
+    localStorage.setItem('likeID', JSON.stringify(filterwish));
+  };
 
   return (
     <>
       {/* 商品名稱、品牌、小分類、貨號 */}
       <div className="d-flex justify-content-between">
         <h1>{product[0].name}</h1>
-        <BiHeart size={21} color="#ff7f6a" className="proDetailHeart" />
+        {fav.wishID.includes(product[0].product_group) ? (
+          <FaHeart
+            size={40}
+            color="#ff7f6a"
+            className="proDetailHeart"
+            onClick={(e) => {
+              setFav(false);
+              deleteFavorite(product[0].product_group);
+            }}
+          />
+        ) : (
+          <BiHeart
+            size={40}
+            color="#ff7f6a"
+            className="proDetailHeart"
+            type="button"
+            onClick={(e) => favorite(product[0].product_group)}
+          />
+        )}
       </div>
 
       <h2>{brandTypes[product[0].brand_id - 1]}</h2>

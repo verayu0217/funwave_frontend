@@ -18,6 +18,17 @@
 .recommendBg {
   background: $lightgray;
 }
+//recommandCard
+.cardMArginCu{
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+@media screen and (max-width: 400px){
+  .cardMArginCu{
+    margin-top: 0.25rem;
+    margin-bottom: 0.25rem;
+  }
+}
 //名人
 .photoCu {
   max-width: 440px;
@@ -29,6 +40,7 @@
 //訂製
 .contentCu {
   width: 30%;
+  margin-bottom: 3rem;
 }
 .chooseBtn {
   border-radius: 8px;
@@ -40,9 +52,14 @@
   background: $orange;
 }
 //step
-// @media screen and (max-width: 400px){
-
-// }
+.textMarginCu{
+  margin: auto;
+}
+@media screen and (max-width: 400px){
+  .contentCu {
+    width: 70%;
+  }
+}
 //step1
 .chooseBoardCu {
   // max-height: 550px;
@@ -53,6 +70,20 @@
 }
 .borderLightGray{
   border:4px solid $lightgray;
+}
+.btnEnd{
+  position: absolute;
+  right: 0%;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+@media screen and (max-width: 400px){
+  .btnEnd{
+    display: flex !important;
+    // right: 0%;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  } 
 }
 
 //step2

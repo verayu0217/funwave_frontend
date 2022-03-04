@@ -1,15 +1,36 @@
 // CartShipping.js 內容說明：ProductCart02.js中的配送資訊
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Form, Button, InputGroup } from 'react-bootstrap';
+import { data } from '../../../../data/countiesConvenientStore.js'; // 各縣市對應之超商
 
 function CartShipping(props) {
-  const { order, setOrder } = props;
+  const { order, setOrder, addressSync, setAddressSync } = props;
+
+  // 拿取前一頁Cart01儲存在localStorage的運送方式
+  let localStorageDelivery = JSON.parse(
+    localStorage.getItem('delivery') || '[]'
+  );
+
+  // "便利商店取貨"的縣市儲存為狀態，僅用於此子元件
+  const [convenientStoreCounty, setConvenientStoreCounty] =
+    useState('請選擇縣市');
+
+  // "便利商店取貨"的門市儲存為狀態，僅用於此子元件
+  const [convenientStore, setConvenientStore] = useState('請選擇門市');
 
   // 表單中的onchange事件 (限order物件內的欄位)
   const handleChange = (e) => {
     setOrder({ ...order, [e.target.name]: e.target.value });
   };
+
+  // 將狀態convenientStore存入表單元素(狀態order)
+  useEffect(() => {
+    setOrder({
+      ...order,
+      convenient_store: convenientStore,
+    });
+  }, [convenientStore]);
 
   // 縣市
   const counties = [
@@ -34,36 +55,47 @@ function CartShipping(props) {
     '花蓮縣',
     '宜蘭縣',
   ];
+
+  // function 輸入縣市會產出對應超商的陣列
+  const countiesToConvenientStore = (chosenCounty) => {
+    let stores = data.filter((item) => item.county === chosenCounty);
+    return stores[0].convenientStore;
+  };
+
+  console.log('convenientStoreCounty', convenientStoreCounty);
+  console.log('convenientStore', convenientStore);
+
   return (
     <>
       <div className="px-5 py-4 border-top">
         <div className="d-flex justify-content-between">
-          <h3>配送資訊</h3>
-          <div className="form-check">
-            <input
-              className="form-check-input mt-2"
-              type="checkbox"
-              value=""
-              id="check"
-            />
-            <label className="form-check-label mt-2 fs-6" htmlFor="check">
-              同訂購人地址
-            </label>
-          </div>
+          <h3>配送資訊{order.address}</h3>
+          {localStorageDelivery === '宅配到府' ? (
+            <div className="form-check">
+              <input
+                className="form-check-input mt-2"
+                type="checkbox"
+                value=""
+                id="check"
+                onClick={() => {
+                  if (addressSync === false) {
+                    setAddressSync(true);
+                  } else {
+                    setAddressSync(false);
+                  }
+                }}
+              />
+              <label className="form-check-label mt-2 fs-6" htmlFor="check">
+                同訂購人地址
+              </label>
+            </div>
+          ) : (
+            ''
+          )}
         </div>
-        {/* 地址 */}
-        <div className="row mb-3">
-          <div className="col-4">
-            <Form.Label>縣市</Form.Label>
-            <Form.Select aria-label="select">
-              {counties.map((x, i) => (
-                <option value={x} key={i}>
-                  {x}
-                </option>
-              ))}
-            </Form.Select>
-          </div>
-          <div className="col-8">
+        {/* 依據運送方式顯現地址or收件超商門市 */}
+        {localStorageDelivery === '宅配到府' ? (
+          <div className="mb-3">
             <Form.Group controlId="validationCustom03">
               <Form.Label>詳細地址</Form.Label>
               <Form.Control
@@ -79,41 +111,44 @@ function CartShipping(props) {
               </Form.Control.Feedback>
             </Form.Group>
           </div>
-        </div>
-        {/* 收件超商門市 */}
-        <div className="row mb-3">
-          <div className="col-4">
-            <Form.Label>縣市</Form.Label>
-            <Form.Select aria-label="Default select example">
-              {counties.map((x, i) => (
-                <option value={x} key={i}>
-                  {x}
-                </option>
-              ))}
-            </Form.Select>
+        ) : (
+          <div className="row mb-3">
+            <div className="col-4">
+              <Form.Label>縣市</Form.Label>
+              <Form.Select
+                aria-label="Default select example"
+                value={convenientStoreCounty}
+                onChange={(e) => {
+                  setConvenientStoreCounty(e.target.value);
+                }}
+              >
+                {counties.map((x, i) => (
+                  <option value={x} key={i}>
+                    {x}
+                  </option>
+                ))}
+              </Form.Select>
+            </div>
+            <div className="col-8">
+              <Form.Label>超商門市</Form.Label>
+              <Form.Select
+                aria-label="Default select example"
+                value={convenientStore}
+                onChange={(e) => {
+                  setConvenientStore(e.target.value);
+                }}
+              >
+                {countiesToConvenientStore(convenientStoreCounty).map(
+                  (x, i) => (
+                    <option value={x} key={i}>
+                      {x}
+                    </option>
+                  )
+                )}
+              </Form.Select>
+            </div>
           </div>
-          <div className="col-8">
-            <Form.Label>超商門市</Form.Label>
-            <Form.Select aria-label="Default select example">
-              <option>請選擇門市</option>
-              <option value="1" name="convenient_store" onChange={handleChange}>
-                台北門市
-              </option>
-              <option value="2" name="convenient_store" onChange={handleChange}>
-                新北門市
-              </option>
-              <option value="3" name="convenient_store" onChange={handleChange}>
-                桃園門市
-              </option>
-              <option value="4" name="convenient_store" onChange={handleChange}>
-                台中門市
-              </option>
-              <option value="5" name="convenient_store" onChange={handleChange}>
-                台南門市
-              </option>
-            </Form.Select>
-          </div>
-        </div>
+        )}
       </div>
     </>
   );

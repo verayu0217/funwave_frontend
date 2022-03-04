@@ -7,7 +7,145 @@
     max-height: 680px;
 }
 
-
 .caroAInfo {
     text-decoration: none;
 }
+
+.nav-item .nav-link {
+    font-weight: bold;
+}
+
+.contentSectionInfo {
+    .searchInfoMO {
+        display: none;
+    }
+}
+
+.contentSectionInfo {
+    .searchInfoPC {
+        display: block;
+    }
+}
+
+// @media screen and (max-width: 768px) {
+
+// }
+
+@media screen and (max-width: 378px) {
+
+    .cardHome {
+        height: 460px;
+        width: 100%;
+        background-color: $funwave-white;
+        border-radius: 8px;
+    }
+    
+    .badgeHome {
+        position: absolute;
+        left: 24px;
+        bottom: 12px;
+        margin: 0px;
+        padding: 0px;
+    }
+    
+    .cardPicDivHome {
+        width: 100%;
+        height: 184px;
+        overflow:hidden;
+        border-radius: 8px 8px 0 0;
+        position: relative;
+    }
+    
+    .cardPicHome {
+        width: 110%;
+        min-width: 400px; 
+        height: auto;
+    }
+    
+    .cardTitleHome {
+        height: 92px;
+        overflow:hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        white-space: normal;
+        h3 {
+            font-size: 1.3rem;
+        }
+    }
+    
+    .cardTextHome {
+        height: 92px;
+        overflow:hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        white-space: normal;
+        p {
+            font-size: 0.9rem;
+        }
+    }
+    
+    .cardinfoHome {
+        height: 46px;
+        h6 {
+            font-size: 0.7rem;
+        }
+        .btn {
+            font-size: 0.7rem;
+        }
+    }
+
+    .badgeHome {
+        font-size: 0.6rem;
+        padding: 3px 8px;
+    }
+
+
+    .nav-tabs {
+        display: flexbox;
+        justify-content: center;
+    }
+
+    .nav-item .nav-link {
+        font-weight: bold;
+    }
+
+    .carousel-caption {
+        h1 {
+            font-size: 1.3rem;
+        }
+    }
+
+    .carousel .badge {
+        display: none;
+    }
+
+    // .carousel .caroADate {
+    //     display: none;
+    // }
+
+    .slide {
+        margin-bottom: 100px;
+    }
+
+
+    .contentSectionInfo {
+        .searchInfoPC {
+            display: none;
+        }
+    }
+
+    .contentSectionInfo {
+        .searchInfoMO {
+            display: block;
+            margin: 10px 0px;
+        }
+    }
+
+}
+

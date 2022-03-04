@@ -1,24 +1,32 @@
 import React, { useState, useEffect } from 'react';
 import { Figure, Form } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import './Cart.scss';
 import CartHeader from '../Components/Cart/CartHeader01.js';
 import { IMAGE_URL } from '../../../utils/config';
-import greenTitle from '../../../data/images/greenTitle.svg';
+import { useAuth } from '../../../context/auth'; // 從useContext拿會員資料
 // react-icons
 import { AiOutlinePlus, AiOutlineMinus } from 'react-icons/ai';
 import { CgTrash } from 'react-icons/cg';
 
 function ProductCart01() {
+  // 會員資料傳入useContext
+  const { auth, setAuth } = useAuth();
+  console.log('auth', auth);
+
   // 將localStorage的資料存為狀態mycart
   const [mycart, setMycart] = useState([]);
 
   // 整理重複的mycart為mycartDisplay
   const [mycartDisplay, setMycartDisplay] = useState([]);
 
-  // 付款方式、運送方式
+  // 付款方式、運送方式、總金額
   const [payment, setPayment] = useState('信用卡');
   const [delivery, setDelivery] = useState('宅配到府');
+  const [amount, setAmount] = useState(0);
+
+  // 判斷是否登入，登入才能進購物車
+  const [goToCart, setGoToCart] = useState(false);
 
   // 小分類、顏色的id對照名稱
   const colorTypes = ['白', '黑', '藍', '綠', '黃', '紅', '橘'];
@@ -32,6 +40,11 @@ function ProductCart01() {
     '衝浪斗篷毛巾衣',
     '防寒衣',
   ];
+
+  // 讓頁面從頂端開始
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   // 模擬componentDidMount
   // 提取LocalStorage的資料(productCart)
@@ -71,7 +84,6 @@ function ProductCart01() {
     setMycartDisplay(newMycartDisplay);
   }, [mycart]);
 
-  // 模擬componentDidUpdate
   // 將mycartDisplay(整理好的mycart)存進LocalStorage(productCartDisplay)
   useEffect(() => {
     localStorage.setItem('productCartDisplay', JSON.stringify(mycartDisplay));
@@ -117,6 +129,12 @@ function ProductCart01() {
     }
     return total;
   };
+
+  // 將總價存入狀態amount
+  useEffect(() => {
+    setAmount(sum(mycartDisplay));
+  }, [mycartDisplay]);
+
   // localStorage.removeItem('productCart');
 
   // 抓付款方式setPayment
@@ -129,13 +147,25 @@ function ProductCart01() {
     setDelivery(e.target.value);
   }
 
+  // 儲存付款方式、運送方式、總金額到localStorage，供下一頁Cart02使用
   useEffect(() => {
     localStorage.setItem('payment', JSON.stringify(payment));
     localStorage.setItem('delivery', JSON.stringify(delivery));
-  }, [payment, delivery]);
+    localStorage.setItem('amount', JSON.stringify(amount));
+  }, [payment, delivery, amount]);
 
-  console.log('payment', payment);
-  console.log('delivery', delivery);
+  // 載入中
+  const spinner = (
+    <div className="spinner-grow text-primary" role="status">
+      <span className="sr-only">Loading...</span>
+    </div>
+  );
+
+  // 登入才可以進購物車
+  if (goToCart) {
+    return <Navigate to="/product-cart01"></Navigate>;
+  }
+
   return (
     <>
       <div className="container">
@@ -225,8 +255,8 @@ function ProductCart01() {
                 );
               })}
             </div>
-            {/* 付款及送貨方式 */}
-            <div className="col-5 borderRadius p-0 ms-4 shadow">
+            {/* 付款及配送方式 */}
+            <div className="col-5 borderRadius p-0 pb-4 ms-4 shadow align-self-start">
               <div className="p-4 border-bottom text-center">
                 <h1>付款及配送方式</h1>
               </div>
@@ -306,7 +336,16 @@ function ProductCart01() {
                   <option value="超商取貨">超商取貨</option>
                 </Form.Select>
               </div>
-              <div className="d-flex justify-content-center mt-5 mb-4">
+              <div
+                className="d-flex justify-content-center mt-5 mb-4"
+                onClick={() => {
+                  if (auth === null) {
+                    return alert('請登入會員');
+                  } else {
+                    setGoToCart(true);
+                  }
+                }}
+              >
                 <Link to="/product-cart02">
                   <div className="btn btn-secondary cartNextBtn">下一步</div>
                 </Link>

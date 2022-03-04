@@ -2,6 +2,7 @@
 import { Routes, Route } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import { AuthContext } from './context/auth';
+import { FavContext } from './context/fav';
 import './App.scss';
 import './styles/global.scss';
 import axios from 'axios';
@@ -47,8 +48,10 @@ import Products from './pages/Products/Products';
 //購物車
 import ProductCart01 from './pages/Products/Cart/ProductCart01';
 import ProductCart02 from './pages/Products/Cart/ProductCart02';
-// import CartConfimOrder from './pages/Products/Cart/CartConfimOrder';
-// import CartComplete from './pages/Products/Cart/CartComplete';
+import ProductCart03 from './pages/Products/Cart/ProductCart03';
+//收藏
+import Collect from './pages/Products/Collect';
+
 //客製化浪板
 import Customized from './pages/Customized/Customized';
 import CustomizedDetails from './pages/Customized/CustomizedDetails';
@@ -64,22 +67,33 @@ import Header from './components/Header';
 // import MainContent from './components/MainContent';
 // import SideBar from './components/SideBar';
 import NotFound from './components/NotFound';
+import FavoriteStar from './components/FavoriteStar';
 
 function App() {
   const [auth, setAuth] = useState(null);
-  async function checklogIn() {
-    try {
-      let response = await axios.get(`${API_URL}/auth/checklogin`, {
-        withCredentials: true,
-      });
-      setAuth(response.data);
-      console.log('App', auth);
-    } catch (e) {
-      console.error({ ERR_MSG });
-    }
-  }
-  // console.log('App2', auth);
+  const [fav, setFav] = useState({
+    // status: false,
+    wishID: [],
+  });
+  // 初始化就要抓localStorage裡有加入收藏的wishID
   useEffect(() => {
+    let wishProduct = JSON.parse(localStorage.getItem('likeID')) || [];
+    setFav({ ...fav, wishID: wishProduct });
+  }, []);
+
+  console.log('App2', auth);
+  useEffect(() => {
+    const checklogIn = async () => {
+      try {
+        let response = await axios.get(`${API_URL}/auth/checklogin`, {
+          withCredentials: true,
+        });
+        setAuth(response.data);
+        console.log('App', auth);
+      } catch (e) {
+        console.error({ ERR_MSG });
+      }
+    };
     if (!auth) {
       checklogIn();
     }
@@ -88,65 +102,72 @@ function App() {
   return (
     <>
       <AuthContext.Provider value={{ auth, setAuth }}>
-        <Header />
-        <ScrollToTop />
-        {/* <Breadcrumb /> */}
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/home-try" element={<HomeTry />} />
-          <Route path="/information" element={<Information />}></Route>
-          <Route path="/information" element={<InformationDetails />}>
-            <Route path=":info_no" element={<InformationDetails />}></Route>
-          </Route>
-          <Route path="/login" element={<LogIn />} />
-          <Route path="/surfspot" element={<SurfSpot />} />
-          <Route path="/products/:product_group" element={<ProductDetails />}>
-            <Route path=":product_id" element={<ProductDetails />} />
-          </Route>
-          <Route path="/products" element={<Products />} />
-          <Route path="/product-cart01" element={<ProductCart01 />} />
-          <Route path="/product-cart02" element={<ProductCart02 />} />
-          <Route
-            path="/customized/customized-details"
-            element={<CustomizedDetails />}
-          />
-          <Route path="/customized" element={<Customized />} />
-          <Route
-            path="/member/member-courseorder/:id"
-            element={<MemberCourseOrderDetails />}
-          />
-          <Route
-            path="/member/member-order/:order_id"
-            element={<MemberOrderDetails />}
-          />
-          <Route
-            path="/member/member-shopping-gold"
-            element={<MemberShoppingGold />}
-          />
-          <Route
-            path="/member/member-courseorder"
-            element={<MemberCourseOrder />}
-          />
-          <Route path="/member/member-collect" element={<MemberCollect />} />
-          <Route path="/member/member-message" element={<MemberMessage />} />
-          <Route path="/member/member-coupon" element={<MemberCoupon />} />
-          <Route path="/member/member-point" element={<MemberPoint />} />
-          <Route path="/member/member-info" element={<MemberInfo />} />
-          <Route path="/member/member-order" element={<MemberOrder />} />
-          <Route path="/member" element={<Member />} />
-          <Route path="/course" element={<Courses />} />
-          <Route path="/course/course-content" element={<CourseContent />} />
-          <Route path="/course/course-cart01" element={<CourseCart01 />} />
-          <Route path="/course/course-cart02" element={<CourseCart02 />} />
-          <Route path="/course/course-cart03" element={<CourseCart03 />} />
-          <Route path="/course/course-cart" element={<CourseCart />} />
-          <Route path="/course/course-evaluate" element={<CourseEvaluate />}>
-            <Route path=":currentPage" element={<CourseEvaluate />} />
-          </Route>
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-        {/* <Footer /> */}
+        <FavContext.Provider value={{ fav, setFav }}>
+          <Header />
+          <ScrollToTop />
+          {/* <Breadcrumb /> */}
+          <FavoriteStar />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/home-try" element={<HomeTry />} />
+            <Route path="/information" element={<Information />}></Route>
+            <Route path="/information" element={<InformationDetails />}>
+              <Route path=":info_no" element={<InformationDetails />}></Route>
+            </Route>
+            <Route path="/login" element={<LogIn />} />
+            <Route path="/surfspot" element={<SurfSpot />} />
+            <Route path="/products/:product_group" element={<ProductDetails />}>
+              <Route path=":product_id" element={<ProductDetails />} />
+            </Route>
+            <Route path="/products" element={<Products />}>
+              <Route path=":currentPage" element={<Products />} />
+            </Route>
+            <Route path="/product-cart01" element={<ProductCart01 />} />
+            <Route path="/product-cart02" element={<ProductCart02 />} />
+            <Route path="/product-cart03" element={<ProductCart03 />} />
+            <Route path="/collect" element={<Collect />} />
+            <Route
+              path="/customized/customized-details"
+              element={<CustomizedDetails />}
+            />
+            <Route path="/customized" element={<Customized />} />
+            <Route
+              path="/member/member-courseorder/:id"
+              element={<MemberCourseOrderDetails />}
+            />
+            <Route
+              path="/member/member-order/:order_id"
+              element={<MemberOrderDetails />}
+            />
+            <Route
+              path="/member/member-shopping-gold"
+              element={<MemberShoppingGold />}
+            />
+            <Route
+              path="/member/member-courseorder"
+              element={<MemberCourseOrder />}
+            />
+            <Route path="/member/member-collect" element={<MemberCollect />} />
+            <Route path="/member/member-message" element={<MemberMessage />} />
+            <Route path="/member/member-coupon" element={<MemberCoupon />} />
+            <Route path="/member/member-point" element={<MemberPoint />} />
+            <Route path="/member/member-info" element={<MemberInfo />} />
+            <Route path="/member/member-order" element={<MemberOrder />} />
+            <Route path="/member" element={<Member />} />
+            <Route path="/course" element={<Courses />} />
+            <Route path="/course/course-content" element={<CourseContent />} />
+            <Route path="/course/course-cart01" element={<CourseCart01 />} />
+            <Route path="/course/course-cart02" element={<CourseCart02 />} />
+            <Route path="/course/course-cart03" element={<CourseCart03 />} />
+            <Route path="/course/course-cart" element={<CourseCart />} />
+            <Route path="/course/course-evaluate" element={<CourseEvaluate />}>
+              <Route path=":currentPage" element={<CourseEvaluate />} />
+            </Route>
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+          {/* <Footer /> */}
+        </FavContext.Provider>
       </AuthContext.Provider>
     </>
   );

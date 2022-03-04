@@ -7,6 +7,7 @@ import { API_URL } from '../../utils/config';
 import './Member.scss';
 import titleImgMember from '../../data/images/greenwave64x24.png';
 import { useAuth } from '../../context/auth';
+import Swal from 'sweetalert2';
 
 const MemberLevel1 = '衝浪入門者';
 const MemberLevel2 = '衝浪熱愛者';
@@ -47,6 +48,7 @@ function MemberInfo(props) {
       `${API_URL}/member/${member.member_id}`,
       msgData
     );
+    Swal.fire('儲存成功');
     console.log(response);
   }
 
@@ -104,15 +106,15 @@ function MemberInfo(props) {
   }, []);
   return (
     <>
-      <div className="container mt-5">
+      <div className="container mt-5 mb-5">
         {/* <div className="row d-flex justify-content-around"> */}
         <Form
           noValidate
           validated={validated}
           onSubmit={handleSubmit}
-          className="row d-flex justify-content-around"
+          className="row flex-sm-row d-flex justify-content-sm-around flex-column"
         >
-          <div className="col-5 d-flex align-content-between justify-content-center flex-wrap">
+          <div className="col-sm-5 col-12 d-flex align-content-between justify-content-center flex-wrap">
             <div className="mb-5 d-flex flex-column text-center">
               <h2 className="mb-5 titleMember">
                 <span className="me-2">
@@ -157,7 +159,7 @@ function MemberInfo(props) {
               <p>初次享受衝浪的衝浪入門者，慢慢越陷越深...。</p>
             </div>
           </div>
-          <div className="col-4">
+          <div className="col-sm-5 col-12">
             <div className="">
               <h3 className="fs-24Member">基本資料</h3>
               <Form.Group className="col-12">
@@ -302,7 +304,7 @@ function MemberInfo(props) {
                   className="col-12 btn btnMember"
                 />
               </Form.Group>
-              <div className="d-flex justify-content-end">
+              <div className="d-flex justify-content-end mb-3">
                 <Button className="mx-2 btn btnMember cancelMember fs-16Member">
                   取消
                 </Button>

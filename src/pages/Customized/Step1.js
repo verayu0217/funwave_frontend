@@ -33,10 +33,7 @@ function Step1(props) {
           weight="64px"
         />
         STEP1 選擇衝浪板外型
-        <button
-          className="btn btn-secondary position-absolute my-2 end-0"
-          onClick={nextStep}
-        >
+        <button className="btn btn-secondary btnEnd" onClick={nextStep}>
           下一步
         </button>
       </div>
