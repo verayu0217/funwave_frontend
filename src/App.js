@@ -49,6 +49,8 @@ import Products from './pages/Products/Products';
 import ProductCart01 from './pages/Products/Cart/ProductCart01';
 import ProductCart02 from './pages/Products/Cart/ProductCart02';
 import ProductCart03 from './pages/Products/Cart/ProductCart03';
+//收藏
+import Collect from './pages/Products/Collect';
 
 //客製化浪板
 import Customized from './pages/Customized/Customized';
@@ -120,6 +122,7 @@ function App() {
             <Route path="/product-cart01" element={<ProductCart01 />} />
             <Route path="/product-cart02" element={<ProductCart02 />} />
             <Route path="/product-cart03" element={<ProductCart03 />} />
+            <Route path="/collect" element={<Collect />} />
             <Route
               path="/customized/customized-details"
               element={<CustomizedDetails />}
