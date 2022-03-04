@@ -25,7 +25,7 @@ function MemberCollect() {
             我的收藏
           </h2>
           <Table
-            responsive
+            responsive="sm"
             hover
             className="table table-control align-middle text-center tableMemberOrderDetails"
           >

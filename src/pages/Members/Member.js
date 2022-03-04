@@ -33,7 +33,7 @@ function Member() {
         <div className="memberWrap">
           <Tab.Container id="left-tabs-example" defaultActiveKey="first">
             <Row className="container tabWrapMember">
-              <Col className="tabBarMember sticky-top" lg={3}>
+              <Col className="tabBarMember sticky-top" lg={3} md={3}>
                 <Nav variant="pills" className="flex-column">
                   <Nav.Item>
                     <Nav.Link className="fs-24Member linkWidthMember my-5">
@@ -108,7 +108,10 @@ function Member() {
                   </Nav.Item>
                 </Nav>
               </Col>
-              <Col className="tabBarMember tabBarPhoneMember" lg={3}>
+              <Col
+                className="tabBarMember tabBarPhoneMember fixed-bottom"
+                lg={12}
+              >
                 <Nav justify className="row">
                   <Nav.Item className="col-2">
                     <Nav.Link
@@ -176,8 +179,8 @@ function Member() {
                   </Nav.Item>
                 </Nav>
               </Col>
-              <Col className="tabContentMember" lg={9}>
-                <Tab.Content>
+              <Col className="tabContentMember" lg={9} md={9} sm={12}>
+                <Tab.Content className="d-flex justify-content-center">
                   <Tab.Pane eventKey="first">
                     <MemberInfo />
                   </Tab.Pane>

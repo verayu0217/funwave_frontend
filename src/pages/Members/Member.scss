@@ -1,5 +1,4 @@
 @import '../../styles/global.scss';
-
 .fs-45Member {
   font-size: 2.813rem !important;
   font-weight: bold !important;
@@ -59,7 +58,7 @@
       display: none;
     }
   }
-  @media screen and (max-width: 992px) {
+  @media screen and (max-width: 767px) {
     .tabWrapMember {
       padding: 0px;
       height: 52px;
@@ -155,6 +154,13 @@
   .was-validated .pwControlMember:invalid,
   .pwControlMember.is-invalid {
     background-position: right calc(1.375em + 0.1875rem) center;
+  }
+  @media screen and (max-width: 992px) {
+    .tabContentMember {
+      .titleMember {
+        font-size: 32px;
+      }
+    }
   }
   // /MemberInfo
 

@@ -22,6 +22,7 @@ const MemberCourseOrder = () => {
   const [data, setData] = useState([]);
   const [pages, setPages] = useState([]);
   const { auth, setAuth } = useAuth();
+  const { currentPage } = useParams();
   // 為了處理網址
   let navigate = useNavigate();
 
@@ -141,20 +142,51 @@ const MemberCourseOrder = () => {
               {/* </table> */}
             </Table>
           </div>
-          <nav aria-label="pageMember">
-            <ul className="d-flex justify-content-center mt-5">
+          <nav aria-label="..." className="mb-5">
+            <ul className="pagination d-flex justify-content-center">
+              <li class="page-item">
+                <a
+                  class="page-link pageLinkMember"
+                  href="#/"
+                  onClick={(e) => {
+                    changePage(1);
+                    navigate(1);
+                  }}
+                  aria-label="Previous"
+                >
+                  <span aria-hidden="true">&laquo;</span>
+                  <span class="sr-only">Previous</span>
+                </a>
+              </li>
               {Array.from(Array(pages).keys()).map((p) => {
                 return (
                   <li className="page-item">
                     <a
                       className="page-link pageLinkMember"
-                      onClick={() => changePage(p + 1)}
+                      onClick={(e) => {
+                        changePage(p + 1);
+                        setPages(p + 1);
+                      }}
                     >
                       {p + 1}
                     </a>
                   </li>
                 );
               })}
+              <li class="page-item">
+                <a
+                  class="page-link pageLinkMember"
+                  href="#/"
+                  onClick={(e) => {
+                    changePage(pages);
+                    navigate({ pages });
+                  }}
+                  aria-label="Next"
+                >
+                  <span aria-hidden="true">&raquo;</span>
+                  <span class="sr-only">Next</span>
+                </a>
+              </li>
             </ul>
           </nav>
         </div>
