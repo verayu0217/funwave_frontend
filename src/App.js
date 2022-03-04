@@ -49,6 +49,8 @@ import Products from './pages/Products/Products';
 import ProductCart01 from './pages/Products/Cart/ProductCart01';
 import ProductCart02 from './pages/Products/Cart/ProductCart02';
 import ProductCart03 from './pages/Products/Cart/ProductCart03';
+//收藏
+import Collect from './pages/Products/Collect';
 
 //客製化浪板
 import Customized from './pages/Customized/Customized';
@@ -65,6 +67,7 @@ import Header from './components/Header';
 // import MainContent from './components/MainContent';
 // import SideBar from './components/SideBar';
 import NotFound from './components/NotFound';
+import FavoriteStar from './components/FavoriteStar';
 
 function App() {
   const [auth, setAuth] = useState(null);
@@ -72,6 +75,7 @@ function App() {
     // status: false,
     wishID: [],
   });
+  // 初始化就要抓localStorage裡有加入收藏的wishID
   useEffect(() => {
     let wishProduct = JSON.parse(localStorage.getItem('likeID')) || [];
     setFav({ ...fav, wishID: wishProduct });
@@ -102,6 +106,7 @@ function App() {
           <Header />
           <ScrollToTop />
           {/* <Breadcrumb /> */}
+          <FavoriteStar />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/home" element={<Home />} />
@@ -121,6 +126,7 @@ function App() {
             <Route path="/product-cart01" element={<ProductCart01 />} />
             <Route path="/product-cart02" element={<ProductCart02 />} />
             <Route path="/product-cart03" element={<ProductCart03 />} />
+            <Route path="/collect" element={<Collect />} />
             <Route
               path="/customized/customized-details"
               element={<CustomizedDetails />}
