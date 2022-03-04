@@ -131,7 +131,7 @@ function ProductAddCart(props) {
         <h1>{product[0].name}</h1>
         {fav.wishID.includes(product[0].product_group) ? (
           <FaHeart
-            size={30}
+            size={40}
             color="#ff7f6a"
             className="proDetailHeart"
             onClick={(e) => {
@@ -141,7 +141,7 @@ function ProductAddCart(props) {
           />
         ) : (
           <BiHeart
-            size={30}
+            size={40}
             color="#ff7f6a"
             className="proDetailHeart"
             type="button"
