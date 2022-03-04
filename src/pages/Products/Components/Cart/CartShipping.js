@@ -2,8 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Form, Button, InputGroup } from 'react-bootstrap';
-// 各縣市對應之超商
-import { data } from '../../../../data/CountiesConvenientStore.js';
+import { data } from '../../../../data/CountiesConvenientStore.js'; // 各縣市對應之超商
 
 function CartShipping(props) {
   const {
@@ -18,6 +17,7 @@ function CartShipping(props) {
   // "便利商店取貨"的縣市儲存為狀態，僅用於此子元件
   const [convenientStoreCounty, setConvenientStoreCounty] =
     useState('請選擇縣市');
+
   // "便利商店取貨"的門市儲存為狀態，僅用於此子元件
   const [convenientStore, setConvenientStore] = useState('請選擇縣市');
 
@@ -25,6 +25,15 @@ function CartShipping(props) {
   const handleChange = (e) => {
     setOrder({ ...order, [e.target.name]: e.target.value });
   };
+
+  // 將狀態convenientStore存入表單元素(狀態order)
+  useEffect(() => {
+    setOrder({
+      ...order,
+      convenient_store: convenientStore,
+    });
+  }, [convenientStore]);
+  console.log('order', order);
 
   // 縣市
   const counties = [

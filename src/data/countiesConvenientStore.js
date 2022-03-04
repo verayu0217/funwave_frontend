@@ -4,6 +4,7 @@ const data = [
   {
     county: '台北市',
     convenientStore: [
+      '請選擇門市',
       '中山門市',
       '信義門市',
       '東門門市',
@@ -16,6 +17,7 @@ const data = [
   {
     county: '新北市',
     convenientStore: [
+      '請選擇門市',
       '三重門市',
       '五股門市',
       '板橋門市',
@@ -30,6 +32,7 @@ const data = [
   {
     county: '桃園市',
     convenientStore: [
+      '請選擇門市',
       '桃園門市',
       '中壢門市',
       '內壢門市',
@@ -41,6 +44,7 @@ const data = [
   {
     county: '台中市',
     convenientStore: [
+      '請選擇門市',
       '台中門市',
       '大甲門市',
       '清水門市',
@@ -53,6 +57,7 @@ const data = [
   {
     county: '台南市',
     convenientStore: [
+      '請選擇門市',
       '台南門市',
       '新營門市',
       '新市門市',
@@ -65,6 +70,7 @@ const data = [
   {
     county: '高雄市',
     convenientStore: [
+      '請選擇門市',
       '高雄門市',
       '岡山門市',
       '橋頭門市',
@@ -77,6 +83,7 @@ const data = [
   {
     county: '基隆市',
     convenientStore: [
+      '請選擇門市',
       '基隆門市',
       '三坑門市',
       '八堵門市',
@@ -89,6 +96,7 @@ const data = [
   {
     county: '新竹市',
     convenientStore: [
+      '請選擇門市',
       '竹北門市',
       '湖口門市',
       '新豐門市',
@@ -99,6 +107,7 @@ const data = [
   {
     county: '新竹縣',
     convenientStore: [
+      '請選擇門市',
       '竹東門市',
       '內灣門市',
       '富貴門市',
@@ -109,6 +118,7 @@ const data = [
   {
     county: '彰化縣',
     convenientStore: [
+      '請選擇門市',
       '彰化門市',
       '花壇門市',
       '員林門市',
@@ -121,6 +131,7 @@ const data = [
   {
     county: '苗栗縣',
     convenientStore: [
+      '請選擇門市',
       '苗栗門市',
       '後龍門市',
       '白沙屯門市',
@@ -133,6 +144,7 @@ const data = [
   {
     county: '雲林縣',
     convenientStore: [
+      '請選擇門市',
       '雲林門市',
       '林內門市',
       '石榴門市',
@@ -143,15 +155,22 @@ const data = [
   },
   {
     county: '嘉義市',
-    convenientStore: ['嘉義市門市'],
+    convenientStore: ['請選擇門市', '嘉義市門市'],
   },
   {
     county: '嘉義縣',
-    convenientStore: ['民雄門市', '嘉北門市', '水上門市', '南靖門市'],
+    convenientStore: [
+      '請選擇門市',
+      '民雄門市',
+      '嘉北門市',
+      '水上門市',
+      '南靖門市',
+    ],
   },
   {
     county: '屏東縣',
     convenientStore: [
+      '請選擇門市',
       '屏東門市',
       '西勢門市',
       '潮州門市',
@@ -170,6 +189,7 @@ const data = [
   {
     county: '台東縣',
     convenientStore: [
+      '請選擇門市',
       '台東門市',
       '池上門市',
       '關山門市',
@@ -188,6 +208,7 @@ const data = [
   {
     county: '花蓮縣',
     convenientStore: [
+      '請選擇門市',
       '花蓮門市',
       '崇德門市',
       '新城門市',
@@ -206,6 +227,7 @@ const data = [
   {
     county: '宜蘭縣',
     convenientStore: [
+      '請選擇門市',
       '宜蘭門市',
       '頭城門市',
       '礁溪門市',

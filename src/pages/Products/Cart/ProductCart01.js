@@ -20,9 +20,10 @@ function ProductCart01() {
   // 整理重複的mycart為mycartDisplay
   const [mycartDisplay, setMycartDisplay] = useState([]);
 
-  // 付款方式、運送方式
+  // 付款方式、運送方式、總金額
   const [payment, setPayment] = useState('信用卡');
   const [delivery, setDelivery] = useState('宅配到府');
+  const [amount, setAmount] = useState(0);
 
   // 判斷是否登入，登入才能進購物車
   const [goToCart, setGoToCart] = useState(false);
@@ -83,7 +84,6 @@ function ProductCart01() {
     setMycartDisplay(newMycartDisplay);
   }, [mycart]);
 
-  // 模擬componentDidUpdate
   // 將mycartDisplay(整理好的mycart)存進LocalStorage(productCartDisplay)
   useEffect(() => {
     localStorage.setItem('productCartDisplay', JSON.stringify(mycartDisplay));
@@ -129,6 +129,12 @@ function ProductCart01() {
     }
     return total;
   };
+
+  // 將總價存入狀態amount
+  useEffect(() => {
+    setAmount(sum(mycartDisplay));
+  }, [mycartDisplay]);
+
   // localStorage.removeItem('productCart');
 
   // 抓付款方式setPayment
@@ -141,11 +147,12 @@ function ProductCart01() {
     setDelivery(e.target.value);
   }
 
-  // 儲存付款方式、運送方式到localStorage，供下一頁Cart02使用
+  // 儲存付款方式、運送方式、總金額到localStorage，供下一頁Cart02使用
   useEffect(() => {
     localStorage.setItem('payment', JSON.stringify(payment));
     localStorage.setItem('delivery', JSON.stringify(delivery));
-  }, [payment, delivery]);
+    localStorage.setItem('amount', JSON.stringify(amount));
+  }, [payment, delivery, amount]);
 
   // 載入中
   const spinner = (
@@ -154,10 +161,6 @@ function ProductCart01() {
     </div>
   );
 
-  // console.log('payment', payment);
-  // console.log('delivery', delivery);
-
-  // console.log('goToCart', goToCart);
   // 登入才可以進購物車
   if (goToCart) {
     return <Navigate to="/product-cart01"></Navigate>;

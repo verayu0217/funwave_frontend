@@ -106,7 +106,7 @@ function MemberInfo(props) {
   }, []);
   return (
     <>
-      <div className="container mt-5">
+      <div className="container mt-5 mb-5">
         {/* <div className="row d-flex justify-content-around"> */}
         <Form
           noValidate
@@ -304,7 +304,7 @@ function MemberInfo(props) {
                   className="col-12 btn btnMember"
                 />
               </Form.Group>
-              <div className="d-flex justify-content-end">
+              <div className="d-flex justify-content-end mb-3">
                 <Button className="mx-2 btn btnMember cancelMember fs-16Member">
                   取消
                 </Button>
