@@ -250,10 +250,21 @@ function ProductCart02() {
                       />
                     </Form.Group>
                     <div className="d-flex justify-content-evenly mt-4">
-                      <button className="btn btn-secondary text-white">
-                        上一步
-                      </button>
-                      <Button type="submit">完成訂購！</Button>
+                      <Link to={`/product-cart01`}>
+                        <button className="btn btn-secondary text-white">
+                          上一步
+                        </button>
+                      </Link>
+                      <Button
+                        type="submit"
+                        // onClick={() => {
+                        //   if (order.convenient_store === '') {
+                        //     alert('請選擇門市');
+                        //   }
+                        // }}
+                      >
+                        完成訂購！
+                      </Button>
                     </div>
                   </div>
                 </Form>

@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Form, Button, InputGroup } from 'react-bootstrap';
-import { data } from '../../../../data/CountiesConvenientStore.js'; // 各縣市對應之超商
+import { data } from '../../../../data/countiesConvenientStore.js'; // 各縣市對應之超商
 
 function CartShipping(props) {
   const {
