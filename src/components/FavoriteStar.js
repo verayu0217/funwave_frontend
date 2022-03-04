@@ -4,19 +4,20 @@ import { Link } from 'react-router-dom';
 import '../styles/component.scss';
 
 // react-icons
-import { BsFillStarFill } from 'react-icons/bs';
+import { MdStar } from 'react-icons/md';
 
 function FavoriteStar() {
   return (
     <>
       <Link to="/collect">
-        <div className="favWrap">
-          <BsFillStarFill
+        <div className="favWrap d-flex">
+          <MdStar
             size={40}
             className="favStar"
             type="button"
             onClick=""
-          ></BsFillStarFill>
+          ></MdStar>
+          <div className="myFav">我的收藏</div>
         </div>
       </Link>
     </>
