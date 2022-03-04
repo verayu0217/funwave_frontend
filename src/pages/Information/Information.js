@@ -294,72 +294,78 @@ function Information() {
         </div>
         {/* 輪播部分 */}
         <div className="container-fluid caroBoxInfo">
+            <div className="row">
+                <div className="col-12">
 
-        {caroData.map( (caroDataItem, i) => {
-            return (
-            <React.Fragment key={i}>
-            
-            <Carousel activeIndex={index} onSelect={handleSelect}>
-                <Carousel.Item  className="">
-                    <div className="">
-                        <img
-                        className="d-block w-100"
-                        src={`${IMAGE_URL}/information/${caroDataItem.big_imgA}`}
-                        alt="First slide"
-                        />
-                    </div>
-                    <Carousel.Caption  className="">
-                    <div className="d-flex flex-column align-items-start text-start mb-4">
-                        <span className="badge bg-dark h6">{caroDataItem.info_catA}</span>
-                        <a className="h1 white caroAInfo" href="" onClick={()=> navigate(`/information/${caroDataItem.info_noA}`)}>{caroDataItem.big_titleA}
-                        </a>
-                        <h6 className="caroADate">{dateAdjust(caroDataItem.create_timeA)} {caroDataItem.authorA}</h6>
-                    </div>
-                    </Carousel.Caption>
-                </Carousel.Item>
-                <Carousel.Item>
-                    <img
-                    className="d-block w-100"
-                    src={`${IMAGE_URL}/information/${caroDataItem.big_imgB}`}
-                    alt="Second slide"
-                    />
-                    <Carousel.Caption  className="">
-                    <div className="d-flex flex-column align-items-start text-start mb-4">
-                        <span className="badge bg-dark h6">{caroDataItem.info_catB}</span>
-                        <a className="h1 white caroAInfo" href="" onClick={()=> navigate(`/information/${caroDataItem.info_noB}`)}>{caroDataItem.big_titleB}
-                        </a>
-                        <h6 className="caroADate">{dateAdjust(caroDataItem.create_timeB)} {caroDataItem.authorB}</h6>
-                    </div>
-                    </Carousel.Caption>
-                </Carousel.Item>
-                <Carousel.Item>
-                    <img
-                    className="d-block w-100"
-                    src={`${IMAGE_URL}/information/${caroDataItem.big_imgC}`}
-                    alt="Third slide"
-                    />
-                    <Carousel.Caption  className="">
-                    <div className="d-flex flex-column align-items-start text-start mb-4">
-                        <span className="badge bg-dark h6">{caroDataItem.info_catC}</span>
-                        <a className="h1 white caroAInfo" href="" onClick={()=> navigate(`/information/${caroDataItem.info_noC}`)}>{caroDataItem.big_titleC}
-                        </a>
-                        <h6 className="caroADate">{dateAdjust(caroDataItem.create_timeC)} {caroDataItem.authorC}</h6>
-                    </div>
-                    </Carousel.Caption>
-                </Carousel.Item>
-            </Carousel>
+                    {caroData.map( (caroDataItem, i) => {
+                    return (
+                    <React.Fragment key={i}>
+                    
+                    <Carousel activeIndex={index} onSelect={handleSelect}>
+                        <Carousel.Item  className="">
+                            <div className="">
+                                <img
+                                className="d-block w-100"
+                                src={`${IMAGE_URL}/information/${caroDataItem.big_imgA}`}
+                                alt="First slide"
+                                />
+                            </div>
+                            <Carousel.Caption  className="">
+                            <div className="d-flex flex-column align-items-start text-start mb-4">
+                                <span className="badge bg-dark h6">{caroDataItem.info_catA}</span>
+                                <a className="h1 white caroAInfo" href="" onClick={()=> navigate(`/information/${caroDataItem.info_noA}`)}>{caroDataItem.big_titleA}
+                                </a>
+                                <h6 className="caroADate">{dateAdjust(caroDataItem.create_timeA)} {caroDataItem.authorA}</h6>
+                            </div>
+                            </Carousel.Caption>
+                            </Carousel.Item>
+                            <Carousel.Item>
+                                <img
+                                className="d-block w-100"
+                                src={`${IMAGE_URL}/information/${caroDataItem.big_imgB}`}
+                                alt="Second slide"
+                                />
+                                <Carousel.Caption  className="">
+                                <div className="d-flex flex-column align-items-start text-start mb-4">
+                                    <span className="badge bg-dark h6">{caroDataItem.info_catB}</span>
+                                    <a className="h1 white caroAInfo" href="" onClick={()=> navigate(`/information/${caroDataItem.info_noB}`)}>{caroDataItem.big_titleB}
+                                    </a>
+                                    <h6 className="caroADate">{dateAdjust(caroDataItem.create_timeB)} {caroDataItem.authorB}</h6>
+                                </div>
+                                </Carousel.Caption>
+                            </Carousel.Item>
+                            <Carousel.Item>
+                                <img
+                                className="d-block w-100"
+                                src={`${IMAGE_URL}/information/${caroDataItem.big_imgC}`}
+                                alt="Third slide"
+                                />
+                                <Carousel.Caption  className="">
+                                <div className="d-flex flex-column align-items-start text-start mb-4">
+                                    <span className="badge bg-dark h6">{caroDataItem.info_catC}</span>
+                                    <a className="h1 white caroAInfo" href="" onClick={()=> navigate(`/information/${caroDataItem.info_noC}`)}>{caroDataItem.big_titleC}
+                                    </a>
+                                    <h6 className="caroADate">{dateAdjust(caroDataItem.create_timeC)} {caroDataItem.authorC}</h6>
+                                </div>
+                                </Carousel.Caption>
+                            </Carousel.Item>
+                    </Carousel>
 
-            </React.Fragment>
-            )
-        })}
+                    </React.Fragment>
+                    )
+                    })}
 
-        </div> 
+                </div> {/* col */}
+            </div> {/* row */}
+        </div> {/* container-fluid */}
 
         {/* 輪播部分以下 */}
         <div className="container contentSectionInfo pt-5">
             {/* <div className="row"></div> */}
             <div className="row">
-                <div className="tab-content">
+                <div className="col-12">
+
+                <div className="">
                 <Tabs
                     className="" // 沒作用
                     id="controlled-tab-info"
@@ -632,8 +638,11 @@ function Information() {
                         </div>
                     </Tab>
                 </Tabs>
-                </div>
-            </div>
+                </div> {/*  */}
+
+                </div> {/* col */}
+
+            </div> {/* row */}
         </div>
     </>
     );
