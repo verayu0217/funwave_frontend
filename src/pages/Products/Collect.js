@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Tab, Row, Col, Nav, Collapse, Button, Table } from 'react-bootstrap';
-import { useFav } from '../../../../context/fav';
+import { useFav } from '../../context/fav';
 
 import titleImgMember from '../../data/images/greenwave64x24.png';
 import '../Members/Member.scss';
