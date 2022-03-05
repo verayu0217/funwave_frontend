@@ -51,7 +51,21 @@ function ProductAddCart(props) {
     '衝浪斗篷毛巾衣',
     '防寒衣',
   ];
-  const brandTypes = ['Catch Surf', 'Solid Surf Co', 'JJF by Pyzel'];
+  const brandTypes = [
+    'Catch Surf',
+    'Solid Surf Co',
+    'JJF by Pyzel',
+    'Modern',
+    'Softech',
+    'Almond Surfboards',
+    'Lib Tech',
+    'True Ames',
+    'Captain Fin',
+    'Creatures of Leisure',
+    'Roam',
+    'Pro-Lite',
+    'en.saintjacques',
+  ];
 
   // 讓畫面有尺寸btn的值
   // 取出主貨號(product_group)中子貨號(product_no)的尺寸
@@ -126,6 +140,18 @@ function ProductAddCart(props) {
 
   return (
     <>
+      {/* 加入購物車 */}
+      <button
+        onClick={() => {
+          if (auth === null) {
+            return alert('請登入會員');
+          } else {
+            setGoToCart(true);
+          }
+        }}
+      >
+        去購物車
+      </button>
       {/* 商品名稱、品牌、小分類、貨號 */}
       <div className="d-flex justify-content-between">
         <h1>{product[0].name}</h1>
@@ -164,11 +190,11 @@ function ProductAddCart(props) {
           <p className="fs-6">1則評論</p>
         </div>
       </div>
-      <p className="fs-6">
+      <p className="mb-2">
         #{product[chosenProductOrder > 0 ? chosenProductOrder : 0].product_no}
       </p>
       {/* 選擇顏色 */}
-      <div className="row mt-5 mb-3">
+      <div className="row mt-4 mb-3">
         <div className="col-4 pe-0">
           <div>選擇顏色：</div>
         </div>
@@ -223,7 +249,7 @@ function ProductAddCart(props) {
         </div>
       </div>
       {/* 單價 */}
-      <div className="d-flex my-5 align-items-center">
+      <div className="d-flex mt-5 mb-3 align-items-center">
         <h2 className="fw-bolder">NT {product[0].price.toLocaleString()}</h2>
         <AiFillTags size={16} color="#ff7f6a" className="ms-4" />
         <p className="fs-6 text-primary m-0 ms-1">精選優惠！</p>
@@ -256,18 +282,6 @@ function ProductAddCart(props) {
           <AiOutlinePlus size={20} color="#ffffff" className="text-center" />
         </button>
       </div>
-      {/* 加入購物車 */}
-      <button
-        onClick={() => {
-          if (auth === null) {
-            return alert('請登入會員');
-          } else {
-            setGoToCart(true);
-          }
-        }}
-      >
-        去購物車
-      </button>
 
       <button
         className="btn btn-secondary btnAddCart"
@@ -282,6 +296,7 @@ function ProductAddCart(props) {
             small_cat_id: product[0].small_cat_id,
             stock: product[chosenProductOrder].stock,
             count: count,
+            style: '',
           });
         }}
       >

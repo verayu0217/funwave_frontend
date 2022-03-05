@@ -29,13 +29,11 @@ function ProductCart02() {
     address: '',
     convenient_store: '',
     status: '訂單處理中',
-    order_time: '2021-12-13 14:33:56',
     order_details: [],
   });
 
   // 表單元素 (可同步會員資料)
   const [memberName, setMemberName] = useState('');
-  const [memberEmail, setMemberEmail] = useState('');
   const [memberPhone, setMemberPhone] = useState('');
   const [memberAddress, setMemberAddress] = useState('');
 
@@ -47,6 +45,9 @@ function ProductCart02() {
 
   // 配送資訊勾選同訂購人地址
   const [addressSync, setAddressSync] = useState(false); // true代表配送資訊勾選同訂購人地址
+
+  // 訂單完成
+  const [orderDone, setOrderDone] = useState(false);
 
   const [validated, setValidated] = useState(false);
 
@@ -67,8 +68,9 @@ function ProductCart02() {
 
     // 處理購物車品項欄位剩下product_no、count
     let orderDetails = localStorageOrderCart.map((x) =>
-      _.pick(x, 'product_no', 'count')
+      _.pick(x, 'product_no', 'count', 'style')
     );
+    console.log('orderDetails', orderDetails);
 
     setOrder({
       ...order,
@@ -83,7 +85,7 @@ function ProductCart02() {
     console.log(order);
   }, [order]);
 
-  // 會員資料帶入訂購人資訊 (member_id、memberName、memberEmail、memberPhone、memberAddress，從useContext帶入)
+  // 會員資料帶入訂購人資訊 (member_id、memberName、memberPhone、memberAddress，從useContext帶入)
   useEffect(() => {
     // 這裡條件還是無法阻擋重整auth為null而壞掉的情況！
     if (auth) {
@@ -93,15 +95,14 @@ function ProductCart02() {
       });
 
       setMemberName(auth?.member_name);
-      setMemberEmail(auth?.member_email);
       setMemberPhone(auth?.member_phone);
       setMemberAddress(auth?.member_address);
     } else {
     }
   }, [auth]);
 
-  // 收件人資訊勾選同訂購人資訊
   useEffect(() => {
+    // 收件人資訊勾選同訂購人資訊
     if (receiverSync === true) {
       setOrder({
         ...order,
@@ -110,10 +111,8 @@ function ProductCart02() {
       });
     } else {
     }
-  }, [receiverSync]);
 
-  // 收件人資訊勾選同訂購人資訊
-  useEffect(() => {
+    // 收件人資訊勾選同訂購人資訊
     if (addressSync === true) {
       setOrder({
         ...order,
@@ -121,7 +120,18 @@ function ProductCart02() {
       });
     } else {
     }
-  }, [addressSync]);
+  }, [receiverSync, addressSync]);
+
+  // // 收件人資訊勾選同訂購人資訊
+  // useEffect(() => {
+  //   if (addressSync === true) {
+  //     setOrder({
+  //       ...order,
+  //       address: memberAddress,
+  //     });
+  //   } else {
+  //   }
+  // }, [addressSync]);
 
   async function handleSubmit(e) {
     // 送出資料前的驗證
@@ -133,6 +143,7 @@ function ProductCart02() {
       try {
         let response = await axios.post(`${API_URL}/cartProducts`, order);
         console.log(response.data);
+        setOrderDone(true);
       } catch (e) {
         console.error('error', e.response.data);
       }
@@ -140,8 +151,12 @@ function ProductCart02() {
     setValidated(true);
   }
 
+  // 訂購完成才能到Cart03
+  if (orderDone) {
+    return <Navigate to="/product-cart03"></Navigate>;
+  }
+
   console.log('memberName', memberName);
-  console.log('memberEmail', memberEmail);
   console.log('memberPhone', memberPhone);
   console.log('memberAddress', memberAddress);
   console.log('memberSync', memberSync);
@@ -176,8 +191,6 @@ function ProductCart02() {
                   setOrder={setOrder}
                   memberName={memberName}
                   setMemberName={setMemberName}
-                  memberEmail={memberEmail}
-                  setMemberEmail={setMemberEmail}
                   memberPhone={memberPhone}
                   setMemberPhone={setMemberPhone}
                   memberAddress={memberAddress}

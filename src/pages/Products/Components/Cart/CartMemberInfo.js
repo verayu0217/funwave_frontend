@@ -9,8 +9,6 @@ function CartMemberInfo(props) {
     setOrder,
     memberName,
     setMemberName,
-    memberEmail,
-    setMemberEmail,
     memberPhone,
     setMemberPhone,
     memberAddress,
@@ -62,27 +60,6 @@ function CartMemberInfo(props) {
             />
             <Form.Control.Feedback type="invalid">
               請填寫訂購人姓名
-            </Form.Control.Feedback>
-          </InputGroup>
-        </Form.Group>
-
-        {/* 訂購人信箱 */}
-        <Form.Group controlId="validationCustomUsername" className="mb-3">
-          <Form.Label>E-mail (帳號)</Form.Label>
-          <InputGroup hasValidation>
-            <Form.Control
-              type="email"
-              placeholder="請輸入E-mail"
-              aria-describedby="inputEmail"
-              name="memberEmail"
-              value={memberEmail}
-              required
-              onChange={(e) => {
-                setMemberEmail(e.target.value);
-              }}
-            />
-            <Form.Control.Feedback type="invalid">
-              請填入正確格式的訂購人E-mail
             </Form.Control.Feedback>
           </InputGroup>
         </Form.Group>

@@ -158,11 +158,11 @@ function MemberCourseOrderDetails(props) {
                               <div className="row">
                                 <div className="col-7"></div>
                                 <div className="col-5">
-                                  <div className="row d-flex justify-content-end">
-                                    <p className="col-6 text-start text-nowrap">
+                                  <div className="row d-flex justify-content-end mrMember">
+                                    <p className="col-4 text-start text-nowrap">
                                       小計：
                                     </p>
-                                    <p className="col-6" id="countId">
+                                    <p className="col-7" id="countId">
                                       NT$
                                       {data.reduce(
                                         (pre, cur) => pre + cur.amount,
@@ -183,11 +183,11 @@ function MemberCourseOrderDetails(props) {
                                 </p>
                               </div>
                             </div> */}
-                                  <div className="row d-flex justify-content-end">
-                                    <p className="col-6 text-start text-nowrap">
+                                  <div className="row d-flex justify-content-end mrMember">
+                                    <p className="col-4 text-start text-nowrap">
                                       合計：
                                     </p>
-                                    <p className="col-6">
+                                    <p className="col-7">
                                       NT$
                                       {data.reduce(
                                         (pre, cur) => pre + cur.amount,
@@ -232,7 +232,7 @@ function MemberCourseOrderDetails(props) {
                 if (index == 0)
                   return (
                     <div className="row p-5" key={item.order_time}>
-                      <div className="col-6">
+                      <div className="col-lg-6 col-md-6 col-12 mb-5">
                         <p className="fw-bold">訂單資訊</p>
                         <br />
                         <p>訂單號碼：{item.id}</p>
@@ -242,20 +242,17 @@ function MemberCourseOrderDetails(props) {
                         <p>訂單日期：{item.order_time}</p>
                         {/* <p>訂單狀態：{item.status}</p> */}
                       </div>
-                      <div className="col-6">
+                      <div className="col-lg-6 col-md-6 col-12">
                         <p className="fw-bold">顧客資訊</p>
                         <br />
-                        <p>
-                          姓名：{item.name}
-                          {item.sex}
-                        </p>
+                        <p>姓名：{item.name}</p>
                         <p>訂單信箱：{item.email}</p>
                         <p>電話號碼：{item.phone}</p>
                         <p>訂單日期：{item.courseDate}</p>
                         {/* <p>生日：{item.}</p> */}
                         {/* <p>手機號碼：{item.}</p> */}
                       </div>
-                      <div className="col-6 mt-5">
+                      <div className="col-lg-6 col-md-6 col-12 mt-5">
                         <p className="fw-bold">課程資訊</p>
                         <br />
                         <p>課程名稱：{item.course}</p>
@@ -265,7 +262,7 @@ function MemberCourseOrderDetails(props) {
                         {/* <p>或件追蹤編號：</p> */}
                         <p>人數：{item.peopleNum}</p>
                       </div>
-                      <div className="col-6 mt-5">
+                      <div className="col-lg-6 col-md-6 col-12 mt-5">
                         <p className="fw-bold">付款資訊</p>
                         <br />
                         <p>付款方式：{item.payMethod}</p>

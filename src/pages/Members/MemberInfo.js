@@ -305,12 +305,12 @@ function MemberInfo(props) {
                 />
               </Form.Group>
               <div className="d-flex justify-content-end mb-3">
-                <Button className="mx-2 btn btnMember cancelMember fs-16Member">
+                {/* <Button className="mx-2 btn btnMember cancelMember text-nowrap fs-16Member">
                   取消
-                </Button>
+                </Button> */}
                 <Button
                   type="submit"
-                  className="btn btnMember saveMember fs-16Member"
+                  className="btn btnMember saveMember text-nowrap fs-16Member"
                   onClick={memberSubmit}
                 >
                   儲存變更

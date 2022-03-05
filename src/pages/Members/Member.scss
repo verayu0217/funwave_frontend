@@ -1,23 +1,23 @@
 @import '../../styles/global.scss';
 .fs-45Member {
-  font-size: 2.813rem !important;
-  font-weight: bold !important;
+  font-size: 2.813rem;
+  font-weight: bold;
 }
 .fs-26Member {
-  font-size: 1.625rem !important;
-  font-weight: bold !important;
+  font-size: 1.625rem;
+  font-weight: bold;
 }
 .fs-24Member {
-  font-size: 1.5rem !important;
-  font-weight: bold !important;
+  font-size: 1.5rem;
+  font-weight: bold;
 }
 .fs-20Member {
-  font-size: 1.3rem !important;
-  font-weight: bold !important;
+  font-size: 1.3rem;
+  font-weight: bold;
 }
 .fs-16Member {
-  font-size: 1rem !important;
-  font-weight: bold !important;
+  font-size: 1rem;
+  font-weight: bold;
 }
 .pl-12Member {
   padding-left: 12px;
@@ -192,6 +192,26 @@
   .deleteIconMember:hover {
     color: $funwave-orange;
   }
+  @media screen and (max-width: 480px) {
+    .orderTableWrapMember {
+      width: 400px;
+    }
+  }
+  @media screen and (max-width: 420px) {
+    .orderTableWrapMember {
+      width: 350px;
+    }
+  }
+  @media screen and (max-width: 375px) {
+    .orderTableWrapMember {
+      width: 300px;
+    }
+  }
+  @media screen and (max-width: 320px) {
+    .orderTableWrapMember {
+      width: 280px;
+    }
+  }
   // /MemberOrder
 
   // MemberOrderDetails
@@ -247,6 +267,33 @@
   }
   // /MemberOrderDetails
 
+  // MemberCourseOrder
+  @media screen and (max-width: 480px) {
+    .tableOrderCourseMember {
+      width: 400px;
+    }
+  }
+  @media screen and (max-width: 420px) {
+    .tableOrderCourseMember {
+      width: 350px;
+    }
+  }
+  @media screen and (max-width: 375px) {
+    .tableOrderCourseMember {
+      width: 280px;
+    }
+  }
+  @media screen and (max-width: 320px) {
+    .tableOrderCourseMember {
+      width: 260px;
+    }
+  }
+  // /MemberCourseOrder
+
+  // MemberCourseOrderDetails
+
+  // /MemberCourseOrderDetails
+
   // MemberPoint
   .cardMember {
     border: none;
@@ -280,6 +327,127 @@
   .markMember {
     font-size: 10px;
   }
+  @media screen and (max-width: 874px) and (min-width: 480px) {
+    .cardWrapMember {
+      padding: 0px !important;
+      .cardContentMember {
+        padding: 0px;
+        .bellWrapMember {
+          .bellIconMember {
+            font-size: 50px;
+          }
+        }
+        .cardLeftContentMember {
+          .fs-20Member {
+            font-size: 18px !important;
+          }
+          .fs-45Member {
+            font-size: 28px !important;
+          }
+        }
+      }
+    }
+    .table-wrap {
+      width: 450px !important;
+    }
+  }
+  @media screen and (max-width: 480px) {
+    .cardWrapMember {
+      padding: 0px !important;
+      .cardContentMember {
+        padding: 0px;
+        .textBoxMember {
+          padding-top: 9px;
+        }
+        .cardLeftMember {
+          flex-direction: column;
+          align-self: center;
+        }
+        .bellWrapMember {
+          text-align: start;
+          .bellIconMember {
+            font-size: 40px;
+            margin-bottom: 5px;
+          }
+        }
+        .cardLeftContentMember {
+          .fs-20Member {
+            font-size: 16px !important;
+          }
+          .fs-45Member {
+            font-size: 24px !important;
+          }
+        }
+      }
+    }
+    .table-wrap {
+      width: 400px !important;
+    }
+  }
+  @media screen and (max-width: 420px) and (min-width: 375px) {
+    .cardWrapMember {
+      padding: 0px !important;
+      .cardContentMember {
+        padding: 0px;
+        .cardLeftMember {
+          flex-direction: column;
+          align-self: center;
+        }
+        .bellWrapMember {
+          .bellIconMember {
+            font-size: 40px;
+          }
+        }
+        .cardLeftContentMember {
+          .fs-20Member {
+            font-size: 16px !important;
+          }
+          .fs-45Member {
+            font-size: 24px !important;
+          }
+        }
+      }
+    }
+    .table-wrap {
+      width: 350px !important;
+    }
+  }
+  @media screen and (max-width: 375px) {
+    .cardWrapMember {
+      padding: 0px !important;
+      .cardContentMember {
+        padding: 0px;
+        .textBoxMember {
+          padding-top: 34px;
+        }
+        .cardLeftMember {
+          flex-direction: column;
+          align-self: center;
+        }
+        .bellWrapMember {
+          .bellIconMember {
+            font-size: 40px;
+          }
+        }
+        .cardLeftContentMember {
+          .fs-20Member {
+            font-size: 16px !important;
+          }
+          .fs-45Member {
+            font-size: 24px !important;
+          }
+        }
+        .cardRightContentMember {
+          .fs-20Member {
+            font-size: 16px !important;
+          }
+        }
+      }
+    }
+    .table-wrap {
+      width: 300px !important;
+    }
+  }
   // /MemberPoint
 
   // MemberCoupon
@@ -311,4 +479,9 @@
     color: $funwave-black;
   }
   // /MemberCollect
+}
+
+.page-link.active {
+  background-color: #17a8a2;
+  color: #ffffff;
 }

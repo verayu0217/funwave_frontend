@@ -32,7 +32,21 @@ function ProductDetailsContent(props) {
     '衝浪斗篷毛巾衣',
     '防寒衣',
   ];
-  const brandTypes = ['Catch Surf', 'Solid Surf Co', 'JJF by Pyzel'];
+  const brandTypes = [
+    'Catch Surf',
+    'Solid Surf Co',
+    'JJF by Pyzel',
+    'Modern',
+    'Softech',
+    'Almond Surfboards',
+    'Lib Tech',
+    'True Ames',
+    'Captain Fin',
+    'Creatures of Leisure',
+    'Roam',
+    'Pro-Lite',
+    'en.saintjacques',
+  ];
   const materialTypes = ['Polyethylene', 'EPOXY', 'EPS', '碳纖維'];
   const finCompatibilityTypes = ['FCS II Longboard', 'FCS II', 'Single Tab'];
 
@@ -51,10 +65,20 @@ function ProductDetailsContent(props) {
             <p className="text-center fw-bold">重量 (L)</p>
           </div>
           <div className="col-9">
-            <p className="fw-bold">9'0"</p>
-            <p>24</p>
-            <p>3.5</p>
-            <p>98</p>
+            <div className="row">
+              <div className="col-4">
+                <p className="fw-bold">8'0"</p>
+                <p>22</p>
+                <p>3</p>
+                <p>59</p>
+              </div>
+              <div className="col-4">
+                <p className="fw-bold">9'0"</p>
+                <p>24</p>
+                <p>3.5</p>
+                <p>98</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -78,19 +102,19 @@ function ProductDetailsContent(props) {
           <div className="col-9">
             <div className="row">
               <div className="col-4">
-                <p className="fw-bold">7'2"</p>
+                <p className="fw-bold">6'0"</p>
                 <p>21.75</p>
                 <p>2.85</p>
                 <p>50.6</p>
               </div>
               <div className="col-4">
-                <p className="fw-bold">7'6"</p>
+                <p className="fw-bold">7'0"</p>
                 <p>22</p>
                 <p>2.95</p>
                 <p>55.6</p>
               </div>
               <div className="col-4">
-                <p className="fw-bold">7'10"</p>
+                <p className="fw-bold">8'0"</p>
                 <p>22</p>
                 <p>3</p>
                 <p>59</p>
@@ -119,19 +143,19 @@ function ProductDetailsContent(props) {
           <div className="col-9">
             <div className="row">
               <div className="col-4">
-                <p className="fw-bold">4'6"</p>
+                <p className="fw-bold">4'0"</p>
                 <p>19</p>
                 <p>2.375</p>
                 <p>23</p>
               </div>
               <div className="col-4">
-                <p className="fw-bold">5'6"</p>
+                <p className="fw-bold">5'0"</p>
                 <p>20.75</p>
                 <p>2.875</p>
                 <p>36.8</p>
               </div>
               <div className="col-4">
-                <p className="fw-bold">6'6"</p>
+                <p className="fw-bold">6'0"</p>
                 <p>22</p>
                 <p>7.25</p>
                 <p>52.3</p>
@@ -148,7 +172,7 @@ function ProductDetailsContent(props) {
       {/* 大小商品圖 */}
       <div className="d-flex justify-content-evenly">
         <div className="d-flex flex-column align-items-center justify-content-around">
-          <AiOutlineUp size={22} color="#333333" className="" />
+          {/* <AiOutlineUp size={22} color="#333333" className="" /> */}
           {/* 引用ProductDetailsSmallImgs.js */}
           <ProductDetailsSmallImgs
             product={product}
@@ -157,7 +181,7 @@ function ProductDetailsContent(props) {
             chosenProductOrder={chosenProductOrder}
             setChosenProductOrder={setChosenProductOrder}
           />
-          <AiOutlineDown size={22} color="#333333" className="" />
+          {/* <AiOutlineDown size={22} color="#333333" className="" /> */}
         </div>
         <Figure>
           <Figure.Image
@@ -211,11 +235,15 @@ function ProductDetailsContent(props) {
           </div>
           <div className="col-9">
             <p>
-              The JJF by Pyzel Gremlin Surfboard is crafted with a super
-              versatile shape and stacked to the brim with some of the most
-              advanced surf technology money can buy. From its lightweight Eco
-              EPS Construction to its hand sanded rails, this is a grab and go
-              good time for beginners and veterans alike.
+              {brandTypes[product[0].brand_id - 1]}是被 Sustainable
+              Surf所認證的ECOBOARD（環保衝浪板）製造商。
+              <br></br>
+              {brandTypes[product[0].brand_id - 1]}
+              成為第一個專門採用生物環氧樹脂的全球衝浪板品牌。
+              <br></br>
+              傳統的製作方式除了使用有毒物質外，使用工業溶劑清理更造成污染，對人體及環境非常傷害。但
+              {brandTypes[product[0].brand_id - 1]}
+              使用生物樹脂，可以使用柑橘清潔劑作為清理。除了浪板外，他們還製造了由藻類生物所製成的腳踏墊和由回收塑膠罐所製成的腳繩。
             </p>
           </div>
         </div>
@@ -232,11 +260,9 @@ function ProductDetailsContent(props) {
           </div>
           <div className="col-9">
             <p>
-              Apex
-              將我們在傳統和高性能長板衝浪方面的所有知識整合到一個精美的包裝中。當我們設計這塊板時，我們打算製造有史以來用途最廣泛的經典長板。一個對於新手來說非常容易上手的滑板，同時也是一個
-              Cj
-              可以在未來很多年推動他使用的滑板。鼻部凹入以實現令人難以置信的鼻翼提升，臀部像經典的「參與」原木一樣用於樞軸和鞭打，但具有較低的性能風格導軌和尾部的現代邊緣以提高速度和控制力。以現代風格向過去致敬。此板為經典長板設計的「
-              頂點 」！
+              {product[0].name}
+              系列提供您一系列高性能{smallCatTypes[product[0].small_cat_id - 1]}
+              的美好體驗。板由高級材料製成的衝浪板，胸部下方的額外體積使該板槳像一個長板，讓您輕鬆進入任何波浪。我們調整浪板的圓形銷尾，以增加轉彎時的升力並能立即鬆開。適合初學者到需要具有強大槳力的漸進式中長度的經驗豐富的用戶。
             </p>
           </div>
         </div>

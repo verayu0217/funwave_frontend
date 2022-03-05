@@ -90,10 +90,12 @@ function Member() {
                       我的優惠券
                     </Nav.Link>
                   </Nav.Item> */}
-                  <Nav.Item>
+                  {/* <Nav.Item>
                     <Nav.Link
                       className="fs-24Member linkWidthMember mb-4"
-                      eventKey="sixth"
+                       eventKey="sixth"
+                      as={Link}
+                      to="/member/member-order"
                     >
                       我的收藏
                     </Nav.Link>
@@ -105,7 +107,7 @@ function Member() {
                     >
                       留言
                     </Nav.Link>
-                  </Nav.Item>
+                  </Nav.Item> */}
                 </Nav>
               </Col>
               <Col
@@ -161,7 +163,7 @@ function Member() {
                       我的優惠券
                     </Nav.Link>
                   </Nav.Item> */}
-                  <Nav.Item className="col-2">
+                  {/* <Nav.Item className="col-2">
                     <Nav.Link
                       className="fs-24Member linkWidthMember mb-0"
                       eventKey="sixth"
@@ -176,10 +178,10 @@ function Member() {
                     >
                       <i class="far fa-comments"></i>
                     </Nav.Link>
-                  </Nav.Item>
+                  </Nav.Item> */}
                 </Nav>
               </Col>
-              <Col className="tabContentMember" lg={9} md={9} sm={12}>
+              <Col className="tabContentMember mx-auto" lg={9} md={8} sm={12}>
                 <Tab.Content className="d-flex justify-content-center">
                   <Tab.Pane eventKey="first">
                     <MemberInfo />
