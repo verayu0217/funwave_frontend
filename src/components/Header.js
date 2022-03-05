@@ -55,9 +55,9 @@ function MyNavbar() {
     setAuth(null);
   };
 
-  if (goToCart) {
-    return <Navigate to="/product-cart01"></Navigate>;
-  }
+  // if (goToCart) {
+  //   return <Navigate to="/product-cart01"></Navigate>;
+  // }
   return (
     <>
       <Navbar expand="lg" className="shadow-sm">
@@ -109,12 +109,10 @@ function MyNavbar() {
               <Nav.Link
                 className="iconGroup"
                 as={NavLink}
-                to="/"
+                to={cartCount !== 0 && auth !== null ? '/product-cart01' : '/'}
                 onClick={() => {
                   if (auth === null) {
                     Swal.fire('請先登入會員');
-                  } else {
-                    setGoToCart(true);
                   }
                 }}
               >
@@ -124,7 +122,16 @@ function MyNavbar() {
               <Nav.Link
                 className="iconGroup"
                 as={NavLink}
-                to={courseCart !== 0 ? '/course/course-cart' : '/'}
+                to={
+                  courseCart !== 0 && auth !== null
+                    ? '/course/course-cart'
+                    : '/'
+                }
+                onClick={() => {
+                  if (auth === null) {
+                    Swal.fire('請先登入會員');
+                  }
+                }}
               >
                 <RiProfileFill size={35} />
 
@@ -136,7 +143,7 @@ function MyNavbar() {
               <Nav.Link
                 className="iconGroup"
                 as={NavLink}
-                to="/member"
+                to={auth !== null ? '/member' : '/'}
                 onClick={() => {
                   if (auth === null) {
                     Swal.fire('請先登入會員');
