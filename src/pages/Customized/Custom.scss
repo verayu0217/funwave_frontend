@@ -129,14 +129,18 @@ input[type='color']::-webkit-color-swatch {
   background: white;
 }
 //step共用
-.disappear{
-  display: none;
+button.display{
+  display: inline;
 }
+div.disappear{
+  display: none!important;
+} 
+
 @media screen and (max-width: 400px){
   button.display{
     display: none;
   }
   div.disappear{
-    display: inline;
+    display: flex!important;
   } 
 }
