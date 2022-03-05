@@ -5,7 +5,6 @@ import { API_URL } from '../utils/config';
 import { Navbar, Nav, NavDropdown, Container } from 'react-bootstrap';
 import { RiProfileFill } from 'react-icons/ri';
 import Swal from 'sweetalert2';
-import CartIcon from './CartIcon';
 
 // 要使用能有active css效果的NavLink元件
 import { Link, NavLink, Navigate } from 'react-router-dom';
@@ -40,7 +39,6 @@ function MyNavbar() {
 
   const { auth, setAuth } = useAuth();
   const [cartCount, setCartCount] = useState(0);
-  const [goToCart, setGoToCart] = useState(false);
 
   setInterval(function () {
     const productCart = localStorage.getItem('productCart');
@@ -58,9 +56,6 @@ function MyNavbar() {
     setAuth(null);
   };
 
-  // if (goToCart) {
-  //   return <Navigate to="/product-cart01"></Navigate>;
-  // }
   return (
     <>
       <Navbar expand="lg" className="shadow-sm">
