@@ -20,9 +20,10 @@ import Swal from 'sweetalert2';
 
 const MemberCourseOrder = () => {
   const [data, setData] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
   const [pages, setPages] = useState([]);
   const { auth, setAuth } = useAuth();
-  const { currentPage } = useParams();
+
   // 為了處理網址
   let navigate = useNavigate();
 
@@ -65,6 +66,7 @@ const MemberCourseOrder = () => {
   }
 
   function changePage(page) {
+    setCurrentPage(page);
     getMemberCourseOrderList(page);
   }
 
@@ -74,7 +76,7 @@ const MemberCourseOrder = () => {
   return (
     <>
       <div className="container mt-5">
-        <div className="row d-flex justify-content-center px-5">
+        <div className="row d-flex justify-content-center">
           <h2 className="mb-5 titleMember text-center">
             <span className="me-2">
               <img src={titleImgMember} className="titleImgMember" />
@@ -84,15 +86,15 @@ const MemberCourseOrder = () => {
           <div className="d-flex mt-3">
             <h3 className="fs-20Member">課程查詢</h3>
           </div>
-          <div className="table-wrap mb-5">
-            {/* <table className="table table-control align-middle text-center my-3 tableMemberOrder"> */}
+          <div className="orderTableWrapMember mb-3">
             <Table
-              responsive="sm"
+              responsive
               hover
-              className="table table-control align-middle text-center tableMemberOrderDetails"
+              className="table table-control align-middle text-center tableOrderCourseMember"
             >
               <thead>
                 <tr>
+                  <th></th>
                   <th className="fs-20Member text-nowrap">訂單號碼</th>
                   <th
                     className="fs-20Member text-nowrap"
@@ -101,28 +103,17 @@ const MemberCourseOrder = () => {
                     訂單日期
                   </th>
                   <th className="fs-20Member text-nowrap">合計</th>
-                  {/* <th className="fs-20Member text-nowrap">訂單狀態</th> */}
-                  <th></th>
                 </tr>
               </thead>
               <tbody>
                 {data.map((course_order) => {
                   return (
                     <tr key={course_order.courseDate}>
-                      <td>{course_order.id}</td>
-                      <td>{course_order.courseDate}</td>
-                      <td>{course_order.amount}</td>
-                      {/* <td
-                        className={`prepareColorMember ${
-                          course_order.status === '訂單已完成' ? 'black' : ''
-                        }`}
-                      >
-                        {course_order.status}
-                      </td> */}
                       <td className="text-nowrap">
                         <Link
                           to={`/member/member-courseorder/${course_order.id}`}
                           className="deepblue me-3"
+                          target="_blank"
                         >
                           <i className="fas fa-external-link-alt"></i>
                         </Link>
@@ -135,24 +126,23 @@ const MemberCourseOrder = () => {
                           <i className="fas fa-trash-alt"></i>
                         </span>
                       </td>
+                      <td>{course_order.id}</td>
+                      <td>{course_order.courseDate}</td>
+                      <td>{course_order.amount}</td>
                     </tr>
                   );
                 })}
               </tbody>
-              {/* </table> */}
             </Table>
           </div>
-          <nav aria-label="..." className="mb-5">
-            <ul className="pagination d-flex justify-content-center">
+          <nav aria-label="pageMember">
+            <ul className="d-flex justify-content-center mt-5">
               <li class="page-item">
                 <a
-                  class="page-link pageLinkMember"
+                  class="page-link"
+                  onClick={() => changePage(1)}
                   href="#/"
-                  onClick={(e) => {
-                    changePage(1);
-                    navigate(1);
-                  }}
-                  aria-label="Previous"
+                  aria-label="Next"
                 >
                   <span aria-hidden="true">&laquo;</span>
                   <span class="sr-only">Previous</span>
@@ -162,11 +152,13 @@ const MemberCourseOrder = () => {
                 return (
                   <li className="page-item">
                     <a
-                      className="page-link pageLinkMember"
-                      onClick={(e) => {
-                        changePage(p + 1);
-                        setPages(p + 1);
-                      }}
+                      className={
+                        currentPage === p + 1
+                          ? 'active page-link pageLinkMember'
+                          : 'page-link pageLinkMember'
+                      }
+                      onClick={() => changePage(p + 1)}
+                      href="#/"
                     >
                       {p + 1}
                     </a>
@@ -175,13 +167,10 @@ const MemberCourseOrder = () => {
               })}
               <li class="page-item">
                 <a
-                  class="page-link pageLinkMember"
+                  class="page-link"
                   href="#/"
-                  onClick={(e) => {
-                    changePage(pages);
-                    navigate({ pages });
-                  }}
                   aria-label="Next"
+                  onClick={() => changePage(pages)}
                 >
                   <span aria-hidden="true">&raquo;</span>
                   <span class="sr-only">Next</span>
