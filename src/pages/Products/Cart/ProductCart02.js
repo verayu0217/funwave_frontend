@@ -17,19 +17,37 @@ function ProductCart02() {
   const { auth, setAuth } = useAuth();
   console.log('auth', auth);
 
+  // 拿取前一頁Cart01儲存在localStorage的購物車品項、付款方式、運送方式、總金額
+  let localStoragePayment = JSON.parse(localStorage.getItem('payment') || '[]');
+  let localStorageDelivery = JSON.parse(
+    localStorage.getItem('delivery') || '[]'
+  );
+  let localStorageAmount = JSON.parse(localStorage.getItem('amount')) || 0;
+  console.log('localStorageAmount', localStorageAmount);
+
+  const localStorageOrderCart = JSON.parse(
+    localStorage.getItem('productCartDisplay') || '[]'
+  );
+
+  // 處理購物車品項，只要欄位product_no、count、style
+  let orderDetails = localStorageOrderCart.map((x) =>
+    _.pick(x, 'product_no', 'count', 'style')
+  );
+  console.log('orderDetails', orderDetails);
+
   // 表單元素 (要存進order-list、order_details資料表)
   const [order, setOrder] = useState({
-    member_id: 0,
-    amount: 0,
-    payment: 'a',
+    member_id: auth?.member_id || 0,
+    amount: localStorageAmount,
+    payment: localStoragePayment,
     payment_status: '未付款',
-    delivery: '',
+    delivery: localStorageDelivery,
     receiver: '',
     receiver_phone: '',
     address: '',
     convenient_store: '',
     status: '訂單處理中',
-    order_details: [],
+    order_details: orderDetails,
   });
 
   // 表單元素 (可同步會員資料)
@@ -52,48 +70,43 @@ function ProductCart02() {
   const [validated, setValidated] = useState(false);
 
   // 拿取前一頁Cart01儲存在localStorage的購物車品項、付款方式、運送方式、總金額
-  useEffect(() => {
-    let localStoragePayment = JSON.parse(
-      localStorage.getItem('payment') || '[]'
-    );
-    let localStorageDelivery = JSON.parse(
-      localStorage.getItem('delivery') || '[]'
-    );
-    let localStorageAmount = JSON.parse(localStorage.getItem('amount')) || 0;
-    console.log('localStorageAmount', localStorageAmount);
+  // useEffect(() => {
+  //   let localStoragePayment = JSON.parse(
+  //     localStorage.getItem('payment') || '[]'
+  //   );
+  //   let localStorageDelivery = JSON.parse(
+  //     localStorage.getItem('delivery') || '[]'
+  //   );
+  //   let localStorageAmount = JSON.parse(localStorage.getItem('amount')) || 0;
+  //   console.log('localStorageAmount', localStorageAmount);
 
-    const localStorageOrderCart = JSON.parse(
-      localStorage.getItem('productCartDisplay') || '[]'
-    );
+  //   const localStorageOrderCart = JSON.parse(
+  //     localStorage.getItem('productCartDisplay') || '[]'
+  //   );
 
-    // 處理購物車品項欄位剩下product_no、count
-    let orderDetails = localStorageOrderCart.map((x) =>
-      _.pick(x, 'product_no', 'count', 'style')
-    );
-    console.log('orderDetails', orderDetails);
+  //   // 處理購物車品項欄位剩下product_no、count
+  //   let orderDetails = localStorageOrderCart.map((x) =>
+  //     _.pick(x, 'product_no', 'count', 'style')
+  //   );
+  //   console.log('orderDetails', orderDetails);
 
-    setOrder({
-      ...order,
-      amount: localStorageAmount,
-      payment: localStoragePayment,
-      delivery: localStorageDelivery,
-      order_details: orderDetails,
-    });
-  }, []);
+  //   setOrder({
+  //     ...order,
+  //     amount: localStorageAmount,
+  //     payment: localStoragePayment,
+  //     delivery: localStorageDelivery,
+  //     order_details: orderDetails,
+  //   });
+  // }, []);
 
   useEffect(() => {
     console.log(order);
   }, [order]);
 
-  // 會員資料帶入訂購人資訊 (member_id、memberName、memberPhone、memberAddress，從useContext帶入)
+  // 會員資料帶入訂購人資訊 (memberName、memberPhone、memberAddress，從useContext帶入)
   useEffect(() => {
     // 這裡條件還是無法阻擋重整auth為null而壞掉的情況！
     if (auth) {
-      setOrder({
-        ...order,
-        member_id: auth?.member_id,
-      });
-
       setMemberName(auth?.member_name);
       setMemberPhone(auth?.member_phone);
       setMemberAddress(auth?.member_address);

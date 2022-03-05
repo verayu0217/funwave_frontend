@@ -146,8 +146,6 @@ function ProductCart01() {
     setAmount(sum(mycartDisplay));
   }, [mycartDisplay]);
 
-  // localStorage.removeItem('productCart');
-
   // 抓付款方式setPayment
   function handleChangePay(e) {
     setPayment(e.target.value);
