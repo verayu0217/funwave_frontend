@@ -107,7 +107,7 @@ function MyNavbar() {
               <i className="fas fa-shopping-cart"></i>
             </button> */}
               <Nav.Link
-                className="iconGroup"
+                className="iconGroup d-flex align-items-center"
                 as={NavLink}
                 to={cartCount !== 0 && auth !== null ? '/product-cart01' : '/'}
                 onClick={() => {
