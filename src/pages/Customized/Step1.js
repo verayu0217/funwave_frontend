@@ -33,7 +33,13 @@ function Step1(props) {
           weight="64px"
         />
         STEP1 選擇衝浪板外型
-        <button className="btn btn-secondary btnEnd" onClick={nextStep}>
+        <button className="btn btn-secondary btnEnd display" onClick={nextStep}>
+          下一步
+        </button>
+      </div>
+      {/* 手機版btn */}
+      <div className="d-flex mb-1 disappear">
+        <button className="btn btn-secondary m-auto" onClick={nextStep}>
           下一步
         </button>
       </div>
@@ -49,7 +55,7 @@ function Step1(props) {
               : ' borderLightGray d-flex'
           }
           onClick={() => {
-            setSurfingBoard({ ...surfingBoard, size: 1, price: 20000 });
+            setSurfingBoard({ ...surfingBoard, size: 1, price: 25000 });
           }}
         >
           <Figure className="m-auto chooseBoardCu">
@@ -70,7 +76,7 @@ function Step1(props) {
               : ' borderLightGray px-3 pt-1 d-flex'
           }
           onClick={() => {
-            setSurfingBoard({ ...surfingBoard, size: 2, price: 25000 });
+            setSurfingBoard({ ...surfingBoard, size: 2, price: 30000 });
           }}
         >
           <Figure className="m-auto chooseBoardCu">
@@ -90,7 +96,7 @@ function Step1(props) {
               : ' borderLightGray px-3 pt-1 d-flex'
           }
           onClick={() => {
-            setSurfingBoard({ ...surfingBoard, size: 3, price: 30000 });
+            setSurfingBoard({ ...surfingBoard, size: 3, price: 35000 });
           }}
         >
           <Figure className="m-auto chooseBoardCu">
@@ -110,7 +116,7 @@ function Step1(props) {
               : ' borderLightGray px-3 pt-1 d-flex'
           }
           onClick={() => {
-            setSurfingBoard({ ...surfingBoard, size: 4, price: 35000 });
+            setSurfingBoard({ ...surfingBoard, size: 4, price: 40000 });
           }}
         >
           <Figure className="m-auto chooseBoardCu">
