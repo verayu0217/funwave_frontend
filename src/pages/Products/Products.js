@@ -256,7 +256,7 @@ function Products() {
       </div>
       <div className="container">
         <div className="row">
-          <aside className="col-2 asideProducts">
+          <aside className="col-2 p-0">
             <div className="sticky">
               {/* 大小分類 */}
               <ProductAccordion
@@ -300,7 +300,7 @@ function Products() {
               />
             </div>
           </aside>
-          <article className="col-10">
+          <article className="col-10 ps-3 pe-1">
             <header className="position-relative mt-5">
               <div className="d-flex justify-content-center align-items-center">
                 <img
