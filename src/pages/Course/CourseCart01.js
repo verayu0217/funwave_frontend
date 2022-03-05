@@ -18,7 +18,7 @@ function CourseCart01(props) {
 
   useEffect(() => {
     const peopleNum = localStorage.getItem('peopleNum');
-    console.log(peopleNum, count);
+    // console.log(peopleNum, count);
     if (Number(peopleNum) !== count) {
       setCount(Number(peopleNum));
     }
@@ -100,7 +100,7 @@ function CourseCart01(props) {
                 <td>{course}</td>
                 <td>{courseTime}</td>
                 <td>{courseSpot}</td>
-                <td>{coursePrice}</td>
+                <td>{coursePrice.toLocaleString()}</td>
                 <td>
                   <button
                     type="button"
@@ -135,7 +135,7 @@ function CourseCart01(props) {
                     />
                   </button>
                 </td>
-                <td>{amount}</td>
+                <td>{amount.toLocaleString()}</td>
                 <td>
                   <input
                     type="date"

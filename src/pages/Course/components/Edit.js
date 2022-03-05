@@ -20,7 +20,7 @@ const Edit = ({ add, auth, setFlag, flag }) => {
   // 取得會員名稱給name
   useEffect(() => {
     if (auth !== null) {
-      setName(auth.name);
+      setName(auth.member_name);
     }
   });
 

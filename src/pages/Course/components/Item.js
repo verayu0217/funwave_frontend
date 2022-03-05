@@ -8,7 +8,7 @@ const Item = ({ message, date, rating, photo, name }) => {
         {/* 第一排抬頭 */}
         <div className="d-flex flex-wrap">
           <div className="mt-2 align-self-center">
-            {/* 大頭照  */}
+            {/*TODO: 會員大頭照  */}
 
             <img
               className="rounded-circle"

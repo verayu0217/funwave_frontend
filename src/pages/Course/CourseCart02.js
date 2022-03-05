@@ -20,8 +20,8 @@ function CourseCart02(props) {
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [sex, setSex] = useState('先生');
-  const sexOptions = ['先生', '小姐'];
+  const [sex, setSex] = useState('');
+  const sexOptions = ['男', '女'];
   const [note, setNote] = useState('');
   const [phone, setPhone] = useState('');
   const [payMethod, setPayMethod] = useState({
@@ -31,7 +31,7 @@ function CourseCart02(props) {
   // 表單返回怎麼保留付款狀態
   useEffect(() => {
     const Method = localStorage.getItem('payMethod');
-    console.log(payMethod, Method);
+    // console.log(payMethod, Method);
     if (payMethod.choosePay !== Method) {
       setPayMethod({ choosePay: JSON.parse(Method) });
     }
@@ -40,9 +40,9 @@ function CourseCart02(props) {
   // 取得會員名稱給表單資料
   useEffect(() => {
     if (auth !== null) {
-      setName(auth.name);
-      setEmail(auth.email);
-      setPhone(auth.phone);
+      setName(auth.member_name);
+      setEmail(auth.member_email);
+      setPhone(auth.member_phone);
     }
   });
 
@@ -128,16 +128,21 @@ function CourseCart02(props) {
               <td>{JSON.parse(localStorage.getItem('course'))}</td>
               <td>{JSON.parse(localStorage.getItem('courseTime'))}</td>
               <td>{JSON.parse(localStorage.getItem('courseSpot'))}</td>
-              <td>{localStorage.getItem('coursePrice')}</td>
+              <td>
+                {Number(localStorage.getItem('coursePrice')).toLocaleString()}
+              </td>
               <td>{localStorage.getItem('peopleNum')}</td>
-              <td>{localStorage.getItem('amount')}</td>
+              <td>
+                {' '}
+                {Number(localStorage.getItem('amount')).toLocaleString()}
+              </td>
               <td>{JSON.parse(localStorage.getItem('courseDate'))}</td>
             </tr>
           </tbody>
         </table>
 
         {/* <總計  */}
-        {/* TODO:金額總計算.toLocaleString()沒用 */}
+
         <div className="d-flex flex-column">
           <p className="align-self-end">
             金額計算: NT{' '}
@@ -223,7 +228,6 @@ function CourseCart02(props) {
               className="col-sm-12 col-md-10 border border-1 border-dark p-3 rounded 
             "
             >
-              <p className="h3 text-primary">請輸入您的信用卡資訊</p>
               <CreditCard />
             </div>
           ) : (
@@ -349,8 +353,6 @@ function CourseCart02(props) {
               className="border border-1 border-dark p-3 rounded 
             "
             >
-              <p className=" text-primary">請輸入您的信用卡資訊</p>
-
               <CreditCard />
             </div>
           ) : (

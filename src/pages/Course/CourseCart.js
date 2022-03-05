@@ -37,12 +37,6 @@ function CourseCart(props) {
     setCoursePrice(JSON.parse(localStorage.getItem('coursePrice')));
   }, []);
 
-  // console.log(course);
-  // console.log(courseSpot);
-  // console.log(courseDate);
-  // console.log(courseTime);
-  // console.log(coursePrice);
-
   return (
     <>
       <div className="container-fluid">
