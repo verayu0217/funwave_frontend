@@ -53,9 +53,6 @@ function CartReceiverInfo(props) {
               required
               onChange={handleChange}
             />
-            <Form.Control.Feedback type="invalid">
-              請填寫收件人姓名
-            </Form.Control.Feedback>
           </InputGroup>
         </Form.Group>
 
@@ -73,9 +70,6 @@ function CartReceiverInfo(props) {
               required
               onChange={handleChange}
             />
-            <Form.Control.Feedback type="invalid">
-              請填寫收件人手機號碼
-            </Form.Control.Feedback>
           </InputGroup>
         </Form.Group>
       </div>

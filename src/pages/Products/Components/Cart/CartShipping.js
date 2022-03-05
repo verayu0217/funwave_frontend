@@ -106,9 +106,6 @@ function CartShipping(props) {
                 required
                 onChange={handleChange}
               />
-              <Form.Control.Feedback type="invalid">
-                請填寫詳細地址
-              </Form.Control.Feedback>
             </Form.Group>
           </div>
         ) : (

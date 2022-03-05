@@ -124,6 +124,7 @@ function ProductCart02() {
         setOrderDone(true);
       } catch (e) {
         console.error('error', e.response.data);
+        alert(`${e.response.data.msg}\n`);
       }
     }
     setValidated(true);
