@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useAuth } from '../context/auth';
 import { API_URL } from '../utils/config';
 import { Navbar, Nav, NavDropdown, Container } from 'react-bootstrap';
+import { RiProfileFill } from 'react-icons/ri';
 import Swal from 'sweetalert2';
 
 // 要使用能有active css效果的NavLink元件
@@ -12,6 +13,30 @@ import '../styles/component.scss';
 import logo from '../data/images/FunwaveLogo-black2.png';
 
 function MyNavbar() {
+  //加入課程購物車icon加總
+  const [courseCart, setCourseCart] = useState(0);
+  useEffect(() => {
+    function refresh() {
+      if (
+        JSON.parse(localStorage.getItem('course')) === '體驗課程' ||
+        JSON.parse(localStorage.getItem('course')) === '初階課程' ||
+        JSON.parse(localStorage.getItem('course')) === '中階課程' ||
+        JSON.parse(localStorage.getItem('course')) === '高階課程'
+      ) {
+        setCourseCart(1);
+      } else if (!JSON.parse(localStorage.getItem('course'))) {
+        setCourseCart(0);
+      }
+    }
+
+    const intervalId = setInterval(() => {
+      refresh();
+    }, 1000);
+
+    return () => clearInterval(intervalId);
+  }, [setCourseCart, courseCart]);
+  //課程購物車結束
+
   const { auth, setAuth } = useAuth();
   const [cartCount, setCartCount] = useState(0);
   const [goToCart, setGoToCart] = useState(false);
@@ -95,6 +120,15 @@ function MyNavbar() {
               >
                 <i className="fas fa-shopping-cart"></i>
                 <span>&ensp;({cartCount})</span>
+              </Nav.Link>
+              <Nav.Link
+                className="iconGroup"
+                as={NavLink}
+                to={courseCart !== 0 ? '/course/course-cart' : '/'}
+              >
+                <RiProfileFill size={35} />
+
+                <span>&ensp;({courseCart})</span>
               </Nav.Link>
               {/* <button className="btn" type="submit">
               <i className="fas fa-user"></i>

@@ -15,7 +15,14 @@ function CourseCart01(props) {
 
   // 宣告count是上課人數初始1先存進localStorage
   const [count, setCount] = useState(1);
-  localStorage.setItem('peopleNum', count);
+
+  useEffect(() => {
+    const peopleNum = localStorage.getItem('peopleNum');
+    console.log(peopleNum, count);
+    if (Number(peopleNum) !== count) {
+      setCount(Number(peopleNum));
+    }
+  }, []);
 
   // 總金額算好也存進localStorage
   const [amount, setAmount] = useState('');
@@ -158,7 +165,7 @@ function CourseCart01(props) {
 
           {/* <總計  */}
           <div className="d-flex justify-content-end">
-            <p className="h3">總計 NT {amount}</p>
+            <p className="h3">總計 NT {amount.toLocaleString()}</p>
           </div>
 
           <ul>
@@ -236,13 +243,13 @@ function CourseCart01(props) {
                 />
               </button>
             </p>
-            <p>單價:NT{coursePrice}</p>
+            <p>單價:NT{coursePrice.toLocaleString()}</p>
             <i className="fas fa-trash-alt mb-3" onClick={deleteCourse}></i>
           </div>
 
           {/* <總計  */}
           <div className="d-flex justify-content-end border-bottom">
-            <p className="h3">總計 NT {amount}</p>
+            <p className="h3">總計 NT {amount.toLocaleString()}</p>
           </div>
 
           {/* 上一頁/下一頁按鈕  */}

@@ -43,7 +43,7 @@ const Item = ({ message, date, rating, photo, name }) => {
           {/* 圖片區  */}
           <div className="mt-3 d-flex justify-space-around">
             {/* 如果沒有圖片就不顯示圖片*/}
-            {photo ? (
+            {photo && typeof photo === 'string' ? (
               <img
                 src={`http://localhost:3002/${photo}`}
                 className={photo === '' ? 'd-none' : 'rounded-3 m-1'}

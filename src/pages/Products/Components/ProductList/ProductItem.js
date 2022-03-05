@@ -17,6 +17,7 @@ function ProductItem(props) {
     props.product;
   const { fav, setFav } = useFav();
 
+  // 加入/刪除收藏
   const favorite = (item) => {
     let wishProduct = JSON.parse(localStorage.getItem('likeID')) || [];
     wishProduct.push(item);
@@ -24,14 +25,12 @@ function ProductItem(props) {
     setFav({ ...fav, wishID: wishProduct });
   };
   const delFavorite = (item) => {
-    // console.log('b', fav.wishID);
     let filterwish = fav.wishID.filter((value) => value !== item);
     setFav({ ...fav, wishID: filterwish });
-    // console.log('bb', filterwish);
     localStorage.removeItem('likeID');
     localStorage.setItem('likeID', JSON.stringify(filterwish));
   };
-  // console.log('a', fav);
+
   // 小分類、品牌的id對照名稱
   const smallCatTypes = [
     '長板',

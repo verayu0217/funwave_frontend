@@ -1,24 +1,36 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Tab, Row, Col, Nav, Collapse, Button, Table } from 'react-bootstrap';
+import { Table, Figure } from 'react-bootstrap';
 import axios from 'axios';
-import { API_URL } from '../../utils/config';
+import { API_URL, IMAGE_URL } from '../../utils/config';
 import { useFav } from '../../context/fav';
 
 import titleImgMember from '../../data/images/greenwave64x24.png';
 import '../Members/Member.scss';
-
+import './Collect.scss';
 function Collect() {
   const { fav, setFav } = useFav();
-  const [collectProducts, setcollectProducts] = useState();
+  const [collectProducts, setCollectProducts] = useState([]);
+
+  const delFavorite = (item) => {
+    // console.log('b', fav.wishID);
+    let filterwish = fav.wishID.filter((value) => value !== item);
+    setFav({ ...fav, wishID: filterwish });
+    // console.log('bb', filterwish);
+    localStorage.removeItem('likeID');
+    localStorage.setItem('likeID', JSON.stringify(filterwish));
+  };
 
   useEffect(() => {
     let collectList = async () => {
-      let response = await axios.get(`${API_URL}/collect`);
-      setcollectProducts(response.data);
+      let response = await axios.get(
+        `${API_URL}/collect?collectdata=${fav.wishID}`
+      );
+      setCollectProducts(response.data);
     };
     collectList();
-  });
+  }, [fav]);
+  console.log(collectProducts);
   return (
     <>
       <div className="container mt-5">
@@ -44,35 +56,48 @@ function Collect() {
                 <th className="text-nowrap">商品資訊</th>
                 <th className="text-nowrap">價格</th>
                 <th className="text-nowrap">詳細資訊</th>
-                <th className="text-nowrap text-end">刪除</th>
+                <th className="text-nowrap">刪除</th>
               </tr>
             </thead>
             <tbody>
-              {fav.wishID.map((v, i) => {
+              {collectProducts.map((v, i) => {
                 return (
-                  <tr>
-                    <td className="">
-                      <img src="/" className="orderImgMember" />
+                  <tr key={v.product_id}>
+                    <td>
+                      <Figure.Image
+                        width={150}
+                        height={150}
+                        src={`${IMAGE_URL}/products/${v.image1}`}
+                        className="orderImgMember"
+                        alt="商品圖"
+                      />
                     </td>
                     <td>
                       <div className="d-flex align-items-center flex-column">
-                        <p>EXTRA SHOT BY RACHAEL TILLY</p>
+                        <p className="fw-bold">{v.name}</p>
+                        <p>{v.product_group}</p>
                       </div>
                     </td>
                     <td>
-                      <p className=" m-0">NT$11,900</p>
+                      <p className=" m-0">NT ${v.price.toLocaleString()}</p>
                     </td>
                     <td className="">
                       <Link
-                        to="/products/"
-                        className="btn deepblueBtnMember mb-2 text-nowrap"
+                        to={`/products/${v.product_group}`}
+                        className="btnDelFav deepblueBtnMember text-nowrap"
                       >
-                        &ensp;商品詳細資料
+                        &ensp;商品詳細資料 &ensp;
                         <i className="fas fa-arrow-right"></i>
                       </Link>
                     </td>
-                    <td className="text-end">
-                      <a role="button" href="" className="deleteBtnMember">
+                    <td>
+                      <a
+                        role="button"
+                        className="deleteBtnMember"
+                        onClick={() => {
+                          delFavorite(`${v.product_group}`);
+                        }}
+                      >
                         <i className="far fa-trash-alt"></i>
                       </a>
                     </td>
@@ -80,60 +105,10 @@ function Collect() {
                 );
               })}
               {/* 列表 */}
-              <tr>
-                <td className="">
-                  <img src="/" className="orderImgMember" />
-                </td>
-                <td>
-                  <div className="d-flex align-items-center flex-column">
-                    <p>EXTRA SHOT BY RACHAEL TILLY</p>
-                    <p className="gray">
-                      CHECK STORE INVENTORY&ensp;
-                      <i className="fas fa-arrow-right"></i>
-                    </p>
-                  </div>
-                </td>
-                <td>
-                  <p className="text-decoration-line-through m-0">NT$11,900</p>
-                  <p className="orange">NT$10,250</p>
-                </td>
-                <td className="">
-                  <button className="btn deepblueBtnMember mb-2 text-nowrap">
-                    &ensp;加入購物車
-                  </button>
-                  <br />
-                  <button className="btn blueBtnMember text-nowrap">
-                    <i className="fas fa-cart-plus"></i>&ensp;立即購買
-                  </button>
-                </td>
-                <td className="text-end">
-                  <a role="button" href="" className="deleteBtnMember">
-                    <i className="far fa-trash-alt"></i>
-                  </a>
-                </td>
-              </tr>
+
               {/* 列表結束 */}
             </tbody>
           </Table>
-          <nav aria-label="pageMember">
-            <ul className="d-flex justify-content-center mt-5">
-              <li className="page-item">
-                <a className="page-link pageLinkMember" href="/">
-                  1
-                </a>
-              </li>
-              <li className="page-item">
-                <a className="page-link pageLinkMember" href="/">
-                  2
-                </a>
-              </li>
-              <li className="page-item">
-                <a className="page-link pageLinkMember" href="/">
-                  3
-                </a>
-              </li>
-            </ul>
-          </nav>
         </div>
       </div>
     </>

@@ -45,6 +45,10 @@ function CourseContent(props) {
 
   const [goTo, setGoTo] = useState(false);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   //提交報名資訊將資料帶到下一頁
   function addSubmit(e) {
     e.preventDefault();
@@ -67,6 +71,7 @@ function CourseContent(props) {
     localStorage.setItem('courseSpot', JSON.stringify(courseSpot));
     localStorage.setItem('courseDate', JSON.stringify(courseDate));
     localStorage.setItem('coursePrice', coursePrice);
+    localStorage.setItem('peopleNum', 1);
 
     // 如果有登入導向另外一頁
     if (goTo) {
