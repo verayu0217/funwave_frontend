@@ -42,7 +42,7 @@ function Step3(props) {
     <div className="container">
       <div className="text-secondary h1 text-center position-relative">
         <button
-          className="btn btn-secondary my-2 position-absolute start-0"
+          className="btn btn-secondary my-2 position-absolute start-0 display"
           onClick={() => {
             setStep({ ...step, step2: true, step3: '' });
           }}
@@ -57,6 +57,17 @@ function Step3(props) {
           weight="64px"
         />
         STEP 3加入購物車
+      </div>
+      {/* 手機版btn */}
+      <div className="d-flex mb-1 disappear">
+        <button
+          className="btn btn-secondary m-auto"
+          onClick={() => {
+            setStep({ ...step, step2: true, step3: '' });
+          }}
+        >
+          上一步
+        </button>
       </div>
       <hr className="mb-3 mt-0" />
       <Row>

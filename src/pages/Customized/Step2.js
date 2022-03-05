@@ -15,7 +15,7 @@ function Step2(props) {
     <div className="container pb-3">
       <div className="text-secondary h1 text-center position-relative">
         <button
-          className="btn btn-secondary my-2 position-absolute start-0"
+          className="btn btn-secondary my-2 position-absolute start-0 display"
           onClick={() => {
             setStep({ ...step, step1: true, step2: '' });
           }}
@@ -32,6 +32,17 @@ function Step2(props) {
           />
           STEP2 選擇衝浪板顏色及圖案
         </div>
+      </div>
+      {/* 手機版 */}
+      <div className="d-flex mb-1 disappear">
+        <button
+          className="btn btn-secondary m-auto"
+          onClick={() => {
+            setStep({ ...step, step1: true, step2: '' });
+          }}
+        >
+          上一步
+        </button>
       </div>
       <hr className="mb-3 mt-0" />
       {/* 內容 */}
