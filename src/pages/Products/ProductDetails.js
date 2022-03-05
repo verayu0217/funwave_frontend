@@ -13,6 +13,7 @@ import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
 // 導引資料、頁面
 import './ProductDetails.scss';
 import { API_URL } from '../../utils/config';
+// import { data } from '../../data/products.js'; // 前端假資料
 import longboard1 from './longboard1.jpg'; // 暫存推薦商品前端假圖片
 import greenTitle from '../../data/images/greenTitle.svg';
 import ProductAddCart from './Components/ProductDetails/ProductAddCart.js';
@@ -82,82 +83,7 @@ function ProductDetails(props) {
   return (
     <>
       <div className="container">
-        <h3>Breadcrumb</h3>
-        <div className="row">
-          <aside className="col-2 asideProducts">
-            <div className="sticky">
-              {/* 大分類 */}
-              <Accordion className="mt-4" flush>
-                <Accordion.Item eventKey="0">
-                  <Accordion.Header className="accordionTitle">
-                    <h3>衝浪板</h3>
-                  </Accordion.Header>
-                  <Accordion.Body>
-                    <ul className="ulProducts">
-                      <li className="liProducts">
-                        <Link to="/" title="長板" className="linkProducts">
-                          長板
-                        </Link>
-                      </li>
-                      <li className="liProducts">
-                        <Link to="/" title="快樂板" className="linkProducts">
-                          快樂板
-                        </Link>
-                      </li>
-                      <li className="liProducts">
-                        <Link to="/" title="短板" className="linkProducts">
-                          短板
-                        </Link>
-                      </li>
-                    </ul>
-                  </Accordion.Body>
-                </Accordion.Item>
-                <Accordion.Item eventKey="1">
-                  <Accordion.Header>
-                    <h3>衝浪板配件</h3>
-                  </Accordion.Header>
-                  <Accordion.Body>
-                    <ul className="ulProducts">
-                      <li className="liProducts">
-                        <Link to="/" title="衝浪板舵" className="linkProducts">
-                          衝浪板舵
-                        </Link>
-                      </li>
-                      <li className="liProducts">
-                        <Link to="/" title="腳繩" className="linkProducts">
-                          腳繩
-                        </Link>
-                      </li>
-                      <li className="liProducts">
-                        <Link to="/" title="腳踏墊" className="linkProducts">
-                          腳踏墊
-                        </Link>
-                      </li>
-                    </ul>
-                  </Accordion.Body>
-                </Accordion.Item>
-                <Accordion.Item eventKey="2">
-                  <Accordion.Header>
-                    <h3>衝浪相關衣物</h3>
-                  </Accordion.Header>
-                  <Accordion.Body>
-                    <ul className="ulProducts">
-                      <li className="liProducts">
-                        <Link to="/" title="防寒衣物" className="linkProducts">
-                          衝浪斗篷毛巾衣
-                        </Link>
-                      </li>
-                      <li className="liProducts">
-                        <Link to="/" title="防寒衣" className="linkProducts">
-                          防寒衣
-                        </Link>
-                      </li>
-                    </ul>
-                  </Accordion.Body>
-                </Accordion.Item>
-              </Accordion>
-            </div>
-          </aside>
+        <div className="row mt-4 d-flex justify-content-center">
           {/* 中間的商品細節區、右方的加入購物車區 */}
           <article className="col-10">
             <div className="row">

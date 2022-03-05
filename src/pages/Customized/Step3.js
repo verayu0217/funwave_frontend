@@ -11,6 +11,9 @@ function Step3(props) {
   const { step, setStep, surfingBoard, setSurfingBoard } = props;
   const [count, setCount] = useState(1);
   const [board, setBoard] = useState({});
+
+  const typeToSize = ['5', '6', '7', '9'];
+
   // const [mycart, setMycart] = useState([]); // 要存進localStorage的資料
   useEffect(() => {
     console.log(surfingBoard);
@@ -152,16 +155,15 @@ function Step3(props) {
                 className="btn btn-primary btnCu"
                 onClick={() => {
                   addToLocal({
-                    product_no: 'CB-0001-8-0',
+                    product_no: 'CB-0001-10-0',
                     name: `客製化${board.text}`,
                     price: amount,
-                    image1: null,
+                    image1: 'test.jpg',
                     color_id: 10,
-                    size: surfingBoard.size,
+                    size: typeToSize[surfingBoard.size - 1],
                     small_cat_id: 9,
                     stock: 1,
                     count: count,
-                    image_cu1: 'test.jpg',
                     style: `${surfingBoard.front} + ${surfingBoard.frontpattern} & ${surfingBoard.back} + ${surfingBoard.backpattern}`,
                   });
                 }}

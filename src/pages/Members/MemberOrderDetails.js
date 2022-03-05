@@ -189,7 +189,7 @@ function MemberOrderDetails(props) {
                               <div className="row">
                                 <div className="col-7"></div>
                                 <div className="col-5">
-                                  <div className="row d-flex justify-content-end">
+                                  <div className="row d-flex text-end">
                                     <p className="col-6 text-start">小計：</p>
                                     <p className="col-6" id="countId">
                                       NT$
@@ -265,7 +265,7 @@ function MemberOrderDetails(props) {
                 if (index == 0)
                   return (
                     <div className="row p-5" key={item.order_time}>
-                      <div className="col-6">
+                      <div className="col-lg-6 col-md-6 col-12 mb-5">
                         <p className="fw-bold">訂單資訊</p>
                         <br />
                         <p>訂單號碼：{item.order_id}</p>
@@ -273,7 +273,7 @@ function MemberOrderDetails(props) {
                         <p>訂單日期：{item.order_time}</p>
                         <p>訂單狀態：{item.status}</p>
                       </div>
-                      <div className="col-6">
+                      <div className="col-lg-6 col-md-6 col-12">
                         <p className="fw-bold">顧客資訊</p>
                         <br />
                         <p>姓名：{item.member_name}</p>
@@ -281,7 +281,7 @@ function MemberOrderDetails(props) {
                         {/* <p>生日：{item.}</p> */}
                         {/* <p>手機號碼：{item.}</p> */}
                       </div>
-                      <div className="col-6 mt-5">
+                      <div className="col-lg-6 col-md-6 col-12 mt-5">
                         <p className="fw-bold">送貨資訊</p>
                         <br />
                         <p>收件人名稱：{item.receiver}</p>
@@ -298,7 +298,7 @@ function MemberOrderDetails(props) {
                           }`}
                         </p>
                       </div>
-                      <div className="col-6 mt-5">
+                      <div className="col-lg-6 col-md-6 col-12 mt-5">
                         <p className="fw-bold">付款資訊</p>
                         <br />
                         <p>付款方式：{item.payment}</p>

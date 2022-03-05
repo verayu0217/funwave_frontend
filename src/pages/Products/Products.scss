@@ -27,7 +27,7 @@
 // 左側篩選區
 .asideProducts {
   // background-color: $deepblue;
-  border-top: 1px solid $gray;
+  // border-top: 1px solid $gray;
 }
 // 待跟客製化商品、課程統一 banner下的間距(mt-4)！
 .accordion-body {
@@ -53,14 +53,6 @@
 }
 
 // 右側商品區
-.articleProducts {
-  // background-color: $orange;
-  border-top: 1px solid $gray;
-}
-// .borderRadius {
-//   border-radius: 50%;
-// }
-// 待跟客製化商品、課程統一 search框框長度、弧度(w-25)！
 
 //ProductsList
 .top-5 {
@@ -71,6 +63,6 @@
 .addWish {
   right: 50px;
 }
-.proHeart:hover{
+.proHeart:hover {
   cursor: pointer;
 }
