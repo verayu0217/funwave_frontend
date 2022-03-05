@@ -11,6 +11,9 @@ function Step3(props) {
   const { step, setStep, surfingBoard, setSurfingBoard } = props;
   const [count, setCount] = useState(1);
   const [board, setBoard] = useState({});
+
+  const typeToSize = ['5', '6', '7', '9'];
+
   // const [mycart, setMycart] = useState([]); // 要存進localStorage的資料
   useEffect(() => {
     console.log(surfingBoard);
@@ -146,7 +149,7 @@ function Step3(props) {
                     price: amount,
                     image1: 'test.jpg',
                     color_id: 10,
-                    size: surfingBoard.size.toString(),
+                    size: typeToSize[surfingBoard.size - 1],
                     small_cat_id: 9,
                     stock: 1,
                     count: count,

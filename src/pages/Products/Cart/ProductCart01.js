@@ -29,7 +29,18 @@ function ProductCart01() {
   const [goToCart, setGoToCart] = useState(false);
 
   // 小分類、顏色的id對照名稱
-  const colorTypes = ['白', '黑', '藍', '綠', '黃', '紅', '橘'];
+  const colorTypes = [
+    '白',
+    '黑',
+    '藍',
+    '綠',
+    '黃',
+    '紅',
+    '橘',
+    '棕',
+    '灰',
+    '自訂',
+  ];
   const smallCatTypes = [
     '衝浪長板',
     '衝浪快樂板',
