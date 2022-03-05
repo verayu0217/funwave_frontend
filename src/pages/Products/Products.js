@@ -255,7 +255,6 @@ function Products() {
         </div>
       </div>
       <div className="container">
-        <h3>Breadcrumb</h3>
         <div className="row">
           <aside className="col-2 asideProducts">
             <div className="sticky">
@@ -301,7 +300,7 @@ function Products() {
               />
             </div>
           </aside>
-          <article className="col-10 articleProducts">
+          <article className="col-10">
             <header className="position-relative mt-5">
               <div className="d-flex justify-content-center align-items-center">
                 <img

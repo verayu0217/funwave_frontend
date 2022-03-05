@@ -141,16 +141,15 @@ function Step3(props) {
                 className="btn btn-primary btnCu"
                 onClick={() => {
                   addToLocal({
-                    product_no: 'CB-0001-8-0',
+                    product_no: 'CB-0001-10-0',
                     name: `客製化${board.text}`,
                     price: amount,
-                    image1: null,
+                    image1: 'test.jpg',
                     color_id: 10,
-                    size: surfingBoard.size,
+                    size: surfingBoard.size.toString(),
                     small_cat_id: 9,
                     stock: 1,
                     count: count,
-                    image_cu1: 'test.jpg',
                     style: `${surfingBoard.front} + ${surfingBoard.frontpattern} & ${surfingBoard.back} + ${surfingBoard.backpattern}`,
                   });
                 }}
