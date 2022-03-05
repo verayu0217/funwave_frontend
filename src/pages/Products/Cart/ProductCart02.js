@@ -29,7 +29,6 @@ function ProductCart02() {
     address: '',
     convenient_store: '',
     status: '訂單處理中',
-    order_time: '2021-12-13 14:33:56',
     order_details: [],
   });
 
@@ -67,8 +66,9 @@ function ProductCart02() {
 
     // 處理購物車品項欄位剩下product_no、count
     let orderDetails = localStorageOrderCart.map((x) =>
-      _.pick(x, 'product_no', 'count')
+      _.pick(x, 'product_no', 'count', 'style')
     );
+    console.log('orderDetails', orderDetails);
 
     setOrder({
       ...order,
@@ -100,8 +100,8 @@ function ProductCart02() {
     }
   }, [auth]);
 
-  // 收件人資訊勾選同訂購人資訊
   useEffect(() => {
+    // 收件人資訊勾選同訂購人資訊
     if (receiverSync === true) {
       setOrder({
         ...order,
@@ -110,10 +110,8 @@ function ProductCart02() {
       });
     } else {
     }
-  }, [receiverSync]);
 
-  // 收件人資訊勾選同訂購人資訊
-  useEffect(() => {
+    // 收件人資訊勾選同訂購人資訊
     if (addressSync === true) {
       setOrder({
         ...order,
@@ -121,7 +119,18 @@ function ProductCart02() {
       });
     } else {
     }
-  }, [addressSync]);
+  }, [receiverSync, addressSync]);
+
+  // // 收件人資訊勾選同訂購人資訊
+  // useEffect(() => {
+  //   if (addressSync === true) {
+  //     setOrder({
+  //       ...order,
+  //       address: memberAddress,
+  //     });
+  //   } else {
+  //   }
+  // }, [addressSync]);
 
   async function handleSubmit(e) {
     // 送出資料前的驗證
