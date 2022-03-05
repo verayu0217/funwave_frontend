@@ -5,6 +5,7 @@ import { API_URL } from '../utils/config';
 import { Navbar, Nav, NavDropdown, Container } from 'react-bootstrap';
 import { RiProfileFill } from 'react-icons/ri';
 import Swal from 'sweetalert2';
+import CartIcon from './CartIcon';
 
 // 要使用能有active css效果的NavLink元件
 import { Link, NavLink, Navigate } from 'react-router-dom';
@@ -44,7 +45,9 @@ function MyNavbar() {
   setInterval(function () {
     const productCart = localStorage.getItem('productCart');
     if (productCart) {
-      setCartCount(JSON.parse(productCart).length);
+      setCartCount(
+        JSON.parse(productCart).reduce((pre, cur) => pre + cur.count, 0)
+      );
     }
   }, 500);
 
@@ -119,6 +122,7 @@ function MyNavbar() {
                 <i className="fas fa-shopping-cart"></i>
                 <span>&ensp;({cartCount})</span>
               </Nav.Link>
+              {/* <CartIcon /> */}
               <Nav.Link
                 className="iconGroup"
                 as={NavLink}
