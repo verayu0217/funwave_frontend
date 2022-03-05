@@ -35,12 +35,20 @@ function ProductCart02() {
   );
   console.log('orderDetails', orderDetails);
 
+  let paymentStatus = '';
+  // 依據付款方式決定付款狀態
+  if (localStoragePayment === '信用卡') {
+    paymentStatus = '已付款';
+  } else {
+    paymentStatus = '未付款';
+  }
+
   // 表單元素 (要存進order-list、order_details資料表)
   const [order, setOrder] = useState({
     member_id: auth?.member_id || 0,
     amount: localStorageAmount,
     payment: localStoragePayment,
-    payment_status: '未付款',
+    payment_status: paymentStatus,
     delivery: localStorageDelivery,
     receiver: '',
     receiver_phone: '',
@@ -49,6 +57,8 @@ function ProductCart02() {
     status: '訂單處理中',
     order_details: orderDetails,
   });
+
+  console.log('order', order);
 
   // 表單元素 (可同步會員資料)
   const [memberName, setMemberName] = useState('');
@@ -68,40 +78,6 @@ function ProductCart02() {
   const [orderDone, setOrderDone] = useState(false);
 
   const [validated, setValidated] = useState(false);
-
-  // 拿取前一頁Cart01儲存在localStorage的購物車品項、付款方式、運送方式、總金額
-  // useEffect(() => {
-  //   let localStoragePayment = JSON.parse(
-  //     localStorage.getItem('payment') || '[]'
-  //   );
-  //   let localStorageDelivery = JSON.parse(
-  //     localStorage.getItem('delivery') || '[]'
-  //   );
-  //   let localStorageAmount = JSON.parse(localStorage.getItem('amount')) || 0;
-  //   console.log('localStorageAmount', localStorageAmount);
-
-  //   const localStorageOrderCart = JSON.parse(
-  //     localStorage.getItem('productCartDisplay') || '[]'
-  //   );
-
-  //   // 處理購物車品項欄位剩下product_no、count
-  //   let orderDetails = localStorageOrderCart.map((x) =>
-  //     _.pick(x, 'product_no', 'count', 'style')
-  //   );
-  //   console.log('orderDetails', orderDetails);
-
-  //   setOrder({
-  //     ...order,
-  //     amount: localStorageAmount,
-  //     payment: localStoragePayment,
-  //     delivery: localStorageDelivery,
-  //     order_details: orderDetails,
-  //   });
-  // }, []);
-
-  useEffect(() => {
-    console.log(order);
-  }, [order]);
 
   // 會員資料帶入訂購人資訊 (memberName、memberPhone、memberAddress，從useContext帶入)
   useEffect(() => {
@@ -134,17 +110,6 @@ function ProductCart02() {
     } else {
     }
   }, [receiverSync, addressSync]);
-
-  // // 收件人資訊勾選同訂購人資訊
-  // useEffect(() => {
-  //   if (addressSync === true) {
-  //     setOrder({
-  //       ...order,
-  //       address: memberAddress,
-  //     });
-  //   } else {
-  //   }
-  // }, [addressSync]);
 
   async function handleSubmit(e) {
     // 送出資料前的驗證
