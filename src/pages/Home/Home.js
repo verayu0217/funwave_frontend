@@ -962,11 +962,11 @@ return (
                         <h1 className="surfIntroTitleHome white lh-lg">衝浪聖地32選</h1>
                         <h5 className="surfIntroWordHome white lh-lg">32個涵蓋北部、東北部、東部、南部、西部等浪點即時資訊整理，一目瞭然又即時！</h5>
                         <img src={taiwanHome} className="ps-5 pb-4" alt="taiwanHome" height="" width="90%"/>
-                        <MdLocationOn
+                        {/* <MdLocationOn
                             className="me-2"
                             size={20}
                             color="#a0a7ac"
-                        />
+                        /> */}
                     </div>
                     {/* 浪點按鈕 */}
                     <div className="d-flex justify-content-center align-items-center flex-row py-5">
