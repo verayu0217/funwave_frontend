@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { AuthContext } from './context/auth';
 import { FavContext } from './context/fav';
 import './App.scss';
-import './styles/global.scss';
+// import './styles/global.scss';
 import axios from 'axios';
 import { API_URL } from './utils/config';
 import { ERR_MSG } from './utils/error';
@@ -61,7 +61,7 @@ import SurfSpot from './pages/SurfSpot/SurfSpot';
 // import Breadcrumb from './components/Breadcrumb';
 import ScrollToTop from './components/ScrollToTop';
 import Header from './components/Header';
-// import Footer from './components/Footer';
+import Footer from './components/Footer';
 // import MainContent from './components/MainContent';
 // import SideBar from './components/SideBar';
 import NotFound from './components/NotFound';
@@ -100,6 +100,7 @@ function App() {
     <>
       <AuthContext.Provider value={{ auth, setAuth }}>
         <FavContext.Provider value={{ fav, setFav }}>
+          <div className="routesApp">
           <Header />
           <ScrollToTop />
           {/* <Breadcrumb /> */}
@@ -159,7 +160,11 @@ function App() {
             </Route>
             <Route path="*" element={<NotFound />} />
           </Routes>
-          {/* <Footer /> */}
+
+            <div className="footerApp">
+              <Footer  />
+            </div>
+        </div>
         </FavContext.Provider>
       </AuthContext.Provider>
     </>

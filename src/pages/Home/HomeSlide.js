@@ -19,7 +19,11 @@ function HomeSlide(props) {
 const NextArrow = ({ onClick }) => {
     return (
     <div className="arrowCard nextCard" onClick={onClick}>
-        <RiArrowRightCircleFill />
+        <RiArrowRightCircleFill
+            className="me-1"
+            size={36}
+            color="#ffffff"
+        />
     </div>
     );
 };
@@ -27,7 +31,11 @@ const NextArrow = ({ onClick }) => {
 const PrevArrow = ({ onClick }) => {
     return (
     <div className="arrowCard prevCard" onClick={onClick}>
-        <RiArrowLeftCircleFill />
+        <RiArrowLeftCircleFill
+            className="me-1"
+            size={36}
+            color="#ffffff"
+        />
     </div>
     );
 };

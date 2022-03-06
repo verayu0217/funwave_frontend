@@ -1,1 +1,13 @@
 
+.routesApp {
+    position: relative;
+    z-index: 1000;
+}
+
+.footerApp {
+    position: absolute;
+    width: 100%;
+    left: 0%;
+    top: 100%;
+    z-index: 1001;
+}

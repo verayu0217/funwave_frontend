@@ -74,18 +74,18 @@ function InformationDetails() {
 
     return (
     <>
-    <div>
-    <h3>麵包屑</h3>
+    {/* <div> */}
+    {/* <h3>麵包屑</h3> */}
     {/* <h3>麵包{spinner}</h3> */}
     {/* {isLoading ? spinner : <h3>麵包屑拿到了資料了</h3>} */}
-    </div>
+    {/* </div> */}
 
     {infoNoData.map( (infoNoDataItem, i) => {
         return (
             <React.Fragment key={infoNoDataItem.info_id}>
 
             {/* 上方大圖 */}
-            <div className="container-fluid titlePicSectionInfo">
+            {/* <div className="container-fluid titlePicSectionInfo"> */}
             {(() => {
                 if (isLoading === true) {
                     return <>{spinner}</>;
@@ -94,25 +94,47 @@ function InformationDetails() {
                     return (
                         <>
                         {/* 資料拿到 */}
-                        <div className="container titleSectionInfo d-flex flex-row align-items-start">
-                            <div className="titleWordInfo d-flex flex-column align-items-start text-start mb-4">
-                                <span className="badge bg-dark h6">{infoNoDataItem.info_cat}</span>
-                                <h1 className="white">{infoNoDataItem.big_title}</h1>
-                                <h6 className="white">{infoNoDataItem.create_time} {infoNoDataItem.author}</h6>
+                        <div className="container titleSectionInfo d-flex flex-row align-items-end">
+                        <div className="row">
+                            <div className="col-12 col-sm-9 p-5 pb-0">
+                                <div className="titleWordInfo d-flex flex-column align-items-start text-start mb-4">
+                                    <span className="badge bg-dark h6">{infoNoDataItem.info_cat}</span>
+                                    <h1 className="black">{infoNoDataItem.big_title}</h1>
+                                    <h6 className="black">{infoNoDataItem.create_time} {infoNoDataItem.author}</h6>
+                                </div>
+                                {/* line */}
+                                <div className="lineInfo mt-5"></div>
+                            </div>    
+                        
+                            <div className="col-12 col-sm-3 p-5 pb-0">
+                                <div className="titleTopPicBoxInfo">
+                                    <img
+                                        className="titleTopPicInfo"
+                                        src={`${IMAGE_URL}/information/${infoNoDataItem.big_img}`}
+                                        alt={infoNoDataItem.big_img}
+                                    />
+                                </div>
+                                {/* <div className="titleTopPicBoxInfo">
+                                    <h4>have fun</h4>
+                                </div> */}
                             </div>
                         </div>
-                        <div className="titleTopPicBoxInfo">
-                            <img
-                                className="titleTopPicInfo"
-                                src={`${IMAGE_URL}/information/${infoNoDataItem.big_img}`}
-                                alt={infoNoDataItem.big_img}
-                            />
                         </div>
                         </>      
                     )
                 }
             })()} {/* IIFE */}
-            </div> {/* container-fluid */}
+            {/* </div> */}
+            {/* container-fluid */}
+
+            {/* line */}
+            {/* <div className="container">
+                <div className="row lineBox">
+                    <div className="col-12">
+                        <div className="lineInfo"></div>
+                    </div>
+                </div>
+            </div> */}
 
             {(() => {
                 if (infoNoDataItem.one_text_one === null && infoNoDataItem.one_title === null){
@@ -341,14 +363,15 @@ function InformationDetails() {
 
                             {/* 右側欄位/////////////////////////////// */}
                             <div className="col-12 col-sm-3 p-5">
-                                <h5 className="lh-base gray">您是否也有許多衝浪故事，期待與浪友們分享？</h5>
+                                <h5 className="changeFontInfo">Share Your Special Story !</h5>
+                                <h6 className="lh-base black">您是否也有許多衝浪故事，期待與浪友們分享？</h6>
                                 {/* line */}
                                 <div className="lineInfo my-3"></div>
-                                <p className="lh-lg mb-5 gray">FUNWAVE編輯部團隊擁有專業編輯、撰稿人、攝影師以及一群熱情的浪友們，為您的衝浪故事量身打造獨特的篇章。</p>
-                                <h5 className="lh-base gray">聯繫FUNWAVE編輯部</h5>
+                                <h6 className="lh-lg mb-5 gray">FUNWAVE編輯部團隊擁有專業編輯、撰稿人、攝影師以及一群熱情的浪友們，為您的衝浪故事量身打造獨特的篇章。</h6>
+                                <h6 className="lh-base black">聯繫FUNWAVE編輯部</h6>
                                 {/* line */}
                                 <div className="lineInfo my-3"></div>
-                                <p className="lh-lg gray">0800-000-000<br/>funwave2022@gmail.com<br/>誠摯歡迎您，與我們分享您的衝浪故事以及任何想法！</p>
+                                <h6 className="lh-lg gray">0800-000-000<br/>funwave2022@gmail.com<br/>誠摯歡迎您，與我們分享您的衝浪故事以及任何想法！</h6>
                             </div> {/* col */}
                         </div> {/* row */}
 

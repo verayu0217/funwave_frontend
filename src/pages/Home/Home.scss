@@ -1,17 +1,37 @@
 // 待找到方法放在public，就可刪除此行
 @import '../../styles/global.scss';
 
+// outSideBox(包住整頁)
+.outSideBox {
+    position: relative;
+}
+
+// translateBox(包住關於-資訊)
+.translateBox {
+    position: absolute;
+    left: 0%;
+    top: 72%;
+}
+
 // 首頁
 .heroSectionHome {
     height: 100vh;
 
     background: url('../../data/images/home/orangeHeroHome.png') center center no-repeat;
     background-size: cover;
+    position: relative;
+}
+
+.waveVerticalWBox {
+    position: absolute;
+    left: 6%;
+    bottom: -6%;
+    opacity: 80%;
 }
 
 .logoPicHome {
     padding-top: 240px;
-    max-height: 180px;
+    max-height: 170px;
 }
 
 .logoPicW {
@@ -25,32 +45,36 @@
     text-shadow: 0 0 10px $funwave-white, 0 0 20px $funwave-white, 0 0 30px $funwave-white, 0 0 40px $funwave-white;
 }
 
-.waveVerticalW {
-    position: relative;
-    left: 20px;
-    bottom: 20px;
-}
+
 
 // 關於
 .aboutSectionHome {
-    height: 1190px;
-    transform: translateY(-268px);
-    background: url('../../data/images/home/lightgraywhiteBG.png') center center no-repeat;
+    height: auto;
+    // height: 1190px;
+    // transform: translateY(-268px);
+    background: url('../../data/images/home/lightgraywhiteBG-up.png') center center no-repeat;
     background-size: cover;
-    z-index: -1;
+    // position: absolute;
+    // left: 0%;
+    // top: 80%;
+    // z-index: -1;
 }
 
 
 .titleAboutHome {
-    padding-top: 288px;
+    padding-top: 260px;
 }
 
 .titleShopHome {
-    padding-top: 288px;    
+    padding-top: 150px;    
 }
 
 .titleCustomHome {
     padding-top: 80px;
+}
+
+.titleCoachHome {
+    padding-top: 0px;
 }
 
 // .titleHome {
@@ -70,7 +94,15 @@
     padding: 0 10%;
 }
 
-.selectProductAboutCircleItemHome {
+// 關於-商品圓圈
+.productCircleBoxHome {
+    max-width: 180px;
+    max-height: 180px;
+    min-width: 100px;
+    min-height: 100px;
+    position: relative;
+}
+.productCircleItemHome-front {
     max-width: 180px;
     max-height: 180px;
     min-width: 100px;
@@ -79,9 +111,47 @@
     background: url('../../data/images/home/selectProduct.png') center center no-repeat;
     background-size: cover;
     border-radius: 50%;
+
+    backface-visibility: hidden;
+    transition: 0.6s;
+    transform-style: preserve-3d;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.productCircleItemHome-back {
+    max-width: 180px;
+    max-height: 180px;
+    min-width: 100px;
+    min-height: 100px;
+
+    background: $funwave-white;
+    border-radius: 50%;
+
+    backface-visibility: hidden;
+    transition: 0.6s;
+    transform-style: preserve-3d;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: rotateY(-180deg);
+}
+.productCircleBoxHome:hover .productCircleItemHome-back {
+    transform: rotateY(0deg);
+}
+.productCircleBoxHome:hover .productCircleItemHome-front {
+    transform: rotateY(180deg);
 }
 
-.teachClassAboutCircleItemHome {
+// 關於-課程圓圈
+.teachClassCircleBoxHome {
+    max-width: 180px;
+    max-height: 180px;
+    min-width: 100px;
+    min-height: 100px;
+    position: relative;
+}
+.teachClassCircleItemHome-front {
     max-width: 180px;
     max-height: 180px;
     min-width: 100px;
@@ -90,9 +160,101 @@
     background: url('../../data/images/home/teachClass.png') center center no-repeat;
     background-size: cover;
     border-radius: 50%;
+
+    backface-visibility: hidden;
+    transition: 0.6s;
+    transform-style: preserve-3d;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.teachClassCircleItemHome-back {
+    max-width: 180px;
+    max-height: 180px;
+    min-width: 100px;
+    min-height: 100px;
+
+    background: $funwave-white;
+    border-radius: 50%;
+
+    backface-visibility: hidden;
+    transition: 0.6s;
+    transform-style: preserve-3d;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: rotateY(-180deg);
+}
+.teachClassCircleBoxHome:hover .teachClassCircleItemHome-back {
+    transform: rotateY(0deg);
+}
+.teachClassCircleBoxHome:hover .teachClassCircleItemHome-front {
+    transform: rotateY(180deg);
 }
 
-.surfSpotInfoAboutCircleItemHome {
+// 關於-客製化圓圈
+.customCircleBoxHome {
+    // width: 100%;
+    // height: 100%;
+    max-width: 180px;
+    max-height: 180px;
+    min-width: 100px;
+    min-height: 100px;
+    position: relative;
+}
+.customCircleItemHome-front {
+    // width: 100%;
+
+    max-width: 180px;
+    max-height: 180px;
+    min-width: 100px;
+    min-height: 100px;
+
+    background: url('../../data/images/home/customBoard.png') center center no-repeat;
+    background-size: cover;
+    border-radius: 50%;
+
+    backface-visibility: hidden;
+    transition: 0.6s;
+    transform-style: preserve-3d;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.customCircleItemHome-back {
+    max-width: 180px;
+    max-height: 180px;
+    min-width: 100px;
+    min-height: 100px;
+
+    background: $funwave-white;
+    border-radius: 50%;
+
+    backface-visibility: hidden;
+    transition: 0.6s;
+    transform-style: preserve-3d;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: rotateY(-180deg);
+}
+.customCircleBoxHome:hover .customCircleItemHome-back {
+    transform: rotateY(0deg);
+}
+.customCircleBoxHome:hover .customCircleItemHome-front {
+    transform: rotateY(180deg);
+}
+
+// 關於-浪點圓圈
+.surfSpotCircleBoxHome {
+    max-width: 180px;
+    max-height: 180px;
+    min-width: 100px;
+    min-height: 100px;
+    position: relative;
+}
+
+.surfSpotCircleItemHome-front {
     max-width: 180px;
     max-height: 180px;
     min-width: 100px;
@@ -101,23 +263,56 @@
     background: url('../../data/images/home/surfSpotInfo.png') center center no-repeat;
     background-size: cover;
     border-radius: 50%;;
-}
 
-.newInfoAboutCircleItemHome {
+    backface-visibility: hidden;
+    transition: 0.6s;
+    transform-style: preserve-3d;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.surfSpotCircleItemHome-back {
     max-width: 180px;
     max-height: 180px;
     min-width: 100px;
     min-height: 100px;
 
-    background: url('../../data/images/home/newInfo.png') center center no-repeat;
-    background-size: cover;
+    background: $funwave-white;
     border-radius: 50%;
+
+    backface-visibility: hidden;
+    transition: 0.6s;
+    transform-style: preserve-3d;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: rotateY(-180deg);
 }
+.surfSpotCircleBoxHome:hover .surfSpotCircleItemHome-back {
+    transform: rotateY(0deg);
+}
+.surfSpotCircleBoxHome:hover .surfSpotCircleItemHome-front {
+    transform: rotateY(180deg);
+}
+
+// 關於-連結字
+.aboutCircleHome a {
+        text-decoration: none;
+        color: #333333;
+}
+.aboutCircleHome a:hover {
+        text-decoration: underline;
+        color: #333333;
+}
+
 
 
 // 商店
 .shopSectionHome {
-    transform: translateY(-800px);
+    // transform: translateY(-800px);
+    background: url('../../data/images/home/lightgraywhiteBG-down.png') center center no-repeat;
+    background-size: cover;
+
     padding: 0 10%;
 }
 
@@ -131,35 +326,88 @@
 }
 
 .costumSectionHome {
-    transform: translateY(-700px);
+    // margin-left: -20px;
+    margin-right: 0px;
+
+    // transform: translateY(-700px);
+}
+
+// classSectionUPHome
+.classSectionUPHome {
+    background: url('../../data/images/home/lightgraywhiteBG-course-up.png') center center no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 10vh;
 }
 
 
 // 課程與教練
 .classSectionHome {
-    transform: translateY(-600px);
-    height: 1080px;
-    background: url('../../data/images/home/lightgrayBG-02.png') center center no-repeat;
-    background-size: cover;
-    position: relative;
+    // transform: translateY(-600px);
+    // height: 1080px;
+    // background: url('../../data/images/home/lightgrayBG-02.png') center center no-repeat;
+    // background-size: cover;
+    // position: relative;
+    height: auto;
+    background-color: $funwave-lightgray;
+    // background-size: cover;
 }
 
 .classContainerHome {
-    padding-top: 110px;
+    // padding-top: 110px;
 }
 
+// classSectionDOWNHome
+.classSectionDOWNHome {
+    background: url('../../data/images/home/lightgraywhiteBG-course-down.png') center center no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 10vh;
+}
+
+.costumPicBoxHome {
+    position: relative;
+}
+
+.costumPicHome {
+    position: absolute;
+    left: 0;
+    top: 50;
+}
 
 // 浪點
 .surfPointSectionHome {
-    height: 3419px;
+    // height: 3419px;
+    width: 100%;
+    // height: 10vh;
     background: url('../../data/images/home/SPinfoBG.png') center center no-repeat;
     background-size: cover;
-    position: relative;
+    // position: relative;
 
 }
 
 .surfPointContainerHome {
-    padding-top: 200px;
+    padding-top: 100px;
+    position: relative;
+}
+
+.titleSurfPointHome {
+    padding-top: 100px;
+
+}
+
+.surfIntroTitleHome {
+    width: 20%;
+    position: absolute;
+    left: 10%;
+    top: 32%;
+}
+
+.surfIntroWordHome {
+    width: 20%;
+    position: absolute;
+    left: 10%;
+    top: 40%;
 }
 
 // .infoContainerHome {
@@ -226,13 +474,17 @@
 
 
 // footer
-.footerSectionHome {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    height: 460px;
-    background: url('../../data/images/home/footerBG.png') center center no-repeat;
-    background-size: cover;
-}
+// .footerSectionHome {
+//     position: fixed;
+//     left: 0;
+//     bottom: 0;
+//     height: 460px;
+//     background: url('../../data/images/home/footerBG.png') center center no-repeat;
+//     background-size: cover;
+// }
+
+// .something {
+//     margin: 0px;
+// }
 
 

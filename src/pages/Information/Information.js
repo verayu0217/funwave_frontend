@@ -5,6 +5,7 @@ import { Carousel, Tabs, Tab, Sonnet } from 'react-bootstrap';
 
 import greenTitle from '../../data/images/greenTitle.svg';
 import { FaLongArrowAltRight } from 'react-icons/fa';
+import { BsFillArrowDownCircleFill } from 'react-icons/bs';
 
 
 // 撈資料引入
@@ -289,13 +290,13 @@ function Information() {
     return (
     <>   
 
-        <div>
+        {/* <div>
             <h3>麵包屑</h3>
-        </div>
+        </div> */}
         {/* 輪播部分 */}
-        <div className="container-fluid caroBoxInfo">
+        {/* <div className="container-fluid caroBoxInfo">
             <div className="row">
-                <div className="col-12">
+                <div className="col-12"> */}
 
                     {caroData.map( (caroDataItem, i) => {
                     return (
@@ -311,12 +312,21 @@ function Information() {
                                 />
                             </div>
                             <Carousel.Caption  className="">
-                            <div className="d-flex flex-column align-items-start text-start mb-4">
-                                <span className="badge bg-dark h6">{caroDataItem.info_catA}</span>
-                                <a className="h1 white caroAInfo" href="" onClick={()=> navigate(`/information/${caroDataItem.info_noA}`)}>{caroDataItem.big_titleA}
-                                </a>
-                                <h6 className="caroADate">{dateAdjust(caroDataItem.create_timeA)} {caroDataItem.authorA}</h6>
-                            </div>
+                                <div className="d-flex flex-column align-items-start text-start mb-4">
+                                    <span className="badge bg-dark h6">{caroDataItem.info_catA}</span>
+                                    <a className="h1 white caroAInfo" href="" onClick={()=> navigate(`/information/${caroDataItem.info_noA}`)}>{caroDataItem.big_titleA}
+                                    </a>
+                                    <h6 className="caroADate">{dateAdjust(caroDataItem.create_timeA)} {caroDataItem.authorA}</h6>
+                                </div>
+                                <div className="d-flex flex-column align-items-center mb-4 downBtnInfoPC">
+                                    <a href="#contentSectionInfo" className="pt-3">
+                                        <BsFillArrowDownCircleFill 
+                                            className="arrowDownInfo me-2"
+                                            size={40}
+                                            color="#ff7f6a"
+                                        />
+                                    </a>
+                                </div>
                             </Carousel.Caption>
                             </Carousel.Item>
                             <Carousel.Item>
@@ -326,12 +336,21 @@ function Information() {
                                 alt="Second slide"
                                 />
                                 <Carousel.Caption  className="">
-                                <div className="d-flex flex-column align-items-start text-start mb-4">
-                                    <span className="badge bg-dark h6">{caroDataItem.info_catB}</span>
-                                    <a className="h1 white caroAInfo" href="" onClick={()=> navigate(`/information/${caroDataItem.info_noB}`)}>{caroDataItem.big_titleB}
-                                    </a>
-                                    <h6 className="caroADate">{dateAdjust(caroDataItem.create_timeB)} {caroDataItem.authorB}</h6>
-                                </div>
+                                    <div className="d-flex flex-column align-items-start text-start mb-4">
+                                        <span className="badge bg-dark h6">{caroDataItem.info_catB}</span>
+                                        <a className="h1 white caroAInfo" href="" onClick={()=> navigate(`/information/${caroDataItem.info_noB}`)}>{caroDataItem.big_titleB}
+                                        </a>
+                                        <h6 className="caroADate">{dateAdjust(caroDataItem.create_timeB)} {caroDataItem.authorB}</h6>
+                                    </div>
+                                    <div className="d-flex flex-column align-items-center mb-4 downBtnInfoPC">
+                                        <a href="#contentSectionInfo" className="pt-3">
+                                            <BsFillArrowDownCircleFill 
+                                                className="arrowDownInfo me-2"
+                                                size={40}
+                                                color="#ff7f6a"
+                                            />
+                                        </a>
+                                    </div>
                                 </Carousel.Caption>
                             </Carousel.Item>
                             <Carousel.Item>
@@ -341,12 +360,21 @@ function Information() {
                                 alt="Third slide"
                                 />
                                 <Carousel.Caption  className="">
-                                <div className="d-flex flex-column align-items-start text-start mb-4">
-                                    <span className="badge bg-dark h6">{caroDataItem.info_catC}</span>
-                                    <a className="h1 white caroAInfo" href="" onClick={()=> navigate(`/information/${caroDataItem.info_noC}`)}>{caroDataItem.big_titleC}
-                                    </a>
-                                    <h6 className="caroADate">{dateAdjust(caroDataItem.create_timeC)} {caroDataItem.authorC}</h6>
-                                </div>
+                                    <div className="d-flex flex-column align-items-start text-start mb-4">
+                                        <span className="badge bg-dark h6">{caroDataItem.info_catC}</span>
+                                        <a className="h1 white caroAInfo" href="" onClick={()=> navigate(`/information/${caroDataItem.info_noC}`)}>{caroDataItem.big_titleC}
+                                        </a>
+                                        <h6 className="caroADate">{dateAdjust(caroDataItem.create_timeC)} {caroDataItem.authorC}</h6>
+                                    </div>
+                                    <div className="d-flex flex-column align-items-center mb-4 downBtnInfoPC">
+                                        <a href="#contentSectionInfo" className="pt-3">
+                                            <BsFillArrowDownCircleFill 
+                                                className="arrowDownInfo me-2"
+                                                size={40}
+                                                color="#ff7f6a"
+                                            />
+                                        </a>
+                                    </div>
                                 </Carousel.Caption>
                             </Carousel.Item>
                     </Carousel>
@@ -355,19 +383,30 @@ function Information() {
                     )
                     })}
 
-                </div> {/* col */}
-            </div> {/* row */}
-        </div> {/* container-fluid */}
+                {/* </div> */}
+                 {/* col */}
+            {/* </div> */}
+            {/* row */}
+        {/* </div> */}
+        {/* container-fluid */}
+
+        {/* <a href="#contentSectionInfo">
+            <BsFillArrowDownCircleFill 
+                className="arrowDownInfo me-2"
+                size={20}
+                color="#a0a7ac"
+            />
+        </a> */}
 
         {/* 輪播部分以下 */}
-        <div className="container contentSectionInfo pt-5">
+        <div id="contentSectionInfo" className="container contentSectionInfo pt-5">
             {/* <div className="row"></div> */}
             <div className="row">
                 <div className="col-12">
 
                 <div className="">
                 <Tabs
-                    className="" // 沒作用
+                    // className="" // 沒作用
                     id="controlled-tab-info"
                     activeKey={key}
                     onSelect={(k) => setKey(k)}

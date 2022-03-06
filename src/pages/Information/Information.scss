@@ -1,15 +1,53 @@
 // 待找到方法放在public，就可刪除此行
 @import '../../styles/global.scss';
 
+// .caroBoxInfo {
+//     position: relative;
+// }
 
+// .arrowDownInfo {
+//     position: absolute;
+//     left: 0;
+//     top: 0;
+// }
 
 .caroBoxInfo {
     max-height: 680px;
+    margin-right: -20px;
+    margin-left: -20px;
+
 }
 
 .caroAInfo {
+    color: $funwave-white;
     text-decoration: none;
 }
+// .caroAInfo:after {
+//     color: $funwave-white;
+//     text-decoration: underline;
+// }
+.caroAInfo:hover {
+    color: $funwave-white;
+}
+.caroAInfo:after{
+    color: $funwave-white;
+    position: relative;
+    content: '';
+    display: block;
+    height: 1px;
+    width: 100%;
+    background: $funwave-white;
+    top: 2px;
+    left: 0;  
+    transform: scale(0);
+    transition: all 0.5s;
+}
+.caroAInfo:hover::after{
+    color: $funwave-white;
+    transform-origin: center;
+    transform: scale(1);
+}
+
 
 .nav-item .nav-link {
     font-weight: bold;
@@ -23,7 +61,7 @@
 
 .contentSectionInfo {
     .searchInfoPC {
-        display: block;
+        display: show;
     }
 }
 
@@ -119,6 +157,9 @@
         h1 {
             font-size: 1.3rem;
         }
+        .downBtnInfoPC {
+            display: none !important;
+        }
     }
 
     .carousel .badge {
@@ -130,7 +171,7 @@
     // }
 
     .slide {
-        margin-bottom: 100px;
+        // margin-bottom: 100px;
     }
 
 
@@ -147,5 +188,8 @@
         }
     }
 
+
 }
+
+
 

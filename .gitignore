@@ -1,3 +1,6 @@
 .env
 node_modules
 .vscode
+Home-beforeContainerFluidFix.js
+InformationDetails-beforeArrange.js
+InformationDetails-beforeArrange.scss
