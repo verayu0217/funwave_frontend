@@ -59,7 +59,7 @@ function MyNavbar() {
 
   return (
     <>
-      <Navbar expand="lg" className="shadow-sm">
+      <Navbar expand="lg" className="shadow-sm sticky-top">
         <Container className="headerWrap">
           <Navbar.Brand href="/home">
             <img src={logo} className="imgLogo" />
@@ -156,12 +156,19 @@ function MyNavbar() {
               {auth ? (
                 <>
                   <div className="d-flex align-items-center">
-                    <img
-                      className={`headerImgMember cover-fit me-2 ${
-                        auth.photo == '' ? 'd-none' : 'd-block'
-                      }`}
-                      src={`http://localhost:3002${auth.member_photo}`}
-                    />
+                    {auth.member_photo &&
+                    typeof auth.member_photo === 'string' ? (
+                      <img
+                        className={
+                          auth.member_photo === ''
+                            ? 'd-none'
+                            : 'd-block headerImgMember cover-fit me-2'
+                        }
+                        src={`http://localhost:3002${auth.member_photo}`}
+                      />
+                    ) : (
+                      ''
+                    )}
                     <p className="mb-0">{auth.member_name}</p>
                   </div>
                   <Nav.Link

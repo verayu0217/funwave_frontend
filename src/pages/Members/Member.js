@@ -213,7 +213,7 @@ function Member() {
           </Tab.Container>
         </div>
       ) : (
-        <Navigate to="/login"></Navigate>
+        <Navigate to="/member"></Navigate>
       )}
     </>
   );
