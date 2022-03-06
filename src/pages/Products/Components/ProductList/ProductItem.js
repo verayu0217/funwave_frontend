@@ -100,7 +100,8 @@ function ProductItem(props) {
             <AiFillStar size={20} color="#ff7f6a" />
             <AiFillStar size={20} color="#ff7f6a" />
             <AiFillStar size={20} color="#ff7f6a" />
-            <AiOutlineStar size={20} color="#ff7f6a" />
+            <AiFillStar size={20} color="#ff7f6a" />
+            {/* <AiOutlineStar size={20} color="#ff7f6a" /> */}
           </div>
           <Figure.Caption className="d-flex justify-content-center">
             <p className="mb-0 mt-2">{name}</p>

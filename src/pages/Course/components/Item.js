@@ -1,6 +1,6 @@
 import StarRating from './StarRating';
 
-const Item = ({ message, date, rating, photo, name }) => {
+const Item = ({ message, date, rating, photo, name, auth }) => {
   return (
     <div>
       {/* 留言 */}
@@ -9,10 +9,9 @@ const Item = ({ message, date, rating, photo, name }) => {
         <div className="d-flex flex-wrap">
           <div className="mt-2 align-self-center">
             {/*TODO: 會員大頭照  */}
-
             <img
               className="rounded-circle"
-              src={'https://picsum.photos/id/237/50/50'}
+              // src={`http://localhost:3002${auth.member_photo}`}
               alt=""
               height="50px"
               weight="50px"

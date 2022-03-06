@@ -37,9 +37,6 @@ function ProductAddCart(props) {
   } = props;
   const [mycart, setMycart] = useState([]); // 要存進localStorage的資料
 
-  // 判斷是否登入，登入才能進購物車
-  const [goToCart, setGoToCart] = useState(false);
-
   // 小分類、品牌的id對照名稱
   const smallCatTypes = [
     '衝浪長板',
@@ -121,12 +118,6 @@ function ProductAddCart(props) {
     // console.log('ProductAddCart.js - mycart', mycart);
   };
 
-  console.log('goToCart', goToCart);
-  // 登入才可以進購物車
-  if (goToCart) {
-    return <Navigate to="/product-cart01"></Navigate>;
-  }
-
   // 加入/刪除收藏
   const favorite = (item) => {
     let wishProduct = JSON.parse(localStorage.getItem('likeID')) || [];
@@ -143,18 +134,6 @@ function ProductAddCart(props) {
 
   return (
     <>
-      {/* 加入購物車 */}
-      <button
-        onClick={() => {
-          if (auth === null) {
-            return alert('請登入會員');
-          } else {
-            setGoToCart(true);
-          }
-        }}
-      >
-        去購物車
-      </button>
       {/* 商品名稱、品牌、小分類、貨號 */}
       <div className="d-flex justify-content-between">
         <h1>{product[0].name}</h1>
