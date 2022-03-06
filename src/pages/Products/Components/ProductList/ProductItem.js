@@ -84,17 +84,15 @@ function ProductItem(props) {
       <Link to={`/products/${product_group}`}>
         {/* 商品列表的個別商品 */}
         <Figure className="mt-4 position-relative">
-          <Figure.Image
-            width={265}
-            height={300}
-            alt={`${image1}`}
-            src={`${IMAGE_URL}/products/${image1}`}
-          />
-          {/* <BiHeart
-          size={21}
-          color="#ff7f6a"
-          className="float-end position-absolute top-0 end-0"
-        /> */}
+          <div className="imgBox">
+            <Figure.Image
+              width={265}
+              height={300}
+              alt={`${image1}`}
+              src={`${IMAGE_URL}/products/${image1}`}
+              className="cover-fit"
+            />
+          </div>
           <div className="d-flex justify-content-center mt-2">
             <AiFillStar size={20} color="#ff7f6a" />
             <AiFillStar size={20} color="#ff7f6a" />

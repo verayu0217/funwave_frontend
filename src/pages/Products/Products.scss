@@ -24,6 +24,18 @@
   background: rgba(255, 255, 255, 0.2); // 只調整背景alpha，不影響文字
 }
 
+// 商品區
+.cover-fit {
+  // object-fit: cover;
+  object-fit: contain;
+}
+.imgBox {
+  height: 270px;
+  width: 270px;
+  display: flex;
+  margin: auto;
+}
+
 // 左側篩選區
 .accordion-body {
   padding: 0;
