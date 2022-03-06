@@ -2,7 +2,6 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Form, Container, Row, Col } from 'react-bootstrap';
-import { BsCreditCard } from 'react-icons/bs';
 
 import { API_URL } from '../../utils/config';
 
@@ -28,7 +27,7 @@ function CourseCart02(props) {
     choosePay: '',
   });
 
-  // 表單返回怎麼保留付款狀態
+  // 表單返回保留付款狀態
   useEffect(() => {
     const Method = localStorage.getItem('payMethod');
     // console.log(payMethod, Method);
@@ -38,6 +37,7 @@ function CourseCart02(props) {
   }, []);
 
   // 取得會員名稱給表單資料
+
   useEffect(() => {
     if (auth !== null) {
       setName(auth.member_name);

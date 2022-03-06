@@ -14,6 +14,7 @@ import logo from '../data/images/FunwaveLogo-black2.png';
 
 function MyNavbar() {
   //加入課程購物車icon加總
+  // TODO:會員登出購物車要清除 但在登入要存在
   const [courseCart, setCourseCart] = useState(0);
   useEffect(() => {
     function refresh() {
