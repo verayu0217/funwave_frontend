@@ -254,7 +254,7 @@ function ProductCart01() {
                         </button>
                         <CgTrash
                           size={20}
-                          className="text-center ms-3"
+                          className="text-center ms-3 cursorPointer"
                           onClick={() => cartDelete(item.product_no)}
                         />
                         {/* <i className="fas fa-trash-alt position-absolute trash"></i> */}
@@ -319,7 +319,11 @@ function ProductCart01() {
               </div>
               <div className="px-5 py-4">
                 <h5>付款方式</h5>
-                <Form.Select aria-label="select" onChange={handleChangePay}>
+                <Form.Select
+                  aria-label="select"
+                  onChange={handleChangePay}
+                  className="cursorPointer"
+                >
                   <option value="信用卡">信用卡線上付款</option>
                   <option value="貨到付款">貨到付款</option>
                 </Form.Select>
@@ -327,6 +331,7 @@ function ProductCart01() {
                 <Form.Select
                   aria-label="select"
                   onChange={handleChangeDelivery}
+                  className="cursorPointer"
                 >
                   <option value="宅配到府">宅配到府</option>
                   <option value="超商取貨">超商取貨</option>

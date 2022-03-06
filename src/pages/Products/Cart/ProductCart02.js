@@ -154,12 +154,7 @@ function ProductCart02() {
           <div className="row d-flex justify-content-center">
             <div className="col-8 m-0 p-0 shadow borderRadius">
               <div className="p-4 border-bottom text-center">
-                <h1>
-                  訂購資訊{order.member_id}
-                  {order.payment}
-                  {order.delivery}
-                  {order.amount}
-                </h1>
+                <h1>訂購資訊</h1>
               </div>
               <Form
                 noValidate

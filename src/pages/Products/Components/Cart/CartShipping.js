@@ -84,11 +84,11 @@ function CartShipping(props) {
     <>
       <div className="px-5 py-4 border-top">
         <div className="d-flex justify-content-between">
-          <h3>配送資訊{order.address}</h3>
+          <h3>配送資訊</h3>
           {localStorageDelivery === '宅配到府' ? (
             <div className="form-check">
               <input
-                className="form-check-input mt-2"
+                className="form-check-input mt-2 cursorPointer"
                 type="checkbox"
                 value=""
                 id="check"
@@ -133,6 +133,7 @@ function CartShipping(props) {
                 onChange={(e) => {
                   setConvenientStoreCounty(e.target.value);
                 }}
+                className="cursorPointer"
               >
                 {counties.map((x, i) => (
                   <option value={x} key={i}>
@@ -149,6 +150,7 @@ function CartShipping(props) {
                 onChange={(e) => {
                   setConvenientStore(e.target.value);
                 }}
+                className="cursorPointer"
               >
                 {countiesToConvenientStore(convenientStoreCounty).map(
                   (x, i) => (

@@ -23,9 +23,9 @@ function CartMemberInfo(props) {
       <div className="px-5 py-4">
         <div className="d-flex justify-content-between">
           <h3>訂購人資訊</h3>
-          <div className="form-check">
+          {/* <div className="form-check">
             <input
-              className="form-check-input mt-2"
+              className="form-check-input mt-2 cursorPointer"
               type="checkbox"
               value=""
               id="check"
@@ -40,7 +40,7 @@ function CartMemberInfo(props) {
             <label className="form-check-label mt-2 fs-6" htmlFor="check">
               同步更新我的會員資料
             </label>
-          </div>
+          </div> */}
         </div>
 
         {/* 訂購人姓名 */}
