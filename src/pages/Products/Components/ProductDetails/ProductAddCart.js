@@ -1,7 +1,6 @@
 // ProductAddCart.js 內容說明：商品細節頁右方的加入購物車區
 
 import React, { useState, useEffect } from 'react';
-import { Link, Navigate } from 'react-router-dom';
 import { Figure } from 'react-bootstrap';
 import { uniqBy } from 'lodash';
 import {
@@ -20,7 +19,7 @@ import { IMAGE_URL } from '../../../../utils/config';
 
 function ProductAddCart(props) {
   // 會員資料傳入useContext
-  const { auth, setAuth } = useAuth();
+  const { auth } = useAuth();
   const { fav, setFav } = useFav();
   console.log('auth', auth);
 
@@ -85,18 +84,24 @@ function ProductAddCart(props) {
   // 整理product為顏色不重複的colorProduct
   const colorProduct = uniqBy(product, 'color_id');
 
-  // console.log('ProductAddCart.js - product', product);
-  // console.log('ProductAddCart.js - size', size);
-  // console.log('ProductAddCart.js - colorId', colorId);
+  console.log('ProductAddCart.js - product', product);
+  console.log('ProductAddCart.js - size', size);
+  console.log('ProductAddCart.js - colorId', colorId);
+
+  // 還未選尺寸時，預設尺寸為第一個子貨號的尺寸
+  if (size === '') {
+    setSize(product[0].size);
+  } else {
+  }
+
+  // 還未選顏色時，預設顏色為第一個子貨號的顏色
+  if (colorId === 0) {
+    setColorId(product[0].color_id);
+  } else {
+  }
 
   // 依據尺寸、顏色找到對應的子貨號(product_no)
   useEffect(() => {
-    // 還未選尺寸時，預設尺寸為第一個子貨號的尺寸
-    if (size === '') {
-      setSize(product[0].size);
-    } else {
-    }
-
     let chosenProduct = product.filter(
       (object) => (object['color_id'] === colorId) & (object['size'] === size)
     );
@@ -197,7 +202,11 @@ function ProductAddCart(props) {
                       height={75}
                       alt={v.name}
                       src={`${IMAGE_URL}/products/${v.image1}`}
-                      className="border border-dark p-1 m-0"
+                      className={
+                        colorId === v.color_id
+                          ? 'border border-secondary p-1 m-0 border-3 rounded-circle'
+                          : 'border border-dark p-1 m-0 rounded'
+                      }
                     />
                   </Figure>
                 </div>
@@ -215,12 +224,18 @@ function ProductAddCart(props) {
           <div className="d-flex">
             {sizeUnique.map((index, i) => {
               return (
-                <div key={i}>
+                <div
+                  key={i}
+                  onClick={() => {
+                    setSize(index);
+                  }}
+                >
                   <button
-                    className="btn btn-dark sizeBtn text-center me-2 d-flex justify-content-center align-items-center"
-                    onClick={() => {
-                      setSize(index);
-                    }}
+                    className={
+                      size === index
+                        ? 'btn btn-outline-secondary sizeBtn text-center me-2 d-flex justify-content-center align-items-center rounded-circle'
+                        : 'btn btn-outline-dark sizeBtn text-center me-2 d-flex justify-content-center align-items-center rounded'
+                    }
                   >
                     {index}
                   </button>
@@ -247,12 +262,6 @@ function ProductAddCart(props) {
         >
           <AiOutlineMinus size={20} color="#ffffff" className="text-center" />
         </button>
-        {/* <input
-          type="text"
-          value={count}
-          className="form-control mx-3 w-25"
-          name="quantity"
-        /> */}
         <div className="fs-3 text-center mx-3">{count}</div>
         <button
           type="button"

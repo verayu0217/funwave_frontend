@@ -50,7 +50,7 @@ function ProductDetails(props) {
   const [loading, setLoading] = useState(false);
   const [count, setCount] = useState(1); // 加入購物車的數量
   const [size, setSize] = useState(''); // 點選商品的尺寸
-  const [colorId, setColorId] = useState(''); // 點選商品的顏色
+  const [colorId, setColorId] = useState(0); // 點選商品的顏色
 
   // 把前端網址上的參數product_group拿出來，要和App.js的網址參數相同
   const { product_group } = useParams();
