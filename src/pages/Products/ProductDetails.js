@@ -1,21 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import { Accordion } from 'react-bootstrap';
+import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
 // react-icons
-import { FaThumbsUp } from 'react-icons/fa';
-import { IoColorPalette } from 'react-icons/io5';
-import { MdOutlineSurfing } from 'react-icons/md';
 import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
 // import { BsStarHalf } from 'react-icons/bs'; // 半星星
 
 // 導引資料、頁面
 import './ProductDetails.scss';
 import { API_URL } from '../../utils/config';
-// import { data } from '../../data/products.js'; // 前端假資料
-import longboard1 from './longboard1.jpg'; // 暫存推薦商品前端假圖片
 import greenTitle from '../../data/images/greenTitle.svg';
+import { IMAGE_URL } from '../../utils/config';
 import ProductAddCart from './Components/ProductDetails/ProductAddCart.js';
 import ProductDetailsContent from './Components/ProductDetails/ProductDetailsContent.js';
 
@@ -114,37 +109,27 @@ function ProductDetails(props) {
                   </div>
                   <div className="border mt-3 p-4">
                     <div className="d-flex align-items-center">
-                      <img
-                        className="rounded-circle"
-                        src="https://fakeimg.pl/50x50/"
-                        alt=""
-                        height="50px"
-                        weight="50px"
-                      />
-                      <div className="m-3 ">Tony</div>
+                      <div className="m-3 fs-3">Tony</div>
                       <div className="d-flex justify-content-center ">
                         <AiFillStar size={20} color="#ff7f6a" />
                         <AiFillStar size={20} color="#ff7f6a" />
                         <AiFillStar size={20} color="#ff7f6a" />
                         <AiFillStar size={20} color="#ff7f6a" />
-                        <AiOutlineStar size={20} color="#ff7f6a" />
+                        <AiFillStar size={20} color="#ff7f6a" />
+                        {/* <AiOutlineStar size={20} color="#ff7f6a" /> */}
                       </div>
 
                       <div className="align-self-center ms-auto">
                         2022年2月9日
                       </div>
                     </div>
-                    <div className="my-3">
-                      <p>
-                        出貨速度還好。外袋整潔，內箱產品完整，期待有更優惠的活動供回購。
-                        這款似可選剛好的尺寸，最好找店家試穿。
-                      </p>
+                    <div className="my-3 d-flex">
                       <img
-                        src={longboard1}
+                        src={`${IMAGE_URL}/products/${product[0].image1}`}
                         width="100"
-                        className="mt-3"
                         alt=""
                       />
+                      <p>外袋整潔，內箱產品完整，期待有更優惠的活動供回購！</p>
                     </div>
                   </div>
                 </div>
