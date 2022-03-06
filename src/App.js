@@ -81,7 +81,7 @@ function App() {
     setFav({ ...fav, wishID: wishProduct });
   }, []);
 
-  console.log('App2', auth);
+  // console.log('App2', auth);
   useEffect(() => {
     const checklogIn = async () => {
       try {

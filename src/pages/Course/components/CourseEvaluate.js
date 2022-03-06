@@ -103,7 +103,7 @@ function CourseEvaluate() {
             課程體驗評價
           </div>
 
-          <List listData={data} setData={setData} />
+          <List listData={data} setData={setData} auth={auth} />
           {/* 判斷是會員才顯示可評價否則隱藏 */}
           <div className={auth === null ? 'd-none' : ''}>
             <Edit auth={auth} add={setData} setFlag={setFlag} flag={flag} />

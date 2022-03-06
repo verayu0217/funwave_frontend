@@ -30,12 +30,12 @@ function Collect() {
     };
     collectList();
   }, [fav]);
-  console.log(collectProducts);
+  // console.log(collectProducts);
   return (
     <>
       <div className="container mt-5">
         <div className="row d-flex justify-content-center px-5">
-          <h2 className="mb-5 titleMember text-center">
+          <h1 className="mb-5 titleMember text-center">
             <span className="me-2">
               <img
                 src={titleImgMember}
@@ -44,7 +44,7 @@ function Collect() {
               />
             </span>
             我的收藏
-          </h2>
+          </h1>
           <Table
             responsive="sm"
             hover
@@ -79,9 +79,9 @@ function Collect() {
                       </div>
                     </td>
                     <td>
-                      <p className=" m-0">NT ${v.price.toLocaleString()}</p>
+                      <p className=" m-0">NT {v.price.toLocaleString()}</p>
                     </td>
-                    <td className="">
+                    <td>
                       <Link
                         to={`/products/${v.product_group}`}
                         className="btnDelFav deepblueBtnMember text-nowrap"
@@ -104,9 +104,6 @@ function Collect() {
                   </tr>
                 );
               })}
-              {/* 列表 */}
-
-              {/* 列表結束 */}
             </tbody>
           </Table>
         </div>
