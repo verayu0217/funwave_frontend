@@ -1,15 +1,6 @@
 // 待找到方法放在public，就可刪除此行
 @import '../../styles/global.scss';
 
-// .caroBoxInfo {
-//     position: relative;
-// }
-
-// .arrowDownInfo {
-//     position: absolute;
-//     left: 0;
-//     top: 0;
-// }
 
 .caroBoxInfo {
     max-height: 680px;
@@ -22,30 +13,10 @@
     color: $funwave-white;
     text-decoration: none;
 }
-// .caroAInfo:after {
-//     color: $funwave-white;
-//     text-decoration: underline;
-// }
+
 .caroAInfo:hover {
     color: $funwave-white;
-}
-.caroAInfo:after{
-    color: $funwave-white;
-    position: relative;
-    content: '';
-    display: block;
-    height: 1px;
-    width: 100%;
-    background: $funwave-white;
-    top: 2px;
-    left: 0;  
-    transform: scale(0);
-    transition: all 0.5s;
-}
-.caroAInfo:hover::after{
-    color: $funwave-white;
-    transform-origin: center;
-    transform: scale(1);
+    text-decoration: underline;
 }
 
 
@@ -65,9 +36,7 @@
     }
 }
 
-// @media screen and (max-width: 768px) {
 
-// }
 
 @media screen and (max-width: 378px) {
 
@@ -170,9 +139,9 @@
     //     display: none;
     // }
 
-    .slide {
-        // margin-bottom: 100px;
-    }
+    // .slide {
+    //     // margin-bottom: 100px;
+    // }
 
 
     .contentSectionInfo {

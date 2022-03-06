@@ -12,7 +12,6 @@ function Footer(props) {
   return (
     <>
     <div className="footerWrapperPC container-fluid">
-      {/* <div className="footerUP"></div> */}
       
         <div className="container-fluid footerContent">
             <div className="row d-flex justify-content-center align-items-start flex-wrap">
@@ -60,18 +59,12 @@ function Footer(props) {
                           />
                         </a>
                   </div>  
-                  {/* <div className="h5 fw-normal text-wrap">FUNWAVEFFUN浪</div>
-                  <div className="h5 fw-normal text-wrap">這裡是衝浪愛好者的，</div>
-                  <div className="h5 fw-normal fw-normaltext-wrap">一起FUN，一起浪！</div> */}
               </div>
               <div className="col-3 col-md-3">
                   <Figure href="/home" className="">
                     <img src={logo} className="imgLogo" />
                   </Figure>
-                  {/* <div className="h5 fw-bold pb-3 text-wrap">關於我們</div> */}
                   <div className="h5 fw-normal textBreakFooter text-wrap">此網站僅用於程式開發技術實作學習用途，如有任何侵害到您權益的問題，敬請聯繫funwave.funwave@gmail.com，我們將立即將網站做下線及相關檔案銷毀處理，非常謝謝您！</div>
-                  {/* <div className="h5 text-wrap">這裡是衝浪愛好者的集散地，</div>
-                  <div className="h5 text-wrap">一起FUN，一起浪！</div> */}
               </div>
             </div>
         </div>
@@ -127,18 +120,12 @@ function Footer(props) {
                           />
                         </a>
                   </div>  
-                  {/* <div className="h5 fw-normal text-wrap">FUNWAVEFFUN浪</div>
-                  <div className="h5 fw-normal text-wrap">這裡是衝浪愛好者的，</div>
-                  <div className="h5 fw-normal fw-normaltext-wrap">一起FUN，一起浪！</div> */}
               </div>
               <div className="col-12 pb-5">
                   <Figure href="/home" className="">
                     <img src={logo} className="imgLogo" />
                   </Figure>
-                  {/* <div className="h5 fw-bold pb-3 text-wrap">關於我們</div> */}
                   <div className="h5 fw-normal textBreakFooter text-wrap">此網站僅用於程式開發技術實作學習用途，<br/>如有任何侵害到您權益的問題，敬請聯繫<br/>funwave.funwave@gmail.com，<br/>我們將立即將網站做下線及相關檔案銷毀處理，<br/>非常謝謝您！</div>
-                  {/* <div className="h5 text-wrap">這裡是衝浪愛好者的集散地，</div>
-                  <div className="h5 text-wrap">一起FUN，一起浪！</div> */}
               </div>
             </div>
         </div>

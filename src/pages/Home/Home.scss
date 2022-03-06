@@ -50,14 +50,8 @@
 // 關於
 .aboutSectionHome {
     height: auto;
-    // height: 1190px;
-    // transform: translateY(-268px);
     background: url('../../data/images/home/lightgraywhiteBG-up.png') center center no-repeat;
     background-size: cover;
-    // position: absolute;
-    // left: 0%;
-    // top: 80%;
-    // z-index: -1;
 }
 
 
@@ -194,8 +188,6 @@
 
 // 關於-客製化圓圈
 .customCircleBoxHome {
-    // width: 100%;
-    // height: 100%;
     max-width: 180px;
     max-height: 180px;
     min-width: 100px;
@@ -203,8 +195,6 @@
     position: relative;
 }
 .customCircleItemHome-front {
-    // width: 100%;
-
     max-width: 180px;
     max-height: 180px;
     min-width: 100px;
@@ -326,10 +316,7 @@
 }
 
 .costumSectionHome {
-    // margin-left: -20px;
     margin-right: 0px;
-
-    // transform: translateY(-700px);
 }
 
 // classSectionUPHome
@@ -343,19 +330,13 @@
 
 // 課程與教練
 .classSectionHome {
-    // transform: translateY(-600px);
-    // height: 1080px;
-    // background: url('../../data/images/home/lightgrayBG-02.png') center center no-repeat;
-    // background-size: cover;
-    // position: relative;
     height: auto;
     background-color: $funwave-lightgray;
-    // background-size: cover;
 }
 
-.classContainerHome {
-    // padding-top: 110px;
-}
+// .classContainerHome {
+//     // padding-top: 110px;
+// }
 
 // classSectionDOWNHome
 .classSectionDOWNHome {
@@ -377,12 +358,9 @@
 
 // 浪點
 .surfPointSectionHome {
-    // height: 3419px;
     width: 100%;
-    // height: 10vh;
     background: url('../../data/images/home/SPinfoBG.png') center center no-repeat;
     background-size: cover;
-    // position: relative;
 
 }
 
@@ -470,21 +448,5 @@
     height: 60px;
 }
 
-// 最新資訊
-
-
-// footer
-// .footerSectionHome {
-//     position: fixed;
-//     left: 0;
-//     bottom: 0;
-//     height: 460px;
-//     background: url('../../data/images/home/footerBG.png') center center no-repeat;
-//     background-size: cover;
-// }
-
-// .something {
-//     margin: 0px;
-// }
 
 
