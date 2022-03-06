@@ -220,7 +220,7 @@ function ProductDetailsContent(props) {
       <div className="m-5">
         <h3 className="border-bottom border-dark pb-2 mb-4">推薦相似產品</h3>
         <div className="d-flex justify-content-evenly align-items-center">
-          <AiFillLeftCircle size={22} color="#17a8a2" />
+          {/* <AiFillLeftCircle size={22} color="#17a8a2" /> */}
 
           {recommend.map((v, i) => {
             return (
@@ -241,7 +241,7 @@ function ProductDetailsContent(props) {
             );
           })}
 
-          <AiFillRightCircle size={22} color="#17a8a2" />
+          {/* <AiFillRightCircle size={22} color="#17a8a2" /> */}
         </div>
       </div>
 
