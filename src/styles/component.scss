@@ -173,4 +173,9 @@
     display: flex;
     justify-content: center;
   }
+  // 我的收藏星星
+  .favWrap{
+    transform: translateY(100px);
+    padding: 3px 3px 3px 3px;
+  }
 }
