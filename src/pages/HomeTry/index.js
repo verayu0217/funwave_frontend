@@ -11,7 +11,7 @@ function HomeTry() {
           className="greenTitle"
           alt="greenTitle"
           height="24px"
-          weight="64px"
+          width="64px"
         />
       </div>
       <div className="container-set container">

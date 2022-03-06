@@ -54,7 +54,7 @@ function Step3(props) {
           className="greenTitle me-3"
           alt="greenTitle"
           height="24px"
-          weight="64px"
+          width="64px"
         />
         STEP 3加入購物車
       </div>

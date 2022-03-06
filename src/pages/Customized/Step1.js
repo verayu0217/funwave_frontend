@@ -30,7 +30,7 @@ function Step1(props) {
           className="greenTitle me-3"
           alt="greenTitle"
           height="24px"
-          weight="64px"
+          width="64px"
         />
         STEP1 選擇衝浪板外型
         <button className="btn btn-secondary btnEnd display" onClick={nextStep}>

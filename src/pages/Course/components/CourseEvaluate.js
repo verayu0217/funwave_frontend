@@ -98,7 +98,7 @@ function CourseEvaluate() {
               className="greenTitle me-3"
               alt="greenTitle"
               height="24px"
-              weight="64px"
+              width="64px"
             />
             課程體驗評價
           </div>

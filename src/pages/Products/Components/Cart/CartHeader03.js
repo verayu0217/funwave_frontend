@@ -17,7 +17,7 @@ function ProductAddCart(props) {
             className="greenTitle me-3"
             alt="greenTitle"
             height="24px"
-            weight="64px"
+            width="64px"
           />
           衝浪商品購物車
         </div>

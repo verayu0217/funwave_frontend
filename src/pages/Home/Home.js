@@ -281,7 +281,7 @@ return (
                     <div className="row mx-auto pb-4">  
                         {/* 大標題 */}
                         <div className="d-flex justify-content-center align-items-center titleAboutHome">
-                            <img src={greenTitle} className="me-3" alt="greenTitle" height="24px" weight="64px"/>
+                            <img src={greenTitle} className="me-3" alt="greenTitle" height="24px" width="64px"/>
                             <h1 className="m-0 fw-bold deepblue">FUNWAVE · FUN浪</h1>
                         </div>
                     </div>

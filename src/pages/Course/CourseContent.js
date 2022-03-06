@@ -99,7 +99,7 @@ function CourseContent(props) {
                 className="greenTitle me-3"
                 alt="greenTitle"
                 height="24px"
-                weight="64px"
+                width="64px"
               />
               FUNWAVE課程6大特色
             </div>
@@ -187,7 +187,7 @@ function CourseContent(props) {
                     className="greenTitle me-3"
                     alt="greenTitle"
                     height="24px"
-                    weight="64px"
+                    width="64px"
                   />
                   分級衝浪課程
                 </div>
@@ -336,7 +336,7 @@ function CourseContent(props) {
                     className="greenTitle me-3"
                     alt="greenTitle"
                     height="24px"
-                    weight="64px"
+                    width="64px"
                   />
                   QA問答
                 </div>
@@ -414,7 +414,7 @@ function CourseContent(props) {
                       className="greenTitle me-3"
                       alt="greenTitle"
                       height="24px"
-                      weight="64px"
+                      width="64px"
                     />
                     課程報名
                     {auth ? (

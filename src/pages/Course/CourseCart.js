@@ -49,7 +49,7 @@ function CourseCart(props) {
                 className="greenTitle me-3"
                 alt="greenTitle"
                 height="24px"
-                weight="64px"
+                width="64px"
               />
               衝浪課程購物車
             </div>

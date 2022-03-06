@@ -38,7 +38,7 @@ function Courses() {
               className="greenTitle me-3"
               alt="greenTitle"
               height="24px"
-              weight="64px"
+              width="64px"
             />
             專業安全的分級衝浪課程
           </div>
@@ -95,7 +95,7 @@ function Courses() {
               className="greenTitle me-3"
               alt="greenTitle"
               height="24px"
-              weight="64px"
+              width="64px"
             />
             專業用心的教練團隊
           </div>

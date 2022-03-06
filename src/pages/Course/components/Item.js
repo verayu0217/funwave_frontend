@@ -14,7 +14,7 @@ const Item = ({ message, date, rating, photo, name, auth }) => {
               // src={`http://localhost:3002${auth.member_photo}`}
               alt=""
               height="50px"
-              weight="50px"
+              width="50px"
             />
           </div>
 
@@ -48,7 +48,7 @@ const Item = ({ message, date, rating, photo, name, auth }) => {
                 className={photo === '' ? 'd-none' : 'rounded-3 m-1'}
                 alt=""
                 height="80px"
-                weight="80px"
+                width="80px"
               />
             ) : (
               ''

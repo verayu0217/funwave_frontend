@@ -308,7 +308,7 @@ function Products() {
                   className="me-3"
                   alt="greenTitle"
                   height="24px"
-                  weight="64px"
+                  width="64px"
                 />
                 <h1 className="m-0">
                   {smallCatsClick === '0'

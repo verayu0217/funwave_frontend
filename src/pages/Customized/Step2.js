@@ -28,7 +28,7 @@ function Step2(props) {
             className="greenTitle me-3"
             alt="greenTitle"
             height="24px"
-            weight="64px"
+            width="64px"
           />
           STEP2 選擇衝浪板顏色及圖案
         </div>

@@ -103,7 +103,7 @@ function ProductDetails(props) {
                       className="me-3"
                       alt="greenTitle"
                       height="12px"
-                      weight="32px"
+                      width="32px"
                     />
                     評價
                   </div>

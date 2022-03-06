@@ -45,7 +45,7 @@ function CourseSpot() {
             className="greenTitle me-3"
             alt="greenTitle"
             height="24px"
-            weight="64px"
+            width="64px"
           />
           優美的課程地點一覽
         </div>
