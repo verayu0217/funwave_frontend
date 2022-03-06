@@ -16,13 +16,10 @@ function CartReceiverInfo(props) {
       {/* 收件人資訊 */}
       <div className="px-5 py-4 border-top">
         <div className="d-flex justify-content-between">
-          <h3>
-            收件人資訊{order.receiver}
-            {order.receiver_phone}
-          </h3>
+          <h3>收件人資訊</h3>
           <div className="form-check">
             <input
-              className="form-check-input mt-2"
+              className="form-check-input mt-2 cursorPointer"
               type="checkbox"
               value=""
               id="check"
@@ -53,9 +50,6 @@ function CartReceiverInfo(props) {
               required
               onChange={handleChange}
             />
-            <Form.Control.Feedback type="invalid">
-              請填寫收件人姓名
-            </Form.Control.Feedback>
           </InputGroup>
         </Form.Group>
 
@@ -73,9 +67,6 @@ function CartReceiverInfo(props) {
               required
               onChange={handleChange}
             />
-            <Form.Control.Feedback type="invalid">
-              請填寫收件人手機號碼
-            </Form.Control.Feedback>
           </InputGroup>
         </Form.Group>
       </div>

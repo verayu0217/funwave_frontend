@@ -16,6 +16,9 @@ function CourseEvaluate() {
   const { auth, setAuth } = useAuth();
 
   const [data, setData] = useState([]);
+
+  const [flag, setFlag] = useState(false);
+
   const [lastPage, setLastPage] = useState(1);
   let navigate = useNavigate();
   // App要給:current 的Route
@@ -38,17 +41,22 @@ function CourseEvaluate() {
   //   getEvaluate();
   // }, []);
 
+  let getEvaluate = async () => {
+    // http://localhost:3002/api/course/course-evaluate
+    let response = await axios.get(
+      `${API_URL}/course/course-evaluate?page=${page}`
+    );
+    // 因為List裡面的map是陣列方法 分頁後變成物件要再.才能取得
+    setData(response.data.evaluate);
+    setLastPage(response.data.pagination.lastPage);
+  };
+
+  useEffect(() => {
+    getEvaluate();
+  }, [flag]);
+
   //取資料庫評價與圖片 有分頁後端先改用get
   useEffect(() => {
-    let getEvaluate = async () => {
-      // http://localhost:3002/api/course/course-evaluate
-      let response = await axios.get(
-        `${API_URL}/course/course-evaluate?page=${page}`
-      );
-      // 因為List裡面的map是陣列方法 分頁後變成物件要再.才能取得
-      setData(response.data.evaluate);
-      setLastPage(response.data.pagination.lastPage);
-    };
     getEvaluate();
   }, [page]);
 
@@ -95,32 +103,44 @@ function CourseEvaluate() {
             課程體驗評價
           </div>
 
-          <List listData={data} setData={setData} />
+          <List listData={data} setData={setData} auth={auth} />
           {/* 判斷是會員才顯示可評價否則隱藏 */}
           <div className={auth === null ? 'd-none' : ''}>
-            <Edit auth={auth} add={setData} />
+            <Edit auth={auth} add={setData} setFlag={setFlag} flag={flag} />
           </div>
 
           {/* <!-- 分頁 (Pagination) --> */}
           <nav aria-label="...">
             <ul className="pagination justify-content-center mt-3">
               {/* 加最前頁 */}
-              <li class="page-item">
-                  <a class="page-link" href="#/" onClick={(e) => {
+              <li className="page-item">
+                <a
+                  className="page-link"
+                  href="#/"
+                  onClick={(e) => {
                     setPage(1);
-                    navigate(1); }} aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                    <span class="sr-only">Previous</span>
-                  </a>
-                </li>
+                    navigate(1);
+                  }}
+                  aria-label="Previous"
+                >
+                  <span aria-hidden="true">&laquo;</span>
+                  <span className="sr-only">Previous</span>
+                </a>
+              </li>
               {getPages()}
               {/* 加最後頁 */}
-              <li class="page-item">
-                <a class="page-link" href="#/" onClick={(e) => {
-                  setPage(lastPage);
-                  navigate({ lastPage }); }} aria-label="Next">
+              <li className="page-item">
+                <a
+                  className="page-link"
+                  href="#/"
+                  onClick={(e) => {
+                    setPage(lastPage);
+                    navigate({ lastPage });
+                  }}
+                  aria-label="Next"
+                >
                   <span aria-hidden="true">&raquo;</span>
-                  <span class="sr-only">Next</span>
+                  <span className="sr-only">Next</span>
                 </a>
               </li>
             </ul>

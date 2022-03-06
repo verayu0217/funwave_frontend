@@ -5,7 +5,7 @@ import moment from 'moment';
 import StarRating from './StarRating';
 
 // props拿出add
-const Edit = ({ add, auth }) => {
+const Edit = ({ add, auth, setFlag, flag }) => {
   // console.log(auth?.name);
   //新增留言時帶入日期
   let today = moment().format('YYYY-MM-DD');
@@ -20,7 +20,7 @@ const Edit = ({ add, auth }) => {
   // 取得會員名稱給name
   useEffect(() => {
     if (auth !== null) {
-      setName(auth.name);
+      setName(auth.member_name);
     }
   });
 
@@ -37,7 +37,7 @@ const Edit = ({ add, auth }) => {
     // 從父層傳下來的setData方法
     add(function (prevData) {
       // 調換順序讓新留言在最上面
-      return [{ message, rating, date, name }, ...prevData];
+      return [{ message, rating, date, name, photo }, ...prevData];
     });
 
     let totalMsg = [
@@ -71,6 +71,7 @@ const Edit = ({ add, auth }) => {
         msgData
       );
       console.log('有沒有送留言', response.data);
+      setFlag(!flag);
     } catch (e) {
       console.error('error', e.response.data);
     }

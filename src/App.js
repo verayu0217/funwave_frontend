@@ -49,6 +49,8 @@ import Products from './pages/Products/Products';
 import ProductCart01 from './pages/Products/Cart/ProductCart01';
 import ProductCart02 from './pages/Products/Cart/ProductCart02';
 import ProductCart03 from './pages/Products/Cart/ProductCart03';
+//收藏
+import Collect from './pages/Products/Collect';
 
 //客製化浪板
 import Customized from './pages/Customized/Customized';
@@ -65,6 +67,7 @@ import Footer from './components/Footer';
 // import MainContent from './components/MainContent';
 // import SideBar from './components/SideBar';
 import NotFound from './components/NotFound';
+import FavoriteStar from './components/FavoriteStar';
 
 function App() {
   const [auth, setAuth] = useState(null);
@@ -78,7 +81,7 @@ function App() {
     setFav({ ...fav, wishID: wishProduct });
   }, []);
 
-  console.log('App2', auth);
+  // console.log('App2', auth);
   useEffect(() => {
     const checklogIn = async () => {
       try {
@@ -104,6 +107,7 @@ function App() {
           <Header />
           <ScrollToTop />
           {/* <Breadcrumb /> */}
+          <FavoriteStar />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/home" element={<Home />} />
@@ -117,10 +121,13 @@ function App() {
             <Route path="/products/:product_group" element={<ProductDetails />}>
               <Route path=":product_id" element={<ProductDetails />} />
             </Route>
-            <Route path="/products" element={<Products />} />
+            <Route path="/products" element={<Products />}>
+              <Route path=":currentPage" element={<Products />} />
+            </Route>
             <Route path="/product-cart01" element={<ProductCart01 />} />
             <Route path="/product-cart02" element={<ProductCart02 />} />
             <Route path="/product-cart03" element={<ProductCart03 />} />
+            <Route path="/collect" element={<Collect />} />
             <Route
               path="/customized/customized-details"
               element={<CustomizedDetails />}

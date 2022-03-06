@@ -17,6 +17,7 @@ function ProductItem(props) {
     props.product;
   const { fav, setFav } = useFav();
 
+  // 加入/刪除收藏
   const favorite = (item) => {
     let wishProduct = JSON.parse(localStorage.getItem('likeID')) || [];
     wishProduct.push(item);
@@ -24,14 +25,12 @@ function ProductItem(props) {
     setFav({ ...fav, wishID: wishProduct });
   };
   const delFavorite = (item) => {
-    // console.log('b', fav.wishID);
     let filterwish = fav.wishID.filter((value) => value !== item);
     setFav({ ...fav, wishID: filterwish });
-    // console.log('bb', filterwish);
     localStorage.removeItem('likeID');
     localStorage.setItem('likeID', JSON.stringify(filterwish));
   };
-  // console.log('a', fav);
+
   // 小分類、品牌的id對照名稱
   const smallCatTypes = [
     '長板',
@@ -57,15 +56,17 @@ function ProductItem(props) {
     'Roam',
     'Pro-Lite',
     'en.saintjacques',
+    'RIPCURL',
+    'OCEAN+EARTH',
+    'FIREWIRE',
   ];
-
   return (
     <>
       {fav.wishID.includes(product_group) ? (
         <FaHeart
           size={21}
           color="#ff7f6a"
-          className="position-absolute top-5"
+          className="position-absolute top-5 proHeart"
           onClick={(e) => {
             delFavorite(product_group);
           }}
@@ -74,7 +75,7 @@ function ProductItem(props) {
         <BiHeart
           size={21}
           color="#ff7f6a"
-          className="position-absolute top-5"
+          className="position-absolute top-5 proHeart"
           onClick={(e) => {
             favorite(product_group);
           }}
@@ -83,23 +84,22 @@ function ProductItem(props) {
       <Link to={`/products/${product_group}`}>
         {/* 商品列表的個別商品 */}
         <Figure className="mt-4 position-relative">
-          <Figure.Image
-            width={265}
-            height={350}
-            alt={`${image1}`}
-            src={`${IMAGE_URL}/products/${image1}`}
-          />
-          {/* <BiHeart
-          size={21}
-          color="#ff7f6a"
-          className="float-end position-absolute top-0 end-0"
-        /> */}
+          <div className="imgBox">
+            <Figure.Image
+              width={265}
+              height={300}
+              alt={`${image1}`}
+              src={`${IMAGE_URL}/products/${image1}`}
+              className="cover-fit"
+            />
+          </div>
           <div className="d-flex justify-content-center mt-2">
             <AiFillStar size={20} color="#ff7f6a" />
             <AiFillStar size={20} color="#ff7f6a" />
             <AiFillStar size={20} color="#ff7f6a" />
             <AiFillStar size={20} color="#ff7f6a" />
-            <AiOutlineStar size={20} color="#ff7f6a" />
+            <AiFillStar size={20} color="#ff7f6a" />
+            {/* <AiOutlineStar size={20} color="#ff7f6a" /> */}
           </div>
           <Figure.Caption className="d-flex justify-content-center">
             <p className="mb-0 mt-2">{name}</p>

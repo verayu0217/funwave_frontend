@@ -1,14 +1,4 @@
 import React, { useState, useEffect } from 'react';
-// import {
-//   Tab,
-//   Row,
-//   Col,
-//   Nav,
-//   Collapse,
-//   Button,
-//   Table,
-//   Accordion,
-// } from 'react-bootstrap';
 import Table from 'react-bootstrap/Table';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
@@ -21,6 +11,7 @@ import Swal from 'sweetalert2';
 
 const MemberOrder = () => {
   const [data, setData] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
   const { auth, setAuth } = useAuth();
   const [pages, setPages] = useState([]);
   // 為了處理網址
@@ -59,11 +50,10 @@ const MemberOrder = () => {
     // }
   }
 
-  async function getMemberCourseOrderList(page = 1) {
+  async function getMemberOrderList(page = 1) {
     let response = await axios.get(
       `${API_URL}/member/member-order/${auth.member_id}?page=${page}`
     );
-
     let orders = [];
     response.data.data.forEach(function (orderData) {
       orders.push(orderData);
@@ -75,29 +65,17 @@ const MemberOrder = () => {
   }
 
   function changePage(page) {
-    getMemberCourseOrderList(page);
+    setCurrentPage(page);
+    getMemberOrderList(page);
   }
 
   useEffect(() => {
-    async function getMemberOrderList() {
-      let response = await axios.get(
-        `${API_URL}/member/member-order/${auth.member_id}`
-      );
-
-      let orders = [];
-      response.data.forEach(function (orderData) {
-        orders.push(orderData);
-      });
-
-      setData(orders);
-    }
-
     getMemberOrderList();
   }, []);
   return (
     <>
-      <div className="container mt-5">
-        <div className="row">
+      <div className="container mt-5 mb-5">
+        <div className="row d-flex justify-content-center">
           <h2 className="mb-5 titleMember text-center">
             <span className="me-2">
               <img src={titleImgMember} className="titleImgMember" />
@@ -107,7 +85,7 @@ const MemberOrder = () => {
           <div className="d-flex mt-3">
             <h3 className="fs-20Member">訂單查詢</h3>
           </div>
-          <div className="">
+          <div className="orderTableWrapMember mb-3">
             {/* <table className="table table-control align-middle text-center"> */}
             <Table
               responsive
@@ -116,6 +94,7 @@ const MemberOrder = () => {
             >
               <thead>
                 <tr>
+                  <th></th>
                   <th className="fs-20Member text-nowrap">訂單號碼</th>
                   <th
                     className="fs-20Member text-nowrap"
@@ -125,27 +104,17 @@ const MemberOrder = () => {
                   </th>
                   <th className="fs-20Member text-nowrap">合計</th>
                   <th className="fs-20Member text-nowrap">訂單狀態</th>
-                  <th></th>
                 </tr>
               </thead>
               <tbody>
                 {data.map((order_list) => {
                   return (
                     <tr key={order_list.order_time}>
-                      <td>{order_list.id}</td>
-                      <td>{order_list.order_time}</td>
-                      <td>{order_list.amount}</td>
-                      <td
-                        className={`prepareColorMember ${
-                          order_list.status === '訂單已完成' ? 'black' : ''
-                        }`}
-                      >
-                        {order_list.status}
-                      </td>
                       <td className="text-nowrap">
                         <Link
                           to={`/member/member-order/${order_list.id}`}
                           className="deepblue me-3"
+                          target="_blank"
                         >
                           <i className="fas fa-external-link-alt"></i>
                         </Link>
@@ -163,6 +132,16 @@ const MemberOrder = () => {
                           <i className="fas fa-trash-alt"></i>
                         </span>
                       </td>
+                      <td>{order_list.id}</td>
+                      <td>{order_list.order_time}</td>
+                      <td>{order_list.amount}</td>
+                      <td
+                        className={`prepareColorMember ${
+                          order_list.status === '訂單已完成' ? 'black' : ''
+                        }`}
+                      >
+                        {order_list.status}
+                      </td>
                     </tr>
                   );
                 })}
@@ -174,13 +153,10 @@ const MemberOrder = () => {
             <ul className="d-flex justify-content-center mt-5">
               <li class="page-item">
                 <a
-                  class="page-link pageLinkMember"
+                  class="page-link"
+                  onClick={() => changePage(1)}
                   href="#/"
-                  onClick={(e) => {
-                    changePage(1);
-                    navigate(1);
-                  }}
-                  aria-label="Previous"
+                  aria-label="Next"
                 >
                   <span aria-hidden="true">&laquo;</span>
                   <span class="sr-only">Previous</span>
@@ -190,8 +166,13 @@ const MemberOrder = () => {
                 return (
                   <li className="page-item">
                     <a
-                      className="page-link pageLinkMember"
-                      onClick={(e) => changePage(p + 1)}
+                      className={
+                        currentPage === p + 1
+                          ? 'active page-link pageLinkMember'
+                          : 'page-link pageLinkMember'
+                      }
+                      onClick={() => changePage(p + 1)}
+                      href="#/"
                     >
                       {p + 1}
                     </a>
@@ -200,13 +181,10 @@ const MemberOrder = () => {
               })}
               <li class="page-item">
                 <a
-                  class="page-link pageLinkMember"
+                  class="page-link"
                   href="#/"
-                  onClick={(e) => {
-                    changePage(pages);
-                    navigate({ pages });
-                  }}
                   aria-label="Next"
+                  onClick={() => changePage(pages)}
                 >
                   <span aria-hidden="true">&raquo;</span>
                   <span class="sr-only">Next</span>

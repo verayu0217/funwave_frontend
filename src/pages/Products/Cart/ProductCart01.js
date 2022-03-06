@@ -29,7 +29,18 @@ function ProductCart01() {
   const [goToCart, setGoToCart] = useState(false);
 
   // 小分類、顏色的id對照名稱
-  const colorTypes = ['白', '黑', '藍', '綠', '黃', '紅', '橘'];
+  const colorTypes = [
+    '白',
+    '黑',
+    '藍',
+    '綠',
+    '黃',
+    '紅',
+    '橘',
+    '棕',
+    '灰',
+    '自訂',
+  ];
   const smallCatTypes = [
     '衝浪長板',
     '衝浪快樂板',
@@ -134,8 +145,6 @@ function ProductCart01() {
   useEffect(() => {
     setAmount(sum(mycartDisplay));
   }, [mycartDisplay]);
-
-  // localStorage.removeItem('productCart');
 
   // 抓付款方式setPayment
   function handleChangePay(e) {
@@ -245,7 +254,7 @@ function ProductCart01() {
                         </button>
                         <CgTrash
                           size={20}
-                          className="text-center ms-3"
+                          className="text-center ms-3 cursorPointer"
                           onClick={() => cartDelete(item.product_no)}
                         />
                         {/* <i className="fas fa-trash-alt position-absolute trash"></i> */}
@@ -255,8 +264,8 @@ function ProductCart01() {
                 );
               })}
             </div>
-            {/* 付款及送貨方式 */}
-            <div className="col-5 borderRadius p-0 ms-4 shadow">
+            {/* 付款及配送方式 */}
+            <div className="col-5 borderRadius p-0 pb-4 ms-4 shadow align-self-start">
               <div className="p-4 border-bottom text-center">
                 <h1>付款及配送方式</h1>
               </div>
@@ -267,12 +276,6 @@ function ProductCart01() {
                   <div className="col-5 text-end">
                     {sum(mycartDisplay).toLocaleString()}
                   </div>
-                  <div className="col-1"></div>
-                </div>
-                <div className="row">
-                  <div className="col-1"></div>
-                  <div className="col-5">優惠券</div>
-                  <div className="col-5 text-end">0</div>
                   <div className="col-1"></div>
                 </div>
                 <div className="row">
@@ -300,13 +303,6 @@ function ProductCart01() {
                     <div className="col-1"></div>
                   </div>
                 )}
-
-                <div className="row">
-                  <div className="col-1"></div>
-                  <div className="col-5">購物金</div>
-                  <div className="col-5 text-end">- 0</div>
-                  <div className="col-1"></div>
-                </div>
                 <div className="row mt-5">
                   <div className="col-1"></div>
                   <div className="col-5 d-flex justify-content-end align-items-end">
@@ -323,7 +319,11 @@ function ProductCart01() {
               </div>
               <div className="px-5 py-4">
                 <h5>付款方式</h5>
-                <Form.Select aria-label="select" onChange={handleChangePay}>
+                <Form.Select
+                  aria-label="select"
+                  onChange={handleChangePay}
+                  className="cursorPointer"
+                >
                   <option value="信用卡">信用卡線上付款</option>
                   <option value="貨到付款">貨到付款</option>
                 </Form.Select>
@@ -331,6 +331,7 @@ function ProductCart01() {
                 <Form.Select
                   aria-label="select"
                   onChange={handleChangeDelivery}
+                  className="cursorPointer"
                 >
                   <option value="宅配到府">宅配到府</option>
                   <option value="超商取貨">超商取貨</option>

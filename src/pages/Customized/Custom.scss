@@ -77,14 +77,6 @@
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
 }
-@media screen and (max-width: 400px){
-  .btnEnd{
-    display: flex !important;
-    // right: 0%;
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
-  } 
-}
 
 //step2
 .boarderCu {
@@ -135,4 +127,20 @@ input[type='color']::-webkit-color-swatch {
 //細節
 .whiteBg {
   background: white;
+}
+//step共用
+button.display{
+  display: inline;
+}
+div.disappear{
+  display: none!important;
+} 
+
+@media screen and (max-width: 400px){
+  button.display{
+    display: none;
+  }
+  div.disappear{
+    display: flex!important;
+  } 
 }

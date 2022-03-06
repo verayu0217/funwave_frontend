@@ -8,18 +8,31 @@ function CartShipping(props) {
   const {
     order,
     setOrder,
-    delivery,
-    setDelivery,
     addressSync,
     setAddressSync,
+    storeValidate,
+    setStoreValidate,
   } = props;
+
+  // 拿取前一頁Cart01儲存在localStorage的運送方式
+  let localStorageDelivery = JSON.parse(
+    localStorage.getItem('delivery') || '[]'
+  );
 
   // "便利商店取貨"的縣市儲存為狀態，僅用於此子元件
   const [convenientStoreCounty, setConvenientStoreCounty] =
     useState('請選擇縣市');
 
+  // 依據配送方式決定超商門市初始值
+  let deliveryStatus = '';
+  if (localStorageDelivery === '宅配到府') {
+    deliveryStatus = '';
+  } else {
+    deliveryStatus = '請選擇門市';
+  }
+
   // "便利商店取貨"的門市儲存為狀態，僅用於此子元件
-  const [convenientStore, setConvenientStore] = useState('請選擇縣市');
+  const [convenientStore, setConvenientStore] = useState(deliveryStatus);
 
   // 表單中的onchange事件 (限order物件內的欄位)
   const handleChange = (e) => {
@@ -33,7 +46,6 @@ function CartShipping(props) {
       convenient_store: convenientStore,
     });
   }, [convenientStore]);
-  console.log('order', order);
 
   // 縣市
   const counties = [
@@ -72,11 +84,11 @@ function CartShipping(props) {
     <>
       <div className="px-5 py-4 border-top">
         <div className="d-flex justify-content-between">
-          <h3>配送資訊{order.address}</h3>
-          {delivery === '宅配到府' ? (
+          <h3>配送資訊</h3>
+          {localStorageDelivery === '宅配到府' ? (
             <div className="form-check">
               <input
-                className="form-check-input mt-2"
+                className="form-check-input mt-2 cursorPointer"
                 type="checkbox"
                 value=""
                 id="check"
@@ -97,7 +109,7 @@ function CartShipping(props) {
           )}
         </div>
         {/* 依據運送方式顯現地址or收件超商門市 */}
-        {delivery === '宅配到府' ? (
+        {localStorageDelivery === '宅配到府' ? (
           <div className="mb-3">
             <Form.Group controlId="validationCustom03">
               <Form.Label>詳細地址</Form.Label>
@@ -109,9 +121,6 @@ function CartShipping(props) {
                 required
                 onChange={handleChange}
               />
-              <Form.Control.Feedback type="invalid">
-                請填寫詳細地址
-              </Form.Control.Feedback>
             </Form.Group>
           </div>
         ) : (
@@ -124,6 +133,7 @@ function CartShipping(props) {
                 onChange={(e) => {
                   setConvenientStoreCounty(e.target.value);
                 }}
+                className="cursorPointer"
               >
                 {counties.map((x, i) => (
                   <option value={x} key={i}>
@@ -140,6 +150,7 @@ function CartShipping(props) {
                 onChange={(e) => {
                   setConvenientStore(e.target.value);
                 }}
+                className="cursorPointer"
               >
                 {countiesToConvenientStore(convenientStoreCounty).map(
                   (x, i) => (
@@ -149,6 +160,7 @@ function CartShipping(props) {
                   )
                 )}
               </Form.Select>
+              <div className="storeValidate">{storeValidate}</div>
             </div>
           </div>
         )}

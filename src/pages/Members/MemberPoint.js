@@ -19,24 +19,32 @@ import titleImgMember from '../../data/images/greenwave64x24.png';
 
 const MemberPoint = () => {
   const { auth, setAuth } = useAuth();
+  const [totalPoints, setTotalPoints] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
   const [data, setData] = useState([]);
   const [pages, setPages] = useState([]);
 
   // 為了處理網址
   let navigate = useNavigate();
 
-  // 把網址上的 :id 拿出來
-  // const { order_id } = useParams();
-
-  async function getMemberCourseOrderList(page = 1) {
+  async function getMemberOrderList(page = 1) {
     let response = await axios.get(
-      `${API_URL}/member/member-point/${auth.member_id}?page=${page}`
+      `${API_URL}/member/member-order/${auth.member_id}?page=${page}`
     );
 
     let orders = [];
-    response.data.data.forEach(function (orderData) {
+    // response.data.data.forEach(function (orderData) {
+    //   orders.push(orderData);
+    // });
+
+    response.data.data.forEach(function (orderData, i) {
       orders.push(orderData);
+      if (page === 1 && i === 0) {
+        setTotalPoints(orderData.cumulative_sum);
+      }
     });
+    console.log(orders);
+    // reverse for display
 
     setData([]);
     setData(orders);
@@ -44,35 +52,18 @@ const MemberPoint = () => {
   }
 
   function changePage(page) {
-    getMemberCourseOrderList(page);
+    setCurrentPage(page);
+    getMemberOrderList(page);
   }
 
   useEffect(() => {
-    async function getMemberOrderList() {
-      let response = await axios.get(
-        `${API_URL}/member/member-order/${auth.member_id}`
-      );
-
-      let orders = [];
-      let accumulated = 0;
-      // reverse for accumulate
-      response.data.reverse().forEach(function (orderData) {
-        accumulated += orderData.amount;
-        orderData.accumulated = accumulated;
-        orders.push(orderData);
-      });
-
-      // reverse for display
-      setData(orders.reverse());
-    }
-
     getMemberOrderList();
   }, []);
   return (
     <>
-      <div className="container mt-5">
-        <div className="row px-5">
-          <div className="col-lg-12 col-md-12 col-12 mx-auto">
+      <div className="container mt-5 mb-5">
+        <div className="row cardWrapMember d-flex justify-content-center">
+          <div className="col-lg-12 col-md-12 col-12 cardContentMember">
             <h2 className="mb-5 titleMember text-center">
               <span className="me-2">
                 <img src={titleImgMember} className="titleImgMember" />
@@ -81,8 +72,8 @@ const MemberPoint = () => {
             </h2>
             <div className="col-12 card cardMember mt-5 mb-3 p-4">
               <div className="row g-0">
-                <div className="col-5 d-flex justify-content-center align-items-center">
-                  <div className="d-flex align-items-center">
+                <div className="col-5 d-flex justify-content-center align-items-cente cardLefWrapMember">
+                  <div className="d-flex align-items-center cardLeftMember">
                     <div className="d-flex justify-content-center align-items-center bellWrapMember">
                       <i className="fas fa-bell fasMember bellIconMember"></i>
                       <i className="fal fa-usd-circle"></i>
@@ -91,15 +82,15 @@ const MemberPoint = () => {
                       // only last order
                       if (i === 0) {
                         return (
-                          <div className="d-flex justify-content-center align-items-center flex-column">
+                          <div className="d-flex justify-content-center align-items-center flex-column cardLeftContentMember">
                             <p className="card-text fs-20Member">現有總點數</p>
                             <h3 className="fs-45Member">
-                              {(order_list.accumulated / 200).toFixed()}
+                              {totalPoints}
                               <span className="fs-20Member">點</span>
                             </h3>
                             <p className="card-text m-0 fs-20Member">
                               等值&nbsp;NT$
-                              {(order_list.accumulated / 200).toFixed()}
+                              {totalPoints}
                             </p>
                           </div>
                         );
@@ -110,8 +101,8 @@ const MemberPoint = () => {
                 <div className="col-1 lineWrapMember">
                   <div className="lineMember"></div>
                 </div>
-                <div className="col-6 d-flex align-items-center">
-                  <div className="d-flex justify-content-start align-items-center flex-column">
+                <div className="col-lg-6 col-6 d-flex align-items-center cardRightContentMember">
+                  <div className="d-flex justify-content-start align-items-center flex-column textBoxMember">
                     <p className="card-text fs-16Member">
                       消費&nbsp;NT$200&nbsp;可累計&nbsp;1&nbsp;點
                       <br />
@@ -125,11 +116,8 @@ const MemberPoint = () => {
           <div className="col-lg-12 col-12 d-flex mt-4">
             <h3 className="fs-20Member p-0">點數紀錄</h3>
           </div>
-          <div className="col-lg-12 col-12 table-wrap d-flex justify-content-center mb-5 p-0">
-            <Table
-              responsive="sm"
-              className="table table-control align-middle text-center my-3 tableMemberOrder tableMemberPoint"
-            >
+          <div className="col-lg-12 col-12 table-wrap  mb-3 p-0 table-responsive">
+            <Table className="table table-control align-middle text-center my-3 tableMemberOrder tableMemberPoint">
               <thead>
                 <tr>
                   <th className="fs-20Member" style={{ minWidth: '120px' }}>
@@ -144,14 +132,12 @@ const MemberPoint = () => {
                 {data.map((item, index) => {
                   return (
                     <tr key={item.order_time}>
-                      <td className="text-nowrap">{item.order_time}</td>
+                      <td className="">{item.order_time}</td>
                       <td className="text-nowrap">消費NT${item.amount}</td>
                       <td className="text-nowrap">
                         {(item.amount / 200).toFixed()}
                       </td>
-                      <td className="text-nowrap">
-                        {(item.accumulated / 200).toFixed()}
-                      </td>
+                      <td className="text-nowrap">{item.cumulative_sum}</td>
                     </tr>
                   );
                 })}
@@ -178,13 +164,10 @@ const MemberPoint = () => {
             <ul className="d-flex justify-content-center mt-5">
               <li class="page-item">
                 <a
-                  class="page-link pageLinkMember"
+                  class="page-link"
+                  onClick={() => changePage(1)}
                   href="#/"
-                  onClick={(e) => {
-                    changePage(1);
-                    navigate(1);
-                  }}
-                  aria-label="Previous"
+                  aria-label="Next"
                 >
                   <span aria-hidden="true">&laquo;</span>
                   <span class="sr-only">Previous</span>
@@ -194,8 +177,13 @@ const MemberPoint = () => {
                 return (
                   <li className="page-item">
                     <a
-                      className="page-link pageLinkMember"
-                      onClick={(e) => changePage(p + 1)}
+                      className={
+                        currentPage === p + 1
+                          ? 'active page-link pageLinkMember'
+                          : 'page-link pageLinkMember'
+                      }
+                      onClick={() => changePage(p + 1)}
+                      href="#/"
                     >
                       {p + 1}
                     </a>
@@ -204,13 +192,10 @@ const MemberPoint = () => {
               })}
               <li class="page-item">
                 <a
-                  class="page-link pageLinkMember"
+                  class="page-link"
                   href="#/"
-                  onClick={(e) => {
-                    changePage(pages);
-                    navigate({ pages });
-                  }}
                   aria-label="Next"
+                  onClick={() => changePage(pages)}
                 >
                   <span aria-hidden="true">&raquo;</span>
                   <span class="sr-only">Next</span>

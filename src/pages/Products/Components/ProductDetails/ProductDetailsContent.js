@@ -1,16 +1,11 @@
 //  ProductDetailsContent.js 內容說明：商品細節頁中間的商品細節區
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import { Figure } from 'react-bootstrap';
-import longboard1 from './longboard1.jpg'; // 暫存推薦商品前端假圖片
-import { IMAGE_URL } from '../../../../utils/config';
+import { IMAGE_URL, API_URL } from '../../../../utils/config';
 import ProductDetailsSmallImgs from './ProductDetailsSmallImgs.js';
-import {
-  AiOutlineDown,
-  AiOutlineUp,
-  AiFillLeftCircle,
-  AiFillRightCircle,
-} from 'react-icons/ai';
+import { Link } from 'react-router-dom';
 
 function ProductDetailsContent(props) {
   const {
@@ -32,10 +27,38 @@ function ProductDetailsContent(props) {
     '衝浪斗篷毛巾衣',
     '防寒衣',
   ];
-  const brandTypes = ['Catch Surf', 'Solid Surf Co', 'JJF by Pyzel'];
+  const brandTypes = [
+    'Catch Surf',
+    'Solid Surf Co',
+    'JJF by Pyzel',
+    'Modern',
+    'Softech',
+    'Almond Surfboards',
+    'Lib Tech',
+    'True Ames',
+    'Captain Fin',
+    'Creatures of Leisure',
+    'Roam',
+    'Pro-Lite',
+    'en.saintjacques',
+    'RIPCURL',
+    'OCEAN+EARTH',
+    'FIREWIRE',
+  ];
   const materialTypes = ['Polyethylene', 'EPOXY', 'EPS', '碳纖維'];
   const finCompatibilityTypes = ['FCS II Longboard', 'FCS II', 'Single Tab'];
-
+  //推薦
+  const [recommend, setRecommend] = useState([]);
+  useEffect(() => {
+    let recommend = async () => {
+      let response = await axios.get(
+        `${API_URL}/recommend?rec=${product[0].small_cat_id}`
+      );
+      // console.log('recommend', response);
+      setRecommend(response.data);
+    };
+    recommend();
+  }, [product]);
   // 長板尺寸對照表
   const displaySizeDetailsLB = (
     <>
@@ -51,10 +74,20 @@ function ProductDetailsContent(props) {
             <p className="text-center fw-bold">重量 (L)</p>
           </div>
           <div className="col-9">
-            <p className="fw-bold">9'0"</p>
-            <p>24</p>
-            <p>3.5</p>
-            <p>98</p>
+            <div className="row">
+              <div className="col-4">
+                <p className="fw-bold">8'0"</p>
+                <p>22</p>
+                <p>3</p>
+                <p>59</p>
+              </div>
+              <div className="col-4">
+                <p className="fw-bold">9'0"</p>
+                <p>24</p>
+                <p>3.5</p>
+                <p>98</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -78,19 +111,19 @@ function ProductDetailsContent(props) {
           <div className="col-9">
             <div className="row">
               <div className="col-4">
-                <p className="fw-bold">7'2"</p>
+                <p className="fw-bold">6'0"</p>
                 <p>21.75</p>
                 <p>2.85</p>
                 <p>50.6</p>
               </div>
               <div className="col-4">
-                <p className="fw-bold">7'6"</p>
+                <p className="fw-bold">7'0"</p>
                 <p>22</p>
                 <p>2.95</p>
                 <p>55.6</p>
               </div>
               <div className="col-4">
-                <p className="fw-bold">7'10"</p>
+                <p className="fw-bold">8'0"</p>
                 <p>22</p>
                 <p>3</p>
                 <p>59</p>
@@ -119,19 +152,19 @@ function ProductDetailsContent(props) {
           <div className="col-9">
             <div className="row">
               <div className="col-4">
-                <p className="fw-bold">4'6"</p>
+                <p className="fw-bold">4'0"</p>
                 <p>19</p>
                 <p>2.375</p>
                 <p>23</p>
               </div>
               <div className="col-4">
-                <p className="fw-bold">5'6"</p>
+                <p className="fw-bold">5'0"</p>
                 <p>20.75</p>
                 <p>2.875</p>
                 <p>36.8</p>
               </div>
               <div className="col-4">
-                <p className="fw-bold">6'6"</p>
+                <p className="fw-bold">6'0"</p>
                 <p>22</p>
                 <p>7.25</p>
                 <p>52.3</p>
@@ -148,7 +181,7 @@ function ProductDetailsContent(props) {
       {/* 大小商品圖 */}
       <div className="d-flex justify-content-evenly">
         <div className="d-flex flex-column align-items-center justify-content-around">
-          <AiOutlineUp size={22} color="#333333" className="" />
+          {/* <AiOutlineUp size={22} color="#333333" className="" /> */}
           {/* 引用ProductDetailsSmallImgs.js */}
           <ProductDetailsSmallImgs
             product={product}
@@ -157,7 +190,7 @@ function ProductDetailsContent(props) {
             chosenProductOrder={chosenProductOrder}
             setChosenProductOrder={setChosenProductOrder}
           />
-          <AiOutlineDown size={22} color="#333333" className="" />
+          {/* <AiOutlineDown size={22} color="#333333" className="" /> */}
         </div>
         <Figure>
           <Figure.Image
@@ -177,26 +210,34 @@ function ProductDetailsContent(props) {
       </div>
 
       {/* 推薦商品 */}
+
       <div className="m-5">
         <h3 className="border-bottom border-dark pb-2 mb-4">推薦相似產品</h3>
         <div className="d-flex justify-content-evenly align-items-center">
-          <AiFillLeftCircle size={22} color="#17a8a2" className="" />
-          <Figure>
-            <Figure.Image
-              width={115}
-              // height={80}
-              alt="longboard1"
-              src={longboard1}
-            />
-            <Figure.Caption className="d-flex justify-content-center">
-              <p className="mb-0">衝浪板</p>
-            </Figure.Caption>
-            <Figure.Caption className="d-flex justify-content-center">
-              <p className="fw-bold">NT 2,000</p>
-            </Figure.Caption>
-          </Figure>
+          {recommend.map((v, i) => {
+            return (
+              <Link key={v.product_id} to={`/products/${v.product_group}`}>
+                <Figure>
+                  <div className="boxRec">
+                    <Figure.Image
+                      // width={115}
+                      // height={80}
+                      alt={v.image1}
+                      src={`${IMAGE_URL}/products/${v.image1}`}
+                      className="cover-fit"
+                    />
+                  </div>
 
-          <AiFillRightCircle size={22} color="#17a8a2" className="" />
+                  <Figure.Caption className="d-flex justify-content-center">
+                    <p className="mb-0">{v.name}</p>
+                  </Figure.Caption>
+                  <Figure.Caption className="d-flex justify-content-center">
+                    <p className="fw-bold">NT {v.price.toLocaleString()}</p>
+                  </Figure.Caption>
+                </Figure>
+              </Link>
+            );
+          })}
         </div>
       </div>
 
@@ -211,11 +252,15 @@ function ProductDetailsContent(props) {
           </div>
           <div className="col-9">
             <p>
-              The JJF by Pyzel Gremlin Surfboard is crafted with a super
-              versatile shape and stacked to the brim with some of the most
-              advanced surf technology money can buy. From its lightweight Eco
-              EPS Construction to its hand sanded rails, this is a grab and go
-              good time for beginners and veterans alike.
+              {brandTypes[product[0].brand_id - 1]}是被 Sustainable
+              Surf所認證的ECOBOARD（環保衝浪板）製造商。
+              <br></br>
+              {brandTypes[product[0].brand_id - 1]}
+              成為第一個專門採用生物環氧樹脂的全球衝浪板品牌。
+              <br></br>
+              傳統的製作方式除了使用有毒物質外，使用工業溶劑清理更造成污染，對人體及環境非常傷害。但
+              {brandTypes[product[0].brand_id - 1]}
+              使用生物樹脂，可以使用柑橘清潔劑作為清理。除了浪板外，他們還製造了由藻類生物所製成的腳踏墊和由回收塑膠罐所製成的腳繩。
             </p>
           </div>
         </div>
@@ -232,11 +277,9 @@ function ProductDetailsContent(props) {
           </div>
           <div className="col-9">
             <p>
-              Apex
-              將我們在傳統和高性能長板衝浪方面的所有知識整合到一個精美的包裝中。當我們設計這塊板時，我們打算製造有史以來用途最廣泛的經典長板。一個對於新手來說非常容易上手的滑板，同時也是一個
-              Cj
-              可以在未來很多年推動他使用的滑板。鼻部凹入以實現令人難以置信的鼻翼提升，臀部像經典的「參與」原木一樣用於樞軸和鞭打，但具有較低的性能風格導軌和尾部的現代邊緣以提高速度和控制力。以現代風格向過去致敬。此板為經典長板設計的「
-              頂點 」！
+              {product[0].name}
+              系列提供您一系列高性能{smallCatTypes[product[0].small_cat_id - 1]}
+              的美好體驗。板由高級材料製成的衝浪板，胸部下方的額外體積使該板槳像一個長板，讓您輕鬆進入任何波浪。我們調整浪板的圓形銷尾，以增加轉彎時的升力並能立即鬆開。適合初學者到需要具有強大槳力的漸進式中長度的經驗豐富的用戶。
             </p>
           </div>
         </div>

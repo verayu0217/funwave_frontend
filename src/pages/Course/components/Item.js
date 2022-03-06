@@ -1,6 +1,6 @@
 import StarRating from './StarRating';
 
-const Item = ({ message, date, rating, photo, name }) => {
+const Item = ({ message, date, rating, photo, name, auth }) => {
   return (
     <div>
       {/* 留言 */}
@@ -8,11 +8,10 @@ const Item = ({ message, date, rating, photo, name }) => {
         {/* 第一排抬頭 */}
         <div className="d-flex flex-wrap">
           <div className="mt-2 align-self-center">
-            {/* 大頭照  */}
-
+            {/*TODO: 會員大頭照  */}
             <img
               className="rounded-circle"
-              src={'https://picsum.photos/id/237/50/50'}
+              // src={`http://localhost:3002${auth.member_photo}`}
               alt=""
               height="50px"
               weight="50px"
@@ -43,7 +42,7 @@ const Item = ({ message, date, rating, photo, name }) => {
           {/* 圖片區  */}
           <div className="mt-3 d-flex justify-space-around">
             {/* 如果沒有圖片就不顯示圖片*/}
-            {photo ? (
+            {photo && typeof photo === 'string' ? (
               <img
                 src={`http://localhost:3002/${photo}`}
                 className={photo === '' ? 'd-none' : 'rounded-3 m-1'}

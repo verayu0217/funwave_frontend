@@ -24,12 +24,19 @@
   background: rgba(255, 255, 255, 0.2); // 只調整背景alpha，不影響文字
 }
 
-// 左側篩選區
-.asideProducts {
-  // background-color: $deepblue;
-  border-top: 1px solid $gray;
+// 商品區
+.cover-fit {
+  // object-fit: cover;
+  object-fit: contain;
 }
-// 待跟客製化商品、課程統一 banner下的間距(mt-4)！
+.imgBox {
+  height: 270px;
+  width: 270px;
+  display: flex;
+  margin: auto;
+}
+
+// 左側篩選區
 .accordion-body {
   padding: 0;
   margin: 0;
@@ -53,14 +60,6 @@
 }
 
 // 右側商品區
-.articleProducts {
-  // background-color: $orange;
-  border-top: 1px solid $gray;
-}
-// .borderRadius {
-//   border-radius: 50%;
-// }
-// 待跟客製化商品、課程統一 search框框長度、弧度(w-25)！
 
 //ProductsList
 .top-5 {
@@ -70,4 +69,7 @@
 }
 .addWish {
   right: 50px;
+}
+.proHeart:hover {
+  cursor: pointer;
 }

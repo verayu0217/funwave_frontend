@@ -16,6 +16,11 @@ function CourseCart(props) {
     step3: '',
   });
 
+  // 一進來畫面滑到top
+  // useEffect(() => {
+  //   window.scrollTo(0, 0);
+  // }, []);
+
   // 將courseContent的表單狀態設定在父層
   const [course, setCourse] = useState('');
   const [courseSpot, setCourseSpot] = useState('');
@@ -31,12 +36,6 @@ function CourseCart(props) {
     setCourseTime(JSON.parse(localStorage.getItem('courseTime')));
     setCoursePrice(JSON.parse(localStorage.getItem('coursePrice')));
   }, []);
-
-  // console.log(course);
-  // console.log(courseSpot);
-  // console.log(courseDate);
-  // console.log(courseTime);
-  // console.log(coursePrice);
 
   return (
     <>

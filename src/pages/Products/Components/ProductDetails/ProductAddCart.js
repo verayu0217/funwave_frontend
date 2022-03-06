@@ -1,7 +1,6 @@
 // ProductAddCart.js 內容說明：商品細節頁右方的加入購物車區
 
 import React, { useState, useEffect } from 'react';
-import { Link, Navigate } from 'react-router-dom';
 import { Figure } from 'react-bootstrap';
 import { uniqBy } from 'lodash';
 import {
@@ -20,7 +19,7 @@ import { IMAGE_URL } from '../../../../utils/config';
 
 function ProductAddCart(props) {
   // 會員資料傳入useContext
-  const { auth, setAuth } = useAuth();
+  const { auth } = useAuth();
   const { fav, setFav } = useFav();
   console.log('auth', auth);
 
@@ -37,9 +36,6 @@ function ProductAddCart(props) {
   } = props;
   const [mycart, setMycart] = useState([]); // 要存進localStorage的資料
 
-  // 判斷是否登入，登入才能進購物車
-  const [goToCart, setGoToCart] = useState(false);
-
   // 小分類、品牌的id對照名稱
   const smallCatTypes = [
     '衝浪長板',
@@ -51,7 +47,24 @@ function ProductAddCart(props) {
     '衝浪斗篷毛巾衣',
     '防寒衣',
   ];
-  const brandTypes = ['Catch Surf', 'Solid Surf Co', 'JJF by Pyzel'];
+  const brandTypes = [
+    'Catch Surf',
+    'Solid Surf Co',
+    'JJF by Pyzel',
+    'Modern',
+    'Softech',
+    'Almond Surfboards',
+    'Lib Tech',
+    'True Ames',
+    'Captain Fin',
+    'Creatures of Leisure',
+    'Roam',
+    'Pro-Lite',
+    'en.saintjacques',
+    'RIPCURL',
+    'OCEAN+EARTH',
+    'FIREWIRE',
+  ];
 
   // 讓畫面有尺寸btn的值
   // 取出主貨號(product_group)中子貨號(product_no)的尺寸
@@ -71,18 +84,24 @@ function ProductAddCart(props) {
   // 整理product為顏色不重複的colorProduct
   const colorProduct = uniqBy(product, 'color_id');
 
-  // console.log('ProductAddCart.js - product', product);
-  // console.log('ProductAddCart.js - size', size);
-  // console.log('ProductAddCart.js - colorId', colorId);
+  console.log('ProductAddCart.js - product', product);
+  console.log('ProductAddCart.js - size', size);
+  console.log('ProductAddCart.js - colorId', colorId);
+
+  // 還未選尺寸時，預設尺寸為第一個子貨號的尺寸
+  if (size === '') {
+    setSize(product[0].size);
+  } else {
+  }
+
+  // 還未選顏色時，預設顏色為第一個子貨號的顏色
+  if (colorId === 0) {
+    setColorId(product[0].color_id);
+  } else {
+  }
 
   // 依據尺寸、顏色找到對應的子貨號(product_no)
   useEffect(() => {
-    // 還未選尺寸時，預設尺寸為第一個子貨號的尺寸
-    if (size === '') {
-      setSize(product[0].size);
-    } else {
-    }
-
     let chosenProduct = product.filter(
       (object) => (object['color_id'] === colorId) & (object['size'] === size)
     );
@@ -103,12 +122,6 @@ function ProductAddCart(props) {
     console.log('ProductAddCart.js - currentCart', currentCart);
     // console.log('ProductAddCart.js - mycart', mycart);
   };
-
-  console.log('goToCart', goToCart);
-  // 登入才可以進購物車
-  if (goToCart) {
-    return <Navigate to="/product-cart01"></Navigate>;
-  }
 
   // 加入/刪除收藏
   const favorite = (item) => {
@@ -131,7 +144,7 @@ function ProductAddCart(props) {
         <h1>{product[0].name}</h1>
         {fav.wishID.includes(product[0].product_group) ? (
           <FaHeart
-            size={30}
+            size={40}
             color="#ff7f6a"
             className="proDetailHeart"
             onClick={(e) => {
@@ -141,7 +154,7 @@ function ProductAddCart(props) {
           />
         ) : (
           <BiHeart
-            size={30}
+            size={40}
             color="#ff7f6a"
             className="proDetailHeart"
             type="button"
@@ -164,11 +177,11 @@ function ProductAddCart(props) {
           <p className="fs-6">1則評論</p>
         </div>
       </div>
-      <p className="fs-6">
+      <p className="mb-2">
         #{product[chosenProductOrder > 0 ? chosenProductOrder : 0].product_no}
       </p>
       {/* 選擇顏色 */}
-      <div className="row mt-5 mb-3">
+      <div className="row mt-4 mb-3">
         <div className="col-4 pe-0">
           <div>選擇顏色：</div>
         </div>
@@ -189,7 +202,11 @@ function ProductAddCart(props) {
                       height={75}
                       alt={v.name}
                       src={`${IMAGE_URL}/products/${v.image1}`}
-                      className="border border-dark p-1 m-0"
+                      className={
+                        colorId === v.color_id
+                          ? 'border border-secondary p-1 m-0 border-3 rounded-circle'
+                          : 'border border-dark p-1 m-0 rounded'
+                      }
                     />
                   </Figure>
                 </div>
@@ -207,12 +224,18 @@ function ProductAddCart(props) {
           <div className="d-flex">
             {sizeUnique.map((index, i) => {
               return (
-                <div key={i}>
+                <div
+                  key={i}
+                  onClick={() => {
+                    setSize(index);
+                  }}
+                >
                   <button
-                    className="btn btn-dark sizeBtn text-center me-2 d-flex justify-content-center align-items-center"
-                    onClick={() => {
-                      setSize(index);
-                    }}
+                    className={
+                      size === index
+                        ? 'btn btn-outline-secondary sizeBtn text-center me-2 d-flex justify-content-center align-items-center rounded-circle'
+                        : 'btn btn-outline-dark sizeBtn text-center me-2 d-flex justify-content-center align-items-center rounded'
+                    }
                   >
                     {index}
                   </button>
@@ -223,7 +246,7 @@ function ProductAddCart(props) {
         </div>
       </div>
       {/* 單價 */}
-      <div className="d-flex my-5 align-items-center">
+      <div className="d-flex mt-5 mb-3 align-items-center">
         <h2 className="fw-bolder">NT {product[0].price.toLocaleString()}</h2>
         <AiFillTags size={16} color="#ff7f6a" className="ms-4" />
         <p className="fs-6 text-primary m-0 ms-1">精選優惠！</p>
@@ -239,12 +262,6 @@ function ProductAddCart(props) {
         >
           <AiOutlineMinus size={20} color="#ffffff" className="text-center" />
         </button>
-        {/* <input
-          type="text"
-          value={count}
-          className="form-control mx-3 w-25"
-          name="quantity"
-        /> */}
         <div className="fs-3 text-center mx-3">{count}</div>
         <button
           type="button"
@@ -256,18 +273,6 @@ function ProductAddCart(props) {
           <AiOutlinePlus size={20} color="#ffffff" className="text-center" />
         </button>
       </div>
-      {/* 加入購物車 */}
-      <button
-        onClick={() => {
-          if (auth === null) {
-            return alert('請登入會員');
-          } else {
-            setGoToCart(true);
-          }
-        }}
-      >
-        去購物車
-      </button>
 
       <button
         className="btn btn-secondary btnAddCart"
@@ -282,6 +287,7 @@ function ProductAddCart(props) {
             small_cat_id: product[0].small_cat_id,
             stock: product[chosenProductOrder].stock,
             count: count,
+            style: '',
           });
         }}
       >

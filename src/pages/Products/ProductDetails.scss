@@ -15,8 +15,8 @@
 
 // 右邊加入購物車區
 .sizebtn {
-  width: 28px;
-  height: 28px;
+  width: 35px;
+  height: 35px;
   // border: 2px solid $funwave-deepgray;
 }
 .btnPlusMinus {
@@ -26,6 +26,16 @@
 .btnAddCart {
   width: 100%;
 }
-.proDetailHeart :hover{
+.proDetailHeart :hover {
   cursor: pointer;
+}
+//productDetailContent
+.cover-fit {
+  object-fit: cover;
+}
+.boxRec {
+  height: 120px;
+  width: 100px;
+  display: flex;
+  margin: auto;
 }

@@ -1,6 +1,6 @@
 // CartMemberInfo.js 內容說明：ProductCart02.js中的訂購人資訊
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Form, InputGroup } from 'react-bootstrap';
 
 function CartMemberInfo(props) {
@@ -9,8 +9,6 @@ function CartMemberInfo(props) {
     setOrder,
     memberName,
     setMemberName,
-    memberEmail,
-    setMemberEmail,
     memberPhone,
     setMemberPhone,
     memberAddress,
@@ -25,9 +23,9 @@ function CartMemberInfo(props) {
       <div className="px-5 py-4">
         <div className="d-flex justify-content-between">
           <h3>訂購人資訊</h3>
-          <div className="form-check">
+          {/* <div className="form-check">
             <input
-              className="form-check-input mt-2"
+              className="form-check-input mt-2 cursorPointer"
               type="checkbox"
               value=""
               id="check"
@@ -42,7 +40,7 @@ function CartMemberInfo(props) {
             <label className="form-check-label mt-2 fs-6" htmlFor="check">
               同步更新我的會員資料
             </label>
-          </div>
+          </div> */}
         </div>
 
         {/* 訂購人姓名 */}
@@ -60,36 +58,11 @@ function CartMemberInfo(props) {
                 setMemberName(e.target.value);
               }}
             />
-            <Form.Control.Feedback type="invalid">
-              請填寫訂購人姓名
-            </Form.Control.Feedback>
-          </InputGroup>
-        </Form.Group>
-
-        {/* 訂購人信箱 */}
-        <Form.Group controlId="validationCustomUsername" className="mb-3">
-          <Form.Label>E-mail (帳號)</Form.Label>
-          <InputGroup hasValidation>
-            <Form.Control
-              type="email"
-              placeholder="請輸入E-mail"
-              aria-describedby="inputEmail"
-              name="memberEmail"
-              value={memberEmail}
-              required
-              onChange={(e) => {
-                setMemberEmail(e.target.value);
-              }}
-            />
-            <Form.Control.Feedback type="invalid">
-              請填入正確格式的訂購人E-mail
-            </Form.Control.Feedback>
           </InputGroup>
         </Form.Group>
 
         {/* 訂購人手機號碼 */}
         <Form.Group controlId="validationCustomUsername" className="mb-3">
-          {/* 要驗證號碼跟長度！！！！！！！ */}
           <Form.Label>手機號碼</Form.Label>
           <InputGroup hasValidation>
             <Form.Control
@@ -103,9 +76,6 @@ function CartMemberInfo(props) {
                 setMemberPhone(e.target.value);
               }}
             />
-            <Form.Control.Feedback type="invalid">
-              請填寫訂購人手機號碼
-            </Form.Control.Feedback>
           </InputGroup>
         </Form.Group>
 
@@ -123,9 +93,6 @@ function CartMemberInfo(props) {
                 setMemberAddress(e.target.value);
               }}
             />
-            <Form.Control.Feedback type="invalid">
-              請填寫訂購人詳細地址
-            </Form.Control.Feedback>
           </Form.Group>
         </div>
       </div>

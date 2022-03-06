@@ -1,11 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import './Custom.scss';
 import RecommendCard from './RecommendCard';
 import Ad from './Ad';
 import Step from './Step';
-import { useAuth } from '../../context/auth';
 
 function Customized() {
   return (
@@ -21,7 +20,6 @@ function Customized() {
         </div>
       </div>
       <Container>
-        <h3>麵包屑</h3>
         <div className="d-flex justify-content-center my-5">
           <div className="sectionCu">
             <h3 className="text-center">與浪板一對一對話</h3>

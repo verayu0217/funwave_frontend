@@ -11,6 +11,9 @@ function Step3(props) {
   const { step, setStep, surfingBoard, setSurfingBoard } = props;
   const [count, setCount] = useState(1);
   const [board, setBoard] = useState({});
+
+  const typeToSize = ['5', '6', '7', '9'];
+
   // const [mycart, setMycart] = useState([]); // 要存進localStorage的資料
   useEffect(() => {
     console.log(surfingBoard);
@@ -39,7 +42,7 @@ function Step3(props) {
     <div className="container">
       <div className="text-secondary h1 text-center position-relative">
         <button
-          className="btn btn-secondary my-2 position-absolute start-0"
+          className="btn btn-secondary my-2 position-absolute start-0 display"
           onClick={() => {
             setStep({ ...step, step2: true, step3: '' });
           }}
@@ -54,6 +57,17 @@ function Step3(props) {
           weight="64px"
         />
         STEP 3加入購物車
+      </div>
+      {/* 手機版btn */}
+      <div className="d-flex mb-1 disappear">
+        <button
+          className="btn btn-secondary m-auto"
+          onClick={() => {
+            setStep({ ...step, step2: true, step3: '' });
+          }}
+        >
+          上一步
+        </button>
       </div>
       <hr className="mb-3 mt-0" />
       <Row>
@@ -141,16 +155,15 @@ function Step3(props) {
                 className="btn btn-primary btnCu"
                 onClick={() => {
                   addToLocal({
-                    product_no: 'CB-0001-8-0',
+                    product_no: 'CB-0001-10-0',
                     name: `客製化${board.text}`,
                     price: amount,
-                    image1: null,
+                    image1: 'test.jpg',
                     color_id: 10,
-                    size: surfingBoard.size,
+                    size: typeToSize[surfingBoard.size - 1],
                     small_cat_id: 9,
                     stock: 1,
                     count: count,
-                    image_cu1: 'test.jpg',
                     style: `${surfingBoard.front} + ${surfingBoard.frontpattern} & ${surfingBoard.back} + ${surfingBoard.backpattern}`,
                   });
                 }}
