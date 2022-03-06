@@ -29,3 +29,13 @@
 .proDetailHeart :hover {
   cursor: pointer;
 }
+//productDetailContent
+.cover-fit {
+  object-fit: cover;
+}
+.boxRec {
+  height: 120px;
+  width: 100px;
+  display: flex;
+  margin: auto;
+}
