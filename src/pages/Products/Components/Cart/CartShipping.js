@@ -5,7 +5,14 @@ import { Form, Button, InputGroup } from 'react-bootstrap';
 import { data } from '../../../../data/countiesConvenientStore.js'; // 各縣市對應之超商
 
 function CartShipping(props) {
-  const { order, setOrder, addressSync, setAddressSync } = props;
+  const {
+    order,
+    setOrder,
+    addressSync,
+    setAddressSync,
+    storeValidate,
+    setStoreValidate,
+  } = props;
 
   // 拿取前一頁Cart01儲存在localStorage的運送方式
   let localStorageDelivery = JSON.parse(
@@ -16,8 +23,16 @@ function CartShipping(props) {
   const [convenientStoreCounty, setConvenientStoreCounty] =
     useState('請選擇縣市');
 
+  // 依據配送方式決定超商門市初始值
+  let deliveryStatus = '';
+  if (localStorageDelivery === '宅配到府') {
+    deliveryStatus = '';
+  } else {
+    deliveryStatus = '請選擇門市';
+  }
+
   // "便利商店取貨"的門市儲存為狀態，僅用於此子元件
-  const [convenientStore, setConvenientStore] = useState('請選擇門市');
+  const [convenientStore, setConvenientStore] = useState(deliveryStatus);
 
   // 表單中的onchange事件 (限order物件內的欄位)
   const handleChange = (e) => {
@@ -143,6 +158,7 @@ function CartShipping(props) {
                   )
                 )}
               </Form.Select>
+              <div className="storeValidate">{storeValidate}</div>
             </div>
           </div>
         )}
