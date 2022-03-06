@@ -54,7 +54,7 @@ function ProductDetailsContent(props) {
   const materialTypes = ['Polyethylene', 'EPOXY', 'EPS', '碳纖維'];
   const finCompatibilityTypes = ['FCS II Longboard', 'FCS II', 'Single Tab'];
   //推薦
-  const [recommend, setRecommend] = useState();
+  const [recommend, setRecommend] = useState([]);
   useEffect(() => {
     let recommend = async () => {
       let response = await axios.get(
@@ -222,12 +222,12 @@ function ProductDetailsContent(props) {
         <div className="d-flex justify-content-evenly align-items-center">
           <AiFillLeftCircle size={22} color="#17a8a2" />
 
-          {/* {recommend.map((v, i) => {
+          {recommend.map((v, i) => {
             return (
               <Figure key={v.product_id}>
                 <Figure.Image
                   width={115}
-                  // height={80}
+                  height={80}
                   alt={`${IMAGE_URL}/products/${v.image1}`}
                   src={`${IMAGE_URL}/products/${v.image1}`}
                 />
@@ -239,7 +239,7 @@ function ProductDetailsContent(props) {
                 </Figure.Caption>
               </Figure>
             );
-          })} */}
+          })}
 
           <AiFillRightCircle size={22} color="#17a8a2" />
         </div>
