@@ -56,10 +56,9 @@ function ProductDetailsContent(props) {
   //推薦
   const [recommend, setRecommend] = useState();
   useEffect(() => {
-    //取後端資料
     let recommend = async () => {
       let response = await axios.get(
-        `${API_URL}/recommend/?rec=${product[0].big_cat_id}`
+        `${API_URL}/recommend?rec=${product[0].big_cat_id}`
       );
       // console.log('recommend', response);
       setRecommend(response.data);
@@ -222,9 +221,10 @@ function ProductDetailsContent(props) {
         <h3 className="border-bottom border-dark pb-2 mb-4">推薦相似產品</h3>
         <div className="d-flex justify-content-evenly align-items-center">
           <AiFillLeftCircle size={22} color="#17a8a2" />
-          {recommend.map((v, i) => {
+
+          {/* {recommend.map((v, i) => {
             return (
-              <Figure>
+              <Figure key={v.product_id}>
                 <Figure.Image
                   width={115}
                   // height={80}
@@ -239,7 +239,7 @@ function ProductDetailsContent(props) {
                 </Figure.Caption>
               </Figure>
             );
-          })}
+          })} */}
 
           <AiFillRightCircle size={22} color="#17a8a2" />
         </div>
