@@ -4,6 +4,10 @@ import React from 'react';
 import greenTitle from '../../../../data/images/greenTitle.svg';
 
 function ProductAddCart(props) {
+  // 清除購物車的localStorage
+  localStorage.removeItem('productCart');
+  localStorage.removeItem('productCartDisplay');
+
   return (
     <>
       <header className="m-5 py-2 px-5">

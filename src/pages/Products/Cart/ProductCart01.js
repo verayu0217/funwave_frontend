@@ -146,8 +146,6 @@ function ProductCart01() {
     setAmount(sum(mycartDisplay));
   }, [mycartDisplay]);
 
-  // localStorage.removeItem('productCart');
-
   // 抓付款方式setPayment
   function handleChangePay(e) {
     setPayment(e.target.value);
@@ -282,12 +280,6 @@ function ProductCart01() {
                 </div>
                 <div className="row">
                   <div className="col-1"></div>
-                  <div className="col-5">優惠券</div>
-                  <div className="col-5 text-end">0</div>
-                  <div className="col-1"></div>
-                </div>
-                <div className="row">
-                  <div className="col-1"></div>
                   <div className="col-5">運費</div>
                   <div className="col-5 text-end">
                     {sum(mycartDisplay) > 5000 ? 0 : 120}
@@ -311,13 +303,6 @@ function ProductCart01() {
                     <div className="col-1"></div>
                   </div>
                 )}
-
-                <div className="row">
-                  <div className="col-1"></div>
-                  <div className="col-5">購物金</div>
-                  <div className="col-5 text-end">- 0</div>
-                  <div className="col-1"></div>
-                </div>
                 <div className="row mt-5">
                   <div className="col-1"></div>
                   <div className="col-5 d-flex justify-content-end align-items-end">

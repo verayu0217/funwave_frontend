@@ -1,6 +1,6 @@
 // CartMemberInfo.js 內容說明：ProductCart02.js中的訂購人資訊
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Form, InputGroup } from 'react-bootstrap';
 
 function CartMemberInfo(props) {
@@ -58,15 +58,11 @@ function CartMemberInfo(props) {
                 setMemberName(e.target.value);
               }}
             />
-            <Form.Control.Feedback type="invalid">
-              請填寫訂購人姓名
-            </Form.Control.Feedback>
           </InputGroup>
         </Form.Group>
 
         {/* 訂購人手機號碼 */}
         <Form.Group controlId="validationCustomUsername" className="mb-3">
-          {/* 要驗證號碼跟長度！！！！！！！ */}
           <Form.Label>手機號碼</Form.Label>
           <InputGroup hasValidation>
             <Form.Control
@@ -80,9 +76,6 @@ function CartMemberInfo(props) {
                 setMemberPhone(e.target.value);
               }}
             />
-            <Form.Control.Feedback type="invalid">
-              請填寫訂購人手機號碼
-            </Form.Control.Feedback>
           </InputGroup>
         </Form.Group>
 
@@ -100,9 +93,6 @@ function CartMemberInfo(props) {
                 setMemberAddress(e.target.value);
               }}
             />
-            <Form.Control.Feedback type="invalid">
-              請填寫訂購人詳細地址
-            </Form.Control.Feedback>
           </Form.Group>
         </div>
       </div>

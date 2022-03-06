@@ -40,12 +40,13 @@ function MyNavbar() {
 
   const { auth, setAuth } = useAuth();
   const [cartCount, setCartCount] = useState(0);
-  const [goToCart, setGoToCart] = useState(false);
 
   setInterval(function () {
     const productCart = localStorage.getItem('productCart');
     if (productCart) {
-      setCartCount(JSON.parse(productCart).length);
+      setCartCount(
+        JSON.parse(productCart).reduce((pre, cur) => pre + cur.count, 0)
+      );
     }
   }, 500);
 
@@ -56,9 +57,6 @@ function MyNavbar() {
     setAuth(null);
   };
 
-  // if (goToCart) {
-  //   return <Navigate to="/product-cart01"></Navigate>;
-  // }
   return (
     <>
       <Navbar expand="lg" className="shadow-sm">
@@ -120,6 +118,7 @@ function MyNavbar() {
                 <i className="fas fa-shopping-cart"></i>
                 <span>&ensp;({cartCount})</span>
               </Nav.Link>
+              {/* <CartIcon /> */}
               <Nav.Link
                 className="iconGroup"
                 as={NavLink}

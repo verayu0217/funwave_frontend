@@ -65,6 +65,9 @@ function ProductAddCart(props) {
     'Roam',
     'Pro-Lite',
     'en.saintjacques',
+    'RIPCURL',
+    'OCEAN+EARTH',
+    'FIREWIRE',
   ];
 
   // 讓畫面有尺寸btn的值

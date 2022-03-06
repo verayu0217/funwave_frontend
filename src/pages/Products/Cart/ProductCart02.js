@@ -17,20 +17,48 @@ function ProductCart02() {
   const { auth, setAuth } = useAuth();
   console.log('auth', auth);
 
+  // 拿取前一頁Cart01儲存在localStorage的購物車品項、付款方式、運送方式、總金額
+  let localStoragePayment = JSON.parse(localStorage.getItem('payment') || '[]');
+  let localStorageDelivery = JSON.parse(
+    localStorage.getItem('delivery') || '[]'
+  );
+  let localStorageAmount = JSON.parse(localStorage.getItem('amount')) || 0;
+  console.log('localStorageAmount', localStorageAmount);
+
+  const localStorageOrderCart = JSON.parse(
+    localStorage.getItem('productCartDisplay') || '[]'
+  );
+
+  // 處理購物車品項，只要欄位product_no、count、style
+  let orderDetails = localStorageOrderCart.map((x) =>
+    _.pick(x, 'product_no', 'count', 'style')
+  );
+  console.log('orderDetails', orderDetails);
+
+  let paymentStatus = '';
+  // 依據付款方式決定付款狀態
+  if (localStoragePayment === '信用卡') {
+    paymentStatus = '已付款';
+  } else {
+    paymentStatus = '未付款';
+  }
+
   // 表單元素 (要存進order-list、order_details資料表)
   const [order, setOrder] = useState({
-    member_id: 0,
-    amount: 0,
-    payment: 'a',
-    payment_status: '未付款',
-    delivery: '',
+    member_id: auth?.member_id || 0,
+    amount: localStorageAmount,
+    payment: localStoragePayment,
+    payment_status: paymentStatus,
+    delivery: localStorageDelivery,
     receiver: '',
     receiver_phone: '',
     address: '',
     convenient_store: '',
     status: '訂單處理中',
-    order_details: [],
+    order_details: orderDetails,
   });
+
+  console.log('order', order);
 
   // 表單元素 (可同步會員資料)
   const [memberName, setMemberName] = useState('');
@@ -49,51 +77,15 @@ function ProductCart02() {
   // 訂單完成
   const [orderDone, setOrderDone] = useState(false);
 
+  // 超商門市後端驗證
+  const [storeValidate, setStoreValidate] = useState('');
+
   const [validated, setValidated] = useState(false);
 
-  // 拿取前一頁Cart01儲存在localStorage的購物車品項、付款方式、運送方式、總金額
-  useEffect(() => {
-    let localStoragePayment = JSON.parse(
-      localStorage.getItem('payment') || '[]'
-    );
-    let localStorageDelivery = JSON.parse(
-      localStorage.getItem('delivery') || '[]'
-    );
-    let localStorageAmount = JSON.parse(localStorage.getItem('amount')) || 0;
-    console.log('localStorageAmount', localStorageAmount);
-
-    const localStorageOrderCart = JSON.parse(
-      localStorage.getItem('productCartDisplay') || '[]'
-    );
-
-    // 處理購物車品項欄位剩下product_no、count
-    let orderDetails = localStorageOrderCart.map((x) =>
-      _.pick(x, 'product_no', 'count', 'style')
-    );
-    console.log('orderDetails', orderDetails);
-
-    setOrder({
-      ...order,
-      amount: localStorageAmount,
-      payment: localStoragePayment,
-      delivery: localStorageDelivery,
-      order_details: orderDetails,
-    });
-  }, []);
-
-  useEffect(() => {
-    console.log(order);
-  }, [order]);
-
-  // 會員資料帶入訂購人資訊 (member_id、memberName、memberPhone、memberAddress，從useContext帶入)
+  // 會員資料帶入訂購人資訊 (memberName、memberPhone、memberAddress，從useContext帶入)
   useEffect(() => {
     // 這裡條件還是無法阻擋重整auth為null而壞掉的情況！
     if (auth) {
-      setOrder({
-        ...order,
-        member_id: auth?.member_id,
-      });
-
       setMemberName(auth?.member_name);
       setMemberPhone(auth?.member_phone);
       setMemberAddress(auth?.member_address);
@@ -122,17 +114,6 @@ function ProductCart02() {
     }
   }, [receiverSync, addressSync]);
 
-  // // 收件人資訊勾選同訂購人資訊
-  // useEffect(() => {
-  //   if (addressSync === true) {
-  //     setOrder({
-  //       ...order,
-  //       address: memberAddress,
-  //     });
-  //   } else {
-  //   }
-  // }, [addressSync]);
-
   async function handleSubmit(e) {
     // 送出資料前的驗證
     const form = e.currentTarget;
@@ -146,6 +127,7 @@ function ProductCart02() {
         setOrderDone(true);
       } catch (e) {
         console.error('error', e.response.data);
+        setStoreValidate(`${e.response.data.msg}\n`);
       }
     }
     setValidated(true);
@@ -211,6 +193,8 @@ function ProductCart02() {
                   setOrder={setOrder}
                   addressSync={addressSync}
                   setAddressSync={setAddressSync}
+                  storeValidate={storeValidate}
+                  setStoreValidate={setStoreValidate}
                 />
 
                 {/* 發票資訊，目前無作用！ */}
@@ -231,16 +215,7 @@ function ProductCart02() {
                         上一步
                       </button>
                     </Link>
-                    <Button
-                      type="submit"
-                      // onClick={() => {
-                      //   if (order.convenient_store === '') {
-                      //     alert('請選擇門市');
-                      //   }
-                      // }}
-                    >
-                      完成訂購！
-                    </Button>
+                    <Button type="submit">完成訂購！</Button>
                   </div>
                 </div>
               </Form>
