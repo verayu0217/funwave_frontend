@@ -1,9 +1,10 @@
 //  ProductDetailsContent.js 內容說明：商品細節頁中間的商品細節區
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import { Figure } from 'react-bootstrap';
 import longboard1 from './longboard1.jpg'; // 暫存推薦商品前端假圖片
-import { IMAGE_URL } from '../../../../utils/config';
+import { IMAGE_URL, API_URL } from '../../../../utils/config';
 import ProductDetailsSmallImgs from './ProductDetailsSmallImgs.js';
 import {
   AiOutlineDown,
@@ -49,7 +50,19 @@ function ProductDetailsContent(props) {
   ];
   const materialTypes = ['Polyethylene', 'EPOXY', 'EPS', '碳纖維'];
   const finCompatibilityTypes = ['FCS II Longboard', 'FCS II', 'Single Tab'];
-
+  //推薦
+  const [recommend, setRecommend] = useState();
+  useEffect(() => {
+    //取後端資料
+    let recommend = async () => {
+      let response = await axios.get(
+        `${API_URL}/recommend/?rec=${product[0].big_cat_id}`
+      );
+      // console.log('recommend', response);
+      setRecommend(response.data);
+    };
+    recommend();
+  }, [product]);
   // 長板尺寸對照表
   const displaySizeDetailsLB = (
     <>
@@ -201,26 +214,31 @@ function ProductDetailsContent(props) {
       </div>
 
       {/* 推薦商品 */}
+
       <div className="m-5">
         <h3 className="border-bottom border-dark pb-2 mb-4">推薦相似產品</h3>
         <div className="d-flex justify-content-evenly align-items-center">
-          <AiFillLeftCircle size={22} color="#17a8a2" className="" />
-          <Figure>
-            <Figure.Image
-              width={115}
-              // height={80}
-              alt="longboard1"
-              src={longboard1}
-            />
-            <Figure.Caption className="d-flex justify-content-center">
-              <p className="mb-0">衝浪板</p>
-            </Figure.Caption>
-            <Figure.Caption className="d-flex justify-content-center">
-              <p className="fw-bold">NT 2,000</p>
-            </Figure.Caption>
-          </Figure>
+          <AiFillLeftCircle size={22} color="#17a8a2" />
+          {recommend.map((v, i) => {
+            return (
+              <Figure>
+                <Figure.Image
+                  width={115}
+                  // height={80}
+                  alt={`${IMAGE_URL}/products/${v.image1}`}
+                  src={`${IMAGE_URL}/products/${v.image1}`}
+                />
+                <Figure.Caption className="d-flex justify-content-center">
+                  <p className="mb-0">{v.name}</p>
+                </Figure.Caption>
+                <Figure.Caption className="d-flex justify-content-center">
+                  <p className="fw-bold">NT {v.price.toLocaleString()}</p>
+                </Figure.Caption>
+              </Figure>
+            );
+          })}
 
-          <AiFillRightCircle size={22} color="#17a8a2" className="" />
+          <AiFillRightCircle size={22} color="#17a8a2" />
         </div>
       </div>
 
