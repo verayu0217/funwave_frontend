@@ -77,6 +77,9 @@ function ProductCart02() {
   // 訂單完成
   const [orderDone, setOrderDone] = useState(false);
 
+  // 超商門市後端驗證
+  const [storeValidate, setStoreValidate] = useState('');
+
   const [validated, setValidated] = useState(false);
 
   // 會員資料帶入訂購人資訊 (memberName、memberPhone、memberAddress，從useContext帶入)
@@ -124,7 +127,7 @@ function ProductCart02() {
         setOrderDone(true);
       } catch (e) {
         console.error('error', e.response.data);
-        alert(`${e.response.data.msg}\n`);
+        setStoreValidate(`${e.response.data.msg}\n`);
       }
     }
     setValidated(true);
@@ -190,6 +193,8 @@ function ProductCart02() {
                   setOrder={setOrder}
                   addressSync={addressSync}
                   setAddressSync={setAddressSync}
+                  storeValidate={storeValidate}
+                  setStoreValidate={setStoreValidate}
                 />
 
                 {/* 發票資訊，目前無作用！ */}
@@ -210,16 +215,7 @@ function ProductCart02() {
                         上一步
                       </button>
                     </Link>
-                    <Button
-                      type="submit"
-                      // onClick={() => {
-                      //   if (order.convenient_store === '') {
-                      //     alert('請選擇門市');
-                      //   }
-                      // }}
-                    >
-                      完成訂購！
-                    </Button>
+                    <Button type="submit">完成訂購！</Button>
                   </div>
                 </div>
               </Form>

@@ -24,7 +24,7 @@ function Courses() {
             <div className="courseBanner d-flex justify-content-center align-items-center">
               <div className="text-center  m-auto align-items-center">
                 <p className="h4 white">Let's Learn How to Surf.</p>
-                <p className="h1 white">衝浪課程＆教練團</p>
+                <p className="h1 white">衝浪課程</p>
               </div>
             </div>
           </div>
@@ -88,7 +88,7 @@ function Courses() {
 
         {/* 教練介紹區 */}
         {/* TODO:教練切版 */}
-        <div className="row my-5  col-9 m-auto">
+        {/* <div className="row my-5  col-9 m-auto">
           <div className="text-secondary  mt-3 h1 text-center mb-3">
             <img
               src={greenTitle}
@@ -99,7 +99,7 @@ function Courses() {
             />
             專業用心的教練團隊
           </div>
-        </div>
+        </div> */}
       </div>
     </>
   );

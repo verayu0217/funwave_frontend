@@ -56,8 +56,10 @@ function ProductItem(props) {
     'Roam',
     'Pro-Lite',
     'en.saintjacques',
+    'RIPCURL',
+    'OCEAN+EARTH',
+    'FIREWIRE',
   ];
-
   return (
     <>
       {fav.wishID.includes(product_group) ? (
@@ -84,7 +86,7 @@ function ProductItem(props) {
         <Figure className="mt-4 position-relative">
           <Figure.Image
             width={265}
-            height={350}
+            height={300}
             alt={`${image1}`}
             src={`${IMAGE_URL}/products/${image1}`}
           />

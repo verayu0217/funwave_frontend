@@ -47,6 +47,9 @@ function ProductDetailsContent(props) {
     'Roam',
     'Pro-Lite',
     'en.saintjacques',
+    'RIPCURL',
+    'OCEAN+EARTH',
+    'FIREWIRE',
   ];
   const materialTypes = ['Polyethylene', 'EPOXY', 'EPS', '碳纖維'];
   const finCompatibilityTypes = ['FCS II Longboard', 'FCS II', 'Single Tab'];

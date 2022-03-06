@@ -1,6 +1,6 @@
 import Item from './Item';
 
-const List = ({ listData }) => {
+const List = ({ listData, auth }) => {
   // console.log(listData);
 
   return (
@@ -15,6 +15,7 @@ const List = ({ listData }) => {
             rating={rating}
             photo={photo}
             name={name}
+            auth={auth}
           />
         );
       })}
