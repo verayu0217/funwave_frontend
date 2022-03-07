@@ -54,6 +54,10 @@ function MyNavbar() {
     await axios.get(`${API_URL}/auth/logout`, {
       withCredentials: true,
     });
+    window.localStorage.removeItem('course');
+    setCourseCart(0);
+    window.localStorage.removeItem('productCart');
+    setCartCount(0);
     setAuth(null);
   };
 
