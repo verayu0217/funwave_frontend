@@ -57,7 +57,7 @@ function ProductDetailsContent(props) {
       // console.log('recommend', response);
       setRecommend(response.data);
     };
-    recommend();
+    if (product[0].small_cat_id) recommend();
   }, [product]);
   // 長板尺寸對照表
   const displaySizeDetailsLB = (
@@ -216,7 +216,11 @@ function ProductDetailsContent(props) {
         <div className="d-flex justify-content-evenly align-items-center">
           {recommend.map((v, i) => {
             return (
-              <Link key={v.product_id} to={`/products/${v.product_group}`}>
+              <Link
+                to={`/products/${v.product_group}`}
+                key={v.product_id}
+                target="_blank"
+              >
                 <Figure>
                   <div className="boxRec">
                     <Figure.Image
