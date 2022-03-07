@@ -103,7 +103,7 @@ function App() {
     <>
       <AuthContext.Provider value={{ auth, setAuth }}>
         <FavContext.Provider value={{ fav, setFav }}>
-          <div className="routesApp">
+          {/* <div className="routesApp"> */}
           <Header />
           <ScrollToTop />
           {/* <Breadcrumb /> */}
@@ -168,12 +168,13 @@ function App() {
             <Route path="*" element={<NotFound />} />
           </Routes>
 
-            <div className="footerApp">
-              <Footer  />
-            </div>
-        </div>
+            {/* <div className="footerApp"> */}
+              {/* <Footer  /> */}
+            {/* </div>
+        </div> */}
         </FavContext.Provider>
       </AuthContext.Provider>
+      <Footer /> {/* 試著把footer換位置，看會不會就不會露白，但還是露白 */}
     </>
   );
 }
