@@ -87,7 +87,7 @@ function Courses() {
         <CourseSpot />
 
         {/* 教練介紹區 */}
-        {/* TODO:教練切版 */}
+        {/*教練切版 */}
         {/* <div className="row my-5  col-9 m-auto">
           <div className="text-secondary  mt-3 h1 text-center mb-3">
             <img

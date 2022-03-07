@@ -43,6 +43,7 @@ function CourseCart02(props) {
       setName(auth.member_name);
       setEmail(auth.member_email);
       setPhone(auth.member_phone);
+      setSex(auth.member_gender);
     }
   });
 
