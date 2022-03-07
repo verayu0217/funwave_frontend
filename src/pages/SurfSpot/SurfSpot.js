@@ -14,8 +14,7 @@ function SurfSpot(props) {
   const [regional, setRegional] = useState('');
   return (
     <>
-      <div className="taiwanMapBg">
-        <div className="container">{/* <Breadcrumb /> */}</div>
+      <div className="taiwanMapBg container-fluid">
         <div className="d-flex justify-content-center">
           <div className="text-center mt-3">
             <img src={greenTitle} className="greenTitle" alt="greenTitle" />

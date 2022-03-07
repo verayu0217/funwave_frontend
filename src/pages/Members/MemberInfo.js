@@ -129,7 +129,12 @@ function MemberInfo(props) {
                   src={`http://localhost:3002${member.member_photo}`}
                 />
               </div>
-              <h3 className="fs-24Member">{member.member_name}</h3>
+              <h3 className="fs-24Member">
+                {' '}
+                {member.member_name == ''
+                  ? auth.member_name
+                  : member.member_name}
+              </h3>
               <h5 className={`fs-16Membe ${memberClassName}`}>
                 {member.level}
               </h5>
@@ -172,7 +177,11 @@ function MemberInfo(props) {
                   id="member_name"
                   placeholder=""
                   required
-                  defaultValue={member.member_name}
+                  defaultValue={
+                    member.member_name == ''
+                      ? auth.member_name
+                      : member.member_name
+                  }
                   onChange={handleChange}
                 />
               </Form.Group>
@@ -186,7 +195,11 @@ function MemberInfo(props) {
                   type="email"
                   placeholder=""
                   required
-                  defaultValue={member.member_email}
+                  defaultValue={
+                    member.member_email == ''
+                      ? auth.member_email
+                      : member.member_email
+                  }
                   onChange={handleChange}
                 />
               </Form.Group>
@@ -302,6 +315,7 @@ function MemberInfo(props) {
                   row={1}
                   defaultValue={member.remark}
                   className="col-12 btn btnMember"
+                  onChange={handleChange}
                 />
               </Form.Group>
               <div className="d-flex justify-content-end mb-3">

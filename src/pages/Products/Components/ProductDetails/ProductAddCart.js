@@ -171,7 +171,8 @@ function ProductAddCart(props) {
           <AiFillStar size={20} color="#ff7f6a" />
           <AiFillStar size={20} color="#ff7f6a" />
           <AiFillStar size={20} color="#ff7f6a" />
-          <AiOutlineStar size={20} color="#ff7f6a" />
+          <AiFillStar size={20} color="#ff7f6a" />
+          {/* <AiOutlineStar size={20} color="#ff7f6a" /> */}
         </div>
         <div className="col-7 ps-0 pt-2">
           <p className="fs-6">1則評論</p>

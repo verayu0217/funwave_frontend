@@ -62,6 +62,7 @@ const MemberOrder = () => {
     setData([]);
     setData(orders);
     setPages(response.data.pagination.pages);
+    console.log('orders', orders);
   }
 
   function changePage(page) {

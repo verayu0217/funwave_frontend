@@ -248,7 +248,7 @@ function MemberCourseOrderDetails(props) {
                         <p>姓名：{item.name}</p>
                         <p>訂單信箱：{item.email}</p>
                         <p>電話號碼：{item.phone}</p>
-                        <p>訂單日期：{item.courseDate}</p>
+                        <p>課程日期：{item.courseDate}</p>
                         {/* <p>生日：{item.}</p> */}
                         {/* <p>手機號碼：{item.}</p> */}
                       </div>
