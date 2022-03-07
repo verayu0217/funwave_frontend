@@ -30,10 +30,10 @@ function Member() {
   return (
     <>
       {auth ? (
-        <div className="memberWrap">
+        <div className="memberWrap mb-5">
           <Tab.Container id="left-tabs-example" defaultActiveKey="first">
             <Row className="container tabWrapMember">
-              <Col className="tabBarMember sticky-top" lg={3} md={3}>
+              <Col className="tabBarMember sticky" lg={3} md={3}>
                 <Nav variant="pills" className="flex-column">
                   <Nav.Item>
                     <Nav.Link className="fs-24Member linkWidthMember my-5">
