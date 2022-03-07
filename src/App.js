@@ -111,7 +111,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/home" element={<Home />} />
-            <Route path="/home-try" element={<HomeTry />} />
+            {/* <Route path="/home-try" element={<HomeTry />} /> */}
             <Route path="/information" element={<><Information /><Footer /></>}></Route>
             <Route path="/information" element={<><InformationDetails /><Footer /></>}>
               <Route path=":info_no" element={<><InformationDetails /><Footer /></>}></Route>
@@ -135,19 +135,19 @@ function App() {
             <Route path="/customized" element={<><Customized /><Footer /></>} />
             <Route
               path="/member/member-courseorder/:id"
-              element={<MemberCourseOrderDetails />}
+              element={<><MemberCourseOrderDetails /><Footer /></>}
             />
             <Route
               path="/member/member-order/:order_id"
-              element={<MemberOrderDetails />}
+              element={<><MemberOrderDetails /><Footer /></>}
             />
             <Route
               path="/member/member-shopping-gold"
-              element={<MemberShoppingGold />}
+              element={<><MemberShoppingGold /><Footer /></>}
             />
             <Route
               path="/member/member-courseorder"
-              element={<MemberCourseOrder />}
+              element={<><MemberCourseOrder /><Footer /></>}
             />
             <Route path="/member/member-collect" element={<MemberCollect />} />
             <Route path="/member/member-message" element={<MemberMessage />} />
