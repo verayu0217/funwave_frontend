@@ -86,3 +86,9 @@
 .NNW{
     transform: rotate(292.5deg);
 }
+
+@media screen and (max-width: 400px){
+    .spotDetailWrap{
+        margin-top: 18%
+    }
+};
