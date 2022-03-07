@@ -112,27 +112,27 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/home" element={<Home />} />
             <Route path="/home-try" element={<HomeTry />} />
-            <Route path="/information" element={<Information />}></Route>
-            <Route path="/information" element={<InformationDetails />}>
-              <Route path=":info_no" element={<InformationDetails />}></Route>
+            <Route path="/information" element={<><Information /><Footer /></>}></Route>
+            <Route path="/information" element={<><InformationDetails /><Footer /></>}>
+              <Route path=":info_no" element={<><InformationDetails /><Footer /></>}></Route>
             </Route>
             <Route path="/login" element={<LogIn />} />
-            <Route path="/surfspot" element={<SurfSpot />} />
-            <Route path="/products/:product_group" element={<ProductDetails />}>
-              <Route path=":product_id" element={<ProductDetails />} />
+            <Route path="/surfspot" element={<><SurfSpot /><Footer /></>} />
+            <Route path="/products/:product_group" element={<><ProductDetails /><Footer /></>}>
+              <Route path=":product_id" element={<><ProductDetails /><Footer /></>} />
             </Route>
-            <Route path="/products" element={<Products />}>
-              <Route path=":currentPage" element={<Products />} />
+            <Route path="/products" element={<><Products /><Footer /></>}>
+              <Route path=":currentPage" element={<><Products /><Footer /></>} />
             </Route>
-            <Route path="/product-cart01" element={<ProductCart01 />} />
-            <Route path="/product-cart02" element={<ProductCart02 />} />
-            <Route path="/product-cart03" element={<ProductCart03 />} />
-            <Route path="/collect" element={<Collect />} />
+            <Route path="/product-cart01" element={<><ProductCart01 /><Footer /></>} />
+            <Route path="/product-cart02" element={<><ProductCart02 /><Footer /></>} />
+            <Route path="/product-cart03" element={<><ProductCart03 /><Footer /></>} />
+            <Route path="/collect" element={<><Collect /><Footer /></>} />
             <Route
               path="/customized/customized-details"
-              element={<CustomizedDetails />}
+              element={<><CustomizedDetails /><Footer /></>}
             />
-            <Route path="/customized" element={<Customized />} />
+            <Route path="/customized" element={<><Customized /><Footer /></>} />
             <Route
               path="/member/member-courseorder/:id"
               element={<MemberCourseOrderDetails />}
@@ -156,16 +156,16 @@ function App() {
             <Route path="/member/member-info" element={<MemberInfo />} />
             <Route path="/member/member-order" element={<MemberOrder />} />
             <Route path="/member" element={<Member />} />
-            <Route path="/course" element={<Courses />} />
-            <Route path="/course/course-content" element={<CourseContent />} />
-            <Route path="/course/course-cart01" element={<CourseCart01 />} />
-            <Route path="/course/course-cart02" element={<CourseCart02 />} />
-            <Route path="/course/course-cart03" element={<CourseCart03 />} />
-            <Route path="/course/course-cart" element={<CourseCart />} />
-            <Route path="/course/course-evaluate" element={<CourseEvaluate />}>
-              <Route path=":currentPage" element={<CourseEvaluate />} />
+            <Route path="/course" element={<><Courses /><Footer /></>} />
+            <Route path="/course/course-content" element={<><CourseContent /><Footer /></>} />
+            <Route path="/course/course-cart01" element={<><CourseCart01 /><Footer /></>} />
+            <Route path="/course/course-cart02" element={<><CourseCart02 /><Footer /></>} />
+            <Route path="/course/course-cart03" element={<><CourseCart03 /><Footer /></>} />
+            <Route path="/course/course-cart" element={<><CourseCart /><Footer /></>} />
+            <Route path="/course/course-evaluate" element={<><CourseEvaluate /><Footer /></>}>
+              <Route path=":currentPage" element={<><CourseEvaluate /><Footer /></>} />
             </Route>
-            <Route path="*" element={<NotFound />} />
+            <Route path="*" element={<><NotFound /><Footer /></>} />
           </Routes>
 
             {/* <div className="footerApp"> */}
@@ -174,7 +174,8 @@ function App() {
         </div> */}
         </FavContext.Provider>
       </AuthContext.Provider>
-      <Footer /> {/* 試著把footer換位置，看會不會就不會露白，但還是露白 */}
+      {/* <Footer /> */}
+      {/* 試著把footer換位置，看會不會就不會露白，但還是露白 */}
     </>
   );
 }
