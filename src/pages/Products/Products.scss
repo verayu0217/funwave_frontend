@@ -11,17 +11,33 @@
 // title、banner
 // banner圖應該要固定比例，待改！！
 .bannerProducts {
-  height: 350px; // 待跟客製化商品、課程統一！
+  height: 350px;
   background: url('../../data/images/ProductBanner.jpg') center center no-repeat;
   background-size: cover;
 }
 .titleTop {
-  height: 225px; // 待跟客製化商品、課程統一！
+  height: 225px;
   background: rgba(255, 255, 255, 0.2); // 只調整背景alpha，不影響文字
 }
 .titleBottom {
-  height: 125px; // 待跟客製化商品、課程統一！
+  height: 125px;
   background: rgba(255, 255, 255, 0.2); // 只調整背景alpha，不影響文字
+}
+@media screen and (max-width: 480px) {
+  .bannerProducts {
+    height: 200px;
+    background: url('../../data/images/ProductBanner.jpg') center center
+      no-repeat;
+    background-size: cover;
+  }
+  .titleTop {
+    height: 125px;
+    background: rgba(255, 255, 255, 0.2); // 只調整背景alpha，不影響文字
+  }
+  .titleBottom {
+    height: 75px;
+    background: rgba(255, 255, 255, 0.2); // 只調整背景alpha，不影響文字
+  }
 }
 
 // 商品區
@@ -34,6 +50,14 @@
   width: 270px;
   display: flex;
   margin: auto;
+}
+@media screen and (max-width: 480px) {
+  .imgBox {
+    height: 160px;
+    width: 160px;
+    display: flex;
+    margin: auto;
+  }
 }
 
 // 左側篩選區

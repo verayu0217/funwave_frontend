@@ -233,15 +233,15 @@ function Products() {
 
   console.log('bigCatsClick', bigCatsClick);
   console.log('smallCatsClick', smallCatsClick);
-  console.log('priceLowest', priceLowest);
-  console.log('priceHighest', priceHighest);
-  console.log('brand', brand);
-  console.log('color', color);
-  console.log('fin', fin);
-  console.log('fin1', fin1);
-  console.log('fin2', fin2);
-  console.log('fin3', fin3);
-  console.log('search', search);
+  // console.log('priceLowest', priceLowest);
+  // console.log('priceHighest', priceHighest);
+  // console.log('brand', brand);
+  // console.log('color', color);
+  // console.log('fin', fin);
+  // console.log('fin1', fin1);
+  // console.log('fin2', fin2);
+  // console.log('fin3', fin3);
+  // console.log('search', search);
 
   return (
     <>
@@ -256,7 +256,7 @@ function Products() {
       </div>
       <div className="container">
         <div className="row">
-          <aside className="col-2 p-0">
+          <aside className="col-lg-2 p-0">
             <div className="sticky">
               {/* 大小分類 */}
               <ProductAccordion
@@ -267,6 +267,8 @@ function Products() {
               />
               {/* 篩選 */}
               <FilterBar
+                bigCatsClick={bigCatsClick}
+                smallCatsClick={smallCatsClick}
                 priceLowest={priceLowest}
                 setPriceLowest={setPriceLowest}
                 priceHighest={priceHighest}
@@ -300,32 +302,38 @@ function Products() {
               />
             </div>
           </aside>
-          <article className="col-10 ps-3 pe-1">
-            <header className="position-relative mt-5">
-              <div className="d-flex justify-content-center align-items-center">
-                <img
-                  src={greenTitle}
-                  className="me-3"
-                  alt="greenTitle"
-                  height="24px"
-                  width="64px"
-                />
-                <h1 className="m-0">
-                  {smallCatsClick === '0'
-                    ? bigCatsTypes[bigCatsClick]
-                    : smallCatsTypes[smallCatsClick]}
-                </h1>
+          <article className="col-lg-10 ps-3 pe-1">
+            <header className="mt-5">
+              <div className="row">
+                <div className="col-lg-4"></div>
+                <div className="col-lg-4 d-flex justify-content-center align-items-center">
+                  <img
+                    src={greenTitle}
+                    className="me-3"
+                    alt="greenTitle"
+                    height="24px"
+                    width="64px"
+                  />
+                  <h1 className="m-0">
+                    {smallCatsClick === '0'
+                      ? bigCatsTypes[bigCatsClick]
+                      : smallCatsTypes[smallCatsClick]}
+                  </h1>
+                </div>
+                {/* 搜尋 */}
+                <div className="col-lg-1 col-5"></div>
+                <div className="col-lg-3 col-7 d-flex align-self-center">
+                  <input
+                    type="text"
+                    placeholder="  🔍  以商品名稱搜尋"
+                    className="form-control mt-1 rounded-pill text-muted"
+                    value={search}
+                    onChange={(e) => {
+                      setSearch(e.target.value);
+                    }}
+                  />
+                </div>
               </div>
-              {/* 搜尋 */}
-              <input
-                type="text"
-                placeholder="  🔍  以商品名稱搜尋"
-                className="form-control mt-1 rounded-pill position-absolute top-0 end-0 w-25 text-muted"
-                value={search}
-                onChange={(e) => {
-                  setSearch(e.target.value);
-                }}
-              />
               {search !== '' && displayProducts.length === 0 ? (
                 <>
                   <div className="p-5 text-center">
