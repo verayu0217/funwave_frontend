@@ -70,7 +70,7 @@ function SurfSpotDetails(props) {
           ref={surfSpotDetailsRef}
         >
           <div className="container d-flex justify-content-center">
-            <div className="spotDetailWrap my-5" style={{ width: '80%' }}>
+            <div className="spotDetailWrap" style={{ width: '80%' }}>
               <div className="spotDetailWrapBlack">
                 <div
                   className="d-flex justify-content-end spotDetailCross"
