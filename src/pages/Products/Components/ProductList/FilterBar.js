@@ -177,10 +177,13 @@ function FilterBar(props) {
           <option value="9">Captain Fin</option>
           <option value="10">Creatures of Leisure</option>
           <option value="13">en.saintjacques</option>
+          <option value="16">FIREWIRE</option>
           <option value="3">JJF by Pyzel</option>
           <option value="7">Lib Tech</option>
           <option value="4">Modern</option>
+          <option value="15">OCEAN+EARTH</option>
           <option value="12">Pro-Lite</option>
+          <option value="14">RIPCURL</option>
           <option value="11">Roam</option>
           <option value="5">Softech</option>
           <option value="2">Solid Surf Co</option>
