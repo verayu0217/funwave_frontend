@@ -17,6 +17,9 @@ import MemberCollect from './MemberCollect';
 import MemberCourseOrder from './MemberCourseOrder';
 import { useAuth } from '../../context/auth';
 
+// footer用
+import FooterMember from '../../components/FooterMember';
+
 function Member() {
   const { auth, setAuth } = useAuth();
   const { member, setMember } = useState();
@@ -100,7 +103,7 @@ function Member() {
                   {/* <Nav.Item>
                     <Nav.Link
                       className="fs-24Member linkWidthMember mb-4"
-                       eventKey="sixth"
+                      eventKey="sixth"
                       as={Link}
                       to="/member/member-order"
                     >
@@ -222,6 +225,10 @@ function Member() {
       ) : (
         <Navigate to="/member"></Navigate>
       )}
+      {/* footer用 */}
+      <div className="footerBoxMember">
+        <FooterMember />
+      </div>
     </>
   );
 }
