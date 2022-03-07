@@ -12,6 +12,26 @@
 .addWish {
   right: 50px;
 }
+.commentImgBox {
+  height: 100px;
+  width: 100px;
+  display: flex;
+  margin: auto;
+}
+.rwdMargin5 {
+  margin: 48px;
+}
+@media screen and (max-width: 480px) {
+  .commentImgBox {
+    height: 40px;
+    width: 40px;
+    display: flex;
+    margin: auto;
+  }
+  .rwdMargin5 {
+    margin: 20px 0 0 0;
+  }
+}
 
 // 右邊加入購物車區
 .sizebtn {

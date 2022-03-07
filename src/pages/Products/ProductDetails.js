@@ -83,7 +83,7 @@ function ProductDetails(props) {
           <article className="col-10">
             <div className="row">
               {/* 中間商品細節區 */}
-              <div className="col-9">
+              <div className="col-lg-9">
                 {loading ? (
                   spinner
                 ) : (
@@ -96,8 +96,8 @@ function ProductDetails(props) {
                   />
                 )}
                 {/* 評價 */}
-                <div className="m-5">
-                  <div className="text-secondary my-4 h2 text-center ">
+                <div className="rwdMargin5">
+                  <div className="text-secondary my-4 h2 text-center">
                     <img
                       src={greenTitle}
                       className="me-3"
@@ -107,8 +107,8 @@ function ProductDetails(props) {
                     />
                     評價
                   </div>
-                  <div className="border mt-3 p-4">
-                    <div className="d-flex align-items-center">
+                  <div className="border mt-3 p-3 pe-4">
+                    <div div className="d-flex align-items-center">
                       <div className="m-3 fs-3">Tony</div>
                       <div className="d-flex justify-content-center ">
                         <AiFillStar size={20} color="#ff7f6a" />
@@ -118,24 +118,26 @@ function ProductDetails(props) {
                         <AiFillStar size={20} color="#ff7f6a" />
                         {/* <AiOutlineStar size={20} color="#ff7f6a" /> */}
                       </div>
-
-                      <div className="align-self-center ms-auto">
-                        2022年2月9日
-                      </div>
+                      <div className="align-self-center ms-auto">2022/2/9</div>
                     </div>
-                    <div className="my-3 d-flex">
-                      <img
-                        src={`${IMAGE_URL}/products/${product[0].image1}`}
-                        width="100"
-                        alt=""
-                      />
-                      <p>外袋整潔，內箱產品完整，期待有更優惠的活動供回購！</p>
+                    <div className="row my-3">
+                      <div className="col-2 commentImgBox">
+                        <img
+                          src={`${IMAGE_URL}/products/${product[0].image1}`}
+                          width="100"
+                          alt=""
+                          className="cover-fit"
+                        />
+                      </div>
+                      <p className="col-10">
+                        外袋整潔，內箱產品完整，期待有更優惠的活動供回購！
+                      </p>
                     </div>
                   </div>
                 </div>
               </div>
               {/* 右方的加入購物車區 */}
-              <div className="col-3 p-0">
+              <div className="col-lg-3 p-0">
                 <div className="sticky">
                   {loading ? (
                     spinner

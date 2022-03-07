@@ -90,7 +90,7 @@ function ProductItem(props) {
               height={300}
               alt={`${image1}`}
               src={`${IMAGE_URL}/products/${image1}`}
-              className="cover-fit"
+              className="coverFitContain"
             />
           </div>
           <div className="d-flex justify-content-center mt-2">

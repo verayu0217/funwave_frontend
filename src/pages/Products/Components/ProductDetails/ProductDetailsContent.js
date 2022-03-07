@@ -62,18 +62,18 @@ function ProductDetailsContent(props) {
   // 長板尺寸對照表
   const displaySizeDetailsLB = (
     <>
-      <div className="m-5">
+      <div className="rwdMargin5">
         <h3 className="border-bottom border-dark pb-2 mb-4">
           尺寸對照表 - 長板
         </h3>
         <div className="row">
-          <div className="col-3">
+          <div className="col-lg-3 col-5">
             <p className="text-center fw-bold">尺寸 (ft)</p>
             <p className="text-center fw-bold">寬度 (in)</p>
             <p className="text-center fw-bold">厚度 (in)</p>
             <p className="text-center fw-bold">重量 (L)</p>
           </div>
-          <div className="col-9">
+          <div className="col-lg-9 col-7">
             <div className="row">
               <div className="col-4">
                 <p className="fw-bold">8'0"</p>
@@ -97,18 +97,18 @@ function ProductDetailsContent(props) {
   // 快樂板尺寸對照表
   const displaySizeDetailsFB = (
     <>
-      <div className="m-5">
+      <div className="rwdMargin5">
         <h3 className="border-bottom border-dark pb-2 mb-4">
           尺寸對照表 - 快樂板
         </h3>
         <div className="row">
-          <div className="col-3">
+          <div className="col-lg-3 col-5">
             <p className="text-center fw-bold">尺寸 (ft)</p>
             <p className="text-center fw-bold">寬度 (in)</p>
             <p className="text-center fw-bold">厚度 (in)</p>
             <p className="text-center fw-bold">重量 (L)</p>
           </div>
-          <div className="col-9">
+          <div className="col-lg-9 col-7">
             <div className="row">
               <div className="col-4">
                 <p className="fw-bold">6'0"</p>
@@ -138,18 +138,18 @@ function ProductDetailsContent(props) {
   // 短板尺寸對照表
   const displaySizeDetailsSB = (
     <>
-      <div className="m-5">
+      <div className="rwdMargin5">
         <h3 className="border-bottom border-dark pb-2 mb-4">
           尺寸對照表 - 短板
         </h3>
         <div className="row">
-          <div className="col-3">
+          <div className="col-lg-3 col-5">
             <p className="text-center fw-bold">尺寸 (ft)</p>
             <p className="text-center fw-bold">寬度 (in)</p>
             <p className="text-center fw-bold">厚度 (in)</p>
             <p className="text-center fw-bold">重量 (L)</p>
           </div>
-          <div className="col-9">
+          <div className="col-lg-9 col-7">
             <div className="row">
               <div className="col-4">
                 <p className="fw-bold">4'0"</p>
@@ -210,8 +210,7 @@ function ProductDetailsContent(props) {
       </div>
 
       {/* 推薦商品 */}
-
-      <div className="m-5">
+      <div className="rwdMargin5">
         <h3 className="border-bottom border-dark pb-2 mb-4">推薦相似產品</h3>
         <div className="d-flex justify-content-evenly align-items-center">
           {recommend.map((v, i) => {
@@ -246,7 +245,7 @@ function ProductDetailsContent(props) {
       </div>
 
       {/* 品牌介紹 */}
-      <div className="m-5">
+      <div className="rwdMargin5">
         <h3 className="border-bottom border-dark pb-2 mb-4">品牌介紹</h3>
         <div className="row">
           <div className="col-3">
@@ -271,7 +270,7 @@ function ProductDetailsContent(props) {
       </div>
 
       {/* 產品介紹 */}
-      <div className="m-5">
+      <div className="rwdMargin5">
         <h3 className="border-bottom border-dark pb-2 mb-4">產品介紹</h3>
         <div className="row">
           <div className="col-3">
@@ -290,15 +289,15 @@ function ProductDetailsContent(props) {
       </div>
 
       {/* 產品規格 */}
-      <div className="m-5">
+      <div className="rwdMargin5">
         <h3 className="border-bottom border-dark pb-2 mb-4">產品規格</h3>
         <div className="row">
-          <div className="col-3">
+          <div className="col-lg-3 col-5">
             <p className="text-center fw-bold">材質</p>
             <p className="text-center fw-bold">類型</p>
             <p className="text-center fw-bold">適用板舵類型</p>
           </div>
-          <div className="col-9">
+          <div className="col-lg-9 col-7">
             <p>{materialTypes[product[0].material_id - 1]}</p>
             <p>{smallCatTypes[product[0].small_cat_id - 1]}</p>
             <p>{finCompatibilityTypes[product[0].fin_compatibility_id - 1]}</p>
