@@ -14,7 +14,13 @@ import logo from '../data/images/FunwaveLogo-black2.png';
 
 function MyNavbar() {
   //加入課程購物車icon加總
-  // TODO:會員登出購物車要清除 但在登入要存在
+  // TODO:會員登出購物車要清除 但再登入要存在
+  useEffect(() => {
+    if (auth === null) {
+      localStorage.clear('course');
+    }
+  });
+
   const [courseCart, setCourseCart] = useState(0);
   useEffect(() => {
     function refresh() {
@@ -25,7 +31,7 @@ function MyNavbar() {
         JSON.parse(localStorage.getItem('course')) === '高階課程'
       ) {
         setCourseCart(1);
-      } else if (!JSON.parse(localStorage.getItem('course'))) {
+      } else if (!JSON.parse(localStorage.getItem('course')) || auth === null) {
         setCourseCart(0);
       }
     }

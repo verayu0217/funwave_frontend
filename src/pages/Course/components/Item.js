@@ -7,16 +7,16 @@ const Item = ({ message, date, rating, photo, name, auth }) => {
       <div className="row border m-auto mt-3">
         {/* 第一排抬頭 */}
         <div className="d-flex flex-wrap">
-          <div className="mt-2 align-self-center">
-            {/*TODO: 會員大頭照  */}
+          {/*TODO: 會員大頭照  */}
+          {/* <div className="mt-2 align-self-center">
             <img
               className="rounded-circle"
-              // src={`http://localhost:3002${auth.member_photo}`}
+              src={`http://localhost:3002${auth.member_photo}`}
               alt=""
               height="50px"
               width="50px"
             />
-          </div>
+          </div> */}
 
           {/* 名稱 */}
           <div className="m-3 align-self-center">{name}</div>
