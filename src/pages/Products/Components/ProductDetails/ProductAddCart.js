@@ -13,6 +13,7 @@ import {
 import { BiHeart } from 'react-icons/bi';
 import { FaHeart } from 'react-icons/fa'; // 全愛心
 import 'animate.css';
+import Swal from 'sweetalert2';
 import { useAuth } from '../../../../context/auth';
 import { useFav } from '../../../../context/fav';
 import { IMAGE_URL } from '../../../../utils/config';
@@ -121,6 +122,14 @@ function ProductAddCart(props) {
     setMycart(currentCart);
     console.log('ProductAddCart.js - currentCart', currentCart);
     // console.log('ProductAddCart.js - mycart', mycart);
+
+    Swal.fire({
+      position: 'top-end',
+      icon: 'success',
+      title: '已加入購物車！',
+      showConfirmButton: false,
+      timer: 1500,
+    });
   };
 
   // 加入/刪除收藏
