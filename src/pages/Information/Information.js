@@ -498,7 +498,7 @@ function Information() {
                         </div> {/* 卡片容器-結束 */}
 
                         {/* 全部文章pagination */}
-                        <div className="d-flex justify-content-center mb-5">
+                        <div className="d-flex justify-content-center paginationPadding">
                             <Pagination size="sm">
                                 <Pagination.First onClick={(e) => setNowPage(1)}/>
                                 {getAllPageList()}
