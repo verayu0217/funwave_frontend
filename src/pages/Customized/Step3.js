@@ -3,6 +3,7 @@ import { Row, Col } from 'react-bootstrap';
 import { AiOutlinePlus, AiOutlineMinus } from 'react-icons/ai';
 import greenTitle from '../../data/images/greenTitle.svg';
 import Step2Board from './Step2Board';
+import Swal from 'sweetalert2';
 
 function Step3(props) {
   useEffect(() => {
@@ -165,6 +166,14 @@ function Step3(props) {
                     stock: 1,
                     count: count,
                     style: `${surfingBoard.front} + ${surfingBoard.frontpattern} & ${surfingBoard.back} + ${surfingBoard.backpattern}`,
+                  });
+
+                  Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: '已加入購物車！',
+                    showConfirmButton: false,
+                    timer: 1500,
                   });
                 }}
               >

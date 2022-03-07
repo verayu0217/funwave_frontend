@@ -31,10 +31,18 @@ function MemberInfo(props) {
     level: '',
   });
 
+  const [name, setName] = useState('');
+
   function handleChange(e) {
     member[e.target.id] = e.target.value;
     setMember(member);
   }
+
+  setInterval(() => {
+    if (name !== localStorage.getItem('name')) {
+      setName(localStorage.getItem('name'));
+    }
+  }, 500);
 
   async function memberSubmit(e) {
     e.preventDefault();
@@ -49,6 +57,10 @@ function MemberInfo(props) {
       msgData
     );
     Swal.fire('儲存成功');
+    localStorage.setItem('name', member.member_name);
+    if (response.data.filename) {
+      localStorage.setItem('member_photo', response.data.filename);
+    }
   }
 
   // 大頭貼更換
@@ -100,6 +112,8 @@ function MemberInfo(props) {
           }
         }
         setMember(member);
+        localStorage.setItem('name', member.member_name);
+        localStorage.setItem('member_photo', member.member_photo);
       }
     });
   }, []);
@@ -130,9 +144,7 @@ function MemberInfo(props) {
               </div>
               <h3 className="fs-24Member">
                 {' '}
-                {member.member_name == ''
-                  ? auth.member_name
-                  : member.member_name}
+                {member.member_name == '' ? auth.member_name : name}
               </h3>
               <h5 className={`fs-16Membe ${memberClassName}`}>
                 {member.level}

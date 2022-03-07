@@ -78,6 +78,10 @@ function Login() {
   // }
 
   console.log('登入後auth', auth);
+  if (auth) {
+    localStorage.setItem('name', auth.member_name);
+    localStorage.setItem('member_photo', auth.member_photo);
+  }
   if (isLogin) {
     // 轉頁效果
     return <Navigate to="/home" />;

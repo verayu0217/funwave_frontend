@@ -21,6 +21,13 @@ function Member() {
   const { auth, setAuth } = useAuth();
   const { member, setMember } = useState();
   const [goTo, setGoTo] = useState(false);
+  const [name, setName] = useState('');
+
+  setInterval(() => {
+    if (name !== localStorage.getItem('name')) {
+      setName(localStorage.getItem('name'));
+    }
+  }, 500);
 
   let getAuth = async () => {
     let response = await axios.get(`${API_URL}/member/${auth.member_id}`);
@@ -39,7 +46,7 @@ function Member() {
                     <Nav.Link className="fs-24Member linkWidthMember my-5">
                       您好,
                       <br />
-                      {auth.member_name}
+                      {name}
                     </Nav.Link>
                   </Nav.Item>
                   <Nav.Item>

@@ -22,6 +22,8 @@ function MyNavbar() {
   });
 
   const [courseCart, setCourseCart] = useState(0);
+  const [name, setName] = useState('');
+  const [memberPhoto, setMemberPhoto] = useState('');
   useEffect(() => {
     function refresh() {
       if (
@@ -54,13 +56,25 @@ function MyNavbar() {
         JSON.parse(productCart).reduce((pre, cur) => pre + cur.count, 0)
       );
     }
+    if (name !== localStorage.getItem('name')) {
+      setName(localStorage.getItem('name'));
+    }
+    if (memberPhoto !== localStorage.getItem('member_photo')) {
+      setMemberPhoto(localStorage.getItem('member_photo'));
+    }
   }, 500);
 
   const handleLogout = async () => {
     await axios.get(`${API_URL}/auth/logout`, {
       withCredentials: true,
     });
+    window.localStorage.removeItem('course');
+    setCourseCart(0);
+    window.localStorage.removeItem('productCart');
+    setCartCount(0);
     setAuth(null);
+    window.localStorage.removeItem('name');
+    window.localStorage.removeItem('member_photo');
   };
 
   return (
@@ -150,12 +164,12 @@ function MyNavbar() {
                             ? 'd-none'
                             : 'd-block headerImgMember cover-fit me-2'
                         }
-                        src={`http://localhost:3002${auth.member_photo}`}
+                        src={`http://localhost:3002${memberPhoto}`}
                       />
                     ) : (
                       ''
                     )}
-                    <p className="mb-0">{auth.member_name}</p>
+                    <p className="mb-0">{name}</p>
                   </div>
                   <Nav.Link
                     className="btnLogin mx-2"

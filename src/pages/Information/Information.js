@@ -498,7 +498,7 @@ function Information() {
                         </div> {/* 卡片容器-結束 */}
 
                         {/* 全部文章pagination */}
-                        <div className="d-flex justify-content-center mb-5">
+                        <div className="d-flex justify-content-center paginationPadding">
                             <Pagination size="sm">
                                 <Pagination.First onClick={(e) => setNowPage(1)}/>
                                 {getAllPageList()}
@@ -584,7 +584,7 @@ function Information() {
                         </div> {/* 卡片容器-結束 */}
 
                         {/* 分類一pagination */}
-                        <div className="d-flex justify-content-center mb-5">
+                        <div className="d-flex justify-content-center mb-5 paginationPadding">
                             <Pagination size="sm">
                                 <Pagination.First onClick={(e) => getCatOnePageList(1)}/>
                                 {getCatOnePageList()}
@@ -668,7 +668,7 @@ function Information() {
                         </div> {/* 卡片容器-結束 */}
                         
                         {/* 分類二pagination */}
-                        <div className="d-flex justify-content-center mb-5">
+                        <div className="d-flex justify-content-center mb-5 paginationPadding">
                             <Pagination size="sm">
                                 <Pagination.First onClick={(e) => getCatTwoPageList(1)}/>
                                 {getCatTwoPageList()}
