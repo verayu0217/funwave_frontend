@@ -388,10 +388,32 @@
     top: 40%;
 }
 
+// 資訊按鈕下方空位
+.articleBtnPadHome {
+    padding-bottom: 700px;
+}
+
+// footer
+.footBGHome {
+    background-color: #5fdad3;
+    height: auto;
+
+}
+
+.footUPHome {
+    background: url('../../data/images/home/footerUP.png') center center no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 146px;
+}
+
+
 // .infoContainerHome {
 
 // }
 
+
+// 卡片
 .cardHome {
     height: 640px;
     width: 100%;
