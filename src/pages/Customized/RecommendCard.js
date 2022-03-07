@@ -9,16 +9,9 @@ function RecommendCard() {
       <Col>
         <div className="shadow rounded bg-white p-2 cardMArginCu mb-1">
           <div className="m-3">
-            <p className="gray">
-              超推薦他們的衝浪板!
-              <br />
-              超推薦他們的衝浪板!
-              <br />
-              超推薦他們的衝浪板! <br />
-              很重要要講三次!!! 麻瓜世界的最愛商品
-            </p>
+            <p className="gray">超推薦他們的衝浪板! 麻瓜世界的最愛商品</p>
             <div className="d-flex justify-content-between mt-5">
-              <p>格來分多</p>
+              <p>葛萊芬多</p>
               <div className="d-flex justify-content-center ">
                 <AiFillStar size={20} color="#ff7f6a" />
                 <AiFillStar size={20} color="#ff7f6a" />
@@ -50,9 +43,7 @@ function RecommendCard() {
       <Col>
         <div className="shadow rounded bg-white p-2 cardMArginCu mb-1">
           <div className="m-3">
-            <p className="gray">
-              超推薦他們的衝浪板!超推薦他們的衝浪板!超推薦他們的衝浪板!超推薦他們的衝浪板!超推薦他們的衝浪板!超推薦他們的衝浪板!超推薦他們的衝浪板!超推薦他們的衝浪板!
-            </p>
+            <p className="gray">堅固好用、便宜實惠，期待新產品</p>
             <div className="d-flex justify-content-between mt-5">
               <p>雷文克勞</p>
               <div className="d-flex justify-content-center ">

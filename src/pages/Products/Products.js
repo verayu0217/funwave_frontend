@@ -357,7 +357,7 @@ function Products() {
 
             {/* <!-- 分頁 (Pagination) --> */}
             <nav aria-label="...">
-              <ul className="pagination justify-content-center mt-3">
+              <ul className="pagination justify-content-center my-5">
                 {/* 加最前頁 */}
                 <li class="page-item">
                   <a
