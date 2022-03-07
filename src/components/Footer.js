@@ -11,56 +11,70 @@ import { FaLine } from 'react-icons/fa';
 function Footer(props) {
   return (
     <>
-    <div className="footerWrapperPC container-fluid">
-      
-        <div className="container-fluid footerContent">
-            <div className="row d-flex justify-content-center align-items-start flex-wrap">
-              <div className="col-3 col-md-3 ">
+
+    <div className="container-fluid footerWrapperPC">
+    <div className="footerOutSide row gx-0">
+        <div className="footerUpPC col-12"></div>
+        <div className="footerContent">
+            <div className="d-flex justify-content-center align-items-start flex-wrap">
+              <div className="col-6 col-lg-3 p-3">
                   <div className="h5 fw-bold pb-4 text-wrap">關於我們</div>
                   <div className="h5 fw-normal text-wrap">FUNWAVEFUN浪</div>
                   <div className="h5 fw-normal text-wrap">這裡是衝浪愛好者的集散地，</div>
                   <div className="h5 fw-normal text-wrap">一起FUN，一起浪！</div>
               </div>
-              <div className="col-3 col-md-3">
+              <div className="col-6 col-lg-3 p-3">
                   <div className="h5 fw-bold pb-4 text-wrap">聯繫我們</div>
                   <div className="h5 fw-normal text-wrap">0800 - 078 - 578</div>
                   <div className="h5 fw-normal text-wrap text-break">funwave.funwave@gmail.com</div>
                   <div className="h5 fw-normal text-wrap">078-基隆市萬里鎮海邊小路78號</div>
               </div>
-              <div className="col-3 col-md-3">
+              <div className="col-6 col-lg-3 p-3">
                   <div className="h5 fw-bold pb-4 text-wrap">追蹤我們</div>
                   <div className="d-flex justify-content-start align-items-center mt-1">
-                        <a href="https://twitter.com/funwave_funwave">
-                          <BsFacebook
-                          className="me-3"
-                          size={24}
-                          color="#333333"
-                          />
-                        </a>
-                        <a href="https://twitter.com/funwave_funwave">
-                          <AiFillInstagram
-                          className="me-3"
-                          size={30}
-                          color="#333333"
-                          />
-                        </a>
-                        <a href="https://twitter.com/funwave_funwave">
-                          <AiFillTwitterCircle
-                            className="me-3"
-                            size={30}
-                            color="#333333"
-                          />
-                        </a>
-                        <a href="https://line.me/ti/g2/rnd10J2RcMA2iyHV7Z7scWAkX3g-K7m88yfvTg?utm_source=invitation&utm_medium=link_copy&utm_campaign=default">
-                          <FaLine
-                            className="me-3"
-                            size={30}
-                            color="#333333"
-                          />
-                        </a>
+                        <div className="row row-cols-2 row-cols-md-4 gx-0 d-flex justify-content-center align-items-center">
+                          <div className="d-flex justify-content-center align-items-center">
+                            <div className="col mb-3">
+                              <a href="https://twitter.com/funwave_funwave">
+                                <BsFacebook
+                                className="me-3"
+                                size={28}
+                                color="#333333"
+                                />
+                              </a>
+                            </div>
+                            <div className="col mb-3">
+                              <a href="https://twitter.com/funwave_funwave">
+                                <AiFillInstagram
+                                className="me-3"
+                                size={34}
+                                color="#333333"
+                                />
+                              </a>
+                            </div>
+                            <div className="col mb-3">
+                              <a href="https://twitter.com/funwave_funwave">
+                                <AiFillTwitterCircle
+                                  className="me-3"
+                                  size={32}
+                                  color="#333333"
+                                />
+                              </a>
+                            </div>
+                            <div className="col mb-3">
+                              <a href="https://line.me/ti/g2/rnd10J2RcMA2iyHV7Z7scWAkX3g-K7m88yfvTg?utm_source=invitation&utm_medium=link_copy&utm_campaign=default">
+                                <FaLine
+                                  className="me-3"
+                                  size={30}
+                                  color="#333333"
+                                />
+                              </a>
+                            </div>
+                          </div>
+                        </div>
                   </div>  
               </div>
-              <div className="col-3 col-md-3">
+              <div className="col-6 col-lg-3 p-3">
                   <Figure href="/home" className="">
                     <img src={logo} className="imgLogo" />
                   </Figure>
@@ -69,12 +83,13 @@ function Footer(props) {
             </div>
         </div>
       </div>
+      </div>
 
       {/* //////////////////////////////// */}
 
       <div className="footerWrapperMO d-flex justify-content-center align-items-center flex-wrap">
       
-        <div className="container footerContent px-5 me-0">
+        <div className="container-fluid footerContent px-5 me-0">
             <div className="row d-flex justify-content-center align-items-center flex-wrap text-center">
               <div className="col-12 pb-3">
                   <div className="h5 fw-bold pb-1 text-wrap">關於我們</div>
