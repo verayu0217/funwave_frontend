@@ -65,7 +65,7 @@ function MyNavbar() {
             <img src={logo} className="imgLogo" />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-          <Navbar.Collapse id="responsive-navbar-nav">
+          <Navbar.Collapse id="responsive-navbar-nav navWrap">
             <Nav className="mr-auto nav-menu">
               {/* 利用as屬性來作選單link的整合 */}
               {/* 參考：https://react-bootstrap.github.io/components/navs/#nav-link-props */}
@@ -85,26 +85,7 @@ function MyNavbar() {
                 浪點
               </Nav.Link>
             </Nav>
-            {/* <Nav>
-            <Nav.Link href="#deets">More deets</Nav.Link>
-            <Nav.Link eventKey={2} href="#memes">
-              Dank memes
-            </Nav.Link>
-          </Nav> */}
             <form className="d-flex btnGroup">
-              {/* <input
-                className="form-control me-2 searchIpt"
-                type="search"
-                placeholder="Search"
-                aria-label="Search"
-                style={{ display: 'none' }}
-              />
-              <button className="btn iconGroup" type="submit">
-                <i className="fas fa-search"></i>
-              </button> */}
-              {/* <button className="btn" type="submit">
-              <i className="fas fa-shopping-cart"></i>
-            </button> */}
               <Nav.Link
                 className="iconGroup d-flex align-items-center"
                 as={NavLink}
@@ -137,9 +118,6 @@ function MyNavbar() {
 
                 <span>&ensp;({courseCart})</span>
               </Nav.Link>
-              {/* <button className="btn" type="submit">
-              <i className="fas fa-user"></i>
-            </button> */}
               <Nav.Link
                 className="iconGroup"
                 as={NavLink}
@@ -152,6 +130,8 @@ function MyNavbar() {
               >
                 <i className="fas fa-user"></i>
               </Nav.Link>
+            </form>
+            <form className="d-flex btnGroup btnGroup2">
               {/* 登入/登出判斷 */}
               {auth ? (
                 <>

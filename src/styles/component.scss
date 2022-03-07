@@ -40,7 +40,7 @@
       justify-content: center;
       .iconGroup {
         color: #333333;
-        padding: 0rem 1.5rem 0rem 0rem;
+        padding: 0rem 1rem 0rem 0rem;
         white-space: nowrap;
         .fas {
           font-size: 30px;
@@ -92,45 +92,90 @@
 .favStar {
   color: $funwave-deepblue;
 }
-@media screen and (max-width: 1100px) {
-  .nav-menu {
-    .nav-link {
-      padding: 0rem 1rem !important;
-    }
-    .btnGroup {
-      .iconGroup {
-        padding: 0rem 1rem 0rem 0rem !important;
-        .fas {
-          font-size: 24px !important;
-          height: 24px !important;
+@media screen and (max-width: 1200px) {
+  .headerWrap {
+    .nav-menu {
+      .nav-link {
+        padding: 0rem 1rem !important;
+      }
+      .btnGroup {
+        .iconGroup {
+          padding: 0rem 1rem 0rem 0rem !important;
+          .fas {
+            font-size: 24px !important;
+            height: 24px !important;
+          }
+        }
+        .headerImgMember {
+          width: 50px;
+          height: 50px;
+        }
+        .btnLogin {
+          width: 74px !important;
+          height: 31px;
         }
       }
-      .headerImgMember {
-        width: 50px;
-        height: 50px;
+    }
+  }
+}
+@media screen and (max-width: 1110px) {
+  .headerWrap {
+    .nav-menu {
+      .nav-link {
+        padding: 0rem 0.5rem !important;
       }
-      .btnLogin {
-        width: 74px !important;
-        height: 31px;
+      .btnGroup {
+        .iconGroup {
+          padding: 0rem 0.1rem 0rem 0rem !important;
+          .fas {
+            font-size: 20px !important;
+            height: 20px !important;
+            padding-right: 3px;
+          }
+        }
+        .headerImgMember {
+          width: 40px;
+          height: 40px;
+        }
+        .btnLogin {
+          width: 74px !important;
+          height: 31px;
+        }
       }
     }
   }
 }
 @media screen and (max-width: 992px) {
-  .navbar {
-    padding: 0px;
-    .nav-menu {
-      height: auto;
+  .headerWrap {
+    .imgLogo {
+      color: #333333;
+      width: 176px !important;
+      height: 25px !important;
     }
-    .btnGroup {
-      padding: 1.5rem 0rem 1rem 0rem;
-      justify-content: end;
-      .iconGroup {
-        padding: 0rem 1.5rem 0rem 0rem;
-        .fas {
-          font-size: 30px;
-          height: 30px;
+    .navbar-collapse {
+      padding: 0px;
+      display: flex;
+      flex-direction: column !important;
+      align-items: flex-start;
+      .nav-menu {
+        height: auto;
+        order: 2;
+        margin: 0px;
+      }
+      .btnGroup {
+        padding: 1.5rem 0rem 1rem 0rem;
+        justify-content: end !important;
+        order: 3;
+        .iconGroup {
+          padding: 0rem 1.5rem 0rem 0rem;
+          .fas {
+            font-size: 30px;
+            height: 30px;
+          }
         }
+      }
+      .btnGroup2 {
+        order: 1 !important;
       }
     }
   }

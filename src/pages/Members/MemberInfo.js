@@ -49,7 +49,6 @@ function MemberInfo(props) {
       msgData
     );
     Swal.fire('儲存成功');
-    console.log(response);
   }
 
   // 大頭貼更換
