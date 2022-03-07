@@ -25,6 +25,10 @@ function ProductCart02() {
   let localStorageAmount = JSON.parse(localStorage.getItem('amount')) || 0;
   console.log('localStorageAmount', localStorageAmount);
 
+  if (localStorageAmount < 5000) {
+    localStorageAmount += 120;
+  }
+
   const localStorageOrderCart = JSON.parse(
     localStorage.getItem('productCartDisplay') || '[]'
   );
