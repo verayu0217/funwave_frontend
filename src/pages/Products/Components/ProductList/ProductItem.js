@@ -86,7 +86,7 @@ function ProductItem(props) {
         <Figure className="mt-4 position-relative">
           <div className="imgBox">
             <Figure.Image
-              width={265}
+              width={255}
               height={300}
               alt={`${image1}`}
               src={`${IMAGE_URL}/products/${image1}`}
