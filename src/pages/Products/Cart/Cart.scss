@@ -11,14 +11,101 @@
 .fontBlack {
   color: #333333d7;
 }
+.rwdMargin5 {
+  margin: 48px;
+}
+.rwdMarginX5 {
+  margin-left: 48px;
+  margin-right: 48px;
+}
+.rwdPaddingX5 {
+  padding-left: 48px;
+  padding-right: 48px;
+}
+.rwdPaddingX3 {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+.rwdPaddingS3 {
+  padding-left: 16px;
+}
+.rwdPaddingY4 {
+  padding-top: 24px;
+  padding-bottom: 24px;
+}
+.rwdPadding4 {
+  padding: 24px;
+}
+.rwdMarginE4 {
+  margin-right: 24px;
+}
+.rwdMarginS4 {
+  margin-left: 24px;
+}
+.rwdMarginE2 {
+  margin-right: 8px;
+}
+.rwdMarginS2 {
+  margin-left: 8px;
+}
+.rwdMarginS3 {
+  margin-left: 16px;
+}
+@media screen and (max-width: 480px) {
+  .rwdMargin5 {
+    margin: 20px 0 0 0;
+  }
+  .rwdMarginX5 {
+    margin-left: 25px;
+    margin-right: 25px;
+  }
+  .rwdPaddingX5 {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .rwdPaddingX3 {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .rwdPaddingS3 {
+    padding-left: 0px;
+  }
+  .rwdPaddingY4 {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  .rwdPadding4 {
+    padding: 20px 10px 20px 10px;
+  }
+  .rwdMarginE4 {
+    margin-right: 0;
+  }
+  .rwdMarginS4 {
+    margin-left: 0;
+  }
+  .rwdMarginE2 {
+    margin-right: 0;
+  }
+  .rwdMarginS2 {
+    margin-left: 0;
+  }
+  .rwdMarginS3 {
+    margin-left: 16px;
+  }
+}
 
 // header 三步驟
 .cartStepsSigns {
   background-color: $funwave-lightgray;
-  width: 29%;
 }
 .cartStepsSignsOrange {
   background: $orange;
+}
+.carHeader20 {
+  width: 80%;
+}
+.carHeader20 {
+  width: 20%;
 }
 
 // 步驟1
@@ -42,7 +129,17 @@
   right: 32px;
   top: 95px;
 }
-
+.modify {
+  width: 25%;
+}
+@media screen and (max-width: 480px) {
+  .cartDetails {
+    width: 85%;
+  }
+  .modify {
+    width: 50%;
+  }
+}
 // 步驟2
 .storeValidate {
   color: rgba(223, 21, 21, 0.842);

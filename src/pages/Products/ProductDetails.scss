@@ -7,6 +7,10 @@
   top: 0;
   /* 貼在最上面 */
 }
+.rwdMargin5 {
+  margin: 48px;
+}
+
 .stickyProducts {
   top: 90px;
 }
@@ -19,9 +23,6 @@
   width: 100px;
   display: flex;
   margin: auto;
-}
-.rwdMargin5 {
-  margin: 48px;
 }
 @media screen and (max-width: 480px) {
   .commentImgBox {
