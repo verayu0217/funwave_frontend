@@ -39,20 +39,24 @@
     max-width: 1440px;
     height: 100vh;
     .tabBarMember {
-      box-shadow: 9px 0 15px -3px rgb(81, 81, 81, 0.1);
-      display: flex;
-      justify-content: center;
-      .nav-pills .nav-link {
-        font-size: 1rem;
-        // padding: 1.5rem 5rem;
-        color: $black;
-        cursor: pointer;
-      }
-      .nav-pills .nav-link.active {
-        color: $primary;
-        background-color: $white;
-        border-bottom: 4px solid $funwave-deepblue;
-      }
+      box-shadow: 9px 0 15px -13px rgb(81, 81, 81, 0.1);
+      // display: flex;
+      // justify-content: center;
+    }
+    .stickyMember {
+      position: sticky;
+      top: 60px;
+    }
+    .nav-pills .nav-link {
+      font-size: 1.3rem;
+      // padding: 1.5rem 5rem;
+      color: $black;
+      cursor: pointer;
+    }
+    .nav-pills .nav-link.active {
+      color: $primary;
+      background-color: $white;
+      border-bottom: 4px solid $funwave-deepblue;
     }
     .tabBarPhoneMember {
       display: none;
@@ -68,6 +72,7 @@
       .tabBarPhoneMember {
         background-color: $white;
         display: flex;
+        justify-content: center;
         flex-direction: row !important;
         height: 52px !important;
         .nav-link.active {
@@ -488,5 +493,5 @@
 
 // footer用
 .footerBoxMember {
-  margin-top: 120px;
+  margin-top: 180px;
 }
