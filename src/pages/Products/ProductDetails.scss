@@ -7,6 +7,9 @@
   top: 0;
   /* 貼在最上面 */
 }
+.rwdMargin5 {
+  margin: 48px;
+}
 
 // 中間商品細節區
 .addWish {
@@ -17,9 +20,6 @@
   width: 100px;
   display: flex;
   margin: auto;
-}
-.rwdMargin5 {
-  margin: 48px;
 }
 @media screen and (max-width: 480px) {
   .commentImgBox {

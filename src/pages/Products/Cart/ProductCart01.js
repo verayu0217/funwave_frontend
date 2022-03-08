@@ -182,16 +182,19 @@ function ProductCart01() {
         <CartHeader />
         {/* 購物車、付款及運送方式 */}
         <article>
-          <div className="row mx-5 px-3 d-flex justify-content-center">
+          <div className="row rwdMarginX5 px-3 d-flex justify-content-center">
             {/* 購物車 */}
-            <div className="col-6 borderRadius p-0 me-4 shadow">
+            <div className="col-lg-6 borderRadius p-0 rwdMarginE4 shadow align-self-start pb-4">
               <div className="p-4 border-bottom text-center">
                 <h1>購物車</h1>
               </div>
               {/* 購物車內的商品細節 */}
               {mycartDisplay.map((item, index) => {
                 return (
-                  <div className="py-4 px-3" key={item.product_no}>
+                  <div
+                    className="rwdPaddingY4 rwdPaddingX3"
+                    key={item.product_no}
+                  >
                     {/* 商品圖 */}
                     <Figure className="d-flex align-items-center">
                       <Figure.Image
@@ -202,7 +205,7 @@ function ProductCart01() {
                         className="m-0 cartImg"
                       />
                       {/* 商品資訊 */}
-                      <div className="ps-3 cartDetails">
+                      <div className="rwdPaddingS3 cartDetails">
                         <Figure.Caption>
                           <p className="mb-1 fs-3 fw-bold fontBlack">
                             {item.name}
@@ -225,10 +228,10 @@ function ProductCart01() {
                         </Figure.Caption>
                       </div>
                       {/* 加減數量、刪除 */}
-                      <div className="w-25 d-flex justify-content-start align-items-center">
+                      <div className="modify d-flex justify-content-start align-items-center">
                         <button
                           type="button"
-                          className="btn btn-secondary border rounded-circle p-0 me-2 countButton"
+                          className="btn btn-secondary border rounded-circle p-0 rwdMarginE2 countButton"
                           onClick={() => {
                             if (item.count === 1) return;
                             updateCartLocalStorage(item, false);
@@ -243,7 +246,7 @@ function ProductCart01() {
                         {item.count}
                         <button
                           type="button"
-                          className="btn btn-secondary border rounded-circle p-0 ms-2 countButton"
+                          className="btn btn-secondary border rounded-circle p-0 rwdMarginS2 countButton"
                           onClick={() => updateCartLocalStorage(item, true)}
                         >
                           <AiOutlinePlus
@@ -254,10 +257,9 @@ function ProductCart01() {
                         </button>
                         <CgTrash
                           size={20}
-                          className="text-center ms-3 cursorPointer"
+                          className="text-center rwdMarginS3 cursorPointer"
                           onClick={() => cartDelete(item.product_no)}
                         />
-                        {/* <i className="fas fa-trash-alt position-absolute trash"></i> */}
                       </div>
                     </Figure>
                   </div>
@@ -265,35 +267,35 @@ function ProductCart01() {
               })}
             </div>
             {/* 付款及配送方式 */}
-            <div className="col-5 borderRadius p-0 pb-4 ms-4 shadow align-self-start">
-              <div className="p-4 border-bottom text-center">
+            <div className="col-lg-5 borderRadius p-0 pb-4 rwdMarginS4 shadow align-self-start">
+              <div className="rwdPadding4 border-bottom text-center">
                 <h1>付款及配送方式</h1>
               </div>
-              <div className="px-5 py-4 cartAmount">
+              <div className="rwdPaddingX5 rwdPaddingY4 cartAmount">
                 <div className="row">
-                  <div className="col-1"></div>
-                  <div className="col-5">商品總金額</div>
-                  <div className="col-5 text-end">
+                  <div className="col-lg-1"></div>
+                  <div className="col-lg-5 col-9">商品總金額</div>
+                  <div className="col-lg-5 col-3 text-end">
                     {sum(mycartDisplay).toLocaleString()}
                   </div>
-                  <div className="col-1"></div>
+                  <div className="col-lg-1"></div>
                 </div>
                 <div className="row">
-                  <div className="col-1"></div>
-                  <div className="col-5">運費</div>
-                  <div className="col-5 text-end">
+                  <div className="col-lg-1"></div>
+                  <div className="col-lg-5 col-9">運費</div>
+                  <div className="col-lg-5 col-3 text-end">
                     {sum(mycartDisplay) > 5000 ? 0 : 120}
                   </div>
-                  <div className="col-1"></div>
+                  <div className="col-lg-1"></div>
                 </div>
                 {sum(mycartDisplay) < 5000 ? (
                   <div className="row">
-                    <div className="col-11 text-end fs-6 text-primary">
+                    <div className="col-lg-11 text-end fs-6 text-primary">
                       商品消費差NT{' '}
                       {(5000 - sum(mycartDisplay)).toLocaleString()} 即可享滿NT
                       5,000免運優惠
                     </div>
-                    <div className="col-1"></div>
+                    <div className="col-lg-1"></div>
                   </div>
                 ) : (
                   <div className="row">
@@ -304,20 +306,20 @@ function ProductCart01() {
                   </div>
                 )}
                 <div className="row mt-5">
-                  <div className="col-1"></div>
-                  <div className="col-5 d-flex justify-content-end align-items-end">
+                  <div className="col-lg-1"></div>
+                  <div className="col-lg-5 col-7 d-flex justify-content-end align-items-end">
                     總金額：
                   </div>
-                  <div className="col-5 text-end h2 m-0">
+                  <div className="col-lg-5 col-5 text-end h2 m-0">
                     NT{' '}
                     {sum(mycartDisplay) > 20000
                       ? sum(mycartDisplay).toLocaleString()
                       : (sum(mycartDisplay) + 120).toLocaleString()}
                   </div>
-                  <div className="col-1"></div>
+                  <div className="col-lg-1"></div>
                 </div>
               </div>
-              <div className="px-5 py-4">
+              <div className="rwdPaddingX5 rwdPaddingY4">
                 <h5>付款方式</h5>
                 <Form.Select
                   aria-label="select"
