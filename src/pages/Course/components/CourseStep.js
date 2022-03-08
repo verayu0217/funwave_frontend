@@ -6,12 +6,12 @@ function CourseStep(props) {
   return (
     <>
       <header className="py-5 px-5">
-        <div className="d-flex justify-content-evenly">
+        <div className="courseCartSteps">
           <div
             className={
               step.step1
-                ? 'bg-primary d-flex align-items-center shadow py-2 cartStepsSigns borderRadius whiteBg'
-                : 'd-flex align-items-center shadow py-2 cartStepsSigns borderRadius whiteBg'
+                ? 'bg-primary col-sm-12 col-md-3 m-2 d-flex align-items-center shadow py-2 cartStepsSigns borderRadius whiteBg'
+                : 'd-flex col-sm-12 col-md-3 m-2 align-items-center shadow py-2 cartStepsSigns borderRadius whiteBg'
             }
           >
             <div className="fs-1 w-25 text-center">01</div>
@@ -24,8 +24,8 @@ function CourseStep(props) {
           <div
             className={
               step.step2
-                ? 'bg-primary d-flex align-items-center shadow py-2 cartStepsSigns borderRadius whiteBg'
-                : 'd-flex align-items-center shadow py-2 cartStepsSigns borderRadius whiteBg'
+                ? 'bg-primary col-sm-12 col-md-3 m-2 d-flex align-items-center shadow py-2 cartStepsSigns borderRadius whiteBg'
+                : 'd-flex col-sm-12 col-md-3 m-2 align-items-center shadow py-2 cartStepsSigns borderRadius whiteBg'
             }
           >
             <div className="fs-1 w-25 text-center">02</div>
@@ -38,8 +38,8 @@ function CourseStep(props) {
           <div
             className={
               step.step3
-                ? 'bg-primary d-flex align-items-center shadow py-2 cartStepsSigns borderRadius whiteBg'
-                : 'd-flex align-items-center shadow py-2 cartStepsSigns borderRadius whiteBg'
+                ? 'bg-primary col-sm-12 col-md-3 m-2 d-flex align-items-center shadow py-2 cartStepsSigns borderRadius whiteBg'
+                : 'd-flex col-sm-12 col-md-3 m-2 align-items-center shadow py-2 cartStepsSigns borderRadius whiteBg'
             }
           >
             <div className="fs-1 w-25 text-center">03</div>

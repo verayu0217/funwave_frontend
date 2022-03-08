@@ -26,7 +26,10 @@
 .successBox {
   background-color: $funwave-orange;
 }
-
+.courseCartSteps{
+  display: flex;
+  justify-content: space-evenly;
+}
 // 手機版
 @media screen and (max-width: 768px) {
   .courseDetail {
@@ -94,8 +97,12 @@
     color: black;
     // background-color: $deepblue;
     // color: $white;
+  } 
+  .courseCartSteps{
+    display: block;
   }
 }
+
 
 // 電腦板
 @media screen and (min-width: 768px) {
