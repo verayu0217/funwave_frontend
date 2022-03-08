@@ -156,7 +156,7 @@ function ProductCart02() {
         <CartHeader />
         <article>
           <div className="row d-flex justify-content-center">
-            <div className="col-8 m-0 p-0 shadow borderRadius">
+            <div className="col-lg-8 col-10 m-0 p-0 shadow borderRadius">
               <div className="p-4 border-bottom text-center">
                 <h1>訂購資訊</h1>
               </div>
@@ -198,7 +198,7 @@ function ProductCart02() {
 
                 {/* 發票資訊，目前無作用！ */}
 
-                <div className="px-5 py-4">
+                <div className="rwdPaddingX5 py-4">
                   {/* 同意接受服務條款及隱私權政策 */}
                   <Form.Group className="mb-3">
                     <Form.Check

@@ -22,8 +22,8 @@ function ProductCart03() {
         <CartHeader />
         <article>
           <div className="row d-flex justify-content-center">
-            <div className="col-8 m-0 p-0 shadow borderRadius">
-              <div className="p-5 pb-3 border-bottom text-center">
+            <div className="col-lg-8 col-10 m-0 p-0 shadow borderRadius">
+              <div className="rwdPadding5 pb-3 border-bottom text-center">
                 <h4>Good Things are Coming!</h4>
                 <p className="mt-5 lh-lg">
                   我們來自於陸地，心卻向著大海，我們是「浪人」。

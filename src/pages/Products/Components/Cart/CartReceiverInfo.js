@@ -14,7 +14,7 @@ function CartReceiverInfo(props) {
   return (
     <>
       {/* 收件人資訊 */}
-      <div className="px-5 py-4 border-top">
+      <div className="rwdPaddingX5 py-4 border-top">
         <div className="d-flex justify-content-between">
           <h3>收件人資訊</h3>
           <div className="form-check">

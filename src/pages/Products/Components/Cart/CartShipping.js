@@ -82,7 +82,7 @@ function CartShipping(props) {
 
   return (
     <>
-      <div className="px-5 py-4 border-top">
+      <div className="rwdPaddingX5 py-4 border-top">
         <div className="d-flex justify-content-between">
           <h3>配送資訊</h3>
           {localStorageDelivery === '宅配到府' ? (

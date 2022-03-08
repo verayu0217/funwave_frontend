@@ -20,7 +20,7 @@ function CartMemberInfo(props) {
   return (
     <>
       {/* 訂購人資訊 */}
-      <div className="px-5 py-4">
+      <div className="rwdPaddingX5 py-4">
         <div className="d-flex justify-content-between">
           <h3>訂購人資訊</h3>
           {/* <div className="form-check">
