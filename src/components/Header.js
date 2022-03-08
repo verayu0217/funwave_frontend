@@ -16,9 +16,9 @@ function MyNavbar() {
   //加入課程購物車icon加總
 
   useEffect(() => {
-    if (auth === null) {
-      localStorage.clear('course');
-    }
+    // if (auth === null) {
+    //   localStorage.clear('course');
+    // }
   });
 
   const [courseCart, setCourseCart] = useState(0);
@@ -68,13 +68,13 @@ function MyNavbar() {
     await axios.get(`${API_URL}/auth/logout`, {
       withCredentials: true,
     });
+    setAuth(null);
+    window.localStorage.removeItem('name');
+    window.localStorage.removeItem('member_photo');
     window.localStorage.removeItem('course');
     setCourseCart(0);
     window.localStorage.removeItem('productCart');
     setCartCount(0);
-    setAuth(null);
-    window.localStorage.removeItem('name');
-    window.localStorage.removeItem('member_photo');
   };
 
   return (
