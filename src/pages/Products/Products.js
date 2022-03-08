@@ -257,7 +257,7 @@ function Products() {
       <div className="container">
         <div className="row">
           <aside className="col-lg-2 p-0">
-            <div className="sticky">
+            <div className="sticky stickyProducts">
               {/* 大小分類 */}
               <ProductAccordion
                 bigCatsClick={bigCatsClick}

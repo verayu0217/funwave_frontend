@@ -138,7 +138,7 @@ function ProductDetails(props) {
               </div>
               {/* 右方的加入購物車區 */}
               <div className="col-lg-3 p-0">
-                <div className="sticky">
+                <div className="sticky stickyProducts">
                   {loading ? (
                     spinner
                   ) : (

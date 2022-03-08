@@ -49,7 +49,10 @@ import { IMAGE_URL } from '../../utils/config';
 import { useNavigate, Link } from "react-router-dom";
 
 // 卡片引用
-import HomeSlide from './HomeSlide'; ////////
+import HomeSlide from './HomeSlide';
+
+// footer引用
+import logo from '../../data/images/FunwaveLogo-black2.png';
 
 
 
@@ -997,7 +1000,7 @@ return (
                         />
                     </div>
                     {/* 文章按鈕 */}
-                    <div className="d-flex justify-content-center align-items-center flex-row py-5">
+                    <div className="d-flex justify-content-center align-items-center flex-row py-5 articleBtnPadHome">
                         <a className="btn btn-primary ps-5" href="/information">看更多衝浪文章
                         <FaLongArrowAltRight
                                 className="ps-2 me-5"
@@ -1006,9 +1009,82 @@ return (
                         />
                         </a>
                     </div> {/* 文章按鈕-結束 */}
-
                 </div> {/* 資訊容器 container */}
-            </div> {/* container-fluid */}
+
+                {/* footer */}
+                <div className="footUPHome"></div>
+                <div className="footBGHome">
+                    <div className="container py-5">
+                        <div className="row">
+                            <div className="col-6 col-lg-3 p-3">
+                                <div className="h5 fw-bold pb-4 text-wrap">關於我們</div>
+                                <div className="h5 fw-normal text-wrap">FUNWAVEFUN浪</div>
+                                <div className="h5 fw-normal text-wrap">這裡是衝浪愛好者的集散地，</div>
+                                <div className="h5 fw-normal text-wrap">一起FUN，一起浪！</div>
+                            </div>
+                            <div className="col-6 col-lg-3 p-3">
+                                <div className="h5 fw-bold pb-4 text-wrap">聯繫我們</div>
+                                <div className="h5 fw-normal text-wrap">0800 - 078 - 578</div>
+                                <div className="h5 fw-normal text-wrap text-break">funwave.funwave@gmail.com</div>
+                                <div className="h5 fw-normal text-wrap">078-基隆市萬里鎮海邊小路78號</div>
+                            </div>
+                            <div className="col-6 col-lg-3 p-3">
+                                <div className="h5 fw-bold pb-4 text-wrap">追蹤我們</div>
+                                <div className="d-flex justify-content-start align-items-center mt-1">
+                                        <div className="row row-cols-2 row-cols-md-4 gx-0 d-flex justify-content-center align-items-center">
+                                        <div className="d-flex justify-content-center align-items-center">
+                                            <div className="col mb-3">
+                                            <a href="https://twitter.com/funwave_funwave">
+                                                <BsFacebook
+                                                className="me-3"
+                                                size={28}
+                                                color="#333333"
+                                                />
+                                            </a>
+                                            </div>
+                                            <div className="col mb-3">
+                                            <a href="https://twitter.com/funwave_funwave">
+                                                <AiFillInstagram
+                                                className="me-3"
+                                                size={34}
+                                                color="#333333"
+                                                />
+                                            </a>
+                                            </div>
+                                            <div className="col mb-3">
+                                            <a href="https://twitter.com/funwave_funwave">
+                                                <AiFillTwitterCircle
+                                                className="me-3"
+                                                size={32}
+                                                color="#333333"
+                                                />
+                                            </a>
+                                            </div>
+                                            <div className="col mb-3">
+                                            <a href="https://line.me/ti/g2/rnd10J2RcMA2iyHV7Z7scWAkX3g-K7m88yfvTg?utm_source=invitation&utm_medium=link_copy&utm_campaign=default">
+                                                <FaLine
+                                                className="me-3"
+                                                size={30}
+                                                color="#333333"
+                                                />
+                                            </a>
+                                            </div>
+                                        </div>
+                                        </div>
+                                </div>  
+                            </div>
+                            <div className="col-6 col-lg-3 p-3">
+                                <Figure href="/home" className="">
+                                    <img src={logo} className="imgLogoFooter" />
+                                </Figure>
+                                <div className="h5 fw-normal textBreakFooter text-wrap">此網站僅用於程式開發技術實作學習用途，如有任何侵害到您權益的問題，敬請聯繫funwave.funwave@gmail.com，我們將立即將網站做下線及相關檔案銷毀處理，非常謝謝您！</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {/* footer結束 */}
+
+            </div> {/* container-fluid 浪文背景*/}
 
 
         </div> {/* traslateBox */}
