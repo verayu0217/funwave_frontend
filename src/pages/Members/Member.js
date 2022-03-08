@@ -43,8 +43,8 @@ function Member() {
         <div className="memberWrap mb-5">
           <Tab.Container id="left-tabs-example" defaultActiveKey="first">
             <Row className="container tabWrapMember">
-              <Col className="tabBarMember sticky" lg={3} md={3}>
-                <Nav variant="pills" className="flex-column">
+              <Col className="tabBarMember" lg={3} md={3}>
+                <Nav variant="pills" className="flex-column stickyMember">
                   <Nav.Item>
                     <Nav.Link className="fs-24Member linkWidthMember my-5">
                       您好,
@@ -109,8 +109,8 @@ function Member() {
                     >
                       我的收藏
                     </Nav.Link>
-                  </Nav.Item>
-                  <Nav.Item>
+                  </Nav.Item> */}
+                  {/* <Nav.Item>
                     <Nav.Link
                       className="fs-24Member linkWidthMember mb-4"
                       eventKey="seventh"
@@ -192,7 +192,7 @@ function Member() {
                 </Nav>
               </Col>
               <Col className="tabContentMember mx-auto" lg={9} md={8} sm={12}>
-                <Tab.Content className="d-flex justify-content-center">
+                <Tab.Content className="d-flex justify-content-center mt-4">
                   <Tab.Pane eventKey="first">
                     <MemberInfo />
                   </Tab.Pane>
@@ -205,7 +205,7 @@ function Member() {
                   <Tab.Pane eventKey="fourth">
                     <MemberShoppingGold />
                   </Tab.Pane>
-                  <Tab.Pane eventKey="fifth">
+                  {/* <Tab.Pane eventKey="fifth">
                     <MemberCoupon />
                   </Tab.Pane>
                   <Tab.Pane eventKey="sixth">
@@ -213,7 +213,7 @@ function Member() {
                   </Tab.Pane>
                   <Tab.Pane eventKey="seventh">
                     <MemberMessage />
-                  </Tab.Pane>
+                  </Tab.Pane> */}
                   <Tab.Pane eventKey="eighth">
                     <MemberCourseOrder />
                   </Tab.Pane>
