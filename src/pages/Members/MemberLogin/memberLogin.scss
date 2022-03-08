@@ -51,7 +51,7 @@
 .wrapSignup{
     background: rgba($color: #000000, $alpha: 0.6);
     position: fixed;
-    overflow: auto;
+    overflow:auto;
     top:0%;
     left:0%; 
     width: 100%;
@@ -59,7 +59,7 @@
     z-index: 1;
 }
 .background{
-    margin: 0 auto;
+    margin: 95px auto 0;
     background: rgba(255,255,255,1);
     border-radius: 8px;
     z-index: 2;
@@ -91,6 +91,9 @@
 }
 // 快速註冊手機版 375px
 @media screen and (max-width: 400px) {
+    .wrapSignup{
+        overflow:auto;
+    }
     .background{
         width: 80%;
         background: white;
