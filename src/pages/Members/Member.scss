@@ -72,6 +72,7 @@
       .tabBarPhoneMember {
         background-color: $white;
         display: flex;
+        justify-content: center;
         flex-direction: row !important;
         height: 52px !important;
         .nav-link.active {
