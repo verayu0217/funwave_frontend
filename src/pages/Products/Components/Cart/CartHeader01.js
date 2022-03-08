@@ -18,7 +18,7 @@ function ProductAddCart(props) {
           衝浪商品購物車
         </div>
         <div className="row">
-          <div className="d-flex justify-content-evenly">
+          <div className="cartHeaderTotal">
             <div className="col-lg-3 d-flex align-items-center shadow py-2 cartStepsSignsOrange borderRadius">
               <div className="fs-1 carHeader20 text-center">01</div>
               <div className="carHeader80">

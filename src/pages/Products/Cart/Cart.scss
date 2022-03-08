@@ -54,6 +54,10 @@
 .rwdMarginS3 {
   margin-left: 16px;
 }
+.cartHeaderTotal{
+  display: flex;
+  justify-content: space-evenly;
+}
 @media screen and (max-width: 480px) {
   .rwdMargin5 {
     margin: 20px 0 0 0;
@@ -144,6 +148,9 @@
   }
   .modify {
     width: 50%;
+  }
+  .cartHeaderTotal{
+    display: block;
   }
 }
 // 步驟2
