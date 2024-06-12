@@ -55,7 +55,6 @@ function CourseEvaluate() {
     getEvaluate();
   }, [flag]);
 
-  //取資料庫評價與圖片 有分頁後端先改用get
   useEffect(() => {
     getEvaluate();
   }, [page]);
